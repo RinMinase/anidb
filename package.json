@@ -13,7 +13,6 @@
         "dev": "cross-env NODE_ENV=development webpack-dev-server --progress --bail --open",
         "build": "cross-env NODE_ENV=production webpack -p --colors",
         "lint": "eslint --ext \".js\" \"src\"",
-
         "precommit": "npm run lint",
         "prepush": "npm run lint"
     },
@@ -56,11 +55,11 @@
         "node-sass": "^3.10.0",
         "oclazyload": "^1.1.0",
         "postcss-loader": "^0.13.0",
-        "sass-loader": "^4.0.2",
+        "sass-loader": "4.0.0",
         "style-loader": "^0.13.1",
         "url": "^0.11.0",
         "url-loader": "^0.5.7",
-        "webpack": "^3.5.0",
+        "webpack": "^3.11.0",
         "webpack-dev-server": "^2.2.0"
     },
     "engines": {
