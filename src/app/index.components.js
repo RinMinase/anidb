@@ -1,7 +1,7 @@
 "use strict";
 
-import footerModule from "./components/footer/footer.module";
+import {default as footer} from "./common/footer/footer.module";
 
 export default angular.module("index.components", [
-	footerModule.name,
+	footer.name,
 ]);
