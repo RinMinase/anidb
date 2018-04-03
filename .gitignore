@@ -1,0 +1,27 @@
+# General
+.tmp/
+true!ng-annotate/
+dist/
+
+# IntelliJ IDE storage
+.idea/
+
+# Node/NPM/Yarn Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Node/NPM/Yarn cache/storage
+.npm
+node_modules/
+
+# Optional eslint cache
+.eslintcache
+
+# Bower dependency directory
+bower_components
+
+# Sass cache directory
+.sass-cache/
