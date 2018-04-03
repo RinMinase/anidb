@@ -1,6 +1,6 @@
 "use strict";
 
-export default class FooterController {
+class FooterController {
 	constructor($log) {
 		"ngInject";
 		this.$log = $log;
@@ -10,3 +10,5 @@ export default class FooterController {
 		this.$log.log("Hello from the footer component controller!");
 	}
 }
+
+export default FooterController;
