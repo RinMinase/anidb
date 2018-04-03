@@ -10,8 +10,6 @@ function config($logProvider, $compileProvider) {
 		$logProvider.debugEnabled(false);
 		$compileProvider.debugInfoEnabled(false);
 	}
-
-
 }
 
 export default config;
