@@ -10,34 +10,30 @@ import indexComponents from "./index.components";
 import indexRoutes from "./index.routes";
 import mainModule from "./pages/main/main.module";
 
-const App = angular.module(
-	"anidb-angular", [
-		// plugins
-		uiRouter,
-		"ngAnimate",
-		"ngCookies",
-		"ngTouch",
-		"ngSanitize",
-		"ngMessages",
-		"oc.lazyLoad",
+export default angular
+	.module(
+		"anidb-angular", [
+			// plugins
+			uiRouter,
+			"ngAnimate",
+			"ngCookies",
+			"ngTouch",
+			"ngSanitize",
+			"ngMessages",
+			"oc.lazyLoad",
 
-		// core
-		coreModule.name,
+			// core
+			coreModule.name,
 
-		// components
-		indexComponents.name,
+			// components
+			indexComponents.name,
 
-		// routes
-		indexRoutes.name,
+			// routes
+			indexRoutes.name,
 
-		// pages
-		mainModule.name,
-
-	]
-);
-
-App
+			// pages
+			mainModule.name,
+		]
+	)
 	.config(config)
 	.run(run);
-
-export default App;
