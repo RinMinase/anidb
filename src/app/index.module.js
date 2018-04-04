@@ -1,14 +1,12 @@
 "use strict";
 
 import config from "./index.config";
-import run from "./index.run";
-
-import uiRouter from "@uirouter/angularjs";
-
-import coreModule from "./core/core.module";
 import indexComponents from "./index.components";
 import indexRoutes from "./index.routes";
+import coreModule from "./core/core.module";
 import mainModule from "./pages/main/main.module";
+
+import uiRouter from "@uirouter/angularjs";
 
 export default angular
 	.module(
@@ -35,5 +33,4 @@ export default angular
 			mainModule.name,
 		]
 	)
-	.config(config)
-	.run(run);
+	.config(config);
