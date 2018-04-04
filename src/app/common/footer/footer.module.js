@@ -7,7 +7,7 @@ import FooterController from "./footer.controller";
 
 export default angular
 	.module("footer", [])
-	.component("footerTest", {
+	.component("footerComponent", {
 		templateUrl: footerDOM,
 		controller: FooterController,
 	});
