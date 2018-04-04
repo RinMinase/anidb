@@ -1,10 +1,9 @@
 "use strict";
 
-function MainController($log) {
+function AsyncController($log) {
 	"ngInject";
 
 	$log.debug("Hello from Lazy Loaded controller!");
-
 }
 
-export default MainController;
+export default AsyncController;
