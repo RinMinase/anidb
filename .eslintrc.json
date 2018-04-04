@@ -32,7 +32,7 @@
 		"browser": true,
 		"node": true
 	},
-	"extends": "eslint:recommended",
+	"extends": ["eslint:recommended", "plugin:angular/johnpapa"],
 	"rules": {
 		// Possible Errors
 		"no-unexpected-multiline":			["warn"],
@@ -125,6 +125,11 @@
 		"require-yield":					"error",
 		"rest-spread-spacing":				["error", "never"],
 		"symbol-description":				"error",
-		"yield-star-spacing":				["error", "after"]
+		"yield-star-spacing":				["error", "after"],
+
+		// AngularJS
+		"angular/file-name":				"off",
+		"angular/function-type":			["error", "named"],
+		"angular/module-getter":			["off"]
 	}
 }
