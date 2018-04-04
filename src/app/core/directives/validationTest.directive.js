@@ -2,9 +2,9 @@
 
 export default function (app) {
 
-	app.directive("validationTest", validationTestDirective);
+	app.directive("validationTest", validationTest);
 
-	function validationTestDirective () {
+	function validationTest () {
 		"ngInject";
 
 		return {

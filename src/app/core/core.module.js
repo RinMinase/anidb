@@ -1,8 +1,9 @@
 "use strict";
 
-const shared = angular.module("core.shared", []);
+// eslint-disable-next-line angular/module-setter
+const shared = angular.module("core", []);
 
-import validationTestDirective from "./directives/validation-test/validation-test.directive";
+import validationTestDirective from "./directives/validationTest.directive";
 
 import constants from "./services/constants";
 import storeFactory from "./services/store.factory";
