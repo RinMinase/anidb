@@ -7,6 +7,7 @@ import mainModule from "./pages/main/main.module";
 
 import uiRouter from "@uirouter/angularjs";
 
+/* eslint-disable no-inline-comments, line-comment-position */
 export default angular
 	.module(
 		"anidb-angular", [
@@ -19,17 +20,10 @@ export default angular
 			"ngMessages",
 			"oc.lazyLoad",
 
-			// core
-			coreModule.name,
-
-			// components
-			indexComponents.name,
-
-			// routes
-			indexRoutes.name,
-
-			// pages
-			mainModule.name,
+			coreModule.name,		// core
+			indexComponents.name,	// components
+			indexRoutes.name,		// routes
+			mainModule.name,		// pages
 		]
 	)
 	.config(($logProvider, $compileProvider) => {
@@ -41,3 +35,4 @@ export default angular
 			$compileProvider.debugInfoEnabled(false);
 		}
 	});
+/* eslint-enable */
