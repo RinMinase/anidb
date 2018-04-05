@@ -17,7 +17,9 @@
   "start": "npm run dev",
   "dev": "cross-env NODE_ENV=development webpack-dev-server --progress --bail --open",
   "build": "cross-env NODE_ENV=production webpack -p --colors",
+  "install": "npm install --no-package-lock",
   "lint": "eslint --ext \".js\" \"src\"",
+  "disable-lock": "npm config set package-lock false",
   "precommit": "npm run lint",
   "prepush": "npm run lint"
  },
