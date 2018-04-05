@@ -1,6 +1,13 @@
 {
  "name": "anidb-angular",
+ "description": "Rin Minase's Anime Database using AngularJS in ES6",
  "version": "0.1.0",
+ "license": "LGPL-3.0",
+ "author": "Rin Minase",
+ "repository": {
+  "type": "git",
+  "url": "https://github.com/RinMinase/anidb-angular"
+ },
  "bin": {
   "cross-env": "./node_modules/cross-env/bin/cross-env.js",
   "webpack": "./node_modules/webpack/bin/webpack.js",
