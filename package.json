@@ -71,5 +71,15 @@
  },
  "engines": {
   "node": ">=0.12.0"
+ },
+ "babel": {
+  "plugins": [
+   "angularjs-annotate"
+  ],
+  "presets": [
+   "stage-1",
+   ["es2015", { "modules": false }],
+   "es2017"
+  ]
  }
 }
