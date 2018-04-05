@@ -1,6 +1,5 @@
 "use strict";
 
-import config from "./index.config";
 import indexComponents from "./index.components";
 import indexRoutes from "./index.routes";
 import coreModule from "./core/core.module";
@@ -33,4 +32,12 @@ export default angular
 			mainModule.name,
 		]
 	)
-	.config(config);
+	.config(($logProvider, $compileProvider) => {
+		"ngInject";
+
+		$logProvider.debugEnabled(true);
+		if (NODE_ENV === "production") {
+			$logProvider.debugEnabled(false);
+			$compileProvider.debugInfoEnabled(false);
+		}
+	});
