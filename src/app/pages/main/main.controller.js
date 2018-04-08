@@ -131,8 +131,7 @@ export default class MainController {
 						.then(signOut)
 						.then(resolve);
 				} else {
-					// eslint-disable-next-line
-					console.log("Not logged-in in firebase!");
+					this.$log.log("Not logged-in in firebase!");
 				}
 			});
 		});
