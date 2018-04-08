@@ -11,6 +11,7 @@ export default class MainController {
 		this.$log = $log;
 	}
 
+	/* eslint-disable no-console */
 	$onInit() {
 		this.lodashVersion = _.VERSION;
 		this.momentVersion = moment.version;
@@ -33,87 +34,80 @@ export default class MainController {
 				"testing@test.com",
 				"testing"
 			).then(() => {
-				// eslint-disable-next-line
 				console.log("Successfully logged in to firebase!");
+
+				firebase.auth().onAuthStateChanged((isAuthenticated) => {
+					if (isAuthenticated) {
+						const dataDump = {
+							quality: "4k 2160p",
+							title: "Kimi no Na Wa",
+							episodes: 1,
+							ovas: 0,
+							specials: 0,
+							filesize: 209715200,
+							seasonNumber: 1,
+							firstSeasonTitle: "Kimi no Na Wa",
+							prequel: "",
+							sequel: "",
+							offquel: "",
+							dateFinished: 1523232000,
+							releaseSeason: "Fall",
+							releaseYear: "2013",
+							duration: 7200,
+							encoder: "Coalgirls",
+							variants: "",
+							remarks: "",
+							rating: {
+								audio: 7,
+								enjoyment: 7,
+								graphics: 7,
+								plot: 7,
+							},
+						};
+
+						firebase.database()
+							.ref("anime/1")
+							.set(dataDump)
+							.then(() => {
+								console.log("Successfully inserted data in firebase!");
+							}).then(() => {
+								firebase.database()
+									.ref("/anime/1")
+									.once("value")
+									.then((data) => {
+										console.log(data.val());
+										console.log("Successfully retrieved data in firebase!");
+									}).then(() => {
+										const updateDataDump = {
+											quality: "FHD 1080p",
+										};
+
+										firebase.database()
+											.ref("/anime/1")
+											.update(updateDataDump)
+											.then(() => {
+												firebase.database()
+													.ref("/anime/1")
+													.once("value")
+													.then((data) => {
+														console.log(data.val());
+														console.log("Successfully updated data in firebase!");
+													}).then(() => {
+														firebase.auth()
+															.signOut()
+															.then(() => {
+																console.log("Successfully logged out in firebase!");
+															});
+													});
+											});
+									});
+							});
+					} else {
+						// eslint-disable-next-line
+						console.log("Not logged-in in firebase!");
+					}
+				});
 			});
-
-		firebase.auth().onAuthStateChanged((isAuthenticated) => {
-			if (isAuthenticated) {
-				const dataDump = {
-					quality: "4k 2160p",
-					title: "Kimi no Na Wa",
-					episodes: 1,
-					ovas: 0,
-					specials: 0,
-					filesize: 209715200,
-					seasonNumber: 1,
-					firstSeasonTitle: "Kimi no Na Wa",
-					prequel: "",
-					sequel: "",
-					offquel: "",
-					dateFinished: 1523232000,
-					releaseSeason: "Fall",
-					releaseYear: "2013",
-					duration: 7200,
-					encoder: "Coalgirls",
-					variants: "",
-					remarks: "",
-					rating: {
-						audio: 7,
-						enjoyment: 7,
-						graphics: 7,
-						plot: 7,
-					},
-				};
-
-				firebase.database()
-					.ref("anime/" + "1")
-					.set(dataDump)
-					.then(() => {
-						// eslint-disable-next-line
-						console.log("Successfully inserted data in firebase!");
-					});
-
-				firebase.database()
-					.ref("/anime/1")
-					.once("value")
-					.then((data) => {
-						// eslint-disable-next-line
-						console.log(data.val());
-
-						// eslint-disable-next-line
-						console.log("Successfully retrieved data in firebase!");
-					});
-
-				const updateDataDump = {
-					quality: "FHD 1080p",
-				};
-
-				firebase.database()
-					.ref("/anime/1")
-					.update(updateDataDump);
-
-				firebase.database()
-					.ref("/anime/1")
-					.once("value")
-					.then((data) => {
-						// eslint-disable-next-line
-						console.log(data.val());
-
-						// eslint-disable-next-line
-						console.log("Successfully updated data in firebase!");
-					});
-
-				firebase.auth()
-					.signOut()
-					.then(() => {
-						// eslint-disable-next-line
-						console.log("Successfully logged out in firebase!");
-					});
-			} else {
-				// eslint-disable-next-line
-				console.log("Not logged-in in firebase!");
-			}
-		});
 	}
+	/* eslint-enable */
 }
