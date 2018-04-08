@@ -19,12 +19,12 @@ export default class MainController {
 		this.angularLogo = angularLogo;
 
 		const config = {
-			apiKey: "AIzaSyAMevBdhrcoIGlNddR0UMgdgnJUO_GhZc4",
-			authDomain: "rin-anidb.firebaseapp.com",
-			databaseURL: "https://rin-anidb.firebaseio.com",
-			projectId: "rin-anidb",
-			storageBucket: "rin-anidb.appspot.com",
-			messagingSenderId: "669722574117",
+			apiKey: process.env.apiKey,
+			authDomain: process.env.authDomain,
+			databaseURL: process.env.databaseURL,
+			projectId: process.env.projectId,
+			storageBucket: process.env.storageBucket,
+			messagingSenderId: process.env.messagingSenderId,
 		};
 
 		firebase.initializeApp(config);
@@ -32,8 +32,8 @@ export default class MainController {
 		const authentication = () => new Promise((resolve) => {
 			firebase.auth()
 				.signInWithEmailAndPassword(
-					"testing@test.com",
-					"testing"
+					process.env.username,
+					process.env.password
 				).then(() => {
 					this.$log.log("Successfully logged in to firebase!");
 					resolve();
