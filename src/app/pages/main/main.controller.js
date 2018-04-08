@@ -97,16 +97,6 @@ export default class MainController {
 				.ref("/anime/1")
 				.update(updateDataDump)
 				.then(() => {
-					resolve();
-				});
-		});
-
-		const dataRetrieveAfterUpdate = () => new Promise((resolve) => {
-			firebase.database()
-				.ref("/anime/1")
-				.once("value")
-				.then((data) => {
-					this.$log.log(data.val());
 					this.$log.log("Successfully updated data in firebase!");
 					resolve();
 				});
@@ -127,7 +117,7 @@ export default class MainController {
 					dataInsert()
 						.then(dataRetrieve)
 						.then(dataUpdate)
-						.then(dataRetrieveAfterUpdate)
+						.then(dataRetrieve)
 						.then(signOut)
 						.then(resolve);
 				} else {
