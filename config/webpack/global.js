@@ -2,6 +2,7 @@
 
 var path = require("path");
 var webpack = require("webpack");
+var Dotenv = require('dotenv-webpack');
 var autoprefixer = require("autoprefixer");
 var Manifest = require("manifest-revision-webpack-plugin");
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
@@ -151,6 +152,7 @@ module.exports = function (_path) {
 				rootAssetPath: rootAssetPath,
 				ignorePaths: [".DS_Store"]
 			}),
+			new Dotenv(),
 			new ExtractTextPlugin({
 				filename: "assets/styles/css/[name]" + (NODE_ENV === "development" ? "" : ".[chunkhash]") + ".css",
 				allChunks: true
