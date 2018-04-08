@@ -11,7 +11,6 @@ export default class MainController {
 		this.$log = $log;
 	}
 
-	/* eslint-disable no-console */
 	$onInit() {
 		this.lodashVersion = _.VERSION;
 		this.momentVersion = moment.version;
@@ -34,7 +33,7 @@ export default class MainController {
 				"testing@test.com",
 				"testing"
 			).then(() => {
-				console.log("Successfully logged in to firebase!");
+				this.$log.log("Successfully logged in to firebase!");
 
 				firebase.auth().onAuthStateChanged((isAuthenticated) => {
 					if (isAuthenticated) {
@@ -69,14 +68,14 @@ export default class MainController {
 							.ref("anime/1")
 							.set(dataDump)
 							.then(() => {
-								console.log("Successfully inserted data in firebase!");
+								this.$log.log("Successfully inserted data in firebase!");
 							}).then(() => {
 								firebase.database()
 									.ref("/anime/1")
 									.once("value")
 									.then((data) => {
-										console.log(data.val());
-										console.log("Successfully retrieved data in firebase!");
+										this.$log.log(data.val());
+										this.$log.log("Successfully retrieved data in firebase!");
 									}).then(() => {
 										const updateDataDump = {
 											quality: "FHD 1080p",
@@ -90,13 +89,13 @@ export default class MainController {
 													.ref("/anime/1")
 													.once("value")
 													.then((data) => {
-														console.log(data.val());
-														console.log("Successfully updated data in firebase!");
+														this.$log.log(data.val());
+														this.$log.log("Successfully updated data in firebase!");
 													}).then(() => {
 														firebase.auth()
 															.signOut()
 															.then(() => {
-																console.log("Successfully logged out in firebase!");
+																this.$log.log("Successfully logged out in firebase!");
 															});
 													});
 											});
@@ -109,5 +108,4 @@ export default class MainController {
 				});
 			});
 	}
-	/* eslint-enable */
 }
