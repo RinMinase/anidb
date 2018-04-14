@@ -4,6 +4,7 @@ import indexComponents from "./index.components";
 import indexRoutes from "./index.routes";
 import coreModule from "./core/core.module";
 import mainModule from "./pages/main/main.module";
+import loginModule from "./pages/login/login.module";
 
 import uiRouter from "@uirouter/angularjs";
 
@@ -24,6 +25,7 @@ export default angular
 			indexComponents.name,	// components
 			indexRoutes.name,		// routes
 			mainModule.name,		// pages
+			loginModule.name,		// login
 		]
 	)
 	.config(($logProvider, $compileProvider) => {
