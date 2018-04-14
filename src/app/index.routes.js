@@ -11,7 +11,10 @@ function routeConfig(
 	"ngInject";
 
 	// eslint-disable-next-line angular/controller-as-route
-	$stateProvider.state("login", {
+	$stateProvider.state("main", {
+		url: "/main",
+		component: "main",
+	}).state("login", {
 		url: "/",
 		component: "login",
 	}).state("async", {
