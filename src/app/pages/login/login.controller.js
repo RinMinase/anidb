@@ -7,6 +7,6 @@ export default class LoginController {
 	}
 
 	$onInit() {
-		this.$log.log("Testing");
+
 	}
 }
