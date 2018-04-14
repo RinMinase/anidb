@@ -1,10 +1,11 @@
 "use strict";
 
-import MainComponent from "./main.component";
+import mainDOM from "./main.html";
+import MainController from "./main.controller";
 
-const mainPageModule = angular
+export default angular
 	.module(
-		"main-module",
+		"main",
 		["ui.router"]
 	)
 	.config(($stateProvider, $urlRouterProvider) => {
@@ -17,6 +18,7 @@ const mainPageModule = angular
 			component: "main",
 		});
 	})
-	.component("main", new MainComponent());
-
-export default mainPageModule;
+	.component("main", {
+		templateUrl: mainDOM,
+		controller: MainController,
+	});
