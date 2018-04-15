@@ -9,9 +9,7 @@ export class GithubContributorService {
 
 	getContributors(limit = 30) {
 		return this.$http.get(`${this.apiHost}/contributors?per_page=${limit}`)
-			.then((response) => {
-				return response.data;
-			})
+			.then((response) => response.data)
 			.catch((error) => {
 				this.$log.error(`XHR Failed for getContributors.\n${angular.toJson(error.data, true)}`);
 			});
