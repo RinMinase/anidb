@@ -1,95 +1,67 @@
 {
- "name": "anidb-angular",
- "description": "Rin Minase's Anime Database using AngularJS in ES6",
- "version": "0.1.0",
- "license": "LGPL-3.0",
- "author": "Rin Minase",
- "repository": {
-  "type": "git",
-  "url": "https://github.com/RinMinase/anidb-angular"
- },
- "bin": {
-  "cross-env": "./node_modules/cross-env/bin/cross-env.js",
-  "webpack": "./node_modules/webpack/bin/webpack.js",
-  "webpack-dev-server": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js"
- },
- "scripts": {
-  "start": "npm run dev",
-  "dev": "cross-env NODE_ENV=development webpack-dev-server --progress --bail --open",
-  "build": "cross-env NODE_ENV=production webpack -p --colors",
-  "install": "npm install --no-package-lock",
-  "lint": "eslint --ext \".js\" \"src\"",
-  "disable-lock": "npm config set package-lock false",
-  "precommit": "npm run lint",
-  "prepush": "npm run lint"
- },
- "dependencies": {
-  "@uirouter/angularjs": "^1.0.15",
-  "angular": "^1.6.9",
-  "angular-animate": "^1.6.9",
-  "angular-cookies": "^1.6.9",
-  "angular-messages": "^1.6.9",
-  "angular-sanitize": "^1.6.9",
-  "angular-touch": "^1.6.9",
-  "assets-webpack-plugin": "^3.4.0",
-  "autoprefixer": "^6.5.0",
-  "babel-core": "^6.14.0",
-  "babel-loader": "^6.2.5",
-  "babel-plugin-angularjs-annotate": "^0.5.2",
-  "babel-preset-es2015": "^6.16.0",
-  "babel-preset-es2017": "^6.16.0",
-  "babel-preset-stage-1": "^6.16.0",
-  "baggage-loader": "^0.2.4",
-  "bluebird": "^3.5.1",
-  "bootstrap-sass": "^3.3.7",
-  "clean-webpack-plugin": "^0.1.10",
-  "cross-env": "^3.0.0",
-  "css-loader": "^0.25.0",
-  "dotenv-webpack": "^1.5.5",
-  "es6-promise": "^4.0.3",
-  "eslint": "^4.19.1",
-  "eslint-loader": "^1.5.0",
-  "eslint-plugin-angular": "^3.3.0",
-  "extract-text-webpack-plugin": "^2.0.0-beta.4",
-  "file-loader": "^0.9.0",
-  "firebase": "^4.12.1",
-  "font-awesome": "^4.6.3",
-  "html-loader": "^0.4.4",
-  "html-webpack-plugin": "^2.22.0",
-  "husky": "^0.14.3",
-  "imagemin-pngquant": "^5.0.0",
-  "jquery": "^3.3.1",
-  "lodash": "^4.17.5",
-  "manifest-revision-webpack-plugin": "^0.3.0",
-  "moment": "^2.22.0",
-  "ng-storage": "^0.3.2",
-  "ngtemplate-loader": "^1.3.1",
-  "node-sass": "^3.10.0",
-  "oclazyload": "^1.1.0",
-  "postcss-loader": "^0.13.0",
-  "sass-loader": "4.0.0",
-  "style-loader": "^0.13.1",
-  "url": "^0.11.0",
-  "url-loader": "^0.5.7",
-  "webpack": "^3.11.0",
-  "webpack-dev-server": "^2.2.0"
- },
- "engines": {
-  "node": ">=0.12.0"
- },
- "babel": {
-  "plugins": [
-   "angularjs-annotate"
-  ],
-  "presets": [
-   "stage-1",
-   [
-    "es2015",
-    {
-     "modules": false
-    }
-   ],
-   "es2017"
-  ]
- }
+  "name": "anidb-angular",
+  "description": "Rin Minase's Anime Database using AngularJS in ES6",
+  "version": "0.1.0",
+  "license": "LGPL-3.0",
+  "author": "Rin Minase",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RinMinase/anidb-angular"
+  },
+  "scripts": {
+    "start": "gulp serve",
+    "build": "gulp serve:dist",
+    "lint": "eslint --ext \".js\" \"src\"",
+    "disable-lock": "npm config set package-lock false",
+    "precommit": "npm run lint",
+    "prepush": "npm run lint"
+  },
+  "devDependencies": {
+    "babel-core": "^6.7.4",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.6.0",
+    "bluebird": "^3.5.1",
+    "browser-sync": "^2.9.11",
+    "browser-sync-spa": "^1.0.3",
+    "chalk": "^1.1.1",
+    "del": "^2.0.2",
+    "dotenv-webpack": "^1.5.5",
+    "eslint": "^4.19.1",
+    "eslint-loader": "^1.1.0",
+    "eslint-plugin-angular": "^3.3.0",
+    "estraverse": "^4.1.0",
+    "firebase": "^4.12.1",
+    "gulp": "^3.9.0",
+    "gulp-angular-templatecache": "^1.8.0",
+    "gulp-autoprefixer": "^3.0.2",
+    "gulp-cssnano": "^2.1.1",
+    "gulp-eslint": "^1.0.0",
+    "gulp-filter": "^3.0.1",
+    "gulp-flatten": "^0.2.0",
+    "gulp-htmlmin": "^1.3.0",
+    "gulp-inject": "^3.0.0",
+    "gulp-load-plugins": "^0.10.0",
+    "gulp-protractor": "^2.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-replace": "^0.5.4",
+    "gulp-rev": "^6.0.1",
+    "gulp-rev-replace": "^0.4.2",
+    "gulp-sass": "^2.0.4",
+    "gulp-size": "^2.0.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^1.4.1",
+    "gulp-useref": "^3.0.3",
+    "gulp-util": "^3.0.6",
+    "http-proxy-middleware": "^0.9.0",
+    "husky": "^0.14.3",
+    "lodash": "^3.10.1",
+    "main-bower-files": "^2.9.0",
+    "ng-annotate-loader": "0.0.10",
+    "uglify-save-license": "^0.4.1",
+    "webpack-stream": "^2.1.1",
+    "wiredep": "^2.2.2"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  }
 }
