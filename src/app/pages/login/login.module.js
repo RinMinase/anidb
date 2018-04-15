@@ -6,7 +6,7 @@ import LoginController from "./login.controller";
 
 export default angular
 	.module(
-		"LoginController",
+		"login",
 		["ui.router"]
 	)
 	.component("login", {

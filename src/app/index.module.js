@@ -1,10 +1,10 @@
 "use strict";
 
 import indexComponents from "./index.components";
-import indexRoutes from "./index.routes";
+import { routeConfig } from "./index.routes";
 import coreModule from "./core/core.module";
 import mainModule from "./pages/main/main.module";
-import loginModule from "./pages/login/login.module";
+import { LoginController } from "./pages/login/login.controller";
 
 import uiRouter from "@uirouter/angularjs";
 
@@ -23,9 +23,7 @@ export default angular
 
 			coreModule.name,		// core
 			indexComponents.name,	// components
-			indexRoutes.name,		// routes
 			mainModule.name,		// pages
-			loginModule.name,		// login
 		]
 	)
 	.config(($logProvider, $compileProvider) => {
@@ -36,5 +34,7 @@ export default angular
 			$logProvider.debugEnabled(false);
 			$compileProvider.debugInfoEnabled(false);
 		}
-	});
+	})
+	.config(routeConfig)
+	.controller("LoginController", LoginController);
 /* eslint-enable */

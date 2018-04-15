@@ -3,20 +3,21 @@
 // eslint-disable-next-line
 import asyncTemplate from "!!file-loader?name=templates/[name].[ext]!./pages/async/async.html";
 
-function routeConfig(
+export function routeConfig(
 	$urlRouterProvider,
 	$stateProvider,
 	resolverProvider) {
 
 	"ngInject";
 
-	// eslint-disable-next-line angular/controller-as-route
 	$stateProvider.state("main", {
 		url: "/main",
 		component: "main",
 	}).state("login", {
 		url: "/",
-		component: "login",
+		templateUrl: "/app/pages/login/login.html",
+		controller: "LoginController",
+		controllerAs: "vm",
 	}).state("async", {
 		url: "/async",
 		templateUrl: asyncTemplate,
@@ -28,6 +29,6 @@ function routeConfig(
 	$urlRouterProvider.otherwise("/");
 }
 
-export default angular
-	.module("index.routes", [])
-	.config(routeConfig);
+// export default angular
+// 	.module("index.routes", [])
+// 	.config(routeConfig);
