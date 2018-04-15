@@ -3,7 +3,7 @@ export function NavbarDirective() {
 
 	const directive = {
 		restrict: "E",
-		templateUrl: "app/components/navbar/navbar.html",
+		templateUrl: "app/core/directives/navbar/navbar.html",
 		scope: { creationDate: "=" },
 		controller: NavbarController,
 		controllerAs: "vm",
