@@ -3,6 +3,10 @@
 .tmp/
 true!ng-annotate/
 dist/
+coverage/
+
+# Yeoman Generator files
+.yo-rc.json
 
 # IntelliJ IDE storage
 .idea/
@@ -24,7 +28,7 @@ yarn.lock
 .eslintcache
 
 # Bower dependency directory
-bower_components
+bower_components/
 
 # Sass cache directory
 .sass-cache/
