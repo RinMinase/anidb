@@ -131,11 +131,10 @@
     # AngularJS
     "angular/file-name":                "off",
     "angular/function-type":            ["error", "named"],
-    "angular/module-getter":            ["off"]
+    "angular/module-getter":            ["off"],
+    "angular/no-service-method":        ["off"]
   }
 }
-
-
 
 # {
 #   "extends": "eslint:recommended",
