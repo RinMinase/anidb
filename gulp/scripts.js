@@ -12,22 +12,22 @@ function webpackWrapper(watch, test, callback) {
 	var webpackOptions = {
 		watch: watch,
 		module: {
-		preLoaders: [{
-			test: /\.js$/,
-			exclude: /node_modules/,
-			loader: 'eslint-loader'
-		}],
-		loaders: [{
-			test: /\.js$/,
-			exclude: /node_modules/,
-			loaders: [
-				'ng-annotate',
-				'babel-loader?presets[]=es2015'
-			]
-		}]
-	},
-	plugins: [ new Dotenv() ],
-	output: { filename: 'index.module.js' }
+			preLoaders: [{
+				test: /\.js$/,
+				exclude: /node_modules/,
+				loader: 'eslint-loader'
+			}],
+			loaders: [{
+				test: /\.js$/,
+				exclude: /node_modules/,
+				loaders: [
+					'ng-annotate',
+					'babel-loader?presets[]=es2015'
+				]
+			}]
+		},
+		plugins: [ new Dotenv() ],
+		output: { filename: 'index.module.js' }
 	};
 
 	if(watch) {
