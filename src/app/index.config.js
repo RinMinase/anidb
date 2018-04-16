@@ -10,3 +10,9 @@ export function config ($logProvider, toastrConfig) {
 	toastrConfig.preventDuplicates = true;
 	toastrConfig.progressBar = true;
 }
+
+export function runBlock ($log) {
+	"ngInject";
+
+	$log.log("runblock!");
+}

@@ -1,10 +1,7 @@
 /* global malarkey:false, moment:false */
 
-/* eslint-disable max-len */
-
-import { config } from "./index.config";
+import { config, runBlock } from "./index.config";
 import { routerConfig } from "./index.route";
-import { runBlock } from "./index.run";
 
 import { MainController } from "./main/main.controller";
 import { LoginController } from "./modules/login/login.controller";
@@ -38,5 +35,3 @@ angular.module(
 	.controller("FiretestController", FiretestController)
 	.directive("acmeNavbar", NavbarDirective)
 	.directive("acmeMalarkey", MalarkeyDirective);
-
-/* eslint-enable */
