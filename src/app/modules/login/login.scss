@@ -1,0 +1,30 @@
+.container-fluid {
+	background: url("/assets/images/bg.jpg") no-repeat center center fixed;
+	background-size: cover;
+}
+
+.flex-form-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+}
+
+.form-container {
+	width: 350px;
+}
+
+.flex-center {
+	display: flex;
+	align-items: center;
+	height: 100%;
+}
+
+.text-dark-white {
+	color: #999;
+}
+
+.img-logo {
+	width: 140px;
+	height: 140px;
+}

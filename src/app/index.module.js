@@ -7,6 +7,7 @@ import { routerConfig } from "./index.route";
 import { runBlock } from "./index.run";
 
 import { MainController } from "./main/main.controller";
+import { LoginController } from "./modules/login/login.controller";
 
 import { GithubContributorService } from "./core/services/githubContributor.service";
 import { WebDevTecService } from "./core/services/webDevTec.service";
@@ -32,6 +33,7 @@ angular.module(
 	.service("githubContributor", GithubContributorService)
 	.service("webDevTec", WebDevTecService)
 	.controller("MainController", MainController)
+	.controller("LoginController", LoginController)
 	.directive("acmeNavbar", NavbarDirective)
 	.directive("acmeMalarkey", MalarkeyDirective);
 
