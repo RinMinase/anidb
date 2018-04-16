@@ -8,6 +8,7 @@ import { runBlock } from "./index.run";
 
 import { MainController } from "./main/main.controller";
 import { LoginController } from "./modules/login/login.controller";
+import { FiretestController } from "./firetest/firetest.controller";
 
 import { GithubContributorService } from "./core/services/githubContributor.service";
 import { WebDevTecService } from "./core/services/webDevTec.service";
@@ -34,6 +35,7 @@ angular.module(
 	.service("webDevTec", WebDevTecService)
 	.controller("MainController", MainController)
 	.controller("LoginController", LoginController)
+	.controller("FiretestController", FiretestController)
 	.directive("acmeNavbar", NavbarDirective)
 	.directive("acmeMalarkey", MalarkeyDirective);
 
