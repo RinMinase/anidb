@@ -1,8 +1,11 @@
+import firebase from "firebase";
+
 export class MainController {
 	constructor ($log,
 		$timeout,
 		webDevTec,
-		toastr) {
+		toastr,
+		moment) {
 		"ngInject";
 
 		this.awesomeThings = [];
@@ -10,6 +13,9 @@ export class MainController {
 		this.creationDate = 1523752554551;
 		this.toastr = toastr;
 		this.$log = $log;
+
+		this.firebaseVersion = firebase.SDK_VERSION;
+		this.momentVersion = moment.version;
 
 		this.activate($timeout, webDevTec);
 	}
