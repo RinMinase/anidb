@@ -54,9 +54,10 @@
     "gulp-util": "^3.0.6",
     "http-proxy-middleware": "^0.9.0",
     "husky": "^0.14.3",
-    "lodash": "^3.10.1",
+    "lodash": "^4.17.5",
     "main-bower-files": "^2.9.0",
     "ng-annotate-loader": "0.0.10",
+	"oclazyload": "^1.1.0",
     "uglify-save-license": "^0.4.1",
     "webpack-stream": "^2.1.1",
     "wiredep": "^2.2.2"
