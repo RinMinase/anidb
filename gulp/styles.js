@@ -29,7 +29,7 @@ var buildStyles = function() {
 
 	var injectOptions = {
 		transform: function(filePath) {
-			return "@import "" + filePath + "";";
+			return "@import \"" + filePath + "\";";
 		},
 		starttag: "// injector",
 		endtag: "// endinjector",
