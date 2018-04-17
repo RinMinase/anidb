@@ -11,6 +11,7 @@ import { GithubContributorService } from "./core/services/githubContributor.serv
 import { WebDevTecService } from "./core/services/webDevTec.service";
 
 import { NavbarDirective } from "./core/directives/navbar/navbar.directive";
+import { FooterDirective } from "./core/directives/footer/footer.directive";
 import { MalarkeyDirective } from "./core/directives/malarkey/malarkey.directive";
 
 angular.module(
@@ -23,15 +24,22 @@ angular.module(
 		"ui.bootstrap",
 		"toastr",
 	])
+
 	.constant("malarkey", malarkey)
 	.constant("moment", moment)
+
 	.config(config)
 	.config(routerConfig)
+
 	.run(runBlock)
+
 	.service("githubContributor", GithubContributorService)
 	.service("webDevTec", WebDevTecService)
+
 	.controller("MainController", MainController)
 	.controller("LoginController", LoginController)
 	.controller("FiretestController", FiretestController)
-	.directive("acmeNavbar", NavbarDirective)
+
+	.directive("anidbNavbar", NavbarDirective)
+	.directive("anidbFooter", FooterDirective)
 	.directive("acmeMalarkey", MalarkeyDirective);
