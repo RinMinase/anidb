@@ -1,3 +1,5 @@
+import moment from "moment";
+
 export function FooterDirective() {
 	"ngInject";
 
@@ -11,7 +13,7 @@ export function FooterDirective() {
 }
 
 class FooterController {
-	constructor (moment) {
+	constructor () {
 		"ngInject";
 
 		// "this.creationDate" is available by directive option "bindToController: true"

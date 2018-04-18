@@ -1,5 +1,3 @@
-/* global moment:false */
-
 import { config, runBlock } from "./index.config";
 import { routerConfig } from "./index.route";
 
@@ -25,8 +23,6 @@ angular.module(
 		"ui.bootstrap",
 		"toastr",
 	])
-
-	.constant("moment", moment)
 
 	.config(config)
 	.config(routerConfig)

@@ -1,11 +1,11 @@
 import firebase from "firebase";
+import moment from "moment";
 
 export class MainController {
 	constructor ($log,
 		$timeout,
 		webDevTec,
-		toastr,
-		moment) {
+		toastr) {
 		"ngInject";
 
 		this.awesomeThings = [];
