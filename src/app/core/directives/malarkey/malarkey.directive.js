@@ -1,18 +1,18 @@
-export function MalarkeyDirective(malarkey) {
+import malarkey from "malarkey";
+
+export function MalarkeyDirective() {
 	"ngInject";
 
-	const directive = {
+	return {
 		restrict: "E",
 		scope: { extraValues: "=" },
 		template: "&nbsp;",
-		link: linkFunc,
+		link,
 		controller: MalarkeyController,
 		controllerAs: "vm",
 	};
 
-	return directive;
-
-	function linkFunc(scope, el, attr, vm) {
+	function link(scope, el, attr, vm) {
 		const typist = malarkey(el[0], {
 			typeSpeed: 40,
 			deleteSpeed: 40,

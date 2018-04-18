@@ -1,4 +1,4 @@
-/* global malarkey:false, moment:false */
+/* global moment:false */
 
 import { config, runBlock } from "./index.config";
 import { routerConfig } from "./index.route";
@@ -26,7 +26,6 @@ angular.module(
 		"toastr",
 	])
 
-	.constant("malarkey", malarkey)
 	.constant("moment", moment)
 
 	.config(config)
