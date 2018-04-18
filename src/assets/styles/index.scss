@@ -3,7 +3,11 @@
  *  The list of variables are listed here bower_components/bootstrap-sass/assets/stylesheets/bootstrap/_variables.scss
  */
 $navbar-inverse-link-color: #5AADBB;
-$icon-font-path: "/bower_components/bootstrap-sass/assets/fonts/bootstrap/";
+
+$icon-font-path: "node_modules/bootstrap-sass/assets/fonts/bootstrap/";
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap-sprockets";
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
 @import "./bootstrap-extension";
 
 /**
