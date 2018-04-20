@@ -1,3 +1,12 @@
+import "angular";
+import "angular-animate";
+import "angular-bootstrap";
+import "angular-cookies";
+import "angular-messages";
+import "angular-sanitize";
+import "angular-toastr";
+import uiRouter from "@uirouter/angularjs";
+
 import { config, runBlock } from "./index.config";
 import { routerConfig } from "./index.route";
 
@@ -17,9 +26,9 @@ angular.module(
 	"anidbAngular", [
 		"ngAnimate",
 		"ngCookies",
-		"ngSanitize",
 		"ngMessages",
-		"ui.router",
+		"ngSanitize",
+		uiRouter,
 		"ui.bootstrap",
 		"toastr",
 	])
