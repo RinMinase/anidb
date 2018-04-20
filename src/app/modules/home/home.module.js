@@ -2,6 +2,9 @@ import { ManageHomeController } from "./manage/manage-home.controller";
 
 export default angular
 	.module("home", [])
+
+	.controller("ManageHomeController", ManageHomeController)
+
 	.config(($stateProvider) => {
 		$stateProvider
 			.state("home", {
@@ -14,5 +17,4 @@ export default angular
 				controller: "ManageHomeController",
 				controllerAs: "vm",
 			});
-	})
-	.controller("ManageHomeController", ManageHomeController);
+	});
