@@ -8,6 +8,6 @@ export class ManageHomeController {
 	}
 
 	activate() {
-
+		this.$log.log("testing!!");
 	}
 }

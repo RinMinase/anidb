@@ -16,7 +16,8 @@ import { routerConfig } from "./index.route";
 import { MainController } from "./main/main.controller";
 import { LoginController } from "./modules/login/login.controller";
 import { FiretestController } from "./firetest/firetest.controller";
-import { ManageHomeController } from "./modules/home/manage/manage-home.controller";
+
+import HomeModule from "./modules/home/home.module";
 
 import { GithubContributorService } from "./core/services/githubContributor.service";
 import { WebDevTecService } from "./core/services/webDevTec.service";
@@ -34,6 +35,8 @@ angular.module(
 		uiRouter,
 		"ui.bootstrap",
 		"toastr",
+
+		HomeModule.name,
 	])
 
 	.config(config)
@@ -47,7 +50,6 @@ angular.module(
 	.controller("MainController", MainController)
 	.controller("LoginController", LoginController)
 	.controller("FiretestController", FiretestController)
-	.controller("ManageHomeController", ManageHomeController)
 
 	.directive("anidbNavbar", NavbarDirective)
 	.directive("anidbFooter", FooterDirective)
