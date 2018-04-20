@@ -4,8 +4,6 @@ var path = require("path");
 var gulp = require("gulp");
 var conf = require("./conf");
 var $ = require("gulp-load-plugins")();
-var wiredep = require("wiredep").stream;
-var _ = require("lodash");
 var browserSync = require("browser-sync");
 
 gulp.task("inject-reload", ["inject"], function() {
@@ -53,14 +51,6 @@ gulp.task("inject", ["scripts", "styles"], function () {
 			$.inject(
 				injectScripts,
 				injectOptions
-			)
-		)
-		.pipe(
-			wiredep(
-				_.extend(
-					{},
-					conf.wiredep
-				)
 			)
 		)
 		.pipe(
