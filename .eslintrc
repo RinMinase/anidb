@@ -90,7 +90,7 @@
     "no-whitespace-before-property":    "error",
     "one-var":                          ["error", "never"],
     "operator-assignment":              ["error", "always"],
-    "operator-linebreak":               ["error", "after"],
+    "operator-linebreak":               ["error", "before"],
     "quote-props":                      ["error", "as-needed"],
     "quotes":                           ["error", "double"],
     "semi":                             ["error", "always"],
