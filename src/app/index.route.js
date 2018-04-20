@@ -1,4 +1,8 @@
-export function routerConfig ($stateProvider, $urlRouterProvider) {
+export function routerConfig (
+	$locationProvider,
+	$stateProvider,
+	$urlRouterProvider
+) {
 	"ngInject";
 
 	$stateProvider
@@ -28,4 +32,5 @@ export function routerConfig ($stateProvider, $urlRouterProvider) {
 		});
 
 	$urlRouterProvider.otherwise("/");
+	$locationProvider.html5Mode(true);
 }
