@@ -10,21 +10,6 @@ var util = require("util");
 
 function browserSyncInit(baseDir, browser) {
 	browser = browser === undefined ? "default" : browser;
-	var routes = null;
-
-	if (baseDir === conf.paths.src ||
-			(util.isArray(baseDir) &&
-			baseDir.indexOf(conf.paths.src) !== -1)) {
-
-		routes = {
-			"/bower_components": "bower_components"
-		};
-	}
-
-	var server = {
-		baseDir: baseDir,
-		routes: routes
-	};
 
 	/*
 	 * You can add a proxy to your backend by uncommenting the line below.
@@ -46,7 +31,10 @@ function browserSyncInit(baseDir, browser) {
 
 	browserSync.instance = browserSync.init({
 		startPath: "/",
-		server: server,
+		server: {
+			baseDir: baseDir,
+			routes: null
+		},
 		browser: browser,
 		open: false
 	});
