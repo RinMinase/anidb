@@ -1,9 +1,6 @@
+<anidb-navbar></anidb-navbar>
+
 <div class="container">
-
-	<div>
-		<anidb-navbar creation-date="main.creationDate"></anidb-navbar>
-	</div>
-
 	<div class="jumbotron text-center">
 		<h1>'Allo, 'Allo!</h1>
 		<p class="lead">
@@ -13,9 +10,7 @@
 		<p class="animated infinite" ng-class="main.classAnimation">
 			<button type="button" class="btn btn-lg btn-success" ng-click="main.showToastr()">Splendid Toastr</button>
 		</p>
-		<p>
-			With ♥ thanks to the contributions of<acme-malarkey extra-values="['Yeoman', 'Gulp', 'Angular']"></acme-malarkey>
-		</p>
+		<p>With ♥ thanks to the contributions of<anidb-malarkey extra-values="['Yeoman', 'Gulp', 'Angular']"></anidb-malarkey></p>
 	</div>
 
 	<div class="row">
@@ -38,9 +33,6 @@
 
 		<p>Firebase version: {{main.firebaseVersion}}</p>
 	</div>
-
-	<div>
-		<anidb-footer></anidb-footer>
-	</div>
-
 </div>
+
+<anidb-footer></anidb-footer>

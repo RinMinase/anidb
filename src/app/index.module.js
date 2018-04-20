@@ -51,4 +51,4 @@ angular.module(
 
 	.directive("anidbNavbar", NavbarDirective)
 	.directive("anidbFooter", FooterDirective)
-	.directive("acmeMalarkey", MalarkeyDirective);
+	.directive("anidbMalarkey", MalarkeyDirective);
