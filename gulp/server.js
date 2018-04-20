@@ -9,7 +9,7 @@ var util = require("util");
 // var proxyMiddleware = require("http-proxy-middleware");
 
 function browserSyncInit(baseDir, browser) {
-	browser = browser === undefined ? "default" : browser;
+	browser = browser || "default";
 
 	/*
 	 * You can add a proxy to your backend by uncommenting the line below.
