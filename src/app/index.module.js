@@ -7,6 +7,8 @@ import "angular-sanitize";
 import "angular-toastr";
 import uiRouter from "@uirouter/angularjs";
 
+import "jquery";
+
 import { config, runBlock } from "./index.config";
 import { routerConfig } from "./index.route";
 
