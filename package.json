@@ -14,7 +14,8 @@
     "lint": "eslint --ext \".js\" \"src\"",
     "disable-lock": "npm config set package-lock false",
     "precommit": "npm run lint",
-    "prepush": "npm run lint"
+    "prepush": "npm run lint",
+    "postinstall": "npm ddp"
   },
   "devDependencies": {
     "@uirouter/angularjs": "^1.0.15",
