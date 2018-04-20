@@ -11,7 +11,7 @@
   "scripts": {
     "start": "gulp serve",
     "build": "gulp serve:dist",
-    "lint": "eslint --ext \".js\" \"src\"",
+    "lint": "eslint --ext .js src",
     "disable-lock": "npm config set package-lock false",
     "precommit": "npm run lint",
     "prepush": "npm run lint",
@@ -75,5 +75,8 @@
   },
   "engines": {
     "node": ">=0.10.0"
-  }
+  },
+  "eslintIgnore": [
+    "src/assets/*"
+  ]
 }
