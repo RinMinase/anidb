@@ -12,7 +12,7 @@ export default angular
 				template : "<div ui-view></div>",
 			})
 			.state("home.manage", {
-				url: "/manage",
+				url: "/",
 				templateUrl: "app/modules/home/manage/manage-home.html",
 				controller: "ManageHomeController",
 				controllerAs: "vm",
