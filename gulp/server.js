@@ -35,7 +35,8 @@ function browserSyncInit(baseDir, browser) {
 			routes: null
 		},
 		browser: browser,
-		open: false
+		open: false,
+		notify: false
 	});
 }
 
@@ -53,6 +54,6 @@ gulp.task("serve", ["serve_fonts", "watch"], function () {
 	browserSyncInit([path.join(conf.paths.tmp, "/serve"), conf.paths.src]);
 });
 
-gulp.task("serve:dist", ["copy", "build"], function () {
+gulp.task("serve:dist", ["serve_fonts", "build"], function () {
 	browserSyncInit(conf.paths.dist);
 });
