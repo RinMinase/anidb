@@ -44,10 +44,15 @@ browserSync.use(browserSyncSpa({
 	selector: "[ng-app]"
 }));
 
-gulp.task("serve", ["watch"], function () {
+gulp.task("serve_fonts", function () {
+	return gulp.src("node_modules/font-awesome/fonts/*")
+		.pipe(gulp.dest(path.join(conf.paths.tmp, "/serve/fonts")));
+});
+
+gulp.task("serve", ["serve_fonts", "watch"], function () {
 	browserSyncInit([path.join(conf.paths.tmp, "/serve"), conf.paths.src]);
 });
 
-gulp.task("serve:dist", ["build"], function () {
+gulp.task("serve:dist", ["copy", "build"], function () {
 	browserSyncInit(conf.paths.dist);
 });
