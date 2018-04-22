@@ -2,7 +2,7 @@
  *  If you want to override some bootstrap variables, you have to change values here.
  *  The list of variables are listed here bower_components/bootstrap-sass/assets/stylesheets/bootstrap/_variables.scss
  */
-$navbar-inverse-link-color: #5AADBB;
+// $navbar-inverse-link-color: #5AADBB;
 
 $icon-font-path: "node_modules/bootstrap-sass/assets/fonts/bootstrap/";
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap-sprockets";
@@ -30,6 +30,12 @@ $icon-font-path: "node_modules/bootstrap-sass/assets/fonts/bootstrap/";
 	img.pull-right {
 		width: 50px;
 	}
+}
+
+//////////////////////////////////////////////
+
+.navbar {
+	border-radius: 0px;
 }
 
 /**
