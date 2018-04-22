@@ -7,8 +7,8 @@ import "angular-sanitize";
 import "angular-toastr";
 import uiRouter from "@uirouter/angularjs";
 
-import "oclazyload";
 import "jquery";
+import "oclazyload";
 
 import { config, runBlock } from "./index.config";
 import { routerConfig } from "./index.route";
