@@ -16,6 +16,6 @@ export class AddHomeController {
 	}
 
 	cancel() {
-		this.$uibModalInstance.dismiss();
+		this.$uibModalInstance.close(false);
 	}
 }
