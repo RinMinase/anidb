@@ -2,6 +2,41 @@
 
 <div class="container-fluid">
 	<div class="row">
+		<div class="col-sm-2 hidden-xs">
+			<div class="form-group">
+				<a href="#" class="btn btn-primary btn-block">
+					<i class="fa fa-plus"></i>
+					<span class="pl-2">Add</span>
+				</a>
+			</div>
+		</div>
+
+		<div class="col-xs-3 visible-xs hidden-sm hidden-md hidden-lg">
+			<div class="form-group">
+				<a href="#"> class="btn btn-primary btn-block">
+					<i class="fa fa-plus"></i>
+				</a>
+			</div>
+		</div>
+
+		<div class="col-xs-9 col-sm-10">
+			<form method="GET" action="">
+				<div class="form-group has-feedback">
+					<input type="text"
+						class="form-control"
+						name="query"
+						placeholder="Keywords (comma-separated): sort/order, quality, release, encoder, remarks, inhdd"
+						value="">
+					<button class="hidden">Submit</button>
+					<span class="form-control-feedback">
+						<i class="fa fa-search"></i>
+					</span>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<div class="row">
 		<div class="col-md-12">
 			<div class="table-responsive">
 				<table class="table table-hover" id="animeTable">
@@ -17,12 +52,12 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
+							<td>Sample</td>
+							<td>1 / 0 / 2</td>
+							<td>24 GB</td>
+							<td>Jan 12, 2018</td>
+							<td>Winter 2017</td>
+							<td>Coalgirls</td>
 						</tr>
 					</tbody>
 				</table>
