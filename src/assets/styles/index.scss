@@ -9,6 +9,9 @@
 
 @import "node_modules/font-awesome/scss/font-awesome";
 
+$roboto-font-path: "../fonts";
+@import "node_modules/roboto-fontface/css/roboto/sass/roboto-fontface";
+
 @import "./bootstrap-extension";
 
 /**
@@ -34,6 +37,10 @@
 }
 
 //////////////////////////////////////////////
+
+body {
+	font-family: "Roboto";
+}
 
 .navbar {
 	border-radius: 0px;
