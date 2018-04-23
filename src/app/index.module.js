@@ -2,6 +2,7 @@ import "angular";
 import "angular-animate";
 import "angular-bootstrap";
 import "angular-cookies";
+import "angular-filter";
 import "angular-messages";
 import "angular-sanitize";
 import "angular-toastr";
@@ -28,6 +29,7 @@ import { MalarkeyDirective } from "./core/directives/malarkey/malarkey.directive
 
 angular.module(
 	"anidbAngular", [
+		"angular.filter",
 		"ngAnimate",
 		"ngCookies",
 		"ngMessages",
