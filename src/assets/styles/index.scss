@@ -46,6 +46,26 @@ body {
 	border-radius: 0px;
 }
 
+.inmodal {
+	button.close {
+		padding: 8px 10px;
+	}
+
+	.modal-header {
+		padding: 30px 15px;
+		text-align: center;
+	}
+
+	.modal-icon {
+		font-size: 84px;
+		color: #e2e3e3;
+	}
+
+	.modal-title {
+		font-size: 26px;
+	}
+}
+
 /**
  *  Do not remove the comments below. It's the markers used by gulp-inject to inject
  *  all your sass files automatically
