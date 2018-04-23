@@ -4,7 +4,7 @@ export function NavbarDirective() {
 	const directive = {
 		restrict: "E",
 		templateUrl: "app/core/directives/navbar/navbar.html",
-		scope: { creationDate: "=" },
+		scope: {},
 		controller: NavbarController,
 		controllerAs: "vm",
 		bindToController: true,
