@@ -1,11 +1,11 @@
 import "angular";
 import "angular-animate";
-import "angular-bootstrap";
 import "angular-cookies";
 import "angular-filter";
 import "angular-messages";
 import "angular-sanitize";
 import "angular-toastr";
+import "angular-ui-bootstrap";
 import uiRouter from "@uirouter/angularjs";
 
 import "jquery";
