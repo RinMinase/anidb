@@ -1,22 +1,20 @@
-import moment from "moment";
-
 export function FooterDirective() {
 	"ngInject";
 
-	return {
+	const directive = {
 		restrict: "E",
 		templateUrl: "app/core/directives/footer/footer.html",
+		scope: {},
 		controller: FooterController,
 		controllerAs: "vm",
 		bindToController: true,
 	};
+
+	return directive;
 }
 
 class FooterController {
 	constructor () {
 		"ngInject";
-
-		// "this.creationDate" is available by directive option "bindToController: true"
-		this.relativeDate = moment(this.creationDate).fromNow();
 	}
 }
