@@ -46,14 +46,25 @@ browserSync.use(browserSyncSpa({
 }));
 
 gulp.task("serve_fonts", function () {
-	return gulp.src("node_modules/font-awesome/fonts/*")
+	return gulp.src([
+			"node_modules/font-awesome/fonts/*",
+			"node_modules/bootstrap-sass/assets/fonts/bootstrap/*"
+		])
 		.pipe(gulp.dest(path.join(conf.paths.tmp, "/serve/fonts")));
+});
+
+gulp.task("serve_fonts:dist", function () {
+	return gulp.src([
+			"node_modules/font-awesome/fonts/*",
+			"node_modules/bootstrap-sass/assets/fonts/bootstrap/*"
+		])
+		.pipe(gulp.dest(path.join(conf.paths.dist, "/fonts")));
 });
 
 gulp.task("serve", ["serve_fonts", "watch"], function () {
 	browserSyncInit([path.join(conf.paths.tmp, "/serve"), conf.paths.src]);
 });
 
-gulp.task("serve:dist", ["serve_fonts", "build"], function () {
+gulp.task("serve:dist", ["serve_fonts:dist", "build"], function () {
 	browserSyncInit(conf.paths.dist);
 });
