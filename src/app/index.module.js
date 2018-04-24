@@ -17,15 +17,9 @@ import { config, runBlock, routerConfig } from "./index.config";
 import { MainController } from "./main/main.controller";
 import { FiretestController } from "./firetest/firetest.controller";
 
+import CoreModule from "./core/core.module";
 import HomeModule from "./modules/home/home.module";
 import LoginModule from "./modules/login/login.module";
-
-import { GithubContributorService } from "./core/services/githubContributor.service";
-import { WebDevTecService } from "./core/services/webDevTec.service";
-
-import { NavbarDirective } from "./core/directives/navbar/navbar.directive";
-import { FooterDirective } from "./core/directives/footer/footer.directive";
-import { MalarkeyDirective } from "./core/directives/malarkey/malarkey.directive";
 
 angular.module(
 	"anidbAngular", [
@@ -39,6 +33,7 @@ angular.module(
 		"ui.bootstrap",
 		"toastr",
 
+		CoreModule.name,
 		HomeModule.name,
 		LoginModule.name,
 	])
@@ -48,12 +43,5 @@ angular.module(
 
 	.run(runBlock)
 
-	.service("githubContributor", GithubContributorService)
-	.service("webDevTec", WebDevTecService)
-
 	.controller("MainController", MainController)
-	.controller("FiretestController", FiretestController)
-
-	.directive("anidbNavbar", NavbarDirective)
-	.directive("anidbFooter", FooterDirective)
-	.directive("anidbMalarkey", MalarkeyDirective);
+	.controller("FiretestController", FiretestController);
