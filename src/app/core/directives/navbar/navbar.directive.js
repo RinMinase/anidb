@@ -1,3 +1,6 @@
+import firebase from "firebase";
+import Promise from "bluebird";
+
 export function NavbarDirective() {
 	"ngInject";
 
@@ -16,5 +19,17 @@ export function NavbarDirective() {
 class NavbarController {
 	constructor () {
 		"ngInject";
+	}
+
+	logout() {
+		const signOut = () => new Promise((resolve) => {
+			firebase.auth()
+				.signOut()
+				.then(() => {
+					resolve();
+				});
+		});
+
+		signOut();
 	}
 }
