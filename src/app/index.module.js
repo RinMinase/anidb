@@ -12,8 +12,7 @@ import "jquery";
 import "ngStorage";
 import "oclazyload";
 
-import { config, runBlock } from "./index.config";
-import { routerConfig } from "./index.route";
+import { config, runBlock, routerConfig } from "./index.config";
 
 import { MainController } from "./main/main.controller";
 import { FiretestController } from "./firetest/firetest.controller";

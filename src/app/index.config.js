@@ -31,8 +31,24 @@ export function config (
 	firebase.initializeApp(firebaseConfig);
 }
 
-export function runBlock ($log) {
+export function runBlock () {
+	"ngInject";
+}
+
+export function routerConfig ($stateProvider) {
 	"ngInject";
 
-	$log.log("runblock!");
+	$stateProvider
+		.state("firetest", {
+			url: "/firetest",
+			templateUrl: "app/firetest/firetest.html",
+			controller: "FiretestController",
+			controllerAs: "vm",
+		})
+		.state("main", {
+			url: "/main",
+			templateUrl: "app/main/main.html",
+			controller: "MainController",
+			controllerAs: "main",
+		});
 }
