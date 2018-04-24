@@ -6,12 +6,6 @@ export function routerConfig (
 	"ngInject";
 
 	$stateProvider
-		.state("login", {
-			url: "/login",
-			templateUrl: "app/modules/login/login.html",
-			controller: "LoginController",
-			controllerAs: "vm",
-		})
 		.state("firetest", {
 			url: "/firetest",
 			templateUrl: "app/firetest/firetest.html",
