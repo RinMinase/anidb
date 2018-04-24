@@ -1,8 +1,4 @@
-export function routerConfig (
-	$locationProvider,
-	$stateProvider,
-	$urlRouterProvider
-) {
+export function routerConfig ($stateProvider) {
 	"ngInject";
 
 	$stateProvider
@@ -18,7 +14,4 @@ export function routerConfig (
 			controller: "MainController",
 			controllerAs: "main",
 		});
-
-	$urlRouterProvider.otherwise("/");
-	$locationProvider.html5Mode(true);
 }

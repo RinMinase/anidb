@@ -1,9 +1,17 @@
 import firebase from "firebase";
 
-export function config ($logProvider, toastrConfig) {
+export function config (
+	$locationProvider,
+	$logProvider,
+	$urlRouterProvider,
+	toastrConfig
+) {
 	"ngInject";
 	// Enable logging
 	$logProvider.debugEnabled(true);
+
+	$urlRouterProvider.otherwise("/");
+	$locationProvider.html5Mode(true);
 
 	toastrConfig.allowHtml = true;
 	toastrConfig.timeOut = 3000;
