@@ -2,10 +2,9 @@ import firebase from "firebase";
 
 export function config ($logProvider, toastrConfig) {
 	"ngInject";
-	// Enable log
+	// Enable logging
 	$logProvider.debugEnabled(true);
 
-	// Set options third-party lib
 	toastrConfig.allowHtml = true;
 	toastrConfig.timeOut = 3000;
 	toastrConfig.positionClass = "toast-top-right";
