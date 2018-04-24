@@ -51,13 +51,15 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>Sample</td>
-							<td class="text-center">1 / 0 / 2</td>
-							<td class="text-center">24 GB</td>
-							<td class="text-center">Jan 12, 2018</td>
-							<td>Winter 2017</td>
-							<td>Coalgirls</td>
+						<tr ng-repeat="data in vm.data">
+							<td>{{ data.title }}</td>
+							<td class="text-center">
+								{{ data.episodes }} / {{ data.ovas }} / {{ data.specials }}
+							</td>
+							<td class="text-center">{{ data.filesize }}</td>
+							<td class="text-center">{{ data.dateFinished }}</td>
+							<td>{{ data.releaseSeason }} {{ data.releaseYear }}</td>
+							<td>{{ data.encoder }}</td>
 						</tr>
 					</tbody>
 				</table>
