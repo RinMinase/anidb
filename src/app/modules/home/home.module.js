@@ -11,7 +11,7 @@ export default angular
 		$stateProvider
 			.state("home", {
 				abstract: true,
-				template : "<div ui-view></div>",
+				template: "<div ui-view></div>",
 			})
 			.state("home.manage", {
 				url: "/",
