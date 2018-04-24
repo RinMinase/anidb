@@ -2,7 +2,7 @@
 
 var path = require("path");
 var gulp = require("gulp");
-var Dotenv = require("dotenv-webpack");
+// var Dotenv = require("dotenv-webpack");
 var browserSync = require("browser-sync");
 var webpack = require("webpack-stream");
 var $ = require("gulp-load-plugins")();
@@ -26,7 +26,7 @@ function webpackWrapper(watch, callback) {
 				]
 			}]
 		},
-		plugins: [ new Dotenv() ],
+		// plugins: [ new Dotenv() ],
 		output: { filename: "index.module.js" }
 	};
 
