@@ -1,5 +1,4 @@
 # General
-.env
 .tmp/
 true!ng-annotate/
 dist/
