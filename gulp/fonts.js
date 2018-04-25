@@ -14,7 +14,7 @@ gulp.task("fonts_roboto:dist", function () {
 		.pipe(gulp.dest(path.join(conf.paths.dist, "/serve/fonts/roboto")));
 });
 
-gulp.task("serve_fonts", ["fonts_roboto"], function () {
+gulp.task("fonts", ["fonts_roboto"], function () {
 	return gulp.src([
 			"node_modules/font-awesome/fonts/*",
 			"node_modules/bootstrap-sass/assets/fonts/bootstrap/*"
@@ -22,7 +22,7 @@ gulp.task("serve_fonts", ["fonts_roboto"], function () {
 		.pipe(gulp.dest(path.join(conf.paths.tmp, "/serve/fonts")));
 });
 
-gulp.task("serve_fonts:dist", ["fonts_roboto:dist"], function () {
+gulp.task("fonts:dist", ["fonts_roboto:dist"], function () {
 	return gulp.src([
 			"node_modules/font-awesome/fonts/*",
 			"node_modules/bootstrap-sass/assets/fonts/bootstrap/*"

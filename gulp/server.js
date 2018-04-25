@@ -45,10 +45,10 @@ browserSync.use(browserSyncSpa({
 	selector: "[ng-app]"
 }));
 
-gulp.task("serve", ["serve_fonts", "watch"], function () {
+gulp.task("serve", ["fonts", "watch"], function () {
 	browserSyncInit([path.join(conf.paths.tmp, "/serve"), conf.paths.src]);
 });
 
-gulp.task("serve:dist", ["serve_fonts:dist", "build"], function () {
+gulp.task("serve:dist", ["fonts:dist", "build"], function () {
 	browserSyncInit(conf.paths.dist);
 });
