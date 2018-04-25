@@ -41,7 +41,6 @@ export class ManageHomeController {
 				.once("value")
 				.then((data) => {
 					this.data = data.val();
-					this.data.shift();
 
 					this.data.map((value) => {
 						const filesize = parseFloat(value.filesize);
