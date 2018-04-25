@@ -38,18 +38,13 @@ $roboto-font-path: "../fonts";
 
 //////////////////////////////////////////////
 
-body {
-	font-family: "Roboto";
-}
+body { font-family: "Roboto"; }
 
-.navbar {
-	border-radius: 0px;
-}
+.navbar { border-radius: 0px; }
 
 .inmodal {
-	button.close {
-		padding: 8px 10px;
-	}
+	button.close { padding: 8px 10px; }
+	.modal-title { font-size: 26px; }
 
 	.modal-header {
 		padding: 30px 15px;
@@ -60,9 +55,15 @@ body {
 		font-size: 84px;
 		color: #e2e3e3;
 	}
+}
 
-	.modal-title {
-		font-size: 26px;
+div.panel-green {
+	border-color: #7CC87F;
+
+	> .panel-heading {
+		border-color: #7CC87F;
+		background-color: #95CE92;
+		color: #555555;
 	}
 }
 
