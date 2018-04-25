@@ -4,7 +4,7 @@ import firebase from "firebase";
 import Promise from "bluebird";
 
 export class AboutController {
-	constructor() {
+	constructor($scope) {
 		"ngInject";
 
 		this.$scope = $scope;
@@ -35,6 +35,7 @@ export class AboutController {
 				.then((data) => {
 					this.rawData = data.val();
 
+					this.data = {};
 					this.data.quality = {
 						uhd: 0,
 						fhd: 0,
@@ -45,13 +46,23 @@ export class AboutController {
 
 					let totalDuration = 0;
 					let totalFilesize = 0;
+					let totalEpisodes = 0;
 
 					this.rawData.map((value) => {
 						totalDuration += parseInt(value.duration);
 						totalFilesize += parseInt(value.filesize);
-						this.data.totalEpisodes += parseInt(value.episodes)
-							+ parseInt(value.ovas)
-							+ parseInt(value.specials);
+
+						if (!isNaN( parseInt(value.episodes) )) {
+							totalEpisodes += parseInt(value.episodes);
+						}
+
+						if (!isNaN( parseInt(value.ovas) )) {
+							totalEpisodes += parseInt(value.ovas);
+						}
+
+						if (!isNaN( parseInt(value.specials) )) {
+							totalEpisodes += parseInt(value.specials);
+						}
 
 						switch (value.quality) {
 						case "4k 2160p":
@@ -71,14 +82,17 @@ export class AboutController {
 							break;
 						}
 					});
+					// eslint-disable-next-line
+					console.log(totalEpisodes);
 
-					this.data.totalDays = totalDuration / 86400;
-					this.data.totalHours = totalDuration % 86400 / 3600;
-					this.data.totalMinutes = totalDuration % 86400 % 3600 / 60;
-					this.data.totalSeconds = totalDuration % 86400 % 3600 % 60;
+					this.data.totalEpisodes = totalEpisodes;
+					this.data.totalDays = parseInt(totalDuration / 86400);
+					this.data.totalHours = parseInt(totalDuration % 86400 / 3600);
+					this.data.totalMinutes = parseInt(totalDuration % 86400 % 3600 / 60);
+					this.data.totalSeconds = parseInt(totalDuration % 86400 % 3600 % 60);
 
-					this.data.totalFilesizeGB = totalFilesize / 1024 / 1024 / 1024;
-					this.data.totalFilesizeTB = totalFilesize / 1024 / 1024 / 1024 / 1024;
+					this.data.totalFilesizeGB = parseFloat(totalFilesize / 1073741824).toFixed(2);
+					this.data.totalFilesizeTB = parseFloat(totalFilesize / 1099511627776).toFixed(2);
 
 					this.$scope.$apply();
 					resolve();
