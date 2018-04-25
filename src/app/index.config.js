@@ -29,6 +29,20 @@ export function config (
 	};
 
 	firebase.initializeApp(firebaseConfig);
+
+	// eslint-disable-next-line no-unused-vars
+	const fuseOptions = {
+		shouldSort: true,
+		threshold: 0.6,
+		location: 0,
+		distance: 100,
+		maxPatternLength: 64,
+		minMatchCharLength: 1,
+		keys: [
+			"title",
+			"quality",
+		],
+	};
 }
 
 export function runBlock () {
