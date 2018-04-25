@@ -65,7 +65,7 @@ export class AboutController {
 						}
 
 						switch (value.quality) {
-						case "4k 2160p":
+						case "4K 2160p":
 							this.data.quality.uhd++;
 							break;
 						case "FHD 1080p":

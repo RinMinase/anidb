@@ -1,15 +1,15 @@
+<anidb-navbar></anidb-navbar>
+
 <div class="container anidb-about">
 	<div class="jumbotron">
 		<h2>Rin Minase's Anime Database</h2>
 		<h4>Minase Conglomerate</h4>
 	</div>
 
-	<pre style="height: 300px;"><code>{{ vm.data }}</code></pre>
-
 	<div class="row">
 		<div class="col-md-4">
 			<center>
-				<img src="" class="img-circle img-responsive">
+				<img ng-src="assets/images/user.jpg" class="img-circle img-responsive">
 			</center>
 			<h3 class="text-center user-data-heading">Statistics</h3>
 			<table class="table table-condensed table-statistics">
@@ -18,9 +18,9 @@
 						<td>Watch Time</td>
 						<td>:</td>
 						<td>
-							<?php echo $totalWatchDays . " days, " . $totalWatchHours . " hours," ?>
+							{{ vm.data.totalDays }} days, {{ vm.data.totalHours }} hours,
 							<br>
-							<?php echo $totalWatchMinutes . " minutes, " . $totalWatchSeconds . " seconds" ?>
+							{{ vm.data.totalMinutes }} minutes, {{ vm.data.totalSeconds }} seconds
 						</td>
 					</tr>
 					<tr><td colspan="3"></td></tr>
@@ -28,12 +28,12 @@
 					<tr>
 						<td>Total Size</td>
 						<td>:</td>
-						<td><?php echo $totalSizeGB ?> GB (<?php echo $totalSizeTB ?> TB)</td>
+						<td>{{ vm.data.totalFilesizeGB }} GB ({{ vm.data.totalFilesizeTB }} TB)</td>
 					</tr>
 					<tr>
 						<td>Total Episodes</td>
 						<td>:</td>
-						<td><?php echo $totalEpisodes ?> Episodes</td>
+						<td>{{ vm.data.totalEpisodes }} Episodes</td>
 					</tr>
 					<tr><td colspan="3"></td></tr>
 					<tr><td class="table-statistics-border" colspan="3"></td></tr>
@@ -43,27 +43,27 @@
 					<tr>
 						<td>4k 2160p</td>
 						<td class="text-center">:</td>
-						<td class="text-center"><?php echo $totalUHD ?></td>
+						<td class="text-center">{{ vm.data.quality.uhd }}</td>
 					</tr>
 					<tr>
 						<td>FHD 1080p</td>
 						<td class="text-center">:</td>
-						<td class="text-center"><?php echo $totalFHD ?></td>
+						<td class="text-center">{{ vm.data.quality.fhd }}</td>
 					</tr>
 					<tr>
 						<td>HD 720p</td>
 						<td class="text-center">:</td>
-						<td class="text-center"><?php echo $totalHD ?></td>
+						<td class="text-center">{{ vm.data.quality.hd }}</td>
 					</tr>
 					<tr>
 						<td>HQ 480p</td>
 						<td class="text-center">:</td>
-						<td class="text-center"><?php echo $totalHQ ?></td>
+						<td class="text-center">{{ vm.data.quality.hq }}</td>
 					</tr>
 					<tr>
 						<td>LQ 360p</td>
 						<td class="text-center">:</td>
-						<td class="text-center"><?php echo $totalLQ ?></td>
+						<td class="text-center">{{ vm.data.quality.lq }}</td>
 					</tr>
 				</tbody>
 			</table>
@@ -521,3 +521,5 @@
 
 	</div>
 </div>
+
+<anidb-footer></anidb-footer>
