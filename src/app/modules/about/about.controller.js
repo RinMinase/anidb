@@ -4,10 +4,11 @@ import firebase from "firebase";
 import Promise from "bluebird";
 
 export class AboutController {
-	constructor($scope) {
+	constructor($scope, $window) {
 		"ngInject";
 
 		this.$scope = $scope;
+		this.$window = $window;
 
 		this.activate();
 	}
@@ -82,8 +83,6 @@ export class AboutController {
 							break;
 						}
 					});
-					// eslint-disable-next-line
-					console.log(totalEpisodes);
 
 					this.data.totalEpisodes = totalEpisodes;
 					this.data.totalDays = parseInt(totalDuration / 86400);
