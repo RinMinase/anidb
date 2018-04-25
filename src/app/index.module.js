@@ -18,6 +18,8 @@ import { MainController } from "./main/main.controller";
 import { FiretestController } from "./firetest/firetest.controller";
 
 import CoreModule from "./core/core.module";
+
+import AboutModule from "./modules/about/about.module";
 import HomeModule from "./modules/home/home.module";
 import LoginModule from "./modules/login/login.module";
 
@@ -34,6 +36,8 @@ angular.module(
 		"toastr",
 
 		CoreModule.name,
+
+		AboutModule.name,
 		HomeModule.name,
 		LoginModule.name,
 	])

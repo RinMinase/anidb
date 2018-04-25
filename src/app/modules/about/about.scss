@@ -1,0 +1,22 @@
+.anidb-about {
+	h3.user-data-heading {
+		margin-top: 20px;
+		margin-bottom: 10px;
+		border-bottom: 2px solid #95CE92;
+		padding-bottom: 5px;
+	}
+
+	div.progress-bar { width: 20%; }
+	div.progress-bar-green { background-color: #4CAF50; }
+	div.progress-bar-alt-green { background-color: #7CC87F; }
+
+	table.table-statistics > tbody > tr > td:not(.table-statistics-border) {
+		border-top: 0px;
+		font-weight: bold;
+	}
+
+	code.red { color: #F66060; }
+	code.green { color: #2BC210; }
+	code.orange { color: #EBA821; }
+	code.blue { color: #00A2E8; }
+}
