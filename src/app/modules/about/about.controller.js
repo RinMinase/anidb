@@ -66,21 +66,21 @@ export class AboutController {
 						}
 
 						switch (value.quality) {
-						case "4K 2160p":
-							this.data.quality.uhd++;
-							break;
-						case "FHD 1080p":
-							this.data.quality.fhd++;
-							break;
-						case "HD 720p":
-							this.data.quality.hd++;
-							break;
-						case "HQ 480p":
-							this.data.quality.hq++;
-							break;
-						case "LQ 360p":
-							this.data.quality.lq++;
-							break;
+							case "4K 2160p":
+								this.data.quality.uhd++;
+								break;
+							case "FHD 1080p":
+								this.data.quality.fhd++;
+								break;
+							case "HD 720p":
+								this.data.quality.hd++;
+								break;
+							case "HQ 480p":
+								this.data.quality.hq++;
+								break;
+							case "LQ 360p":
+								this.data.quality.lq++;
+								break;
 						}
 					});
 
