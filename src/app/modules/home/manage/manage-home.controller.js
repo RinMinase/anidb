@@ -90,6 +90,16 @@ export class ManageHomeController {
 
 						value.dateFinished = moment.unix(value.dateFinished)
 							.format("MMM DD, YYYY");
+
+						delete value.duration;
+						delete value.firstSeasonTitle;
+						delete value.inhdd;
+						delete value.offquel;
+						delete value.prequel;
+						delete value.rating;
+						delete value.seasonNumber;
+						delete value.sequel;
+						delete value.watchStatus;
 					});
 
 					// this.unsearchedData = angular.copy(this.data);
