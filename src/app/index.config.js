@@ -41,6 +41,11 @@ export function config (
 		keys: [
 			"title",
 			"quality",
+			"releaseSeason",
+			"releaseYear",
+			"encoder",
+			"variants",
+			"remarks",
 		],
 	};
 }
