@@ -1,4 +1,5 @@
 import firebase from "firebase";
+// import Fuse from "fuse.js";
 import moment from "moment";
 import Promise from "bluebird";
 
@@ -15,12 +16,46 @@ export class ManageHomeController {
 		this.$scope = $scope;
 		this.$uibModal = $uibModal;
 		this.$window = $window;
+		// this.$scope.search = "";
 
 		this.activate();
 	}
 
 	activate() {
 		this.validateUser();
+
+		// this.$scope.$watch(
+		// 	() => this.$scope.search,
+		// 	() => {
+		//
+		// 		if (this.data) {
+		// 			const fuseOptions = {
+		// 				shouldSort: true,
+		// 				threshold: 0.3,
+		// 				location: 0,
+		// 				distance: 100,
+		// 				maxPatternLength: 64,
+		// 				minMatchCharLength: 0,
+		// 				keys: [
+		// 					"title",
+		// 					// "quality",
+		// 					// "releaseSeason",
+		// 					// "releaseYear",
+		// 					// "encoder",
+		// 					// "variants",
+		// 					// "remarks",
+		// 				],
+		// 			};
+		//
+		// 			this.filteredData = new Fuse(this.data, fuseOptions)
+		// 				.search(this.$scope.search);
+		// 		// } else if (this.data) {
+		// 		// 	this.filteredData = this.data.map((data) => Object.create(data));
+		// 		// 	this.data = angular.copy(this.unsearchedData);
+		// 		}
+		//
+		// 	}
+		// );
 	}
 
 	validateUser() {
@@ -56,6 +91,9 @@ export class ManageHomeController {
 						value.dateFinished = moment.unix(value.dateFinished)
 							.format("MMM DD, YYYY");
 					});
+
+					// this.unsearchedData = angular.copy(this.data);
+					// this.filteredData = this.data.map((value) => Object.create(value));
 
 					this.$scope.$apply();
 					resolve();

@@ -1,4 +1,4 @@
-<anidb-navbar></anidb-navbar>
+<!-- <anidb-navbar></anidb-navbar> -->
 
 <div class="container-fluid">
 	<div class="row">
@@ -20,19 +20,17 @@
 		</div>
 
 		<div class="col-xs-9 col-sm-10">
-			<form method="GET" action="">
-				<div class="form-group has-feedback">
-					<input type="text"
-						class="form-control"
-						name="query"
-						placeholder="Keywords (comma-separated): sort/order, quality, release, encoder, remarks, inhdd"
-						value="">
-					<button class="hidden">Submit</button>
-					<span class="form-control-feedback">
-						<i class="fa fa-search"></i>
-					</span>
-				</div>
-			</form>
+			<div class="form-group has-feedback">
+				<input type="text"
+					class="form-control"
+					ng-model="search"
+					placeholder="Keywords (comma-separated): sort/order, quality, release, encoder, remarks, inhdd"
+					value="">
+				<button class="hidden">Submit</button>
+				<span class="form-control-feedback">
+					<i class="fa fa-search"></i>
+				</span>
+			</div>
 		</div>
 	</div>
 
@@ -42,6 +40,7 @@
 				<table class="table table-hover" id="animeTable">
 					<thead>
 						<tr>
+							<th>Quality</th>
 							<th>Title</th>
 							<th class="text-center">E / O / S</th>
 							<th class="text-center">File Size</th>
@@ -51,7 +50,19 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat="data in vm.data">
+						<tr ng-repeat="data in vm.data
+							| orderBy: !vm.$scope.search && ['quality','title']
+							| filterBy: [
+								'title',
+								'quality',
+								'releaseSeason',
+								'releaseYear',
+								'encoder',
+								'variants',
+								'remarks'
+							]: search">
+
+							<td>{{ data.quality }}</td>
 							<td>{{ data.title }}</td>
 							<td class="text-center">
 								{{ data.episodes }} / {{ data.ovas }} / {{ data.specials }}
@@ -68,4 +79,4 @@
 	</div>
 </div>
 
-<anidb-footer></anidb-footer>
+<!-- <anidb-footer></anidb-footer> -->
