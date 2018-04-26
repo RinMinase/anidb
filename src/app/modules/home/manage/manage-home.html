@@ -1,4 +1,4 @@
-<!-- <anidb-navbar></anidb-navbar> -->
+<anidb-navbar></anidb-navbar>
 
 <div class="container-fluid">
 	<div class="row">
@@ -49,18 +49,19 @@
 							<th>Encoder</th>
 						</tr>
 					</thead>
+					<!-- | filterBy: [
+						'title',
+						'quality',
+						'releaseSeason',
+						'releaseYear',
+						'encoder',
+						'variants',
+						'remarks'
+					]: search -->
 					<tbody>
 						<tr ng-repeat="data in vm.data
 							| orderBy: !vm.$scope.search && ['quality','title']
-							| filterBy: [
-								'title',
-								'quality',
-								'releaseSeason',
-								'releaseYear',
-								'encoder',
-								'variants',
-								'remarks'
-							]: search">
+							| fuzzyBy: 'title': search">
 
 							<td>{{ data.quality }}</td>
 							<td>{{ data.title }}</td>
@@ -79,4 +80,4 @@
 	</div>
 </div>
 
-<!-- <anidb-footer></anidb-footer> -->
+<anidb-footer></anidb-footer>
