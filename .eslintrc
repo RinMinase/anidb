@@ -60,7 +60,7 @@
     "eol-last":                         ["error", "always"],
     "func-call-spacing":                ["error", "never"],
     "keyword-spacing":                  ["error", { "after": true }],
-    "indent":                           ["error", "tab"],
+    "indent":                           ["error", "tab", { "SwitchCase": 1 }],
     "line-comment-position":            ["error", { "position": "above" }],
     "linebreak-style":                  ["error", "unix"],
     "max-depth":                        ["error", 4],
