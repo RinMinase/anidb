@@ -76,7 +76,6 @@
     "no-mixed-operators":               "error",
     "no-mixed-spaces-and-tabs":         "error",
     "no-multiple-empty-lines":          ["error", { "max": 2, "maxEOF": 1 }],
-    "no-negated-condition":             "error",
     "no-nested-ternary":                "error",
     "no-new-object":                    "error",
     "no-trailing-spaces":               ["error", { "skipBlankLines": true }],
