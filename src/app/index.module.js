@@ -8,7 +8,6 @@ import "angular-toastr";
 import "angular-ui-bootstrap";
 import uiRouter from "@uirouter/angularjs";
 
-import "fuse.js";
 import "jquery";
 import "ngStorage";
 import "oclazyload";
