@@ -12,6 +12,8 @@
 $roboto-font-path: "../fonts";
 @import "node_modules/roboto-fontface/css/roboto/sass/roboto-fontface";
 
+@import "node_modules/csspin/csspin";
+
 @import "./bootstrap-extension";
 
 /**
