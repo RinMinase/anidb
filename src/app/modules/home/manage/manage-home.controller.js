@@ -16,6 +16,7 @@ export class ManageHomeController {
 		this.$scope = $scope;
 		this.$uibModal = $uibModal;
 		this.$window = $window;
+		this.dataLoaded = false;
 		// this.$scope.search = "";
 
 		this.activate();
@@ -100,6 +101,8 @@ export class ManageHomeController {
 						delete value.seasonNumber;
 						delete value.sequel;
 						delete value.watchStatus;
+
+						this.dataLoaded = true;
 					});
 
 					// this.unsearchedData = angular.copy(this.data);
