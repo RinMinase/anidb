@@ -2,7 +2,7 @@
 
 var path = require("path");
 var gulp = require("gulp");
-var conf = require("./conf");
+var conf = require("../gulpfile");
 
 var fontpaths = [
 	"node_modules/font-awesome/fonts/*",

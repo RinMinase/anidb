@@ -2,7 +2,7 @@
 
 var path = require("path");
 var gulp = require("gulp");
-var conf = require("./conf");
+var conf = require("../gulpfile");
 var $ = require("gulp-load-plugins")();
 var browserSync = require("browser-sync");
 var webpack = require("webpack-stream");
