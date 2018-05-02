@@ -9,7 +9,6 @@ import "angular-ui-bootstrap";
 import uiRouter from "@uirouter/angularjs";
 
 import "jquery";
-import "ngStorage";
 import "oclazyload";
 
 import { config, runBlock, routerConfig } from "./index.config";
@@ -30,7 +29,6 @@ angular.module(
 		"ngCookies",
 		"ngMessages",
 		"ngSanitize",
-		"ngStorage",
 		uiRouter,
 		"ui.bootstrap",
 		"toastr",
