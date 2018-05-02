@@ -8,7 +8,6 @@ var browserSyncSpa = require("browser-sync-spa");
 var $ = require("gulp-load-plugins")({
 	pattern: ["gulp-*", "uglify-save-license", "del"]
 });
-// var proxyMiddleware = require("http-proxy-middleware");
 
 function browserSyncInit(baseDir, browser) {
 	browser = browser || "default";
@@ -22,6 +21,8 @@ function browserSyncInit(baseDir, browser) {
 	 * https://github.com/chimurai/http-proxy-middleware/blob/v0.9.0/README.md
 	 *
 	 * Example:
+	 *
+	 * var proxyMiddleware = require("http-proxy-middleware");
 	 * server.middleware = proxyMiddleware(
 	 * 		"/users", {
 	 * 			target: "http://jsonplaceholder.typicode.com",
