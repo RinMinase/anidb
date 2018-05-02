@@ -8,10 +8,10 @@ var gutil = require("gulp-util");
  *  This will load all js or coffee files in the gulp directory
  *  in order to load all gulp tasks
  */
-fs.readdirSync("./gulp").filter(function(file) {
+fs.readdirSync("./src/assets/gulp").filter(function(file) {
 	return (/\.(js|coffee)$/i).test(file);
 }).map(function(file) {
-	require("./gulp/" + file);
+	require("./src/assets/gulp/" + file);
 });
 
 gulp.task("default", ["clean"], function () {

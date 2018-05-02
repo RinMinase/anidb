@@ -2,7 +2,7 @@
 
 var path = require("path");
 var gulp = require("gulp");
-var conf = require("../gulpfile");
+var conf = require("../../../gulpfile.js");
 var browserSync = require("browser-sync");
 var browserSyncSpa = require("browser-sync-spa");
 var $ = require("gulp-load-plugins")({
@@ -97,36 +97,9 @@ gulp.task("watch", ["scripts:watch", "inject"], function () {
  * Build Tasks
  */
 
-gulp.task("partials", function () {
-	return gulp.src([
-		path.join(conf.paths.src, "/app/**/*.html"),
-		path.join(conf.paths.tmp, "/serve/app/**/*.html")
-	])
-	.pipe(
-		$.htmlmin({
-			removeEmptyAttributes: true,
-			removeAttributeQuotes: true,
-			collapseBooleanAttributes: true,
-			collapseWhitespace: true
-		})
-	)
-	.pipe(
-		$.angularTemplatecache(
-			"templateCacheHtml.js", {
-				module: "anidbAngular",
-				root: "app"
-			}
-		)
-	)
-	.pipe(gulp.dest(conf.paths.tmp + "/partials/"));
-});
-
 gulp.task("html", ["inject", "partials"], function () {
 	var partialsInjectFile = gulp.src(
-		path.join(
-			conf.paths.tmp,
-			"/partials/templateCacheHtml.js"
-		),
+		path.join(conf.paths.tmp, "/partials/templateCacheHtml.js"),
 		{ read: false }
 	);
 	var partialsInjectOptions = {
@@ -178,6 +151,30 @@ gulp.task("html", ["inject", "partials"], function () {
 			title: path.join(conf.paths.dist, "/"),
 			showFiles: true
 		}));
+});
+
+gulp.task("partials", function () {
+   return gulp.src([
+	   path.join(conf.paths.src, "/app/**/*.html"),
+	   path.join(conf.paths.tmp, "/serve/app/**/*.html")
+   ])
+   .pipe(
+	   $.htmlmin({
+		   removeEmptyAttributes: true,
+		   removeAttributeQuotes: true,
+		   collapseBooleanAttributes: true,
+		   collapseWhitespace: true
+	   })
+   )
+   .pipe(
+	   $.angularTemplatecache(
+		   "templateCacheHtml.js", {
+			   module: "anidbAngular",
+			   root: "app"
+		   }
+	   )
+   )
+   .pipe(gulp.dest(conf.paths.tmp + "/partials/"));
 });
 
 gulp.task("other", function () {
