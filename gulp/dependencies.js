@@ -34,16 +34,10 @@ gulp.task("inject", ["scripts", "styles"], function () {
 			path.join(conf.paths.src, "/*.html")
 		)
 		.pipe(
-			$.inject(
-				injectStyles,
-				injectOptions
-			)
+			$.inject(injectStyles, injectOptions)
 		)
 		.pipe(
-			$.inject(
-				injectScripts,
-				injectOptions
-			)
+			$.inject(injectScripts, injectOptions)
 		)
 		.pipe(
 			gulp.dest(
@@ -103,8 +97,6 @@ function webpackWrapper(watch, callback) {
 			callback();
 		}
 	};
-
-	// var sources = [  ];
 
 	return gulp.src(
 			path.join(conf.paths.src, "/app/index.module.js")
