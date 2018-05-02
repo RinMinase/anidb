@@ -156,9 +156,7 @@ var buildStyles = function() {
 	};
 
 
-	return gulp.src([
-			path.join(conf.paths.src, "/assets/styles/index.scss")
-		])
+	return gulp.src([path.join(conf.paths.src, "/assets/styles/index.scss")])
 		.pipe(
 			$.inject(
 				injectFiles,
