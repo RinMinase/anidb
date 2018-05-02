@@ -12,35 +12,25 @@ gulp.task("inject-reload", ["inject"], function() {
 
 gulp.task("inject", ["scripts", "styles"], function () {
 	var injectStyles = gulp.src([
-		path.join(
-			conf.paths.tmp,
-			"/serve/app/**/*.css"
-		),
-		path.join(
-			"!" + conf.paths.tmp,
-			"/serve/app/vendor.css"
-		)
+		path.join(conf.paths.tmp, "/serve/app/**/*.css"),
+		path.join("!" + conf.paths.tmp, "/serve/app/vendor.css")
 	], { read: false });
 
 	var injectScripts = gulp.src([
-		path.join(
-			conf.paths.tmp,
-			"/serve/app/**/*.module.js"
-		)
+		path.join(conf.paths.tmp, "/serve/app/**/*.module.js")
 	], { read: false });
 
 	var injectOptions = {
 		ignorePath: [
 			conf.paths.src,
-			path.join(
-				conf.paths.tmp,
-				"/serve"
-			)
+			path.join(conf.paths.tmp, "/serve")
 		],
 		addRootSlash: false
 	};
 
-	return gulp.src(path.join(conf.paths.src, "/*.html"))
+	return gulp.src(
+			path.join(conf.paths.src, "/*.html")
+		)
 		.pipe(
 			$.inject(
 				injectStyles,
@@ -55,10 +45,7 @@ gulp.task("inject", ["scripts", "styles"], function () {
 		)
 		.pipe(
 			gulp.dest(
-				path.join(
-					conf.paths.tmp,
-					"/serve"
-				)
+				path.join(conf.paths.tmp, "/serve")
 			)
 		);
 });

@@ -3,8 +3,8 @@
 var path = require("path");
 var gulp = require("gulp");
 var conf = require("./conf");
-var browserSync = require("browser-sync");
 var $ = require("gulp-load-plugins")();
+var browserSync = require("browser-sync");
 
 gulp.task("styles-reload", ["styles"], function() {
 	return buildStyles()
@@ -45,15 +45,13 @@ var buildStyles = function() {
 			)
 		)
 		.pipe($.sourcemaps.init())
-		.pipe(
-			$.sass(sassOptions)
-		).on(
+		.pipe($.sass(sassOptions))
+		.on(
 			"error",
 			conf.errorHandler("Sass")
 		)
-		.pipe(
-			$.autoprefixer()
-		).on(
+		.pipe($.autoprefixer())
+		.on(
 			"error",
 			conf.errorHandler("Autoprefixer")
 		)

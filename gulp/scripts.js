@@ -2,11 +2,11 @@
 
 var path = require("path");
 var gulp = require("gulp");
-// var Dotenv = require("dotenv-webpack");
+var conf = require("./conf");
+var $ = require("gulp-load-plugins")();
 var browserSync = require("browser-sync");
 var webpack = require("webpack-stream");
-var $ = require("gulp-load-plugins")();
-var conf = require("./conf");
+// var Dotenv = require("dotenv-webpack");
 
 function webpackWrapper(watch, callback) {
 	var webpackOptions = {
@@ -38,6 +38,7 @@ function webpackWrapper(watch, callback) {
 		if (err) {
 			conf.errorHandler("Webpack")(err);
 		}
+
 		$.util.log(
 			stats.toString({
 				colors: $.util.colors.supportsColor,
@@ -46,16 +47,20 @@ function webpackWrapper(watch, callback) {
 				version: false
 			}
 		));
+
 		browserSync.reload();
+
 		if (watch) {
 			watch = false;
 			callback();
 		}
 	};
 
-	var sources = [ path.join(conf.paths.src, "/app/index.module.js") ];
+	// var sources = [  ];
 
-	return gulp.src(sources)
+	return gulp.src(
+			path.join(conf.paths.src, "/app/index.module.js")
+		)
 		.pipe(
 			webpack(
 				webpackOptions,
@@ -65,10 +70,7 @@ function webpackWrapper(watch, callback) {
 		)
 		.pipe(
 			gulp.dest(
-				path.join(
-					conf.paths.tmp,
-					"/serve/app"
-				)
+				path.join(conf.paths.tmp, "/serve/app")
 			)
 		);
 }

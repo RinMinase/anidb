@@ -10,7 +10,7 @@ var browserSyncSpa = require("browser-sync-spa");
 function browserSyncInit(baseDir, browser) {
 	browser = browser || "default";
 
-	/*
+	/**
 	 * You can add a proxy to your backend by uncommenting the line below.
 	 * You just have to configure a context which will we redirected and the target url.
 	 * Example: $http.get("/users") requests will be automatically proxified.
@@ -35,18 +35,20 @@ function browserSyncInit(baseDir, browser) {
 			routes: null
 		},
 		browser: browser,
-		open: false,
-		notify: false
+		open: false,		// Disables opening of browser on serving
+		notify: false		// Removes top right browsersync notification
 	});
 }
 
 browserSync.use(browserSyncSpa({
-	// Only needed for angular apps
-	selector: "[ng-app]"
+	selector: "[ng-app]"	// Only needed for angular apps
 }));
 
 gulp.task("serve", ["fonts", "watch"], function () {
-	browserSyncInit([path.join(conf.paths.tmp, "/serve"), conf.paths.src]);
+	browserSyncInit([
+		path.join(conf.paths.tmp, "/serve"),
+		conf.paths.src
+	]);
 });
 
 gulp.task("serve:dist", ["fonts:dist", "build"], function () {
