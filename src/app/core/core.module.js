@@ -3,7 +3,6 @@ import { WebDevTecService } from "./services/webDevTec.service";
 
 import { NavbarDirective } from "./directives/navbar/navbar.directive";
 import { FooterDirective } from "./directives/footer/footer.directive";
-import { MalarkeyDirective } from "./directives/malarkey/malarkey.directive";
 
 export default angular
 	.module("core", [])
@@ -12,5 +11,4 @@ export default angular
 	.service("webDevTec", WebDevTecService)
 
 	.directive("anidbNavbar", NavbarDirective)
-	.directive("anidbFooter", FooterDirective)
-	.directive("anidbMalarkey", MalarkeyDirective);
+	.directive("anidbFooter", FooterDirective);
