@@ -54,3 +54,37 @@ gulp.task("serve", ["fonts", "watch"], function () {
 gulp.task("serve:dist", ["fonts:dist", "build"], function () {
 	browserSyncInit(conf.paths.dist);
 });
+
+/**
+ * Watch Tasks
+ */
+
+function isOnlyChange(event) {
+	return event.type === "changed";
+}
+
+gulp.task("watch", ["scripts:watch", "inject"], function () {
+
+	gulp.watch(
+		path.join(conf.paths.src, "/*.html"),
+		["inject-reload"]
+	);
+
+	gulp.watch([
+		path.join(conf.paths.src, "/app/**/*.css"),
+		path.join(conf.paths.src, "/app/**/*.scss")
+	], function(event) {
+		if (isOnlyChange(event)) {
+			gulp.start("styles-reload");
+		} else {
+			gulp.start("inject-reload");
+		}
+	});
+
+	gulp.watch(
+		path.join(conf.paths.src, "/app/**/*.html"),
+		function(event) {
+			browserSync.reload(event.path);
+		}
+	);
+});
