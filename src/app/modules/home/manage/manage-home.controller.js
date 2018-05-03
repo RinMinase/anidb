@@ -1,3 +1,4 @@
+import _ from "lodash";
 // import Fuse from "fuse.js";
 import moment from "moment";
 
@@ -11,13 +12,18 @@ export class ManageHomeController {
 	) {
 		"ngInject";
 
-		this.$log = $log;
-		this.$scope = $scope;
-		this.$uibModal = $uibModal;
-		this.$window = $window;
-		this.firebase = firebase;
-		this.dataLoaded = false;
-		// this.$scope.search = "";
+		_.extend(this, {
+			$log,
+			$scope,
+			$uibModal,
+			$window,
+			firebase,
+			dataLoaded: false,
+		});
+
+		_.extend(this.$scope, {
+			search: "",
+		});
 
 		this.activate();
 	}
