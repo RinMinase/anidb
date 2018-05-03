@@ -203,7 +203,7 @@ gulp.task("fonts_roboto", function () {
 
 gulp.task("fonts_roboto:dist", function () {
 	return gulp.src(robotofonts)
-		.pipe(gulp.dest(path.join(conf.paths.dist, "/serve/fonts/roboto")));
+		.pipe(gulp.dest(path.join(conf.paths.dist, "/fonts/roboto")));
 });
 
 gulp.task("fonts", ["fonts_roboto"], function () {
