@@ -12,7 +12,14 @@
 				<img ng-src="assets/images/user.jpg" class="img-circle img-responsive">
 			</center>
 			<h3 class="text-center user-data-heading">Statistics</h3>
-			<table class="table table-condensed table-statistics">
+
+			<div class="flex-form-container"
+				ng-class="{'hidden': vm.dataLoaded === true}">
+				<div class="cp-spinner cp-eclipse"></div>
+			</div>
+
+			<table class="table table-condensed table-statistics"
+				ng-class="{'hidden': vm.dataLoaded === false}">
 				<tbody>
 					<tr>
 						<td>Watch Time</td>

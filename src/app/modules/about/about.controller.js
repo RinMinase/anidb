@@ -1,6 +1,4 @@
 import firebase from "firebase";
-// import moment from "moment";
-// import momentFormat from "moment-duration-format";
 import Promise from "bluebird";
 
 export class AboutController {
@@ -9,6 +7,7 @@ export class AboutController {
 
 		this.$scope = $scope;
 		this.$window = $window;
+		this.dataLoaded = false;
 
 		this.activate();
 	}
@@ -93,6 +92,7 @@ export class AboutController {
 					this.data.totalFilesizeGB = parseFloat(totalFilesize / 1073741824).toFixed(2);
 					this.data.totalFilesizeTB = parseFloat(totalFilesize / 1099511627776).toFixed(2);
 
+					this.dataLoaded = true;
 					this.$scope.$apply();
 					resolve();
 				});
