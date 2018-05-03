@@ -119,7 +119,6 @@ gulp.task("html", ["inject", "partials"], function () {
 		)
 		.pipe($.useref())
 		.pipe(jsFilter)
-		.pipe($.sourcemaps.init())
 		.pipe(
 			$.uglify({preserveComments: $.uglifySaveLicense})
 		)
@@ -128,7 +127,6 @@ gulp.task("html", ["inject", "partials"], function () {
 			conf.errorHandler("Uglify")
 		)
 		.pipe($.rev())
-		.pipe($.sourcemaps.write("maps"))
 		.pipe(jsFilter.restore)
 		.pipe(cssFilter)
 		.pipe($.cssnano())
