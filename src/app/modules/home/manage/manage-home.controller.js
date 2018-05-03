@@ -101,13 +101,12 @@ export class ManageHomeController {
 						delete value.seasonNumber;
 						delete value.sequel;
 						delete value.watchStatus;
-
-						this.dataLoaded = true;
 					});
 
 					// this.unsearchedData = angular.copy(this.data);
 					// this.filteredData = this.data.map((value) => Object.create(value));
 
+					this.dataLoaded = true;
 					this.$scope.$apply();
 					resolve();
 				});
