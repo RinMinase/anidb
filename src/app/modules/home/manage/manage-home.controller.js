@@ -42,6 +42,39 @@ export class ManageHomeController {
 			}).catch(() => {
 				this.$window.location.href = "/login";
 			});
+
+		// this.$scope.$watch(
+		// 	() => this.$scope.search,
+		// 	() => {
+		//
+		// 		if (this.data) {
+		// 			const fuseOptions = {
+		// 				shouldSort: true,
+		// 				threshold: 0.3,
+		// 				location: 0,
+		// 				distance: 100,
+		// 				maxPatternLength: 64,
+		// 				minMatchCharLength: 0,
+		// 				keys: [
+		// 					"title",
+		// 					// "quality",
+		// 					// "releaseSeason",
+		// 					// "releaseYear",
+		// 					// "encoder",
+		// 					// "variants",
+		// 					// "remarks",
+		// 				],
+		// 			};
+		//
+		// 			this.filteredData = new Fuse(this.data, fuseOptions)
+		// 				.search(this.$scope.search);
+		// 		// } else if (this.data) {
+		// 		// 	this.filteredData = this.data.map((data) => Object.create(data));
+		// 		// 	this.data = angular.copy(this.unsearchedData);
+		// 		}
+		//
+		// 	}
+		// );
 	}
 
 	formatData(data) {
