@@ -40,13 +40,9 @@ export function FirebaseFactory() {
 	}
 
 	function auth() {
-		new Promise((resolve, reject) => {
+		return new Promise((resolve, reject) => {
 			firebase.auth().onAuthStateChanged((isAuthenticated) => {
-				if (isAuthenticated) {
-					resolve();
-				} else {
-					reject();
-				}
+				(isAuthenticated) ? resolve() : reject();
 			});
 		});
 	}
@@ -84,16 +80,10 @@ export function FirebaseFactory() {
 			id = `/${id}`;
 		}
 
-		new Promise((resolve) => {
-			firebase.database()
-				.ref(`/anime${id}`)
-				.once("value")
-				.then((data) => {
-					resolve();
-
-					return data;
-				});
-		});
+		return firebase.database()
+			.ref(`/anime${id}`)
+			.once("value")
+			.then((data) => data.val());
 	}
 
 	function update(id, data) {
