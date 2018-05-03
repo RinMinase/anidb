@@ -1,26 +1,5 @@
 .manage-home {
 	.flex-form-container {
-		display: flex;
-		align-items: center;
-		justify-content: center;
 		height: calc(100vh - 101px);
-	}
-
-	.cp-eclipse {
-		width: 24px;
-		height: 24px;
-		background: #337ab7;
-
-		&:before {
-			width: 60px;
-			height: 60px;
-			border-right: solid 6px #337ab7;
-		}
-
-		&:after {
-			width: 60px;
-			height: 60px;
-			border-left: solid 6px #337ab7;
-		}
 	}
 }
