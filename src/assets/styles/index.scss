@@ -75,6 +75,25 @@ div.panel-green {
 	justify-content: center;
 }
 
+div.anime-legend-container {
+	display: inline-block;
+
+	div.anime-legend {
+		width: 10px;
+		height: 10px;
+		display: inline-block;
+		margin-right: 5px;
+
+		&.anime-legend-uhd { background-color: #FF99CC; }
+		&.anime-legend-fhd { background-color: #99FF99; }
+		&.anime-legend-hd { background-color: #99CCFF; }
+		&.anime-legend-hq { background-color: #FFCC66; }
+		&.anime-legend-lq { border: 1px solid #777777; }
+	}
+}
+
+
+
 .cp-eclipse {
 	width: 24px;
 	height: 24px;

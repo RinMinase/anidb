@@ -45,7 +45,6 @@
 				<table class="table table-hover" id="animeTable">
 					<thead>
 						<tr>
-							<th>Quality</th>
 							<th>Title</th>
 							<th class="text-center">E / O / S</th>
 							<th class="text-center">File Size</th>
@@ -68,8 +67,37 @@
 							| orderBy: !vm.$scope.search && ['quality','title']
 							| fuzzyBy: 'title': search">
 
-							<td>{{ data.quality }}</td>
-							<td>{{ data.title }}</td>
+							<td ng-switch="data.quality">
+								<div class="anime-legend-container">
+									<div class="anime-legend anime-legend-uhd"
+										uib-tooltip="{{ data.quality }}"
+										tooltip-placement="right"
+										ng-switch-when="4K 2160p">
+									</div>
+									<div class="anime-legend anime-legend-fhd"
+										uib-tooltip="{{ data.quality }}"
+										tooltip-placement="right"
+										ng-switch-when="FHD 1080p">
+									</div>
+									<div class="anime-legend anime-legend-hd"
+										uib-tooltip="{{ data.quality }}"
+										tooltip-placement="right"
+										ng-switch-when="HD 720p">
+									</div>
+									<div class="anime-legend anime-legend-hq"
+										uib-tooltip="{{ data.quality }}"
+										tooltip-placement="right"
+										ng-switch-when="HQ 480p">
+									</div>
+									<div class="anime-legend anime-legend-lq"
+										uib-tooltip="{{ data.quality }}"
+										tooltip-placement="right"
+										ng-switch-when="LQ 360p">
+									</div>
+								</div>
+
+								<span>{{ data.title }}</span>
+							</td>
 							<td class="text-center">
 								{{ data.episodes }} / {{ data.ovas }} / {{ data.specials }}
 							</td>
