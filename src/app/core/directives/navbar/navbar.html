@@ -15,8 +15,8 @@
 
 		<div class="collapse navbar-collapse anidb-navbar-collapse">
 			<ul class="nav navbar-nav">
-				<li class="active">
-					<a ng-href="/">
+				<li ui-sref-active="active">
+					<a ui-sref="home.manage">
 						<i class="fa fa-home"></i>
 						<span class="pl-3">Home</span>
 					</a>
@@ -29,8 +29,8 @@
 						<i class="fa fa-caret-down"></i>
 					</a>
 					<ul uib-dropdown-menu>
-						<li>
-							<a>
+						<li ui-sref-active="active">
+							<a ui-sref="lastwatch">
 								<i class="fa fa-play"></i>
 								<span class="pl-3">Last 20 Watched</span>
 							</a>
