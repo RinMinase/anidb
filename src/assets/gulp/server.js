@@ -76,7 +76,9 @@ gulp.task("watch", ["scripts:watch", "inject"], function () {
 
 	gulp.watch([
 		path.join(conf.paths.src, "/app/**/*.css"),
-		path.join(conf.paths.src, "/app/**/*.scss")
+		path.join(conf.paths.src, "/app/**/*.scss"),
+		path.join(conf.paths.src, "/assets/styles/*.css"),
+		path.join(conf.paths.src, "/assets/styles/*.scss")
 	], function(event) {
 		if (isOnlyChange(event)) {
 			gulp.start("styles-reload");
@@ -85,9 +87,10 @@ gulp.task("watch", ["scripts:watch", "inject"], function () {
 		}
 	});
 
-	gulp.watch(
+	gulp.watch([
 		path.join(conf.paths.src, "/app/**/*.html"),
-		function(event) {
+		path.join(conf.paths.src, "/assets/index.html")
+	], function(event) {
 			browserSync.reload(event.path);
 		}
 	);
