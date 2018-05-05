@@ -75,15 +75,65 @@ export function FirebaseFactory() {
 			.then(dataInsert);
 	}
 
-	function retrieve(id = "") {
-		if (id !== "") {
-			id = `/${id}`;
+	function retrieve(
+		id = "",
+		limit = 0,
+		orderKey = "",
+		orderDesc = false
+	) {
+
+		id = id || "";
+
+		limit = (!isNaN(parseInt(limit))) ? parseInt(limit) : 0;
+
+		let orderKeyValid = false;
+
+		if (orderKey || orderKey === "dateFinished") {
+			orderKeyValid = true;
 		}
 
-		return firebase.database()
-			.ref(`/anime${id}`)
-			.once("value")
-			.then((data) => data.val());
+		if (!limit && !orderKey){
+			return firebase.database()
+				.ref(`/anime${id}`)
+				.once("value")
+				.then((data) => _objectToArray(data.val()));
+		} else if (limit && !orderKey) {
+			return firebase.database()
+				.ref(`/anime${id}`)
+				.limitToLast(limit)
+				.once("value")
+				.then((data) => _objectToArray(data.val()));
+		} else if (!limit && orderKeyValid) {
+			if (!orderDesc) {
+				return firebase.database()
+					.ref(`/anime${id}`)
+					.orderByChild(orderKey)
+					.once("value")
+					.then((data) => _objectToArray(data.val()));
+			} else if (orderDesc) {
+				return firebase.database()
+					.ref(`/anime${id}`)
+					.orderByChild(orderKey, "desc")
+					.once("value")
+					.then((data) => _objectToArray(data.val()));
+			}
+		} else if (limit && orderKeyValid) {
+			if (!orderDesc) {
+				return firebase.database()
+					.ref(`/anime${id}`)
+					.orderByChild(orderKey)
+					.limitToLast(limit)
+					.once("value")
+					.then((data) => _objectToArray(data.val()));
+			} else if (orderDesc) {
+				return firebase.database()
+					.ref(`/anime${id}`)
+					.orderByChild(orderKey, "desc")
+					.limitToLast(limit)
+					.once("value")
+					.then((data) => _objectToArray(data.val()));
+			}
+		}
 	}
 
 	function update(id, data) {
@@ -101,5 +151,19 @@ export function FirebaseFactory() {
 
 	function hardDelete(id) {
 		return id;
+	}
+
+	function _objectToArray(data) {
+		if (angular.isObject(data)) {
+			const output = [];
+
+			Object.keys(data).map((key, index) => {
+				output[index] = data[key];
+			});
+
+			return output;
+		}
+
+		return data;
 	}
 }
