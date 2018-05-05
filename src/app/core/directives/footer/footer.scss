@@ -1,21 +1,18 @@
-anidb-footer > div.footer.navbar-fixed-bottom {
-	background-color: #f3f3f3;
-}
+$footer-height: 50px;
 
-html,
-body {
-	height: 100%;
-}
-
-/* Wrapper for page content to push down footer */
-.container-fluid,
-.container {
+html {
+	position: relative;
 	min-height: 100%;
-	height: auto;
 
-	/* Negative indent footer by its height */
-	margin: 0 auto -50px;
+	body {
+		margin-bottom: $footer-height;
 
-	/* Pad bottom by footer height */
-	padding-bottom: 50px;
+		anidb-footer {
+			position: absolute;
+			bottom: 0;
+			height: $footer-height;
+			width: 100%;
+			background-color: #f3f3f3;
+		}
+	}
 }
