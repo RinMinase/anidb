@@ -20,6 +20,7 @@ import CoreModule from "./core/core.module";
 
 import AboutModule from "./modules/about/about.module";
 import HomeModule from "./modules/home/home.module";
+import LastwatchModule from "./modules/lastwatch/lastwatch.module";
 import LoginModule from "./modules/login/login.module";
 
 angular.module(
@@ -37,6 +38,7 @@ angular.module(
 
 		AboutModule.name,
 		HomeModule.name,
+		LastwatchModule.name,
 		LoginModule.name,
 	])
 
