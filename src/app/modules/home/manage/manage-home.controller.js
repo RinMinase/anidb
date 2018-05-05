@@ -33,9 +33,7 @@ export class ManageHomeController {
 			.then(() => {
 				this.firebase.retrieve()
 					.then((data) => {
-						this.formatData(data);
-
-						this.data = data;
+						this.data = this.formatData(data);
 						this.dataLoaded = true;
 						this.$scope.$apply();
 					});
@@ -101,6 +99,8 @@ export class ManageHomeController {
 			delete value.seasonNumber;
 			delete value.sequel;
 			delete value.watchStatus;
+
+			return value;
 		});
 	}
 
