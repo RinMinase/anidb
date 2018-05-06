@@ -2,7 +2,107 @@
 
 <div class="container-fluid">
 
+	<div class="row">
 
+		<div class="col-md-3">
+			<div class="panel panel-green">
+				<div class="panel-heading">
+					<h4>Statistics (Last 20 Watched)</h4>
+				</div>
+				<div class="panel-body">
+					<div class="table-responsive">
+						<table class="table table-condensed table-unbordered">
+							<tbody>
+								<tr>
+									<th>Total Episodes</th>
+									<th>:</th>
+									<th class="text-center">{{ vm.totalEpisodes }}</th>
+								</tr>
+								<tr>
+									<th>Days Since Last Anime</th>
+									<th>:</th>
+									<th class="text-center">{{ vm.daysSinceLastAnime }}</th>
+								</tr>
+								<!-- <tr>
+									<th>Titles per Day</th>
+									<th>:</th>
+									<th class="text-center">{{ vm.titlesPerDay }}</th>
+								</tr>
+								<tr>
+									<th>Single Season (12 Episodes) per Day</th>
+									<th>:</th>
+									<th class="text-center">{{ vm.singleSeasonPerDay }}</th>
+								</tr>
+								<tr>
+									<th>Episodes per Day</th>
+									<th>:</th>
+									<th class="text-center">{{ vm.episodesPerDay }}</th>
+								</tr> -->
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-9">
+			<div class="flex-form-container"
+				ng-class="{'hidden': vm.dataLoaded === true}">
+				<div class="cp-spinner cp-eclipse"></div>
+			</div>
+
+			<div class="table-responsive"
+				ng-class="{'hidden': vm.dataLoaded === false}">
+				<table class="table table-condensed">
+					<thead>
+						<tr>
+							<th>Title</th>
+							<th class="text-center">File Size</th>
+							<th class="text-center">Date Finished</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="data in vm.data">
+							<td ng-switch="data.quality">
+								<div class="anime-legend-container">
+									<div class="anime-legend anime-legend-uhd"
+										uib-tooltip="{{ data.quality }}"
+										tooltip-placement="right"
+										ng-switch-when="4K 2160p">
+									</div>
+									<div class="anime-legend anime-legend-fhd"
+										uib-tooltip="{{ data.quality }}"
+										tooltip-placement="right"
+										ng-switch-when="FHD 1080p">
+									</div>
+									<div class="anime-legend anime-legend-hd"
+										uib-tooltip="{{ data.quality }}"
+										tooltip-placement="right"
+										ng-switch-when="HD 720p">
+									</div>
+									<div class="anime-legend anime-legend-hq"
+										uib-tooltip="{{ data.quality }}"
+										tooltip-placement="right"
+										ng-switch-when="HQ 480p">
+									</div>
+									<div class="anime-legend anime-legend-lq"
+										uib-tooltip="{{ data.quality }}"
+										tooltip-placement="right"
+										ng-switch-when="LQ 360p">
+									</div>
+								</div>
+
+								<span>{{ data.title }}</span>
+							</td>
+
+							<td class="text-center">{{ data.filesize }}</td>
+							<td class="text-center">{{ data.dateFinished }}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
 
 </div>
 
