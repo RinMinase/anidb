@@ -92,7 +92,7 @@ export function FirebaseFactory() {
 			orderKeyValid = true;
 		}
 
-		if (!limit && !orderKey){
+		if (!limit && !orderKey) {
 			return firebase.database()
 				.ref(`/anime${id}`)
 				.once("value")
@@ -128,10 +128,10 @@ export function FirebaseFactory() {
 			} else if (orderDesc) {
 				return firebase.database()
 					.ref(`/anime${id}`)
-					.orderByChild(orderKey, "desc")
+					.orderByChild(orderKey)
 					.limitToLast(limit)
 					.once("value")
-					.then((data) => _objectToArray(data.val()));
+					.then((data) => _objectToArray(data.val()).reverse());
 			}
 		}
 	}
