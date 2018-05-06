@@ -42,8 +42,6 @@ export class LastWatchController {
 		const now = moment().unix();
 		const then = data[0].dateFinished;
 
-		console.log(then);		// eslint-disable-line
-
 		this.daysSinceLastAnime = moment(now - then).format("DDD");
 
 		return data.map((value) => {
