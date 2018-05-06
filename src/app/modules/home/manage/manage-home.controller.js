@@ -77,18 +77,8 @@ export class ManageHomeController {
 
 	formatData(data) {
 		return data.map((value) => {
-			const filesize = parseFloat(value.filesize);
-
-			if (filesize === 0) {
-				value.filesize = "-";
-			} else if (filesize < 1073741824) {
-				value.filesize = `${(filesize / 1048576).toFixed(2)} MB`;
-			} else {
-				value.filesize = `${(filesize / 1073741824).toFixed(2)} GB`;
-			}
-
-			value.dateFinished = moment.unix(value.dateFinished)
-				.format("MMM DD, YYYY");
+			value.filesize = this._convertFilesize(value.filesize);
+			value.dateFinished = moment.unix(value.dateFinished).format("MMM DD, YYYY");
 
 			delete value.duration;
 			delete value.firstSeasonTitle;
@@ -111,5 +101,17 @@ export class ManageHomeController {
 			controllerAs: "vm",
 			backdrop: "static",
 		});
+	}
+
+	_convertFilesize(filesize) {
+		filesize = parseFloat(filesize);
+
+		if (filesize === 0) {
+			return "-";
+		} else if (filesize < 1073741824) {
+			return `${(filesize / 1048576).toFixed(2)} MB`;
+		} else {
+			return `${(filesize / 1073741824).toFixed(2)} GB`;
+		}
 	}
 }
