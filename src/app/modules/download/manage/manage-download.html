@@ -1,0 +1,98 @@
+<anidb-navbar></anidb-navbar>
+
+<div class="container-fluid manage-download">
+	<div class="row">
+
+		<div class="col-md-3">
+			<div class="row">
+				<div class="col-xs-3 col-sm-2 col-md-3">
+					<div class="dropdown">
+						<a class="btn btn-primary btn-block dropdown-toggle" data-toggle="dropdown">
+							<i class="fa fa-plus"></i>
+						</a>
+						<ul class="dropdown-menu">
+							<li><a href="#" onclick="showAddTitle()">Add a Title</a></li>
+							<li><a href="#" onclick="showAddSeasonList()">Add a Season List</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-xs-9 col-sm-10 col-md-9">
+					<div class="form-group has-feedback">
+						<input type="text" class="form-control" placeholder="Search...">
+						<span class="form-control-feedback">
+							<i class="fa fa-search"></i>
+						</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-12">
+
+					<div class="list-group">
+						<a href="#" class="list-group-item list-group-item-info">Uncategorized
+							<div class="pull-right">
+								<div class="download-label-container">
+									<span class="label label-success"
+										uib-tooltip="Watched [uns.W]">0</span>
+								</div>
+								<div class="download-label-container">
+									<span class="label label-primary"
+										uib-tooltip="Downloaded [uns.D]">0</span>
+								</div>
+								<div class="download-label-container">
+									<span class="label label-default"
+										uib-tooltip="Queued [uns.Q]"
+										tooltip-placement="left">0</span>
+								</div>
+							</div>
+						</a>
+
+						<?php foreach ($downloadSorted as $item): ?>
+							<span class="list-group-item"><?php echo $item['Year'] ?></span>
+
+							<?php foreach ($item['Stats'] as $subitem): ?>
+								<?php if (!empty($subitem)): ?>
+
+									<a
+										<?php
+											if ($currentList != $subitem['Season'] . " " . $item['Year']) {
+												echo " href='";
+												echo base_url("download-list/" . $item['Year'] . "/" . $subitem['Season']);
+												echo "' class='list-group-item season-list'";
+											} else {
+												echo " class='list-group-item season-list list-group-item-info'";
+											}
+										?>
+									>
+
+										<?php echo $subitem['Season'] . " " . $item['Year']; ?>
+
+										<span class="pull-right">
+											<span class="label label-success" tooltip="tip" title="Watched">
+												<?php echo $subitem['Watched']; ?>
+											</span>
+											<span class="label label-primary" tooltip="tip" title="Downloaded">
+												<?php echo $subitem['Downloaded']; ?>
+											</span>
+											<span class="label label-default" tooltip="tip" title="Queued">
+												<?php echo $subitem['Queued']; ?>
+											</span>
+										</span>
+
+									</a>
+
+								<?php endif; ?>
+							<?php endforeach; ?>
+
+						<?php endforeach; ?>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<anidb-footer></anidb-footer>
