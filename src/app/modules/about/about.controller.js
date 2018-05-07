@@ -45,6 +45,11 @@ export class AboutController {
 		let totalEpisodes = 0;
 
 		data.map((value) => {
+
+			if (value.watchStatus > 1) {
+				return;
+			}
+
 			totalDuration += parseInt(value.duration);
 			totalFilesize += parseInt(value.filesize);
 

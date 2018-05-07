@@ -77,6 +77,11 @@ export class ManageHomeController {
 
 	formatData(data) {
 		return data.map((value) => {
+
+			if (value.watchStatus > 1) {
+				return;
+			}
+
 			value.filesize = this._convertFilesize(value.filesize);
 			value.dateFinished = moment.unix(value.dateFinished).format("MMM DD, YYYY");
 
