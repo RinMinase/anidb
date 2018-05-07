@@ -1,33 +1,84 @@
-import firebase from "firebase";
-import Promise from "bluebird";
-
 export class AboutController {
-	constructor($scope, $window) {
+	constructor(
+		$scope,
+		$window,
+		firebase
+	) {
 		"ngInject";
 
-		this.$scope = $scope;
-		this.$window = $window;
-		this.dataLoaded = false;
+		_.extend(this, {
+			$scope,
+			$window,
+			firebase,
+			dataLoaded: false,
+		});
 
 		this.activate();
 	}
 
 	activate() {
-		this.validateUser();
+		// this.validateUser();
+
+		this.firebase.auth()
+			.then(() => {
+				this.firebase.retrieve()
+					.then((data) => {
+						this.formatData(data);
+
+						this.data = data;
+						this.dataLoaded = true;
+						this.$scope.$apply();
+					});
+			}).catch(() => {
+				this.$window.location.href = "/login";
+			});
+	}
+
+	formatData(data) {
+		this.data = {};
+		this.data.quality = {
+			uhd: 0,
+			fhd: 0,
+			hd: 0,
+			hq: 0,
+			lq: 0,
+		};
+
+		let totalDuration = 0;
+		let totalFilesize = 0;
+		let totalEpisodes = 0;
+
+		data.map((value) => {
+			totalDuration += parseInt(value.duration);
+			totalFilesize += parseInt(value.filesize);
+
+			if (!isNaN( parseInt(value.episodes) )) {
+				totalEpisodes += parseInt(value.episodes);
+			}
+
+			if (!isNaN( parseInt(value.ovas) )) {
+				totalEpisodes += parseInt(value.ovas);
+			}
+
+			if (!isNaN( parseInt(value.specials) )) {
+				totalEpisodes += parseInt(value.specials);
+			}
+
+			switch (value.quality) {
+				case "4K 2160p": this.data.quality.uhd++; break;
+				case "FHD 1080p": this.data.quality.fhd++; break;
+				case "HD 720p": this.data.quality.hd++; break;
+				case "HQ 480p":
+					this.data.quality.hq++;
+					break;
+				case "LQ 360p":
+					this.data.quality.lq++;
+					break;
+			}
+		});
 	}
 
 	validateUser() {
-		const authValidation = () => new Promise((resolve) => {
-			firebase.auth().onAuthStateChanged((isAuthenticated) => {
-				if (isAuthenticated) {
-					dataRetrieve();
-					resolve();
-				} else {
-					this.$window.location.href = "/login";
-				}
-			});
-		});
-
 		const dataRetrieve = () => new Promise((resolve) => {
 			firebase.database()
 				.ref("/anime")
