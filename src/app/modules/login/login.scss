@@ -1,27 +1,26 @@
-.container-fluid.anidb-login {
-	background: url("/assets/images/bg.jpg") no-repeat center center fixed;
-	background-size: cover;
-}
-
-.flex-form-container {
-	height: 100vh;
-}
-
-.form-container {
-	width: 350px;
-}
-
-.flex-center {
-	display: flex;
-	align-items: center;
-	height: 100%;
-}
-
-.text-dark-white {
-	color: #999;
-}
-
-.img-logo {
-	width: 140px;
-	height: 140px;
+.anidb-login {
+	&.container-fluid {
+		background-image: url("/assets/images/bg.jpg");
+		background-position: center;
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		background-size: cover;
+	}
+	
+	.flex-form-container { height: calc(100vh - 50px); }
+	
+	.form-container { width: 350px; }
+	
+	.flex-center {
+		display: flex;
+		align-items: center;
+		height: 100%;
+	}
+	
+	.text-dark-white { color: #999; }
+	
+	.img-logo {
+		width: 140px;
+		height: 140px;
+	}
 }
