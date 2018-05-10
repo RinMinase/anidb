@@ -34,11 +34,17 @@ export class ManageDownloadController {
 	}
 
 	formatData(data) {
-		data.map((value) => {
-			if (value.watchStatus < 2) {
-				return;
-			}
-		});
+		const filteredData = data.filter((value) => value.watchStatus > 1);
 
+		this.$log.log(filteredData);
+
+		// let uncategorizedData = filteredData.filter((value) => !value.releaseYear);
+		// let categorizedData = filteredData.filter((value) => !!value.releaseYear);
+		// let years = {};
+		// filteredData.map((value) => {
+		// 	if (!value.releaseYear) {
+
+		// 	}
+		// });
 	}
 }
