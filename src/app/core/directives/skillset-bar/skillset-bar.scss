@@ -1,5 +1,20 @@
-div.skillset-bar {
-	div.progress-bar { width: 20%; }
-	div.progress-bar-green { background-color: #4CAF50; }
-	div.progress-bar-alt-green { background-color: #7CC87F; }
+skillset-bar {
+	div.skillset-bar {
+		div.progress-bar { width: 20%; }
+		div.progress-bar-green { background-color: #4CAF50; }
+		div.progress-bar-alt-green { background-color: #7CC87F; }
+	}
+
+	img.image-logo { width: 20px; }
+
+	.col-sm-5.col-xs-5.col-md-5.col-lg-5 {
+		padding-left: 5px;
+		padding-right: 5px;
+	}
+
+	.col-sm-1.col-xs-1.col-md-1.col-lg-1 {
+		padding-left: 0px;
+		padding-right: 20px;
+	}
 }
+

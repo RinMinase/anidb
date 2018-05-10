@@ -5,6 +5,7 @@ export function SkillsetBarDirective() {
 		restrict: "E",
 		templateUrl: "app/core/directives/skillset-bar/skillset-bar.html",
 		scope: {
+			logo: "@",
 			name: "@",
 			value: "@",
 		},
