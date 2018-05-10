@@ -5,6 +5,7 @@ import { FirebaseFactory } from "./services/firebase.factory";
 
 import { NavbarDirective } from "./directives/navbar/navbar.directive";
 import { FooterDirective } from "./directives/footer/footer.directive";
+import { SkillsetBarDirective } from "./directives/skillset-bar/skillset-bar.directive";
 
 export default angular
 	.module("core", [])
@@ -15,4 +16,5 @@ export default angular
 	.factory("firebase", FirebaseFactory)
 
 	.directive("anidbNavbar", NavbarDirective)
-	.directive("anidbFooter", FooterDirective);
+	.directive("anidbFooter", FooterDirective)
+	.directive("skillsetBar", SkillsetBarDirective);

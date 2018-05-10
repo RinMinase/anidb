@@ -1,0 +1,19 @@
+<div class="row">
+	<div class="col-sm-5 col-xs-5 col-md-5 col-lg-5">
+		<p><strong>{{ vm.name }}</strong></p>
+	</div>
+	<div class="col-sm-7 col-xs-7 col-md-7 col-lg-7">
+		<div class="progress skillset-bar">
+			<div class="progress-bar progress-bar-green"
+				ng-if="vm.value > 0"></div>
+			<div class="progress-bar progress-bar-alt-green"
+				ng-if="vm.value > 1"></div>
+			<div class="progress-bar progress-bar-green"
+				ng-if="vm.value > 2"></div>
+			<div class="progress-bar progress-bar-alt-green"
+				ng-if="vm.value > 3"></div>
+			<div class="progress-bar progress-bar-alt-green"
+				ng-if="vm.value > 4"></div>
+		</div>
+	</div>
+</div>
