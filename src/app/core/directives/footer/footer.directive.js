@@ -14,7 +14,7 @@ export function FooterDirective() {
 }
 
 class FooterController {
-	constructor () {
+	constructor() {
 		"ngInject";
 	}
 }

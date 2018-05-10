@@ -17,7 +17,7 @@ export function NavbarDirective() {
 }
 
 class NavbarController {
-	constructor () {
+	constructor() {
 		"ngInject";
 	}
 
