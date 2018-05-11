@@ -13,7 +13,6 @@ export class AboutController {
 			$window,
 			firebase,
 			data: {},
-			iconLinks: {},
 			dataLoaded: false,
 		});
 
@@ -32,8 +31,6 @@ export class AboutController {
 			}).catch(() => {
 				this.$window.location.href = "/login";
 			});
-
-		this.retrieveImages();
 	}
 
 	formatData(data) {
@@ -97,46 +94,5 @@ export class AboutController {
 
 		this.data.totalFilesizeGB = parseFloat(totalFilesize / 1073741824).toFixed(2);
 		this.data.totalFilesizeTB = parseFloat(totalFilesize / 1099511627776).toFixed(2);
-	}
-
-	retrieveImages() {
-		const imageList = [
-			"html",
-			"css",
-			"less",
-			"scss",
-			"js",
-			"es6",
-			"php",
-			"python",
-			"c",
-			"cpp",
-			"java",
-			"shell",
-			"bs",
-			"node",
-			"sails",
-			"react",
-			"angular",
-			"ci",
-			"laravel",
-			"django",
-			"apacheisis",
-			"docker",
-			"strider",
-			"apache",
-			"nginx",
-			"firebase",
-			"mysql",
-			"mongodb",
-			"redis",
-			"gulp",
-		];
-
-		imageList.map((element) => {
-			this.firebase.retrieveImageUrl(`skillsets/${element}.png`).then((url) => {
-				this.iconLinks[element] = url;
-			});
-		});
 	}
 }
