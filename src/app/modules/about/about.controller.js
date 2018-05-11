@@ -13,6 +13,7 @@ export class AboutController {
 			$window,
 			firebase,
 			data: {},
+			iconLinks: {},
 			dataLoaded: false,
 		});
 
@@ -32,7 +33,7 @@ export class AboutController {
 				this.$window.location.href = "/login";
 			});
 
-
+		this.retrieveImages();
 	}
 
 	formatData(data) {
@@ -99,149 +100,43 @@ export class AboutController {
 	}
 
 	retrieveImages() {
-		// const imageList = [
-		// 	"html",
-		// 	"css",
-		// 	"js",
-		// 	"es6",
-		// 	"php",
-		// 	"python",
-		// 	"c",
-		// 	"cpp",
-		// 	"java",
-		// 	"shell",
-		// 	"bs",
-		// 	"node",
-		// 	"sails",
-		// 	"react",
-		// 	"angular",
-		// 	"ci",
-		// 	"laravel",
-		// 	"django",
-		// 	"apacheisis",
-		// 	"docker",
-		// 	"strider",
-		// 	"apache",
-		// 	"nginx",
-		// 	"firebase",
-		// 	"mysql",
-		// 	"mongodb",
-		// 	"redis",
-		// 	"gulp",
-		// ];
+		const imageList = [
+			"html",
+			"css",
+			"less",
+			"scss",
+			"js",
+			"es6",
+			"php",
+			"python",
+			"c",
+			"cpp",
+			"java",
+			"shell",
+			"bs",
+			"node",
+			"sails",
+			"react",
+			"angular",
+			"ci",
+			"laravel",
+			"django",
+			"apacheisis",
+			"docker",
+			"strider",
+			"apache",
+			"nginx",
+			"firebase",
+			"mysql",
+			"mongodb",
+			"redis",
+			"gulp",
+		];
 
-		// imageList.map((element) => {});
-
-		this.firebase.retrieveImageUrl("skillsets/html.png").then((url) => {
-			this.iconLinks.html = url;
-		});
-
-		this.firebase.retrieveImageUrl("skillsets/css.png").then((url) => {
-			this.iconLinks.css = url;
-		});
-
-		this.firebase.retrieveImageUrl("skillsets/js.png").then((url) => {
-			this.iconLinks.js = url;
-		});
-
-		this.firebase.retrieveImageUrl("skillsets/es6.png").then((url) => {
-			this.iconLinks.es6 = url;
-		});
-
-		this.firebase.retrieveImageUrl("skillsets/php.png").then((url) => {
-			this.iconLinks.php = url;
-		});
-
-		this.firebase.retrieveImageUrl("skillsets/python.png").then((url) => {
-			this.iconLinks.python = url;
-		});
-
-		this.firebase.retrieveImageUrl("skillsets/c.png").then((url) => {
-			this.iconLinks.c = url;
-		});
-
-		this.firebase.retrieveImageUrl("skillsets/cpp.png").then((url) => {
-			this.iconLinks.cpp = url;
-		});
-
-		this.firebase.retrieveImageUrl("skillsets/java.png").then((url) => {
-			this.iconLinks.java = url;
-		});
-
-		this.firebase.retrieveImageUrl("skillsets/shell.png").then((url) => {
-			this.iconLinks.shell = url;
-		});
-
-		this.firebase.retrieveImageUrl("skillsets/bs.png").then((url) => {
-			this.iconLinks.bs = url;
-		});
-
-		this.firebase.retrieveImageUrl("skillsets/node.png").then((url) => {
-			this.iconLinks.node = url;
-		});
-
-		this.firebase.retrieveImageUrl("skillsets/sails.png").then((url) => {
-			this.iconLinks.sails = url;
-		});
-
-		this.firebase.retrieveImageUrl("skillsets/react.png").then((url) => {
-			this.iconLinks.react = url;
-		});
-
-		this.firebase.retrieveImageUrl("skillsets/angular.png").then((url) => {
-			this.iconLinks.angular = url;
-		});
-
-		this.firebase.retrieveImageUrl("skillsets/ci.png").then((url) => {
-			this.iconLinks.ci = url;
-		});
-
-		this.firebase.retrieveImageUrl("skillsets/laravel.png").then((url) => {
-			this.iconLinks.laravel = url;
-		});
-
-		this.firebase.retrieveImageUrl("skillsets/django.png").then((url) => {
-			this.iconLinks.django = url;
-		});
-
-		this.firebase.retrieveImageUrl("skillsets/apacheisis.png").then((url) => {
-			this.iconLinks.apacheisis = url;
-		});
-
-		this.firebase.retrieveImageUrl("skillsets/docker.png").then((url) => {
-			this.iconLinks.docker = url;
-		});
-
-		this.firebase.retrieveImageUrl("skillsets/strider.png").then((url) => {
-			this.iconLinks.strider = url;
-		});
-
-		this.firebase.retrieveImageUrl("skillsets/apache.png").then((url) => {
-			this.iconLinks.apache = url;
-		});
-
-		this.firebase.retrieveImageUrl("skillsets/nginx.png").then((url) => {
-			this.iconLinks.nginx = url;
-		});
-
-		this.firebase.retrieveImageUrl("skillsets/firebase.png").then((url) => {
-			this.iconLinks.firebase = url;
-		});
-
-		this.firebase.retrieveImageUrl("skillsets/mysql.png").then((url) => {
-			this.iconLinks.mysql = url;
-		});
-
-		this.firebase.retrieveImageUrl("skillsets/mongodb.png").then((url) => {
-			this.iconLinks.mongodb = url;
-		});
-
-		this.firebase.retrieveImageUrl("skillsets/redis.png").then((url) => {
-			this.iconLinks.redis = url;
-		});
-
-		this.firebase.retrieveImageUrl("skillsets/gulp.png").then((url) => {
-			this.iconLinks.gulp = url;
+		imageList.map((element) => {
+			this.firebase.retrieveImageUrl(`skillsets/${element}.png`).then((url) => {
+				this.iconLinks[element] = url;
+			});
 		});
 	}
 }
