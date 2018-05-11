@@ -13,6 +13,7 @@ export function FirebaseFactory() {
 		update,
 		softDelete,
 		hardDelete,
+		retrieveImageUrl,
 	};
 
 	return factory;
@@ -165,5 +166,31 @@ export function FirebaseFactory() {
 		}
 
 		return data;
+	}
+
+	function retrieveImageUrl(ref) {
+		return new Promise((resolve, reject) => {
+			firebase.storage()
+				.ref(ref)
+				.getDownloadURL()
+				.then((url) => {
+					resolve(url);
+				}).catch((error) => {
+					switch (error.code) {
+						case "storage/object_not_found":
+							reject("File doesn't exist");
+							break;
+						case "storage/unauthorized":
+							reject("User doesn't have permission to access the object");
+							break;
+						case "storage/canceled":
+							reject("User canceled the upload");
+							break;
+						case "storage/unknown":
+							reject("Unknown error occurred");
+							break;
+					}
+				});
+		});
 	}
 }
