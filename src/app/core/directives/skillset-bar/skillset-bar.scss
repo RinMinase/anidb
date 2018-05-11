@@ -5,8 +5,6 @@ skillset-bar {
 		div.progress-bar-alt-green { background-color: #7CC87F; }
 	}
 
-	img.image-logo { width: 20px; }
-
 	.col-sm-5.col-xs-5.col-md-5.col-lg-5 {
 		padding-left: 5px;
 		padding-right: 5px;
@@ -16,5 +14,45 @@ skillset-bar {
 		padding-left: 0px;
 		padding-right: 20px;
 	}
-}
 
+	/**
+	 * CSS Sprite generated from : http://css.spritegen.com/
+	 */
+	.skillset-sprite {
+		display: inline-block;
+		background-image: url("https://firebasestorage.googleapis.com/v0/b/rin-anidb.appspot.com/o/skillsets.png?alt=media&token=3fc347b8-774d-436f-8f46-7e76d754f9aa");
+		background-repeat: no-repeat;
+		overflow: hidden;
+
+		&.angular { background-position: -2px -0px; width: 20px; height: 20px; }
+		&.apache { background-position: -24px -0px; width: 20px; height: 20px; }
+		&.apacheisis { background-position: -46px -0px; width: 20px; height: 20px; }
+		&.bs { background-position: -68px -0px; width: 20px; height: 20px; }
+		&.c { background-position: -90px -0px; width: 20px; height: 20px; }
+		&.ci { background-position: -2px -22px; width: 20px; height: 20px; }
+		&.cpp { background-position: -24px -22px; width: 20px; height: 20px; }
+		&.css { background-position: -46px -22px; width: 20px; height: 20px; }
+		&.django { background-position: -68px -22px; width: 20px; height: 20px; }
+		&.docker { background-position: -90px -22px; width: 20px; height: 20px; }
+		&.es6 { background-position: -2px -44px; width: 20px; height: 20px; }
+		&.firebase { background-position: -24px -44px; width: 20px; height: 20px; }
+		&.gulp { background-position: -46px -44px; width: 20px; height: 20px; }
+		&.html { background-position: -68px -44px; width: 20px; height: 20px; }
+		&.java { background-position: -90px -44px; width: 20px; height: 20px; }
+		&.js { background-position: -2px -66px; width: 20px; height: 20px; }
+		&.laravel { background-position: -24px -66px; width: 20px; height: 20px; }
+		&.less { background-position: -46px -66px; width: 20px; height: 20px; }
+		&.mongodb { background-position: -68px -66px; width: 20px; height: 20px; }
+		&.mysql { background-position: -90px -66px; width: 20px; height: 20px; }
+		&.nginx { background-position: -2px -88px; width: 20px; height: 20px; }
+		&.node { background-position: -24px -88px; width: 20px; height: 20px; }
+		&.php { background-position: -46px -88px; width: 20px; height: 20px; }
+		&.python { background-position: -68px -88px; width: 20px; height: 20px; }
+		&.react { background-position: -90px -88px; width: 20px; height: 20px; }
+		&.redis { background-position: -2px -110px; width: 20px; height: 20px; }
+		&.sails { background-position: -24px -110px; width: 20px; height: 20px; }
+		&.scss { background-position: -46px -110px; width: 20px; height: 20px; }
+		&.shell { background-position: -68px -110px; width: 20px; height: 20px; }
+		&.strider { background-position: -90px -110px; width: 20px; height: 20px; }
+	}
+}
