@@ -33,33 +33,60 @@ export class ManageDownloadController {
 			});
 	}
 
-	formatData(data) {
-		// const filteredData = data.filter((value) => value.watchStatus > 1);
+	formatData(rawData) {
+		rawData.map((data) => {
+			const {
+				releaseYear,
+				releaseSeason,
+				watchStatus,
+			} = data;
 
-		// this.$log.log(filteredData);
+			if (!releaseYear) {
+				if (!releaseSeason) {
+					if (!this.data[0]) {
+						this.data[0] = {0: {}};
+					}
 
-		data.uncategorized = {};
-		const uData = data.filter((value) => !value.releaseYear);
+					this.data[0][0][watchStatus] = data;
+				}
+			}
 
-		data.uncategorized.headers = {};
-		const uWatched = uData.filter((value) => value.watchStatus === 0).length;
-		const uDownloaded = uData.filter((value) => value.watchStatus === 2).length;
-		const uQueued = uData.filter((value) => value.watchStatus === 3).length;
+			if (!this.data[releaseYear]) {
+				this.data[releaseYear] = {};
+			}
 
-		data.uncategorized.data = uData;
-		_.extend(data.uncategorized.headers, {
-			watched: uWatched,
-			downloaded: uDownloaded,
-			queued: uQueued,
+			switch (releaseSeason) {
+				case "Winter":
+					if (!this.data[releaseYear][0]) {
+						this.data[releaseYear][0] = {};
+					}
+
+					this.data[releaseYear][0][watchStatus] = data;
+					break;
+				case "Spring":
+					if (!this.data[releaseYear][1]) {
+						this.data[releaseYear][1] = {};
+					}
+
+					this.data[releaseYear][1][watchStatus] = data;
+					break;
+				case "Summer":
+					if (!this.data[releaseYear][2]) {
+						this.data[releaseYear][2] = {};
+					}
+
+					this.data[releaseYear][2][watchStatus] = data;
+					break;
+				case "Fall":
+					if (!this.data[releaseYear][3]) {
+						this.data[releaseYear][3] = {};
+					}
+
+					this.data[releaseYear][3][watchStatus] = data;
+					break;
+			}
 		});
 
-		this.$log.log(data.uncategorized);
-		// let categorizedData = filteredData.filter((value) => !!value.releaseYear);
-		// let years = {};
-		// filteredData.map((value) => {
-		// 	if (!value.releaseYear) {
-
-		// 	}
-		// });
+		this.$log.log(this.data);
 	}
 }
