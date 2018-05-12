@@ -6,7 +6,7 @@ var conf = require("../../../gulpfile.js");
 var $ = require("gulp-load-plugins")();
 var browserSync = require("browser-sync");
 var webpack = require("webpack-stream");
-// var Dotenv = require("dotenv-webpack");
+var Dotenv = require("dotenv-webpack");
 
 gulp.task("inject-reload", ["inject"], function() {
 	browserSync.reload();
@@ -68,7 +68,7 @@ function webpackWrapper(watch, callback) {
 				]
 			}]
 		},
-		// plugins: [ new Dotenv() ],
+		plugins: [ new Dotenv() ],
 		output: { filename: "index.module.js" }
 	};
 

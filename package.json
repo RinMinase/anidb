@@ -36,6 +36,7 @@
     "browser-sync-spa": "^1.0.3",
     "csspin": "^1.1.4",
     "del": "^2.0.2",
+    "dotenv-webpack": "^1.5.5",
     "eslint": "^4.19.1",
     "eslint-loader": "^1.1.0",
     "eslint-plugin-angular": "^3.3.0",
