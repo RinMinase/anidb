@@ -34,11 +34,26 @@ export class ManageDownloadController {
 	}
 
 	formatData(data) {
-		const filteredData = data.filter((value) => value.watchStatus > 1);
+		// const filteredData = data.filter((value) => value.watchStatus > 1);
 
-		this.$log.log(filteredData);
+		// this.$log.log(filteredData);
 
-		// let uncategorizedData = filteredData.filter((value) => !value.releaseYear);
+		data.uncategorized = {};
+		const uData = data.filter((value) => !value.releaseYear);
+
+		data.uncategorized.headers = {};
+		const uWatched = uData.filter((value) => value.watchStatus === 0).length;
+		const uDownloaded = uData.filter((value) => value.watchStatus === 2).length;
+		const uQueued = uData.filter((value) => value.watchStatus === 3).length;
+
+		data.uncategorized.data = uData;
+		_.extend(data.uncategorized.headers, {
+			watched: uWatched,
+			downloaded: uDownloaded,
+			queued: uQueued,
+		});
+
+		this.$log.log(data.uncategorized);
 		// let categorizedData = filteredData.filter((value) => !!value.releaseYear);
 		// let years = {};
 		// filteredData.map((value) => {
