@@ -28,7 +28,9 @@ export function config (
 		messagingSenderId: "669722574117",
 	};
 
-	firebase.initializeApp(firebaseConfig);
+	if (process.env.DATABASE !== "testing") {
+		firebase.initializeApp(firebaseConfig);
+	}
 
 	// eslint-disable-next-line no-unused-vars
 	const fuseOptions = {

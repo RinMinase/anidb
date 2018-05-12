@@ -1,6 +1,8 @@
 import firebase from "firebase";
 import Promise from "bluebird";
 
+import { database } from "../../index.database";
+
 export function FirebaseFactory() {
 	"ngInject";
 
@@ -41,11 +43,17 @@ export function FirebaseFactory() {
 	}
 
 	function auth() {
-		return new Promise((resolve, reject) => {
-			firebase.auth().onAuthStateChanged((isAuthenticated) => {
-				(isAuthenticated) ? resolve() : reject();
+		if (process.env.DATABASE !== "testing") {
+			return new Promise((resolve, reject) => {
+				firebase.auth().onAuthStateChanged((isAuthenticated) => {
+					(isAuthenticated) ? resolve() : reject();
+				});
 			});
-		});
+		} else {
+			return new Promise((resolve) => {
+				resolve();
+			});
+		}
 	}
 
 	function create(data) {
@@ -82,59 +90,65 @@ export function FirebaseFactory() {
 		orderKey = "",
 		orderDesc = false
 	) {
+		if (process.env.DATABASE !== "testing") {
+			id = id || "";
 
-		id = id || "";
+			limit = (!isNaN(parseInt(limit))) ? parseInt(limit) : 0;
 
-		limit = (!isNaN(parseInt(limit))) ? parseInt(limit) : 0;
+			let orderKeyValid = false;
 
-		let orderKeyValid = false;
-
-		if (orderKey || orderKey === "dateFinished") {
-			orderKeyValid = true;
-		}
-
-		if (!limit && !orderKey) {
-			return firebase.database()
-				.ref(`/anime${id}`)
-				.once("value")
-				.then((data) => _objectToArray(data.val()));
-		} else if (limit && !orderKey) {
-			return firebase.database()
-				.ref(`/anime${id}`)
-				.limitToLast(limit)
-				.once("value")
-				.then((data) => _objectToArray(data.val()));
-		} else if (!limit && orderKeyValid) {
-			if (!orderDesc) {
-				return firebase.database()
-					.ref(`/anime${id}`)
-					.orderByChild(orderKey)
-					.once("value")
-					.then((data) => _objectToArray(data.val()));
-			} else if (orderDesc) {
-				return firebase.database()
-					.ref(`/anime${id}`)
-					.orderByChild(orderKey, "desc")
-					.once("value")
-					.then((data) => _objectToArray(data.val()));
+			if (orderKey || orderKey === "dateFinished") {
+				orderKeyValid = true;
 			}
-		} else if (limit && orderKeyValid) {
-			if (!orderDesc) {
+
+			if (!limit && !orderKey) {
 				return firebase.database()
 					.ref(`/anime${id}`)
-					.orderByChild(orderKey)
+					.once("value")
+					.then((data) => _objectToArray(data.val()));
+			} else if (limit && !orderKey) {
+				return firebase.database()
+					.ref(`/anime${id}`)
 					.limitToLast(limit)
 					.once("value")
 					.then((data) => _objectToArray(data.val()));
-			} else if (orderDesc) {
-				return firebase.database()
-					.ref(`/anime${id}`)
-					.orderByChild(orderKey)
-					.limitToLast(limit)
-					.once("value")
-					.then((data) => _objectToArray(data.val()).reverse());
+			} else if (!limit && orderKeyValid) {
+				if (!orderDesc) {
+					return firebase.database()
+						.ref(`/anime${id}`)
+						.orderByChild(orderKey)
+						.once("value")
+						.then((data) => _objectToArray(data.val()));
+				} else if (orderDesc) {
+					return firebase.database()
+						.ref(`/anime${id}`)
+						.orderByChild(orderKey, "desc")
+						.once("value")
+						.then((data) => _objectToArray(data.val()));
+				}
+			} else if (limit && orderKeyValid) {
+				if (!orderDesc) {
+					return firebase.database()
+						.ref(`/anime${id}`)
+						.orderByChild(orderKey)
+						.limitToLast(limit)
+						.once("value")
+						.then((data) => _objectToArray(data.val()));
+				} else if (orderDesc) {
+					return firebase.database()
+						.ref(`/anime${id}`)
+						.orderByChild(orderKey)
+						.limitToLast(limit)
+						.once("value")
+						.then((data) => _objectToArray(data.val()).reverse());
+				}
 			}
+		} else {
+			return new Promise((resolve) => {
+				resolve(database());
+			});
 		}
+
 	}
 
 	function update(id, data) {
