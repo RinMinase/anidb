@@ -4,7 +4,7 @@
 	<div class="row">
 
 		<div class="col-md-3">
-			<div class="row">
+			<div class="row hidden">
 				<div class="col-xs-3 col-sm-2 col-md-3">
 					<div class="dropdown">
 						<a class="btn btn-primary btn-block dropdown-toggle" data-toggle="dropdown">
@@ -18,7 +18,10 @@
 				</div>
 				<div class="col-xs-9 col-sm-10 col-md-9">
 					<div class="form-group has-feedback">
-						<input type="text" class="form-control" placeholder="Search...">
+						<input type="text"
+							class="form-control"
+							placeholder="Search..."
+							ng-model="vm.searchCategory">
 						<span class="form-control-feedback">
 							<i class="fa fa-search"></i>
 						</span>
