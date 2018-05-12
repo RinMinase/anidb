@@ -3,6 +3,7 @@
 true!ng-annotate/
 dist/
 coverage/
+src/assets/db.json
 
 # Yeoman Generator files
 .yo-rc.json
