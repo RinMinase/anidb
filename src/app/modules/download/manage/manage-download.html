@@ -30,9 +30,10 @@
 				<div class="col-md-12">
 
 					<div class="list-group">
-						<a ng-href="/download-list"
+						<a ng-href="#"
 							class="list-group-item first-item"
-							ng-class="{'list-group-item-info': !vm.$stateParams.year}">
+							ng-click="vm.category.year = null; vm.category.season = null;"
+							ng-class="{'list-group-item-info': !vm.category.year}">
 							<span>Uncategorized</span>
 							<div class="pull-right">
 								<div class="download-label-container">
@@ -62,9 +63,10 @@
 							<a class="list-group-item season-list"
 								ng-repeat="value in vm.keys[key]"
 								ng-switch="value"
-								ng-href="/download-list?year={{key}}&season={{value}}"
-								ng-class="{'list-group-item-info': vm.$stateParams.year === key
-									&& vm.$stateParams.season === '' + value}">
+								ng-href="#"
+								ng-click="vm.category.year = key; vm.category.season = value;"
+								ng-class="{'list-group-item-info': vm.category.year === key
+									&& vm.category.season === value}">
 
 								<span ng-switch-when="0">Winter</span>
 								<span ng-switch-when="1">Spring</span>
