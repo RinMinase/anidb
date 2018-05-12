@@ -14,6 +14,7 @@ export class ManageDownloadController {
 			firebase,
 			data: {},
 			dataLoaded: false,
+			keys: {},
 		});
 
 		this.activate();
@@ -24,7 +25,7 @@ export class ManageDownloadController {
 			.then(() => {
 				this.firebase.retrieve()
 					.then((data) => {
-						this.data = this.formatData(data);
+						this.formatData(data);
 						this.dataLoaded = true;
 						this.$scope.$apply();
 					});
@@ -47,46 +48,76 @@ export class ManageDownloadController {
 						this.data[0] = {0: {}};
 					}
 
-					this.data[0][0][watchStatus] = data;
+					if (!this.data[0][0][watchStatus]) {
+						this.data[0][0][watchStatus] = [];
+					}
+
+					this.data[0][0][watchStatus].push(data);
 				}
 			}
 
 			if (!this.data[releaseYear]) {
 				this.data[releaseYear] = {};
+				this.keys[releaseYear] = [];
 			}
 
 			switch (releaseSeason) {
 				case "Winter":
 					if (!this.data[releaseYear][0]) {
 						this.data[releaseYear][0] = {};
+						this.keys[releaseYear].push(0);
+						this.keys[releaseYear].sort((a, b) => a - b);
 					}
 
-					this.data[releaseYear][0][watchStatus] = data;
+					if (!this.data[releaseYear][0][watchStatus]) {
+						this.data[releaseYear][0][watchStatus] = [];
+					}
+
+					this.data[releaseYear][0][watchStatus].push(data);
 					break;
 				case "Spring":
 					if (!this.data[releaseYear][1]) {
 						this.data[releaseYear][1] = {};
+						this.keys[releaseYear].push(1);
+						this.keys[releaseYear].sort((a, b) => a - b);
 					}
 
-					this.data[releaseYear][1][watchStatus] = data;
+					if (!this.data[releaseYear][1][watchStatus]) {
+						this.data[releaseYear][1][watchStatus] = [];
+					}
+
+					this.data[releaseYear][1][watchStatus].push(data);
 					break;
 				case "Summer":
 					if (!this.data[releaseYear][2]) {
 						this.data[releaseYear][2] = {};
+						this.keys[releaseYear].push(2);
+						this.keys[releaseYear].sort((a, b) => a - b);
 					}
 
-					this.data[releaseYear][2][watchStatus] = data;
+					if (!this.data[releaseYear][2][watchStatus]) {
+						this.data[releaseYear][2][watchStatus] = [];
+					}
+
+					this.data[releaseYear][2][watchStatus].push(data);
 					break;
 				case "Fall":
 					if (!this.data[releaseYear][3]) {
 						this.data[releaseYear][3] = {};
+						this.keys[releaseYear].push(3);
+						this.keys[releaseYear].sort((a, b) => a - b);
 					}
 
-					this.data[releaseYear][3][watchStatus] = data;
+					if (!this.data[releaseYear][3][watchStatus]) {
+						this.data[releaseYear][3][watchStatus] = [];
+					}
+
+					this.data[releaseYear][3][watchStatus].push(data);
 					break;
 			}
 		});
 
-		this.$log.log(this.data);
+		delete this.data[""];
+		delete this.keys[""];
 	}
 }
