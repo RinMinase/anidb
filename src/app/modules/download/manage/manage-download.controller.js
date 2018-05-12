@@ -65,55 +65,19 @@ export class ManageDownloadController {
 
 			switch (releaseSeason) {
 				case "Winter":
-					if (!this.data[releaseYear][0]) {
-						this.data[releaseYear][0] = {};
-						this.keys[releaseYear].push(0);
-						this.keys[releaseYear].sort((a, b) => a - b);
-					}
-
-					if (!this.data[releaseYear][0][watchStatus]) {
-						this.data[releaseYear][0][watchStatus] = [];
-					}
-
+					this.initializeObject(releaseYear, 0, watchStatus);
 					this.data[releaseYear][0][watchStatus].push(data);
 					break;
 				case "Spring":
-					if (!this.data[releaseYear][1]) {
-						this.data[releaseYear][1] = {};
-						this.keys[releaseYear].push(1);
-						this.keys[releaseYear].sort((a, b) => a - b);
-					}
-
-					if (!this.data[releaseYear][1][watchStatus]) {
-						this.data[releaseYear][1][watchStatus] = [];
-					}
-
+					this.initializeObject(releaseYear, 1, watchStatus);
 					this.data[releaseYear][1][watchStatus].push(data);
 					break;
 				case "Summer":
-					if (!this.data[releaseYear][2]) {
-						this.data[releaseYear][2] = {};
-						this.keys[releaseYear].push(2);
-						this.keys[releaseYear].sort((a, b) => a - b);
-					}
-
-					if (!this.data[releaseYear][2][watchStatus]) {
-						this.data[releaseYear][2][watchStatus] = [];
-					}
-
+					this.initializeObject(releaseYear, 2, watchStatus);
 					this.data[releaseYear][2][watchStatus].push(data);
 					break;
 				case "Fall":
-					if (!this.data[releaseYear][3]) {
-						this.data[releaseYear][3] = {};
-						this.keys[releaseYear].push(3);
-						this.keys[releaseYear].sort((a, b) => a - b);
-					}
-
-					if (!this.data[releaseYear][3][watchStatus]) {
-						this.data[releaseYear][3][watchStatus] = [];
-					}
-
+					this.initializeObject(releaseYear, 3, watchStatus);
 					this.data[releaseYear][3][watchStatus].push(data);
 					break;
 			}
@@ -121,5 +85,18 @@ export class ManageDownloadController {
 
 		delete this.data[""];
 		delete this.keys[""];
+	}
+
+	initializeObject(releaseYear, releaseSeason, watchStatus) {
+		if (!this.data[releaseYear][releaseSeason]) {
+			this.data[releaseYear][releaseSeason] = {};
+
+			this.keys[releaseYear].push(releaseSeason);
+			this.keys[releaseYear].sort((a, b) => a - b);
+		}
+
+		if (!this.data[releaseYear][releaseSeason][watchStatus]) {
+			this.data[releaseYear][releaseSeason][watchStatus] = [];
+		}
 	}
 }
