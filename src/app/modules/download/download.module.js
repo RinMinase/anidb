@@ -12,7 +12,7 @@ export default angular
 				template: "<div ui-view></div>",
 			})
 			.state("download.manage", {
-				url: "/download-list",
+				url: "/download-list?year&season",
 				templateUrl: "app/modules/download/manage/manage-download.html",
 				controller: "ManageDownloadController",
 				controllerAs: "vm",

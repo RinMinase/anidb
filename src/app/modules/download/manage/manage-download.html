@@ -30,62 +30,71 @@
 				<div class="col-md-12">
 
 					<div class="list-group">
-						<a href="#" class="list-group-item list-group-item-info">Uncategorized
+						<a ng-href="/download-list"
+							class="list-group-item first-item"
+							ng-class="{'list-group-item-info': !vm.$stateParams.year}">
+							<span>Uncategorized</span>
 							<div class="pull-right">
 								<div class="download-label-container">
 									<span class="label label-success"
-										uib-tooltip="Watched [uns.W]">0</span>
+										uib-tooltip="Watched">
+										{{ vm.data[0][0][0].length || 0 }}
+									</span>
 								</div>
 								<div class="download-label-container">
 									<span class="label label-primary"
-										uib-tooltip="Downloaded [uns.D]">0</span>
+										uib-tooltip="Downloaded">
+										{{ vm.data[0][0][2].length || 0 }}
+									</span>
 								</div>
 								<div class="download-label-container">
 									<span class="label label-default"
-										uib-tooltip="Queued [uns.Q]"
-										tooltip-placement="left">0</span>
+										uib-tooltip="Queued"
+										tooltip-placement="left">
+										{{ vm.data[0][0][3].length || 0 }}
+									</span>
 								</div>
 							</div>
 						</a>
 
-						<?php foreach ($downloadSorted as $item): ?>
-							<span class="list-group-item"><?php echo $item['Year'] ?></span>
+						<div ng-repeat="(key, keyValue) in vm.keys">
+							<span class="list-group-item">{{ key }}</span>
+							<a class="list-group-item season-list"
+								ng-repeat="value in vm.keys[key]"
+								ng-switch="value"
+								ng-href="/download-list?year={{key}}&season={{value}}"
+								ng-class="{'list-group-item-info': vm.$stateParams.year === key
+									&& vm.$stateParams.season === '' + value}">
 
-							<?php foreach ($item['Stats'] as $subitem): ?>
-								<?php if (!empty($subitem)): ?>
+								<span ng-switch-when="0">Winter</span>
+								<span ng-switch-when="1">Spring</span>
+								<span ng-switch-when="2">Summer</span>
+								<span ng-switch-when="3">Fall</span>
 
-									<a
-										<?php
-											if ($currentList != $subitem['Season'] . " " . $item['Year']) {
-												echo " href='";
-												echo base_url("download-list/" . $item['Year'] . "/" . $subitem['Season']);
-												echo "' class='list-group-item season-list'";
-											} else {
-												echo " class='list-group-item season-list list-group-item-info'";
-											}
-										?>
-									>
-
-										<?php echo $subitem['Season'] . " " . $item['Year']; ?>
-
-										<span class="pull-right">
-											<span class="label label-success" tooltip="tip" title="Watched">
-												<?php echo $subitem['Watched']; ?>
-											</span>
-											<span class="label label-primary" tooltip="tip" title="Downloaded">
-												<?php echo $subitem['Downloaded']; ?>
-											</span>
-											<span class="label label-default" tooltip="tip" title="Queued">
-												<?php echo $subitem['Queued']; ?>
-											</span>
+								<span class="pull-right">
+									<div class="download-label-container">
+										<span class="label label-success"
+											uib-tooltip="Watched">
+											{{ vm.data[key][value][0].length || 0 }}
 										</span>
+									</div>
+									<div class="download-label-container">
+										<span class="label label-primary"
+											uib-tooltip="Downloaded">
+											{{ vm.data[key][value][2].length || 0 }}
+										</span>
+									</div>
+									<div class="download-label-container">
+										<span class="label label-default"
+											uib-tooltip="Queued"
+											tooltip-placement="left">
+											{{ vm.data[key][value][3].length || 0 }}
+										</span>
+									</div>
+								</span>
+							</a>
+						</div>
 
-									</a>
-
-								<?php endif; ?>
-							<?php endforeach; ?>
-
-						<?php endforeach; ?>
 					</div>
 
 				</div>

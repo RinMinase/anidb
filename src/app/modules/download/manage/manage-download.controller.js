@@ -4,6 +4,7 @@ export class ManageDownloadController {
 	constructor(
 		$log,
 		$scope,
+		$stateParams,
 		firebase
 	) {
 		"ngInject";
@@ -11,6 +12,7 @@ export class ManageDownloadController {
 		_.extend(this, {
 			$log,
 			$scope,
+			$stateParams,
 			firebase,
 			data: {},
 			dataLoaded: false,
