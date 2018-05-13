@@ -16,28 +16,28 @@
 								<tr>
 									<th>Total Episodes</th>
 									<th>:</th>
-									<th class="text-center">{{ vm.totalEpisodes }}</th>
+									<th class="text-center">{{ vm.totalEpisodes || "&mdash;" }}</th>
 								</tr>
 								<tr>
 									<th>Days Since Last Anime</th>
 									<th>:</th>
-									<th class="text-center">{{ vm.daysSinceLastAnime }}</th>
-								</tr>
-								<!-- <tr>
-									<th>Titles per Day</th>
-									<th>:</th>
-									<th class="text-center">{{ vm.titlesPerDay }}</th>
+									<th class="text-center">{{ vm.daysSinceLastAnime || "&mdash;" }}</th>
 								</tr>
 								<tr>
-									<th>Single Season (12 Episodes) per Day</th>
+									<th>Titles per Day</th>
 									<th>:</th>
-									<th class="text-center">{{ vm.singleSeasonPerDay }}</th>
+									<th class="text-center">{{ vm.titlesPerDay || "&mdash;" }}</th>
+								</tr>
+								<tr>
+									<th>Single Season per Day<br><small>(12 Episodes)</small></th>
+									<th>:</th>
+									<th class="text-center">{{ vm.singleSeasonPerDay || "&mdash;" }}</th>
 								</tr>
 								<tr>
 									<th>Episodes per Day</th>
 									<th>:</th>
-									<th class="text-center">{{ vm.episodesPerDay }}</th>
-								</tr> -->
+									<th class="text-center">{{ vm.episodesPerDay || "&mdash;" }}</th>
+								</tr>
 							</tbody>
 						</table>
 					</div>

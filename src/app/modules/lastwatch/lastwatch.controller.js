@@ -15,6 +15,7 @@ export class LastWatchController {
 			firebase,
 			data: {},
 			dataLoaded: false,
+			totalEpisodes: 0,
 		});
 
 		this.activate();
@@ -35,16 +36,6 @@ export class LastWatchController {
 	}
 
 	formatData(data) {
-		// const titlesPerDay
-		// const singleSeasonPerDay
-		// const episodesPerDay
-
-		const now = moment().unix();
-		const then = data[0].dateFinished;
-
-		this.daysSinceLastAnime = moment(now - then).format("DDD");
-		this.totalEpisodes = 0;
-
 		const formattedData = data.map((value) => {
 			if (!isNaN( parseInt(value.episodes) )) {
 				this.totalEpisodes += parseInt(value.episodes);
@@ -77,6 +68,18 @@ export class LastWatchController {
 			return value;
 		});
 
+		const now = moment().unix();
+		const diffLast = moment(data[data.length - 1].dateFinished - now).format("DDD");
+
+		this.daysSinceLastAnime = moment(now, "X")
+			.diff(
+				moment(data[0].dateFinished, "X"),
+				"days"
+			);
+		this.titlesPerDay = parseFloat(data.length / diffLast).toFixed(2);
+		this.singleSeasonPerDay = parseFloat((this.totalEpisodes / 12) / diffLast).toFixed(2);
+		this.episodesPerDay = parseFloat(this.totalEpisodes / diffLast).toFixed(2);
+
 		const sortedData = formattedData.sort((a, b) => {
 			const aTitle = a.title;
 			const bTitle = b.title;
@@ -102,7 +105,7 @@ export class LastWatchController {
 			if (value.dateFinished === "") {
 				value.dateFinished = "-";
 			} else {
-				value.dateFinished = moment.unix(value.dateFinished).format("MMM DD, YYYY");
+				value.dateFinished = moment(value.dateFinished, "X").format("MMM DD, YYYY");
 			}
 
 			return value;
