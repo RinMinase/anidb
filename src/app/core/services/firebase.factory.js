@@ -56,12 +56,12 @@ export function FirebaseFactory() {
 		}
 	}
 
-	function create(data) {
+	function create(db = "anime", data) {
 		let finalValue;
 		const retrieveLast = () => new Promise((resolve) => {
 			firebase.database()
 				.ref()
-				.child("anime")
+				.child(db)
 				.orderByKey()
 				.limitToLast(1)
 				.once("value")
@@ -73,7 +73,7 @@ export function FirebaseFactory() {
 
 		const dataInsert = () => new Promise((resolve) => {
 			firebase.database()
-				.ref(`anime/${Object.keys(finalValue)}`)
+				.ref(`${db}/${Object.keys(finalValue)}`)
 				.set(data)
 				.then(() => {
 					resolve();
@@ -85,6 +85,7 @@ export function FirebaseFactory() {
 	}
 
 	function retrieve(
+		db = "anime",
 		id = "",
 		limit = 0,
 		orderKey = "",
@@ -103,25 +104,25 @@ export function FirebaseFactory() {
 
 			if (!limit && !orderKey) {
 				return firebase.database()
-					.ref(`/anime${id}`)
+					.ref(`/${db}${id}`)
 					.once("value")
 					.then((data) => _objectToArray(data.val()));
 			} else if (limit && !orderKey) {
 				return firebase.database()
-					.ref(`/anime${id}`)
+					.ref(`/${db}${id}`)
 					.limitToLast(limit)
 					.once("value")
 					.then((data) => _objectToArray(data.val()));
 			} else if (!limit && orderKeyValid) {
 				if (!orderDesc) {
 					return firebase.database()
-						.ref(`/anime${id}`)
+						.ref(`/${db}${id}`)
 						.orderByChild(orderKey)
 						.once("value")
 						.then((data) => _objectToArray(data.val()));
 				} else if (orderDesc) {
 					return firebase.database()
-						.ref(`/anime${id}`)
+						.ref(`/${db}${id}`)
 						.orderByChild(orderKey, "desc")
 						.once("value")
 						.then((data) => _objectToArray(data.val()));
@@ -129,14 +130,14 @@ export function FirebaseFactory() {
 			} else if (limit && orderKeyValid) {
 				if (!orderDesc) {
 					return firebase.database()
-						.ref(`/anime${id}`)
+						.ref(`/${db}${id}`)
 						.orderByChild(orderKey)
 						.limitToLast(limit)
 						.once("value")
 						.then((data) => _objectToArray(data.val()));
 				} else if (orderDesc) {
 					return firebase.database()
-						.ref(`/anime${id}`)
+						.ref(`/${db}${id}`)
 						.orderByChild(orderKey)
 						.limitToLast(limit)
 						.once("value")
@@ -151,9 +152,9 @@ export function FirebaseFactory() {
 
 	}
 
-	function update(id, data) {
+	function update(db, id, data) {
 		firebase.database()
-			.ref(`/anime/${id}`)
+			.ref(`/${db}/${id}`)
 			.update(data)
 			.then(() => {
 				resolve();
