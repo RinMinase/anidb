@@ -62,14 +62,22 @@
 						</a>
 
 						<div ng-repeat="(key, keyValue) in vm.keys">
-							<span class="list-group-item">{{ key }}</span>
+							<a ng-href="#"
+								ng-click="vm.collapse[key] = !vm.collapse[key]"
+								class="list-group-item">
+								<span>{{ key }}</span>
+								<span class="">
+									<i class="fa fa-caret-down"></i>
+								</span>
+							</a>
 							<a class="list-group-item season-list"
 								ng-repeat="value in vm.keys[key]"
 								ng-switch="value"
 								ng-href="#"
 								ng-click="vm.category.year = key; vm.category.season = value;"
 								ng-class="{'list-group-item-info': vm.category.year === key
-									&& vm.category.season === value}">
+									&& vm.category.season === value}"
+								uib-collapse="!vm.collapse[key]">
 
 								<span ng-switch-when="0">Winter</span>
 								<span ng-switch-when="1">Spring</span>
