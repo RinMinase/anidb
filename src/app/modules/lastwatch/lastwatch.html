@@ -1,6 +1,6 @@
 <anidb-navbar></anidb-navbar>
 
-<div class="container-fluid">
+<div class="container-fluid anidb-lastwatch">
 
 	<div class="row">
 
@@ -45,14 +45,14 @@
 			</div>
 		</div>
 
-		<div class="col-md-9">
-			<div class="flex-form-container"
-				ng-class="{'hidden': vm.dataLoaded === true}">
-				<div class="cp-spinner cp-eclipse"></div>
-			</div>
 
-			<div class="table-responsive"
-				ng-class="{'hidden': vm.dataLoaded === false}">
+		<div class="flex-form-container"
+			ng-class="{'hidden': vm.dataLoaded === true}">
+			<div class="cp-spinner cp-eclipse"></div>
+		</div>
+
+		<div class="col-md-9" ng-class="{'hidden': vm.dataLoaded === false}">
+			<div class="table-responsive">
 				<table class="table table-condensed">
 					<thead>
 						<tr>
