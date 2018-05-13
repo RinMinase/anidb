@@ -44,7 +44,7 @@ export class LastWatchController {
 
 		this.daysSinceLastAnime = moment(now - then).format("DDD");
 
-		return data.map((value) => {
+		const formattedData = data.map((value) => {
 			if (!isNaN( parseInt(value.episodes) )) {
 				this.totalEpisodes += parseInt(value.episodes);
 			}
@@ -59,12 +59,6 @@ export class LastWatchController {
 
 			value.filesize = this._convertFilesize(value.filesize);
 
-			if (value.dateFinished === "") {
-				value.dateFinished = "-";
-			} else {
-				value.dateFinished = moment.unix(value.dateFinished).format("MMM DD, YYYY");
-			}
-
 			delete value.duration;
 			delete value.encoder;
 			delete value.firstSeasonTitle;
@@ -78,6 +72,37 @@ export class LastWatchController {
 			delete value.seasonNumber;
 			delete value.sequel;
 			delete value.watchStatus;
+
+			return value;
+		});
+
+		const sortedData = formattedData.sort((a, b) => {
+			const aTitle = a.title;
+			const bTitle = b.title;
+
+			if (a.dateFinished < b.dateFinished) {
+				return 1;
+			}
+
+			if (a.dateFinished > b.dateFinished) {
+				return -1;
+			}
+
+			if (aTitle < bTitle) {
+				return -1;
+			}
+
+			if (aTitle > bTitle) {
+				return 1;
+			}
+		});
+
+		return sortedData.map((value) => {
+			if (value.dateFinished === "") {
+				value.dateFinished = "-";
+			} else {
+				value.dateFinished = moment.unix(value.dateFinished).format("MMM DD, YYYY");
+			}
 
 			return value;
 		});
