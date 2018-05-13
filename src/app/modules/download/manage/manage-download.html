@@ -35,7 +35,7 @@
 					<div class="list-group">
 						<a ng-href="#"
 							class="list-group-item first-item"
-							ng-click="vm.category.year = null; vm.category.season = null;"
+							ng-click="vm.category.year = 0; vm.category.season = 0;"
 							ng-class="{'list-group-item-info': !vm.category.year}">
 							<span>Uncategorized</span>
 							<div class="pull-right">
@@ -102,6 +102,72 @@
 
 					</div>
 
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-9">
+			<div class="panel-group">
+				<div class="panel panel-default"
+					ng-repeat="(key, keyValue) in vm.data[vm.category.year][vm.category.season]"
+					ng-switch="key"
+					ng-hide="key === '1'">
+
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a ng-href="#"
+								ng-click="vm.collapse.isCollapsed0 = !vm.collapse.isCollapsed0"
+								ng-switch-when="0">Finished Watching</a>
+							<a ng-href="#"
+								ng-click="vm.collapse.isCollapsed2 = !vm.collapse.isCollapsed2"
+								ng-switch-when="2">Finished Downloading</a>
+							<a ng-href="#"
+								ng-click="vm.collapse.isCollapsed3 = !vm.collapse.isCollapsed3"
+								ng-switch-when="3">In Queue</a>
+
+							<div class="pull-right">
+								<div class="label"
+									ng-class="{'label-success': key === '0', 'label-primary': key === '2', 'label-default': key === '3'}">
+
+									{{ keyValue.length }}
+								</div>
+							</div>
+						</h4>
+					</div>
+
+					<div class="panel-collapse" uib-collapse="vm.collapse.isCollapsed{{key}}">
+
+						<div class="panel-body">
+							<div class="table-responsive">
+								<table class="table table-condensed">
+									<thead>
+										<tr>
+											<th>Title</th>
+											<th class="text-right">Remarks</th>
+											<th></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat="data in vm.data[vm.category.year][vm.category.season][key]">
+											<td>{{ data.title }}</td>
+											<td class="text-right">
+												<dfn>{{ data.remarks }}</dfn>
+												<a ng-href="#" class="btn btn-xs btn-warning" uib-tooltip="Edit Remarks">
+													<i class="fa fa-pencil"></i>
+												</a>
+											</td>
+											<td class="text-right">
+												<a ng-href="#" class="btn btn-xs btn-danger" uib-tooltip="Delete Title">
+													<i class="fa fa-trash"></i>
+												</a>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+
+					</div>
 				</div>
 			</div>
 		</div>

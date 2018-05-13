@@ -13,8 +13,13 @@ export class ManageDownloadController {
 			$scope,
 			firebase,
 			category: {
-				year: null,
-				season: null,
+				year: 0,
+				season: 0,
+			},
+			collapse: {
+				isCollapsed0: false,
+				isCollapsed2: false,
+				isCollapsed3: false,
 			},
 			data: {},
 			dataLoaded: false,
