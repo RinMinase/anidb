@@ -68,17 +68,15 @@ export class LastWatchController {
 			return value;
 		});
 
-		const now = moment().unix();
-		const diffLast = moment(data[data.length - 1].dateFinished - now).format("DDD");
+		const now = moment();
+		const dateFirst = moment(data[0].dateFinished, "X");
+		const dateLast = moment(data[data.length - 1].dateFinished, "X");
+		const dateDiffLast = now.diff(dateLast, "days", true);
 
-		this.daysSinceLastAnime = moment(now, "X")
-			.diff(
-				moment(data[0].dateFinished, "X"),
-				"days"
-			);
-		this.titlesPerDay = parseFloat(data.length / diffLast).toFixed(2);
-		this.singleSeasonPerDay = parseFloat((this.totalEpisodes / 12) / diffLast).toFixed(2);
-		this.episodesPerDay = parseFloat(this.totalEpisodes / diffLast).toFixed(2);
+		this.daysSinceLastAnime = now.diff(dateFirst, "days");
+		this.titlesPerDay = parseFloat(data.length / dateDiffLast).toFixed(2);
+		this.singleSeasonPerDay = parseFloat((this.totalEpisodes / 12) / dateDiffLast).toFixed(2);
+		this.episodesPerDay = parseFloat(this.totalEpisodes / dateDiffLast).toFixed(2);
 
 		const sortedData = formattedData.sort((a, b) => {
 			const aTitle = a.title;
