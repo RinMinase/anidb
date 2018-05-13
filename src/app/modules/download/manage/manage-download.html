@@ -143,16 +143,16 @@
 									<thead>
 										<tr>
 											<th>Title</th>
-											<th class="text-right">Remarks</th>
+											<th class="text-center pr-5">Remarks</th>
 											<th></th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr ng-repeat="data in vm.data[vm.category.year][vm.category.season][key]">
 											<td>{{ data.title }}</td>
-											<td class="text-right">
-												<dfn>{{ data.remarks }}</dfn>
-												<a ng-href="#" class="btn btn-xs btn-warning" uib-tooltip="Edit Remarks">
+											<td class="text-center">
+												<span>{{ data.remarks || "&mdash;" }}</span>
+												<a ng-href="#" class="btn btn-xs btn-warning pull-right" uib-tooltip="Edit Remarks">
 													<i class="fa fa-pencil"></i>
 												</a>
 											</td>
