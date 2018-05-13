@@ -43,6 +43,7 @@ export class LastWatchController {
 		const then = data[0].dateFinished;
 
 		this.daysSinceLastAnime = moment(now - then).format("DDD");
+		this.totalEpisodes = 0;
 
 		const formattedData = data.map((value) => {
 			if (!isNaN( parseInt(value.episodes) )) {
