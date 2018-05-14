@@ -1,0 +1,18 @@
+quality-legend {
+	div.quality-legend-container {
+		display: inline-block;
+
+		div.quality-legend {
+			width: 10px;
+			height: 10px;
+			display: inline-block;
+			margin-right: 5px;
+
+			&.legend-uhd { background-color: #FF99CC; }
+			&.legend-fhd { background-color: #99FF99; }
+			&.legend-hd { background-color: #99CCFF; }
+			&.legend-hq { background-color: #FFCC66; }
+			&.legend-lq { border: 1px solid #777777; }
+		}
+	}
+}
