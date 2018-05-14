@@ -19,4 +19,18 @@
 	.flex-form-container {
 		height: 332px;
 	}
+
+	a.frameworks {
+		display: inline-block;
+		background-image: url("https://firebasestorage.googleapis.com/v0/b/rin-anidb.appspot.com/o/frameworks.png?alt=media&token=73b3ba7a-31ac-49aa-8e0c-1d94b262b555");
+		background-repeat: no-repeat;
+		overflow: hidden;
+
+		&.angular { background-position: -2px -0px; width: 120px; height: 120px; }
+		&.bootstrap { background-position: -124px -0px; width: 120px; height: 120px; }
+		&.es6 { background-position: -2px -122px; width: 120px; height: 120px; }
+		&.nodejs { background-position: -124px -122px; width: 120px; height: 120px; }
+		&.sass { background-position: -2px -244px; width: 120px; height: 120px; }
+		&.uibootstrap { background-position: -124px -244px; width: 120px; height: 120px; }
+	}
 }
