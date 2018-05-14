@@ -1,17 +1,90 @@
 export class ByNameController {
 	constructor(
-		$log
+		$log,
+		$scope,
+		firebase
 	) {
 		"ngInject";
 
 		_.extend(this, {
 			$log,
+			$scope,
+			firebase,
+			data: [],
 		});
 
 		this.activate();
 	}
 
 	activate() {
+		this.firebase.auth()
+			.then(() => {
+				this.firebase.retrieve()
+					.then((data) => {
+						this.formatData(data);
+						this.dataLoaded = true;
+						this.$scope.$apply();
+					});
+			}).catch(() => {
+				this.$window.location.href = "/login";
+			});
+	}
 
+	formatData(rawData) {
+		const rawFilesizes = new Array(27);
+		const contents = new Array(27);
+		const filesizes = new Array(27);
+		const keys = new Array(27);
+
+		for (let i = 0; i < contents.length; i++) {
+			this.data[i] = {};
+			contents[i] = [];
+			filesizes[i] = "";
+			rawFilesizes[i] = 0;
+
+			if (i === 0) {
+				keys[i] = "#";
+			} else {
+				keys[i] = String.fromCharCode(i + 64);
+			}
+		}
+
+		rawData.map((data) => {
+			if (data.watchStatus === 0) {
+				const currCharCode = data.title[0].toLowerCase().charCodeAt();
+
+				if (currCharCode >= 48 && currCharCode <= 57) {
+					contents[0].push(data);
+					rawFilesizes[0] += data.filesize;
+				} else if (currCharCode >= 97 && currCharCode <= 122) {
+					contents[currCharCode - 96].push(data);
+					rawFilesizes[currCharCode - 96] += data.filesize;
+				}
+			}
+		});
+
+		rawFilesizes.forEach((element, index) => {
+			filesizes[index] = this._convertFilesize(element);
+		});
+
+		contents.forEach((element, index) => {
+			_.extend(this.data[index], {
+				content: contents[index],
+				filesize: filesizes[index],
+				key: keys[index],
+			});
+		});
+	}
+
+	_convertFilesize(filesize) {
+		filesize = parseFloat(filesize);
+
+		if (filesize === 0) {
+			return "-";
+		} else if (filesize < 1073741824) {
+			return `${(filesize / 1048576).toFixed(2)} MB`;
+		} else {
+			return `${(filesize / 1073741824).toFixed(2)} GB`;
+		}
 	}
 }
