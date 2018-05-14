@@ -1,4 +1,4 @@
-import { ByNameController } from "./about.controller";
+import { ByNameController } from "./byname.controller";
 
 export default angular
 	.module("byname", [])
