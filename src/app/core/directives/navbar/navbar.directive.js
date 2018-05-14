@@ -1,5 +1,4 @@
-import firebase from "firebase";
-import Promise from "bluebird";
+import _ from "lodash";
 
 export function NavbarDirective() {
 	"ngInject";
@@ -17,19 +16,19 @@ export function NavbarDirective() {
 }
 
 class NavbarController {
-	constructor() {
+	constructor($state, firebase) {
 		"ngInject";
+
+		_.extend(this, {
+			$state,
+			firebase,
+		});
 	}
 
 	logout() {
-		const signOut = () => new Promise((resolve) => {
-			firebase.auth()
-				.signOut()
-				.then(() => {
-					resolve();
-				});
-		});
-
-		signOut();
+		this.firebase.logout()
+			.then(() => {
+				this.$state.go("login");
+			});
 	}
 }
