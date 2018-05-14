@@ -13,7 +13,6 @@ import "oclazyload";
 
 import { config, runBlock, routerConfig } from "./index.config";
 
-import { MainController } from "./main/main.controller";
 import { FiretestController } from "./firetest/firetest.controller";
 
 import CoreModule from "./core/core.module";
@@ -51,5 +50,4 @@ angular.module(
 
 	.run(runBlock)
 
-	.controller("MainController", MainController)
 	.controller("FiretestController", FiretestController);
