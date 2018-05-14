@@ -54,11 +54,15 @@ export class ByNameController {
 				const currCharCode = data.title[0].toLowerCase().charCodeAt();
 
 				if (currCharCode >= 48 && currCharCode <= 57) {
-					contents[0].push(data);
 					rawFilesizes[0] += data.filesize;
+
+					data.filesize = this._convertFilesize(data.filesize);
+					contents[0].push(data);
 				} else if (currCharCode >= 97 && currCharCode <= 122) {
-					contents[currCharCode - 96].push(data);
 					rawFilesizes[currCharCode - 96] += data.filesize;
+
+					data.filesize = this._convertFilesize(data.filesize);
+					contents[currCharCode - 96].push(data);
 				}
 			}
 		});
