@@ -67,35 +67,8 @@
 							| orderBy: !vm.$scope.search && ['quality','title']
 							| fuzzyBy: 'title': search">
 
-							<td ng-switch="data.quality">
-								<div class="anime-legend-container">
-									<div class="anime-legend anime-legend-uhd"
-										uib-tooltip="{{ data.quality }}"
-										tooltip-placement="right"
-										ng-switch-when="4K 2160p">
-									</div>
-									<div class="anime-legend anime-legend-fhd"
-										uib-tooltip="{{ data.quality }}"
-										tooltip-placement="right"
-										ng-switch-when="FHD 1080p">
-									</div>
-									<div class="anime-legend anime-legend-hd"
-										uib-tooltip="{{ data.quality }}"
-										tooltip-placement="right"
-										ng-switch-when="HD 720p">
-									</div>
-									<div class="anime-legend anime-legend-hq"
-										uib-tooltip="{{ data.quality }}"
-										tooltip-placement="right"
-										ng-switch-when="HQ 480p">
-									</div>
-									<div class="anime-legend anime-legend-lq"
-										uib-tooltip="{{ data.quality }}"
-										tooltip-placement="right"
-										ng-switch-when="LQ 360p">
-									</div>
-								</div>
-
+							<td>
+								<quality-legend value="{{ data.quality }}"></quality-legend>
 								<span>{{ data.title }}</span>
 							</td>
 							<td class="text-center">
