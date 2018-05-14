@@ -62,7 +62,10 @@
 									</thead>
 									<tbody>
 										<tr ng-repeat="content in data.content">
-											<td>{{ content.title }}</td>
+											<td>
+												<quality-legend value="{{ content.quality }}"></quality-legend>
+												<span>{{ content.title }}</span>
+											</td>
 											<td>{{ content.filesize }}</td>
 										</tr>
 									</tbody>
