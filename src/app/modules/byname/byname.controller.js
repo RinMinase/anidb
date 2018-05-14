@@ -11,6 +11,7 @@ export class ByNameController {
 			$scope,
 			firebase,
 			data: [],
+			dataLoaded: false,
 		});
 
 		this.activate();

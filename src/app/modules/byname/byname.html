@@ -11,7 +11,13 @@
 				</div>
 
 				<div class="panel-body">
-					<div class="table-responsive">
+					<div class="flex-form-container"
+						ng-class="{'hidden': vm.dataLoaded === true}">
+						<div class="cp-spinner cp-eclipse"></div>
+					</div>
+
+					<div class="table-responsive"
+						ng-class="{'hidden': vm.dataLoaded === false}">
 						<table class="table table-condensed">
 							<thead>
 								<tr>
@@ -35,9 +41,17 @@
 		</div>
 
 		<div class="col-md-9">
-			<div class="panel-group">
+			<div class="flex-form-container"
+				ng-class="{'hidden': vm.dataLoaded === true}">
+				<div class="cp-spinner cp-eclipse"></div>
+			</div>
 
-				<div class="panel panel-default" ng-repeat="data in vm.data" ng-hide="!data.filesize">
+			<div class="panel-group"
+				ng-class="{'hidden': vm.dataLoaded === false}">
+
+				<div class="panel panel-default"
+					ng-repeat="data in vm.data"
+					ng-hide="data.filesize === '-'">
 
 					<div class="panel-heading">
 						<h4 class="panel-title">
