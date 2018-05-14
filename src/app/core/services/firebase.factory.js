@@ -33,7 +33,7 @@ export function FirebaseFactory() {
 	}
 
 	function logout() {
-		new Promise((resolve) => {
+		return new Promise((resolve) => {
 			firebase.auth()
 				.signOut()
 				.then(() => {
