@@ -1,0 +1,82 @@
+<anidb-navbar></anidb-navbar>
+
+<div class="container-fluid anidb-byname">
+	<div class="row">
+
+		<div class="col-md-3">
+			<div class="panel panel-green">
+
+				<div class="panel-heading">
+					<h4>Statistics</h4>
+				</div>
+
+				<div class="panel-body">
+					<div class="table-responsive">
+						<table class="table table-condensed">
+							<thead>
+								<tr>
+									<th></th>
+									<th class="text-center">Titles</th>
+									<th class="text-center">File Size</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="data in vm.data">
+									<th>{{ data.key }}</th>
+									<td class="text-center">{{ data.content.length }}</td>
+									<td class="text-center">{{ data.filesize }}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="col-md-9">
+			<div class="panel-group">
+
+				<div class="panel panel-default" ng-repeat="data in vm.data" ng-hide="!data.filesize">
+
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a ng-href="#">
+								<span>{{ data.key }}</span>
+								<span class="badge ml-2">{{ data.content.length }}</span>
+							</a>
+							<p class="pull-right">{{ data.filesize }}</p>
+						</h4>
+					</div>
+
+					<div class="panel-collapse collapse in">
+						<div class="panel-body">
+
+							<div class="table-responsive">
+								<table class="table table-condensed">
+									<thead>
+										<tr>
+											<th>Title</th>
+											<th>File Size</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat="content in data.content">
+											<td>{{ content.title }}</td>
+											<td>{{ content.filesize }}</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<anidb-footer></anidb-footer>
