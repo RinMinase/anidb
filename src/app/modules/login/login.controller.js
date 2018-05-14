@@ -4,13 +4,13 @@ export class LoginController {
 	constructor (
 		$log,
 		$scope,
-		$window
+		$state
 	) {
 		"ngInject";
 
 		this.$log = $log;
 		this.$scope = $scope;
-		this.$window = $window;
+		this.$state = $state;
 
 		this.activate();
 	}
@@ -25,7 +25,7 @@ export class LoginController {
 				this.$scope.email,
 				this.$scope.password
 			).then(() => {
-				this.$window.location.href = "/";
+				this.$state.go("home.manage");
 			}).catch((error) => {
 				this.$log.error(error.message);
 			});

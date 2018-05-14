@@ -6,8 +6,8 @@ export class ManageHomeController {
 	constructor (
 		$log,
 		$scope,
+		$state,
 		$uibModal,
-		$window,
 		firebase
 	) {
 		"ngInject";
@@ -15,8 +15,8 @@ export class ManageHomeController {
 		_.extend(this, {
 			$log,
 			$scope,
+			$state,
 			$uibModal,
-			$window,
 			firebase,
 			dataLoaded: false,
 		});
@@ -38,7 +38,7 @@ export class ManageHomeController {
 						this.$scope.$apply();
 					});
 			}).catch(() => {
-				this.$window.location.href = "/login";
+				this.$state.go("login");
 			});
 
 		// this.$scope.$watch(

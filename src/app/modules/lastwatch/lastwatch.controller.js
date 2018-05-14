@@ -4,14 +4,14 @@ import moment from "moment";
 export class LastWatchController {
 	constructor(
 		$log,
-		$scope,
+		$state,
 		firebase
 	) {
 		"ngInject";
 
 		_.extend(this, {
 			$log,
-			$scope,
+			$state,
 			firebase,
 			data: {},
 			dataLoaded: false,
@@ -31,7 +31,7 @@ export class LastWatchController {
 						this.$scope.$apply();
 					});
 			}).catch(() => {
-				this.$window.location.href = "/login";
+				this.$state.go("login");
 			});
 	}
 

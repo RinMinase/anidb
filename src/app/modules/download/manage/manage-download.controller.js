@@ -4,6 +4,7 @@ export class ManageDownloadController {
 	constructor(
 		$log,
 		$scope,
+		$state,
 		firebase
 	) {
 		"ngInject";
@@ -11,6 +12,7 @@ export class ManageDownloadController {
 		_.extend(this, {
 			$log,
 			$scope,
+			$state,
 			firebase,
 			category: {
 				year: 0,
@@ -39,7 +41,7 @@ export class ManageDownloadController {
 						this.$scope.$apply();
 					});
 			}).catch(() => {
-				this.$window.location.href = "/login";
+				this.$state.go("login");
 			});
 	}
 
@@ -92,6 +94,8 @@ export class ManageDownloadController {
 
 		delete this.data[""];
 		delete this.keys[""];
+
+		this.$log.log(this.data);
 	}
 
 	initializeObject(releaseYear, releaseSeason, watchStatus) {

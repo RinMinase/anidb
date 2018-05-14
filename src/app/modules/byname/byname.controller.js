@@ -1,14 +1,14 @@
 export class ByNameController {
 	constructor(
 		$log,
-		$scope,
+		$state,
 		firebase
 	) {
 		"ngInject";
 
 		_.extend(this, {
 			$log,
-			$scope,
+			$state,
 			firebase,
 			data: [],
 			dataLoaded: false,
@@ -27,7 +27,7 @@ export class ByNameController {
 						this.$scope.$apply();
 					});
 			}).catch(() => {
-				this.$window.location.href = "/login";
+				this.$state.go("login");
 			});
 	}
 
