@@ -1,6 +1,6 @@
 {
   "database": {
-    "rules": "./src/assets/firebase/database.rules"
+    "rules": "./src/assets/firebase/database.rules.json"
   },
   "hosting": {
     "public": "dist",
