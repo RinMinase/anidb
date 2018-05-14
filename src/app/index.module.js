@@ -19,6 +19,7 @@ import { FiretestController } from "./firetest/firetest.controller";
 import CoreModule from "./core/core.module";
 
 import AboutModule from "./modules/about/about.module";
+import ByNameModule from "./modules/byname/byname.module";
 import DownloadModule from "./modules/download/download.module";
 import HomeModule from "./modules/home/home.module";
 import LastwatchModule from "./modules/lastwatch/lastwatch.module";
@@ -38,6 +39,7 @@ angular.module(
 		CoreModule.name,
 
 		AboutModule.name,
+		ByNameModule.name,
 		DownloadModule.name,
 		HomeModule.name,
 		LastwatchModule.name,
