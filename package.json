@@ -11,6 +11,7 @@
   "scripts": {
     "start": "gulp serve",
     "build": "gulp serve:dist",
+    "deploy": "firebase deploy",
     "lint": "eslint --ext .js src\\app",
     "disable-lock": "npm config set package-lock false",
     "precommit": "npm run lint",
