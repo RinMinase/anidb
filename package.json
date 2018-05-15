@@ -30,17 +30,17 @@
     "angular-toastr": "^2.1.1",
     "angular-ui-bootstrap": "^2.5.6",
     "babel-core": "^6.7.4",
-    "babel-loader": "^6.2.4",
+    "babel-loader": "7.1.1",
     "babel-preset-env": "^1.7.0",
     "bluebird": "^3.5.1",
     "bootstrap-sass": "^3.3.7",
     "browser-sync": "2.23.6",
     "browser-sync-spa": "^1.0.3",
     "csspin": "^1.1.4",
-    "del": "^2.0.2",
+    "del": "^3.0.0",
     "dotenv-webpack": "^1.5.5",
     "eslint": "^4.19.1",
-    "eslint-loader": "^1.1.0",
+    "eslint-loader": "^2.0.0",
     "eslint-plugin-angular": "^3.3.0",
     "firebase": "^4.13.1",
     "font-awesome": "^4.7.0",
@@ -69,7 +69,7 @@
     "roboto-fontface": "^0.9.0",
     "uglify-save-license": "^0.4.1",
     "velocity-animate": "^1.5.1",
-    "webpack-stream": "^2.1.1"
+    "webpack-stream": "^2.3.0"
   },
   "engines": {
     "node": ">=0.10.0"
