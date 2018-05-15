@@ -17,10 +17,10 @@ export function config (
 
 	_.extend(toastrConfig, {
 		allowHtml: true,
-		timeout: 3000,
 		positionClass: "toast-top-right",
 		preventDuplicates: true,
 		progressBar: true,
+		timeout: 3000,
 	});
 
 	const firebaseConfig = {
