@@ -94,8 +94,6 @@ export class ManageDownloadController {
 
 		delete this.data[""];
 		delete this.keys[""];
-
-		this.$log.log(this.data);
 	}
 
 	initializeObject(releaseYear, releaseSeason, watchStatus) {

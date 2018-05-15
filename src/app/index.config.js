@@ -56,6 +56,6 @@ export function config (
 	};
 }
 
-export function runBlock () {
+export function run () {
 	"ngInject";
 }

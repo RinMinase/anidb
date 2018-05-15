@@ -12,7 +12,7 @@ import uiRouter from "@uirouter/angularjs";
 import "oclazyload";
 import "velocity-animate";
 
-import { config, runBlock } from "./index.config";
+import { config, run } from "./index.config";
 
 import CoreModule from "./core/core.module";
 
@@ -45,4 +45,4 @@ angular.module(
 		LoginModule.name,
 	])
 	.config(config)
-	.run(runBlock);
+	.run(run);
