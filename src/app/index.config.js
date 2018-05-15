@@ -1,3 +1,4 @@
+import _ from "lodash";
 import firebase from "firebase";
 
 export function config (
@@ -7,17 +8,20 @@ export function config (
 	toastrConfig
 ) {
 	"ngInject";
+
 	// Enable logging
 	$logProvider.debugEnabled(true);
 
 	$urlRouterProvider.otherwise("/");
 	$locationProvider.html5Mode(true);
 
-	toastrConfig.allowHtml = true;
-	toastrConfig.timeOut = 3000;
-	toastrConfig.positionClass = "toast-top-right";
-	toastrConfig.preventDuplicates = true;
-	toastrConfig.progressBar = true;
+	_.extend(toastrConfig, {
+		allowHtml: true,
+		timeout: 3000,
+		positionClass: "toast-top-right",
+		preventDuplicates: true,
+		progressBar: true,
+	});
 
 	const firebaseConfig = {
 		apiKey: "AIzaSyCVsm1c-nS9qS1fFfFo6JCAb908AfPU6Ag",
