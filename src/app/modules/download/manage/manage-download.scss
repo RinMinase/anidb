@@ -29,6 +29,10 @@
 		}
 	}
 
+	.panel-collapse.collapsing {
+		transition-duration: 1.3s;
+	}
+
 	.download-label-container {
 		display: inline-block;
 
