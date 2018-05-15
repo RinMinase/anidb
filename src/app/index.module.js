@@ -5,6 +5,7 @@ import "angular-filter";
 import "angular-messages";
 import "angular-sanitize";
 import "angular-toastr";
+import "angular-touch";
 import "angular-ui-bootstrap";
 import uiRouter from "@uirouter/angularjs";
 
@@ -29,6 +30,7 @@ angular.module(
 		"ngCookies",
 		"ngMessages",
 		"ngSanitize",
+		"ngTouch",
 		uiRouter,
 		"ui.bootstrap",
 		"toastr",
