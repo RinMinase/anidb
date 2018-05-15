@@ -19,7 +19,7 @@
     "postinstall": "npm ddp"
   },
   "dependencies": {
-    "@uirouter/angularjs": "^1.0.15",
+    "@uirouter/angularjs": "^1.0.17",
     "angular": "^1.5.3",
     "angular-animate": "^1.5.3",
     "angular-cookies": "^1.5.3",
@@ -31,7 +31,7 @@
     "angular-ui-bootstrap": "^2.5.6",
     "babel-core": "^6.7.4",
     "babel-loader": "^6.2.4",
-    "babel-preset-env": "^1.6.1",
+    "babel-preset-env": "^1.7.0",
     "bluebird": "^3.5.1",
     "bootstrap-sass": "^3.3.7",
     "browser-sync": "2.23.6",
@@ -42,7 +42,7 @@
     "eslint": "^4.19.1",
     "eslint-loader": "^1.1.0",
     "eslint-plugin-angular": "^3.3.0",
-    "firebase": "^4.12.1",
+    "firebase": "^4.13.1",
     "font-awesome": "^4.7.0",
     "fuse.js": "^3.2.0",
     "gulp": "^3.9.0",
