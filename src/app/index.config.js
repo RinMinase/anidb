@@ -55,15 +55,3 @@ export function config (
 export function runBlock () {
 	"ngInject";
 }
-
-export function routerConfig ($stateProvider) {
-	"ngInject";
-
-	$stateProvider
-		.state("firetest", {
-			url: "/firetest",
-			templateUrl: "app/firetest/firetest.html",
-			controller: "FiretestController",
-			controllerAs: "vm",
-		});
-}

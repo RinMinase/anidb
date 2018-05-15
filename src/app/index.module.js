@@ -11,9 +11,7 @@ import uiRouter from "@uirouter/angularjs";
 import "jquery";
 import "oclazyload";
 
-import { config, runBlock, routerConfig } from "./index.config";
-
-import { FiretestController } from "./firetest/firetest.controller";
+import { config, runBlock } from "./index.config";
 
 import CoreModule from "./core/core.module";
 
@@ -44,10 +42,5 @@ angular.module(
 		LastwatchModule.name,
 		LoginModule.name,
 	])
-
 	.config(config)
-	.config(routerConfig)
-
-	.run(runBlock)
-
-	.controller("FiretestController", FiretestController);
+	.run(runBlock);
