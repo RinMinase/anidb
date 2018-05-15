@@ -1,6 +1,7 @@
 export class ByNameController {
 	constructor(
 		$log,
+		$scope,
 		$state,
 		firebase
 	) {
@@ -8,6 +9,7 @@ export class ByNameController {
 
 		_.extend(this, {
 			$log,
+			$scope,
 			$state,
 			firebase,
 			data: [],
