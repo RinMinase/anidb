@@ -29,7 +29,12 @@
 				</div>
 			</div>
 
-			<div class="row">
+			<div class="flex-form-container sidebar"
+				ng-class="{'hidden': vm.dataLoaded === true}">
+				<div class="cp-spinner cp-eclipse"></div>
+			</div>
+
+			<div class="row" ng-class="{'hidden': vm.dataLoaded === false}">
 				<div class="col-md-12">
 
 					<div class="list-group">
@@ -115,7 +120,12 @@
 		</div>
 
 		<div class="col-md-9">
-			<div class="panel-group">
+			<div class="flex-form-container main-panel"
+				ng-class="{'hidden': vm.dataLoaded === true}">
+				<div class="cp-spinner cp-eclipse"></div>
+			</div>
+
+			<div class="panel-group" ng-class="{'hidden': vm.dataLoaded === false}">
 				<div class="panel panel-default"
 					ng-repeat="(key, keyValue) in vm.data[vm.category.year][vm.category.season]"
 					ng-switch="key"
@@ -135,7 +145,11 @@
 
 							<div class="pull-right">
 								<div class="label"
-									ng-class="{'label-success': key === '0', 'label-primary': key === '2', 'label-default': key === '3'}">
+									ng-class="{
+										'label-success': key === '0',
+										'label-primary': key === '2',
+										'label-default': key === '3'
+									}">
 
 									{{ keyValue.length }}
 								</div>
