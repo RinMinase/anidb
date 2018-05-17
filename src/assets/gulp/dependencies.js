@@ -66,7 +66,7 @@ function webpackWrapper(watch, callback) {
 					"html-loader"
 				],
 				options: {
-					relativeTo: path.join(conf.paths.src, "")
+					relativeTo: conf.paths.src
 				}
 			}],
 			loaders: [{
@@ -78,7 +78,7 @@ function webpackWrapper(watch, callback) {
 				]
 			}]
 		},
-		plugins: [ new Dotenv() ],
+		plugins: [ new Dotenv({ path: "./src/assets/.env" }) ],
 		output: { filename: "index.module.js" }
 	};
 
