@@ -1,11 +1,13 @@
 import _ from "lodash";
 
+import navbarDOM from "ngtemplate!html!./navbar.html";
+
 export function NavbarDirective() {
 	"ngInject";
 
 	const directive = {
 		restrict: "E",
-		templateUrl: "app/core/directives/navbar/navbar.html",
+		templateUrl: navbarDOM,
 		scope: {},
 		controller: NavbarController,
 		controllerAs: "vm",

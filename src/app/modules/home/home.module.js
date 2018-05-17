@@ -1,6 +1,8 @@
 import { AddHomeController } from "./add/add-home.controller";
 import { ManageHomeController } from "./manage/manage-home.controller";
 
+import manageHomeDOM from "ngtemplate!html!./manage/manage-home.html";
+
 export default angular
 	.module("home", [])
 
@@ -15,7 +17,7 @@ export default angular
 			})
 			.state("home.manage", {
 				url: "/",
-				templateUrl: "app/modules/home/manage/manage-home.html",
+				templateUrl: manageHomeDOM,
 				controller: "ManageHomeController",
 				controllerAs: "vm",
 			});

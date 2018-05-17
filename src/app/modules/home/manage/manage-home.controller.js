@@ -2,6 +2,8 @@ import _ from "lodash";
 // import Fuse from "fuse.js";
 import moment from "moment";
 
+import addHomeDOM from "ngtemplate!html!../add/add-home.html";
+
 export class ManageHomeController {
 	constructor (
 		$log,
@@ -101,7 +103,7 @@ export class ManageHomeController {
 
 	addTitle() {
 		this.$uibModal.open({
-			templateUrl: "app/modules/home/add/add-home.html",
+			templateUrl: addHomeDOM,
 			controller: "AddHomeController",
 			controllerAs: "vm",
 			backdrop: "static",

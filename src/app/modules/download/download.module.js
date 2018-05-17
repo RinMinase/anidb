@@ -1,5 +1,7 @@
 import { ManageDownloadController } from "./manage/manage-download.controller";
 
+import manageDownloadDOM from "ngtemplate!html!./manage/manage-download.html";
+
 export default angular
 	.module("download", [])
 
@@ -13,7 +15,7 @@ export default angular
 			})
 			.state("download.manage", {
 				url: "/download-list",
-				templateUrl: "app/modules/download/manage/manage-download.html",
+				templateUrl: manageDownloadDOM,
 				controller: "ManageDownloadController",
 				controllerAs: "vm",
 			});

@@ -1,9 +1,11 @@
+import footerDOM from "ngtemplate!html!./footer.html";
+
 export function FooterDirective() {
 	"ngInject";
 
 	const directive = {
 		restrict: "E",
-		templateUrl: "app/core/directives/footer/footer.html",
+		templateUrl: footerDOM,
 		scope: {},
 		controller: FooterController,
 		controllerAs: "vm",

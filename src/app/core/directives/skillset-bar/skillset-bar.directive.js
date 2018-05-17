@@ -1,9 +1,11 @@
+import skillsetBarDOM from "ngtemplate!html!./skillset-bar.html";
+
 export function SkillsetBarDirective() {
 	"ngInject";
 
 	const directive = {
 		restrict: "E",
-		templateUrl: "app/core/directives/skillset-bar/skillset-bar.html",
+		templateUrl: skillsetBarDOM,
 		scope: {
 			name: "@",
 			sprite: "@",

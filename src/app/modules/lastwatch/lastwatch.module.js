@@ -1,5 +1,7 @@
 import { LastWatchController } from "./lastwatch.controller";
 
+import LastWatchDOM from "ngtemplate!html!./lastwatch.html";
+
 export default angular
 	.module("lastwatch", [])
 	.controller("LastWatchController", LastWatchController)
@@ -7,7 +9,7 @@ export default angular
 		$stateProvider
 			.state("lastwatch", {
 				url: "/lastwatch",
-				templateUrl: "app/modules/lastwatch/lastwatch.html",
+				templateUrl: LastWatchDOM,
 				controller: "LastWatchController",
 				controllerAs: "vm",
 			});

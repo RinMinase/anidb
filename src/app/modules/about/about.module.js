@@ -1,5 +1,7 @@
 import { AboutController } from "./about.controller";
 
+import aboutDOM from "ngtemplate!html!./about.html";
+
 export default angular
 	.module("about", [])
 	.controller("AboutController", AboutController)
@@ -7,7 +9,7 @@ export default angular
 		$stateProvider
 			.state("about", {
 				url: "/about",
-				templateUrl: "app/modules/about/about.html",
+				templateUrl: aboutDOM,
 				controller: "AboutController",
 				controllerAs: "vm",
 			});

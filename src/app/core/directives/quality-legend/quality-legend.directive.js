@@ -1,9 +1,11 @@
+import qualityLegendDOM from "ngtemplate!html!./quality-legend.html";
+
 export function QualityLegendDirective() {
 	"ngInject";
 
 	const directive = {
 		restrict: "E",
-		templateUrl: "app/core/directives/quality-legend/quality-legend.html",
+		templateUrl: qualityLegendDOM,
 		scope: {
 			value: "@",
 		},
