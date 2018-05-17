@@ -34,7 +34,7 @@
     "babel-preset-env": "^1.7.0",
     "bluebird": "^3.5.1",
     "bootstrap-sass": "^3.3.7",
-    "browser-sync": "2.23.6",
+    "browser-sync": "^2.24.4",
     "browser-sync-spa": "^1.0.3",
     "csspin": "^1.1.4",
     "del": "^3.0.0",
