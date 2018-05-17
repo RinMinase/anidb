@@ -60,6 +60,16 @@ function webpackWrapper(watch, callback) {
 				loader: "eslint-loader"
 			}],
 			loaders: [{
+				test: /\.html$/,
+				loaders: [
+					"ngtemplate-loader",
+					"html-loader"
+				],
+				options: {
+					relativeTo: path.join(conf.paths.src, "")
+				}
+			}],
+			loaders: [{
 				test: /\.js$/,
 				exclude: /node_modules/,
 				loaders: [
