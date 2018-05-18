@@ -1,7 +1,7 @@
 .anidb-about {
 	h3.user-data-heading {
 		margin-top: 20px;
-		margin-bottom: 10px;
+		margin-bottom: 20px;
 		border-bottom: 2px solid #95CE92;
 		padding-bottom: 5px;
 	}
@@ -32,5 +32,16 @@
 		&.firebase { background-position: -124px -122px; width: 120px; height: 120px; }
 		&.sass { background-position: -2px -244px; width: 120px; height: 120px; }
 		&.uibootstrap { background-position: -124px -244px; width: 120px; height: 120px; }
+	}
+
+	div.acknowledgements {
+		display: inline-block;
+		background: url('https://firebasestorage.googleapis.com/v0/b/rin-anidb.appspot.com/o/acknowledgements.png?alt=media&token=498dee04-ea9a-46c8-990c-6bf014b850f3');
+		background-repeat: no-repeat;
+		overflow: hidden;
+
+		&.alice { background-position: -2px -0px; width: 120px; height: 120px; border-radius: 60px; border: 1px solid #CECECE }
+		&.maid { background-position: -2px -122px; width: 120px; height: 120px; border-radius: 60px; border: 1px solid #CECECE }
+		&.ruka { background-position: -2px -244px; width: 120px; height: 120px; border-radius: 60px; border: 1px solid #CECECE }
 	}
 }
