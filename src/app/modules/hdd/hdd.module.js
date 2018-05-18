@@ -10,6 +10,10 @@ export default angular
 	.config(($stateProvider) => {
 		$stateProvider
 			.state("hdd", {
+				abstract: true,
+				template: "<div ui-view></div>",
+			})
+			.state("hdd.manage", {
 				url: "/hdd",
 				templateUrl: manageHddDOM,
 				controller: "ManageHddController",

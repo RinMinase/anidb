@@ -25,8 +25,6 @@ export class ManageHddController {
 		// 	}).catch(() => {
 		// 		this.$state.go("login");
 		// 	});
-
-		this.$log.log("testing!!");
 	}
 
 	// formatData() {
