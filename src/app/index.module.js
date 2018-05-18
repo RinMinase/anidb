@@ -19,6 +19,7 @@ import CoreModule from "./core/core.module";
 import AboutModule from "./modules/about/about.module";
 import ByNameModule from "./modules/byname/byname.module";
 import DownloadModule from "./modules/download/download.module";
+import HddModule from "./modules/hdd/hdd.module";
 import HomeModule from "./modules/home/home.module";
 import LastwatchModule from "./modules/lastwatch/lastwatch.module";
 import LoginModule from "./modules/login/login.module";
@@ -41,6 +42,7 @@ angular.module(
 		AboutModule.name,
 		ByNameModule.name,
 		DownloadModule.name,
+		HddModule.name,
 		HomeModule.name,
 		LastwatchModule.name,
 		LoginModule.name,

@@ -1,22 +1,18 @@
-import { ManageHddController } from "./manage/manage-hdd.controller";
+import { HddController } from "./hdd.controller";
 
-import manageHddDOM from "ngtemplate!html!./manage/manage-hdd.html";
+import HddDOM from "ngtemplate!html!./hdd.html";
 
 export default angular
 	.module("hdd", [])
 
-	.controller("ManageHddController", ManageHddController)
+	.controller("HddController", HddController)
 
 	.config(($stateProvider) => {
 		$stateProvider
 			.state("hdd", {
-				abstract: true,
-				template: "<div ui-view></div>",
-			})
-			.state("hdd.manage", {
 				url: "/hdd",
-				templateURL: manageHddDOM,
-				controller: "ManageHddController",
+				templateUrl: HddDOM,
+				controller: "HddController",
 				controllerAs: "vm",
 			});
 	});
