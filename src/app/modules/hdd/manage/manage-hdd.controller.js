@@ -1,6 +1,6 @@
 import _ from "lodash";
 
-export class HddController {
+export class ManageHddController {
 	constructor (
 		$log
 	) {
