@@ -1,18 +1,22 @@
-import { SummerController } from "./summer.controller";
+import { ManageSummerController } from "./manage/manage-summer.controller";
 
-import summerDOM from "ngtemplate!html!./summer.html";
+import manageSummerDOM from "ngtemplate!html!./manage/manage-summer.html";
 
 export default angular
 	.module("summer", [])
 
-	.controller("SummerController", SummerController)
+	.controller("ManageSummerController", ManageSummerController)
 
 	.config(($stateProvider) => {
 		$stateProvider
 			.state("summer", {
+				abstract: true,
+				template: "<div ui-view></div>",
+			})
+			.state("summer.manage", {
 				url: "/summer",
-				templateUrl: summerDOM,
-				controller: "SummerController",
+				templateUrl: manageSummerDOM,
+				controller: "ManageSummerController",
 				controllerAs: "vm",
 			});
 	});
