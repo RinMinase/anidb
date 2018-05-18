@@ -22,6 +22,7 @@ import DownloadModule from "./modules/download/download.module";
 import HomeModule from "./modules/home/home.module";
 import LastwatchModule from "./modules/lastwatch/lastwatch.module";
 import LoginModule from "./modules/login/login.module";
+import SummerModule from "./modules/summer/summer.module";
 
 angular.module(
 	"anidbAngular", [
@@ -43,6 +44,7 @@ angular.module(
 		HomeModule.name,
 		LastwatchModule.name,
 		LoginModule.name,
+		SummerModule.name,
 	])
 	.config(config)
 	.run(run);
