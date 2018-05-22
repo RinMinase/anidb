@@ -1,5 +1,7 @@
 import { AddHomeController } from "./add/add-home.controller";
 import { ManageHomeController } from "./manage/manage-home.controller";
+import { UpdateHomeController } from "./update/update-home.controller";
+import { ViewHomeController } from "./view/view-home.controller";
 
 import manageHomeDOM from "ngtemplate!html!./manage/manage-home.html";
 
@@ -8,6 +10,8 @@ export default angular
 
 	.controller("AddHomeController", AddHomeController)
 	.controller("ManageHomeController", ManageHomeController)
+	.controller("UpdateHomeController", UpdateHomeController)
+	.controller("ViewHomeController", ViewHomeController)
 
 	.config(($stateProvider) => {
 		$stateProvider
