@@ -16,17 +16,21 @@
 	code.orange { color: #EBA821; }
 	code.blue { color: #00A2E8; }
 
-	code.github-label {
-		.platform-mobile { color: #00ACC1 }
-		.priority-critical { color: #FF8A65 }
-		.priority-high { color: #FFD54F }
-		.priority-normal { color: #81C784 }
-		.resolution-abandoned { color: #424242 }
-		.resolution-duplicate { color: #BDBDBD }
-		.resolution-invalid { color: #E0E0E0 }
-		.type-bug { color: #E53935 }
-		.type-enhancement { color: #1E88E5 }
-		.type-feature-request { color: #BA68C8 }
+	code.github-issues {
+		&.to-do,
+		&.in-progress {
+			display: none;
+		}
+		&.platform-mobile { color: #00ACC1 }
+		&.priority-critical { color: #FF8A65 }
+		&.priority-high { color: #FFD54F }
+		&.priority-normal { color: #81C784 }
+		&.resolution-abandoned { color: #424242 }
+		&.resolution-duplicate { color: #BDBDBD }
+		&.resolution-invalid { color: #E0E0E0 }
+		&.type-bug { color: #E53935 }
+		&.type-enhancement { color: #1E88E5 }
+		&.type-feature-request { color: #BA68C8 }
 	}
 
 	.flex-form-container {

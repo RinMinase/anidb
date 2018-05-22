@@ -223,13 +223,18 @@
 				<div class="col-md-12">
 					<div class="panel panel-green">
 						<div class="panel-heading">
-							<h3 class="panel-title">Major Bugs, Future Changes</h3>
+							<h3 class="panel-title">Issues, Future Changes</h3>
 						</div>
 						<div class="panel-body">
-							<h4>Major Bugs</h4>
+							<h4>Issues</h4>
 							<ul>
-								<li><code class="red">[CRITICAL]</code> Sample critical bug on <code>homepage</code></li>
-								<li><code class="orange">[NON-CRITICAL]</code> Sample non-critical bug</li>
+								<li ng-repeat="issue in vm.githubIssues">
+									<code ng-repeat="labels in issue.labels"
+										class="github-issues {{ labels.class }}">
+										[{{ labels.name }}]
+									</code>
+									<span>{{ issue.title }}</span>
+								</li>
 							</ul><br>
 
 							<h4>Future Changes</h4>

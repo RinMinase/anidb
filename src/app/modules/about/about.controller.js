@@ -1,5 +1,6 @@
 export class AboutController {
 	constructor(
+		$http,
 		$log,
 		$scope,
 		$state,
@@ -8,12 +9,14 @@ export class AboutController {
 		"ngInject";
 
 		_.extend(this, {
+			$http,
 			$log,
 			$scope,
 			$state,
 			firebase,
 			data: {},
 			dataLoaded: false,
+			githubIssues: [],
 		});
 
 		this.activate();
@@ -30,6 +33,40 @@ export class AboutController {
 					});
 			}).catch(() => {
 				this.$state.go("login");
+			});
+
+		this.$http.get("https://api.github.com/repos/RinMinase/anidb/issues")
+			.then((response) => {
+				response.data.map((data) => {
+					if (data.state === "open") {
+						delete data.assignee;
+						delete data.assignees;
+						delete data.author_association;
+						delete data.closed_at;
+						delete data.comments;
+						delete data.comments_url;
+						delete data.events_url;
+						delete data.id;
+						delete data.labels.url;
+						delete data.locked;
+						delete data.milestone;
+						delete data.repository_url;
+						delete data.user;
+
+						data.labels.map((labels) => {
+							delete labels.color;
+							delete labels.default;
+							delete labels.id;
+							delete labels.url;
+
+							labels.class = labels.name.replace(":", "")
+								.replace(new RegExp(" ", "g"), "-")
+								.toLowerCase();
+						});
+					}
+
+					this.githubIssues.push(data);
+				});
 			});
 	}
 
