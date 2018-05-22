@@ -19,7 +19,7 @@
     "postinstall": "npm ddp"
   },
   "dependencies": {
-    "@uirouter/angularjs": "^1.0.17",
+    "@uirouter/angularjs": "^1.0.18",
     "angular": "^1.7.0",
     "angular-animate": "^1.7.0",
     "angular-cookies": "^1.7.0",
