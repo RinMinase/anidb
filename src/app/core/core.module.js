@@ -1,4 +1,5 @@
 import { FirebaseFactory } from "./services/firebase.factory";
+import { GithubApiFactory } from "./services/github-api.factory";
 
 import { NavbarDirective } from "./directives/navbar/navbar.directive";
 import { FooterDirective } from "./directives/footer/footer.directive";
@@ -9,6 +10,7 @@ export default angular
 	.module("core", [])
 
 	.factory("firebase", FirebaseFactory)
+	.factory("githubApi", GithubApiFactory)
 
 	.directive("anidbNavbar", NavbarDirective)
 	.directive("anidbFooter", FooterDirective)
