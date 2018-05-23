@@ -87,7 +87,6 @@ export class AboutController {
 				response.data.map((data) => {
 					delete data.author;
 					delete data.comments_url;
-					delete data.commit.author;
 					delete data.commit.comment_count;
 					delete data.commit.committer;
 					delete data.commit.tree;
@@ -97,6 +96,9 @@ export class AboutController {
 					delete data.parents;
 					delete data.sha;
 					delete data.url;
+
+					data.commit.author.date = moment(new Date(data.commit.author.date))
+						.format("MMM DD, YYYY HH:mm:ss");
 
 					this.githubCommits.push(data);
 				});
