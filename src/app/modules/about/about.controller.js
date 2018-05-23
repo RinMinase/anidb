@@ -18,6 +18,7 @@ export class AboutController {
 			firebase,
 			data: {},
 			dataLoaded: false,
+			githubCommits: [],
 			githubIssues: [],
 		});
 
@@ -37,7 +38,7 @@ export class AboutController {
 				this.$state.go("login");
 			});
 
-		this.$http.get("https://api.github.com/repos/RinMinase/anidb/issues?per_page=100")
+		this.$http.get("https://api.github.com/repos/RinMinase/anidb/issues?page=1&per_page=100")
 			.then((response) => {
 				response.data.map((data) => {
 					if (data.state === "open") {
@@ -78,6 +79,26 @@ export class AboutController {
 
 						this.githubIssues.push(data);
 					}
+				});
+			});
+
+		this.$http.get("https://api.github.com/repos/RinMinase/anidb-angular/commits?per_page=20")
+			.then((response) => {
+				response.data.map((data) => {
+					delete data.author;
+					delete data.comments_url;
+					delete data.commit.author;
+					delete data.commit.comment_count;
+					delete data.commit.committer;
+					delete data.commit.tree;
+					delete data.commit.url;
+					delete data.commit.verification;
+					delete data.committer;
+					delete data.parents;
+					delete data.sha;
+					delete data.url;
+
+					this.githubCommits.push(data);
 				});
 			});
 	}
