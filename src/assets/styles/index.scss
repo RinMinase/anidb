@@ -14,6 +14,9 @@ $roboto-font-path: "../fonts";
 
 @import "node_modules/csspin/csspin";
 
+@import "node_modules/animatewithsass/animate.scss";
+@import "animate-scss-extension";
+
 @import "./bootstrap-extension";
 
 /**
