@@ -15,8 +15,7 @@
     "lint": "eslint --ext .js src\\app",
     "disable-lock": "npm config set package-lock false",
     "precommit": "npm run lint",
-    "prepush": "npm run lint",
-    "postinstall": "npm ddp"
+    "prepush": "npm run lint"
   },
   "dependencies": {
     "@uirouter/angularjs": "^1.0.18",
@@ -29,6 +28,7 @@
     "angular-sanitize": "^1.7.0",
     "angular-toastr": "^2.1.1",
     "angular-ui-bootstrap": "^2.5.6",
+    "animatewithsass": "^3.2.1",
     "babel-core": "^6.7.4",
     "babel-loader": "7.1.1",
     "babel-preset-env": "^1.7.0",
