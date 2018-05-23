@@ -17,6 +17,8 @@
 	code.blue { color: #00A2E8; }
 
 	code.github-issues {
+		padding: 0px;
+
 		&.to-do,
 		&.in-progress {
 			display: none;
@@ -31,6 +33,11 @@
 		&.type-bug { color: #E53935 }
 		&.type-enhancement { color: #1E88E5 }
 		&.type-feature-request { color: #BA68C8 }
+	}
+
+	.list-unstyled hr {
+		margin-top: 5px;
+		margin-bottom: 5px;
 	}
 
 	.flex-form-container {

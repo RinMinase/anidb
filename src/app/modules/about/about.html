@@ -227,13 +227,16 @@
 						</div>
 						<div class="panel-body">
 							<h4>Issues</h4>
-							<ul>
+							<ul class="list-unstyled">
 								<li ng-repeat="issue in vm.githubIssues">
-									<code ng-repeat="labels in issue.labels"
-										class="github-issues {{ labels.class }}">
-										[{{ labels.name }}]
-									</code>
-									<span>{{ issue.title }}</span>
+									<hr><span>#{{ issue.number }} &mdash; {{ issue.title }}</span><br>
+									<span>
+										<code ng-repeat="labels in issue.labels"
+											class="github-issues {{ labels.class }}">
+											[{{ labels.name }}]
+										</code>
+									</span>
+									<span class="small pull-right">{{ issue.dateCreated }}</span>
 								</li>
 							</ul><hr>
 

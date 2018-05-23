@@ -1,3 +1,5 @@
+import moment from "moment";
+
 export class AboutController {
 	constructor(
 		$http,
@@ -35,7 +37,7 @@ export class AboutController {
 				this.$state.go("login");
 			});
 
-		this.$http.get("https://api.github.com/repos/RinMinase/anidb/issues")
+		this.$http.get("https://api.github.com/repos/RinMinase/anidb/issues?per_page=100")
 			.then((response) => {
 				response.data.map((data) => {
 					if (data.state === "open") {
@@ -47,11 +49,19 @@ export class AboutController {
 						delete data.comments_url;
 						delete data.events_url;
 						delete data.id;
-						delete data.labels.url;
+						delete data.labels_url;
 						delete data.locked;
 						delete data.milestone;
 						delete data.repository_url;
+						delete data.state;
 						delete data.user;
+						delete data.updated_at;
+						delete data.url;
+
+						data.dateCreated = moment(new Date(data.created_at))
+							.format("MMM DD, YYYY HH:mm");
+
+						delete data.created_at;
 
 						data.labels.map((labels) => {
 							delete labels.color;
@@ -62,10 +72,12 @@ export class AboutController {
 							labels.class = labels.name.replace(":", "")
 								.replace(new RegExp(" ", "g"), "-")
 								.toLowerCase();
-						});
-					}
 
-					this.githubIssues.push(data);
+							labels.name = labels.name.split(" ")[1];
+						});
+
+						this.githubIssues.push(data);
+					}
 				});
 			});
 	}
