@@ -46,16 +46,16 @@
 
 	a.frameworks {
 		display: inline-block;
-		background-image: url("https://firebasestorage.googleapis.com/v0/b/rin-anidb.appspot.com/o/frameworks.png?alt=media&token=8381dca7-c0e3-49b0-bfaf-45db956a42be");
+		background-image: url("https://firebasestorage.googleapis.com/v0/b/rin-anidb.appspot.com/o/frameworks.png?alt=media&token=9e148877-85dd-4102-b4d7-e27928413472");
 		background-repeat: no-repeat;
 		overflow: hidden;
 
 		&.angular { background-position: -2px -0px; width: 120px; height: 120px; }
 		&.bootstrap { background-position: -124px -0px; width: 120px; height: 120px; }
-		&.es6 { background-position: -2px -122px; width: 120px; height: 120px; }
+		&.es8 { background-position: -2px -122px; width: 120px; height: 120px; }
 		&.firebase { background-position: -124px -122px; width: 120px; height: 120px; }
 		&.sass { background-position: -2px -244px; width: 120px; height: 120px; }
-		&.uibootstrap { background-position: -124px -244px; width: 120px; height: 120px; }
+		&.yarn { background-position: -124px -244px; width: 120px; height: 120px; }
 	}
 
 	div.acknowledgements {
