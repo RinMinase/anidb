@@ -198,13 +198,17 @@ var buildStyles = function() {
 
 /**
  * Font Tasks
+ *
+ * Used *.woff2 formatting
+ *    Disregarded the unability of usage in IE11 to reduce
+ *    the number of files in the compiled (dist/tmp) folder
  */
 var fontpaths = [
-	"node_modules/font-awesome/fonts/*",
-	"node_modules/bootstrap-sass/assets/fonts/bootstrap/*"
+	"node_modules/font-awesome/fonts/*.woff2",
+	"node_modules/bootstrap-sass/assets/fonts/bootstrap/*.woff2"
 ];
 
-var robotofonts = "node_modules/roboto-fontface/fonts/roboto/*";
+var robotofonts = "node_modules/roboto-fontface/fonts/roboto/*.woff2";
 
 gulp.task("fonts_roboto", function () {
 	return gulp.src(robotofonts)
