@@ -4,6 +4,7 @@ import { UpdateHomeController } from "./update/update-home.controller";
 import { ViewHomeController } from "./view/view-home.controller";
 
 import manageHomeDOM from "ngtemplate!html!./manage/manage-home.html";
+import viewHomeDOM from "ngtemplate!html!./view/view-home.html";
 
 export default angular
 	.module("home", [])
@@ -23,6 +24,12 @@ export default angular
 				url: "/",
 				templateUrl: manageHomeDOM,
 				controller: "ManageHomeController",
+				controllerAs: "vm",
+			})
+			.state("home.view", {
+				url: "/view/{id:int}",
+				templateUrl: viewHomeDOM,
+				controller: "ViewHomeController",
 				controllerAs: "vm",
 			});
 	});
