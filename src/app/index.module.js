@@ -5,10 +5,12 @@ import "angular-filter";
 import "angular-hammer";
 import "angular-messages";
 import "angular-sanitize";
+import "angular-sweetalert";
 import "angular-toastr";
 import "angular-ui-bootstrap";
 import uiRouter from "@uirouter/angularjs";
 
+import "sweetalert";
 import "oclazyload";
 import "velocity-animate";
 
@@ -33,9 +35,10 @@ angular.module(
 		"ngCookies",
 		"ngMessages",
 		"ngSanitize",
+		"oitozero.ngSweetAlert",
+		"toastr",
 		uiRouter,
 		"ui.bootstrap",
-		"toastr",
 
 		CoreModule.name,
 
