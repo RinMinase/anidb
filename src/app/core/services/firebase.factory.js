@@ -92,7 +92,7 @@ export function FirebaseFactory() {
 		orderDesc = false
 	) {
 		if (process.env.DATABASE !== "testing") {
-			id = id || "";
+			id = (id) ? `/${id}` : "";
 
 			limit = (!isNaN(parseInt(limit))) ? parseInt(limit) : 0;
 
@@ -149,7 +149,6 @@ export function FirebaseFactory() {
 				resolve(database());
 			});
 		}
-
 	}
 
 	function update(db, id, data) {
@@ -170,7 +169,8 @@ export function FirebaseFactory() {
 	}
 
 	function _objectToArray(data) {
-		if (angular.isObject(data)) {
+		if (Object.keys(data)[0] === "0"
+			&& angular.isObject(data)) {
 			const output = [];
 
 			Object.keys(data).map((key, index) => {
