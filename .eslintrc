@@ -31,7 +31,8 @@
   "rules": {
     # Possible Errors
     "no-unexpected-multiline":          ["warn"],
-    "no-debugger":                      "off",
+    "no-debugger":                      "warn",
+    "no-console":                       "warn",
 
     # Best Practices
     "curly":                            "warn",
