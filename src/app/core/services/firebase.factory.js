@@ -1,7 +1,10 @@
 import firebase from "firebase";
 import Promise from "bluebird";
 
-import { database } from "../../index.database";
+let database;
+
+// eslint-disable-next-line
+try { database = require("../../index.database"); } catch (e) { }
 
 export function FirebaseFactory() {
 	"ngInject";
