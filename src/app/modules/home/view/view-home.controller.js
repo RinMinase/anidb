@@ -3,6 +3,7 @@ import _ from "lodash";
 export class ViewHomeController {
 	constructor (
 		$log,
+		$scope,
 		$state,
 		$stateParams,
 		firebase
@@ -11,9 +12,12 @@ export class ViewHomeController {
 
 		_.extend(this, {
 			$log,
+			$scope,
 			$state,
 			$stateParams,
 			firebase,
+			data: {},
+			dataLoaded: false,
 		});
 
 		this.activate();
@@ -24,7 +28,17 @@ export class ViewHomeController {
 			.then(() => {
 				this.firebase.retrieve("anime", this.$stateParams.id)
 					.then((data) => {
-						this.$log.log(data);
+						if (data.variants) {
+							data.shortTitle = data.variants.split(",")
+								.sort((a, b) => a.length - b.length)[0];
+						}
+
+						data.variants = data.variants.split(",");
+						data.offquel = data.offquel.split(",");
+
+						this.data = data;
+						this.dataLoaded = true;
+						this.$scope.$apply();
 					});
 			}).catch(() => {
 				this.$state.go("login");
