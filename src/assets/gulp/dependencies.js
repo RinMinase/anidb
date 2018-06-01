@@ -79,7 +79,8 @@ function webpackWrapper(watch, callback) {
 			}]
 		},
 		plugins: [ new Dotenv({ path: "./src/assets/.env" }) ],
-		output: { filename: "index.module.js" }
+		output: { filename: "index.module.js" },
+		node: { fs: "empty" }
 	};
 
 	if (watch) {
