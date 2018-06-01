@@ -2,4 +2,8 @@
 	.flex-form-container {
 		height: calc(100vh - 72px - 49px - 50px);
 	}
+
+	#animeTable tr.anime-table-row td {
+		cursor: pointer;
+	}
 }

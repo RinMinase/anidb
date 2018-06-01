@@ -63,9 +63,11 @@
 						'remarks'
 					]: search -->
 					<tbody>
-						<tr ng-repeat="data in vm.data
-							| orderBy: !vm.$scope.search && ['quality','title']
-							| fuzzyBy: 'title': search">
+						<tr class="anime-table-row"
+							ng-click="vm.view(data.id)"
+							ng-repeat="data in vm.data
+								| orderBy: !vm.$scope.search && ['quality','title']
+								| fuzzyBy: 'title': search">
 
 							<td>
 								<quality-legend value="{{ data.quality }}"></quality-legend>

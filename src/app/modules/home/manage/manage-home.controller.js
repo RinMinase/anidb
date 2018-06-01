@@ -6,6 +6,7 @@ import addHomeDOM from "ngtemplate!html!../add/add-home.html";
 
 export class ManageHomeController {
 	constructor (
+		$location,
 		$log,
 		$scope,
 		$state,
@@ -15,6 +16,7 @@ export class ManageHomeController {
 		"ngInject";
 
 		_.extend(this, {
+			$location,
 			$log,
 			$scope,
 			$state,
@@ -78,14 +80,16 @@ export class ManageHomeController {
 	}
 
 	formatData(data) {
-		return data.map((value) => {
+		const dataKeys = Object.keys(data);
 
+		return data.map((value, index) => {
 			if (value.watchStatus > 1) {
 				return;
 			}
 
 			value.filesize = this._convertFilesize(value.filesize);
 			value.dateFinished = moment.unix(value.dateFinished).format("MMM DD, YYYY");
+			value.id = dataKeys[index];
 
 			delete value.duration;
 			delete value.firstSeasonTitle;
@@ -108,6 +112,10 @@ export class ManageHomeController {
 			controllerAs: "vm",
 			backdrop: "static",
 		});
+	}
+
+	view(id) {
+		this.$location.path(`/view/${id}`);
 	}
 
 	_convertFilesize(filesize) {
