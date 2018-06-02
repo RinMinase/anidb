@@ -2,9 +2,14 @@
 
 <div class="container-fluid anidb-lastwatch">
 
+	<div class="flex-form-container"
+		ng-class="{'hidden': vm.dataLoaded === true}">
+		<div class="cp-spinner cp-eclipse"></div>
+	</div>
+
 	<div class="row">
 
-		<div class="col-md-3">
+		<div class="col-lg-3 animate slideInLeft" ng-class="{'hidden': vm.dataLoaded === false}">
 			<div class="panel panel-green">
 				<div class="panel-heading">
 					<h4>Statistics (Last 20 Watched)</h4>
@@ -16,27 +21,27 @@
 								<tr>
 									<th>Total Episodes</th>
 									<th>:</th>
-									<th class="text-center">{{ vm.totalEpisodes || "&mdash;" }}</th>
+									<th class="text-center">{{ vm.totalEpisodes }}</th>
 								</tr>
 								<tr>
 									<th>Days Since Last Anime</th>
 									<th>:</th>
-									<th class="text-center">{{ vm.daysSinceLastAnime || "&mdash;" }}</th>
+									<th class="text-center">{{ vm.daysSinceLastAnime }}</th>
 								</tr>
 								<tr>
 									<th>Titles per Day</th>
 									<th>:</th>
-									<th class="text-center">{{ vm.titlesPerDay || "&mdash;" }}</th>
+									<th class="text-center">{{ vm.titlesPerDay }}</th>
 								</tr>
 								<tr>
 									<th>Single Season per Day<br><small>(12 Episodes)</small></th>
 									<th>:</th>
-									<th class="text-center">{{ vm.singleSeasonPerDay || "&mdash;" }}</th>
+									<th class="text-center">{{ vm.singleSeasonPerDay }}</th>
 								</tr>
 								<tr>
 									<th>Episodes per Day</th>
 									<th>:</th>
-									<th class="text-center">{{ vm.episodesPerDay || "&mdash;" }}</th>
+									<th class="text-center">{{ vm.episodesPerDay }}</th>
 								</tr>
 							</tbody>
 						</table>
@@ -45,13 +50,7 @@
 			</div>
 		</div>
 
-
-		<div class="flex-form-container"
-			ng-class="{'hidden': vm.dataLoaded === true}">
-			<div class="cp-spinner cp-eclipse"></div>
-		</div>
-
-		<div class="col-md-9" ng-class="{'hidden': vm.dataLoaded === false}">
+		<div class="col-lg-9 col-md-12 animate slideInUp" ng-class="{'hidden': vm.dataLoaded === false}">
 			<div class="table-responsive">
 				<table class="table table-condensed">
 					<thead>
@@ -64,34 +63,7 @@
 					<tbody>
 						<tr ng-repeat="data in vm.data">
 							<td ng-switch="data.quality">
-								<div class="anime-legend-container">
-									<div class="anime-legend anime-legend-uhd"
-										uib-tooltip="{{ data.quality }}"
-										tooltip-placement="right"
-										ng-switch-when="4K 2160p">
-									</div>
-									<div class="anime-legend anime-legend-fhd"
-										uib-tooltip="{{ data.quality }}"
-										tooltip-placement="right"
-										ng-switch-when="FHD 1080p">
-									</div>
-									<div class="anime-legend anime-legend-hd"
-										uib-tooltip="{{ data.quality }}"
-										tooltip-placement="right"
-										ng-switch-when="HD 720p">
-									</div>
-									<div class="anime-legend anime-legend-hq"
-										uib-tooltip="{{ data.quality }}"
-										tooltip-placement="right"
-										ng-switch-when="HQ 480p">
-									</div>
-									<div class="anime-legend anime-legend-lq"
-										uib-tooltip="{{ data.quality }}"
-										tooltip-placement="right"
-										ng-switch-when="LQ 360p">
-									</div>
-								</div>
-
+								<quality-legend value="{{ data.quality }}"></quality-legend>
 								<span>{{ data.title }}</span>
 							</td>
 
