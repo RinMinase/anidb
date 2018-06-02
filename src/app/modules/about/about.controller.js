@@ -44,42 +44,29 @@ export class AboutController {
 			.then((response) => {
 				response.data.map((data) => {
 					if (data.state === "open") {
-						delete data.assignee;
-						delete data.assignees;
-						delete data.author_association;
-						delete data.closed_at;
-						delete data.comments;
-						delete data.comments_url;
-						delete data.events_url;
-						delete data.id;
-						delete data.labels_url;
-						delete data.locked;
-						delete data.milestone;
-						delete data.repository_url;
-						delete data.state;
-						delete data.user;
-						delete data.updated_at;
-						delete data.url;
-
-						data.dateCreated = moment(new Date(data.created_at))
+						const labels = [];
+						const date = moment(new Date(data.created_at))
 							.format("MMM DD, YYYY HH:mm");
 
-						delete data.created_at;
-
-						data.labels.map((labels) => {
-							delete labels.color;
-							delete labels.default;
-							delete labels.id;
-							delete labels.url;
-
-							labels.class = labels.name.replace(":", "")
+						data.labels.map((label) => {
+							const className = label.name.replace(":", "")
 								.replace(new RegExp(" ", "g"), "-")
 								.toLowerCase();
 
-							labels.name = labels.name.split(" ")[1];
+							labels.push({
+								class: className,
+								name: label.name.split(" ")[1],
+							});
 						});
 
-						this.githubIssues.push(data);
+						this.githubIssues.push({
+							body: data.body,
+							date,
+							labels,
+							number: data.number,
+							title: data.title,
+							url: data.html_url,
+						});
 					}
 				});
 			});
