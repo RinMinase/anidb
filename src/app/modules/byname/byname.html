@@ -1,9 +1,14 @@
 <anidb-navbar></anidb-navbar>
 
 <div class="container-fluid anidb-byname">
-	<div class="row">
+	<div class="flex-form-container"
+		ng-class="{'hidden': vm.dataLoaded === true}">
+		<div class="cp-spinner cp-eclipse"></div>
+	</div>
 
-		<div class="col-md-3">
+	<div class="row" ng-class="{'hidden': vm.dataLoaded === false}">
+
+		<div class="col-lg-3 animate slideInLeft">
 			<div class="panel panel-green">
 
 				<div class="panel-heading">
@@ -16,8 +21,7 @@
 						<div class="cp-spinner cp-eclipse"></div>
 					</div>
 
-					<div class="table-responsive"
-						ng-class="{'hidden': vm.dataLoaded === false}">
+					<div class="table-responsive">
 						<table class="table table-condensed">
 							<thead>
 								<tr>
@@ -40,15 +44,8 @@
 			</div>
 		</div>
 
-		<div class="col-md-9">
-			<div class="flex-form-container"
-				ng-class="{'hidden': vm.dataLoaded === true}">
-				<div class="cp-spinner cp-eclipse"></div>
-			</div>
-
-			<div class="panel-group"
-				ng-class="{'hidden': vm.dataLoaded === false}">
-
+		<div class="col-lg-9 animate slideInUp">
+			<div class="panel-group">
 				<div class="panel panel-default"
 					ng-repeat="data in vm.data"
 					ng-hide="data.filesize === '-'">
@@ -89,7 +86,6 @@
 						</div>
 					</div>
 				</div>
-
 			</div>
 		</div>
 

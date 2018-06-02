@@ -1,13 +1,5 @@
 .anidb-byname {
-	.col-md-3{
-		.flex-form-container {
-			height: 300px;
-		}
-	}
-
-	.col-md-9{
-		.flex-form-container {
-			height: calc(100vh - 50px);
-		}
+	.flex-form-container {
+		height: calc(100vh - 72px - 50px);
 	}
 }
