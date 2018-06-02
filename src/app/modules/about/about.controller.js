@@ -115,7 +115,10 @@ export class AboutController {
 				response.data.map((data) => {
 					const { date } = data.commit.author;
 					const rawMessage = data.commit.message.split(":");
-					const rawModule = rawMessage[0].trimStart().toLowerCase();
+					const rawModule = rawMessage[0]
+						.trimStart()
+						.toLowerCase()
+						.replace(new RegExp("_", "g"), " ");
 					const module = (rawModule === "anidb") ? "" : rawModule;
 					const message = rawMessage[1].trimStart();
 					const commitDate = moment(new Date(date)).format("YYYYMMDD");
