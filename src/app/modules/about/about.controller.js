@@ -20,7 +20,7 @@ export class AboutController {
 			GITHUB_API,
 			data: {},
 			dataLoaded: false,
-			githubCommits: [],
+			githubCommits: {},
 			githubIssues: [],
 		});
 
@@ -32,7 +32,7 @@ export class AboutController {
 			.then(() => {
 				this.firebase.retrieve()
 					.then((data) => {
-						this.formatData(data);
+						this._formatData(data);
 						this.dataLoaded = true;
 						this.$scope.$apply();
 					});
@@ -45,8 +45,6 @@ export class AboutController {
 				response.data.map((data) => {
 					if (data.state === "open") {
 						const labels = [];
-						const date = moment(new Date(data.created_at))
-							.format("MMM DD, YYYY HH:mm");
 
 						data.labels.map((label) => {
 							const className = label.name.replace(":", "")
@@ -61,7 +59,7 @@ export class AboutController {
 
 						this.githubIssues.push({
 							body: data.body,
-							date,
+							date: this._convertDate(data.created_at),
 							labels,
 							number: data.number,
 							title: data.title,
@@ -74,21 +72,43 @@ export class AboutController {
 		this.$http.get(this.GITHUB_API.commits)
 			.then((response) => {
 				response.data.map((data) => {
-					const commitDate = moment(new Date(data.commit.author.date))
-						.format("MMM DD, YYYY HH:mm:ss");
-
-					this.githubCommits.push({
-						date: commitDate,
+					const { date } = data.commit.author;
+					const rawMessage = data.commit.message.split(":");
+					const rawModule = rawMessage[0].trimStart().toLowerCase();
+					const module = (rawModule === "anidb") ? "" : rawModule;
+					const message = rawMessage[1].trimStart();
+					const commitDate = moment(new Date(date)).format("YYYYMMDD");
+					const title = moment(new Date(date)).format("MMM DD, YYYY");
+					const commitData = {
+						date: this._convertDate(date),
 						email: data.commit.author.email,
 						name: data.commit.author.name,
-						message: data.commit.message,
+						message,
+						module,
 						url: data.html_url,
-					});
+					};
+
+					if (!this.githubCommits[commitDate]) {
+						this.githubCommits[commitDate] = {
+							fix: [],
+							new: [],
+							improve: [],
+							title,
+						};
+					}
+
+					if (message.includes("fixed") || message.includes("removed")) {
+						this.githubCommits[commitDate].fix.push(commitData);
+					} else if (message.includes("added") || message.includes("functional")) {
+						this.githubCommits[commitDate].new.push(commitData);
+					} else {
+						this.githubCommits[commitDate].improve.push(commitData);
+					}
 				});
 			});
 	}
 
-	formatData(data) {
+	_formatData(data) {
 		this.data.quality = {
 			uhd: 0,
 			fhd: 0,
@@ -149,5 +169,10 @@ export class AboutController {
 
 		this.data.totalFilesizeGB = parseFloat(totalFilesize / 1073741824).toFixed(2);
 		this.data.totalFilesizeTB = parseFloat(totalFilesize / 1099511627776).toFixed(2);
+	}
+
+	_convertDate(date) {
+		return moment(new Date(date))
+			.format("MMM DD, YYYY HH:mm:ss");
 	}
 }
