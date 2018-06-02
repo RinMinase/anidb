@@ -6,7 +6,8 @@ export class AboutController {
 		$log,
 		$scope,
 		$state,
-		firebase
+		firebase,
+		GITHUB_API
 	) {
 		"ngInject";
 
@@ -16,6 +17,7 @@ export class AboutController {
 			$scope,
 			$state,
 			firebase,
+			GITHUB_API,
 			data: {},
 			dataLoaded: false,
 			githubCommits: [],
@@ -38,7 +40,7 @@ export class AboutController {
 				this.$state.go("login");
 			});
 
-		this.$http.get("https://api.github.com/repos/RinMinase/anidb/issues?page=1&per_page=100")
+		this.$http.get(this.GITHUB_API.issues)
 			.then((response) => {
 				response.data.map((data) => {
 					if (data.state === "open") {
@@ -82,25 +84,19 @@ export class AboutController {
 				});
 			});
 
-		this.$http.get("https://api.github.com/repos/RinMinase/anidb-angular/commits?per_page=20")
+		this.$http.get(this.GITHUB_API.commits)
 			.then((response) => {
 				response.data.map((data) => {
-					delete data.author;
-					delete data.comments_url;
-					delete data.commit.comment_count;
-					delete data.commit.committer;
-					delete data.commit.tree;
-					delete data.commit.url;
-					delete data.commit.verification;
-					delete data.committer;
-					delete data.parents;
-					delete data.sha;
-					delete data.url;
-
-					data.commit.author.date = moment(new Date(data.commit.author.date))
+					const commitDate = moment(new Date(data.commit.author.date))
 						.format("MMM DD, YYYY HH:mm:ss");
 
-					this.githubCommits.push(data);
+					this.githubCommits.push({
+						date: commitDate,
+						email: data.commit.author.email,
+						name: data.commit.author.name,
+						message: data.commit.message,
+						url: data.html_url,
+					});
 				});
 			});
 	}
