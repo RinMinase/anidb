@@ -12,7 +12,7 @@
 			<div class="animate slideInLeft">
 				<div class="row mb-2">
 					<div class="col-lg-12 mb-2 hidden-sm hidden-md">
-						<a class="btn btn-primary btn-block">
+						<a class="btn btn-primary btn-block" ui-sref="home.manage">
 							<i class="fa fa-angle-left"></i>
 							<span>&nbsp;&nbsp;&nbsp;Back</span>
 						</a>
@@ -275,7 +275,7 @@
 					<div class="row">
 						<div class="col-lg-6">
 							<div class="row">
-								<div class="col-lg-12">
+								<div class="col-lg-12" ng-if="vm.data.releaseYear">
 									<p class="big">
 										<span ng-if="vm.data.releaseSeason"
 											ng-switch="vm.data.releaseSeason">
@@ -284,7 +284,9 @@
 											<i class="fa fa-sun-o" ng-switch-when="Summer"></i>
 											<i class="fa fa-tree" ng-switch-when="Fall"></i>
 										</span>
-										<span>{{ vm.data.releaseSeason }}&nbsp;</span>
+										<span ng-if="vm.data.releaseSeason">
+											{{ vm.data.releaseSeason }}&nbsp;
+										</span>
 										<span>{{ vm.data.releaseYear }}</span>
 									</p>
 								</div>
