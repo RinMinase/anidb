@@ -264,8 +264,17 @@
 						</div>
 						<div class="panel-body">
 							<h4>Issues</h4>
+							<div class="text-center">
+								<ul uib-pagination
+									total-items="vm.issuesMaxSize"
+									ng-model="vm.issuesCurrentPage"
+									max-size="5"
+									class="pagination-sm"
+									boundary-link-numbers="true">
+								</ul>
+							</div>
 							<ul class="list-unstyled">
-								<li ng-repeat="issue in vm.githubIssues">
+								<li ng-repeat="issue in vm.githubIssues[vm.issuesCurrentPage]">
 									<hr><span>#{{ issue.number }} &mdash; {{ issue.title }}</span><br>
 									<span>
 										<code ng-repeat="labels in issue.labels"
@@ -275,7 +284,16 @@
 									</span>
 									<span class="small pull-right">{{ issue.date }}</span>
 								</li>
-							</ul><hr>
+							</ul>
+							<div class="text-center">
+								<ul uib-pagination
+									total-items="vm.issuesMaxSize"
+									ng-model="vm.issuesCurrentPage"
+									max-size="5"
+									class="pagination-sm"
+									boundary-link-numbers="true">
+								</ul>
+							</div><hr>
 
 							<h4>Package Update Issues</h4>
 							<ul>

@@ -18,10 +18,12 @@ export class AboutController {
 			$state,
 			firebase,
 			GITHUB_API,
+			issuesCurrentPage: 1,
+			issuesMaxSize: 10,
 			data: {},
 			dataLoaded: false,
 			githubCommits: {},
-			githubIssues: [],
+			githubIssues: {0: []},
 		});
 
 		this.activate();
@@ -40,72 +42,8 @@ export class AboutController {
 				this.$state.go("login");
 			});
 
-		this.$http.get(this.GITHUB_API.issues)
-			.then((response) => {
-				response.data.map((data) => {
-					if (data.state === "open") {
-						const labels = [];
-
-						data.labels.map((label) => {
-							const className = label.name.replace(":", "")
-								.replace(new RegExp(" ", "g"), "-")
-								.toLowerCase();
-
-							labels.push({
-								class: className,
-								name: label.name.split(" ")[1],
-							});
-						});
-
-						this.githubIssues.push({
-							body: data.body,
-							date: this._convertDate(data.created_at),
-							labels,
-							number: data.number,
-							title: data.title,
-							url: data.html_url,
-						});
-					}
-				});
-			});
-
-		this.$http.get(this.GITHUB_API.commits)
-			.then((response) => {
-				response.data.map((data) => {
-					const { date } = data.commit.author;
-					const rawMessage = data.commit.message.split(":");
-					const rawModule = rawMessage[0].trimStart().toLowerCase();
-					const module = (rawModule === "anidb") ? "" : rawModule;
-					const message = rawMessage[1].trimStart();
-					const commitDate = moment(new Date(date)).format("YYYYMMDD");
-					const title = moment(new Date(date)).format("MMM DD, YYYY");
-					const commitData = {
-						date: this._convertDate(date),
-						email: data.commit.author.email,
-						name: data.commit.author.name,
-						message,
-						module,
-						url: data.html_url,
-					};
-
-					if (!this.githubCommits[commitDate]) {
-						this.githubCommits[commitDate] = {
-							fix: [],
-							new: [],
-							improve: [],
-							title,
-						};
-					}
-
-					if (message.includes("fixed") || message.includes("removed")) {
-						this.githubCommits[commitDate].fix.push(commitData);
-					} else if (message.includes("added") || message.includes("functional")) {
-						this.githubCommits[commitDate].new.push(commitData);
-					} else {
-						this.githubCommits[commitDate].improve.push(commitData);
-					}
-				});
-			});
+		this._getGithubIssues();
+		this._getGithubCommits();
 	}
 
 	_formatData(data) {
@@ -169,6 +107,84 @@ export class AboutController {
 
 		this.data.totalFilesizeGB = parseFloat(totalFilesize / 1073741824).toFixed(2);
 		this.data.totalFilesizeTB = parseFloat(totalFilesize / 1099511627776).toFixed(2);
+	}
+
+	_getGithubCommits() {
+		this.$http.get(this.GITHUB_API.commits)
+			.then((response) => {
+				response.data.map((data) => {
+					const { date } = data.commit.author;
+					const rawMessage = data.commit.message.split(":");
+					const rawModule = rawMessage[0].trimStart().toLowerCase();
+					const module = (rawModule === "anidb") ? "" : rawModule;
+					const message = rawMessage[1].trimStart();
+					const commitDate = moment(new Date(date)).format("YYYYMMDD");
+					const title = moment(new Date(date)).format("MMM DD, YYYY");
+					const commitData = {
+						date: this._convertDate(date),
+						email: data.commit.author.email,
+						name: data.commit.author.name,
+						message,
+						module,
+						url: data.html_url,
+					};
+
+					if (!this.githubCommits[commitDate]) {
+						this.githubCommits[commitDate] = {
+							fix: [],
+							new: [],
+							improve: [],
+							title,
+						};
+					}
+
+					if (message.includes("fixed") || message.includes("removed")) {
+						this.githubCommits[commitDate].fix.push(commitData);
+					} else if (message.includes("added") || message.includes("functional")) {
+						this.githubCommits[commitDate].new.push(commitData);
+					} else {
+						this.githubCommits[commitDate].improve.push(commitData);
+					}
+				});
+			});
+	}
+
+	_getGithubIssues() {
+		this.$http.get(this.GITHUB_API.issues)
+			.then((response) => {
+				response.data.map((data) => {
+					if (data.state === "open") {
+						const labels = [];
+
+						data.labels.map((label) => {
+							const className = label.name.replace(":", "")
+								.replace(new RegExp(" ", "g"), "-")
+								.toLowerCase();
+
+							labels.push({
+								class: className,
+								name: label.name.split(" ")[1],
+							});
+						});
+
+						const { length } = Object.keys(this.githubIssues);
+
+						if (this.githubIssues[length - 1].length === 9) {
+							this.githubIssues[length] = [];
+							this.issuesMaxSize = length * 10;
+						}
+
+						this.githubIssues[length - 1].push({
+							body: data.body,
+							date: this._convertDate(data.created_at),
+							labels,
+							number: data.number,
+							title: data.title,
+							url: data.html_url,
+						});
+					}
+				});
+			});
 	}
 
 	_convertDate(date) {
