@@ -144,7 +144,7 @@ export function FirebaseFactory() {
 						.orderByChild(orderKey)
 						.limitToLast(limit)
 						.once("value")
-						.then((data) => _objectToArray(data.val()).reverse());
+						.then((data) => _objectToArray(data.val()));
 				}
 			}
 		} else {
@@ -172,7 +172,7 @@ export function FirebaseFactory() {
 	}
 
 	function _objectToArray(data) {
-		if (Object.keys(data)[0] === "0"
+		if (!isNaN(Object.keys(data)[0])
 			&& angular.isObject(data)) {
 			const output = [];
 
