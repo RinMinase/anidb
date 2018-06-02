@@ -6,6 +6,8 @@ import { FooterDirective } from "./directives/footer/footer.directive";
 import { QualityLegendDirective } from "./directives/quality-legend/quality-legend.directive";
 import { SkillsetBarDirective } from "./directives/skillset-bar/skillset-bar.directive";
 
+import { githubConstants } from "./constants/github-api.constant.js";
+
 export default angular
 	.module("core", [])
 
@@ -15,4 +17,6 @@ export default angular
 	.directive("anidbNavbar", NavbarDirective)
 	.directive("anidbFooter", FooterDirective)
 	.directive("qualityLegend", QualityLegendDirective)
-	.directive("skillsetBar", SkillsetBarDirective);
+	.directive("skillsetBar", SkillsetBarDirective)
+
+	.constant("GITHUB_API", githubConstants());

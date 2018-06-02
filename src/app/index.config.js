@@ -1,7 +1,7 @@
 import _ from "lodash";
 import firebase from "firebase";
 
-export function config (
+export function config(
 	$locationProvider,
 	$logProvider,
 	$urlRouterProvider,
@@ -56,6 +56,6 @@ export function config (
 	};
 }
 
-export function run () {
+export function run() {
 	"ngInject";
 }
