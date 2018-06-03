@@ -2,5 +2,9 @@
 	textarea {
 		resize: none;
 		height: 187px;
+
+		@media (max-width: 767px) {
+			height: 60px;
+		}
 	}
 }

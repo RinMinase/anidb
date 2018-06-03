@@ -4,13 +4,13 @@
 			<i class="fa fa-times"></i>
 		</button>
 		<div class="modal-header">
-			<i class="fa fa-plus modal-icon"></i>
+			<i class="fa fa-plus modal-icon hidden-xs"></i>
 			<h4 class="modal-title">Add Title</h4>
 		</div>
 
 		<div class="modal-body">
 			<div class="row">
-				<div class="col-lg-3 pr-0">
+				<div class="col-md-3 col-xs-6 pr-0">
 					<div class="form-group">
 						<label>Quality</label>
 						<select class="form-control">
@@ -21,13 +21,13 @@
 						</select>
 					</div>
 				</div>
-				<div class="col-lg-6 pr-0">
+				<div class="col-md-6 hidden-xs pr-0">
 					<div class="form-group">
 						<label>Title</label>
 						<input type="text" class="form-control">
 					</div>
 				</div>
-				<div class="col-lg-3">
+				<div class="col-md-3 col-xs-6">
 					<div class="form-group">
 						<label>Status</label>
 						<select class="form-control">
@@ -37,34 +37,58 @@
 						</select>
 					</div>
 				</div>
+				<div class="col-xs-12 hidden-md hidden-lg">
+					<div class="form-group">
+						<label>Title</label>
+						<input type="text" class="form-control">
+					</div>
+				</div>
 			</div>
 
 			<div class="row">
-				<div class="col-lg-2 pr-0">
+				<div class="col-md-2 hidden-xs pr-0">
 					<div class="form-group">
 						<label>Episodes</label>
 						<input type="text" class="form-control">
 					</div>
 				</div>
-				<div class="col-lg-2 pr-0">
+				<div class="col-xs-2 hidden-md hidden-lg pr-0">
+					<div class="form-group">
+						<label>EPs</label>
+						<input type="text" class="form-control">
+					</div>
+				</div>
+				<div class="col-md-2 hidden-xs pr-0">
 					<div class="form-group">
 						<label>OVAs</label>
 						<input type="text" class="form-control">
 					</div>
 				</div>
-				<div class="col-lg-2 pr-0">
+				<div class="col-xs-2 hidden-md hidden-lg pr-0">
+					<div class="form-group">
+						<label>OVAs</label>
+						<input type="text" class="form-control">
+					</div>
+				</div>
+				<div class="col-md-2 hidden-xs pr-0">
 					<div class="form-group">
 						<label>Specials</label>
 						<input type="text" class="form-control">
 					</div>
 				</div>
-				<div class="col-lg-3 pr-0">
+				<div class="col-xs-2 hidden-md hidden-lg pr-0">
+					<div class="form-group">
+						<label>SPs</label>
+						<input type="text" class="form-control">
+					</div>
+				</div>
+				<div class="col-md-3 hidden-xs pr-0">
 					<div class="form-group">
 						<label>Date Finished</label>
 						<input type="text" class="form-control">
 					</div>
 				</div>
-				<div class="col-lg-3">
+				<div class="col-md-3 col-xs-6">
 					<div class="form-group">
 						<label>Filesize</label>
 						<input type="text" class="form-control">
@@ -73,19 +97,25 @@
 			</div>
 
 			<div class="row">
-				<div class="col-lg-2 pr-0">
+				<div class="col-md-2 col-xs-3 pr-0">
 					<div class="form-group">
 						<label>Season #</label>
 						<input type="text" class="form-control">
 					</div>
 				</div>
-				<div class="col-lg-4 pr-0">
+				<div class="col-md-4 hidden-xs pr-0">
 					<div class="form-group">
 						<label>First Season Title</label>
 						<input type="text" class="form-control">
 					</div>
 				</div>
-				<div class="col-lg-5 pr-0">
+				<div class="col-xs-9 hidden-md hidden-lg">
+					<div class="form-group">
+						<label>First Season Title</label>
+						<input type="text" class="form-control">
+					</div>
+				</div>
+				<div class="col-md-4 col-xs-10 pr-0">
 					<div class="form-group">
 						<label>Release</label>
 						<input type="text" class="form-control">
@@ -109,7 +139,7 @@
 						</div>
 					</div> -->
 				</div>
-				<div class="col-lg-1">
+				<div class="col-md-2 col-xs-2">
 					<div class="form-group text-center">
 						<label>HDD</label><br>
 						<input type="checkbox" value="">
@@ -118,19 +148,25 @@
 			</div>
 
 			<div class="row">
-				<div class="col-lg-3 pr-0">
+				<div class="col-md-3 col-xs-5 pr-0">
 					<div class="form-group">
 						<label>Duration</label>
 						<input type="text" class="form-control">
 					</div>
 				</div>
-				<div class="col-lg-5 pr-0">
+				<div class="col-xs-7 hidden-md hidden-lg">
+					<div class="form-group">
+						<label>Date Finished</label>
+						<input type="text" class="form-control">
+					</div>
+				</div>
+				<div class="col-md-5 col-xs-6 pr-0">
 					<div class="form-group">
 						<label>Encoder</label>
 						<input type="text" class="form-control">
 					</div>
 				</div>
-				<div class="col-lg-4">
+				<div class="col-md-4 col-xs-6">
 					<div class="form-group">
 						<label>Remarks</label>
 						<input type="text" class="form-control">
@@ -139,25 +175,31 @@
 			</div>
 
 			<div class="row">
-				<div class="col-lg-5 pr-0">
+				<div class="col-md-5 hidden-xs pr-0">
 					<div class="form-group">
 						<label>Variants</label>
-						<textarea class="form-control" rows="8"></textarea>
+						<textarea class="form-control"></textarea>
 					</div>
 				</div>
-				<div class="col-lg-7">
+				<div class="col-xs-12 hidden-md hidden-lg">
+					<div class="form-group">
+						<label>Variants</label>
+						<textarea class="form-control"></textarea>
+					</div>
+				</div>
+				<div class="col-md-7 col-xs-12">
 					<div class="form-group">
 						<label>Prequel</label>
 						<input type="text" class="form-control">
 					</div>
 				</div>
-				<div class="col-lg-7">
+				<div class="col-md-7 col-xs-12">
 					<div class="form-group">
 						<label>Sequel</label>
 						<input type="text" class="form-control">
 					</div>
 				</div>
-				<div class="col-lg-7">
+				<div class="col-md-7 col-xs-12">
 					<div class="form-group">
 						<label>Offquel</label>
 						<div class="input-group">
