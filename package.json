@@ -13,9 +13,7 @@
     "build": "gulp serve:dist",
     "deploy": "firebase deploy",
     "lint": "eslint --ext .js src\\app",
-    "disable-lock": "npm config set package-lock false",
-    "precommit": "npm run lint",
-    "prepush": "npm run lint"
+    "disable-lock": "npm config set package-lock false"
   },
   "dependencies": {
     "@uirouter/angularjs": "^1.0.18",
@@ -63,7 +61,6 @@
     "gulp-useref": "^3.0.3",
     "gulp-util": "^3.0.6",
     "html-loader": "^0.5.5",
-    "husky": "^0.14.3",
     "lodash": "^4.17.5",
     "moment": "^2.22.1",
     "ng-annotate-loader": "0.0.10",
