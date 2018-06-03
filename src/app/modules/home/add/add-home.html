@@ -1,4 +1,4 @@
-<div class="inmodal">
+<div class="inmodal add-home">
 	<form>
 		<button type="button" class="close" ng-click="vm.cancel()">
 			<i class="fa fa-times"></i>
@@ -9,7 +9,169 @@
 		</div>
 
 		<div class="modal-body">
-			<p>Modal Body!</p>
+			<div class="row">
+				<div class="col-lg-3 pr-0">
+					<div class="form-group">
+						<label>Quality</label>
+						<select class="form-control">
+							<option>4k 2160p</option>
+							<option selected>FHD 1080p</option>
+							<option>HD 720p</option>
+							<option>HQ 480p</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-lg-6 pr-0">
+					<div class="form-group">
+						<label>Title</label>
+						<input type="text" class="form-control">
+					</div>
+				</div>
+				<div class="col-lg-3">
+					<div class="form-group">
+						<label>Status</label>
+						<select class="form-control">
+							<option>Watched</option>
+							<option>Downloaded</option>
+							<option>Queued</option>
+						</select>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-2 pr-0">
+					<div class="form-group">
+						<label>Episodes</label>
+						<input type="text" class="form-control">
+					</div>
+				</div>
+				<div class="col-lg-2 pr-0">
+					<div class="form-group">
+						<label>OVAs</label>
+						<input type="text" class="form-control">
+					</div>
+				</div>
+				<div class="col-lg-2 pr-0">
+					<div class="form-group">
+						<label>Specials</label>
+						<input type="text" class="form-control">
+					</div>
+				</div>
+				<div class="col-lg-3 pr-0">
+					<div class="form-group">
+						<label>Date Finished</label>
+						<input type="text" class="form-control">
+					</div>
+				</div>
+				<div class="col-lg-3">
+					<div class="form-group">
+						<label>Filesize</label>
+						<input type="text" class="form-control">
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-2 pr-0">
+					<div class="form-group">
+						<label>Season #</label>
+						<input type="text" class="form-control">
+					</div>
+				</div>
+				<div class="col-lg-4 pr-0">
+					<div class="form-group">
+						<label>First Season Title</label>
+						<input type="text" class="form-control">
+					</div>
+				</div>
+				<div class="col-lg-5 pr-0">
+					<div class="form-group">
+						<label>Release</label>
+						<input type="text" class="form-control">
+					</div>
+					<!-- <div class="form-inline">
+						<div class="form-group">
+							<label>Release</label>
+							<select class="form-control">
+								<option>Watched</option>
+								<option>Downloaded</option>
+								<option>Queued</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label>&nbsp;</label>
+							<select class="form-control">
+								<option>Watched</option>
+								<option>Downloaded</option>
+								<option>Queued</option>
+							</select>
+						</div>
+					</div> -->
+				</div>
+				<div class="col-lg-1">
+					<div class="form-group text-center">
+						<label>HDD</label><br>
+						<input type="checkbox" value="">
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-3 pr-0">
+					<div class="form-group">
+						<label>Duration</label>
+						<input type="text" class="form-control">
+					</div>
+				</div>
+				<div class="col-lg-5 pr-0">
+					<div class="form-group">
+						<label>Encoder</label>
+						<input type="text" class="form-control">
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<div class="form-group">
+						<label>Remarks</label>
+						<input type="text" class="form-control">
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-5 pr-0">
+					<div class="form-group">
+						<label>Variants</label>
+						<textarea class="form-control" rows="8"></textarea>
+					</div>
+				</div>
+				<div class="col-lg-7">
+					<div class="form-group">
+						<label>Prequel</label>
+						<input type="text" class="form-control">
+					</div>
+				</div>
+				<div class="col-lg-7">
+					<div class="form-group">
+						<label>Sequel</label>
+						<input type="text" class="form-control">
+					</div>
+				</div>
+				<div class="col-lg-7">
+					<div class="form-group">
+						<label>Offquel</label>
+						<div class="input-group">
+							<input type="text" class="form-control">
+							<div class="input-group-btn">
+								<button class="btn btn-default" type="button">
+									<i class="fa fa-search"></i>
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
 		</div>
 
 		<div class="modal-footer">
