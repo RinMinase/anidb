@@ -5,8 +5,10 @@ export class AddHomeController {
 	) {
 		"ngInject";
 
-		this.$log = $log;
-		this.$uibModalInstance = $uibModalInstance;
+		_.extend(this, {
+			$log,
+			$uibModalInstance,
+		});
 
 		this.activate();
 	}
