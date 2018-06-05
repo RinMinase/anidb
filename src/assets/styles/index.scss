@@ -12,13 +12,12 @@
 $roboto-font-path: "../fonts";
 @import "node_modules/roboto-fontface/css/roboto/sass/roboto-fontface";
 
-@import "node_modules/csspin/csspin";
-
 @import "node_modules/animatewithsass/animate.scss";
-@import "animate-scss-extension";
-
+@import "node_modules/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.scss";
+@import "node_modules/csspin/csspin";
 @import "node_modules/sweetalert/lib/sweet-alert.scss";
 
+@import "./animate-scss-extension";
 @import "./bootstrap-extension";
 
 /**
@@ -125,6 +124,8 @@ div.anime-legend-container {
 		border-left: solid 6px #337ab7;
 	}
 }
+
+.checkbox label { cursor: default; }
 
 .table-responsive {
 	@media screen and (max-width: 991px) {
