@@ -1,4 +1,4 @@
-import _ from "lodash";
+import updateHomeDOM from "ngtemplate!html!../update/update-home.html";
 
 export class ViewHomeController {
 	constructor (
@@ -6,7 +6,9 @@ export class ViewHomeController {
 		$scope,
 		$state,
 		$stateParams,
-		firebase
+		$uibModal,
+		firebase,
+		SweetAlert
 	) {
 		"ngInject";
 
@@ -15,7 +17,9 @@ export class ViewHomeController {
 			$scope,
 			$state,
 			$stateParams,
+			$uibModal,
 			firebase,
+			SweetAlert,
 			data: {},
 			dataLoaded: false,
 		});
@@ -43,5 +47,42 @@ export class ViewHomeController {
 			}).catch(() => {
 				this.$state.go("login");
 			});
+	}
+
+	deleteTitle() {
+		this.SweetAlert.swal({
+			title: "Are you sure?",
+			text: "Your will not be able to recover this entry!",
+			type: "warning",
+			showCancelButton: true,
+			confirmButtonColor: "#DD6B55",
+			confirmButtonText: "Yes, delete it!",
+			closeOnConfirm: false,
+			closeOnCancel: false,
+		}, (isConfirm) => {
+			if (isConfirm) {
+				this.SweetAlert.swal({
+					title: "Deleted",
+					text: "Entry has been deleted",
+					type: "success",
+				});
+			} else {
+				this.SweetAlert.swal({
+					title: "Cancelled",
+					text: "Action has been cancelled",
+					type: "error",
+				});
+			}
+
+		});
+	}
+
+	editTitle() {
+		this.$uibModal.open({
+			templateUrl: updateHomeDOM,
+			controller: "UpdateHomeController",
+			controllerAs: "vm",
+			backdrop: "static",
+		});
 	}
 }
