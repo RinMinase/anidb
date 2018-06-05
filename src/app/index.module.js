@@ -10,8 +10,8 @@ import "angular-toastr";
 import "angular-ui-bootstrap";
 import uiRouter from "@uirouter/angularjs";
 
-import "sweetalert";
 import "oclazyload";
+import "sweetalert";
 import "velocity-animate";
 
 import { config, run } from "./index.config";
