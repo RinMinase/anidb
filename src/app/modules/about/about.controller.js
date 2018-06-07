@@ -23,7 +23,7 @@ export class AboutController {
 			data: {},
 			dataLoaded: false,
 			githubCommits: {},
-			githubIssues: {0: []},
+			githubIssues: {0: [], 1: []},
 		});
 
 		this.activate();
