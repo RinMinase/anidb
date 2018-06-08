@@ -18,12 +18,21 @@ export class AboutController {
 			$state,
 			firebase,
 			GITHUB_API,
-			issuesCurrentPage: 1,
-			issuesMaxSize: 10,
+
+			chart: {
+				colors: [],
+				data: [],
+				labels: [],
+				series: [],
+				options: {},
+				datasetOverride: [],
+			},
 			data: {},
 			dataLoaded: false,
 			githubCommits: {},
 			githubIssues: {0: [], 1: []},
+			issuesCurrentPage: 1,
+			issuesMaxSize: 10,
 		});
 
 		this.activate();
@@ -44,6 +53,8 @@ export class AboutController {
 
 		this._getGithubIssues();
 		this._getGithubCommits();
+
+		this._generateChartData();
 	}
 
 	_formatData(data) {
@@ -107,6 +118,55 @@ export class AboutController {
 
 		this.data.totalFilesizeGB = parseFloat(totalFilesize / 1073741824).toFixed(2);
 		this.data.totalFilesizeTB = parseFloat(totalFilesize / 1099511627776).toFixed(2);
+	}
+
+	_generateChartData() {
+		this.chart.labels = [
+			"Jan",
+			"Feb",
+			"Mar",
+			"Apr",
+			"May",
+			"Jun",
+			"Jul",
+			"Aug",
+			"Sep",
+			"Oct",
+			"Nov",
+			"Dec",
+		];
+
+		this.chart.series = ["Series A"];
+
+		this.chart.data = [65, 59, 80, 81, 56, 55, 40, 65, 59, 80, 81, 56, 55, 40];
+
+		this.chart.datasetOverride = [{
+			yAxisID: "y-axis-1",
+		}];
+
+		this.chart.colors = ["#4CAF50"];
+
+		this.chart.options = {
+			elements: {
+				line: {
+					borderColor: "rgb(149, 206, 146)",
+					borderWidth: 2,
+					fill: false,
+					tension: 0.2,
+				},
+			},
+			scales: {
+				yAxes: [{
+					id: "y-axis-1",
+					type: "linear",
+					display: true,
+					position: "left",
+					ticks: {
+						suggestedMin: 20,
+					},
+				}],
+			},
+		};
 	}
 
 	_getGithubCommits() {
