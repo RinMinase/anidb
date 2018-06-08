@@ -6,7 +6,7 @@
   "author": "Rin Minase",
   "repository": {
     "type": "git",
-    "url": "https://github.com/RinMinase/anidb-angular"
+    "url": "https://github.com/RinMinase/anidb"
   },
   "scripts": {
     "start": "gulp serve",
