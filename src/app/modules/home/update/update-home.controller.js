@@ -1,13 +1,15 @@
 export class UpdateHomeController {
 	constructor (
 		$log,
-		$uibModalInstance
+		$uibModalInstance,
+		data
 	) {
 		"ngInject";
 
 		_.extend(this, {
 			$log,
 			$uibModalInstance,
+			data,
 		});
 
 		this.activate();

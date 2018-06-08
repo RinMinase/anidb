@@ -83,6 +83,9 @@ export class ViewHomeController {
 			controller: "UpdateHomeController",
 			controllerAs: "vm",
 			backdrop: "static",
+			resolve: {
+				data: () => this.data,
+			},
 		});
 	}
 }
