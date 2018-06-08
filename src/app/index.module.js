@@ -1,5 +1,6 @@
 import "angular";
 import "angular-animate";
+import "angular-chart.js";
 import "angular-cookies";
 import "angular-filter";
 import "angular-hammer";
@@ -30,6 +31,7 @@ import SummerModule from "./modules/summer/summer.module";
 angular.module(
 	"anidbAngular", [
 		"angular.filter",
+		"chart.js",
 		"hmTouchEvents",
 		"ngAnimate",
 		"ngCookies",
