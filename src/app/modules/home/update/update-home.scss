@@ -1,0 +1,10 @@
+.update-home {
+	textarea {
+		resize: none;
+		height: 182px;
+
+		@media (max-width: 767px) {
+			height: 60px;
+		}
+	}
+}
