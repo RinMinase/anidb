@@ -80,7 +80,7 @@
 .mb-auto,.my-auto { margin-bottom: auto !important; }
 .ml-auto,.mx-auto { margin-left: auto !important; }
 
-@media (min-width: 767px) {
+@media (max-width: 767px) {
 	.m-xs-0 { margin: 0 !important; }
 	.mt-xs-0, .my-xs-0 { margin-top: 0 !important; }
 	.mr-xs-0, .mx-xs-0 { margin-right: 0 !important; }
@@ -148,7 +148,7 @@
 	.ml-xs-auto, .mx-xs-auto { margin-left: auto !important; }
 }
 
-@media (min-width: 768px) and (max-width: 991px) {
+@media (min-width: 769px) and (max-width: 991px) {
 	.m-sm-0 { margin: 0 !important; }
 	.mt-sm-0, .my-sm-0 { margin-top: 0 !important; }
 	.mr-sm-0, .mx-sm-0 { margin-right: 0 !important; }
