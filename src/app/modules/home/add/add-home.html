@@ -10,7 +10,17 @@
 
 		<div class="modal-body">
 			<div class="row">
-				<div class="col-md-3 col-sm-5 col-xs-6 pr-0">
+				<div class="col-md-3 col-xs-6 hidden-sm pr-0">
+					<div class="form-group">
+						<label>Status</label>
+						<select class="form-control">
+							<option>Watched</option>
+							<option>Downloaded</option>
+							<option>Queued</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-5 col-xs-6 pr-lg-0 pr-md-0 pr-sm-0">
 					<div class="form-group">
 						<label>Quality</label>
 						<select class="form-control">
@@ -21,23 +31,7 @@
 						</select>
 					</div>
 				</div>
-				<div class="col-md-6 col-sm-7 hidden-xs pr-0">
-					<div class="form-group">
-						<label>Title</label>
-						<input type="text" class="form-control">
-					</div>
-				</div>
-				<div class="col-md-3 col-xs-6 hidden-sm">
-					<div class="form-group">
-						<label>Status</label>
-						<select class="form-control">
-							<option>Watched</option>
-							<option>Downloaded</option>
-							<option>Queued</option>
-						</select>
-					</div>
-				</div>
-				<div class="col-xs-12 hidden-sm hidden-md hidden-lg">
+				<div class="col-md-6 col-sm-7 col-xs-12">
 					<div class="form-group">
 						<label>Title</label>
 						<input type="text" class="form-control">
@@ -56,45 +50,23 @@
 						</select>
 					</div>
 				</div>
-				<div class="col-md-2 col-sm-2 hidden-xs pr-0">
+				<div class="col-md-2 col-sm-2 col-xs-2 pr-0">
 					<div class="form-group">
-						<label>Episodes</label>
+						<label class="hidden-xs">Episodes</label>
+						<label class="hidden-sm hidden-md hidden-lg">EPs</label>
 						<input type="text" class="form-control">
 					</div>
 				</div>
-				<div class="col-xs-2 hidden-sm hidden-md hidden-lg pr-0">
-					<div class="form-group">
-						<label>EPs</label>
-						<input type="text" class="form-control">
-					</div>
-				</div>
-				<div class="col-md-2 col-sm-2 hidden-xs pr-0">
+				<div class="col-md-2 col-sm-2 col-xs-2 pr-0">
 					<div class="form-group">
 						<label>OVAs</label>
 						<input type="text" class="form-control">
 					</div>
 				</div>
-				<div class="col-xs-2 hidden-sm hidden-md hidden-lg pr-0">
+				<div class="col-md-2 col-sm-2 col-xs-2 pr-lg-0 pr-md-0 pr-xs-0">
 					<div class="form-group">
-						<label>OVAs</label>
-						<input type="text" class="form-control">
-					</div>
-				</div>
-				<div class="col-md-2 hidden-xs hidden-sm pr-0">
-					<div class="form-group">
-						<label>Specials</label>
-						<input type="text" class="form-control">
-					</div>
-				</div>
-				<div class="col-sm-2 hidden-xs hidden-md hidden-lg">
-					<div class="form-group">
-						<label>Specials</label>
-						<input type="text" class="form-control">
-					</div>
-				</div>
-				<div class="col-xs-2 hidden-sm hidden-md hidden-lg pr-0">
-					<div class="form-group">
-						<label>SPs</label>
+						<label class="hidden-xs">Specials</label>
+						<label class="hidden-sm hidden-md hidden-lg">SPs</label>
 						<input type="text" class="form-control">
 					</div>
 				</div>
@@ -128,13 +100,7 @@
 						<input type="text" class="form-control">
 					</div>
 				</div>
-				<div class="col-md-4 col-sm-7 hidden-xs pr-0">
-					<div class="form-group">
-						<label>First Season Title</label>
-						<input type="text" class="form-control">
-					</div>
-				</div>
-				<div class="col-xs-9 hidden-sm hidden-md hidden-lg">
+				<div class="col-md-4 col-sm-7 col-xs-9 pr-sm-0 pr-md-0 pr-lg-0">
 					<div class="form-group">
 						<label>First Season Title</label>
 						<input type="text" class="form-control">
@@ -151,24 +117,6 @@
 						<label>Release</label>
 						<input type="text" class="form-control">
 					</div>
-					<!-- <div class="form-inline">
-						<div class="form-group">
-							<label>Release</label>
-							<select class="form-control">
-								<option>Watched</option>
-								<option>Downloaded</option>
-								<option>Queued</option>
-							</select>
-						</div>
-						<div class="form-group">
-							<label>&nbsp;</label>
-							<select class="form-control">
-								<option>Watched</option>
-								<option>Downloaded</option>
-								<option>Queued</option>
-							</select>
-						</div>
-					</div> -->
 				</div>
 				<div class="col-md-2 col-xs-2 hidden-sm">
 					<div class="form-group text-center">
@@ -199,24 +147,6 @@
 							<label>Release</label>
 							<input type="text" class="form-control">
 						</div>
-						<!-- <div class="form-inline">
-							<div class="form-group">
-								<label>Release</label>
-								<select class="form-control">
-									<option>Watched</option>
-									<option>Downloaded</option>
-									<option>Queued</option>
-								</select>
-							</div>
-							<div class="form-group">
-								<label>&nbsp;</label>
-								<select class="form-control">
-									<option>Watched</option>
-									<option>Downloaded</option>
-									<option>Queued</option>
-								</select>
-							</div>
-						</div> -->
 					</div>
 				<div class="col-md-5 col-sm-3 col-xs-6 pr-0">
 					<div class="form-group">
@@ -233,13 +163,7 @@
 			</div>
 
 			<div class="row">
-				<div class="col-md-5 col-sm-5 hidden-xs pr-0">
-					<div class="form-group">
-						<label>Variants</label>
-						<textarea class="form-control"></textarea>
-					</div>
-				</div>
-				<div class="col-xs-12 hidden-sm hidden-md hidden-lg">
+				<div class="col-md-5 col-sm-5 col-xs-12 pr-sm-0 pr-md-0 pr-lg-0">
 					<div class="form-group">
 						<label>Variants</label>
 						<textarea class="form-control"></textarea>
