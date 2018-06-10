@@ -10,6 +10,10 @@ export class AddHomeController {
 			$log,
 			$uibModalInstance,
 			titleList,
+
+			data: {
+				offquel: "",
+			},
 		});
 
 		this.activate();
@@ -17,6 +21,16 @@ export class AddHomeController {
 
 	activate() {
 
+	}
+
+	addOffquel() {
+		if (!this.data.offquel) {
+			this.data.offquel = this.offquelSelection;
+			this.offquelSelection = "";
+		} else {
+			this.data.offquel += `, ${this.offquelSelection}`;
+			this.offquelSelection = "";
+		}
 	}
 
 	cancel() {

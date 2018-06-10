@@ -161,30 +161,36 @@
 					<label>Prequel</label>
 					<input type="text"
 						class="form-control"
-						ng-model="vm.prequel"
+						ng-model="vm.data.prequel"
 						uib-typeahead="o for o in vm.titleList | filter: $viewValue | limitTo:4">
 				</div>
 				<div class="form-group col-sm-7 col-xs-12">
 					<label>Sequel</label>
 					<input type="text"
 						class="form-control"
-						ng-model="vm.sequel"
+						ng-model="vm.data.sequel"
 						uib-typeahead="o for o in vm.titleList | filter: $viewValue | limitTo:4">
 				</div>
 				<div class="col-xs-12">
 					<div class="form-group col-sm-5 col-xs-12 px-0 mb-xs-0">
 						<label>Offquel</label>
-						<input type="text" class="form-control" disabled>
+						<input type="text"
+							class="form-control"
+							ng-model="vm.data.offquel">
 					</div>
 					<div class="form-group col-sm-7 col-xs-12 pr-0 pl-xs-0">
 						<label class="hidden-xs">&nbsp;</label>
 						<div class="input-group">
 							<input type="text"
+								id="offquelSelection"
 								class="form-control"
 								ng-model="vm.offquelSelection"
 								uib-typeahead="o for o in vm.titleList | filter: $viewValue | limitTo:4">
 							<div class="input-group-btn">
-								<button class="btn btn-default" type="button">Add</button>
+								<button class="btn btn-default"
+									type="button"
+									ng-click="vm.addOffquel()"
+									set-focus="offquelSelection">Add</button>
 							</div>
 						</div>
 					</div>
