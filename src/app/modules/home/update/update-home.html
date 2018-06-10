@@ -82,40 +82,34 @@
 					<label>Season #</label>
 					<input type="text" class="form-control" ng-model="vm.data.seasonNumber">
 				</div>
-				<div class="form-groupcol-md-4 col-sm-7 col-xs-9 pr-sm-0 pr-md-0 pr-lg-0">
+				<div class="form-group col-md-4 col-sm-7 col-xs-9 pr-sm-0 pr-md-0 pr-lg-0">
 					<label>First Season Title</label>
 					<input type="text"
 						class="form-control"
 						ng-model="vm.data.firstSeasonTitle">
-					</div>
 				</div>
 				<div class="form-group col-sm-3 hidden-xs hidden-md hidden-lg">
 					<label>Duration</label>
 					<input type="text" class="form-control">
 				</div>
-				<div class="col-md-4 col-xs-10 hidden-sm pr-0">
-					<div class="form-group">
+				<div class="col-md-4 col-xs-10 hidden-sm pr-lg-0 pr-md-0">
+					<div class="form-group col-xs-6 px-0">
 						<label>Release</label>
-						<input type="text" class="form-control">
+						<select class="form-control">
+							<option>Winter</option>
+							<option>Spring</option>
+							<option>Summer</option>
+							<option>Fall</option>
+						</select>
 					</div>
-					<!-- <div class="form-inline">
-						<div class="form-group">
-							<label>Release</label>
-							<select class="form-control">
-								<option>Watched</option>
-								<option>Downloaded</option>
-								<option>Queued</option>
-							</select>
-						</div>
-						<div class="form-group">
-							<label>&nbsp;</label>
-							<select class="form-control">
-								<option>Watched</option>
-								<option>Downloaded</option>
-								<option>Queued</option>
-							</select>
-						</div>
-					</div> -->
+					<div class="form-group col-xs-6 pl-1 pr-0">
+						<label>&nbsp;</label>
+						<select class="form-control">
+							<option>2018</option>
+							<option>2017</option>
+							<option>2016</option>
+						</select>
+					</div>
 				</div>
 				<div class="form-group col-xs-2 text-center hidden-sm">
 					<label>HDD</label>
@@ -161,21 +155,38 @@
 				</div>
 				<div class="form-group col-sm-7 col-xs-12">
 					<label>Prequel</label>
-					<input type="text" class="form-control" ng-model="vm.data.prequel">
+					<input type="text"
+						class="form-control"
+						ng-model="vm.data.prequel"
+						uib-typeahead="o for o in vm.titleList | filter: $viewValue | limitTo:4">
 				</div>
 				<div class="form-group col-sm-7 col-xs-12">
 					<label>Sequel</label>
-					<input type="text" class="form-control" ng-model="vm.data.sequel">
+					<input type="text"
+						class="form-control"
+						ng-model="vm.data.sequel"
+						uib-typeahead="o for o in vm.titleList | filter: $viewValue | limitTo:4">
 				</div>
-				<div class="col-sm-7 col-xs-12">
-					<div class="form-group">
+				<div class="col-xs-12">
+					<div class="form-group col-sm-5 col-xs-12 px-0 mb-xs-0">
 						<label>Offquel</label>
+						<input type="text"
+							class="form-control"
+							ng-model="vm.data.offquel">
+					</div>
+					<div class="form-group col-sm-7 col-xs-12 pr-0 pl-xs-0">
+						<label class="hidden-xs">&nbsp;</label>
 						<div class="input-group">
-							<input type="text" class="form-control">
+							<input type="text"
+								id="offquelSelection"
+								class="form-control"
+								ng-model="vm.offquelSelection"
+								uib-typeahead="o for o in vm.titleList | filter: $viewValue | limitTo:4">
 							<div class="input-group-btn">
-								<button class="btn btn-default" type="button">
-									<i class="fa fa-search"></i>
-								</button>
+								<button class="btn btn-default"
+									type="button"
+									ng-click="vm.addOffquel()"
+									set-focus="offquelSelection">Add</button>
 							</div>
 						</div>
 					</div>
