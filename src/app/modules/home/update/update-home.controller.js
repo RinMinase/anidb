@@ -23,9 +23,9 @@ export class UpdateHomeController {
 			.then(() => {
 				this.firebase.retrieve()
 					.then((data) => {
-						this.data = this.formatData(data);
-						this.dataLoaded = true;
-						this.$scope.$apply();
+						data.map((value) => {
+							this.titleList.push(value.title);
+						});
 					});
 			}).catch(() => {
 				this.$state.go("login");
@@ -44,11 +44,5 @@ export class UpdateHomeController {
 
 	cancel() {
 		this.$uibModalInstance.close(false);
-	}
-
-	formatData(data) {
-		data.map((value) => {
-			this.titleList.push(value.title);
-		});
 	}
 }
