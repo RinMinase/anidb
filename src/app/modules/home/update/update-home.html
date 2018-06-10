@@ -63,7 +63,10 @@
 				</div>
 				<div class="form-group col-md-3 col-sm-4 col-xs-6">
 					<label>Filesize</label>
-					<input type="text" class="form-control" ng-model="vm.data.filesize">
+					<input type="text"
+						class="form-control"
+						ng-model="vm.data.filesize"
+						ng-change="vm.removeNonNumeric()">
 				</div>
 				<div class="form-group col-sm-2 text-center hidden-xs hidden-md hidden-lg">
 					<label>HDD</label>

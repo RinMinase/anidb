@@ -45,4 +45,8 @@ export class UpdateHomeController {
 	cancel() {
 		this.$uibModalInstance.close(false);
 	}
+
+	removeNonNumeric() {
+		this.data.filesize = this.data.filesize.replace(/\D/g, "");
+	}
 }

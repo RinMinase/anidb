@@ -36,4 +36,8 @@ export class AddHomeController {
 	cancel() {
 		this.$uibModalInstance.close(false);
 	}
+
+	removeNonNumeric() {
+		this.data.filesize = this.data.filesize.replace(/\D/g, "");
+	}
 }
