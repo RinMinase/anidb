@@ -22,6 +22,7 @@ export class ManageHomeController {
 			$uibModal,
 			firebase,
 			dataLoaded: false,
+			titleList: [],
 		});
 
 		_.extend(this.$scope, {
@@ -86,6 +87,7 @@ export class ManageHomeController {
 				return;
 			}
 
+			this.titleList.push(value.title);
 			value.filesize = this._convertFilesize(value.filesize);
 			value.dateFinished = moment.unix(value.dateFinished).format("MMM DD, YYYY");
 			value.id = dataKeys[index];
@@ -110,6 +112,9 @@ export class ManageHomeController {
 			controller: "AddHomeController",
 			controllerAs: "vm",
 			backdrop: "static",
+			resolve: {
+				titleList: () => this.titleList,
+			},
 		});
 	}
 

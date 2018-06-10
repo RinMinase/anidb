@@ -1,13 +1,15 @@
 export class AddHomeController {
 	constructor(
 		$log,
-		$uibModalInstance
+		$uibModalInstance,
+		titleList
 	) {
 		"ngInject";
 
 		_.extend(this, {
 			$log,
 			$uibModalInstance,
+			titleList,
 		});
 
 		this.activate();
