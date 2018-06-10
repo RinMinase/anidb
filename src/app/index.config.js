@@ -1,11 +1,9 @@
-import _ from "lodash";
 import firebase from "firebase";
 
 export function config(
 	$locationProvider,
 	$logProvider,
-	$urlRouterProvider,
-	toastrConfig
+	$urlRouterProvider
 ) {
 	"ngInject";
 
@@ -15,13 +13,13 @@ export function config(
 	$urlRouterProvider.otherwise("/");
 	$locationProvider.html5Mode(true);
 
-	_.extend(toastrConfig, {
-		allowHtml: true,
-		positionClass: "toast-top-right",
-		preventDuplicates: true,
-		progressBar: true,
-		timeout: 3000,
-	});
+	// _.extend(toastrConfig, {
+	// 	allowHtml: true,
+	// 	positionClass: "toast-top-right",
+	// 	preventDuplicates: true,
+	// 	progressBar: true,
+	// 	timeout: 3000,
+	// });
 
 	const firebaseConfig = {
 		apiKey: "AIzaSyCVsm1c-nS9qS1fFfFo6JCAb908AfPU6Ag",
@@ -32,9 +30,7 @@ export function config(
 		messagingSenderId: "669722574117",
 	};
 
-	if (process.env.DATABASE !== "testing") {
-		firebase.initializeApp(firebaseConfig);
-	}
+	firebase.initializeApp(firebaseConfig);
 
 	// eslint-disable-next-line no-unused-vars
 	const fuseOptions = {
