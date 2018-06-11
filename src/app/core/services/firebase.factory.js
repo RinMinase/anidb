@@ -1,5 +1,9 @@
-import firebase from "firebase";
+import firebase from "firebase/app";
 import Promise from "bluebird";
+
+import "firebase/auth";
+import "firebase/database";
+import "firebase/storage";
 
 export function FirebaseFactory() {
 	"ngInject";
