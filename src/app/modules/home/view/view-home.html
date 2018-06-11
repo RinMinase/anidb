@@ -8,244 +8,118 @@
 
 	<div class="row" ng-class="{'hidden': vm.dataLoaded === false}">
 
-		<div class="col-lg-3 col-md-12 col-sm-12">
-			<div class="animate slideInLeft">
-				<div class="row mb-2">
-					<div class="col-lg-12 mb-2 hidden-sm hidden-md">
-						<a class="btn btn-primary btn-block" ui-sref="home.manage">
-							<i class="fa fa-angle-left"></i>
-							<span>&nbsp;&nbsp;&nbsp;Back</span>
-						</a>
-					</div>
-					<div class="col-lg-6 pr-1 hidden-sm hidden-md">
-						<a class="btn btn-warning btn-block"
-							ng-href="#"
-							ng-click="vm.editTitle()">
-							<i class="fa fa-pencil"></i>
-							<span>Edit</span>
-						</a>
-					</div>
-					<div class="col-lg-6 pl-1 hidden-sm hidden-md">
-						<a class="btn btn-danger btn-block"
-							ng-href="#"
-							ng-click="vm.deleteTitle()">
-							<i class="fa fa-trash"></i>
-							<span>Delete</span>
-						</a>
-					</div>
-
-					<div class="col-md-12 hidden-sm hidden-lg">
-						<a class="btn btn-warning btn-block">
-							<i class="fa fa-pencil"></i>
-							<span>Edit</span>
-						</a>
-					</div>
-					<div class="col-md-6 pr-1 hidden-sm hidden-lg">
-						<a class="btn btn-warning btn-block">
-							<i class="fa fa-pencil"></i>
-							<span>Edit</span>
-						</a>
-					</div>
-					<div class="col-md-12 pl-1 hidden-sm hidden-lg">
-						<a class="btn btn-danger btn-block">
-							<i class="fa fa-trash"></i>
-							<span>Delete</span>
-						</a>
-					</div>
-
-					<div class="col-sm-12 hidden-md hidden-lg">
-						<a class="btn btn-warning btn-block">
-							<i class="fa fa-pencil"></i>
-							<span>Edit</span>
-						</a>
-					</div>
-					<div class="col-sm-12 hidden-md hidden-lg">
-						<a class="btn btn-danger btn-block">
-							<i class="fa fa-trash"></i>
-							<span>Delete</span>
-						</a>
-					</div>
+		<div class="col-sm-12 hidden-lg hidden-md hidden-xs animate fadeInDown">
+			<div class="row mb-2">
+				<div class="col-lg-12 col-md-4 col-sm-4 col-xs-12 mb-2">
+					<a class="btn btn-primary btn-block" ui-sref="home.manage">
+						<i class="fa fa-angle-left"></i>
+						<span>&nbsp;&nbsp;&nbsp;Back</span>
+					</a>
 				</div>
-				<div class="row">
-					<div class="col-lg-12 col-md-12 col-sm-12">
-						<div class="image-container">
-							<img class="img-responsive">
-						</div>
-					</div>
+				<div class="col-lg-6 col-xs-6 hidden-md hidden-sm pr-1">
+					<a class="btn btn-warning btn-block"
+						ng-href="#"
+						ng-click="vm.editTitle()">
+						<i class="fa fa-pencil"></i>
+						<span>Edit</span>
+					</a>
 				</div>
-			</div>
-			<div class="animate slideInUp hidden-md hidden-sm">
-				<div class="row">
-					<div class="col-lg-12 col-md-12 col-sm-12 text-center">
-						<h3 class="my-4">
-							<span class="label label-primary">
-								<span>Rewatches&nbsp;</span>
-								<span class="badge mb-1">&nbsp;&nbsp;0&nbsp;&nbsp;</span>
-							</span>
-						</h3>
-					</div>
+				<div class="col-md-4 col-sm-4 hidden-lg hidden-xs">
+					<a class="btn btn-warning btn-block"
+						ng-href="#"
+						ng-click="vm.editTitle()">
+						<i class="fa fa-pencil"></i>
+						<span>Edit</span>
+					</a>
 				</div>
-				<div class="row">
-					<div class="col-lg-12 col-md-12 col-sm-12 text-center my-2 total-rating"
-						ng-click="isRatingCollapsed = !isRatingCollapsed"
-						uib-tooltip="Ratings by Category">
-						<i class="fa fa-2x fa-star"></i>
-						<i class="fa fa-2x fa-star"></i>
-						<i class="fa fa-2x fa-star"></i>
-						<i class="fa fa-2x fa-star"></i>
-						<i class="fa fa-2x fa-star-half-o"></i>
-					</div>
-					<div uib-collapse="!isRatingCollapsed">
-						<div class="row" >
-							<div class="col-lg-12 col-md-12 col-sm-12 my-1">
-								<div class="row">
-									<div class="col-lg-5 col-md-5 col-sm-6 col-lg-offset-1 col-md-offset-1">
-										<span class="h4 mr-1">Audio</span>
-									</div>
-									<div class="col-lg-5 col-md-5 col-sm-6">
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star-half-o"></i>
-										<i class="fa fa-star-o"></i>
-										<i class="fa fa-star-o"></i>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-12 col-md-12 col-sm-12 my-1">
-								<div class="row">
-									<div class="col-lg-5 col-md-5 col-sm-6 col-lg-offset-1 col-md-offset-1">
-										<span class="h4 mr-1">Enjoyment</span>
-									</div>
-									<div class="col-lg-5 col-md-5 col-sm-6">
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star-o"></i>
-										<i class="fa fa-star-o"></i>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-12 col-md-12 col-sm-12 my-1">
-								<div class="row">
-									<div class="col-lg-5 col-md-5 col-sm-6 col-lg-offset-1 col-md-offset-1">
-										<span class="h4 mr-1">Graphics</span>
-									</div>
-									<div class="col-lg-5 col-md-5 col-sm-6">
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star-o"></i>
-										<i class="fa fa-star-o"></i>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-12 col-md-12 col-sm-12 my-1">
-								<div class="row">
-									<div class="col-lg-5 col-md-5 col-sm-6 col-lg-offset-1 col-md-offset-1">
-										<span class="h4 mr-1">Plot</span>
-									</div>
-									<div class="col-lg-5 col-md-5 col-sm-6">
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star-half-o"></i>
-										<i class="fa fa-star-o"></i>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
+				<div class="col-lg-6 col-xs-6 hidden-md hidden-sm pl-1">
+					<a class="btn btn-danger btn-block"
+						ng-href="#"
+						ng-click="vm.deleteTitle()">
+						<i class="fa fa-trash"></i>
+						<span>Delete</span>
+					</a>
 				</div>
-			</div>
-			<div class="animate slideInLeft hidden-lg">
-				<div class="row">
-					<div class="col-lg-12 col-md-12 col-sm-12 text-center">
-						<h3 class="my-4">
-							<span class="label label-primary">
-								<span>Rewatches&nbsp;</span>
-								<span class="badge mb-1">&nbsp;&nbsp;0&nbsp;&nbsp;</span>
-							</span>
-						</h3>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-lg-12 col-md-12 col-sm-12 text-center my-2 total-rating"
-						ng-click="isRatingCollapsed = !isRatingCollapsed"
-						uib-tooltip="Ratings by Category">
-						<i class="fa fa-2x fa-star"></i>
-						<i class="fa fa-2x fa-star"></i>
-						<i class="fa fa-2x fa-star"></i>
-						<i class="fa fa-2x fa-star"></i>
-						<i class="fa fa-2x fa-star-half-o"></i>
-					</div>
-					<div uib-collapse="!isRatingCollapsed">
-						<div class="row" >
-							<div class="col-lg-12 col-md-12 col-sm-12 my-1">
-								<div class="row">
-									<div class="col-lg-5 col-md-5 col-sm-6 col-lg-offset-1 col-md-offset-1">
-										<span class="h4 mr-1">Audio</span>
-									</div>
-									<div class="col-lg-5 col-md-5 col-sm-6">
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star-half-o"></i>
-										<i class="fa fa-star-o"></i>
-										<i class="fa fa-star-o"></i>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-12 col-md-12 col-sm-12 my-1">
-								<div class="row">
-									<div class="col-lg-5 col-md-5 col-sm-6 col-lg-offset-1 col-md-offset-1">
-										<span class="h4 mr-1">Enjoyment</span>
-									</div>
-									<div class="col-lg-5 col-md-5 col-sm-6">
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star-o"></i>
-										<i class="fa fa-star-o"></i>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-12 col-md-12 col-sm-12 my-1">
-								<div class="row">
-									<div class="col-lg-5 col-md-5 col-sm-6 col-lg-offset-1 col-md-offset-1">
-										<span class="h4 mr-1">Graphics</span>
-									</div>
-									<div class="col-lg-5 col-md-5 col-sm-6">
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star-o"></i>
-										<i class="fa fa-star-o"></i>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-12 col-md-12 col-sm-12 my-1">
-								<div class="row">
-									<div class="col-lg-5 col-md-5 col-sm-6 col-lg-offset-1 col-md-offset-1">
-										<span class="h4 mr-1">Plot</span>
-									</div>
-									<div class="col-lg-5 col-md-5 col-sm-6">
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star-half-o"></i>
-										<i class="fa fa-star-o"></i>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
+				<div class="col-md-4 col-sm-4 hidden-lg hidden-xs">
+					<a class="btn btn-danger btn-block"
+						ng-href="#"
+						ng-click="vm.deleteTitle()">
+						<i class="fa fa-trash"></i>
+						<span>Delete</span>
+					</a>
 				</div>
 			</div>
 		</div>
 
-		<div class="col-lg-9 col-md-12 col-sm-12 animate slideInRight">
-			<div class="row mb-3">
+		<div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 animate slideInLeft">
+			<div class="row mb-2 hidden-sm">
+				<div class="col-lg-12 col-md-4 col-sm-4 col-xs-12 mb-2">
+					<a class="btn btn-primary btn-block" ui-sref="home.manage">
+						<i class="fa fa-angle-left"></i>
+						<span>&nbsp;&nbsp;&nbsp;Back</span>
+					</a>
+				</div>
+				<div class="col-lg-6 col-xs-6 hidden-md hidden-sm pr-1">
+					<a class="btn btn-warning btn-block"
+						ng-href="#"
+						ng-click="vm.editTitle()">
+						<i class="fa fa-pencil"></i>
+						<span>Edit</span>
+					</a>
+				</div>
+				<div class="col-md-4 col-sm-4 hidden-lg hidden-xs">
+					<a class="btn btn-warning btn-block"
+						ng-href="#"
+						ng-click="vm.editTitle()">
+						<i class="fa fa-pencil"></i>
+						<span>Edit</span>
+					</a>
+				</div>
+				<div class="col-lg-6 col-xs-6 hidden-md hidden-sm pl-1">
+					<a class="btn btn-danger btn-block"
+						ng-href="#"
+						ng-click="vm.deleteTitle()">
+						<i class="fa fa-trash"></i>
+						<span>Delete</span>
+					</a>
+				</div>
+				<div class="col-md-4 col-sm-4 hidden-lg hidden-xs">
+					<a class="btn btn-danger btn-block"
+						ng-href="#"
+						ng-click="vm.deleteTitle()">
+						<i class="fa fa-trash"></i>
+						<span>Delete</span>
+					</a>
+				</div>
+			</div>
+			<div class="row hidden-sm hidden-md hidden-lg mb-3 text-center">
+					<div class="col-lg-12">
+						<h2>{{ vm.data.title }}</h2>
+						<h4 class="text-muted" ng-if="vm.data.shortTitle">
+							<em>&#10077;&nbsp;{{ vm.data.shortTitle }}&#10078;</em>
+						</h4>
+					</div>
+				</div>
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="image-container">
+						<img class="img-responsive">
+					</div>
+				</div>
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+					<h3 class="my-4">
+						<span class="label label-primary">
+							<span>Rewatches&nbsp;</span>
+							<span class="badge mb-1">&nbsp;&nbsp;0&nbsp;&nbsp;</span>
+						</span>
+					</h3>
+				</div>
+				<rating value="5" audio="5" enjoyment="5" graphics="5" plot="5"></rating>
+			</div>
+		</div>
+
+		<div class="col-lg-9 col-md-9 col-sm-8 col-xs-12 animate slideInUp">
+			<div class="row hidden-xs mb-3">
 				<div class="col-lg-12">
 					<h2>{{ vm.data.title }}</h2>
 					<h4 class="text-muted" ng-if="vm.data.shortTitle">

@@ -1,16 +1,17 @@
 import "angular";
 import "angular-animate";
-import "angular-cookies";
+import "angular-chart.js";
+// import "angular-cookies";
 import "angular-filter";
-import "angular-hammer";
-import "angular-messages";
-import "angular-sanitize";
+// import "angular-hammer";
+// import "angular-messages";
+// import "angular-sanitize";
 import "angular-sweetalert";
-import "angular-toastr";
+// import "angular-toastr";
 import "angular-ui-bootstrap";
 import uiRouter from "@uirouter/angularjs";
 
-import "oclazyload";
+// import "oclazyload";
 import "sweetalert";
 import "velocity-animate";
 
@@ -30,13 +31,14 @@ import SummerModule from "./modules/summer/summer.module";
 angular.module(
 	"anidbAngular", [
 		"angular.filter",
-		"hmTouchEvents",
+		"chart.js",
+		// "hmTouchEvents",
 		"ngAnimate",
-		"ngCookies",
-		"ngMessages",
-		"ngSanitize",
+		// "ngCookies",
+		// "ngMessages",
+		// "ngSanitize",
 		"oitozero.ngSweetAlert",
-		"toastr",
+		// "toastr",
 		uiRouter,
 		"ui.bootstrap",
 

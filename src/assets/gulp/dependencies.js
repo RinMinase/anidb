@@ -1,5 +1,6 @@
 "use strict";
 
+var fs = require("fs");
 var path = require("path");
 var gulp = require("gulp");
 var conf = require("../../../gulpfile.js");
@@ -212,8 +213,10 @@ var fontpaths = [
 var robotofonts = "node_modules/roboto-fontface/fonts/roboto/*.woff2";
 
 gulp.task("fonts_roboto", function () {
-	return gulp.src(robotofonts)
-		.pipe(gulp.dest(path.join(conf.paths.tmp, "/serve/fonts/roboto")));
+	if (!fs.existsSync(path.join(conf.paths.tmp, "/serve/fonts/roboto"))) {
+		return gulp.src(robotofonts)
+			.pipe(gulp.dest(path.join(conf.paths.tmp, "/serve/fonts/roboto")));
+	}
 });
 
 gulp.task("fonts_roboto:dist", function () {

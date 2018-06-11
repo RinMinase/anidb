@@ -43,6 +43,8 @@ export class ViewHomeController {
 						this.data = data;
 						this.dataLoaded = true;
 						this.$scope.$apply();
+					}).catch(() => {
+						this.$state.go("home.manage");
 					});
 			}).catch(() => {
 				this.$state.go("login");
@@ -83,6 +85,9 @@ export class ViewHomeController {
 			controller: "UpdateHomeController",
 			controllerAs: "vm",
 			backdrop: "static",
+			resolve: {
+				data: () => this.data,
+			},
 		});
 	}
 }

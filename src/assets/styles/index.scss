@@ -167,6 +167,31 @@ div.anime-legend-container {
 	}
 }
 
+@media (max-width: 767px) {
+	.text-center-xs { text-align: center }
+	.text-left-xs { text-align: left }
+	.text-right-xs { text-align: right }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+	.text-center-sm { text-align: center }
+	.text-left-xs { text-align: left }
+	.text-right-xs { text-align: right }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+	.text-center-md { text-align: center }
+	.text-left-xs { text-align: left }
+	.text-right-xs { text-align: right }
+}
+
+@media (min-width: 1200px) {
+	.text-center-lg { text-align: center }
+	.text-left-xs { text-align: left }
+	.text-right-xs { text-align: right }
+}
+
+
 /**
  *  Do not remove the comments below. It's the markers used by gulp-inject to inject
  *  all your sass files automatically

@@ -1,11 +1,6 @@
 import firebase from "firebase";
 import Promise from "bluebird";
 
-let database;
-
-// eslint-disable-next-line
-try { database = require("../../index.database"); } catch (e) { }
-
 export function FirebaseFactory() {
 	"ngInject";
 
@@ -46,17 +41,11 @@ export function FirebaseFactory() {
 	}
 
 	function auth() {
-		if (process.env.DATABASE !== "testing") {
-			return new Promise((resolve, reject) => {
-				firebase.auth().onAuthStateChanged((isAuthenticated) => {
-					(isAuthenticated) ? resolve() : reject();
-				});
+		return new Promise((resolve, reject) => {
+			firebase.auth().onAuthStateChanged((isAuthenticated) => {
+				(isAuthenticated) ? resolve() : reject();
 			});
-		} else {
-			return new Promise((resolve) => {
-				resolve();
-			});
-		}
+		});
 	}
 
 	function create(db = "anime", data) {
@@ -94,63 +83,57 @@ export function FirebaseFactory() {
 		orderKey = "",
 		orderDesc = false
 	) {
-		if (process.env.DATABASE !== "testing") {
-			id = (id) ? `/${id}` : "";
+		id = (id) ? `/${id}` : "";
 
-			limit = (!isNaN(parseInt(limit))) ? parseInt(limit) : 0;
+		limit = (!isNaN(parseInt(limit))) ? parseInt(limit) : 0;
 
-			let orderKeyValid = false;
+		let orderKeyValid = false;
 
-			if (orderKey || orderKey === "dateFinished") {
-				orderKeyValid = true;
-			}
+		if (orderKey || orderKey === "dateFinished") {
+			orderKeyValid = true;
+		}
 
-			if (!limit && !orderKey) {
+		if (!limit && !orderKey) {
+			return firebase.database()
+				.ref(`/${db}${id}`)
+				.once("value")
+				.then((data) => _objectToArray(data.val()));
+		} else if (limit && !orderKey) {
+			return firebase.database()
+				.ref(`/${db}${id}`)
+				.limitToLast(limit)
+				.once("value")
+				.then((data) => _objectToArray(data.val()));
+		} else if (!limit && orderKeyValid) {
+			if (!orderDesc) {
 				return firebase.database()
 					.ref(`/${db}${id}`)
+					.orderByChild(orderKey)
 					.once("value")
 					.then((data) => _objectToArray(data.val()));
-			} else if (limit && !orderKey) {
+			} else if (orderDesc) {
 				return firebase.database()
 					.ref(`/${db}${id}`)
+					.orderByChild(orderKey, "desc")
+					.once("value")
+					.then((data) => _objectToArray(data.val()));
+			}
+		} else if (limit && orderKeyValid) {
+			if (!orderDesc) {
+				return firebase.database()
+					.ref(`/${db}${id}`)
+					.orderByChild(orderKey)
 					.limitToLast(limit)
 					.once("value")
 					.then((data) => _objectToArray(data.val()));
-			} else if (!limit && orderKeyValid) {
-				if (!orderDesc) {
-					return firebase.database()
-						.ref(`/${db}${id}`)
-						.orderByChild(orderKey)
-						.once("value")
-						.then((data) => _objectToArray(data.val()));
-				} else if (orderDesc) {
-					return firebase.database()
-						.ref(`/${db}${id}`)
-						.orderByChild(orderKey, "desc")
-						.once("value")
-						.then((data) => _objectToArray(data.val()));
-				}
-			} else if (limit && orderKeyValid) {
-				if (!orderDesc) {
-					return firebase.database()
-						.ref(`/${db}${id}`)
-						.orderByChild(orderKey)
-						.limitToLast(limit)
-						.once("value")
-						.then((data) => _objectToArray(data.val()));
-				} else if (orderDesc) {
-					return firebase.database()
-						.ref(`/${db}${id}`)
-						.orderByChild(orderKey)
-						.limitToLast(limit)
-						.once("value")
-						.then((data) => _objectToArray(data.val()));
-				}
+			} else if (orderDesc) {
+				return firebase.database()
+					.ref(`/${db}${id}`)
+					.orderByChild(orderKey)
+					.limitToLast(limit)
+					.once("value")
+					.then((data) => _objectToArray(data.val()));
 			}
-		} else {
-			return new Promise((resolve) => {
-				resolve(database());
-			});
 		}
 	}
 

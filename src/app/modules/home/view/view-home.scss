@@ -6,7 +6,12 @@
 	div.image-container {
 		background-color: lightgray;
 		width: 100%;
+		max-width: 262.5px;
 		height: 300px;
+
+		@media screen and (max-width: 767px) {
+			margin: 0px auto;
+		}
 	}
 
 	h3.data-heading {

@@ -8,74 +8,107 @@
 
 	<div class="row">
 		<div class="col-md-4 animate slideInLeft">
-			<center>
-				<img ng-src="assets/images/user.jpg" class="img-circle img-responsive">
-			</center>
-			<h3 class="text-center user-data-heading">Statistics</h3>
+			<div class="row">
+				<div class="col-md-12">
+					<center>
+						<img ng-src="assets/images/user.jpg" class="img-circle img-responsive">
+					</center>
+					<h3 class="text-center user-data-heading">Statistics</h3>
 
-			<div class="flex-form-container"
-				ng-class="{'hidden': vm.dataLoaded === true}">
-				<div class="cp-spinner cp-eclipse"></div>
+					<div class="flex-form-container"
+						ng-class="{'hidden': vm.dataLoaded === true}">
+						<div class="cp-spinner cp-eclipse"></div>
+					</div>
+
+					<table class="table table-condensed table-statistics"
+						ng-class="{'hidden': vm.dataLoaded === false}">
+						<tbody>
+							<tr>
+								<td>Watch Time</td>
+								<td>:</td>
+								<td>
+									{{ vm.data.totalDays }} days, {{ vm.data.totalHours }} hours,
+									<br>
+									{{ vm.data.totalMinutes }} minutes, {{ vm.data.totalSeconds }} seconds
+								</td>
+							</tr>
+							<tr><td colspan="3"></td></tr>
+							<tr><td class="table-statistics-border" colspan="3"></td></tr>
+							<tr>
+								<td>Total Size</td>
+								<td>:</td>
+								<td>{{ vm.data.totalFilesizeGB }} GB ({{ vm.data.totalFilesizeTB }} TB)</td>
+							</tr>
+							<tr>
+								<td>Total Episodes</td>
+								<td>:</td>
+								<td>{{ vm.data.totalEpisodes }} Episodes</td>
+							</tr>
+							<tr><td colspan="3"></td></tr>
+							<tr><td class="table-statistics-border" colspan="3"></td></tr>
+							<tr>
+								<td colspan="3">Anime Count Per Quality</td>
+							</tr>
+							<tr>
+								<td>4k 2160p</td>
+								<td class="text-center">:</td>
+								<td class="text-center">{{ vm.data.quality.uhd }}</td>
+							</tr>
+							<tr>
+								<td>FHD 1080p</td>
+								<td class="text-center">:</td>
+								<td class="text-center">{{ vm.data.quality.fhd }}</td>
+							</tr>
+							<tr>
+								<td>HD 720p</td>
+								<td class="text-center">:</td>
+								<td class="text-center">{{ vm.data.quality.hd }}</td>
+							</tr>
+							<tr>
+								<td>HQ 480p</td>
+								<td class="text-center">:</td>
+								<td class="text-center">{{ vm.data.quality.hq }}</td>
+							</tr>
+							<tr>
+								<td>LQ 360p</td>
+								<td class="text-center">:</td>
+								<td class="text-center">{{ vm.data.quality.lq }}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12 mt-4">
+					<h3 class="text-center user-data-heading">Chart Data</h3>
+				</div>
+				<div class="col-lg-6 col-md-12 col-sm-6 col-xs-12 text-left-md text-center-md text-center-sm text-center-xs mb-3 pr-lg-0 pr-sm-0">
+					<div class="btn-group">
+						<button type="button" class="btn btn-default">Episodes</button>
+						<button type="button" class="btn btn-default">Titles</button>
+					</div>
+				</div>
+				<div class="col-lg-6 col-md-12 col-sm-6 col-xs-12 text-right-md text-center-md text-center-sm text-center-xs mb-3 pl-lg-0 pl-sm-0">
+					<div class="btn-group">
+						<button type="button" class="btn btn-default">Week</button>
+						<button type="button" class="btn btn-default">Month</button>
+						<button type="button" class="btn btn-default">Year</button>
+					</div>
+				</div>
+				<div class="col-xs-12">
+					<canvas id="line"
+						class="chart chart-line"
+						chart-colors="vm.chart.colors"
+						chart-data="vm.chart.data"
+						chart-labels="vm.chart.labels"
+						chart-series="vm.chart.series"
+						chart-options="vm.chart.options"
+						chart-dataset-override="vm.chart.datasetOverride">
+					</canvas>
+				</div>
 			</div>
 
-			<table class="table table-condensed table-statistics"
-				ng-class="{'hidden': vm.dataLoaded === false}">
-				<tbody>
-					<tr>
-						<td>Watch Time</td>
-						<td>:</td>
-						<td>
-							{{ vm.data.totalDays }} days, {{ vm.data.totalHours }} hours,
-							<br>
-							{{ vm.data.totalMinutes }} minutes, {{ vm.data.totalSeconds }} seconds
-						</td>
-					</tr>
-					<tr><td colspan="3"></td></tr>
-					<tr><td class="table-statistics-border" colspan="3"></td></tr>
-					<tr>
-						<td>Total Size</td>
-						<td>:</td>
-						<td>{{ vm.data.totalFilesizeGB }} GB ({{ vm.data.totalFilesizeTB }} TB)</td>
-					</tr>
-					<tr>
-						<td>Total Episodes</td>
-						<td>:</td>
-						<td>{{ vm.data.totalEpisodes }} Episodes</td>
-					</tr>
-					<tr><td colspan="3"></td></tr>
-					<tr><td class="table-statistics-border" colspan="3"></td></tr>
-					<tr>
-						<td colspan="3">Anime Count Per Quality</td>
-					</tr>
-					<tr>
-						<td>4k 2160p</td>
-						<td class="text-center">:</td>
-						<td class="text-center">{{ vm.data.quality.uhd }}</td>
-					</tr>
-					<tr>
-						<td>FHD 1080p</td>
-						<td class="text-center">:</td>
-						<td class="text-center">{{ vm.data.quality.fhd }}</td>
-					</tr>
-					<tr>
-						<td>HD 720p</td>
-						<td class="text-center">:</td>
-						<td class="text-center">{{ vm.data.quality.hd }}</td>
-					</tr>
-					<tr>
-						<td>HQ 480p</td>
-						<td class="text-center">:</td>
-						<td class="text-center">{{ vm.data.quality.hq }}</td>
-					</tr>
-					<tr>
-						<td>LQ 360p</td>
-						<td class="text-center">:</td>
-						<td class="text-center">{{ vm.data.quality.lq }}</td>
-					</tr>
-				</tbody>
-			</table>
-
-		</div>
+			</div>
 
 		<div class="col-md-8 user-data-column animate slideInRight">
 
@@ -298,6 +331,11 @@
 							<h4>Package Update Issues</h4>
 							<ul>
 								<li>
+									<code class="orange">[angular]</code>
+									<code class="blue">[1.7.1]</code>
+									<span>Could not open any uibmodal (modal) due to ctrlInstantiate console error</span>
+								</li>
+								<li>
 									<code class="orange">[awesome-bootstrap-checkbox]</code>
 									<code class="blue">[1.0.1]</code>
 									<span>SCSS syntax error ($form-check-input-gutter variable) on Bootstrap 3</span>
@@ -311,11 +349,6 @@
 									<code class="orange">[firebase]</code>
 									<code class="blue">[5.0.3]</code>
 									<span>Importing using firebase/&langle;module&rangle; does not work</span>
-								</li>
-								<li>
-									<code class="orange">[ng-annotate-loader]</code>
-									<code class="blue">[0.6.1]</code>
-									<span>Not working (forgot details)</span>
 								</li>
 								<li>
 									<code class="red">[webpack-stream]</code>
