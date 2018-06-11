@@ -23,23 +23,27 @@ export function FirebaseFactory() {
 	return factory;
 
 	function login(email, password) {
-		new Promise((resolve) => {
+		new Promise((resolve, reject) => {
 			firebase.auth()
 				.signInWithEmailAndPassword(
 					email,
 					password
 				).then(() => {
 					resolve();
+				}).catch((error) => {
+					reject(error);
 				});
 		});
 	}
 
 	function logout() {
-		return new Promise((resolve) => {
+		return new Promise((resolve, reject) => {
 			firebase.auth()
 				.signOut()
 				.then(() => {
 					resolve();
+				}).catch((error) => {
+					reject(error);
 				});
 		});
 	}
