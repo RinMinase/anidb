@@ -207,7 +207,6 @@ var buildStyles = function() {
  */
 var fontpaths = [
 	"node_modules/font-awesome/fonts/*.woff2",
-	"node_modules/bootstrap-sass/assets/fonts/bootstrap/*.woff2"
 ];
 
 var robotofonts = "node_modules/roboto-fontface/fonts/roboto/*.woff2";
