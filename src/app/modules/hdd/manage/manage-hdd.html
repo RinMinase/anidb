@@ -7,7 +7,7 @@
 	</div>
 
 	<div class="row" ng-class="{'hidden': vm.dataLoaded === false}">
-		<div class="col-md-3 col-xs-12">
+		<div class="col-md-3 col-xs-12 animate slideInLeft">
 			<div class="panel panel-green">
 				<div class="panel-heading">
 					<h4>Disks</h4>
@@ -48,7 +48,7 @@
 			</div>
 		</div>
 
-		<div class="col-md-9 col-xs-12">
+		<div class="col-md-9 col-xs-12 animate slideInUp">
 			<div class="panel-group">
 				<div class="panel panel-default" ng-repeat="data in vm.data">
 					<div class="panel-heading">
@@ -63,35 +63,32 @@
 						</h4>
 					</div>
 
-					<div uib-collapse="!vm.collapse[data.hdd.panel - 1]">
-						<div class="panel-body" >
+					<div class="panel-body" uib-collapse="!vm.collapse[data.hdd.panel - 1]">
 
-							<div class="table-responsive">
-								<table class="table table-condensed">
-									<thead>
-										<tr>
-											<th>Title</th>
-											<th>File Size</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr ng-repeat="entries in data.entries | orderBy: 'title'">
-											<td>
-												<quality-legend value="{{ entries.quality }}"></quality-legend>
-												<span>{{ entries.title }}</span>
-											</td>
-											<td>{{ entries.filesize }}</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-
+						<div class="table-responsive">
+							<table class="table table-condensed">
+								<thead>
+									<tr>
+										<th>Title</th>
+										<th>File Size</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="entries in data.entries | orderBy: 'title'">
+										<td>
+											<quality-legend value="{{ entries.quality }}"></quality-legend>
+											<span>{{ entries.title }}</span>
+										</td>
+										<td>{{ entries.filesize }}</td>
+									</tr>
+								</tbody>
+							</table>
 						</div>
+
 					</div>
 				</div>
 			</div>
 		</div>
-
 	</div>
 </div>
 
