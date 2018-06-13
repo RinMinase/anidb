@@ -121,25 +121,9 @@ export class AboutController {
 	}
 
 	_generateChartData() {
-		this.chart.labels = [
-			"Jan",
-			"Feb",
-			"Mar",
-			"Apr",
-			"May",
-			"Jun",
-			"Jul",
-			"Aug",
-			"Sep",
-			"Oct",
-			"Nov",
-			"Dec",
-		];
-
-		this.chart.series = ["Series A"];
-
+		this.chart.labels = ["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"];
 		this.chart.data = [65, 59, 80, 81, 56, 55, 40, 65, 59, 80, 81, 56, 55, 40];
-
+		this.chart.series = ["Series A"];
 		this.chart.datasetOverride = [{
 			yAxisID: "y-axis-1",
 		}];
