@@ -1,5 +1,3 @@
-import Promise from "bluebird";
-
 export class LoginController {
 	constructor (
 		$log,
@@ -14,6 +12,7 @@ export class LoginController {
 			$scope,
 			$state,
 			firebase,
+			loading: false,
 		});
 
 		this.activate();
@@ -24,10 +23,13 @@ export class LoginController {
 	}
 
 	authenticate() {
+		this.loading = true;
 		this.firebase.login(this.email, this.password)
 			.then(() => {
+				this.loading = false;
 				this.$state.go("home.manage");
 			}).catch((error) => {
+				this.loading = false;
 				this.$log.error(error.message);
 			});
 	}
