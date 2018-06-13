@@ -23,7 +23,7 @@ export function FirebaseFactory() {
 	return factory;
 
 	function login(email, password) {
-		new Promise((resolve, reject) => {
+		return new Promise((resolve, reject) => {
 			firebase.auth()
 				.signInWithEmailAndPassword(
 					email,

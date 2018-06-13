@@ -24,7 +24,7 @@ export class LoginController {
 	}
 
 	authenticate() {
-		Promise.resolve(this.firebase.login(this.email, this.password))
+		this.firebase.login(this.email, this.password)
 			.then(() => {
 				this.$state.go("home.manage");
 			}).catch((error) => {
