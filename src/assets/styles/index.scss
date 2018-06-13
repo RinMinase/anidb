@@ -1,9 +1,3 @@
-/**
- *  If you want to override some bootstrap variables, you have to change values here.
- *  The list of variables are listed here bower_components/bootstrap-sass/assets/stylesheets/bootstrap/_variables.scss
- */
-// $navbar-inverse-link-color: #5AADBB;
-
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap-sprockets";
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
@@ -19,13 +13,7 @@ $roboto-font-path: "../fonts";
 
 @import "./animate-scss-extension";
 @import "./bootstrap-extension";
-
-/**
- *  Do not remove the comments below. It's the markers used by wiredep to inject
- *  sass dependencies when defined in the bower.json of your dependencies
- */
-// bower:scss
-// endbower
+@import "./spinner-eclipse";
 
 .browsehappy {
 	margin: 0.2em 0;
@@ -41,8 +29,6 @@ $roboto-font-path: "../fonts";
 		width: 50px;
 	}
 }
-
-//////////////////////////////////////////////
 
 body { font-family: "Roboto", Arial, Helvetica, sans-serif; }
 
@@ -83,28 +69,8 @@ div.panel-green {
 	justify-content: center;
 }
 
-div.anime-legend-container {
-	display: inline-block;
-
-	div.anime-legend {
-		width: 10px;
-		height: 10px;
-		display: inline-block;
-		margin-right: 5px;
-
-		&.anime-legend-uhd { background-color: #FF99CC; }
-		&.anime-legend-fhd { background-color: #99FF99; }
-		&.anime-legend-hd { background-color: #99CCFF; }
-		&.anime-legend-hq { background-color: #FFCC66; }
-		&.anime-legend-lq { border: 1px solid #777777; }
-	}
-}
-
 .table-unbordered > tbody > tr {
-	td,
-	th {
-		border-top: 0px;
-	}
+	td, th { border-top: 0px; }
 }
 
 .cp-eclipse {
@@ -138,11 +104,9 @@ div.anime-legend-container {
 		> .table {
 		margin-bottom: 0;
 
-		> thead,
-		> tbody,
-		> tfoot {
+		> thead, > tbody, > tfoot {
 				> tr {
-				> th, > td { white-space: nowrap; }
+					> th, > td { white-space: nowrap; }
 				}
 			}
 		}
@@ -191,10 +155,9 @@ div.anime-legend-container {
 	.text-right-xs { text-align: right }
 }
 
-
 /**
- *  Do not remove the comments below. It's the markers used by gulp-inject to inject
- *  all your sass files automatically
+ * Do not remove the comments below. It's the markers
+ * used by gulp-inject to inject all your sass files automatically
  */
 // injector
 // endinjector

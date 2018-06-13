@@ -12,6 +12,8 @@ export class ByNameController {
 			$scope,
 			$state,
 			firebase,
+
+			collapse: [],
 			data: [],
 			dataLoaded: false,
 		});
@@ -75,12 +77,19 @@ export class ByNameController {
 		});
 
 		contents.forEach((element, index) => {
+			this.collapse.push(false);
+
 			_.extend(this.data[index], {
 				content: contents[index],
 				filesize: filesizes[index],
 				key: keys[index],
+				panel: index,
 			});
 		});
+	}
+
+	panelCollapse(panel) {
+		this.collapse[panel - 1] = !this.collapse[panel - 1];
 	}
 
 	_convertFilesize(filesize) {

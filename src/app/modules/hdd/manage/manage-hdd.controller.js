@@ -1,61 +1,129 @@
 export class ManageHddController {
 	constructor (
 		$log,
-		SweetAlert
+		$scope,
+		firebase
 	) {
 		"ngInject";
 
 		_.extend(this, {
 			$log,
-			SweetAlert,
+			$scope,
+			firebase,
+
+			collapse: [],
+			data: [],
+			dataLoaded: false,
 		});
 
 		this.activate();
 	}
 
 	activate() {
-		// this.firebase.auth()
-		// 	.then(() => {
-		// 		this.firebase.retrieve("hdd")
-		// 			.then((data) => {
-		// 				this.formatData(data);
-		// 				this.dataLoaded = true;
-		// 				this.$scope.$apply();
-		// 			});
-		// 	}).catch(() => {
-		// 		this.$state.go("login");
-		// 	});
+		let hddData;
+		let animeData;
 
-		// this.sweet.option = {
-		// 	title: "Are you sure?",
-		// 	text: "You will not be able to recover this imaginary file!",
-		// 	type: "warning",
-		// 	showCancelButton: true,
-		// 	confirmButtonColor: "#DD6B55",
-		// 	confirmButtonText: "Yes, delete it!",
-		// 	cancelButtonText: "No, cancel plx!",
-		// 	closeOnConfirm: false,
-		// 	closeOnCancel: false,
-		// };
-
-		// this.sweet.confirm = {
-		// 	title: "Deleted!",
-		// 	text: "Your imaginary file has been deleted.",
-		// 	type: "success",
-		// };
-
-		// this.sweet.cancel = {
-		// 	title: "Cancelled!",
-		// 	text: "Your imaginary file is safe",
-		// 	type: "error",
-		// };
+		this.firebase.auth()
+			.then(() => {
+				this.firebase.retrieve()
+					.then((data) => {
+						animeData = data;
+					});
+			}).then(() => {
+				this.firebase.retrieve("hdd")
+					.then((data) => {
+						hddData = data;
+						this.formatData(hddData, animeData);
+						this.dataLoaded = true;
+						this.$scope.$apply();
+					});
+			}).catch(() => {
+				this.$state.go("login");
+			});
 	}
 
-	test() {
-		this.SweetAlert.info("Testing", "Here's a message!!");
+	formatData(hddData, animeData) {
+		hddData.forEach((hdd, index) => {
+			const size = parseFloat(hdd.size / 1073741824).toFixed(2);
+			let totalSize = 0;
+
+			this.data.push({
+				hdd: {
+					from: hdd.from.toUpperCase(),
+					to: hdd.to.toUpperCase(),
+					total: `${size} GB`,
+				},
+				entries: [],
+			});
+
+			animeData.map((anime) => {
+				if (anime.inhdd === 1) {
+					const firstLetter = anime.title.charAt(0).toUpperCase();
+					const from = hdd.from.toUpperCase().charCodeAt();
+					const to = hdd.to.toUpperCase().charCodeAt();
+					const ranges = [];
+
+					for (let i = 65; i <= 90; i++) {
+						if (i >= from && i <= to) {
+							ranges.push(String.fromCharCode(i));
+						}
+					}
+
+					ranges.some((letter) => {
+						if (firstLetter === letter) {
+							this.data[index].entries.push({
+								filesize: this._convertFilesize(anime.filesize),
+								quality: anime.quality,
+								title: anime.title,
+							});
+							totalSize += anime.filesize;
+
+							return;
+						}
+					});
+				}
+			});
+
+			const free = parseFloat((hdd.size - totalSize) / 1073741824).toFixed(2);
+			const used = parseFloat(totalSize / 1073741824).toFixed(2);
+			const titles = this.data[index].entries.length;
+			const percent = parseInt((totalSize / hdd.size) * 100);
+			let percentType;
+
+			if (percent >= 0 && percent < 80) {
+				percentType = "success";
+			} else if (percent >= 80 && percent < 90) {
+				percentType = "warning";
+			} else {
+				percentType = "danger";
+			}
+
+			this.collapse.push(false);
+
+			_.extend(this.data[index].hdd, {
+				free: `${free} GB`,
+				panel: this.collapse.length,
+				percent,
+				percentType,
+				titles,
+				used: `${used} GB`,
+			});
+		});
 	}
 
-	formatData() {
-		return data;
+	panelCollapse(panel) {
+		this.collapse[panel - 1] = !this.collapse[panel - 1];
+	}
+
+	_convertFilesize(filesize) {
+		filesize = parseFloat(filesize);
+
+		if (filesize === 0) {
+			return "-";
+		} else if (filesize < 1073741824) {
+			return `${(filesize / 1048576).toFixed(2)} MB`;
+		} else {
+			return `${(filesize / 1073741824).toFixed(2)} GB`;
+		}
 	}
 }

@@ -1,0 +1,52 @@
+$inner-size: 24px;
+$outer-size: 60px;
+$clear-border: solid 6px transparent;
+$color-border: solid 6px #337ab7;
+
+@mixin display-box($size) {
+	width: $size;
+	height: $size;
+	display: inline-block;
+	box-sizing: border-box;
+}
+
+@mixin draw-borders() {
+	border-radius: 50%;
+	content: " ";
+	@include display-box($outer-size);
+	border-top: $clear-border;
+	border-bottom: $clear-border;
+	position: absolute;
+	top: -18px;
+	left: -18px;
+}
+
+.spinner{
+	@include display-box($outer-size);
+	position: relative;
+
+	&.eclipse{
+		@include display-box($inner-size);
+		border-radius: 50%;
+		background: #337ab7;
+		margin: 12px;
+		animation: eclipse-animate 1s ease-out infinite;
+
+		&:before{
+			@include draw-borders();
+			border-right: $color-border;
+			border-left: $clear-border;
+		}
+
+		&:after{
+			@include draw-borders();
+			border-right: $clear-border;
+			border-left: $color-border;
+		}
+	}
+}
+
+@keyframes eclipse-animate{
+	0% { transform:rotate(0) }
+	100% { transform:rotate(360deg) }
+}

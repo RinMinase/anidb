@@ -1,9 +1,95 @@
 <anidb-navbar></anidb-navbar>
 
 <div class="container-fluid manage-hdd">
-	<a href=""
-		ng-click="vm.test()"
-		class="btn btn-default">Test!!</a>
+	<div class="flex-form-container sidebar"
+		ng-class="{'hidden': vm.dataLoaded === true}">
+		<div class="cp-spinner cp-eclipse"></div>
+	</div>
+
+	<div class="row" ng-class="{'hidden': vm.dataLoaded === false}">
+		<div class="col-md-3 col-xs-12 animate slideInLeft">
+			<div class="panel panel-green">
+				<div class="panel-heading">
+					<h4>Disks</h4>
+				</div>
+				<div class="panel-body">
+					<div class="row" ng-repeat="data in vm.data">
+						<div class="col-xs-12">
+							<p>
+								<span><strong>{{ data.hdd.from }} - {{ data.hdd.to }}</strong></span>
+								<span class="hidden-lg hidden-md hidden-xs">&nbsp;(Titles: {{ data.hdd.titles }})</span>
+								<span class="pull-right"><strong>{{ data.hdd.percent }}%</strong></span>
+							</p>
+						</div>
+						<div class="col-xs-12 hidden-sm">
+							<p>
+								<span>Titles :</span>
+								<span class="pull-right">{{ data.hdd.titles }}</span>
+							</p>
+						</div>
+						<div class="col-md-12 col-sm-6 col-xs-12">
+							<p>
+								<span>Free :</span>
+								<span class="pull-right">{{ data.hdd.free }}</span>
+							</p>
+						</div>
+						<div class="col-md-12 col-sm-6 col-xs-12">
+							<p>
+								<span>Usage :</span>
+								<span class="pull-right">{{ data.hdd.used }} / {{ data.hdd.total }}</span>
+							</p>
+						</div>
+						<div class="col-xs-12">
+							<uib-progressbar value="data.hdd.percent"
+								type="{{ data.hdd.percentType }}">{{ data.hdd.percent }}%</uib-progressbar>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-9 col-xs-12 animate slideInUp">
+			<div class="panel-group">
+				<div class="panel panel-default" ng-repeat="data in vm.data">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a ng-href="#" ng-click="vm.panelCollapse(data.hdd.panel)">
+								<span>{{ data.hdd.from }} - {{ data.hdd.to }}</span>
+							</a>
+							<div class="pull-right">
+								<span class="badge">{{ data.hdd.titles }}</span>
+								<span>&nbsp;{{ data.hdd.used }}</span>
+							</div>
+						</h4>
+					</div>
+
+					<div class="panel-body" uib-collapse="!vm.collapse[data.hdd.panel - 1]">
+
+						<div class="table-responsive">
+							<table class="table table-condensed">
+								<thead>
+									<tr>
+										<th>Title</th>
+										<th>File Size</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="entries in data.entries | orderBy: 'title'">
+										<td>
+											<quality-legend value="{{ entries.quality }}"></quality-legend>
+											<span>{{ entries.title }}</span>
+										</td>
+										<td>{{ entries.filesize }}</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 
 <anidb-footer></anidb-footer>
