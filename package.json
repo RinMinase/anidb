@@ -37,7 +37,6 @@
     "bootstrap-sass": "^3.3.7",
     "browser-sync": "^2.24.4",
     "browser-sync-spa": "^1.0.3",
-    "csspin": "^1.1.4",
     "del": "^3.0.0",
     "dotenv-webpack": "^1.5.7",
     "eslint": "^4.19.1",
