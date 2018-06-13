@@ -8,7 +8,6 @@ $roboto-font-path: "../fonts";
 
 @import "node_modules/animatewithsass/animate.scss";
 @import "node_modules/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.scss";
-@import "node_modules/csspin/csspin";
 @import "node_modules/sweetalert/lib/sweet-alert.scss";
 
 @import "./animate-scss-extension";
@@ -71,24 +70,6 @@ div.panel-green {
 
 .table-unbordered > tbody > tr {
 	td, th { border-top: 0px; }
-}
-
-.cp-eclipse {
-	width: 24px;
-	height: 24px;
-	background: #337ab7;
-
-	&:before {
-		width: 60px;
-		height: 60px;
-		border-right: solid 6px #337ab7;
-	}
-
-	&:after {
-		width: 60px;
-		height: 60px;
-		border-left: solid 6px #337ab7;
-	}
 }
 
 .checkbox label { cursor: default; }
