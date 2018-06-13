@@ -21,6 +21,8 @@ export class ManageHomeController {
 			$state,
 			$uibModal,
 			firebase,
+
+			data: [],
 			dataLoaded: false,
 			titleList: [],
 		});
@@ -37,7 +39,7 @@ export class ManageHomeController {
 			.then(() => {
 				this.firebase.retrieve()
 					.then((data) => {
-						this.data = this.formatData(data);
+						this.formatData(data);
 						this.dataLoaded = true;
 						this.$scope.$apply();
 					});
@@ -82,27 +84,27 @@ export class ManageHomeController {
 	formatData(data) {
 		const dataKeys = Object.keys(data);
 
-		return data.map((value, index) => {
-			if (value.watchStatus > 1) {
-				return;
+		data.map((value, index) => {
+			if (value.watchStatus <= 1) {
+				const filesize = this._convertFilesize(value.filesize);
+				const dateFinished = moment.unix(value.dateFinished).format("MMM DD, YYYY");
+				const id = dataKeys[index];
+
+				this.titleList.push(value.title);
+				this.data.push({
+					dateFinished,
+					encoder: value.encoder,
+					episodes: value.episodes,
+					filesize,
+					id,
+					ovas: value.ovas,
+					quality: value.quality,
+					releaseSeason: value.releaseSeason,
+					releaseYear: value.releaseYear,
+					specials: value.specials,
+					title: value.title,
+				});
 			}
-
-			this.titleList.push(value.title);
-			value.filesize = this._convertFilesize(value.filesize);
-			value.dateFinished = moment.unix(value.dateFinished).format("MMM DD, YYYY");
-			value.id = dataKeys[index];
-
-			delete value.duration;
-			delete value.firstSeasonTitle;
-			delete value.inhdd;
-			delete value.offquel;
-			delete value.prequel;
-			delete value.rating;
-			delete value.seasonNumber;
-			delete value.sequel;
-			delete value.watchStatus;
-
-			return value;
 		});
 	}
 
