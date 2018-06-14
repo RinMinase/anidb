@@ -1,5 +1,4 @@
-@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap-sprockets";
-@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "node_modules/bootstrap/scss/bootstrap";
 
 @import "node_modules/font-awesome/scss/font-awesome";
 
@@ -11,7 +10,6 @@ $roboto-font-path: "../fonts";
 @import "node_modules/sweetalert/lib/sweet-alert.scss";
 
 @import "./animate-scss-extension";
-@import "./bootstrap-extension";
 @import "./spinner-eclipse";
 
 .browsehappy {
@@ -74,43 +72,43 @@ div.panel-green {
 
 .checkbox label { cursor: default; }
 
-.table-responsive {
-	@media screen and (max-width: 991px) {
-		width: 100%;
-		margin-bottom: ($line-height-computed * 0.75);
-		overflow-y: hidden;
-		-ms-overflow-style: -ms-autohiding-scrollbar;
-		border: 1px solid $table-border-color;
+// .table-responsive {
+// 	@media screen and (max-width: 991px) {
+// 		width: 100%;
+// 		margin-bottom: ($line-height-computed * 0.75);
+// 		overflow-y: hidden;
+// 		-ms-overflow-style: -ms-autohiding-scrollbar;
+// 		border: 1px solid $table-border-color;
 
-		> .table {
-		margin-bottom: 0;
+// 		> .table {
+// 		margin-bottom: 0;
 
-		> thead, > tbody, > tfoot {
-				> tr {
-					> th, > td { white-space: nowrap; }
-				}
-			}
-		}
+// 		> thead, > tbody, > tfoot {
+// 				> tr {
+// 					> th, > td { white-space: nowrap; }
+// 				}
+// 			}
+// 		}
 
-		> .table-bordered {
-			border: 0;
+// 		> .table-bordered {
+// 			border: 0;
 
-			> thead, > tbody, > tfoot {
-				> tr {
-					> th:first-child, > td:first-child { border-left: 0; }
-					> th:last-child, > td:last-child { border-right: 0; }
-				}
-			}
+// 			> thead, > tbody, > tfoot {
+// 				> tr {
+// 					> th:first-child, > td:first-child { border-left: 0; }
+// 					> th:last-child, > td:last-child { border-right: 0; }
+// 				}
+// 			}
 
-			> tbody, > tfoot {
-				> tr:last-child {
-					> th, > td { border-bottom: 0; }
-				}
-			}
+// 			> tbody, > tfoot {
+// 				> tr:last-child {
+// 					> th, > td { border-bottom: 0; }
+// 				}
+// 			}
 
-		}
-	}
-}
+// 		}
+// 	}
+// }
 
 @media (max-width: 767px) {
 	.text-center-xs { text-align: center }
