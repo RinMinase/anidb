@@ -8,7 +8,7 @@ import "angular-filter";
 // import "angular-sanitize";
 import "angular-sweetalert";
 // import "angular-toastr";
-import "angular-ui-bootstrap";
+import "ui-bootstrap4";
 import uiRouter from "@uirouter/angularjs";
 
 // import "oclazyload";
