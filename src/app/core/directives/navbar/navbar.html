@@ -1,160 +1,102 @@
-<nav class="navbar navbar-inverse">
-	<div class="container-fluid">
-		<div class="navbar-header">
-			<button type="button"
-				class="navbar-toggle"
-				ng-click="isNavCollapsed = !isNavCollapsed">
+<nav class="navbar navbar-expand-md navbar-light sticky-top bg-success">
+	<a class="navbar-brand" ng-href="/">Rin's Anime Database</a>
+	<button type="button"
+		class="navbar-toggler"
+		ng-click="isNavCollapsed = !isNavCollapsed">
+		<i class="navbar-toggler-icon"></i>
+	</button>
 
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" ng-href="/">
-				Rin's Anime Database
-			</a>
-		</div>
-
-		<div class="collapse navbar-collapse" uib-collapse="!isNavCollapsed">
-			<ul class="nav navbar-nav">
-				<li ui-sref-active="active">
-					<a ui-sref="home.manage">
-						<i class="fa fa-home"></i>
-						<span class="pl-3">Home</span>
+	<div class="collapse navbar-collapse" uib-collapse="!isNavCollapsed">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item" ui-sref-active="active">
+				<a class="nav-link" ui-sref="home.manage">
+					<i class="fa fa-home"></i><span class="pl-2">Home</span>
+				</a>
+			</li>
+			<li class="nav-item dropdown" uib-dropdown>
+				<a class="nav-link dropdown-toggle" ng-href="#" uib-dropdown-toggle>
+					<i class="fa fa-list"></i><span class="pl-2">Anime List</span>
+				</a>
+				<div class="dropdown-menu" uib-dropdown-menu>
+					<a class="dropdown-item" ui-sref-active="active" ui-sref="lastwatch">
+						<i class="fa fa-play"></i><span class="pl-2">Last 20 Watched</span>
 					</a>
-				</li>
-
-				<li uib-dropdown>
-					<a ng-href="#" uib-dropdown-toggle>
-						<i class="fa fa-list"></i>
-						<span class="pl-3 pr-3">Anime List</span>
-						<i class="fa fa-caret-down"></i>
+					<a class="dropdown-item" ui-sref-active="active" ui-sref="byname">
+						<i class="fa fa-font"></i><span class="pl-2">Anime List by Name</span>
 					</a>
-					<ul uib-dropdown-menu>
-						<li ui-sref-active="active">
-							<a ui-sref="lastwatch">
-								<i class="fa fa-play"></i>
-								<span class="pl-3">Last 20 Watched</span>
-							</a>
-						</li>
-						<li class="divider"></li>
-						<li ui-sref-active="active">
-							<a ui-sref="byname">
-								<i class="fa fa-font"></i>
-								<span class="pl-3">Anime List by Name</span>
-							</a>
-						</li>
-						<li ui-sref-active="active">
-							<a ui-sref="download.manage">
-								<i class="fa fa-download"></i>
-								<span class="pl-3">Download List</span>
-							</a>
-						</li>
-						<li ui-sref-active="active">
-							<a ui-sref="summer.manage">
-								<i class="fa fa-list"></i>
-								<span class="pl-3">Summer List</span>
-							</a>
-						</li>
-						<li class="divider"></li>
-						<li ui-sref-active="active">
-							<a ui-sref="hdd.manage">
-								<i class="fa fa-hdd-o"></i>
-								<span class="pl-3">Hard Drive List</span>
-							</a>
-						</li>
-						<!-- <li>
-							<a>
-								<i class="fa fa-flask"></i>
-								<span class="pl-3">Hard Drive Simulator</span>
-							</a>
-						</li>
-						<li class="divider"></li>
-						<li>
-							<a>
-								<i class="fa fa-flask"></i>
-								<span class="pl-3">Chart Statistics</span>
-							</a>
-						</li> -->
-					</ul>
-				</li>
-
-				<!-- <li uib-dropdown>
-					<a ng-href="#" uib-dropdown-toggle>
+					<a class="dropdown-item" ui-sref-active="active" ui-sref="download.manage">
+						<i class="fa fa-download"></i><span class="pl-2">Download List</span>
+					</a>
+					<a class="dropdown-item" ui-sref-active="active" ui-sref="summer.manage">
+						<i class="fa fa-list"></i><span class="pl-2">Summer List</span>
+					</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" ui-sref-active="active" ui-sref="hdd.manage">
+						<i class="fa fa-hdd-o"></i><span class="pl-2">Hard Drive List</span>
+					</a>
+					<!-- <a class="dropdown-item">
+						<i class="fa fa-flask"></i><span class="pl-2">Hard Drive Simulator</span>
+					</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item">
+						<i class="fa fa-area-chart"></i><span class="pl-2">Chart Statistics</span>
+					</a> -->
+				</div>
+			</li>
+			<!-- <li class="nav-item dropdown" uib-dropdown>
+				<a class="nav-link dropdown-toggle" ng-href="#" uib-dropdown-toggle>
+					<i class="fa fa-pencil"></i><span class="pl-2">Manage</span>
+				</a>
+				<div class="dropdown-menu" uib-dropdown-menu>
+					<a class="dropdown-item">
+						<i class="fa fa-plus"></i><span class="pl-2">Add an Entry</span>
+					</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item">
+						<i class="fa fa-file-text-o"></i>
+						<span class="pl-2">Export List (.csv)</span>
+					</a>
+					<a class="dropdown-item">
+						<i class="fa fa-file-text-o"></i>
+						<span class="pl-2">Export List (.xlsx)</span>
+					</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item">
+						<i class="fa fa-plus"></i>
+						<span class="pl-2">Create a Season Download List</span>
+					</a>
+					<a class="dropdown-item">
 						<i class="fa fa-pencil"></i>
-						<span class="pl-3 pr-3">Manage</span>
-						<i class="fa fa-caret-down"></i>
+						<span class="pl-2">Edit a Season Download List</span>
 					</a>
-					<ul  uib-dropdown-menu>
-						<li>
-							<a>
-								<i class="fa fa-plus"></i>
-								<span class="pl-3">Add an Entry</span>
-							</a>
-						</li>
-						<li class="divider"></li>
-						<li>
-							<a>
-								<i class="fa fa-file-text-o"></i>
-								<span class="pl-3">Export List (.csv)</span>
-							</a>
-						</li>
-						<li>
-							<a>
-								<i class="fa fa-file-text-o"></i>
-								<span class="pl-3">Export List (.xlsx)</span>
-							</a>
-						</li>
-						<li class="divider"></li>
-						<li>
-							<a>
-								<i class="fa fa-plus"></i>
-								<span class="pl-3">Create a Season Download List</span>
-							</a>
-						</li>
-						<li>
-							<a>
-								<i class="fa fa-pencil"></i>
-								<span class="pl-3">Edit a Season Download List</span>
-							</a>
-						</li>
-						<li class="divider"></li>
-						<li>
-							<a>
-								<i class="fa fa-list"></i>
-								<span class="pl-3">Create a Summer List</span>
-							</a>
-						</li>
-						<li>
-							<a>
-								<i class="fa fa-code"></i>
-								<span class="pl-3">Manage Bugs, Future Changes, and Changelog</span>
-							</a>
-						</li>
-					</ul>
-				</li> -->
-			</ul>
-
-			<ul class="nav navbar-nav navbar-right">
-				<!-- <li>
-					<a>
-						<i class="fa fa-gear"></i>
-						<span class="pl-3">Settings</span>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item">
+						<i class="fa fa-list"></i><span class="pl-2">Create a Summer List</span>
 					</a>
-				</li> -->
-				<li>
-					<a ng-href="/about">
-						<i class="fa fa-question"></i>
-						<span class="pl-3">About</span>
+					<a class="dropdown-item">
+						<i class="fa fa-code"></i>
+						<span class="pl-2">Manage Package Issues and Future Changes List</span>
 					</a>
-				</li>
-				<li>
-					<a ng-href="#" ng-click="vm.logout()">
-						<i class="fa fa-power-off"></i>
-						<span class="pl-3">Logout</span>
-					</a>
-				</li>
-			</ul>
-		</div>
+				</div>
+			</li> -->
+		</ul>
+		<ul class="navbar-nav">
+			<!-- <li class="nav-item">
+				<a class="nav-link">
+					<i class="fa fa-gear"></i>
+					<span class="pl-2">Settings</span>
+				</a>
+			</li> -->
+			<li class="nav-item" ui-sref-active="active">
+				<a class="nav-link" ui-sref="about">
+					<i class="fa fa-question"></i><span class="pl-2">About</span>
+				</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" ng-href="#" ng-click="vm.logout()">
+					<i class="fa fa-power-off"></i><span class="pl-2">Logout</span>
+				</a>
+			</li>
+		</ul>
 	</div>
 </nav>
