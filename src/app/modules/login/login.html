@@ -6,16 +6,16 @@
 			</div>
 			<form ng-submit="vm.authenticate()">
 				<div class="flex-form-container-loading"
-					ng-class="{'hidden': vm.loading === false}">
+					ng-class="{'d-none': vm.loading === false}">
 					<div class="spinner eclipse"></div>
 				</div>
-				<div class="form-group" ng-class="{'hidden': vm.loading === true}">
+				<div class="form-group" ng-class="{'d-none': vm.loading === true}">
 					<input type="email"
 						class="form-control text-center"
 						ng-model="vm.email"
 						placeholder="Email Address">
 				</div>
-				<div class="form-group" ng-class="{'hidden': vm.loading === true}">
+				<div class="form-group" ng-class="{'d-none': vm.loading === true}">
 					<input type="password"
 						class="form-control text-center"
 						ng-model="vm.password"
