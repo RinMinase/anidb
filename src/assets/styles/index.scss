@@ -19,25 +19,13 @@ $roboto-font-path: "../fonts";
 	padding: 0.2em 0;
 }
 
-.thumbnail {
-	height: 200px;
-
-	img.pull-right {
-		width: 50px;
-	}
-}
-
 body {
 	font-family: "Roboto", Arial, Helvetica, sans-serif;
 	font-size: 14px;
 	line-height: 1.428571429;
 }
 
-table { margin-bottom: 0px !important; }
-
 hr { border-color: #E4E6E8 }
-
-.navbar { border-radius: 0px; }
 
 .inmodal {
 	button.close { padding: 8px 10px; }
