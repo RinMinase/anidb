@@ -27,7 +27,10 @@ $roboto-font-path: "../fonts";
 	}
 }
 
-body { font-family: "Roboto", Arial, Helvetica, sans-serif; }
+body {
+	font-family: "Roboto", Arial, Helvetica, sans-serif;
+	line-height: 1.25;
+}
 
 table { margin-bottom: 0px !important; }
 
