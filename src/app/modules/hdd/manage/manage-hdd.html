@@ -2,11 +2,11 @@
 
 <div class="container-fluid manage-hdd">
 	<div class="flex-form-container sidebar"
-		ng-class="{'hidden': vm.dataLoaded === true}">
+		ng-class="{'d-none': vm.dataLoaded === true}">
 		<div class="spinner eclipse"></div>
 	</div>
 
-	<div class="row" ng-class="{'hidden': vm.dataLoaded === false}">
+	<div class="row" ng-class="{'d-none': vm.dataLoaded === false}">
 		<div class="col-md-3 col-xs-12 animate slideInLeft">
 			<div class="panel panel-green">
 				<div class="panel-heading">

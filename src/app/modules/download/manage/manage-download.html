@@ -30,11 +30,11 @@
 			</div>
 
 			<div class="flex-form-container sidebar"
-				ng-class="{'hidden': vm.dataLoaded === true}">
+				ng-class="{'d-none': vm.dataLoaded === true}">
 				<div class="spinner eclipse"></div>
 			</div>
 
-			<div class="row" ng-class="{'hidden': vm.dataLoaded === false}">
+			<div class="row" ng-class="{'d-none': vm.dataLoaded === false}">
 				<div class="col-md-12">
 
 					<div class="list-group">
@@ -121,11 +121,11 @@
 
 		<div class="col-md-9">
 			<div class="flex-form-container main-panel"
-				ng-class="{'hidden': vm.dataLoaded === true}">
+				ng-class="{'d-none': vm.dataLoaded === true}">
 				<div class="spinner eclipse"></div>
 			</div>
 
-			<div class="panel-group" ng-class="{'hidden': vm.dataLoaded === false}">
+			<div class="panel-group" ng-class="{'d-none': vm.dataLoaded === false}">
 				<div class="panel panel-default"
 					ng-repeat="(key, keyValue) in vm.data[vm.category.year][vm.category.season]"
 					ng-switch="key"

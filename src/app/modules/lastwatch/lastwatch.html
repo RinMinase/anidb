@@ -3,13 +3,13 @@
 <div class="container-fluid anidb-lastwatch">
 
 	<div class="flex-form-container"
-		ng-class="{'hidden': vm.dataLoaded === true}">
+		ng-class="{'d-none': vm.dataLoaded === true}">
 		<div class="spinner eclipse"></div>
 	</div>
 
 	<div class="row">
 
-		<div class="col-lg-3 animate slideInLeft" ng-class="{'hidden': vm.dataLoaded === false}">
+		<div class="col-lg-3 animate slideInLeft" ng-class="{'d-none': vm.dataLoaded === false}">
 			<div class="panel panel-green">
 				<div class="panel-heading">
 					<h4>Statistics (Last 20 Watched)</h4>
@@ -50,7 +50,7 @@
 			</div>
 		</div>
 
-		<div class="col-lg-9 col-md-12 animate slideInUp" ng-class="{'hidden': vm.dataLoaded === false}">
+		<div class="col-lg-9 col-md-12 animate slideInUp" ng-class="{'d-none': vm.dataLoaded === false}">
 			<div class="table-responsive">
 				<table class="table table-condensed">
 					<thead>
