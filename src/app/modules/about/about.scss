@@ -1,4 +1,14 @@
 .anidb-about {
+	.jumbotron { padding: 3.5rem 2rem; }
+	.display-4 {
+		font-size: 2.75rem;
+		@media screen and (max-width: 767px) { font-size: 2.35rem; }
+	}
+	.lead {
+		font-size: 1.85rem;
+		@media screen and (max-width: 767px) { font-size: 1.5rem; }
+	}
+
 	h3.user-data-heading {
 		margin-top: 20px;
 		margin-bottom: 20px;
