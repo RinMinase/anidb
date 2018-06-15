@@ -13,14 +13,14 @@
 					<center>
 						<img ng-src="assets/images/user.jpg" class="rounded-circle img-fluid">
 					</center>
-					<h3 class="text-center user-data-heading">Statistics</h3>
+					<h4 class="text-center user-data-heading">Statistics</h4>
 
 					<div class="flex-form-container"
 						ng-class="{'d-none': vm.dataLoaded === true}">
 						<div class="spinner eclipse"></div>
 					</div>
 
-					<table class="table table-condensed table-statistics"
+					<table class="table table-sm table-statistics"
 						ng-class="{'d-none': vm.dataLoaded === false}">
 						<tbody>
 							<tr>
@@ -80,7 +80,7 @@
 			</div>
 			<div class="row">
 				<div class="col-xs-12 mt-4">
-					<h3 class="text-center user-data-heading">Chart Data</h3>
+					<h4 class="text-center user-data-heading">Chart Data</h4>
 				</div>
 				<div class="col-lg-6 col-md-12 col-sm-6 col-xs-12 text-left-md text-center-md text-center-sm text-center-xs mb-3 pr-lg-0 pr-sm-0">
 					<div class="btn-group">
@@ -112,13 +112,13 @@
 
 		<div class="col-md-8 user-data-column animate slideInRight">
 
-			<h3 class="user-data-heading">Developer</h3>
+			<h4 class="user-data-heading mt-0">Developer</h4>
 			<h2><strong>Rin Minase</strong> <small>(Kristian Alunan)</small></h2>
-			<h4>Minase Conglomerate</h4>
+			<h5>Minase Conglomerate</h5>
 			<div class="row">
 				<div class="col-md-6">
-					<h5>
-						<table class="table table-condensed">
+					<h6>
+						<table class="table table-sm">
 							<tbody>
 								<tr>
 									<td class="text-center"><i class="fa fa-envelope"></i></td>
@@ -142,33 +142,25 @@
 								</tr>
 							</tbody>
 						</table>
-					</h5>
+					</h6>
 				</div>
 			</div>
 
 			<div class="row">
 				<div class="col-md-12">
-					<h3 class="user-data-heading">Acknowledgements</h3>
+					<h4 class="user-data-heading">Acknowledgements</h4>
 					<div class="row">
-						<div class="col-sm-4 hidden-xs text-right">
+						<div class="col-sm-4 col-12 text-center">
 							<div class="acknowledgements ruka"></div>
-							<h4 class="pr-4">Ruka Suirenji</h4>
+							<h5>Ruka Suirenji</h5>
 						</div>
-						<div class="col-xs-12 hidden-sm hidden-md hidden-lg text-center">
-							<div class="acknowledgements ruka"></div>
-							<h4>Ruka Suirenji</h4>
-						</div>
-						<div class="col-xs-6 col-sm-4 text-center">
+						<div class="col-sm-4 col-6 text-center">
 							<div class="acknowledgements alice"></div>
-							<h4>Alice (ClariS)</h4>
+							<h5>Alice (ClariS)</h5>
 						</div>
-						<div class="col-sm-4 hidden-xs text-left pl-2">
+						<div class="col-sm-4 col-6 text-center">
 							<div class="acknowledgements maid"></div>
-							<h4 class="pl-4">Maid-chan</h4>
-						</div>
-						<div class="col-xs-6 hidden-sm hidden-md hidden-lg text-center">
-							<div class="acknowledgements maid"></div>
-							<h4>Maid-chan</h4>
+							<h5>Maid-chan</h5>
 						</div>
 					</div>
 				</div>
@@ -176,7 +168,7 @@
 
 			<div class="row">
 				<div class="col-md-12">
-					<h3 class="user-data-heading">This Project is Made by</h3>
+					<h4 class="user-data-heading">This Project is Made by</h4>
 					<div class="row">
 						<div class="col-xs-6 col-sm-4 text-center">
 							<a ng-href="https://angular.io/"
@@ -208,7 +200,7 @@
 
 			<div class="row">
 				<div class="col-md-12">
-					<h3 class="user-data-heading">Programming Skillsets</h3>
+					<h4 class="user-data-heading">Programming Skillsets</h4>
 					<div class="row">
 						<div class="col-sm-6 col-md-4">
 							<skillset-bar name="HTML" value="5" sprite="html"></skillset-bar>
