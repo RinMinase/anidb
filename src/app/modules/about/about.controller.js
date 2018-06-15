@@ -187,7 +187,9 @@ export class AboutController {
 
 					if (message.includes("fixed") || message.includes("removed")) {
 						this.githubCommits[commitDate].fix.push(commitData);
-					} else if (message.includes("added") || message.includes("functional")) {
+					} else if (message.includes("added")
+						|| message.includes("functional")
+						|| message.includes("migrated")) {
 						this.githubCommits[commitDate].new.push(commitData);
 					} else {
 						this.githubCommits[commitDate].improve.push(commitData);
