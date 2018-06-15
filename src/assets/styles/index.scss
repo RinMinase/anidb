@@ -42,15 +42,18 @@ hr { border-color: #E4E6E8 }
 	}
 }
 
-div.panel-green {
-	border-color: #7CC87F;
+.bg-success-light { background-color: #95CE92 !important; }
+.pagination { justify-content: center; }
 
-	> .panel-heading {
-		border-color: #7CC87F;
-		background-color: #95CE92;
-		color: #555555;
-	}
-}
+// div.panel-green {
+// 	border-color: #7CC87F;
+
+// 	> .panel-heading {
+// 		border-color: #7CC87F;
+// 		background-color: #95CE92;
+// 		color: #555555;
+// 	}
+// }
 
 .flex-form-container {
 	display: flex;
