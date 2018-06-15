@@ -6,4 +6,10 @@
 	#animeTable tr.anime-table-row td {
 		cursor: pointer;
 	}
+
+	.form-control:focus {
+		outline: 0 !important;
+		border-color: initial;
+		box-shadow: none;
+	}
 }
