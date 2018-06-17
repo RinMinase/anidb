@@ -8,51 +8,48 @@
 	</div>
 
 	<div class="row">
-
-		<div class="col-lg-3 animate slideInLeft" ng-class="{'d-none': vm.dataLoaded === false}">
-			<div class="panel panel-green">
-				<div class="panel-heading">
-					<h4>Statistics (Last 20 Watched)</h4>
+		<div class="col-xl-3 col-12 animate slideInLeft" ng-class="{'d-none': vm.dataLoaded === false}">
+			<div class="card">
+				<div class="card-header bg-success-light">
+					<h5 class="mb-0">Statistics (Last 20 Watched)</h5>
 				</div>
-				<div class="panel-body">
+				<div class="card-body">
 					<div class="table-responsive">
-						<table class="table table-condensed table-unbordered">
-							<tbody>
-								<tr>
-									<th>Total Episodes</th>
-									<th>:</th>
-									<th class="text-center">{{ vm.totalEpisodes }}</th>
-								</tr>
-								<tr>
-									<th>Days Since Last Anime</th>
-									<th>:</th>
-									<th class="text-center">{{ vm.daysSinceLastAnime }}</th>
-								</tr>
-								<tr>
-									<th>Titles per Day</th>
-									<th>:</th>
-									<th class="text-center">{{ vm.titlesPerDay }}</th>
-								</tr>
-								<tr>
-									<th>Single Season per Day<br><small>(12 Episodes)</small></th>
-									<th>:</th>
-									<th class="text-center">{{ vm.singleSeasonPerDay }}</th>
-								</tr>
-								<tr>
-									<th>Episodes per Day</th>
-									<th>:</th>
-									<th class="text-center">{{ vm.episodesPerDay }}</th>
-								</tr>
-							</tbody>
+						<table class="table table-sm table-unbordered">
+							<tr>
+								<th>Total Episodes</th>
+								<th>:</th>
+								<th class="text-center">{{ vm.totalEpisodes }}</th>
+							</tr>
+							<tr>
+								<th>Days Since Last Anime</th>
+								<th>:</th>
+								<th class="text-center">{{ vm.daysSinceLastAnime }}</th>
+							</tr>
+							<tr>
+								<th>Titles per Day</th>
+								<th>:</th>
+								<th class="text-center">{{ vm.titlesPerDay }}</th>
+							</tr>
+							<tr>
+								<th>Single Season per Day<br><small>(12 Episodes)</small></th>
+								<th>:</th>
+								<th class="text-center">{{ vm.singleSeasonPerDay }}</th>
+							</tr>
+							<tr>
+								<th>Episodes per Day</th>
+								<th>:</th>
+								<th class="text-center">{{ vm.episodesPerDay }}</th>
+							</tr>
 						</table>
 					</div>
 				</div>
 			</div>
 		</div>
 
-		<div class="col-lg-9 col-md-12 animate slideInUp" ng-class="{'d-none': vm.dataLoaded === false}">
+		<div class="col-xl-9 col-12 animate slideInUp" ng-class="{'d-none': vm.dataLoaded === false}">
 			<div class="table-responsive">
-				<table class="table table-condensed">
+				<table class="table table-sm">
 					<thead>
 						<tr>
 							<th>Title</th>
