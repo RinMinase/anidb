@@ -113,7 +113,7 @@
 		<div class="col-lg-8 user-data-column animate slideInUp">
 
 			<h4 class="user-data-heading mt-lg-0">Developer</h4>
-			<h2><strong>Rin Minase</strong> <small>(Kristian Alunan)</small></h2>
+			<h3><strong>Rin Minase</strong> <small>(Kristian Alunan)</small></h3>
 			<h5>Minase Conglomerate</h5>
 			<div class="row">
 				<div class="col-md-6">
@@ -309,15 +309,13 @@
 									<span class="small pull-right">{{ issue.date }}</span>
 								</li>
 							</ul>
-							<div class="text-center">
-								<ul uib-pagination
-									total-items="vm.issuesMaxSize"
-									ng-model="vm.issuesCurrentPage"
-									max-size="5"
-									class="pagination-sm"
-									boundary-link-numbers="true">
-								</ul>
-							</div><hr>
+							<ul uib-pagination
+								total-items="vm.issuesMaxSize"
+								ng-model="vm.issuesCurrentPage"
+								max-size="5"
+								class="pagination-sm"
+								boundary-link-numbers="true">
+							</ul><hr>
 
 							<h5 class="card-title">Package Update Issues</h5>
 							<ul>
@@ -339,11 +337,11 @@
 								<li><code class="red">[FEATURE]</code> Edit and Delete an Entry (AniDB)</li>
 								<li><code class="red">[FEATURE]</code> Add, Edit and Delete an Entry (dlDB)</li>
 								<li><code class="orange">[IMPROVEMENT]</code> Fuzzy Search using comma-separated keywords</li>
-									<ul>
-										<li>size: 40-50gb</li>
-										<li>finished: lastweek / lastmonth / august / 2012</li>
-										<li>remarks: redownload / redl</li>
-									</ul>
+								<ul>
+									<li>size: 40-50gb</li>
+									<li>finished: lastweek / lastmonth / august / 2012</li>
+									<li>remarks: redownload / redl</li>
+								</ul>
 							</ul>
 						</div>
 					</div>
