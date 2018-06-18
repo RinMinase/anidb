@@ -1,22 +1,17 @@
 <div class="row">
-	<div class="col-sm-1 col-xs-1 col-md-1 col-lg-1">
+	<div class="col-1 pr-4 pl-3">
 		<div class="skillset-sprite {{ vm.sprite }}"></div>
 	</div>
-	<div class="col-sm-5 col-xs-5 col-md-5 col-lg-5">
+	<div class="col-4 px-0 mr-2">
 		<p><strong>{{ vm.name }}</strong></p>
 	</div>
-	<div class="col-sm-5 col-xs-5 col-md-5 col-lg-5">
+	<div class="col-5 px-0">
 		<div class="progress skillset-bar">
-			<div class="progress-bar progress-bar-green"
-				ng-if="vm.value > 0"></div>
-			<div class="progress-bar progress-bar-alt-green"
-				ng-if="vm.value > 1"></div>
-			<div class="progress-bar progress-bar-green"
-				ng-if="vm.value > 2"></div>
-			<div class="progress-bar progress-bar-alt-green"
-				ng-if="vm.value > 3"></div>
-			<div class="progress-bar progress-bar-alt-green"
-				ng-if="vm.value > 4"></div>
+			<div class="progress-bar progress-bar-green" ng-if="vm.value > 0"></div>
+			<div class="progress-bar progress-bar-alt-green" ng-if="vm.value > 1"></div>
+			<div class="progress-bar progress-bar-green" ng-if="vm.value > 2"></div>
+			<div class="progress-bar progress-bar-alt-green" ng-if="vm.value > 3"></div>
+			<div class="progress-bar progress-bar-green" ng-if="vm.value > 4"></div>
 		</div>
 	</div>
 </div>

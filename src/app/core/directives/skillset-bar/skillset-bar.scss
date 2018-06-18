@@ -5,18 +5,15 @@ skillset-bar {
 		div.progress-bar-alt-green { background-color: #7CC87F; }
 	}
 
-	.col-sm-5.col-xs-5.col-md-5.col-lg-5 {
-		padding-left: 5px;
-		padding-right: 5px;
-	}
+	// .col-5 {
+	// 	padding-left: 5px;
+	// 	padding-right: 5px;
+	// }
 
-	.col-sm-1.col-xs-1.col-md-1.col-lg-1 {
-		padding-right: 20px;
-	}
+	// .col-1 {
+	// 	padding-right: 20px;
+	// }
 
-	/**
-	 * CSS Sprite generated from : http://css.spritegen.com/
-	 */
 	.skillset-sprite {
 		display: inline-block;
 		background-image: url("https://firebasestorage.googleapis.com/v0/b/rin-anidb.appspot.com/o/skillsets.png?alt=media&token=24a73d8b-2c9b-4f69-9860-687addff7fd8");
