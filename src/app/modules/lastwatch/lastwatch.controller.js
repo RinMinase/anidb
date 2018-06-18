@@ -14,7 +14,8 @@ export class LastWatchController {
 			$scope,
 			$state,
 			firebase,
-			data: {},
+
+			data: [],
 			dataLoaded: false,
 			totalEpisodes: 0,
 		});
@@ -27,7 +28,7 @@ export class LastWatchController {
 			.then(() => {
 				this.firebase.retrieve("anime", null, 20, "dateFinished", true)
 					.then((data) => {
-						this.data = this.formatData(data);
+						this.formatData(data);
 						this.dataLoaded = true;
 						this.$scope.$apply();
 					});
@@ -50,64 +51,38 @@ export class LastWatchController {
 				this.totalEpisodes += parseInt(value.specials);
 			}
 
-			value.filesize = this._convertFilesize(value.filesize);
+			const filesize = this._convertFilesize(value.filesize);
+			const formattedValue = {
+				dateFinished: value.dateFinished,
+				episodes: value.episodes,
+				filesize,
+				ovas: value.ovas,
+				quality: value.quality,
+				specials: value.specials,
+				title: value.title,
+			};
 
-			delete value.duration;
-			delete value.encoder;
-			delete value.firstSeasonTitle;
-			delete value.inhdd;
-			delete value.offquel;
-			delete value.prequel;
-			delete value.rating;
-			delete value.releaseSeason;
-			delete value.releaseYear;
-			delete value.remarks;
-			delete value.seasonNumber;
-			delete value.sequel;
-			delete value.watchStatus;
-
-			return value;
+			return formattedValue;
 		});
 
-		const now = moment();
 		const dateFirst = moment(data[0].dateFinished, "X");
 		const dateLast = moment(data[data.length - 1].dateFinished, "X");
-		const dateDiffLast = now.diff(dateLast, "days", true);
+		const dateDiffLast = moment().diff(dateLast, "days", true);
+		const sortedData = formattedData.sort(this._sortData);
 
-		this.daysSinceLastAnime = now.diff(dateFirst, "days");
+		this.daysSinceLastAnime = moment().diff(dateFirst, "days");
 		this.titlesPerDay = parseFloat(data.length / dateDiffLast).toFixed(2);
 		this.singleSeasonPerDay = parseFloat((this.totalEpisodes / 12) / dateDiffLast).toFixed(2);
 		this.episodesPerDay = parseFloat(this.totalEpisodes / dateDiffLast).toFixed(2);
 
-		const sortedData = formattedData.sort((a, b) => {
-			const aTitle = a.title;
-			const bTitle = b.title;
-
-			if (a.dateFinished < b.dateFinished) {
-				return 1;
-			}
-
-			if (a.dateFinished > b.dateFinished) {
-				return -1;
-			}
-
-			if (aTitle < bTitle) {
-				return -1;
-			}
-
-			if (aTitle > bTitle) {
-				return 1;
-			}
-		});
-
-		return sortedData.map((value) => {
+		sortedData.map((value) => {
 			if (value.dateFinished === "") {
 				value.dateFinished = "-";
 			} else {
 				value.dateFinished = moment(value.dateFinished, "X").format("MMM DD, YYYY");
 			}
 
-			return value;
+			this.data.push(value);
 		});
 	}
 
@@ -120,6 +95,20 @@ export class LastWatchController {
 			return `${(filesize / 1048576).toFixed(2)} MB`;
 		} else {
 			return `${(filesize / 1073741824).toFixed(2)} GB`;
+		}
+	}
+
+	_sortData(a, b) {
+		if (a.dateFinished < b.dateFinished) {
+			return 1;
+		} else if (a.dateFinished > b.dateFinished) {
+			return -1;
+		}
+
+		if (a.title < b.title) {
+			return -1;
+		} else if (a.title > b.title) {
+			return 1;
 		}
 	}
 }
