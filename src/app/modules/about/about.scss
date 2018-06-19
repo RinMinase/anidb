@@ -57,16 +57,16 @@
 
 	a.frameworks {
 		display: inline-block;
-		background-image: url("https://firebasestorage.googleapis.com/v0/b/rin-anidb.appspot.com/o/frameworks.png?alt=media&token=b621cb0b-976e-4560-b9d6-f8295efa4b66");
+		background-image: url("https://firebasestorage.googleapis.com/v0/b/rin-anidb.appspot.com/o/frameworks.png?alt=media&token=b8dfb28a-5202-49b1-912a-ae706325ab0b");
 		background-repeat: no-repeat;
 		overflow: hidden;
 
-		&.angular { background-position: -3px -0px; width: 120px; height: 120px; }
-		&.bootstrap { background-position: -126px -0px; width: 120px; height: 120px; }
-		&.es8 { background-position: -3px -123px; width: 120px; height: 120px; }
-		&.firebase { background-position: -126px -123px; width: 120px; height: 120px; }
-		&.scss { background-position: -3px -246px; width: 120px; height: 120px; }
-		&.yarn { background-position: -126px -246px; width: 120px; height: 120px; }
+		&.angular { background-position: -2px -0px; width: 120px; height: 120px; }
+		&.bootstrap { background-position: -124px -0px; width: 120px; height: 120px; }
+		&.es8 { background-position: -2px -122px; width: 120px; height: 120px; }
+		&.firebase { background-position: -124px -122px; width: 120px; height: 120px; }
+		&.scss { background-position: -2px -244px; width: 120px; height: 120px; }
+		&.webpack { background-position: -124px -244px; width: 120px; height: 120px; }
 	}
 
 	div.acknowledgements {
