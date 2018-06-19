@@ -79,4 +79,10 @@
 		&.maid { background-position: -2px -122px; width: 120px; height: 120px; border-radius: 60px; border: 1px solid #CECECE }
 		&.ruka { background-position: -2px -244px; width: 120px; height: 120px; border-radius: 60px; border: 1px solid #CECECE }
 	}
+
+	.btn-group {
+		width: 80%;
+		&.btn-group-2 .btn { width: 50%; }
+		&.btn-group-3 .btn { width: 33.33%; }
+	}
 }
