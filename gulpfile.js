@@ -3,6 +3,7 @@
 var fs = require("fs");
 var gulp = require("gulp");
 var gutil = require("gulp-util");
+var path = require("path");
 
 /**
  *  This will load all js or coffee files in the gulp directory
@@ -29,6 +30,7 @@ gulp.task("default", ["clean"], function () {
  *  The main paths of your project handle these with care
  */
 exports.paths = {
+	root: path.join(__dirname),
 	src: "src",
 	dist: "dist",
 	tmp: ".tmp",

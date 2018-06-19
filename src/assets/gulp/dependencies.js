@@ -6,7 +6,7 @@ var gulp = require("gulp");
 var conf = require("../../../gulpfile.js");
 var $ = require("gulp-load-plugins")();
 var browserSync = require("browser-sync");
-var webpack = require("webpack-stream");
+var webpackStream = require("webpack-stream");
 var Dotenv = require("dotenv-webpack");
 
 gulp.task("inject-reload", ["inject"], function() {
@@ -31,20 +31,10 @@ gulp.task("inject", ["scripts", "styles"], function () {
 		addRootSlash: false
 	};
 
-	return gulp.src(
-			path.join(conf.paths.src, "/*.html")
-		)
-		.pipe(
-			$.inject(injectStyles, injectOptions)
-		)
-		.pipe(
-			$.inject(injectScripts, injectOptions)
-		)
-		.pipe(
-			gulp.dest(
-				path.join(conf.paths.tmp, "/serve")
-			)
-		);
+	return gulp.src(path.join(conf.paths.src, "/*.html"))
+		.pipe($.inject(injectStyles, injectOptions))
+		.pipe($.inject(injectScripts, injectOptions))
+		.pipe(gulp.dest(path.join(conf.paths.tmp, "/serve")));
 });
 
 
@@ -55,33 +45,31 @@ function webpackWrapper(watch, callback) {
 	var webpackOptions = {
 		watch: watch,
 		module: {
-			preLoaders: [{
+			rules: [{
 				test: /\.js$/,
+				enforce: "pre",
 				exclude: /node_modules/,
 				loader: "eslint-loader"
-			}],
-			loaders: [{
+			}, {
 				test: /\.html$/,
-				loaders: [
-					"ngtemplate-loader",
-					"html-loader"
-				],
-				options: {
-					relativeTo: conf.paths.src
-				}
-			}],
-			loaders: [{
+				use: [{
+					loader: "ngtemplate-loader",
+					options: { relativeTo: path.join(conf.paths.root, conf.paths.src) }
+				}, { loader: "html-loader" }]
+			}, {
 				test: /\.js$/,
 				exclude: /node_modules/,
-				loaders: [
-					"ng-annotate",
+				use: [
+					"ng-annotate-loader",
 					"babel-loader?presets[]=env"
 				]
 			}]
 		},
-		plugins: [ new Dotenv({ path: "./src/assets/.env" }) ],
-		output: { filename: "index.module.js" },
-		node: { fs: "empty" }
+		output: {
+			filename: "index.module.js",
+			path: path.join(conf.paths.root, conf.paths.tmp, "/serve/app"),
+		},
+		plugins: [ new Dotenv({ path: "./src/assets/.env" }) ]
 	};
 
 	if (watch) {
@@ -110,21 +98,15 @@ function webpackWrapper(watch, callback) {
 		}
 	};
 
-	return gulp.src(
-			path.join(conf.paths.src, "/app/index.module.js")
-		)
+	return gulp.src(path.join(conf.paths.src, "/app/index.module.js"))
 		.pipe(
-			webpack(
+			webpackStream(
 				webpackOptions,
-				null,
+				require("webpack"),
 				webpackChangeHandler
 			)
 		)
-		.pipe(
-			gulp.dest(
-				path.join(conf.paths.tmp, "/serve/app")
-			)
-		);
+		.pipe(gulp.dest(path.join(conf.paths.tmp, "/serve/app")));
 }
 
 gulp.task("scripts", function () {

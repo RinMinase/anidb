@@ -1,4 +1,4 @@
-import updateHomeDOM from "ngtemplate!html!../update/update-home.html";
+import updateHomeDOM from "../update/update-home.html";
 
 export class ViewHomeController {
 	constructor (

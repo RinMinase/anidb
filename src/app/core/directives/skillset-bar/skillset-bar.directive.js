@@ -1,4 +1,4 @@
-import skillsetBarDOM from "ngtemplate!html!./skillset-bar.html";
+import skillsetBarDOM from "./skillset-bar.html";
 
 export function SkillsetBarDirective() {
 	"ngInject";

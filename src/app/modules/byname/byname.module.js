@@ -1,6 +1,6 @@
 import { ByNameController } from "./byname.controller";
 
-import byNameDOM from "ngtemplate!html!./byname.html";
+import byNameDOM from "./byname.html";
 
 export default angular
 	.module("byname", [])

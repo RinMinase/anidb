@@ -1,6 +1,6 @@
 import { AboutController } from "./about.controller";
 
-import aboutDOM from "ngtemplate!html!./about.html";
+import aboutDOM from "./about.html";
 
 export default angular
 	.module("about", [])

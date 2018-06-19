@@ -1,6 +1,6 @@
 import { ManageDownloadController } from "./manage/manage-download.controller";
 
-import manageDownloadDOM from "ngtemplate!html!./manage/manage-download.html";
+import manageDownloadDOM from "./manage/manage-download.html";
 
 export default angular
 	.module("download", [])
