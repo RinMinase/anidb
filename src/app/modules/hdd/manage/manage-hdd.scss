@@ -2,4 +2,9 @@
 	.flex-form-container {
 		height: calc(100vh - 70px - 50px);
 	}
+
+	a.link {
+		text-decoration: none !important;
+		color: #000;
+	}
 }
