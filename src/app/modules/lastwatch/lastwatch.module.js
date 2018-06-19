@@ -1,6 +1,6 @@
 import { LastWatchController } from "./lastwatch.controller";
 
-import LastWatchDOM from "ngtemplate-loader!html-loader!./lastwatch.html";
+import LastWatchDOM from "./lastwatch.html";
 
 export default angular
 	.module("lastwatch", [])

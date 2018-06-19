@@ -1,6 +1,6 @@
 import { ManageSummerController } from "./manage/manage-summer.controller";
 
-import manageSummerDOM from "ngtemplate-loader!html-loader!./manage/manage-summer.html";
+import manageSummerDOM from "./manage/manage-summer.html";
 
 export default angular
 	.module("summer", [])

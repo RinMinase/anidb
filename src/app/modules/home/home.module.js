@@ -3,8 +3,8 @@ import { ManageHomeController } from "./manage/manage-home.controller";
 import { UpdateHomeController } from "./update/update-home.controller";
 import { ViewHomeController } from "./view/view-home.controller";
 
-import manageHomeDOM from "ngtemplate-loader!html-loader!./manage/manage-home.html";
-import viewHomeDOM from "ngtemplate-loader!html-loader!./view/view-home.html";
+import manageHomeDOM from "./manage/manage-home.html";
+import viewHomeDOM from "./view/view-home.html";
 
 export default angular
 	.module("home", [])

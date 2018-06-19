@@ -1,4 +1,4 @@
-import footerDOM from "ngtemplate-loader!html-loader!./footer.html";
+import footerDOM from "./footer.html";
 
 export function FooterDirective() {
 	"ngInject";

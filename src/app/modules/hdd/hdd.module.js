@@ -1,6 +1,6 @@
 import { ManageHddController } from "./manage/manage-hdd.controller";
 
-import manageHddDOM from "ngtemplate-loader!html-loader!./manage/manage-hdd.html";
+import manageHddDOM from "./manage/manage-hdd.html";
 
 export default angular
 	.module("hdd", [])

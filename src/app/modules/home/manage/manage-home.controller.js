@@ -1,7 +1,7 @@
 // import Fuse from "fuse.js";
 import moment from "moment";
 
-import addHomeDOM from "ngtemplate-loader!html-loader!../add/add-home.html";
+import addHomeDOM from "../add/add-home.html";
 
 export class ManageHomeController {
 	constructor (
