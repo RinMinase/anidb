@@ -51,7 +51,7 @@ export function FirebaseFactory() {
 	function auth() {
 		return new Promise((resolve, reject) => {
 			firebase.auth().onAuthStateChanged((isAuthenticated) => {
-				(isAuthenticated) ? resolve() : reject();
+				(isAuthenticated) ? resolve() : reject(new Error("Not authenticated"));
 			});
 		});
 	}
