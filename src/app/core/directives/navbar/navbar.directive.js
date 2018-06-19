@@ -1,6 +1,6 @@
 import _ from "lodash";
 
-import navbarDOM from "ngtemplate!html!./navbar.html";
+import navbarDOM from "ngtemplate-loader!html-loader!./navbar.html";
 
 export function NavbarDirective() {
 	"ngInject";

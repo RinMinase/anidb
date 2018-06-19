@@ -1,4 +1,4 @@
-import qualityLegendDOM from "ngtemplate!html!./quality-legend.html";
+import qualityLegendDOM from "ngtemplate-loader!html-loader!./quality-legend.html";
 
 export function QualityLegendDirective() {
 	"ngInject";

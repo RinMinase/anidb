@@ -1,4 +1,4 @@
-import ratingDOM from "ngtemplate!html!./rating.html";
+import ratingDOM from "ngtemplate-loader!html-loader!./rating.html";
 
 export function RatingDirective() {
 	"ngInject";
