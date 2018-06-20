@@ -195,7 +195,13 @@ var fontpaths = [
 	"node_modules/font-awesome/fonts/*.woff2",
 ];
 
-var robotofonts = "node_modules/roboto-fontface/fonts/roboto/*.woff2";
+var robotofonts = [
+	"node_modules/roboto-fontface/fonts/roboto/Roboto-Regular.woff2",
+	"node_modules/roboto-fontface/fonts/roboto/Roboto-Medium.woff2",
+	"node_modules/roboto-fontface/fonts/roboto/Roboto-MediumItalic.woff2",
+	"node_modules/roboto-fontface/fonts/roboto/Roboto-Bold.woff2",
+	"node_modules/roboto-fontface/fonts/roboto/Roboto-Light.woff2"
+];
 
 gulp.task("fonts_roboto", function () {
 	if (!fs.existsSync(path.join(conf.paths.tmp, "/serve/fonts/roboto"))) {
