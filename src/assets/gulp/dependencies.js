@@ -154,7 +154,6 @@ var buildStyles = function() {
 		addRootSlash: false
 	};
 
-
 	return gulp.src([path.join(conf.paths.src, "/assets/styles/index.scss")])
 		.pipe(
 			$.inject(
