@@ -44,6 +44,7 @@ gulp.task("inject", ["scripts", "styles"], function () {
 function webpackWrapper(watch, callback) {
 	var webpackOptions = {
 		watch: watch,
+		mode: "production",
 		module: {
 			rules: [{
 				test: /\.js$/,
@@ -65,10 +66,14 @@ function webpackWrapper(watch, callback) {
 				]
 			}]
 		},
+		optimization: {
+			splitChunks: { chunks: "all" }
+		},
 		output: {
 			filename: "index.module.js",
 			path: path.join(conf.paths.root, conf.paths.tmp, "/serve/app"),
 		},
+		performance: { hints: false },
 		plugins: [ new Dotenv({ path: "./src/assets/.env" }) ]
 	};
 
