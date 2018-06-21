@@ -164,7 +164,6 @@ var buildStyles = function() {
 				injectOptions
 			)
 		)
-		.pipe($.sourcemaps.init())
 		.pipe($.sass(sassOptions))
 		.on(
 			"error",
@@ -175,7 +174,6 @@ var buildStyles = function() {
 			"error",
 			conf.errorHandler("Autoprefixer")
 		)
-		.pipe($.sourcemaps.write())
 		.pipe(
 			gulp.dest(
 				path.join(
