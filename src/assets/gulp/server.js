@@ -5,6 +5,7 @@ var gulp = require("gulp");
 var conf = require("../../../gulpfile.js");
 var browserSync = require("browser-sync");
 var browserSyncSpa = require("browser-sync-spa");
+var runSequence = require("run-sequence");
 var $ = require("gulp-load-plugins")({
 	pattern: ["gulp-*", "uglify-save-license", "del"]
 });
@@ -55,7 +56,7 @@ gulp.task("serve", ["fonts", "watch"], function () {
 	]);
 });
 
-gulp.task("serve:dist", ["fonts:dist", "build"], function () {
+gulp.task("serve:dist", ["build"], function () {
 	browserSyncInit(conf.paths.dist);
 });
 
@@ -199,4 +200,8 @@ gulp.task("clean", function () {
 	]);
 });
 
-gulp.task("build", ["html", "other"]);
+gulp.task("build", function (done) {
+	runSequence("clean", ["fonts:dist", "html", "other"], function() {
+		done();
+	});
+});
