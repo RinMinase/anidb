@@ -20,9 +20,6 @@ var useref = require("gulp-useref");
 var browserSync = require("browser-sync");
 var browserSyncSpa = require("browser-sync-spa");
 var runSequence = require("run-sequence");
-// var $ = require("gulp-load-plugins")({
-// 	pattern: ["gulp-*", "uglify-save-license", "del"]
-// });
 
 function browserSyncInit(baseDir, browser) {
 	browser = browser || "default";
