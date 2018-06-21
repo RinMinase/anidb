@@ -75,14 +75,13 @@ function webpackWrapper(watch, callback) {
 			path: path.join(conf.paths.root, conf.paths.tmp, "/serve/app"),
 		},
 		performance: { hints: false },
-		plugins: [
-			new CompressionPlugin(),
-			new Dotenv({ path: "./src/assets/.env" })
-		]
+		plugins: [new Dotenv({ path: "./src/assets/.env" })]
 	};
 
 	if (watch) {
 		webpackOptions.devtool = "inline-source-map";
+	} else {
+		webpackOptions.plugins.push(new CompressionPlugin());
 	}
 
 	var webpackChangeHandler = function(err, stats) {
