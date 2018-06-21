@@ -140,7 +140,7 @@ gulp.task("styles", function() {
 
 var buildStyles = function() {
 	var sassOptions = {
-		outputStyle: "expanded",
+		outputStyle: "compressed",
 		precision: 10
 	};
 
