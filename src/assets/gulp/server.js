@@ -2,6 +2,7 @@
 
 var path = require("path");
 var gulp = require("gulp");
+var cssnano = require("gulp-cssnano");
 var conf = require("../../../gulpfile.js");
 var browserSync = require("browser-sync");
 var browserSyncSpa = require("browser-sync-spa");
@@ -118,14 +119,10 @@ gulp.task("html", ["inject", "partials"], function () {
 	var cssFilter = $.filter("**/*.css", { restore: true });
 
 	return gulp.src(path.join(conf.paths.tmp, "/serve/*.html"))
-		.pipe(
-			$.inject(partialsInjectFile, partialsInjectOptions)
-		)
+		.pipe($.inject(partialsInjectFile, partialsInjectOptions))
 		.pipe($.useref())
 		.pipe(jsFilter)
-		.pipe(
-			$.uglify({preserveComments: $.uglifySaveLicense})
-		)
+		.pipe($.uglify({preserveComments: $.uglifySaveLicense}))
 		.on(
 			"error",
 			conf.errorHandler("Uglify")
@@ -147,9 +144,7 @@ gulp.task("html", ["inject", "partials"], function () {
 			})
 		)
 		.pipe(htmlFilter.restore)
-		.pipe(gulp.dest(
-			path.join(conf.paths.dist, "/")
-		))
+		.pipe(gulp.dest(path.join(conf.paths.dist, "/")))
 		.pipe($.size({
 			title: path.join(conf.paths.dist, "/"),
 			showFiles: true
