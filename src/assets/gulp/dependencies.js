@@ -7,6 +7,7 @@ var conf = require("../../../gulpfile.js");
 var $ = require("gulp-load-plugins")();
 var browserSync = require("browser-sync");
 var webpackStream = require("webpack-stream");
+var CompressionPlugin = require("compression-webpack-plugin");
 var Dotenv = require("dotenv-webpack");
 
 gulp.task("inject-reload", ["inject"], function() {
@@ -74,7 +75,10 @@ function webpackWrapper(watch, callback) {
 			path: path.join(conf.paths.root, conf.paths.tmp, "/serve/app"),
 		},
 		performance: { hints: false },
-		plugins: [ new Dotenv({ path: "./src/assets/.env" }) ]
+		plugins: [
+			new CompressionPlugin(),
+			new Dotenv({ path: "./src/assets/.env" })
+		]
 	};
 
 	if (watch) {
