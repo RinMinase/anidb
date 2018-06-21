@@ -3,8 +3,13 @@
 var fs = require("fs");
 var path = require("path");
 var gulp = require("gulp");
+var gutil = require("gulp-util");
 var conf = require("../../../gulpfile.js");
-var $ = require("gulp-load-plugins")();
+
+var autoprefixer = require("gulp-autoprefixer");
+var inject = require("gulp-inject");
+var sass = require("gulp-sass");
+
 var browserSync = require("browser-sync");
 var webpackStream = require("webpack-stream");
 var CompressionPlugin = require("compression-webpack-plugin");
@@ -33,8 +38,8 @@ gulp.task("inject", ["scripts", "styles"], function () {
 	};
 
 	return gulp.src(path.join(conf.paths.src, "/*.html"))
-		.pipe($.inject(injectStyles, injectOptions))
-		.pipe($.inject(injectScripts, injectOptions))
+		.pipe(inject(injectStyles, injectOptions))
+		.pipe(inject(injectScripts, injectOptions))
 		.pipe(gulp.dest(path.join(conf.paths.tmp, "/serve")));
 });
 
@@ -89,9 +94,9 @@ function webpackWrapper(watch, callback) {
 			conf.errorHandler("Webpack")(err);
 		}
 
-		$.util.log(
+		gutil.log(
 			stats.toString({
-				colors: $.util.colors.supportsColor,
+				colors: gutil.colors.supportsColor,
 				chunks: false,
 				hash: false,
 				version: false
@@ -159,14 +164,14 @@ var buildStyles = function() {
 
 	return gulp.src([path.join(conf.paths.src, "/assets/styles/index.scss")])
 		.pipe(
-			$.inject(
+			inject(
 				injectFiles,
 				injectOptions
 			)
 		)
-		.pipe($.sass(sassOptions))
+		.pipe(sass(sassOptions))
 		.on("error", conf.errorHandler("Sass"))
-		.pipe($.autoprefixer())
+		.pipe(autoprefixer())
 		.on("error",conf.errorHandler("Autoprefixer"))
 		.pipe(gulp.dest(path.join(conf.paths.tmp, "/serve/app/")));
 };

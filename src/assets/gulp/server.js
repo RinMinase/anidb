@@ -2,14 +2,27 @@
 
 var path = require("path");
 var gulp = require("gulp");
-var cssnano = require("gulp-cssnano");
 var conf = require("../../../gulpfile.js");
+
+var angularTemplatecache = require("gulp-angular-templatecache");
+var cssnano = require("gulp-cssnano");
+var del = require("del");
+var filter = require("gulp-filter");
+var htmlmin = require("gulp-htmlmin");
+var inject = require("gulp-inject");
+var rev = require("gulp-rev");
+var revReplace = require("gulp-rev-replace");
+var size = require("gulp-size");
+var uglify = require("gulp-uglify");
+var uglifySaveLicense = require("uglify-save-license");
+var useref = require("gulp-useref");
+
 var browserSync = require("browser-sync");
 var browserSyncSpa = require("browser-sync-spa");
 var runSequence = require("run-sequence");
-var $ = require("gulp-load-plugins")({
-	pattern: ["gulp-*", "uglify-save-license", "del"]
-});
+// var $ = require("gulp-load-plugins")({
+// 	pattern: ["gulp-*", "uglify-save-license", "del"]
+// });
 
 function browserSyncInit(baseDir, browser) {
 	browser = browser || "default";
@@ -114,26 +127,26 @@ gulp.task("html", ["inject", "partials"], function () {
 		addRootSlash: false
 	};
 
-	var htmlFilter = $.filter("*.html", { restore: true });
-	var jsFilter = $.filter("**/*.js", { restore: true });
-	var cssFilter = $.filter("**/*.css", { restore: true });
+	var htmlFilter = filter("*.html", { restore: true });
+	var jsFilter = filter("**/*.js", { restore: true });
+	var cssFilter = filter("**/*.css", { restore: true });
 
 	return gulp.src(path.join(conf.paths.tmp, "/serve/*.html"))
-		.pipe($.inject(partialsInjectFile, partialsInjectOptions))
-		.pipe($.useref())
+		.pipe(inject(partialsInjectFile, partialsInjectOptions))
+		.pipe(useref())
 		.pipe(jsFilter)
-		.pipe($.uglify({preserveComments: $.uglifySaveLicense}))
+		.pipe(uglify({preserveComments: uglifySaveLicense}))
 		.on("error", conf.errorHandler("Uglify"))
-		.pipe($.rev())
+		.pipe(rev())
 		.pipe(jsFilter.restore)
 		.pipe(cssFilter)
-		.pipe($.cssnano())
-		.pipe($.rev())
+		.pipe(cssnano())
+		.pipe(rev())
 		.pipe(cssFilter.restore)
-		.pipe($.revReplace())
+		.pipe(revReplace())
 		.pipe(htmlFilter)
 		.pipe(
-			$.htmlmin({
+			htmlmin({
 				removeEmptyAttributes: true,
 				removeAttributeQuotes: true,
 				collapseBooleanAttributes: true,
@@ -142,7 +155,7 @@ gulp.task("html", ["inject", "partials"], function () {
 		)
 		.pipe(htmlFilter.restore)
 		.pipe(gulp.dest(path.join(conf.paths.dist, "/")))
-		.pipe($.size({
+		.pipe(size({
 			title: path.join(conf.paths.dist, "/"),
 			showFiles: true
 		}));
@@ -154,7 +167,7 @@ gulp.task("partials", function () {
 		path.join(conf.paths.tmp, "/serve/app/**/*.html")
 	])
 	.pipe(
-		$.htmlmin({
+		htmlmin({
 			removeEmptyAttributes: true,
 			removeAttributeQuotes: true,
 			collapseBooleanAttributes: true,
@@ -162,7 +175,7 @@ gulp.task("partials", function () {
 		})
 	)
 	.pipe(
-		$.angularTemplatecache(
+		angularTemplatecache(
 			"templateCacheHtml.js", {
 				module: "anidbAngular",
 				root: "app"
@@ -173,7 +186,7 @@ gulp.task("partials", function () {
 });
 
 gulp.task("other", function () {
-	var fileFilter = $.filter(function (file) {
+	var fileFilter = filter(function (file) {
 		return file.stat.isFile();
 	});
 
@@ -187,7 +200,7 @@ gulp.task("other", function () {
 });
 
 gulp.task("clean", function () {
-	return $.del([
+	return del([
 		path.join(conf.paths.dist, "/"),
 		path.join(conf.paths.tmp, "/")
 	]);
