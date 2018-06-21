@@ -152,27 +152,27 @@ gulp.task("html", ["inject", "partials"], function () {
 });
 
 gulp.task("partials", function () {
-   return gulp.src([
-	   path.join(conf.paths.src, "/app/**/*.html"),
-	   path.join(conf.paths.tmp, "/serve/app/**/*.html")
-   ])
-   .pipe(
-	   $.htmlmin({
-		   removeEmptyAttributes: true,
-		   removeAttributeQuotes: true,
-		   collapseBooleanAttributes: true,
-		   collapseWhitespace: true
-	   })
-   )
-   .pipe(
-	   $.angularTemplatecache(
-		   "templateCacheHtml.js", {
-			   module: "anidbAngular",
-			   root: "app"
-		   }
-	   )
-   )
-   .pipe(gulp.dest(conf.paths.tmp + "/partials/"));
+	return gulp.src([
+		path.join(conf.paths.src, "/app/**/*.html"),
+		path.join(conf.paths.tmp, "/serve/app/**/*.html")
+	])
+	.pipe(
+		$.htmlmin({
+			removeEmptyAttributes: true,
+			removeAttributeQuotes: true,
+			collapseBooleanAttributes: true,
+			collapseWhitespace: true
+		})
+	)
+	.pipe(
+		$.angularTemplatecache(
+			"templateCacheHtml.js", {
+				module: "anidbAngular",
+				root: "app"
+			}
+		)
+	)
+	.pipe(gulp.dest(conf.paths.tmp + "/partials/"));
 });
 
 gulp.task("other", function () {
