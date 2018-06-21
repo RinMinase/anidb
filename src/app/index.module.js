@@ -1,17 +1,15 @@
 import "angular";
 import "angular-animate";
 import "angular-chart.js";
-// import "angular-cookies";
 import "angular-filter";
+import "angular-sweetalert";
+import "ui-bootstrap4";
+import uiRouter from "@uirouter/angularjs";
 // import "angular-hammer";
 // import "angular-messages";
 // import "angular-sanitize";
-import "angular-sweetalert";
 // import "angular-toastr";
-import "ui-bootstrap4";
-import uiRouter from "@uirouter/angularjs";
 
-// import "oclazyload";
 import "sweetalert";
 import "velocity-animate";
 
@@ -34,7 +32,6 @@ angular.module(
 		"chart.js",
 		// "hmTouchEvents",
 		"ngAnimate",
-		// "ngCookies",
 		// "ngMessages",
 		// "ngSanitize",
 		"oitozero.ngSweetAlert",
