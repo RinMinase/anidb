@@ -165,23 +165,10 @@ var buildStyles = function() {
 			)
 		)
 		.pipe($.sass(sassOptions))
-		.on(
-			"error",
-			conf.errorHandler("Sass")
-		)
+		.on("error", conf.errorHandler("Sass"))
 		.pipe($.autoprefixer())
-		.on(
-			"error",
-			conf.errorHandler("Autoprefixer")
-		)
-		.pipe(
-			gulp.dest(
-				path.join(
-					conf.paths.tmp,
-					"/serve/app/"
-				)
-			)
-		);
+		.on("error",conf.errorHandler("Autoprefixer"))
+		.pipe(gulp.dest(path.join(conf.paths.tmp, "/serve/app/")));
 };
 
 
@@ -189,8 +176,7 @@ var buildStyles = function() {
  * Font Tasks
  *
  * Used *.woff2 formatting
- *    Disregarded the unability of usage in IE11 to reduce
- *    the number of files in the compiled (dist/tmp) folder
+ *    Remove compatibility in IE11 to reduce files in the compiled (dist/tmp) folder
  */
 var fontpaths = [
 	"node_modules/font-awesome/fonts/*.woff2",

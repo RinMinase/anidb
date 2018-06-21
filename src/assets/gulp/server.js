@@ -123,10 +123,7 @@ gulp.task("html", ["inject", "partials"], function () {
 		.pipe($.useref())
 		.pipe(jsFilter)
 		.pipe($.uglify({preserveComments: $.uglifySaveLicense}))
-		.on(
-			"error",
-			conf.errorHandler("Uglify")
-		)
+		.on("error", conf.errorHandler("Uglify"))
 		.pipe($.rev())
 		.pipe(jsFilter.restore)
 		.pipe(cssFilter)
