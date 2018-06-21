@@ -182,7 +182,8 @@ gulp.task("other", function () {
 
 	return gulp.src([
 		path.join(conf.paths.src, "/**/*"),
-		path.join("!" + conf.paths.src, "/**/*.{html,css,js,scss}")
+		path.join("!" + conf.paths.src, "/**/*.{html,css,js,scss}"),
+		path.join("!" + conf.paths.src, "/assets/firebase/*")
 	])
 	.pipe(fileFilter)
 	.pipe(gulp.dest(path.join(conf.paths.dist, "/")));
