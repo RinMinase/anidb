@@ -14,7 +14,7 @@
 		}
 	}
 
-	h3.data-heading {
+	.data-heading {
 		margin-top: 20px;
 		margin-bottom: 20px;
 		border-bottom: 2px solid #95CE92;
@@ -31,11 +31,4 @@
 		i.fa-sun-o { color: orange; }
 		i.fa-tree { color: orangered; }
 	}
-
-	i.fa-star,
-	i.fa-star-o,
-	i.fa-star-half,
-	i.fa-star-half-o { color: gold; }
-
-	.total-rating { cursor: pointer; }
 }

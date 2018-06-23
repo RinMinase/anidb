@@ -8,15 +8,15 @@
 
 	<div class="row" ng-class="{'d-none': vm.dataLoaded === false}">
 
-		<div class="col-sm-12 hidden-lg hidden-md hidden-xs animate fadeInDown">
+		<div class="col-12 mb-2 d-lg-none d-block animate fadeInDown">
 			<div class="row mb-2">
-				<div class="col-lg-12 col-md-4 col-sm-4 col-xs-12 mb-2">
+				<div class="col-sm-4 col-12 mb-sm-0 mb-2 px-sm-3">
 					<a class="btn btn-primary btn-block" ui-sref="home.manage">
 						<i class="fa fa-angle-left"></i>
 						<span>&nbsp;&nbsp;&nbsp;Back</span>
 					</a>
 				</div>
-				<div class="col-lg-6 col-xs-6 hidden-md hidden-sm pr-1">
+				<div class="col-sm-4 col-6 px-sm-3 pr-1">
 					<a class="btn btn-warning btn-block"
 						ng-href="#"
 						ng-click="vm.editTitle()">
@@ -24,23 +24,7 @@
 						<span>Edit</span>
 					</a>
 				</div>
-				<div class="col-md-4 col-sm-4 hidden-lg hidden-xs">
-					<a class="btn btn-warning btn-block"
-						ng-href="#"
-						ng-click="vm.editTitle()">
-						<i class="fa fa-pencil"></i>
-						<span>Edit</span>
-					</a>
-				</div>
-				<div class="col-lg-6 col-xs-6 hidden-md hidden-sm pl-1">
-					<a class="btn btn-danger btn-block"
-						ng-href="#"
-						ng-click="vm.deleteTitle()">
-						<i class="fa fa-trash"></i>
-						<span>Delete</span>
-					</a>
-				</div>
-				<div class="col-md-4 col-sm-4 hidden-lg hidden-xs">
+				<div class="col-sm-4 col-6 px-sm-3 pl-1">
 					<a class="btn btn-danger btn-block"
 						ng-href="#"
 						ng-click="vm.deleteTitle()">
@@ -51,15 +35,15 @@
 			</div>
 		</div>
 
-		<div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 animate slideInLeft">
-			<div class="row mb-2 hidden-sm">
-				<div class="col-lg-12 col-md-4 col-sm-4 col-xs-12 mb-2">
+		<div class="col-lg-3 col-md-4 col-sm-5 col-12 animate slideInLeft">
+			<div class="row mb-2 d-lg-flex d-none">
+				<div class="col-lg-12 mb-2">
 					<a class="btn btn-primary btn-block" ui-sref="home.manage">
 						<i class="fa fa-angle-left"></i>
 						<span>&nbsp;&nbsp;&nbsp;Back</span>
 					</a>
 				</div>
-				<div class="col-lg-6 col-xs-6 hidden-md hidden-sm pr-1">
+				<div class="col-lg-6 pr-1">
 					<a class="btn btn-warning btn-block"
 						ng-href="#"
 						ng-click="vm.editTitle()">
@@ -67,23 +51,7 @@
 						<span>Edit</span>
 					</a>
 				</div>
-				<div class="col-md-4 col-sm-4 hidden-lg hidden-xs">
-					<a class="btn btn-warning btn-block"
-						ng-href="#"
-						ng-click="vm.editTitle()">
-						<i class="fa fa-pencil"></i>
-						<span>Edit</span>
-					</a>
-				</div>
-				<div class="col-lg-6 col-xs-6 hidden-md hidden-sm pl-1">
-					<a class="btn btn-danger btn-block"
-						ng-href="#"
-						ng-click="vm.deleteTitle()">
-						<i class="fa fa-trash"></i>
-						<span>Delete</span>
-					</a>
-				</div>
-				<div class="col-md-4 col-sm-4 hidden-lg hidden-xs">
+				<div class="col-lg-6 pl-1">
 					<a class="btn btn-danger btn-block"
 						ng-href="#"
 						ng-click="vm.deleteTitle()">
@@ -92,55 +60,53 @@
 					</a>
 				</div>
 			</div>
-			<div class="row hidden-sm hidden-md hidden-lg mb-3 text-center">
-					<div class="col-lg-12">
-						<h2>{{ vm.data.title }}</h2>
-						<h4 class="text-muted" ng-if="vm.data.shortTitle">
-							<em>&#10077;&nbsp;{{ vm.data.shortTitle }}&#10078;</em>
-						</h4>
-					</div>
-				</div>
-			<div class="row">
-				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-					<div class="image-container">
-						<img class="img-responsive">
-					</div>
-				</div>
-				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
-					<h3 class="my-4">
-						<span class="label label-primary">
-							<span>Rewatches&nbsp;</span>
-							<span class="badge mb-1">&nbsp;&nbsp;0&nbsp;&nbsp;</span>
-						</span>
-					</h3>
-				</div>
-				<rating value="5" audio="5" enjoyment="5" graphics="5" plot="5"></rating>
-			</div>
-		</div>
-
-		<div class="col-lg-9 col-md-9 col-sm-8 col-xs-12 animate slideInUp">
-			<div class="row hidden-xs mb-3">
-				<div class="col-lg-12">
+			<div class="row d-sm-none mb-3 text-center">
+				<div class="col-12">
 					<h2>{{ vm.data.title }}</h2>
 					<h4 class="text-muted" ng-if="vm.data.shortTitle">
 						<em>&#10077;&nbsp;{{ vm.data.shortTitle }}&#10078;</em>
 					</h4>
 				</div>
 			</div>
+			<div class="row">
+				<div class="col-12">
+					<div class="image-container">
+						<img class="img-responsive">
+					</div>
+				</div>
+				<div class="col-12 text-center">
+					<h4 class="my-4">
+						<span class="badge badge-success py-2 px-3">
+							<span>Rewatches&nbsp;</span>
+							<span class="badge badge-light">&nbsp;&nbsp;0&nbsp;&nbsp;</span>
+						</span>
+					</h4>
+				</div>
+				<div class="col-12">
+					<rating value="5" audio="5" enjoyment="5" graphics="5" plot="5"></rating>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-lg-9 col-md-8 col-sm-7 col-12 animate slideInUp">
+			<div class="row d-sm-flex d-none mb-3">
+				<div class="col-12">
+					<h3>{{ vm.data.title }}</h3>
+					<h5 class="text-muted" ng-if="vm.data.shortTitle">
+						<em>&#10077;&nbsp;{{ vm.data.shortTitle }}&#10078;</em>
+					</h5>
+				</div>
+			</div>
 
 			<div class="row">
-				<div class="col-lg-12">
-					<h3 class="data-heading">Episode Information</h3>
+				<div class="col-12">
+					<h4 class="data-heading">Episode Information</h4>
+					<p class="big">Episodes : {{ vm.data.episodes }}</p>
 					<div class="row">
-						<div class="col-lg-12">
-							<p class="big">Episodes : {{ vm.data.episodes }}</p>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-lg-6">
+						<div class="col-6">
 							<p class="big">Specials : {{ vm.data.specials }}</p>
 						</div>
-						<div class="col-lg-6">
+						<div class="col-6">
 							<p class="big">OVAs : {{ vm.data.ovas }}</p>
 						</div>
 					</div>
@@ -148,12 +114,12 @@
 			</div>
 
 			<div class="row">
-				<div class="col-lg-12">
-					<h3 class="data-heading">Series Information</h3>
+				<div class="col-12">
+					<h4 class="data-heading">Series Information</h4>
 					<div class="row">
-						<div class="col-lg-6">
+						<div class="col-lg-6 col-12">
 							<div class="row">
-								<div class="col-lg-12" ng-if="vm.data.releaseYear">
+								<div class="col-12" ng-if="vm.data.releaseYear">
 									<p class="big">
 										<span ng-if="vm.data.releaseSeason"
 											ng-switch="vm.data.releaseSeason">
@@ -175,38 +141,16 @@
 									</p>
 								</div>
 								<div class="col-lg-12">
-									<div class="row">
-										<div class="col-lg-12">
-											<p class="big">Variants :&nbsp;</p>
-										</div>
-										<div class="col-lg-12" ng-repeat="variants in vm.data.variants">
-											<p class="big">{{ variants }}</p>
-										</div>
-									</div>
+									<p class="big">Variants :&nbsp;</p>
+									<p class="big" ng-repeat="variants in vm.data.variants">{{ variants }}</p>
 								</div>
 							</div>
 						</div>
-						<div class="col-lg-6">
-							<div class="row">
-								<div class="col-lg-12">
-									<p class="big">Prequel: {{ vm.data.prequel }}</p>
-								</div>
-								<div class="col-lg-12">
-									<p class="big">Sequel: {{ vm.data.sequel }}</p>
-								</div>
-								<div class="col-lg-12">
-									<div class="row">
-										<div class="col-lg-12">
-											<p class="big">
-												<span>Offquel :&nbsp;</span>
-											</p>
-										</div>
-										<div class="col-lg-12" ng-repeat="offquel in vm.data.offquel">
-											<p class="big">{{ offquel }}</p>
-										</div>
-									</div>
-								</div>
-							</div>
+						<div class="col-lg-6 col-12">
+							<p class="big">Prequel: {{ vm.data.prequel }}</p>
+							<p class="big">Sequel: {{ vm.data.sequel }}</p>
+							<p class="big">Offquel :</p>
+							<p class="big" ng-repeat="offquel in vm.data.offquel">{{ offquel }}</p>
 						</div>
 					</div>
 				</div>
