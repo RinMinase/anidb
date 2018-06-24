@@ -193,6 +193,7 @@ var robotofonts = [
 	"node_modules/roboto-fontface/fonts/roboto/Roboto-Medium.woff2",
 	"node_modules/roboto-fontface/fonts/roboto/Roboto-MediumItalic.woff2",
 	"node_modules/roboto-fontface/fonts/roboto/Roboto-Bold.woff2",
+	"node_modules/roboto-fontface/fonts/roboto/Roboto-BoldItalic.woff2",
 	"node_modules/roboto-fontface/fonts/roboto/Roboto-Light.woff2"
 ];
 
