@@ -191,7 +191,7 @@ var buildStyles = function() {
  *    Remove compatibility in IE11 to reduce files in the compiled (dist/tmp) folder
  */
 var fontpaths = [
-	"node_modules/font-awesome/fonts/*.woff2",
+	"node_modules/font-awesome/fonts/fontawesome-webfont.woff2",
 ];
 
 var robotofonts = [
@@ -217,8 +217,10 @@ gulp.task("fonts_roboto:dist", function () {
 });
 
 gulp.task("fonts", ["fonts_roboto"], function () {
-	return gulp.src(fontpaths)
-		.pipe(gulp.dest(path.join(conf.paths.tmp, "/serve/fonts")));
+	if (!fs.existsSync(path.join(conf.paths.tmp, "/serve/fonts/fontawesome-webfont.woff2"))) {
+		return gulp.src(fontpaths)
+			.pipe(gulp.dest(path.join(conf.paths.tmp, "/serve/fonts")));
+	}
 });
 
 gulp.task("fonts:dist", ["fonts_roboto:dist"], function () {
