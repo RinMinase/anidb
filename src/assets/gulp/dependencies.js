@@ -50,7 +50,6 @@ gulp.task("inject", ["scripts", "styles"], function () {
 function webpackWrapper(watch, callback) {
 	var webpackOptions = {
 		watch: watch,
-		mode: "production",
 		module: {
 			rules: [{
 				test: /\.js$/,
@@ -59,6 +58,7 @@ function webpackWrapper(watch, callback) {
 				loader: "eslint-loader"
 			}, {
 				test: /\.html$/,
+				exclude: /node_modules/,
 				use: [{
 					loader: "ngtemplate-loader",
 					options: { relativeTo: path.join(conf.paths.root, conf.paths.src) }
@@ -80,12 +80,15 @@ function webpackWrapper(watch, callback) {
 			path: path.join(conf.paths.root, conf.paths.tmp, "/serve/app"),
 		},
 		performance: { hints: false },
-		plugins: [new Dotenv({ path: "./src/assets/.env" })]
+		plugins: []
 	};
 
 	if (watch) {
+		webpackOptions.mode = "development";
 		webpackOptions.devtool = "inline-source-map";
 	} else {
+		webpackOptions.mode = "production";
+		webpackOptions.plugins.push(new Dotenv({ path: "./src/assets/.env" }));
 		webpackOptions.plugins.push(new CompressionPlugin());
 	}
 
@@ -126,7 +129,7 @@ gulp.task("scripts", function () {
 	return webpackWrapper(false);
 });
 
-gulp.task("scripts:watch", ["scripts"], function (callback) {
+gulp.task("scripts:watch", function (callback) {
 	return webpackWrapper(true, callback);
 });
 
