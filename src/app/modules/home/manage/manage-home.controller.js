@@ -114,6 +114,7 @@ export class ManageHomeController {
 			controller: "AddHomeController",
 			controllerAs: "vm",
 			backdrop: "static",
+			size: "lg",
 			resolve: {
 				titleList: () => this.titleList,
 			},
