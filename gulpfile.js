@@ -2,8 +2,9 @@
 
 var fs = require("fs");
 var gulp = require("gulp");
-var gutil = require("gulp-util");
 var path = require("path");
+var log = require("fancy-log");
+var colors = require("ansi-colors");
 
 /**
  *  This will load all js or coffee files in the gulp directory
@@ -54,8 +55,8 @@ exports.errorHandler = function(title) {
 	"use strict";
 
 	return function(err) {
-		gutil.log(
-			gutil.colors.red("[" + title + "]"),
+		log(
+			colors.red("[" + title + "]"),
 			err.toString()
 		);
 		this.emit("end");

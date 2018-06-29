@@ -3,7 +3,7 @@
 var fs = require("fs");
 var path = require("path");
 var gulp = require("gulp");
-var gutil = require("gulp-util");
+var log = require("fancy-log");
 var conf = require("../../../gulpfile.js");
 
 var autoprefixer = require("gulp-autoprefixer");
@@ -98,7 +98,7 @@ function webpackWrapper(watch, callback) {
 			conf.errorHandler("Webpack")(err);
 		}
 
-		gutil.log(
+		log(
 			stats.toString({
 				builtAt: false,
 				colors: true,
