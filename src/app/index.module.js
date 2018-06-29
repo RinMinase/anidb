@@ -7,8 +7,6 @@ import "ui-bootstrap4";
 import uiRouter from "@uirouter/angularjs";
 // import "angular-hammer";
 // import "angular-messages";
-// import "angular-sanitize";
-// import "angular-toastr";
 
 import "sweetalert";
 import "velocity-animate";
