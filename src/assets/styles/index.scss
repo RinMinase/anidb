@@ -25,9 +25,12 @@ body {
 	line-height: 1.428571429;
 }
 
-.form-control { font-size: 14px; }
+.form-control,
+.dropdown-menu {
+	font-size: 14px;
+}
 
-.dropdown-menu { font-size: 14px; }
+.btn { font-size: 15px; }
 
 hr { border-color: #E4E6E8 }
 
