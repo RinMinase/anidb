@@ -12,8 +12,7 @@
     "start": "gulp serve",
     "build": "gulp serve:dist",
     "deploy": "firebase deploy",
-    "lint": "eslint --ext .js src\\app",
-    "disable-lock": "npm config set package-lock false"
+    "lint": "eslint --ext .js src\\app"
   },
   "dependencies": {
     "@uirouter/angularjs": "^1.0.18",
