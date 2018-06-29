@@ -11,6 +11,7 @@ var inject = require("gulp-inject");
 var sass = require("gulp-sass");
 
 var browserSync = require("browser-sync");
+var webpack = require("webpack");
 var webpackStream = require("webpack-stream");
 var CompressionPlugin = require("compression-webpack-plugin");
 var Dotenv = require("dotenv-webpack");
@@ -99,12 +100,15 @@ function webpackWrapper(watch, callback) {
 
 		gutil.log(
 			stats.toString({
-				colors: gutil.colors.supportsColor,
+				builtAt: false,
+				colors: true,
 				chunks: false,
+				entrypoints: false,
 				hash: false,
+				modules: false,
 				version: false
-			}
-		));
+			})
+		);
 
 		browserSync.reload();
 
@@ -118,7 +122,7 @@ function webpackWrapper(watch, callback) {
 		.pipe(
 			webpackStream(
 				webpackOptions,
-				require("webpack"),
+				webpack,
 				webpackChangeHandler
 			)
 		)
