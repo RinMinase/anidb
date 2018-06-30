@@ -196,6 +196,11 @@ gulp.task("other", function () {
 	.pipe(gulp.dest(path.join(conf.paths.dist, "/")));
 });
 
+gulp.task("relocate", function (done) {
+	gulp.src(conf.paths.dist + "/**/*")
+		.pipe(gulp.dest(conf.paths.www));
+});
+
 gulp.task("clean", function () {
 	return del([
 		path.join(conf.paths.dist, "/"),
@@ -210,7 +215,8 @@ gulp.task("build", function (done) {
 	});
 });
 
-gulp.task("build:apk", function (done) {
-	gulp.src(conf.paths.dist + "/**/*")
-		.pipe(gulp.dest(conf.paths.www));
+gulp.task("bundle", function (done) {
+	runSequence("clean", ["fonts:dist", "html", "other"], "relocate", function() {
+		done();
+	});
 });
