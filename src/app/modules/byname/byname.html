@@ -7,7 +7,7 @@
 	</div>
 
 	<div class="row" ng-class="{'d-none': vm.dataLoaded === false}">
-		<div class="col-xl-3 col-12 animate slideInLeft">
+		<div class="col-lg-3 col-12 animate slideInLeft">
 			<div class="card">
 				<div class="card-header bg-success-light">
 					<h5 class="mb-0">Statistics</h5>
@@ -35,7 +35,7 @@
 			</div>
 		</div>
 
-		<div class="col-xl-9 col-12 mt-xl-0 mt-3 animate slideInUp">
+		<div class="col-lg-9 col-12 mt-xl-0 mt-3 animate slideInUp">
 			<div class="card mb-2" ng-repeat="data in vm.data" ng-hide="data.filesize === '-'">
 				<a ng-href="#" class="link" ng-click="vm.panelCollapse(data.panel)">
 					<div class="card-header p-3">
