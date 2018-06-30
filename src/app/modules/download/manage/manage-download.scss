@@ -1,60 +1,23 @@
 .manage-download {
-	.table {
-		margin-bottom: 0px;
+	.flex-form-container {
+		height: calc(100vh - 70px - 50px);
+	}
+
+	.card-body > div { padding: 20px; }
+	.card-body.collapsing { transition-duration: 1s; }
+
+	a.link {
+		text-decoration: none !important;
+		color: #000;
 	}
 
 	.list-group-item {
-		padding-top: 5px;
-		padding-bottom: 5px;
-
-		&:first-child,
-		&:last-child {
-			border-radius: 0px;
-		}
-
-		&:last-child {
-			margin-bottom: -1px;
-		}
-
-		&.first-item {
-			border-top-left-radius: 4px;
-			border-top-right-radius: 4px;
-		}
-
-		&.collapse:not(.in) {
-			padding-top: 0px;
-			padding-bottom: 0px;
-			border-bottom: 0px;
-			overflow: hidden;
-		}
+		&:first-child, &:last-child { border-radius: 0px; }
+		&:last-child { margin-bottom: -1px; }
+		&.first-item { border-radius: 4px 4px 0px 0px; }
 	}
 
-	.panel-collapse.collapsing {
-		transition-duration: 1.3s;
-	}
-
-	.flex-form-container {
-		&.sidebar { height: 332px; }
-		&.main-panel { height: calc(100vh - 50px); }
-	}
-
-	.download-label-container {
-		display: inline-block;
-
-		.label {
-			width: 3em;
-			display: inline-block;
-			padding: .3em .6em;
-		}
-	}
-
-	.season-list {
-		padding-left: 35px;
-
-		&.collapsing {
-			transition-duration: 0.10s;
-		}
-	}
+	.download-badge { width: 3em; }
 
 	.download-legend {
 		width: 10px;

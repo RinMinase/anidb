@@ -1,10 +1,14 @@
 <anidb-navbar></anidb-navbar>
 
 <div class="container-fluid manage-download">
-	<div class="row">
+	<div class="flex-form-container"
+		ng-class="{'d-none': vm.dataLoaded === true}">
+		<div class="spinner eclipse"></div>
+	</div>
 
-		<div class="col-md-3">
-			<div class="row hidden">
+	<div class="row" ng-class="{'d-none': vm.dataLoaded === false}">
+		<div class="col-lg-3 animate slideInLeft">
+			<div class="row d-none">
 				<div class="col-xs-3 col-sm-2 col-md-3">
 					<div class="dropdown">
 						<a class="btn btn-primary btn-block dropdown-toggle" data-toggle="dropdown">
@@ -29,53 +33,42 @@
 				</div>
 			</div>
 
-			<div class="flex-form-container sidebar"
-				ng-class="{'d-none': vm.dataLoaded === true}">
-				<div class="spinner eclipse"></div>
-			</div>
-
-			<div class="row" ng-class="{'d-none': vm.dataLoaded === false}">
+			<div class="row">
 				<div class="col-md-12">
 
 					<div class="list-group">
 						<a ng-href="#"
-							class="list-group-item first-item"
+							class="list-group-item first-item link px-3 py-2"
 							ng-click="vm.category.year = 0; vm.category.season = 0;"
 							ng-class="{'list-group-item-info': !vm.category.year}">
 							<span>Uncategorized</span>
 							<div class="pull-right">
-								<div class="download-label-container">
-									<span class="label label-success"
-										uib-tooltip="Watched">
-										{{ vm.data[0][0][0].length || 0 }}
-									</span>
-								</div>
-								<div class="download-label-container">
-									<span class="label label-primary"
-										uib-tooltip="Downloaded">
-										{{ vm.data[0][0][2].length || 0 }}
-									</span>
-								</div>
-								<div class="download-label-container">
-									<span class="label label-default"
-										uib-tooltip="Queued"
-										tooltip-placement="left">
-										{{ vm.data[0][0][3].length || 0 }}
-									</span>
-								</div>
+								<span class="badge badge-success download-badge"
+									uib-tooltip="Watched">
+									{{ vm.data[0][0][0].length || 0 }}
+								</span>
+								<span class="badge badge-primary download-badge"
+									uib-tooltip="Downloaded">
+									{{ vm.data[0][0][2].length || 0 }}
+								</span>
+								<span class="badge badge-secondary download-badge"
+									uib-tooltip="Queued"
+									tooltip-placement="left">
+									{{ vm.data[0][0][3].length || 0 }}
+								</span>
 							</div>
 						</a>
 
 						<div ng-repeat="(key, keyValue) in vm.keys">
 							<a ng-href="#"
 								ng-click="vm.collapse[key] = !vm.collapse[key]"
-								class="list-group-item">
+								class="list-group-item link px-3 py-2">
 								<span>{{ key }}</span>
 								<span class="">
 									<i class="fa fa-caret-down"></i>
 								</span>
 							</a>
-							<a class="list-group-item season-list"
+							<a class="list-group-item link pl-4 pr-3 py-0 season-list"
 								ng-repeat="value in vm.keys[key]"
 								ng-switch="value"
 								ng-href="#"
@@ -84,32 +77,28 @@
 									&& vm.category.season === value}"
 								uib-collapse="!vm.collapse[key]">
 
-								<span ng-switch-when="0">Winter</span>
-								<span ng-switch-when="1">Spring</span>
-								<span ng-switch-when="2">Summer</span>
-								<span ng-switch-when="3">Fall</span>
+								<div class="py-2">
+									<span ng-switch-when="0">Winter</span>
+									<span ng-switch-when="1">Spring</span>
+									<span ng-switch-when="2">Summer</span>
+									<span ng-switch-when="3">Fall</span>
 
-								<span class="pull-right">
-									<div class="download-label-container">
-										<span class="label label-success"
+									<span class="pull-right">
+										<span class="badge badge-success download-badge"
 											uib-tooltip="Watched">
 											{{ vm.data[key][value][0].length || 0 }}
 										</span>
-									</div>
-									<div class="download-label-container">
-										<span class="label label-primary"
+										<span class="badge badge-primary download-badge"
 											uib-tooltip="Downloaded">
 											{{ vm.data[key][value][2].length || 0 }}
 										</span>
-									</div>
-									<div class="download-label-container">
-										<span class="label label-default"
+										<span class="badge badge-secondary download-badge"
 											uib-tooltip="Queued"
 											tooltip-placement="left">
 											{{ vm.data[key][value][3].length || 0 }}
 										</span>
-									</div>
-								</span>
+									</span>
+								</div>
 							</a>
 						</div>
 
@@ -119,81 +108,72 @@
 			</div>
 		</div>
 
-		<div class="col-md-9">
-			<div class="flex-form-container main-panel"
-				ng-class="{'d-none': vm.dataLoaded === true}">
-				<div class="spinner eclipse"></div>
-			</div>
+		<div class="col-lg-9 col-12 mt-xl-0 mt-3 animate slideInUp">
+			<div class="card mb-2"
+				ng-repeat="(key, keyValue) in vm.data[vm.category.year][vm.category.season]"
+				ng-switch="key"
+				ng-hide="key === '1'">
 
-			<div class="panel-group" ng-class="{'d-none': vm.dataLoaded === false}">
-				<div class="panel panel-default"
-					ng-repeat="(key, keyValue) in vm.data[vm.category.year][vm.category.season]"
-					ng-switch="key"
-					ng-hide="key === '1'">
+				<div class="card-header p-3">
+					<h5 class="mb-0">
+						<a ng-href="#"
+							class="link"
+							ng-click="vm.collapse.isCollapsed0 = !vm.collapse.isCollapsed0"
+							ng-switch-when="0">Finished Watching</a>
+						<a ng-href="#"
+							class="link"
+							ng-click="vm.collapse.isCollapsed2 = !vm.collapse.isCollapsed2"
+							ng-switch-when="2">Finished Downloading</a>
+						<a ng-href="#"
+							class="link"
+							ng-click="vm.collapse.isCollapsed3 = !vm.collapse.isCollapsed3"
+							ng-switch-when="3">In Queue</a>
 
-					<div class="panel-heading">
-						<h4 class="panel-title">
-							<a ng-href="#"
-								ng-click="vm.collapse.isCollapsed0 = !vm.collapse.isCollapsed0"
-								ng-switch-when="0">Finished Watching</a>
-							<a ng-href="#"
-								ng-click="vm.collapse.isCollapsed2 = !vm.collapse.isCollapsed2"
-								ng-switch-when="2">Finished Downloading</a>
-							<a ng-href="#"
-								ng-click="vm.collapse.isCollapsed3 = !vm.collapse.isCollapsed3"
-								ng-switch-when="3">In Queue</a>
+						<div class="pull-right">
+							<div class="badge"
+								ng-class="{
+									'badge-success': key === '0',
+									'badge-primary': key === '2',
+									'badge-secondary': key === '3'
+								}">
 
-							<div class="pull-right">
-								<div class="label"
-									ng-class="{
-										'label-success': key === '0',
-										'label-primary': key === '2',
-										'label-default': key === '3'
-									}">
-
-									{{ keyValue.length }}
-								</div>
-							</div>
-						</h4>
-					</div>
-
-					<div class="panel-collapse" uib-collapse="vm.collapse.isCollapsed{{key}}">
-
-						<div class="panel-body">
-							<div class="table-responsive">
-								<table class="table table-condensed">
-									<thead>
-										<tr>
-											<th>Title</th>
-											<th class="text-center pr-5">Remarks</th>
-											<th></th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr ng-repeat="data in vm.data[vm.category.year][vm.category.season][key]">
-											<td>{{ data.title }}</td>
-											<td class="text-center">
-												<span>{{ data.remarks || "&mdash;" }}</span>
-												<a ng-href="#" class="btn btn-xs btn-warning pull-right" uib-tooltip="Edit Remarks">
-													<i class="fa fa-pencil"></i>
-												</a>
-											</td>
-											<td class="text-right">
-												<a ng-href="#" class="btn btn-xs btn-danger" uib-tooltip="Delete Title">
-													<i class="fa fa-trash"></i>
-												</a>
-											</td>
-										</tr>
-									</tbody>
-								</table>
+								{{ keyValue.length }}
 							</div>
 						</div>
+					</h5>
+				</div>
 
+				<div class="card-body p-0" uib-collapse="vm.collapse.isCollapsed{{key}}">
+					<div class="table-responsive">
+						<table class="table table-sm">
+							<thead>
+								<tr>
+									<th>Title</th>
+									<th class="text-center pr-5">Remarks</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="data in vm.data[vm.category.year][vm.category.season][key]">
+									<td>{{ data.title }}</td>
+									<td class="text-center">
+										<span>{{ data.remarks || "&mdash;" }}</span>
+										<a ng-href="#" class="btn btn-sm btn-warning pull-right px-2 py-0" uib-tooltip="Edit Remarks">
+											<i class="fa fa-pencil"></i>
+										</a>
+									</td>
+									<td class="text-right">
+										<a ng-href="#" class="btn btn-sm btn-danger px-2 py-0" uib-tooltip="Delete Title">
+											<i class="fa fa-trash"></i>
+										</a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
 					</div>
 				</div>
 			</div>
 		</div>
-
 	</div>
 </div>
 
