@@ -1,23 +1,14 @@
 .manage-download {
-	.flex-form-container {
-		height: calc(100vh - 70px - 50px);
-	}
-
+	.flex-form-container { height: calc(100vh - 70px - 50px); }
 	.card-body > div { padding: 20px; }
 	.card-body.collapsing { transition-duration: 1s; }
-
-	a.link {
-		text-decoration: none !important;
-		color: #000;
-	}
+	.download-badge { width: 3em; }
 
 	.list-group-item {
 		&:first-child, &:last-child { border-radius: 0px; }
 		&:last-child { margin-bottom: -1px; }
 		&.first-item { border-radius: 4px 4px 0px 0px; }
 	}
-
-	.download-badge { width: 3em; }
 
 	.download-legend {
 		width: 10px;

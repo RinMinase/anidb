@@ -1,14 +1,4 @@
 .anidb-byname {
-	.flex-form-container {
-		height: calc(100vh - 70px - 50px);
-	}
-
-	a.link {
-		text-decoration: none !important;
-		color: #000;
-	}
-
-	.card-body.collapsing {
-		transition-duration: 0.8s;
-	}
+	.flex-form-container { height: calc(100vh - 70px - 50px); }
+	.card-body.collapsing { transition-duration: 0.8s; }
 }

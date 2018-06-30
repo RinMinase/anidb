@@ -43,10 +43,17 @@ hr { border-color: #E4E6E8 }
 	color: #FFF;
 }
 
+a.link {
+	text-decoration: none !important;
+	color: #000;
+}
+
 .card-header {
 	padding: 1.25rem;
 	h5 { font-size: 17px; }
 }
+
+.big { font-size: 120%; }
 
 .flex-form-container {
 	display: flex;
