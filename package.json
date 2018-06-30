@@ -2,7 +2,7 @@
   "name": "anidb-angular",
   "description": "Rin Minase's Anime Database using AngularJS in ES6",
   "version": "0.1.0",
-  "license": "ISC",
+  "license": "MIT",
   "author": "Rin Minase",
   "repository": {
     "type": "git",
