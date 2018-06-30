@@ -3,9 +3,7 @@
 		resize: none;
 		height: 115px;
 
-		@media (max-width: 576px) {
-			height: 70px;
-		}
+		@media (max-width: 576px) { height: 70px; }
 	}
 
 	.abc-checkbox label { cursor: default; }
