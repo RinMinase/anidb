@@ -34,6 +34,7 @@ exports.paths = {
 	root: path.join(__dirname),
 	src: "src",
 	dist: "dist",
+	www: "www",
 	tmp: ".tmp",
 };
 
