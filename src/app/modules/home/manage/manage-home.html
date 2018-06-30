@@ -72,13 +72,13 @@
 								| orderBy: !vm.$scope.search && ['quality','title']
 								| fuzzyBy: 'title': search">
 
-							<td>
+							<td class="wrap">
 								<quality-legend value="{{ data.quality }}"></quality-legend>
 								<span>{{ data.title }}</span>
 							</td>
 							<td class="text-center">
 								<span class="d-none d-sm-inline">{{ data.episodes }} / {{ data.ovas }} / {{ data.specials }}</span>
-								<span class="d-inline d-sm-none">{{ data.episodes }}/{{ data.ovas }}/{{ data.specials }}</span>
+								<span class="d-inline d-sm-none">{{ data.episodes }} / {{ data.ovas }} / {{ data.specials }}</span>
 							</td>
 							<td class="text-center">{{ data.filesize }}</td>
 							<td class="text-center">{{ data.dateFinished }}</td>
