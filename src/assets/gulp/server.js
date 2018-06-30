@@ -158,6 +158,51 @@ gulp.task("html", ["inject", "partials"], function () {
 		}));
 });
 
+gulp.task("html:bundle", ["inject:bundle", "partials"], function () {
+	var partialsInjectFile = gulp.src(
+		path.join(conf.paths.tmp, "/partials/templateCacheHtml.js"),
+		{ read: false }
+	);
+	var partialsInjectOptions = {
+		starttag: "<!-- inject:partials -->",
+		ignorePath: path.join(conf.paths.tmp, "/partials"),
+		addRootSlash: false
+	};
+
+	var htmlFilter = filter("*.html", { restore: true });
+	var jsFilter = filter("**/*.js", { restore: true });
+	var cssFilter = filter("**/*.css", { restore: true });
+
+	return gulp.src(path.join(conf.paths.tmp, "/serve/*.html"))
+		.pipe(inject(partialsInjectFile, partialsInjectOptions))
+		.pipe(useref())
+		.pipe(jsFilter)
+		.pipe(uglify({preserveComments: uglifySaveLicense}))
+		.on("error", conf.errorHandler("Uglify"))
+		.pipe(rev())
+		.pipe(jsFilter.restore)
+		.pipe(cssFilter)
+		.pipe(cssnano())
+		.pipe(rev())
+		.pipe(cssFilter.restore)
+		.pipe(revReplace())
+		.pipe(htmlFilter)
+		.pipe(
+			htmlmin({
+				removeEmptyAttributes: true,
+				removeAttributeQuotes: true,
+				collapseBooleanAttributes: true,
+				collapseWhitespace: true
+			})
+		)
+		.pipe(htmlFilter.restore)
+		.pipe(gulp.dest(path.join(conf.paths.dist, "/")))
+		.pipe(size({
+			title: path.join(conf.paths.dist, "/"),
+			showFiles: true
+		}));
+});
+
 gulp.task("partials", function () {
 	return gulp.src([
 		path.join(conf.paths.src, "/app/**/*.html"),
@@ -216,7 +261,7 @@ gulp.task("build", function (done) {
 });
 
 gulp.task("bundle", function (done) {
-	runSequence("clean", ["fonts:dist", "html", "other"], "relocate", function() {
+	runSequence("clean", ["fonts:dist", "html:bundle", "other"], "relocate", function() {
 		done();
 	});
 });
