@@ -22,11 +22,11 @@
         <icon density="hdpi" src="src/res/android/icon/hdpi.png" />
         <icon density="xhdpi" src="src/res/android/icon/xhdpi.png" />
         <icon density="xxhdpi" src="src/res/android/icon/xxhdpi.png" />
-        <hook type="after_build" src="src/res/android/hooks/after_build.bat" />
+        <hook src="src/res/android/hooks/after_build.bat" type="after_build" />
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
-    <engine name="android" spec="^5.0.0" />
+    <engine name="android" spec="^7.0.0" />
 </widget>
