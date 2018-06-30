@@ -59,7 +59,7 @@
 					</thead>
 					<tbody>
 						<tr ng-repeat="data in vm.data">
-							<td ng-switch="data.quality">
+							<td class="wrap" ng-switch="data.quality">
 								<quality-legend value="{{ data.quality }}"></quality-legend>
 								<span>{{ data.title }}</span>
 							</td>
