@@ -33,3 +33,12 @@ bower_components/
 
 # Sass cache directory
 .sass-cache/
+
+# Android
+/www
+*.apk
+*.ap_
+*.dex
+.gradle
+platforms/
+plugins/
