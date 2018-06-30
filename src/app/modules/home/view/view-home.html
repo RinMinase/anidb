@@ -120,15 +120,14 @@
 						<div class="col-lg-6 col-12">
 							<div class="row">
 								<div class="col-12" ng-if="vm.data.releaseYear">
-									<p class="big">
-										<span ng-if="vm.data.releaseSeason"
-											ng-switch="vm.data.releaseSeason">
-											<i class="fa fa-snowflake-o" ng-switch-when="Winter"></i>
-											<i class="fa fa-leaf" ng-switch-when="Spring"></i>
-											<i class="fa fa-sun-o" ng-switch-when="Summer"></i>
-											<i class="fa fa-tree" ng-switch-when="Fall"></i>
-										</span>
-										<span ng-if="vm.data.releaseSeason">
+									<p class="big" ng-if="vm.data.releaseSeason">
+										<i class="fa" ng-class="{
+											'fa-snowflake-o': vm.data.releaseSeason === 'Winter',
+											'fa-leaf': vm.data.releaseSeason === 'Spring',
+											'fa-sun-o': vm.data.releaseSeason === 'Summer',
+											'fa fa-tree': vm.data.releaseSeason === 'Fall'
+										}"></i>
+										<span>
 											{{ vm.data.releaseSeason }}&nbsp;
 										</span>
 										<span>{{ vm.data.releaseYear }}</span>

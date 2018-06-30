@@ -21,14 +21,12 @@
 		padding-bottom: 5px;
 	}
 
-	p.big {
-		font-size: 120%;
-	}
+	p.big { font-size: 120%; }
 
-	span {
-		i.fa-snowflake-o { color: skyblue; }
-		i.fa-leaf { color: green; }
-		i.fa-sun-o { color: orange; }
-		i.fa-tree { color: orangered; }
+	i {
+		&.fa-snowflake-o { color: skyblue; }
+		&.fa-leaf { color: green; }
+		&.fa-sun-o { color: orange; }
+		&.fa-tree { color: orangered; }
 	}
 }
