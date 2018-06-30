@@ -1,4 +1,9 @@
 .anidb-login {
+	.flex-form-container { height: calc(100vh - 50px); }
+	.form-container { width: 320px; }
+	.text-dark-white { color: #DEDEDE; }
+	.flex-form-container-loading { height: 108px; }
+
 	&.container-fluid {
 		background-image: url("https://firebasestorage.googleapis.com/v0/b/rin-anidb.appspot.com/o/assets%2Fbg.jpg?alt=media&token=3e3a4719-8712-42db-be8a-20a4585906be");
 		background-position: center;
@@ -7,29 +12,16 @@
 		background-size: cover;
 	}
 
-	.flex-form-container { height: calc(100vh - 50px); }
-
-	.form-container { width: 320px; }
-
 	.flex-center {
 		display: flex;
 		align-items: center;
 		height: 100%;
 	}
 
-	.text-dark-white { color: #DEDEDE; }
-
 	.img-logo {
 		background-image: url("https://firebasestorage.googleapis.com/v0/b/rin-anidb.appspot.com/o/assets%2Flogo.png?alt=media&token=f45333ef-3328-4fef-aa06-8b8adc51e25e");
 		background-size: 100%;
 		width: 140px;
 		height: 140px;
-	}
-
-	.flex-form-container-loading {
-		height: 108px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
 	}
 }
