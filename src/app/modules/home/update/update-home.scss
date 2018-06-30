@@ -1,10 +1,10 @@
 .update-home {
 	textarea {
 		resize: none;
-		height: 108px;
+		height: 115px;
 
-		@media (max-width: 767px) {
-			height: 60px;
-		}
+		@media (max-width: 576px) { height: 70px; }
 	}
+
+	.abc-checkbox label { cursor: default; }
 }

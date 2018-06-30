@@ -1,16 +1,13 @@
-<div class="inmodal update-home">
+<div class="update-home">
 	<form>
-		<button type="button" class="close" ng-click="vm.cancel()">
-			<i class="fa fa-times"></i>
-		</button>
 		<div class="modal-header">
-			<i class="fa fa-pencil modal-icon hidden-xs"></i>
 			<h4 class="modal-title">Edit Title</h4>
+			<button type="button" class="close" ng-click="vm.cancel()"><i>&times;</i></button>
 		</div>
 
 		<div class="modal-body">
 			<div class="row">
-				<div class="form-group col-md-3 col-xs-6 hidden-sm pr-0">
+				<div class="form-group col-lg-3 col-6 d-lg-block d-sm-none d-block pr-0">
 					<label>Status</label>
 					<select class="form-control">
 						<option>Watched</option>
@@ -18,7 +15,7 @@
 						<option>Queued</option>
 					</select>
 				</div>
-				<div class="form-group col-md-3 col-sm-5 col-xs-6 pr-lg-0 pr-md-0 pr-sm-0">
+				<div class="form-group col-lg-3 col-sm-5 col-6 pr-sm-0 d-sm-block d-block">
 					<label>Quality</label>
 					<select class="form-control"
 						ng-model="vm.data.quality">
@@ -28,14 +25,14 @@
 						<option>HQ 480p</option>
 					</select>
 				</div>
-				<div class="form-group col-md-6 col-sm-7 col-xs-12">
+				<div class="form-group col-lg-6 col-sm-7 col-12">
 					<label>Title</label>
 					<input type="text" class="form-control" ng-model="vm.data.title">
 				</div>
 			</div>
 
 			<div class="row">
-				<div class="form-group col-sm-6 hidden-xs hidden-md hidden-lg pr-0">
+				<div class="form-group col-sm-6 d-lg-none d-sm-block d-none pr-0">
 					<label>Status</label>
 					<select class="form-control">
 						<option>Watched</option>
@@ -43,169 +40,196 @@
 						<option>Queued</option>
 					</select>
 				</div>
-				<div class="form-group col-xs-2 pr-0">
-					<label class="hidden-xs">Episodes</label>
-					<label class="hidden-sm hidden-md hidden-lg">EPs</label>
+				<div class="form-group col-2 pr-0">
+					<label class="d-sm-inline-block d-none">Episodes</label>
+					<label class="d-sm-none">EPs</label>
 					<input type="text" class="form-control" ng-model="vm.data.episodes">
 				</div>
-				<div class="form-group col-xs-2 pr-0">
+				<div class="form-group col-2 pr-0">
 					<label>OVAs</label>
 					<input type="text" class="form-control" ng-model="vm.data.ovas">
 				</div>
-				<div class="form-group col-xs-2 pr-lg-0 pr-md-0 pr-xs-0">
-					<label class="hidden-xs">Specials</label>
-					<label class="hidden-sm hidden-md hidden-lg">SPs</label>
+				<div class="form-group col-2 pr-lg-0 pr-md-def pr-sm-def pr-0">
+					<label class="d-lg-inline-block d-none">Specials</label>
+					<label class="d-lg-none">SPs</label>
 					<input type="text" class="form-control" ng-model="vm.data.specials">
 				</div>
-				<div class="form-group col-md-3 col-sm-6 hidden-xs pr-0">
+				<div class="form-group col-lg-3 col-sm-6 d-sm-block d-none pr-0">
 					<label>Date Finished</label>
 					<input type="text" class="form-control">
 				</div>
-				<div class="form-group col-md-3 col-sm-4 col-xs-6">
+				<div class="form-group col-lg-3 col-sm-4 col-6 pr-xl-def pr-lg-def pr-sm-0">
 					<label>Filesize</label>
 					<input type="text"
 						class="form-control"
 						ng-model="vm.data.filesize"
 						ng-change="vm.removeNonNumeric()">
 				</div>
-				<div class="form-group col-sm-2 text-center hidden-xs hidden-md hidden-lg">
+				<div class="orm-group col-sm-2 text-center d-lg-none d-sm-block d-none pl-0">
 					<label>HDD</label>
-					<div class="checkbox checkbox-success checkbox-cicle">
+					<div class="form-check abc-checkbox abc-checkbox-success abc-checkbox-cicle">
 						<input type="checkbox"
+							class="form-check-input"
+							id="hddCheck1"
 							ng-model="vm.data.inhdd"
 							ng-true-value="1"
 							ng-false-value="0">
-						<label></label>
+						<label class="form-check-label" for="hddCheck1"></label>
 					</div>
 				</div>
 			</div>
 
 			<div class="row">
-				<div class="form-group col-sm-2 col-xs-3 pr-0">
+				<div class="form-group col-sm-2 col-3 pr-0">
 					<label>Season #</label>
 					<input type="text" class="form-control" ng-model="vm.data.seasonNumber">
 				</div>
-				<div class="form-group col-md-4 col-sm-7 col-xs-9 pr-sm-0 pr-md-0 pr-lg-0">
+				<div class="form-group col-lg-4 col-sm-7 col-9 pr-sm-0 pr-md-0 pr-lg-0">
 					<label>First Season Title</label>
 					<input type="text"
 						class="form-control"
 						ng-model="vm.data.firstSeasonTitle">
 				</div>
-				<div class="form-group col-sm-3 hidden-xs hidden-md hidden-lg">
+				<div class="form-group col-sm-3 d-lg-none d-sm-block d-none">
 					<label>Duration</label>
 					<input type="text" class="form-control">
 				</div>
-				<div class="col-md-4 col-xs-10 hidden-sm pr-lg-0 pr-md-0">
-					<div class="form-group col-xs-6 px-0">
-						<label>Release</label>
-						<select class="form-control">
-							<option>Winter</option>
-							<option>Spring</option>
-							<option>Summer</option>
-							<option>Fall</option>
-						</select>
-					</div>
-					<div class="form-group col-xs-6 pl-1 pr-0">
-						<label>&nbsp;</label>
-						<select class="form-control">
-							<option>2018</option>
-							<option>2017</option>
-							<option>2016</option>
-						</select>
+				<div class="form-group col-lg-4 col-10 d-lg-block d-sm-none d-block pr-lg-0">
+					<label>Release</label>
+					<div class="input-group">
+						<div class="input-group-prepend col-6 px-0">
+							<select class="form-control">
+								<option>Winter</option>
+								<option>Spring</option>
+								<option>Summer</option>
+								<option>Fall</option>
+							</select>
+						</div>
+						<div class="input-group-append col-6 pl-1 pr-0">
+							<select class="form-control">
+								<option>2018</option>
+								<option>2017</option>
+								<option>2016</option>
+							</select>
+						</div>
 					</div>
 				</div>
-				<div class="form-group col-xs-2 text-center hidden-sm">
+				<div class="form-group col-2 text-center d-lg-block d-sm-none d-block pl-0">
 					<label>HDD</label>
-					<div class="checkbox checkbox-success checkbox-cicle">
+					<div class="form-check abc-checkbox abc-checkbox-success abc-checkbox-cicle">
 						<input type="checkbox"
+							class="form-check-input"
+							id="hddCheck2"
 							ng-model="vm.data.inhdd"
 							ng-true-value="1"
 							ng-false-value="0">
-						<label></label>
+						<label class="form-check-label" for="hddCheck2"></label>
 					</div>
 				</div>
 			</div>
 
 			<div class="row">
-				<div class="form-group col-md-3 col-xs-5 hidden-sm pr-0">
+				<div class="form-group col-lg-3 col-5 d-lg-block d-sm-none d-block pr-0">
 					<label>Duration</label>
 					<input type="text" class="form-control">
 				</div>
-				<div class="form-group col-xs-7 hidden-sm hidden-md hidden-lg">
+				<div class="form-group col-7 d-sm-none d-block">
 					<label>Date Finished</label>
 					<input type="text" class="form-control">
 				</div>
-				<div class="col-sm-6 hidden-xs hidden-md hidden-lg pr-0">
-						<div class="form-group">
-							<label>Release</label>
-							<input type="text" class="form-control">
+				<div class="form-group col-sm-5 d-lg-none d-sm-block d-none pr-0">
+					<label>Release</label>
+					<div class="input-group">
+						<div class="input-group-prepend col-6 px-0">
+							<select class="form-control">
+								<option>Winter</option>
+								<option>Spring</option>
+								<option>Summer</option>
+								<option>Fall</option>
+							</select>
+						</div>
+						<div class="input-group-append col-6 pl-1 pr-0">
+							<select class="form-control">
+								<option>2018</option>
+								<option>2017</option>
+								<option>2016</option>
+							</select>
 						</div>
 					</div>
-				<div class="form-group col-md-5 col-sm-3 col-xs-6 pr-0">
+				</div>
+				<div class="form-group col-lg-5 col-sm-3 col-6 pr-0">
 					<label>Encoder</label>
 					<input type="text" class="form-control" ng-model="vm.data.encoder">
 				</div>
-				<div class="form-group col-md-4 col-sm-3 col-xs-6">
+				<div class="form-group col-sm-4 col-6">
 					<label>Remarks</label>
 					<input type="text" class="form-control" ng-model="vm.data.remarks">
 				</div>
 			</div>
 
 			<div class="row">
-				<div class="form-group col-sm-5 col-xs-12 pr-sm-0 pr-md-0 pr-lg-0">
-					<label>Variants</label>
-					<textarea class="form-control"></textarea>
-				</div>
-				<div class="form-group col-sm-7 col-xs-12">
-					<label>Prequel</label>
-					<input type="text"
-						class="form-control"
-						ng-model="vm.data.prequel"
-						uib-typeahead="o for o in vm.titleList | filter: $viewValue | limitTo:4">
-				</div>
-				<div class="form-group col-sm-7 col-xs-12">
-					<label>Sequel</label>
-					<input type="text"
-						class="form-control"
-						ng-model="vm.data.sequel"
-						uib-typeahead="o for o in vm.titleList | filter: $viewValue | limitTo:4">
-				</div>
-				<div class="col-xs-12">
-					<div class="form-group col-sm-5 col-xs-12 px-0 mb-xs-0">
-						<label>Offquel</label>
-						<input type="text"
-							class="form-control"
-							ng-model="vm.data.offquel">
+				<div class="col-sm-5 col-12">
+					<div class="row">
+						<div class="form-group col-12 pr-sm-0">
+							<label>Variants</label>
+							<textarea class="form-control"></textarea>
+						</div>
 					</div>
-					<div class="form-group col-sm-7 col-xs-12 pr-0 pl-xs-0">
-						<label class="hidden-xs">&nbsp;</label>
-						<div class="input-group">
+				</div>
+				<div class="col-sm-7 col-12">
+					<div class="row">
+						<div class="form-group col-12">
+							<label>Prequel</label>
 							<input type="text"
-								id="offquelSelection"
 								class="form-control"
-								ng-model="vm.offquelSelection"
+								ng-model="vm.data.prequel"
 								uib-typeahead="o for o in vm.titleList | filter: $viewValue | limitTo:4">
-							<div class="input-group-btn">
-								<button class="btn btn-default"
-									type="button"
-									ng-click="vm.addOffquel()"
-									set-focus="offquelSelection">Add</button>
+						</div>
+						<div class="form-group col-12">
+							<label>Sequel</label>
+							<input type="text"
+								class="form-control"
+								ng-model="vm.data.sequel"
+								uib-typeahead="o for o in vm.titleList | filter: $viewValue | limitTo:4">
+						</div>
+					</div>
+				</div>
+				<div class="col-12">
+					<label>Offquel</label>
+					<div class="input-group">
+						<div class="input-group-prepend col-sm-5 col-12 px-0 mb-sm-0 mb-2">
+							<input type="text"
+								class="form-control"
+								ng-model="vm.data.offquel">
+						</div>
+						<div class="input-group-append col-sm-7 col-12 pl-0 pr-0 pl-xl-def pl-lg-def pl-md-def pl-sm-def">
+							<div class="input-group">
+								<input type="text"
+									id="offquelSelection"
+									class="form-control"
+									ng-model="vm.offquelSelection"
+									uib-typeahead="o for o in vm.titleList | filter: $viewValue | limitTo:4">
+								<div class="input-group-btn">
+									<button class="btn btn-default"
+										type="button"
+										ng-click="vm.addOffquel()"
+										set-focus="offquelSelection">Add</button>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-
 		</div>
 
 		<div class="modal-footer">
-			<button type="submit" class="btn btn-primary">
-				<i class="fa fa-check"></i>
-				<span>Save</span>
-			</button>
-			<button type="button" ng-click="vm.cancel()" class="btn btn-default">
+			<button type="button" ng-click="vm.cancel()" class="btn btn-default mr-auto">
 				<i class="fa fa-times"></i>
 				<span>Cancel</span>
+			</button>
+			<button type="submit" class="btn btn-success">
+				<i class="fa fa-check"></i>
+				<span>Save</span>
 			</button>
 		</div>
 	</form>
