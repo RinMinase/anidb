@@ -1,6 +1,6 @@
 {
-  "name": "anidb-angular",
-  "description": "Rin Minase's Anime Database using AngularJS in ES6",
+  "name": "rin-anidb",
+  "description": "Rin Minase's Anime Database using AngularJS in ES6 compiled for Android with Cordova",
   "version": "0.1.0",
   "license": "MIT",
   "author": "Rin Minase",
@@ -8,6 +8,7 @@
     "type": "git",
     "url": "https://github.com/RinMinase/anidb"
   },
+  "main": "index.js",
   "scripts": {
     "start": "gulp serve",
     "build": "gulp serve:dist",
@@ -35,6 +36,8 @@
     "browser-sync": "^2.24.5",
     "browser-sync-spa": "^1.0.3",
     "compression-webpack-plugin": "^1.1.11",
+	"cordova-android": "^7.0.0",
+	"cordova-plugin-whitelist": "^1.3.3",
     "del": "^3.0.0",
     "dotenv-webpack": "^1.5.7",
     "eslint": "^5.0.1",
@@ -72,6 +75,14 @@
   },
   "engines": {
     "node": ">=0.10.0"
+  },
+  "cordova": {
+	  "plugins": {
+		  "cordova-plugin-whitelist": {}
+	  },
+	  "platforms": [
+		  "android"
+	  ]
   },
   "eslintIgnore": [
     "src/assets/*"
