@@ -55,29 +55,43 @@
 		margin-bottom: 5px;
 	}
 
-	a.frameworks {
-		display: inline-block;
-		background-image: url("https://firebasestorage.googleapis.com/v0/b/rin-anidb.appspot.com/o/frameworks.png?alt=media&token=b8dfb28a-5202-49b1-912a-ae706325ab0b");
-		background-repeat: no-repeat;
-		overflow: hidden;
-
-		&.angular { background-position: -2px -0px; width: 120px; height: 120px; }
-		&.bootstrap { background-position: -124px -0px; width: 120px; height: 120px; }
-		&.es8 { background-position: -2px -122px; width: 120px; height: 120px; }
-		&.firebase { background-position: -124px -122px; width: 120px; height: 120px; }
-		&.scss { background-position: -2px -244px; width: 120px; height: 120px; }
-		&.webpack { background-position: -124px -244px; width: 120px; height: 120px; }
-	}
-
 	div.acknowledgements {
 		display: inline-block;
-		background: url('https://firebasestorage.googleapis.com/v0/b/rin-anidb.appspot.com/o/acknowledgements.png?alt=media&token=498dee04-ea9a-46c8-990c-6bf014b850f3');
+		background: url('https://firebasestorage.googleapis.com/v0/b/rin-anidb.appspot.com/o/assets%2Facknowledgements.png?alt=media&token=1ab8361f-c28b-4ddb-804f-43f6c0a2087a');
 		background-repeat: no-repeat;
 		overflow: hidden;
 
 		&.alice { background-position: -2px -0px; width: 120px; height: 120px; border-radius: 60px; border: 1px solid #CECECE }
 		&.maid { background-position: -2px -122px; width: 120px; height: 120px; border-radius: 60px; border: 1px solid #CECECE }
 		&.ruka { background-position: -2px -244px; width: 120px; height: 120px; border-radius: 60px; border: 1px solid #CECECE }
+	}
+
+	a.frameworks {
+		display: inline-block;
+		background-image: url("https://firebasestorage.googleapis.com/v0/b/rin-anidb.appspot.com/o/assets%2Fframeworks.png?alt=media&token=a5f4048f-d244-482f-a53a-20ec41b968e8");
+		background-repeat: no-repeat;
+		overflow: hidden;
+
+		&.angular { background-position: -2px -0px; width: 120px; height: 120px; }
+		&.bootstrap { background-position: -124px -0px; width: 120px; height: 120px; }
+		&.cordova { background-position: -246px -0px; width: 120px; height: 120px; }
+		&.es8 { background-position: -2px -122px; width: 120px; height: 120px; }
+		&.firebase { background-position: -124px -122px; width: 120px; height: 120px; }
+		&.scss { background-position: -246px -122px; width: 120px; height: 120px; }
+		&.travis { background-position: -2px -244px; width: 120px; height: 120px; }
+		&.webpack { background-position: -124px -244px; width: 120px; height: 120px; }
+		&.yarn { background-position: -246px -244px; width: 120px; height: 120px; }
+	}
+
+	a.platforms {
+		display: inline-block;
+		background-image: url("https://firebasestorage.googleapis.com/v0/b/rin-anidb.appspot.com/o/assets%2Fplatforms.png?alt=media&token=3c3ef053-8a9f-4c20-95f1-ae7d8bd234b7");
+		background-repeat: no-repeat;
+		overflow: hidden;
+
+		&.android { background-position: -2px -0px; width: 120px; height: 120px; }
+		&.chrome { background-position: -2px -122px; width: 120px; height: 120px; }
+		&.firefox { background-position: -2px -244px; width: 120px; height: 120px; }
 	}
 
 	.btn-group {
