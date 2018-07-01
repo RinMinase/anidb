@@ -13,7 +13,7 @@
     "start": "gulp serve",
     "build": "gulp serve:dist",
     "bundle": "gulp bundle && cordova build android",
-    "deploy": "firebase deploy",
+    "deploy": "gulp build && firebase deploy",
     "lint": "eslint --ext .js src\\app"
   },
   "dependencies": {
