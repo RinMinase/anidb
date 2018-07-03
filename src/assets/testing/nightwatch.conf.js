@@ -14,12 +14,12 @@ module.exports = {
   },
   "test_settings": {
     "default": {
-      "launch_url" : "https://saucelabs.com/test/guinea-pig",
+      "launch_url" : "http://localhost:3000/",
       "globals": { "waitForConditionTimeout": 3000 },
       "desiredCapabilities": { "browserName": "chrome" }
     },
     "chrome": {
-      "launch_url" : "https://saucelabs.com/test/guinea-pig",
+      "launch_url" : "http://localhost:3000/",
       "desiredCapabilities": {
         "browserName": "chrome",
         "javascriptEnabled": true
