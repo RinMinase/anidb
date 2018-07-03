@@ -7,7 +7,7 @@ skillset-bar {
 
 	.skillset-sprite {
 		display: inline-block;
-		background-image: url("https://firebasestorage.googleapis.com/v0/b/rin-anidb.appspot.com/o/assets%2Fskillsets.png?alt=media&token=2e1cac27-dbaf-4321-a406-3dbc8841edf2");
+		background-image: url("https://firebasestorage.googleapis.com/v0/b/rin-anidb.appspot.com/o/assets%2Fskillsets.png?alt=media&token=87bbeecc-3260-4fd5-a489-10e0fe3dcba4");
 		background-repeat: no-repeat;
 		overflow: hidden;
 
@@ -36,17 +36,18 @@ skillset-bar {
 		&.mongodb { background-position: -90px -66px; width: 20px; height: 20px; }
 		&.mysql { background-position: -112px -66px; width: 20px; height: 20px; }
 		&.nginx { background-position: -2px -88px; width: 20px; height: 20px; }
-		&.node { background-position: -24px -88px; width: 20px; height: 20px; }
-		&.php { background-position: -46px -88px; width: 20px; height: 20px; }
-		&.python { background-position: -68px -88px; width: 20px; height: 20px; }
-		&.react { background-position: -90px -88px; width: 20px; height: 20px; }
-		&.redis { background-position: -112px -88px; width: 20px; height: 20px; }
-		&.sails { background-position: -2px -110px; width: 20px; height: 20px; }
-		&.scss { background-position: -24px -110px; width: 20px; height: 20px; }
-		&.shell { background-position: -46px -110px; width: 20px; height: 20px; }
-		&.strider { background-position: -68px -110px; width: 20px; height: 20px; }
-		&.travis { background-position: -90px -110px; width: 20px; height: 20px; }
-		&.webpack { background-position: -112px -110px; width: 20px; height: 20px; }
-		&.yarn { background-position: -2px -132px; width: 20px; height: 20px; }
+		&.nightwatch { background-position: -24px -88px; width: 20px; height: 20px; }
+		&.node { background-position: -46px -88px; width: 20px; height: 20px; }
+		&.php { background-position: -68px -88px; width: 20px; height: 20px; }
+		&.python { background-position: -90px -88px; width: 20px; height: 20px; }
+		&.react { background-position: -112px -88px; width: 20px; height: 20px; }
+		&.redis { background-position: -2px -110px; width: 20px; height: 20px; }
+		&.sails { background-position: -24px -110px; width: 20px; height: 20px; }
+		&.scss { background-position: -46px -110px; width: 20px; height: 20px; }
+		&.shell { background-position: -68px -110px; width: 20px; height: 20px; }
+		&.strider { background-position: -90px -110px; width: 20px; height: 20px; }
+		&.travis { background-position: -112px -110px; width: 20px; height: 20px; }
+		&.webpack { background-position: -2px -132px; width: 20px; height: 20px; }
+		&.yarn { background-position: -24px -132px; width: 20px; height: 20px; }
 	}
 }
