@@ -14,7 +14,9 @@
     "build": "gulp serve:dist",
     "bundle": "gulp bundle && cordova build android",
     "deploy": "gulp build && firebase deploy",
-    "lint": "eslint --ext .js src\\app"
+    "lint": "eslint --ext .js src\\app",
+    "test": "nightwatch --config src/assets/testing/nightwatch.conf.js",
+    "dl-driver": "node src/assets/testing/nightwatch.conf.js"
   },
   "dependencies": {
     "@uirouter/angularjs": "^1.0.18",
