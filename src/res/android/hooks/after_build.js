@@ -7,6 +7,7 @@ module.exports = function(context) {
 	var config = new ConfigParser("config.xml");
 
 	var dir = "./build"
+	var buildLogDir = "platforms/android/build/android-profile";
 
 	var apkLocation = "platforms/android/app/build/outputs/apk/debug";
 	var apkFilename = "app-debug.apk";
@@ -14,8 +15,17 @@ module.exports = function(context) {
 	var apkOutput = "build";
 	var apkOutputFilename = config.packageName() + "_" + config.version() + ".apk"
 
+	fs.readdir(buildLogDir, function (err, files) {
+		if (err) throw err;
+
+		for (const file of files) {
+			fs.unlink(path.join(buildLogDir, file), function(err) {
+				if (err) throw err;
+			});
+		}
+	});
+
 	if (!fs.existsSync(dir)){
-		fs.unlinkSync(dir);
 		fs.mkdirSync(dir);
 	}
 
