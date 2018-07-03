@@ -68,7 +68,7 @@
 
 	a.frameworks {
 		display: inline-block;
-		background-image: url("https://firebasestorage.googleapis.com/v0/b/rin-anidb.appspot.com/o/assets%2Fframeworks.png?alt=media&token=a5f4048f-d244-482f-a53a-20ec41b968e8");
+		background-image: url("https://firebasestorage.googleapis.com/v0/b/rin-anidb.appspot.com/o/assets%2Fframeworks.png?alt=media&token=2260d9af-fd44-405b-8170-c568e546fdf4");
 		background-repeat: no-repeat;
 		overflow: hidden;
 
@@ -77,10 +77,11 @@
 		&.cordova { background-position: -246px -0px; width: 120px; height: 120px; }
 		&.es8 { background-position: -2px -122px; width: 120px; height: 120px; }
 		&.firebase { background-position: -124px -122px; width: 120px; height: 120px; }
-		&.scss { background-position: -246px -122px; width: 120px; height: 120px; }
-		&.travis { background-position: -2px -244px; width: 120px; height: 120px; }
-		&.webpack { background-position: -124px -244px; width: 120px; height: 120px; }
-		&.yarn { background-position: -246px -244px; width: 120px; height: 120px; }
+		&.nightwatch { background-position: -246px -122px; width: 120px; height: 120px; }
+		&.scss { background-position: -2px -244px; width: 120px; height: 120px; }
+		&.travis { background-position: -124px -244px; width: 120px; height: 120px; }
+		&.webpack { background-position: -246px -244px; width: 120px; height: 120px; }
+		&.yarn { background-position: -2px -366px; width: 120px; height: 120px; }
 	}
 
 	a.platforms {

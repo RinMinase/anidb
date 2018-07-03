@@ -14,7 +14,10 @@
     "build": "gulp serve:dist",
     "bundle": "gulp bundle && cordova build android",
     "deploy": "gulp build && firebase deploy",
-    "lint": "eslint --ext .js src\\app"
+    "lint": "eslint --ext .js src\\app",
+	"test": "nightwatch --config src/assets/testing/nightwatch.conf.js",
+	"setup": "cordova add platform android && yarn install",
+    "dl-driver": "node src/assets/testing/nightwatch.conf.js"
   },
   "dependencies": {
     "@uirouter/angularjs": "^1.0.18",
@@ -35,6 +38,7 @@
     "bootstrap": "^4.1.1",
     "browser-sync": "^2.24.5",
     "browser-sync-spa": "^1.0.3",
+    "chromedriver": "^2.40.0",
     "compression-webpack-plugin": "^1.1.11",
     "cordova-android": "^7.0.0",
     "cordova-plugin-whitelist": "^1.3.3",
@@ -66,8 +70,10 @@
     "moment": "^2.22.2",
     "ng-annotate-loader": "^0.6.1",
     "ngtemplate-loader": "^2.0.1",
+    "nightwatch": "^0.9.21",
     "roboto-fontface": "^0.9.0",
     "run-sequence": "^2.2.1",
+    "selenium-server": "^3.13.0",
     "uglify-save-license": "^0.4.1",
     "ui-bootstrap4": "^3.0.3",
     "velocity-animate": "^1.5.1",
