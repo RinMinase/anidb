@@ -1,4 +1,4 @@
-The MIT License (MIT)
+MIT License
 =====================
 
 _Copyright © 2018 Rin Minase. &lt;<http://rin-anidb.firebaseapp.com/>&gt;_
