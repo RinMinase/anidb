@@ -42,6 +42,7 @@ td.wrap, th.wrap { white-space: normal; }
 .big { font-size: 120%; }
 
 .flex-form-container {
+	height: calc(100vh - 70px - 50px);
 	display: flex;
 	align-items: center;
 	justify-content: center;
