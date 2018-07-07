@@ -2,20 +2,18 @@ import moment from "moment";
 
 export class AboutController {
 	constructor(
-		$http,
 		$scope,
 		$state,
 		firebase,
-		GITHUB_API
+		githubApi
 	) {
 		"ngInject";
 
 		_.extend(this, {
-			$http,
 			$scope,
 			$state,
 			firebase,
-			GITHUB_API,
+			githubApi,
 
 			chart: {
 				colors: [],
@@ -152,7 +150,7 @@ export class AboutController {
 	}
 
 	_getGithubCommits() {
-		this.$http.get(this.GITHUB_API.commits)
+		this.githubApi.getCommits()
 			.then((response) => {
 				response.data.map((data) => {
 					if (!data.commit.message.includes("Merge branch")) {
@@ -208,7 +206,7 @@ export class AboutController {
 	}
 
 	_getGithubIssues() {
-		this.$http.get(this.GITHUB_API.issues)
+		this.githubApi.getIssues()
 			.then((response) => {
 				response.data.map((data) => {
 					if (data.state === "open") {
