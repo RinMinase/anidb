@@ -1,5 +1,5 @@
-import firebase from "firebase/app";
 import Promise from "bluebird";
+const firebase = Promise.promisifyAll(require("firebase/app"));
 
 import "firebase/auth";
 import "firebase/database";
