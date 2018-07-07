@@ -63,8 +63,8 @@ export class LastWatchController {
 			return formattedValue;
 		});
 
-		const dateFirst = moment(data[0].dateFinished, "X");
-		const dateLast = moment(data[data.length - 1].dateFinished, "X");
+		const dateFirst = moment.unix(data[0].dateFinished);
+		const dateLast = moment.unix(data[data.length - 1].dateFinished);
 		const dateDiffLast = moment().diff(dateLast, "days", true);
 		const sortedData = formattedData.sort(this._sortData);
 
@@ -77,7 +77,7 @@ export class LastWatchController {
 			if (value.dateFinished === "") {
 				value.dateFinished = "-";
 			} else {
-				value.dateFinished = moment(value.dateFinished, "X").format("MMM DD, YYYY");
+				value.dateFinished = moment.unix(value.dateFinished).format("MMM DD, YYYY");
 			}
 
 			this.data.push(value);
