@@ -25,6 +25,25 @@ body {
 	line-height: 1.428571429;
 }
 
+html {
+	position: relative;
+	min-height: 100%;
+
+	body > div {
+		> div.container, > div.container-fluid {
+			&:not(.no-footer) { margin-bottom: 50px; }
+		}
+	}
+
+	anidb-footer {
+		position: absolute;
+		bottom: 0;
+		height: 50px;
+		width: 100%;
+		background-color: #f3f3f3;
+	}
+}
+
 .form-control, .dropdown-menu { font-size: 14px; }
 .btn { font-size: 15px; }
 
