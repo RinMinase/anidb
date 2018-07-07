@@ -115,8 +115,8 @@ function webpackWrapper(watch, callback) {
 		webpackOptions.devtool = "inline-source-map";
 	} else {
 		webpackOptions.mode = "production";
-		webpackOptions.plugins.push(new Dotenv({ path: "./src/assets/.env" }));
 		webpackOptions.plugins.push(new CompressionPlugin());
+		webpackOptions.plugins.push(new Dotenv({ path: "./src/assets/.env" }));
 	}
 
 	var webpackChangeHandler = function(err, stats) {
