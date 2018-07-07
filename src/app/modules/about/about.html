@@ -305,27 +305,27 @@
 						</div>
 						<div class="card-body">
 							<ul class="list-unstyled" ng-repeat="commits in vm.githubCommits | reverse">
-								<li>{{ commits.title }}</li>
-								<ul class="list-unstyled pl-4">
-									<li ng-repeat="fix in commits.fix">
+								<li class="font-weight-bold">{{ commits.title }}</li>
+								<ul class="list-unstyled">
+									<li ng-repeat="fix in commits.fix" class="pt-0-5">
 										<h6 class="d-inline mr-2">
-											<span class="badge badge-pill badge-success">FIX</span>
+											<span class="badge badge-pill badge-success py-1">FIX</span>
 										</h6>
 										<span>{{ fix.message }}</span>
 										<span ng-if="fix.module"> on&nbsp;</span>
 										<code ng-if="fix.module">{{ fix.module }}</code>
 									</li>
-									<li ng-repeat="new in commits.new">
+									<li ng-repeat="new in commits.new" class="pt-0-5">
 										<h6 class="d-inline mr-2">
-											<span class="badge badge-pill badge-primary">NEW</span>
+											<span class="badge badge-pill badge-primary py-1">NEW</span>
 										</h6>
 										<span>{{ new.message }}</span>
 										<span ng-if="new.module"> on&nbsp;</span>
 										<code>{{ new.module }}</code>
 									</li>
-									<li ng-repeat="improve in commits.improve">
+									<li ng-repeat="improve in commits.improve" class="pt-0-5">
 										<h6 class="d-inline mr-2">
-											<span class="badge badge-pill badge-warning">IMPROVED</span>
+											<span class="badge badge-pill badge-warning text-white py-1">IMPROVED</span>
 										</h6>
 										<span>{{ improve.message }}</span>
 										<span ng-if="improve.module"> on&nbsp;</span>
