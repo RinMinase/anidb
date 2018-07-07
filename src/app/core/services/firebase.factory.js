@@ -24,16 +24,12 @@ export function FirebaseFactory() {
 
 	function login(email, password) {
 		return Promise.resolve(firebase.auth().signInWithEmailAndPassword(email, password))
-			.catch((error) => {
-				Promise.reject(error);
-			});
+			.catch((error) => Promise.reject(error));
 	}
 
 	function logout() {
 		return Promise.resolve(firebase.auth().signOut())
-			.catch((error) => {
-				Promise.reject(error);
-			});
+			.catch((error) => Promise.reject(error));
 	}
 
 	function auth() {
