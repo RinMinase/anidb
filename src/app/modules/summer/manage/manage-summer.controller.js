@@ -46,10 +46,11 @@ export class ManageSummerController {
 		summerData.forEach((summer, index) => {
 			const timeStart = moment.unix(summer.timeStart);
 			const timeEnd = moment.unix(summer.timeEnd);
+			const days = timeEnd.diff(timeStart, "days", true);
 
 			this.data.push({
 				summer: {
-					days: timeEnd.diff(timeStart, "days", true),
+					days,
 					end: timeEnd.format("MMM DD, YYYY"),
 					start: timeStart.format("MMM DD, YYYY"),
 					title: summer.title,
@@ -111,16 +112,28 @@ export class ManageSummerController {
 				}
 			});
 
+			const { entries } = this.data[index];
+			const sortedEntries = entries.sort(this._sortData);
+
+			this.data[index].entries = sortedEntries;
+
+			const totalTitles = this.data[index].entries.length;
+			const titlesPerDay = (totalTitles / days).toFixed(2);
+			const episodesPerDay = (totalEpisodes / days).toFixed(2);
+
 			_.extend(this.data[index].summer, {
 				episodes: totalEpisodes,
+				episodesPerDay,
 				filesize: this._convertFilesize(totalFilesize),
 				quality: {
 					uhd: qualityUHD,
 					fhd: qualityFHD,
 					hd: qualityHD,
 					hq: qualityHQ,
-					lh: qualityLQ,
+					lq: qualityLQ,
 				},
+				titles: totalTitles,
+				titlesPerDay,
 			});
 		});
 	}
@@ -134,6 +147,23 @@ export class ManageSummerController {
 			return `${(filesize / 1048576).toFixed(2)} MB`;
 		} else {
 			return `${(filesize / 1073741824).toFixed(2)} GB`;
+		}
+	}
+
+	_sortData(a, b) {
+		const aDate = moment(a.dateFinished, "MMM DD, YYYY").valueOf();
+		const bDate = moment(b.dateFinished, "MMM DD, YYYY").valueOf();
+
+		if (aDate < bDate) {
+			return 1;
+		} else if (aDate > bDate) {
+			return -1;
+		}
+
+		if (a.title < b.title) {
+			return -1;
+		} else if (a.title > b.title) {
+			return 1;
 		}
 	}
 }
