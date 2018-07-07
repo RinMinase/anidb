@@ -157,7 +157,12 @@ export class AboutController {
 				response.data.map((data) => {
 					if (!data.commit.message.includes("Merge branch")) {
 						const { date } = data.commit.author;
-						const rawMessage = data.commit.message.split(":");
+						let rawMessage = data.commit.message.split(":");
+
+						if (rawMessage.length === 1) {
+							rawMessage = data.commit.message.split(new RegExp(" (.+)"));
+						}
+
 						const rawModule = rawMessage[0]
 							.trimStart()
 							.toLowerCase()
