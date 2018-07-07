@@ -11,6 +11,7 @@ export class ManageSummerController {
 			$scope,
 			firebase,
 
+			category: 0,
 			data: [],
 			dataLoaded: false,
 		});
