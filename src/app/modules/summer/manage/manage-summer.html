@@ -1,3 +1,195 @@
 <anidb-navbar></anidb-navbar>
 
+<div class="container-fluid manage-summer">
+	<div class="flex-form-container sidebar"
+		ng-class="{'d-none': vm.dataLoaded === true}">
+		<div class="spinner eclipse"></div>
+	</div>
+
+	<div class="row" ng-class="{'d-none': vm.dataLoaded === false}">
+		<div class="col-lg-3 col-12">
+			<!-- <div class="row hidden" id="add_summer_list">
+				<div class="col-md-12">
+					<form class="hidden-sm">
+						<div class="row">
+							<div class="col-xs-6 form-group">
+								<label>From</label>
+								<input type="date" class="form-control" name="from">
+							</div>
+							<div class="col-xs-6 form-group">
+								<label>To</label>
+								<input type="date" class="form-control" name="to">
+							</div>
+							<div class="col-xs-12 form-group">
+								<button class="btn btn-primary btn-block">Confirm</button>
+							</div>
+						</div>
+					</form>
+
+					<form class="form-horizontal hidden-xs visible-sm hidden-md hidden-lg">
+						<div class="row">
+							<div class="col-sm-4 form-group">
+								<label class="control-label col-sm-2">From</label>
+								<div class="col-sm-10">
+									<input type="date" class="form-control" name="from">
+								</div>
+							</div>
+							<div class="col-sm-4 form-group">
+								<label class="control-label col-sm-2">To</label>
+								<div class="col-sm-10">
+									<input type="date" class="form-control" name="to">
+								</div>
+							</div>
+							<div class="col-sm-5 form-group">
+								<button class="btn btn-primary btn-block">Confirm</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-xs-3 col-sm-2 col-md-3" id="btn_add_summer_list">
+					<a href="#" class="btn btn-primary btn-block" onclick="showAddSummerList()"><i class="fa fa-plus"></i></a>
+				</div>
+				<div class="col-xs-3 col-sm-2 col-md-3 hidden" id="btn_hide_summer_list">
+					<a href="#" class="btn btn-danger btn-block" onclick="hideAddSummerList()"><i class="fa fa-times"></i></a>
+				</div>
+				<div class="col-xs-9 col-sm-10 col-md-9">
+					<div class="form-group has-feedback has-feedback-left">
+						<i class="form-control-feedback glyphicon glyphicon-search"></i>
+						<input type="text" class="form-control" placeholder="Search...">
+					</div>
+				</div>
+			</div> -->
+
+			<div class="row">
+				<div class="col-12">
+
+					<div class="list-group">
+						<a class="list-group-item link"
+							ng-repeat="(key, keyValue) in vm.data"
+							ng-href="#"
+							ng-click="vm.category = key"
+							ng-class="{'list-group-item-info': vm.category === key}">
+
+							{{ keyValue.summer.title }}
+						</a>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-12 mt-3">
+
+					<div class="card">
+						<div class="card-header bg-success-light">
+							<h5 class="mb-0">Statistics</h5>
+						</div>
+						<div class="card-body">
+							<div class="table-responsive">
+								<table class="table table-sm table-unbordered">
+									<tbody>
+										<tr>
+											<th colspan="3" class="text-center lead font-weight-bold">
+												<span>{{ vm.data[vm.category].summer.titlesPerDay }}</span>
+												<span>&nbsp;Titles Per Day</span>
+											</th>
+										</tr>
+										<tr>
+											<th colspan="3" class="text-center lead font-weight-bold">
+												<span>{{ vm.data[vm.category].summer.episodesPerDay }}</span>
+												<span>&nbsp;Episodes Per Day</span>
+											</th>
+										</tr>
+										<tr><th colspan="3" class="px-0"><hr class="my-1"></th></tr>
+										<tr><th colspan="3">Anime Per Quality</th></tr>
+										<tr>
+											<th>4K 2160p</th>
+											<th>:</th>
+											<th class="text-center">{{ vm.data[vm.category].summer.quality.uhd }}</th>
+										</tr>
+										<tr>
+											<th>FHD 1080p</th>
+											<th>:</th>
+											<th class="text-center">{{ vm.data[vm.category].summer.quality.fhd }}</th>
+										</tr>
+										<tr>
+											<th>HD 720p</th>
+											<th>:</th>
+											<th class="text-center">{{ vm.data[vm.category].summer.quality.hd }}</th>
+										</tr>
+										<tr>
+											<th>HQ 480p</th>
+											<th>:</th>
+											<th class="text-center">{{ vm.data[vm.category].summer.quality.hq }}</th>
+										</tr>
+										<tr>
+											<th>LQ 360p</th>
+											<th>:</th>
+											<th class="text-center">{{ vm.data[vm.category].summer.quality.lq }}</th>
+										</tr>
+										<tr><th colspan="3" class="px-0"><hr class="my-1"></th></tr>
+										<tr>
+											<th>Days</th>
+											<th>:</th>
+											<th class="text-center">{{ vm.data[vm.category].summer.days }}</th>
+										</tr>
+										<tr>
+											<th>Total Titles</th>
+											<th>:</th>
+											<th class="text-center">{{ vm.data[vm.category].summer.titles }}</th>
+										</tr>
+										<tr>
+											<th>Total Episodes</th>
+											<th>:</th>
+											<th class="text-center">{{ vm.data[vm.category].summer.episodes }}</th>
+										</tr>
+										<tr>
+											<th>Total File Size</th>
+											<th>:</th>
+											<th class="text-center">{{ vm.data[vm.category].summer.filesize }}</th>
+										</tr>
+
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<div class="col-lg-9">
+			<div class="table-responsive">
+				<table class="table table-sm table-hover" >
+					<thead>
+						<tr>
+							<th>Title</th>
+							<th class="text-center">E / O / S</th>
+							<th class="text-center">File Size</th>
+							<th class="text-center">Date Finished</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="data in vm.data[vm.category].entries">
+							<td class="wrap">
+								<quality-legend value="{{ data.quality }}"></quality-legend>
+								<span>{{ data.title }}</span>
+							</td>
+							<td class="text-center">
+								{{ data.episodes }} / {{ data.ovas }} / {{ data.specials }}
+							</td>
+							<td class="text-center">{{ data.filesize }}</td>
+							<td class="text-center">{{ data.dateFinished }}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+
 <anidb-footer></anidb-footer>
