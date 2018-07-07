@@ -1,3 +1,5 @@
+import moment from "moment";
+
 import updateHomeDOM from "../update/update-home.html";
 
 export class ViewHomeController {
@@ -18,6 +20,7 @@ export class ViewHomeController {
 			$uibModal,
 			firebase,
 			SweetAlert,
+
 			data: {},
 			dataLoaded: false,
 		});
@@ -37,6 +40,9 @@ export class ViewHomeController {
 
 						data.variants = data.variants.split(",");
 						data.offquel = data.offquel.split(",");
+						data.filesize = this._convertFilesize(data.filesize);
+						data.dateFinished = moment.unix(data.dateFinished)
+							.format("MMMM DD, YYYY");
 
 						this.data = data;
 						this.dataLoaded = true;
@@ -88,5 +94,17 @@ export class ViewHomeController {
 				data: () => this.data,
 			},
 		});
+	}
+
+	_convertFilesize(filesize) {
+		filesize = parseFloat(filesize);
+
+		if (filesize === 0) {
+			return "-";
+		} else if (filesize < 1073741824) {
+			return `${(filesize / 1048576).toFixed(2)} MB`;
+		} else {
+			return `${(filesize / 1073741824).toFixed(2)} GB`;
+		}
 	}
 }
