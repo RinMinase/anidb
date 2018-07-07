@@ -28,7 +28,10 @@
 		font-weight: bold;
 	}
 
-	h6 .badge.badge-pill { width: 80px; }
+	h6 .badge.badge-pill {
+		width: 85px;
+		&.badge-warning { background-color: #EBA821; }
+	}
 
 	code.github-issues {
 		padding: 0px;
