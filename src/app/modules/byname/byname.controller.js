@@ -1,6 +1,5 @@
 export class ByNameController {
 	constructor(
-		$log,
 		$scope,
 		$state,
 		firebase
@@ -8,7 +7,6 @@ export class ByNameController {
 		"ngInject";
 
 		_.extend(this, {
-			$log,
 			$scope,
 			$state,
 			firebase,

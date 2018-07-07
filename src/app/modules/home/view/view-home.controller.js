@@ -2,7 +2,6 @@ import updateHomeDOM from "../update/update-home.html";
 
 export class ViewHomeController {
 	constructor (
-		$log,
 		$scope,
 		$state,
 		$stateParams,
@@ -13,7 +12,6 @@ export class ViewHomeController {
 		"ngInject";
 
 		_.extend(this, {
-			$log,
 			$scope,
 			$state,
 			$stateParams,

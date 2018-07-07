@@ -2,7 +2,6 @@ import _ from "lodash";
 
 export class ManageDownloadController {
 	constructor(
-		$log,
 		$scope,
 		$state,
 		firebase
@@ -10,7 +9,6 @@ export class ManageDownloadController {
 		"ngInject";
 
 		_.extend(this, {
-			$log,
 			$scope,
 			$state,
 			firebase,

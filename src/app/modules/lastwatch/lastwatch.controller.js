@@ -2,7 +2,6 @@ import moment from "moment";
 
 export class LastWatchController {
 	constructor(
-		$log,
 		$scope,
 		$state,
 		firebase
@@ -10,7 +9,6 @@ export class LastWatchController {
 		"ngInject";
 
 		_.extend(this, {
-			$log,
 			$scope,
 			$state,
 			firebase,

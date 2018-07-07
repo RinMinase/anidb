@@ -1,6 +1,5 @@
 export class UpdateHomeController {
 	constructor (
-		$log,
 		$uibModalInstance,
 		firebase,
 		data
@@ -8,7 +7,6 @@ export class UpdateHomeController {
 		"ngInject";
 
 		_.extend(this, {
-			$log,
 			$uibModalInstance,
 			firebase,
 			data,

@@ -3,7 +3,6 @@ import moment from "moment";
 export class AboutController {
 	constructor(
 		$http,
-		$log,
 		$scope,
 		$state,
 		firebase,
@@ -13,7 +12,6 @@ export class AboutController {
 
 		_.extend(this, {
 			$http,
-			$log,
 			$scope,
 			$state,
 			firebase,

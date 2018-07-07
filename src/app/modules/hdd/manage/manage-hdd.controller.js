@@ -1,13 +1,11 @@
 export class ManageHddController {
 	constructor (
-		$log,
 		$scope,
 		firebase
 	) {
 		"ngInject";
 
 		_.extend(this, {
-			$log,
 			$scope,
 			firebase,
 

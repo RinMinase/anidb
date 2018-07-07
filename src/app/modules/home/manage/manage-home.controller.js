@@ -6,7 +6,6 @@ import addHomeDOM from "../add/add-home.html";
 export class ManageHomeController {
 	constructor (
 		$location,
-		$log,
 		$scope,
 		$state,
 		$uibModal,
@@ -16,7 +15,6 @@ export class ManageHomeController {
 
 		_.extend(this, {
 			$location,
-			$log,
 			$scope,
 			$state,
 			$uibModal,
