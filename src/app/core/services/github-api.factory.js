@@ -1,11 +1,10 @@
-import _ from "lodash";
+import Promise from "bluebird";
 
-export function GithubApiFactory($http) {
+export function GithubApiFactory(
+	$http,
+	GITHUB_API
+) {
 	"ngInject";
-
-	_.extend(this, {
-		$http,
-	});
 
 	const factory = {
 		getCommits,
@@ -15,10 +14,18 @@ export function GithubApiFactory($http) {
 	return factory;
 
 	function getCommits() {
-
+		return Promise.resolve($http.get(GITHUB_API.commits))
+			.then((response) => response)
+			.catch((error) => {
+				Promise.reject(error);
+			});
 	}
 
 	function getIssues() {
-
+		return Promise.resolve($http.get(GITHUB_API.issues))
+			.then((response) => response)
+			.catch((error) => {
+				Promise.reject(error);
+			});
 	}
 }
