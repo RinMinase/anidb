@@ -308,19 +308,25 @@
 								<li>{{ commits.title }}</li>
 								<ul class="list-unstyled pl-4">
 									<li ng-repeat="fix in commits.fix">
-										<code class="green">[FIX]</code>
+										<h6 class="d-inline mr-2">
+											<span class="badge badge-pill badge-success">FIX</span>
+										</h6>
 										<span>{{ fix.message }}</span>
 										<span ng-if="fix.module"> on&nbsp;</span>
 										<code ng-if="fix.module">{{ fix.module }}</code>
 									</li>
 									<li ng-repeat="new in commits.new">
-										<code class="blue">[NEW]</code>
+										<h6 class="d-inline mr-2">
+											<span class="badge badge-pill badge-primary">NEW</span>
+										</h6>
 										<span>{{ new.message }}</span>
 										<span ng-if="new.module"> on&nbsp;</span>
 										<code>{{ new.module }}</code>
 									</li>
 									<li ng-repeat="improve in commits.improve">
-										<code class="orange">[IMPROVED]</code>
+										<h6 class="d-inline mr-2">
+											<span class="badge badge-pill badge-warning">IMPROVED</span>
+										</h6>
 										<span>{{ improve.message }}</span>
 										<span ng-if="improve.module"> on&nbsp;</span>
 										<code ng-if="improve.module">{{ improve.module }}</code>
