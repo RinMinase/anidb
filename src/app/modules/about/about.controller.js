@@ -163,6 +163,10 @@ export class AboutController {
 							rawMessage = data.commit.message.split(new RegExp(" (.+)"));
 						}
 
+						if (rawMessage[1].includes(", resolved #")) {
+							rawMessage[1] = rawMessage[1].replace(new RegExp(", resolved #[0-9]+", "i"), "");
+						}
+
 						const rawModule = rawMessage[0]
 							.trimStart()
 							.toLowerCase()
