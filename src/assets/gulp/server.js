@@ -1,12 +1,12 @@
 "use strict";
 
+var fs = require("fs");
 var path = require("path");
 var gulp = require("gulp");
 var conf = require("../../../gulpfile.js");
 
 var angularTemplatecache = require("gulp-angular-templatecache");
 var cssnano = require("gulp-cssnano");
-var del = require("del");
 var filter = require("gulp-filter");
 var htmlmin = require("gulp-htmlmin");
 var inject = require("gulp-inject");
@@ -55,6 +55,36 @@ function browserSyncInit(baseDir, browser) {
 		notify: false		// Removes top right browsersync notification
 	});
 }
+
+function syncDeleteFolder(path) {
+	if (Array.isArray(path)) {
+		path.forEach(function(el) {
+			if (fs.existsSync(el)) {
+				fs.readdirSync(el).forEach(function(file){
+					var curPath = el + "/" + file;
+					if (fs.lstatSync(curPath).isDirectory()) {
+						syncDeleteFolder(curPath);
+					} else {
+						fs.unlinkSync(curPath);
+					}
+				});
+				fs.rmdirSync(el);
+			}
+		});
+	} else {
+		if (fs.existsSync(path) && path) {
+			fs.readdirSync(path).forEach(function(file){
+				var curPath = path + "/" + file;
+				if (fs.lstatSync(curPath).isDirectory()) {
+					syncDeleteFolder(curPath);
+				} else {
+					fs.unlinkSync(curPath);
+				}
+			});
+			fs.rmdirSync(path);
+		}
+	}
+};
 
 browserSync.use(browserSyncSpa({
 	selector: "[ng-app]"	// Only needed for angular apps
@@ -204,10 +234,10 @@ gulp.task("relocate", function () {
 });
 
 gulp.task("clean", function () {
-	return del([
-		path.join(conf.paths.dist, "/"),
-		path.join(conf.paths.tmp, "/"),
-		path.join(conf.paths.www, "/")
+	return syncDeleteFolder([
+		conf.paths.tmp,
+		conf.paths.dist,
+		conf.paths.www
 	]);
 });
 
@@ -217,7 +247,7 @@ gulp.task("build", function (done) {
 		["fonts:dist", "inject", "partials", "other"],
 		"html",
 		function() {
-			del(path.join(conf.paths.tmp, "/"));
+			syncDeleteFolder(conf.paths.tmp);
 			done();
 		}
 	);
@@ -230,7 +260,7 @@ gulp.task("bundle", function (done) {
 		"html",
 		"relocate",
 		function() {
-			del(path.join(conf.paths.tmp, "/"));
+			syncDeleteFolder(conf.paths.tmp);
 			done();
 		}
 	);
