@@ -41,7 +41,7 @@ export function FirebaseFactory() {
 	}
 
 	function create(db = "anime", data) {
-		let finalValue;
+		let lastIndex;
 		const retrieveLast = () => new Promise((resolve) => {
 			firebase.database()
 				.ref()
@@ -50,21 +50,21 @@ export function FirebaseFactory() {
 				.limitToLast(1)
 				.once("value")
 				.then((finalData) => {
-					finalValue = finalData.val();
+					lastIndex = parseInt(Object.keys(finalData.val()));
 					resolve();
 				});
 		});
 
 		const dataInsert = () => new Promise((resolve) => {
 			firebase.database()
-				.ref(`${db}/${Object.keys(finalValue)}`)
+				.ref(`${db}/${lastIndex + 1}`)
 				.set(data)
 				.then(() => {
 					resolve();
 				});
 		});
 
-		retrieveLast()
+		return retrieveLast()
 			.then(dataInsert);
 	}
 
