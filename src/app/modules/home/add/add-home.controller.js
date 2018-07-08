@@ -15,8 +15,11 @@ export class AddHomeController {
 
 			data: {
 				downloadPriority: -1,
+				encoder: "",
+				firstSeasonTitle: "",
 				inHDD: 1,
 				offquel: "",
+				prequel: "",
 				quality: "FHD 1080p",
 				rating: {
 					audio: 0,
@@ -24,8 +27,11 @@ export class AddHomeController {
 					graphics: 0,
 					plot: 0,
 				},
-				releaseSeason: "Winter",
+				releaseSeason: this._getCurrentSeason(),
 				releaseYear: moment().year().toString(),
+				remarks: "",
+				sequel: "",
+				variants: "",
 				watchStatus: 0,
 			},
 			options: {
@@ -37,6 +43,7 @@ export class AddHomeController {
 					{id: "LQ 360p", label: "LQ 360p"},
 				],
 				releaseSeason: [
+					{id: "", label: ""},
 					{id: "Winter", label: "Winter"},
 					{id: "Spring", label: "Spring"},
 					{id: "Summer", label: "Summer"},
@@ -60,8 +67,8 @@ export class AddHomeController {
 	}
 
 	add() {
-		this.data.filesize = parseInt(this.data.filesize) || 0;
 		this.data.episodes = parseInt(this.data.episodes) || 0;
+		this.data.filesize = parseInt(this.data.filesize) || 0;
 		this.data.ovas = parseInt(this.data.ovas) || 0;
 		this.data.specials = parseInt(this.data.specials) || 0;
 		this.data.seasonNumber = parseInt(this.data.seasonNumber) || 1;
@@ -94,6 +101,11 @@ export class AddHomeController {
 		} else {
 			this.data.duration = 0;
 		}
+
+		this.firebase.create("anime", this.data)
+			.then(() => {
+				this.$uibModalInstance.close(false);
+			});
 	}
 
 	addOffquel() {
@@ -114,8 +126,24 @@ export class AddHomeController {
 		this.data.filesize = this.data.filesize.replace(/\D/g, "");
 	}
 
+	_getCurrentSeason() {
+		const month = moment().month() + 1;
+
+		if (month >= 1 && month <= 3) {
+			return "Winter";
+		} else if (month >= 4 && month <= 6) {
+			return "Spring";
+		} else if (month >= 7 && month <= 9) {
+			return "Summer";
+		} else {
+			return "Fall";
+		}
+	}
+
 	_iterateYears() {
-		const years = [];
+		const years = [
+			{id: "0", label: ""},
+		];
 		const limit = 1995;
 		const yearToday = moment().year();
 
