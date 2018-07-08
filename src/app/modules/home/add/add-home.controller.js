@@ -4,6 +4,7 @@ export class AddHomeController {
 	constructor(
 		$uibModalInstance,
 		firebase,
+		SweetAlert,
 		titleList
 	) {
 		"ngInject";
@@ -11,6 +12,7 @@ export class AddHomeController {
 		_.extend(this, {
 			$uibModalInstance,
 			firebase,
+			SweetAlert,
 			titleList,
 
 			data: {
@@ -102,10 +104,28 @@ export class AddHomeController {
 			this.data.duration = 0;
 		}
 
-		this.firebase.create("anime", this.data)
-			.then(() => {
-				this.$uibModalInstance.close(false);
-			});
+		this.SweetAlert.swal({
+			title: "Are you sure?",
+			text: "Please confirm the details of your entry.",
+			type: "warning",
+			showCancelButton: true,
+			confirmButtonColor: "#DD6B55",
+			confirmButtonText: "Yes, I'm sure",
+			closeOnConfirm: false,
+		}, (isConfirm) => {
+			if (isConfirm) {
+				this.firebase.create("anime", this.data)
+					.then(() => {
+						this.SweetAlert.swal({
+							title: "Success",
+							text: "Your entry has been added",
+							type: "success",
+						}, () => {
+							this.$uibModalInstance.close(false);
+						});
+					});
+			}
+		});
 	}
 
 	addOffquel() {
