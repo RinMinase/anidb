@@ -1,17 +1,55 @@
+import moment from "moment";
+
 export class AddHomeController {
 	constructor(
 		$uibModalInstance,
+		firebase,
 		titleList
 	) {
 		"ngInject";
 
 		_.extend(this, {
 			$uibModalInstance,
+			firebase,
 			titleList,
 
 			data: {
+				downloadPriority: -1,
+				inHDD: 1,
 				offquel: "",
+				quality: "FHD 1080p",
+				rating: {
+					audio: 0,
+					enjoyment: 0,
+					graphics: 0,
+					plot: 0,
+				},
+				releaseSeason: "Winter",
+				releaseYear: moment().year().toString(),
+				watchStatus: 0,
 			},
+			options: {
+				quality: [
+					{id: "4K 2160p", label: "4K 2160p"},
+					{id: "FHD 1080p", label: "FHD 1080p"},
+					{id: "HD 720p", label: "HD 720p"},
+					{id: "HQ 480p", label: "HQ 480p"},
+					{id: "LQ 360p", label: "LQ 360p"},
+				],
+				releaseSeason: [
+					{id: "Winter", label: "Winter"},
+					{id: "Spring", label: "Spring"},
+					{id: "Summer", label: "Summer"},
+					{id: "Fall", label: "Fall"},
+				],
+				releaseYear: this._iterateYears(),
+				watchStatus: [
+					{id: 0, label: "Watched"},
+					{id: 1, label: "Downloaded"},
+					{id: 2, label: "Queued"},
+				],
+			},
+			raw: {},
 		});
 
 		this.activate();
@@ -19,6 +57,43 @@ export class AddHomeController {
 
 	activate() {
 
+	}
+
+	add() {
+		this.data.filesize = parseInt(this.data.filesize) || 0;
+		this.data.episodes = parseInt(this.data.episodes) || 0;
+		this.data.ovas = parseInt(this.data.ovas) || 0;
+		this.data.specials = parseInt(this.data.specials) || 0;
+		this.data.seasonNumber = parseInt(this.data.seasonNumber) || 1;
+
+		if (this.raw.dateFinished) {
+			this.data.dateFinished = moment(new Date(this.raw.dateFinished)).unix();
+		} else {
+			this.data.dateFinished = moment().unix();
+		}
+
+		if (this.raw.duration) {
+			const duration = this.raw.duration.split(":");
+
+			if (duration.length === 3) {
+				const hours = parseInt(duration[0] * 3600);
+				const minutes = parseInt(duration[1] * 60);
+				const seconds = parseInt(duration[2]);
+
+				this.data.duration = hours + minutes + seconds;
+			} else if (duration.length === 2) {
+				const minutes = parseInt(duration[0] * 60);
+				const seconds = parseInt(duration[1]);
+
+				this.data.duration = minutes + seconds;
+			} else {
+				const seconds = parseInt(duration[0]);
+
+				this.data.duration = seconds;
+			}
+		} else {
+			this.data.duration = 0;
+		}
 	}
 
 	addOffquel() {
@@ -37,5 +112,20 @@ export class AddHomeController {
 
 	removeNonNumeric() {
 		this.data.filesize = this.data.filesize.replace(/\D/g, "");
+	}
+
+	_iterateYears() {
+		const years = [];
+		const limit = 1995;
+		const yearToday = moment().year();
+
+		for (let i = yearToday; i >= limit; i--) {
+			years.push({
+				id: i.toString(),
+				label: i.toString(),
+			});
+		}
+
+		return years;
 	}
 }
