@@ -47,8 +47,8 @@ export class AboutController {
 				this.$state.go("login");
 			});
 
-		this._getGithubIssues();
 		this._getGithubCommits();
+		this._getGithubIssues();
 
 		this._generateChartData();
 	}
@@ -202,6 +202,8 @@ export class AboutController {
 						}
 					}
 				});
+
+				this.$scope.$apply();
 			});
 	}
 
@@ -240,6 +242,8 @@ export class AboutController {
 						});
 					}
 				});
+
+				this.$scope.$apply();
 			});
 	}
 
