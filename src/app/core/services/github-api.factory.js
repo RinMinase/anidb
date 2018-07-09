@@ -14,7 +14,7 @@ export function GithubApiFactory(
 	return factory;
 
 	function getCommits() {
-		return Promise.resolve($http.get(GITHUB_API.commits))
+		return Promise.resolve($http.get(GITHUB_API.commits, { cache: true }))
 			.then((response) => response)
 			.catch((error) => {
 				Promise.reject(error);
@@ -22,7 +22,7 @@ export function GithubApiFactory(
 	}
 
 	function getIssues() {
-		return Promise.resolve($http.get(GITHUB_API.issues))
+		return Promise.resolve($http.get(GITHUB_API.issues, { cache: true }))
 			.then((response) => response)
 			.catch((error) => {
 				Promise.reject(error);
