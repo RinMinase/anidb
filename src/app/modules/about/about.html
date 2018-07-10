@@ -379,10 +379,13 @@
 								<li ng-if="vm.packageIssues.length === 1">
 									<span>Hooray!! No package issues found!</span>
 								</li>
-								<li class="package-issues" ng-repeat="issues in vm.packageIssues" ng-if="vm.packageIssues.length > 1">
-									<code class="{{ issues.severity }}">[{{ issues.package }}]</code>
-									<code class="blue">[{{ issues.version }}]</code>
-									<span>{{ issues.reason }}</span>
+								<li class="package-issues"
+									ng-repeat="issues in vm.packageIssues"
+									ng-if="vm.packageIssues.length > 1">
+
+									<code class="{{ ::issues.severity }}">[{{ ::issues.package }}]</code>
+									<code class="blue">[{{ ::issues.version }}]</code>
+									<span>{{ ::issues.reason }}</span>
 								</li>
 							</ul><hr>
 
