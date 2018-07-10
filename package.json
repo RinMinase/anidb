@@ -73,9 +73,9 @@
     "run-sequence": "^2.2.1",
     "selenium-server": "^3.13.0",
     "uglify-save-license": "^0.4.1",
-    "ui-bootstrap4": "^3.0.3",
+    "ui-bootstrap4": "^3.0.4",
     "velocity-animate": "^1.5.1",
-    "webpack": "^4.12.2",
+    "webpack": "^4.15.1",
     "webpack-stream": "^4.0.3"
   },
   "engines": {
