@@ -46,7 +46,7 @@ export class ViewHomeController {
 
 						this.data = data;
 						this.dataLoaded = true;
-						this.$scope.$apply();
+						this.$scope.$digest();
 					}).catch(() => {
 						this.$state.go("home.manage");
 					});

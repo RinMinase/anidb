@@ -26,7 +26,7 @@ export class ByNameController {
 					.then((data) => {
 						this.formatData(data);
 						this.dataLoaded = true;
-						this.$scope.$apply();
+						this.$scope.$digest();
 					});
 			}).catch(() => {
 				this.$state.go("login");

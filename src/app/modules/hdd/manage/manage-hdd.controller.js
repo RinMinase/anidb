@@ -33,7 +33,7 @@ export class ManageHddController {
 						hddData = data;
 						this.formatData(hddData, animeData);
 						this.dataLoaded = true;
-						this.$scope.$apply();
+						this.$scope.$digest();
 					});
 			}).catch(() => {
 				this.$state.go("login");

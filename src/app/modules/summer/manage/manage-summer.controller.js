@@ -35,7 +35,7 @@ export class ManageSummerController {
 						summerData = data;
 						this.formatData(summerData, animeData);
 						this.dataLoaded = true;
-						this.$scope.$apply();
+						this.$scope.$digest();
 					});
 			}).catch(() => {
 				this.$state.go("login");
