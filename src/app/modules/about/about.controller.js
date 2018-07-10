@@ -31,6 +31,7 @@ export class AboutController {
 			issuesMaxSize: 10,
 		});
 
+		this._retrievePackageIssues();
 		this.activate();
 	}
 
@@ -51,6 +52,11 @@ export class AboutController {
 		this._getGithubIssues();
 
 		this._generateChartData();
+	}
+
+	_convertDate(date) {
+		return moment(new Date(date))
+			.format("MMM DD, YYYY HH:mm:ss");
 	}
 
 	_formatData(data) {
@@ -247,8 +253,12 @@ export class AboutController {
 			});
 	}
 
-	_convertDate(date) {
-		return moment(new Date(date))
-			.format("MMM DD, YYYY HH:mm:ss");
+	_retrievePackageIssues() {
+		this.packageIssues = [{
+			package: "template",
+			reason: "-",
+			severity: "red",
+			version: "0.0.0",
+		}];
 	}
 }

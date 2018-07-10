@@ -376,10 +376,13 @@
 
 							<h5 class="card-title">Package Update Issues</h5>
 							<ul>
-								<li>
-									<code class="orange">[none]</code>
-									<code class="blue">[0.0.0]</code>
+								<li ng-if="vm.packageIssues.length === 1">
 									<span>Hooray!! No package issues found!</span>
+								</li>
+								<li class="package-issues" ng-repeat="issues in vm.packageIssues" ng-if="vm.packageIssues.length > 1">
+									<code class="{{ issues.severity }}">[{{ issues.package }}]</code>
+									<code class="blue">[{{ issues.version }}]</code>
+									<span>{{ issues.reason }}</span>
 								</li>
 							</ul><hr>
 
