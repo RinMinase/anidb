@@ -102,4 +102,11 @@
 		&.btn-group-2 .btn { width: 50%; }
 		&.btn-group-3 .btn { width: 33.33%; }
 	}
+
+	.package-issues {
+		code.blue { color: #1565C0 }
+		code.green { color: #388E3C }
+		code.orange { color: #EF6C00 }
+		code.red { color: #D32F2F }
+	}
 }
