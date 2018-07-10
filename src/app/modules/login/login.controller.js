@@ -1,6 +1,5 @@
 export class LoginController {
 	constructor (
-		$log,
 		$scope,
 		$state,
 		firebase
@@ -8,10 +7,11 @@ export class LoginController {
 		"ngInject";
 
 		_.extend(this, {
-			$log,
 			$scope,
 			$state,
 			firebase,
+
+			alert: null,
 			loading: false,
 		});
 
@@ -24,13 +24,27 @@ export class LoginController {
 
 	authenticate() {
 		this.loading = true;
+		this.alerts = null;
+
 		this.firebase.login(this.email, this.password)
 			.then(() => {
-				this.loading = false;
 				this.$state.go("home.manage");
 			}).catch((error) => {
 				this.loading = false;
-				this.$log.error(error.message);
+
+				switch (error.code) {
+					case "auth/invalid-email":
+						this.alert = "Invalid username or password.";
+						break;
+					default:
+						this.alert = "An unkown error has occurred.";
+				}
+
+				this.$scope.$digest();
 			});
+	}
+
+	closeAlert() {
+		this.alert = null;
 	}
 }

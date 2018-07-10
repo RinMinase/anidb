@@ -6,20 +6,28 @@
 			</div>
 			<form ng-submit="vm.authenticate()">
 				<div class="flex-form-container flex-form-container-loading"
-					ng-class="{'d-none': vm.loading === false}">
+					ng-if="vm.loading === true">
 					<div class="spinner eclipse"></div>
 				</div>
-				<div class="form-group" ng-class="{'d-none': vm.loading === true}">
-					<input type="email"
-						class="form-control text-center"
-						ng-model="vm.email"
-						placeholder="Email Address">
-				</div>
-				<div class="form-group" ng-class="{'d-none': vm.loading === true}">
-					<input type="password"
-						class="form-control text-center"
-						ng-model="vm.password"
-						placeholder="Password">
+				<div ng-if="vm.loading === false">
+					<div uib-alert
+						class="alert-danger"
+						ng-if="vm.alert !== null"
+						close="vm.closeAlert()">
+						{{ vm.alert }}
+					</div>
+					<div class="form-group">
+						<input type="email"
+							class="form-control text-center"
+							ng-model="vm.email"
+							placeholder="Email Address">
+					</div>
+					<div class="form-group">
+						<input type="password"
+							class="form-control text-center"
+							ng-model="vm.password"
+							placeholder="Password">
+					</div>
 				</div>
 				<div class="form-group">
 					<button type="submit"
