@@ -2,11 +2,11 @@
 
 <div class="container view-home">
 	<div class="flex-form-container"
-		ng-class="{'d-none': vm.dataLoaded === true}">
+		ng-if="vm.dataLoaded === false">
 		<div class="spinner eclipse"></div>
 	</div>
 
-	<div class="row" ng-class="{'d-none': vm.dataLoaded === false}">
+	<div class="row" ng-if="vm.dataLoaded === true">
 
 		<div class="col-12 mb-2 d-lg-none d-block animate fadeInDown">
 			<div class="row mb-2">

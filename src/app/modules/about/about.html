@@ -17,12 +17,12 @@
 					<h4 class="text-center user-data-heading">Statistics</h4>
 
 					<div class="flex-form-container"
-						ng-class="{'d-none': vm.dataLoaded === true}">
+						ng-if="vm.dataLoaded === false">
 						<div class="spinner eclipse"></div>
 					</div>
 
 					<table class="table table-sm table-statistics"
-						ng-class="{'d-none': vm.dataLoaded === false}">
+						ng-if="vm.dataLoaded === true">
 						<tbody>
 							<tr>
 								<td>Watch Time</td>

@@ -2,11 +2,11 @@
 
 <div class="container-fluid manage-download">
 	<div class="flex-form-container"
-		ng-class="{'d-none': vm.dataLoaded === true}">
+		ng-if="vm.dataLoaded === false">
 		<div class="spinner eclipse"></div>
 	</div>
 
-	<div class="row" ng-class="{'d-none': vm.dataLoaded === false}">
+	<div class="row" ng-if="vm.dataLoaded === true">
 		<div class="col-lg-3 animate slideInLeft">
 			<div class="row d-none">
 				<div class="col-xs-3 col-sm-2 col-md-3">
