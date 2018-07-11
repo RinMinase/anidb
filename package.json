@@ -75,7 +75,7 @@
     "uglify-save-license": "^0.4.1",
     "ui-bootstrap4": "^3.0.4",
     "velocity-animate": "^1.5.1",
-    "webpack": "^4.15.1",
+    "webpack": "^4.16.0",
     "webpack-stream": "^4.0.3"
   },
   "engines": {
