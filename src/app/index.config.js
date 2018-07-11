@@ -3,6 +3,7 @@ import firebase from "firebase/app";
 export function config(
 	$locationProvider,
 	$logProvider,
+	$qProvider,
 	$urlRouterProvider
 ) {
 	"ngInject";
@@ -12,6 +13,8 @@ export function config(
 
 	$urlRouterProvider.otherwise("/");
 	$locationProvider.html5Mode(true);
+
+	$qProvider.errorOnUnhandledRejections(false);
 
 	// _.extend(toastrConfig, {
 	// 	allowHtml: true,
