@@ -22,6 +22,7 @@
 				<input type="search"
 					class="form-control border-right-0 border"
 					ng-model="search"
+					ng-model-options="{debounce: 200}"
 					placeholder="Keywords (comma-separated): sort/order, quality, release, encoder, remarks, inhdd"
 					value="">
 				<span class="input-group-append">
@@ -74,15 +75,15 @@
 
 							<td class="wrap">
 								<quality-legend value="{{ data.quality }}"></quality-legend>
-								<span>{{ data.title }}</span>
+								<span>{{ ::data.title }}</span>
 							</td>
 							<td class="text-center">
-								{{ data.episodes }} / {{ data.ovas }} / {{ data.specials }}
+								{{ ::data.episodes }} / {{ ::data.ovas }} / {{ ::data.specials }}
 							</td>
-							<td class="text-center">{{ data.filesize }}</td>
-							<td class="text-center">{{ data.dateFinished }}</td>
-							<td>{{ data.releaseSeason }} {{ data.releaseYear }}</td>
-							<td>{{ data.encoder }}</td>
+							<td class="text-center">{{ ::data.filesize }}</td>
+							<td class="text-center">{{ ::data.dateFinished }}</td>
+							<td>{{ ::data.releaseSeason }} {{ ::data.releaseYear }}</td>
+							<td>{{ ::data.encoder }}</td>
 						</tr>
 					</tbody>
 				</table>
