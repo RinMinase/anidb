@@ -2,6 +2,7 @@ import moment from "moment";
 
 export class AddHomeController {
 	constructor(
+		$state,
 		$uibModalInstance,
 		firebase,
 		SweetAlert,
@@ -10,6 +11,7 @@ export class AddHomeController {
 		"ngInject";
 
 		_.extend(this, {
+			$state,
 			$uibModalInstance,
 			firebase,
 			SweetAlert,
@@ -122,6 +124,7 @@ export class AddHomeController {
 							type: "success",
 						}, () => {
 							this.$uibModalInstance.close(false);
+							this.$state.reload();
 						});
 					});
 			}
