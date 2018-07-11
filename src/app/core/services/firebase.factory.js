@@ -85,6 +85,8 @@ export function FirebaseFactory() {
 			orderKeyValid = true;
 		}
 
+		firebase.database().ref(`/${db}${id}`).on("value", () => {});
+
 		if (!limit && !orderKey) {
 			return firebase.database()
 				.ref(`/${db}${id}`)
@@ -121,12 +123,14 @@ export function FirebaseFactory() {
 			} else if (orderDesc) {
 				return firebase.database()
 					.ref(`/${db}${id}`)
-					.orderByChild(orderKey)
+					.orderByChild(orderKey, "desc")
 					.limitToLast(limit)
 					.once("value")
 					.then((data) => _objectToArray(data.val()));
 			}
 		}
+
+		return Promise.reject();
 	}
 
 	function update(db, id, data) {
