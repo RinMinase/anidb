@@ -12,7 +12,7 @@
   "scripts": {
     "start": "gulp serve",
     "build": "gulp serve:dist",
-    "bundle": "gulp bundle && cordova build android",
+    "bundle": "gulp bundle && cordova build android && adb install -r build/com.minase.anidb_0.1.0.apk",
     "deploy": "gulp build && firebase deploy",
     "lint": "eslint --ext .js src\\app",
     "test": "nightwatch --config src/assets/testing/nightwatch.conf.js",
