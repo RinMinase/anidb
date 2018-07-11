@@ -24,7 +24,7 @@ export class LastWatchController {
 	activate() {
 		this.firebase.auth()
 			.then(() => {
-				this.firebase.retrieve("anime", null, 20, "dateFinished", true)
+				this.firebase.retrieve("anime", null, 20, "dateFinished")
 					.then((data) => {
 						this.formatData(data);
 						this.dataLoaded = true;
