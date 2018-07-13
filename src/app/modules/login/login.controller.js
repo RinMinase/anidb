@@ -34,6 +34,8 @@ export class LoginController {
 
 				switch (error.code) {
 					case "auth/invalid-email":
+					case "auth/user-not-found":
+					case "auth/argument-error":
 						this.alert = "Invalid username or password.";
 						break;
 					default:
