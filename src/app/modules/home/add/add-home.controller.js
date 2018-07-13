@@ -78,6 +78,18 @@ export class AddHomeController {
 		this.data.seasonNumber = parseInt(this.data.seasonNumber) || 1;
 
 		if (this.raw.dateFinished) {
+			if (this.raw.dateFinished.split(" ").length < 3) {
+				const month = parseInt(this.raw.dateFinished.split(" ")[0]);
+				const day = parseInt(this.raw.dateFinished.split(" ")[1]);
+				const monthToday = parseInt(moment().format("M"));
+				const dayToday = parseInt(moment().format("D"));
+
+				if (month === monthToday && day > dayToday) {
+					this.raw.dateFinished += ` ${(moment().year() - 1).toString()}`;
+				} else {
+					this.raw.dateFinished += ` ${(moment().year()).toString()}`;
+				}
+			}
 			this.data.dateFinished = moment(new Date(this.raw.dateFinished)).unix();
 		} else {
 			this.data.dateFinished = moment().unix();
