@@ -68,7 +68,19 @@ export class ManageHddController {
 					}
 
 					ranges.some((letter) => {
-						if (firstLetter === letter) {
+						if (letter === "A"
+							&& firstLetter.charCodeAt() >= 48
+							&& firstLetter.charCodeAt() <= 57) {
+
+							this.data[index].entries.push({
+								filesize: this._convertFilesize(anime.filesize),
+								quality: anime.quality,
+								title: anime.title,
+							});
+							totalSize += anime.filesize;
+
+							return;
+						} else if (firstLetter === letter) {
 							this.data[index].entries.push({
 								filesize: this._convertFilesize(anime.filesize),
 								quality: anime.quality,
