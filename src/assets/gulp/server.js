@@ -1,5 +1,7 @@
 "use strict";
 
+require("dotenv").config({ path: "./src/assets/.env" });
+
 var fs = require("fs");
 var path = require("path");
 var gulp = require("gulp");
@@ -51,6 +53,10 @@ function browserSyncInit(baseDir, browser) {
 			routes: null
 		},
 		browser: browser,
+		port: process.env.PORT || 3000,
+		ui: {
+			port: process.env.BS_PORT || 3001
+		},
 		open: false,		// Disables opening of browser on serving
 		notify: false		// Removes top right browsersync notification
 	});
