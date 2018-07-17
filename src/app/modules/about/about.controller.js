@@ -54,9 +54,14 @@ export class AboutController {
 		this._generateChartData();
 	}
 
-	_convertDate(date) {
-		return moment(new Date(date))
-			.format("MMM DD, YYYY HH:mm:ss");
+	_convertDate(date, omitSeconds = false) {
+		if (!omitSeconds) {
+			return moment(new Date(date))
+				.format("MMM DD, YYYY HH:mm:ss");
+		} else {
+			return moment(new Date(date))
+				.format("MMM DD, YYYY HH:mm");
+		}
 	}
 
 	_formatData(data) {
@@ -240,7 +245,7 @@ export class AboutController {
 
 						this.githubIssues[length - 1].push({
 							body: data.body,
-							date: this._convertDate(data.created_at),
+							date: this._convertDate(data.created_at, true),
 							labels,
 							number: data.number,
 							title: data.title,
