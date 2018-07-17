@@ -1,4 +1,6 @@
 module.exports = {
+	tags: ["login"],
+
 	'Login: Spinner Test': function(browser) {
 		browser
 			.url(browser.launchUrl + "login")
