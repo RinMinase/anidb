@@ -55,6 +55,10 @@ export function config(
 	};
 }
 
-export function run() {
+export function run($document, $transitions) {
 	"ngInject";
+
+	$transitions.onSuccess({}, () => {
+		$document[0].body.scrollTop = $document[0].documentElement.scrollTop = 0;
+	});
 }
