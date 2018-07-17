@@ -11,11 +11,11 @@ var inject = require("gulp-inject");
 var rename = require('gulp-rename');
 var sass = require("gulp-sass");
 
+var dotenv = require('dotenv').config({ path: "./src/assets/.env" });
 var browserSync = require("browser-sync");
 var webpack = require("webpack");
 var webpackStream = require("webpack-stream");
 var CompressionPlugin = require("compression-webpack-plugin");
-var Dotenv = require("dotenv-webpack");
 
 gulp.task("inject-reload", ["inject"], function() {
 	browserSync.reload();
@@ -116,7 +116,7 @@ function webpackWrapper(watch, callback) {
 	} else {
 		webpackOptions.mode = "production";
 		webpackOptions.plugins.push(new CompressionPlugin());
-		webpackOptions.plugins.push(new Dotenv({ path: "./src/assets/.env" }));
+		webpackOptions.plugins.push(new webpack.DefinePlugin({ "process.env": dotenv.parsed }));
 	}
 
 	var webpackChangeHandler = function(err, stats) {
