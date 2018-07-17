@@ -44,6 +44,25 @@ export class ViewHomeController {
 						data.dateFinished = moment.unix(data.dateFinished)
 							.format("MMMM DD, YYYY");
 
+						if (data.duration) {
+							const { duration } = data;
+							const hours = parseInt(duration / 3600)
+								.toString()
+								.padStart(2, "0");
+							const minutes = parseInt((duration % 3600) / 60)
+								.toString()
+								.padStart(2, "0");
+							const seconds = parseInt((duration % 3600) % 60)
+								.toString()
+								.padStart(2, "0");
+
+							data.duration = {
+								hours,
+								minutes,
+								seconds,
+							};
+						}
+
 						this.data = data;
 						this.dataLoaded = true;
 						this.$scope.$digest();

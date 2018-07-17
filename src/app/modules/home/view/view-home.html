@@ -62,11 +62,11 @@
 			</div>
 			<div class="row d-sm-none mb-3 text-center">
 				<div class="col-12">
-					<h2>{{ vm.data.title }}</h2>
+					<h2>{{ ::vm.data.title }}</h2>
 					<h4 class="text-muted" ng-if="vm.data.shortTitle">
-						<em>&#10077;&nbsp;{{ vm.data.shortTitle }}&#10078;</em>
+						<em>&#10077;&nbsp;{{ ::vm.data.shortTitle }}&#10078;</em>
 					</h4>
-					<h5 class="text-muted">{{ vm.data.filesize }}</h5>
+					<h5 class="text-muted">{{ ::vm.data.filesize }}</h5>
 				</div>
 			</div>
 			<div class="row">
@@ -92,24 +92,24 @@
 		<div class="col-lg-9 col-md-8 col-sm-7 col-12 animate slideInUp">
 			<div class="row d-sm-flex d-none">
 				<div class="col-12">
-					<h3>{{ vm.data.title }}</h3>
+					<h3>{{ ::vm.data.title }}</h3>
 					<h5 class="text-muted" ng-if="vm.data.shortTitle">
-						<em>&#10077;&nbsp;{{ vm.data.shortTitle }}&#10078;</em>
+						<em>&#10077;&nbsp;{{ ::vm.data.shortTitle }}&#10078;</em>
 					</h5>
-					<h6 class="text-muted">{{ vm.data.filesize }}</h6>
+					<h6 class="text-muted">{{ ::vm.data.filesize }}</h6>
 				</div>
 			</div>
 
 			<div class="row">
 				<div class="col-12">
 					<h4 class="data-heading">Episode Information</h4>
-					<p class="big">Episodes : {{ vm.data.episodes }}</p>
+					<p class="big">Episodes : {{ ::vm.data.episodes }}</p>
 					<div class="row">
 						<div class="col-6">
-							<p class="big">Specials : {{ vm.data.specials }}</p>
+							<p class="big">Specials : {{ ::vm.data.specials }}</p>
 						</div>
 						<div class="col-6">
-							<p class="big">OVAs : {{ vm.data.ovas }}</p>
+							<p class="big">OVAs : {{ ::vm.data.ovas }}</p>
 						</div>
 					</div>
 				</div>
@@ -121,40 +121,54 @@
 					<div class="row">
 						<div class="col-lg-6 col-12">
 							<div class="row">
-								<div class="col-12" ng-if="vm.data.releaseYear">
-									<p class="big" ng-if="vm.data.releaseSeason">
-										<i class="fa" ng-class="{
-											'fa-snowflake-o': vm.data.releaseSeason === 'Winter',
-											'fa-leaf': vm.data.releaseSeason === 'Spring',
-											'fa-sun-o': vm.data.releaseSeason === 'Summer',
-											'fa fa-tree': vm.data.releaseSeason === 'Fall'
-										}"></i>
+								<div class="col-12"
+									ng-if="vm.data.releaseYear && vm.data.releaseSeason">
+									<p class="big">
+										<i class="fa fa-snowflake-o"
+											ng-if="vm.data.releaseSeason === 'Winter'"></i>
+										<i class="fa fa-leaf"
+											ng-if="vm.data.releaseSeason === 'Spring'"></i>
+										<i class="fa fa-sun-o"
+											ng-if="vm.data.releaseSeason === 'Summer'"></i>
+										<i class="fa fa-tree"
+											ng-if="vm.data.releaseSeason === 'Fall'"></i>
 										<span>
-											{{ vm.data.releaseSeason }}&nbsp;
+											{{ ::vm.data.releaseSeason }}&nbsp;
 										</span>
-										<span>{{ vm.data.releaseYear }}</span>
+										<span>{{ ::vm.data.releaseYear }}</span>
 									</p>
 								</div>
 								<div class="col-12">
-									<p class="big">Finished on {{ vm.data.dateFinished }}</p>
+									<p class="big">Finished on {{ ::vm.data.dateFinished }}</p>
 								</div>
-								<div class="col-lg-12">
+								<div class="col-12" ng-if="vm.data.duration">
 									<p class="big">
-										<span>Season {{ vm.data.seasonNumber }} of&nbsp;<span>
-										<span>{{ vm.data.firstSeasonTitle }}</span>
+										<span>Duration:&nbsp;</span>
+										<span>{{ ::vm.data.duration.hours }}h&nbsp;</span>
+										<span>{{ ::vm.data.duration.minutes }}m&nbsp;</span>
+										<span>{{ ::vm.data.duration.seconds }}s&nbsp;</span>
 									</p>
 								</div>
 								<div class="col-lg-12">
+									<p class="big">
+										<span>Season {{ ::vm.data.seasonNumber }} of&nbsp;<span>
+										<span>{{ ::vm.data.firstSeasonTitle }}</span>
+									</p>
+								</div>
+								<div class="col-12" ng-if="vm.data.remarks">
+									<p class="big">Remarks: {{ ::vm.data.remarks }}</p>
+								</div>
+								<div class="col-lg-12" ng-if="vm.data.variants[0]">
 									<p class="big">Variants :&nbsp;</p>
-									<p class="big" ng-repeat="variants in vm.data.variants">{{ variants }}</p>
+									<p class="big pl-4" ng-repeat="variants in vm.data.variants">{{ ::variants }}</p>
 								</div>
 							</div>
 						</div>
 						<div class="col-lg-6 col-12">
-							<p class="big">Prequel: {{ vm.data.prequel }}</p>
-							<p class="big">Sequel: {{ vm.data.sequel }}</p>
-							<p class="big">Offquel :</p>
-							<p class="big" ng-repeat="offquel in vm.data.offquel">{{ offquel }}</p>
+							<p class="big" ng-if="vm.data.prequel">Prequel: {{ ::vm.data.prequel }}</p>
+							<p class="big" ng-if="vm.data.sequel">Sequel: {{ ::vm.data.sequel }}</p>
+							<p class="big" ng-if="vm.data.offquel[0]">Offquel :</p>
+							<p class="big pl-4" ng-repeat="offquel in vm.data.offquel">{{ ::offquel }}</p>
 						</div>
 					</div>
 				</div>
