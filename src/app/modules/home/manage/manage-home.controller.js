@@ -5,18 +5,22 @@ import addHomeDOM from "../add/add-home.html";
 
 export class ManageHomeController {
 	constructor (
+		$anchorScroll,
 		$location,
 		$scope,
 		$state,
+		$stateParams,
 		$uibModal,
 		firebase
 	) {
 		"ngInject";
 
 		_.extend(this, {
+			$anchorScroll,
 			$location,
 			$scope,
 			$state,
+			$stateParams,
 			$uibModal,
 			firebase,
 
@@ -40,6 +44,11 @@ export class ManageHomeController {
 						this.formatData(data);
 						this.dataLoaded = true;
 						this.$scope.$digest();
+
+						if (this.$stateParams.id) {
+							this.$location.hash(this.$stateParams.id);
+							this.$anchorScroll();
+						}
 					});
 			}).catch(() => {
 				this.$state.go("login");
