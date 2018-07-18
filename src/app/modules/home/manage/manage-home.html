@@ -68,6 +68,7 @@
 					]: search -->
 					<tbody>
 						<tr class="anime-table-row"
+							id="{{ data.id }}"
 							ng-click="vm.view(data.id)"
 							ng-repeat="data in vm.data
 								| orderBy: !vm.$scope.search && ['quality','title']
