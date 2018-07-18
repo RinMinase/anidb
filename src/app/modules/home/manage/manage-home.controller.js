@@ -126,10 +126,6 @@ export class ManageHomeController {
 		});
 	}
 
-	view(id) {
-		this.$state.go("home.view", {id});
-	}
-
 	_convertFilesize(filesize) {
 		filesize = parseFloat(filesize);
 
