@@ -6,7 +6,6 @@ import addHomeDOM from "../add/add-home.html";
 export class ManageHomeController {
 	constructor (
 		$anchorScroll,
-		$location,
 		$scope,
 		$state,
 		$stateParams,
@@ -17,7 +16,6 @@ export class ManageHomeController {
 
 		_.extend(this, {
 			$anchorScroll,
-			$location,
 			$scope,
 			$state,
 			$stateParams,
@@ -46,9 +44,8 @@ export class ManageHomeController {
 						this.$scope.$digest();
 
 						if (this.$stateParams.id) {
-							this.$location.hash(this.$stateParams.id);
 							this.$anchorScroll.yOffset = 55;
-							this.$anchorScroll();
+							this.$anchorScroll(this.$stateParams.id);
 						}
 					});
 			}).catch(() => {
