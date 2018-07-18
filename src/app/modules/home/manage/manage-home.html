@@ -21,7 +21,7 @@
 			<div class="input-group">
 				<input type="search"
 					class="form-control border-right-0 border"
-					ng-model="search"
+					ng-model="vm.search"
 					ng-model-options="{debounce: 200}"
 					placeholder="Keywords (comma-separated): sort/order, quality, release, encoder, remarks, inhdd"
 					value="">
@@ -59,22 +59,11 @@
 							<th>Encoder</th>
 						</tr>
 					</thead>
-					<!-- | filterBy: [
-						'title',
-						'quality',
-						'releaseSeason',
-						'releaseYear',
-						'encoder',
-						'variants',
-						'remarks'
-					]: search -->
 					<tbody>
 						<tr class="anime-table-row"
 							id="{{ data.id }}"
 							ng-click="vm.$state.go('home.view', {id: data.id})"
-							ng-repeat="data in vm.data
-								| orderBy: !vm.$scope.search && ['quality','title']
-								| fuzzyBy: 'title': search">
+							ng-repeat="data in vm.getData()">
 
 							<td class="wrap">
 								<quality-legend value="{{ data.quality }}"></quality-legend>
