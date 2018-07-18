@@ -74,6 +74,10 @@ export class ViewHomeController {
 			});
 	}
 
+	back() {
+		this.$state.go("home.manage", {id: this.$stateParams.id});
+	}
+
 	deleteTitle() {
 		this.SweetAlert.swal({
 			title: "Are you sure?",
