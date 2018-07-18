@@ -173,7 +173,7 @@ export class AboutController {
 						}
 
 						if (rawMessage[1].includes(", resolved #")) {
-							rawMessage[1] = rawMessage[1].replace(new RegExp(", resolved #[0-9]+", "i"), "");
+							rawMessage[1] = rawMessage[1].replace(new RegExp(", resolved #[0-9]+", "ig"), "");
 						}
 
 						const rawModule = rawMessage[0]
