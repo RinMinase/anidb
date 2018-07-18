@@ -26,9 +26,8 @@ export default angular
 				controller: "ManageHomeController",
 				controllerAs: "vm",
 				params: {
-					id: {
-						value: null,
-					},
+					id: { value: null },
+					search: { value: null },
 				},
 			})
 			.state("home.view", {
@@ -36,5 +35,8 @@ export default angular
 				templateUrl: viewHomeDOM,
 				controller: "ViewHomeController",
 				controllerAs: "vm",
+				params: {
+					search: { value: null },
+				},
 			});
 	});
