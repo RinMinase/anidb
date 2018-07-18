@@ -54,9 +54,7 @@ function browserSyncInit(baseDir, browser) {
 		},
 		browser: browser,
 		port: process.env.PORT || 3000,
-		ui: {
-			port: process.env.BS_PORT || 3001
-		},
+		ui: false,			// Disables :3001 browsersync options UI
 		open: false,		// Disables opening of browser on serving
 		notify: false		// Removes top right browsersync notification
 	});
