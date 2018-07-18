@@ -47,6 +47,7 @@ export class ManageHomeController {
 
 						if (this.$stateParams.id) {
 							this.$location.hash(this.$stateParams.id);
+							this.$anchorScroll.yOffset = 55;
 							this.$anchorScroll();
 						}
 					});
