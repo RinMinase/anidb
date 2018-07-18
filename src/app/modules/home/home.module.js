@@ -25,6 +25,11 @@ export default angular
 				templateUrl: manageHomeDOM,
 				controller: "ManageHomeController",
 				controllerAs: "vm",
+				params: {
+					id: {
+						value: null,
+					},
+				},
 			})
 			.state("home.view", {
 				url: "/view/{id:int}",
