@@ -40,7 +40,10 @@
 
 		&.to-do,
 		&.in-progress { display: none; }
-		&.platform-mobile { color: #00ACC1 }
+		&.platform-android { color: #AED581 }
+		&.platform-chrome { color: #00ACC1 }
+		&.platform-firefox { color: #FFB300 }
+		&.platform-mobile { color: #B39DDB }
 		&.priority-critical { color: #FF8A65 }
 		&.priority-high { color: #FFD54F }
 		&.priority-normal { color: #81C784 }
