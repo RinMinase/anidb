@@ -75,7 +75,10 @@ export class ViewHomeController {
 	}
 
 	back() {
-		this.$state.go("home.manage", {id: this.$stateParams.id});
+		this.$state.go("home.manage", {
+			id: this.$stateParams.id,
+			search: this.$stateParams.search,
+		});
 	}
 
 	deleteTitle() {

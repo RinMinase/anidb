@@ -14,6 +14,24 @@ export class ManageHomeController {
 	) {
 		"ngInject";
 
+		const fuseOptions = {
+			shouldSort: true,
+			threshold: 0.3,
+			location: 0,
+			distance: 100,
+			maxPatternLength: 48,
+			minMatchCharLength: 0,
+			keys: [
+				"title",
+				"quality",
+				"releaseSeason",
+				"releaseYear",
+				"encoder",
+				"variants",
+				"remarks",
+			],
+		};
+
 		_.extend(this, {
 			$anchorScroll,
 			$scope,
@@ -23,10 +41,11 @@ export class ManageHomeController {
 			firebase,
 
 			data: [],
-			unfilteredData: [],
 			dataLoaded: false,
-			search: "",
+			fuseOptions,
+			search: $stateParams.search || "",
 			titleList: [],
+			pristineData: [],
 		});
 
 		this.activate();
@@ -53,26 +72,8 @@ export class ManageHomeController {
 		this.$scope.$watch(
 			() => this.search,
 			() => {
-				if (this.search && this.unfilteredData) {
-					const fuseOptions = {
-						shouldSort: true,
-						threshold: 0.3,
-						location: 0,
-						distance: 100,
-						maxPatternLength: 48,
-						minMatchCharLength: 0,
-						keys: [
-							"title",
-							"quality",
-							"releaseSeason",
-							"releaseYear",
-							"encoder",
-							"variants",
-							"remarks",
-						],
-					};
-
-					this.data = new Fuse(this.unfilteredData, fuseOptions).search(this.search);
+				if (this.search && this.pristineData) {
+					this.data = new Fuse(this.pristineData, this.fuseOptions).search(this.search);
 				}
 			}
 		);
@@ -118,11 +119,15 @@ export class ManageHomeController {
 		});
 
 		this.data = this.data.sort(this._compareFunction);
-		angular.copy(this.data, this.unfilteredData);
+		angular.copy(this.data, this.pristineData);
+
+		if (this.search) {
+			this.data = new Fuse(this.pristineData, this.fuseOptions).search(this.search);
+		}
 	}
 
 	getData() {
-		return (this.search) ? this.data : this.unfilteredData;
+		return (this.search) ? this.data : this.pristineData;
 	}
 
 	_compareFunction(a, b) {
