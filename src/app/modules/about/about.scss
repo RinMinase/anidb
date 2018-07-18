@@ -35,24 +35,22 @@
 		&.badge-warning { background-color: #EBA821; }
 	}
 
-	code.github-issues {
-		padding: 0px;
-
-		&.to-do,
-		&.in-progress { display: none; }
-		&.platform-android { color: #AED581 }
-		&.platform-chrome { color: #00ACC1 }
-		&.platform-firefox { color: #FFB300 }
-		&.platform-mobile { color: #B39DDB }
-		&.priority-critical { color: #FF8A65 }
-		&.priority-high { color: #FFD54F }
-		&.priority-normal { color: #81C784 }
-		&.resolution-abandoned { color: #424242 }
-		&.resolution-duplicate { color: #BDBDBD }
-		&.resolution-invalid { color: #E0E0E0 }
-		&.type-bug { color: #E53935 }
-		&.type-enhancement { color: #1E88E5 }
-		&.type-feature-request { color: #BA68C8 }
+	.issues-badge {
+		color: #333;
+		.badge.badge-pill { width: 120px; }
+		.platform-android { background-color: #AED581 }
+		.platform-chrome { background-color: #00ACC1 }
+		.platform-firefox { background-color: #FFB300 }
+		.platform-mobile { background-color: #B39DDB }
+		.priority-critical { background-color: #FF8A65 }
+		.priority-high { background-color: #FFD54F }
+		.priority-normal { background-color: #81C784 }
+		.resolution-abandoned { background-color: #424242 }
+		.resolution-duplicate { background-color: #BDBDBD }
+		.resolution-invalid { background-color: #E0E0E0 }
+		.type-bug { background-color: #EF5350 }
+		.type-enhancement { background-color: #1E88E5 }
+		.type-feature-request { background-color: #BA68C8 }
 	}
 
 	.list-unstyled hr {

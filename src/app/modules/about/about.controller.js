@@ -226,15 +226,19 @@ export class AboutController {
 						const labels = [];
 
 						data.labels.map((label) => {
-							const className = label.name.replace(":", "")
-								.replace(new RegExp(" ", "g"), "-")
-								.toLowerCase();
+							if (!(label.name === "to do" || label.name === "in progress")) {
+								const className = label.name.replace(":", "")
+									.replace(new RegExp(" ", "g"), "-")
+									.toLowerCase();
 
-							labels.push({
-								class: className,
-								name: label.name.split(" ")[1],
-							});
+								labels.push({
+									class: className,
+									name: label.name.split(" ")[1].toUpperCase(),
+								});
+							}
 						});
+
+						labels.reverse();
 
 						const { length } = Object.keys(this.githubIssues);
 

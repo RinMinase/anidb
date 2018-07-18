@@ -358,10 +358,12 @@
 								<li ng-repeat="issue in vm.githubIssues[vm.issuesCurrentPage]">
 									<hr><span>#{{ issue.number }} &mdash; {{ issue.title }}</span><br>
 									<span>
-										<code ng-repeat="labels in issue.labels"
-											class="github-issues {{ labels.class }}">
-											[{{ labels.name }}]
-										</code>
+										<h6 class="d-inline mr-2 issues-badge"
+											ng-repeat="labels in issue.labels">
+											<span class="badge badge-pill py-1 {{ labels.class }}">
+												<span>{{ labels.name }}</span>
+											</span>
+										</h6>
 									</span>
 									<span class="small pull-right">{{ issue.date }}</span>
 								</li>
