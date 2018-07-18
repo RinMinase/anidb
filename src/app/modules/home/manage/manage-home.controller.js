@@ -130,7 +130,7 @@ export class ManageHomeController {
 	}
 
 	view(id) {
-		this.$location.path(`/view/${id}`);
+		this.$state.go("home.view", {id});
 	}
 
 	_convertFilesize(filesize) {
