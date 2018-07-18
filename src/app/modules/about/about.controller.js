@@ -254,6 +254,13 @@ export class AboutController {
 					}
 				});
 
+				const { length } = Object.keys(this.githubIssues);
+
+				if (!this.githubIssues[length - 1].length) {
+					delete this.githubIssues[length - 1];
+					this.issuesMaxSize -= 10;
+				}
+
 				this.$scope.$digest();
 			});
 	}
