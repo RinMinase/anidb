@@ -8,15 +8,12 @@ var gulp = require("gulp");
 var conf = require("../../../gulpfile.js");
 
 var angularTemplatecache = require("gulp-angular-templatecache");
-var cssnano = require("gulp-cssnano");
 var filter = require("gulp-filter");
 var htmlmin = require("gulp-htmlmin");
 var inject = require("gulp-inject");
 var rev = require("gulp-rev");
 var revReplace = require("gulp-rev-replace");
 var size = require("gulp-size");
-var uglify = require("gulp-uglify");
-var uglifySaveLicense = require("uglify-save-license");
 var useref = require("gulp-useref");
 
 var browserSync = require("browser-sync");
@@ -166,24 +163,13 @@ gulp.task("html", function () {
 		.pipe(inject(partialsInjectFile, partialsInjectOptions))
 		.pipe(useref())
 		.pipe(jsFilter)
-		.pipe(uglify({preserveComments: uglifySaveLicense}))
-		.on("error", conf.errorHandler("Uglify"))
 		.pipe(rev())
 		.pipe(jsFilter.restore)
 		.pipe(cssFilter)
-		.pipe(cssnano())
 		.pipe(rev())
 		.pipe(cssFilter.restore)
 		.pipe(revReplace())
 		.pipe(htmlFilter)
-		.pipe(
-			htmlmin({
-				removeEmptyAttributes: true,
-				removeAttributeQuotes: true,
-				collapseBooleanAttributes: true,
-				collapseWhitespace: true
-			})
-		)
 		.pipe(htmlFilter.restore)
 		.pipe(gulp.dest(path.join(conf.paths.dist, "/")))
 		.pipe(size({
@@ -199,6 +185,7 @@ gulp.task("partials", function () {
 	])
 	.pipe(
 		htmlmin({
+			removeComments: true,
 			removeEmptyAttributes: true,
 			removeAttributeQuotes: true,
 			collapseBooleanAttributes: true,
