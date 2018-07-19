@@ -16,10 +16,7 @@ export class ManageHomeController {
 		"ngInject";
 
 		const fuseOptions = fuseOptionsBuilder.init()
-			.shouldSort(true)
 			.threshold(0.3)
-			.location(0)
-			.distance(100)
 			.maxPatternLength(48)
 			.minMatchCharLength(0)
 			.addKeys("title")
