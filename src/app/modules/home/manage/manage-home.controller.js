@@ -10,27 +10,22 @@ export class ManageHomeController {
 		$state,
 		$stateParams,
 		$uibModal,
-		firebase
+		firebase,
+		fuseOptionsBuilder
 	) {
 		"ngInject";
 
-		const fuseOptions = {
-			shouldSort: true,
-			threshold: 0.3,
-			location: 0,
-			distance: 100,
-			maxPatternLength: 48,
-			minMatchCharLength: 0,
-			keys: [
-				"title",
-				"quality",
-				"releaseSeason",
-				"releaseYear",
-				"encoder",
-				"variants",
-				"remarks",
-			],
-		};
+		const fuseOptions = fuseOptionsBuilder.init()
+			.shouldSort(true)
+			.threshold(0.3)
+			.location(0)
+			.distance(100)
+			.maxPatternLength(48)
+			.minMatchCharLength(0)
+			.addKeys("title")
+			.addKeys("quality")
+			.addKeys("remarks")
+			.build();
 
 		_.extend(this, {
 			$anchorScroll,
