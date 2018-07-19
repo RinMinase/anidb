@@ -21,6 +21,10 @@ export class ManageHomeController {
 			.minMatchCharLength(0)
 			.addKeys("title")
 			.addKeys("quality")
+			.addKeys("releaseSeason")
+			.addKeys("releaseYear")
+			.addKeys("encoder")
+			.addKeys("variants")
 			.addKeys("remarks")
 			.build();
 
