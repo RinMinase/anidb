@@ -1,10 +1,13 @@
+import { CSVController } from "./csv/csv.controller";
 import { ExcelController } from "./excel/excel.controller";
 
+import csvDOM from "./csv/csv.html";
 import excelDOM from "./excel/excel.html";
 
 export default angular
 	.module("export", [])
 
+	.controller("CSVController", CSVController)
 	.controller("ExcelController", ExcelController)
 
 	.config(($stateProvider) => {
@@ -13,6 +16,12 @@ export default angular
 				abstract: true,
 				template: "<div ui-view></div>",
 				url: "/export",
+			})
+			.state("export.csv", {
+				url: "/csv",
+				templateUrl: csvDOM,
+				controller: "CSVController",
+				controllerAs: "vm",
 			})
 			.state("export.excel", {
 				url: "/excel",
