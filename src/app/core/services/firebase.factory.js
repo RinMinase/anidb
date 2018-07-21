@@ -134,12 +134,10 @@ export function FirebaseFactory() {
 	}
 
 	function update(db, id, data) {
-		firebase.database()
+		return Promise.resolve(firebase.database()
 			.ref(`/${db}/${id}`)
-			.update(data)
-			.then(() => {
-				resolve();
-			});
+			.update(data))
+			.catch((error) => Promise.reject(new Error(error)));
 	}
 
 	function softDelete(id) {
