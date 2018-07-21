@@ -1,7 +1,6 @@
 import "angular";
 import "angular-animate";
 import "angular-chart.js";
-import "angular-filter";
 import "angular-sweetalert";
 import "ui-bootstrap4";
 import uiRouter from "@uirouter/angularjs";
@@ -26,7 +25,6 @@ import SummerModule from "./modules/summer/summer.module";
 
 angular.module(
 	"anidbAngular", [
-		"angular.filter",
 		"chart.js",
 		// "hmTouchEvents",
 		"ngAnimate",
