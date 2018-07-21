@@ -39,8 +39,13 @@ export class ViewHomeController {
 								.sort((a, b) => a.length - b.length)[0];
 						}
 
-						data.variants = data.variants.split(",");
-						data.offquel = data.offquel.split(",");
+						if (data.variants) {
+							data.variants = data.variants.split(",");
+						}
+
+						if (data.offquel) {
+							data.offquel = data.offquel.split(",");
+						}
 
 						this.filesizeForUpdateModal = data.filesize;
 						data.filesize = this._convertFilesize(data.filesize);
