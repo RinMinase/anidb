@@ -164,7 +164,7 @@ export class AboutController {
 		this.githubApi.getCommits()
 			.then((response) => {
 				response.data.map((data) => {
-					if (!data.commit.message.includes("Merge branch")) {
+					if (data.commit.message.indexOf("Merge branch") === -1) {
 						const { date } = data.commit.author;
 						let rawMessage = data.commit.message.split(":");
 
@@ -172,8 +172,14 @@ export class AboutController {
 							rawMessage = data.commit.message.split(new RegExp(" (.+)"));
 						}
 
-						if (rawMessage[1].includes(", resolved #")) {
+						if (rawMessage[1].indexOf(", resolved #") !== -1) {
 							rawMessage[1] = rawMessage[1].replace(new RegExp(", resolved #[0-9]+", "ig"), "");
+						}
+
+						if (typeof String.prototype.trimStart !== "function") {
+							String.prototype.trimStart = function() {
+								return this.replace(new RegExp("\\s+"), "");
+							};
 						}
 
 						const rawModule = rawMessage[0]
@@ -202,11 +208,12 @@ export class AboutController {
 							};
 						}
 
-						if (message.includes("fixed") || message.includes("removed")) {
+						if (message.indexOf("fixed") !== -1
+							|| message.indexOf("removed") !== -1) {
 							this.githubCommits[commitDate].fix.push(commitData);
-						} else if (message.includes("added")
-							|| message.includes("functional")
-							|| message.includes("migrated")) {
+						} else if (message.indexOf("added") !== -1
+							|| message.indexOf("functional") !== -1
+							|| message.indexOf("migrated") !== -1) {
 							this.githubCommits[commitDate].new.push(commitData);
 						} else {
 							this.githubCommits[commitDate].improve.push(commitData);
