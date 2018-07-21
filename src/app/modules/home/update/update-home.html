@@ -1,5 +1,5 @@
 <div class="update-home">
-	<form>
+	<form ng-submit="vm.update()">
 		<div class="modal-header">
 			<h4 class="modal-title">Edit Title</h4>
 			<button type="button" class="close" ng-click="vm.cancel()"><i>&times;</i></button>
@@ -9,20 +9,16 @@
 			<div class="row">
 				<div class="form-group col-lg-3 col-6 d-lg-block d-sm-none d-block pr-0">
 					<label>Status</label>
-					<select class="form-control">
-						<option>Watched</option>
-						<option>Downloaded</option>
-						<option>Queued</option>
+					<select class="form-control" ng-model="vm.data.watchStatus">
+						<option ng-repeat="data in vm.options.watchStatus"
+							ng-value="data.id">{{ data.label }}</option>
 					</select>
 				</div>
 				<div class="form-group col-lg-3 col-sm-5 col-6 pr-sm-0 d-sm-block d-block">
 					<label>Quality</label>
-					<select class="form-control"
-						ng-model="vm.data.quality">
-						<option>4k 2160p</option>
-						<option>FHD 1080p</option>
-						<option>HD 720p</option>
-						<option>HQ 480p</option>
+					<select class="form-control" ng-model="vm.data.quality">
+						<option ng-repeat="data in vm.options.quality"
+							ng-value="data.id">{{ data.label }}</option>
 					</select>
 				</div>
 				<div class="form-group col-lg-6 col-sm-7 col-12">
@@ -34,10 +30,9 @@
 			<div class="row">
 				<div class="form-group col-sm-6 d-lg-none d-sm-block d-none pr-0">
 					<label>Status</label>
-					<select class="form-control">
-						<option>Watched</option>
-						<option>Downloaded</option>
-						<option>Queued</option>
+					<select class="form-control" ng-model="vm.data.watchStatus">
+						<option ng-repeat="data in vm.options.watchStatus"
+							ng-value="data.id">{{ data.label }}</option>
 					</select>
 				</div>
 				<div class="form-group col-2 pr-0">
@@ -56,7 +51,7 @@
 				</div>
 				<div class="form-group col-lg-3 col-sm-6 d-sm-block d-none pr-0">
 					<label>Date Finished</label>
-					<input type="text" class="form-control">
+					<input type="text" class="form-control" ng-model="vm.raw.dateFinished">
 				</div>
 				<div class="form-group col-lg-3 col-sm-4 col-6 pr-xl-def pr-lg-def pr-sm-0">
 					<label>Filesize</label>
@@ -92,24 +87,21 @@
 				</div>
 				<div class="form-group col-sm-3 d-lg-none d-sm-block d-none">
 					<label>Duration</label>
-					<input type="text" class="form-control">
+					<input type="text" class="form-control" ng-model="vm.raw.duration">
 				</div>
 				<div class="form-group col-lg-4 col-10 d-lg-block d-sm-none d-block pr-lg-0">
 					<label>Release</label>
 					<div class="input-group">
 						<div class="input-group-prepend col-6 px-0">
-							<select class="form-control">
-								<option>Winter</option>
-								<option>Spring</option>
-								<option>Summer</option>
-								<option>Fall</option>
+							<select class="form-control" ng-model="vm.data.releaseSeason">
+								<option ng-repeat="data in vm.options.releaseSeason"
+									ng-value="data.id">{{ data.label }}</option>
 							</select>
 						</div>
 						<div class="input-group-append col-6 pl-1 pr-0">
-							<select class="form-control">
-								<option>2018</option>
-								<option>2017</option>
-								<option>2016</option>
+							<select class="form-control" ng-model="vm.data.releaseYear">
+								<option ng-repeat="data in vm.options.releaseYear"
+									ng-value="data.id">{{ data.label }}</option>
 							</select>
 						</div>
 					</div>
@@ -131,28 +123,25 @@
 			<div class="row">
 				<div class="form-group col-lg-3 col-5 d-lg-block d-sm-none d-block pr-0">
 					<label>Duration</label>
-					<input type="text" class="form-control">
+					<input type="text" class="form-control" ng-model="vm.raw.duration">
 				</div>
 				<div class="form-group col-7 d-sm-none d-block">
 					<label>Date Finished</label>
-					<input type="text" class="form-control">
+					<input type="text" class="form-control" ng-model="vm.raw.dateFinished">
 				</div>
 				<div class="form-group col-sm-5 d-lg-none d-sm-block d-none pr-0">
 					<label>Release</label>
 					<div class="input-group">
 						<div class="input-group-prepend col-6 px-0">
-							<select class="form-control">
-								<option>Winter</option>
-								<option>Spring</option>
-								<option>Summer</option>
-								<option>Fall</option>
+							<select class="form-control" ng-model="vm.data.releaseSeason">
+								<option ng-repeat="data in vm.options.releaseSeason"
+									ng-value="data.id">{{ data.label }}</option>
 							</select>
 						</div>
 						<div class="input-group-append col-6 pl-1 pr-0">
-							<select class="form-control">
-								<option>2018</option>
-								<option>2017</option>
-								<option>2016</option>
+							<select class="form-control" ng-model="vm.data.releaseYear">
+								<option ng-repeat="data in vm.options.releaseYear"
+									ng-value="data.id">{{ data.label }}</option>
 							</select>
 						</div>
 					</div>
@@ -172,7 +161,7 @@
 					<div class="row">
 						<div class="form-group col-12 pr-sm-0">
 							<label>Variants</label>
-							<textarea class="form-control"></textarea>
+							<textarea class="form-control" ng-model="vm.data.variants"></textarea>
 						</div>
 					</div>
 				</div>
