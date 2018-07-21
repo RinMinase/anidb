@@ -23,6 +23,7 @@ export class ViewHomeController {
 
 			data: {},
 			dataLoaded: false,
+			filesizeForUpdateModal: 0,
 		});
 
 		this.activate();
@@ -40,6 +41,8 @@ export class ViewHomeController {
 
 						data.variants = data.variants.split(",");
 						data.offquel = data.offquel.split(",");
+
+						this.filesizeForUpdateModal = data.filesize;
 						data.filesize = this._convertFilesize(data.filesize);
 						data.dateFinished = moment.unix(data.dateFinished)
 							.format("MMMM DD, YYYY");
@@ -117,7 +120,10 @@ export class ViewHomeController {
 			backdrop: "static",
 			size: "lg",
 			resolve: {
-				data: () => this.data,
+				data: () => angular.copy(this.data),
+				filesize: () => this.filesizeForUpdateModal,
+				id: () => this.$stateParams.id,
+				years: () => this._iterateYears(),
 			},
 		});
 	}
@@ -132,5 +138,23 @@ export class ViewHomeController {
 		} else {
 			return `${(filesize / 1073741824).toFixed(2)} GB`;
 		}
+	}
+
+	_iterateYears() {
+		const limit = 1995;
+		const yearToday = moment().year();
+		const years = [{
+			id: "0",
+			label: "",
+		}];
+
+		for (let i = yearToday; i >= limit; i--) {
+			years.push({
+				id: i.toString(),
+				label: i.toString(),
+			});
+		}
+
+		return years;
 	}
 }
