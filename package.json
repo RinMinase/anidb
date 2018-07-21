@@ -24,7 +24,6 @@
     "angular": "^1.7.2",
     "angular-animate": "^1.7.2",
     "angular-chart.js": "^1.1.1",
-    "angular-filter": "^0.5.17",
     "angular-hammer": "^2.2.0",
     "angular-sweetalert": "^1.1.2",
     "animatewithsass": "^3.2.1",
