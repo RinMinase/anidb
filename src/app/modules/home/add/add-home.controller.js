@@ -21,7 +21,7 @@ export class AddHomeController {
 				downloadPriority: -1,
 				encoder: "",
 				firstSeasonTitle: "",
-				inHDD: 1,
+				inhdd: 1,
 				offquel: "",
 				prequel: "",
 				quality: "FHD 1080p",
