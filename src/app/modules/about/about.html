@@ -304,7 +304,7 @@
 							<h6 class="m-0">Changelog</h6>
 						</div>
 						<div class="card-body">
-							<ul class="list-unstyled" ng-repeat="commits in vm.githubCommits | reverse">
+							<ul class="list-unstyled" ng-repeat="commits in vm.githubCommits">
 								<li class="font-weight-bold">{{ commits.title }}</li>
 								<ul class="list-unstyled">
 									<li ng-repeat="fix in commits.fix" class="pt-0-5">
@@ -365,7 +365,7 @@
 											</span>
 										</h6>
 									</span>
-									<span class="small pull-right pt-1">{{ issue.date }}</span>
+									<span class="small pull-right">{{ issue.date }}</span>
 								</li>
 							</ul>
 							<ul uib-pagination

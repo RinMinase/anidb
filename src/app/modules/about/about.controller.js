@@ -188,7 +188,7 @@ export class AboutController {
 							.replace(new RegExp("_", "g"), " ");
 						const module = (rawModule === "anidb") ? "" : rawModule;
 						const message = rawMessage[1].trimStart();
-						const commitDate = moment(new Date(date)).format("YYYYMMDD");
+						const commitDate = `c${moment(new Date(date)).format("YYYYMMDD")}`;
 						const title = moment(new Date(date)).format("MMM DD, YYYY");
 						const commitData = {
 							date: this._convertDate(date),
