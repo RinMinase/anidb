@@ -94,6 +94,12 @@ export class ManageHddController {
 				}
 			});
 
+			this.data.map((data) => {
+				data.entries.sort(this._compareFunction);
+
+				return data;
+			});
+
 			const free = parseFloat((hdd.size - totalSize) / 1073741824).toFixed(2);
 			const used = parseFloat(totalSize / 1073741824).toFixed(2);
 			const titles = this.data[index].entries.length;
@@ -134,6 +140,14 @@ export class ManageHddController {
 			return `${(filesize / 1048576).toFixed(2)} MB`;
 		} else {
 			return `${(filesize / 1073741824).toFixed(2)} GB`;
+		}
+	}
+
+	_compareFunction(a, b) {
+		if (a.title.toLowerCase() < b.title.toLowerCase()) {
+			return -1;
+		} else if (a.title.toLowerCase() > b.title.toLowerCase()) {
+			return 1;
 		}
 	}
 }
