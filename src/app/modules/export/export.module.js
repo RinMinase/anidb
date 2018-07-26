@@ -22,11 +22,25 @@ export default angular
 				templateUrl: csvDOM,
 				controller: "CSVController",
 				controllerAs: "vm",
+				resolve: {
+					loadMyCtrl: ["$ocLazyLoad", ocLazyLoader],
+				},
 			})
 			.state("export.excel", {
 				url: "/excel",
 				templateUrl: excelDOM,
 				controller: "ExcelController",
 				controllerAs: "vm",
+				resolve: {
+					loadMyCtrl: ["$ocLazyLoad", ocLazyLoader],
+				},
 			});
 	});
+
+function ocLazyLoader($ocLazyLoad) {
+	"ngInject";
+
+	return $ocLazyLoad.load([
+		"https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.3/xlsx.full.min.js",
+	]);
+}
