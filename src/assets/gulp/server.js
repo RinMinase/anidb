@@ -91,7 +91,7 @@ browserSync.use(browserSyncSpa({
 	selector: "[ng-app]"	// Only needed for angular apps
 }));
 
-gulp.task("serve", ["fonts", "watch"], function () {
+gulp.task("serve", ["lazyload", "fonts", "watch"], function () {
 	browserSyncInit([
 		path.join(conf.paths.tmp, "/serve"),
 		conf.paths.src
@@ -235,7 +235,7 @@ gulp.task("clean", function () {
 gulp.task("build", function (done) {
 	runSequence(
 		"clean",
-		["fonts:dist", "inject", "partials", "other"],
+		["lazyload:dist", "fonts:dist", "inject", "partials", "other"],
 		"html",
 		function() {
 			syncDeleteFolder(conf.paths.tmp);
@@ -247,7 +247,7 @@ gulp.task("build", function (done) {
 gulp.task("bundle", function (done) {
 	runSequence(
 		"clean",
-		["fonts:dist", "inject:bundle", "partials", "other"],
+		["lazyload:dist", "fonts:dist", "inject:bundle", "partials", "other"],
 		"html",
 		"relocate",
 		function() {
