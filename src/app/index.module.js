@@ -6,6 +6,7 @@ import "ui-bootstrap4";
 import uiRouter from "@uirouter/angularjs";
 // import "angular-hammer";
 
+import "oclazyload";
 import "sweetalert";
 import "velocity-animate";
 
@@ -28,6 +29,7 @@ angular.module(
 		"chart.js",
 		// "hmTouchEvents",
 		"ngAnimate",
+		"oc.lazyLoad",
 		"oitozero.ngSweetAlert",
 		uiRouter,
 		"ui.bootstrap",
