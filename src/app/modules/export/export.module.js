@@ -41,6 +41,6 @@ function ocLazyLoader($ocLazyLoad) {
 	"ngInject";
 
 	return $ocLazyLoad.load([
-		"https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.3/xlsx.full.min.js",
+		"./dependencies/xlsx.full.min.js",
 	]);
 }
