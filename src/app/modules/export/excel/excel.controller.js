@@ -1,10 +1,10 @@
-import xlsx from "xlsx";
-
 export class ExcelController {
 	constructor () {
 		"ngInject";
 
-		_.extend(this, {});
+		_.extend(this, {
+			xlsx: XLSX,
+		});
 
 		this.activate();
 	}
@@ -19,10 +19,10 @@ export class ExcelController {
 			{ "Column 1": "Data 2", "Column 3": "Another Data" },
 		];
 
-		const sheet = xlsx.utils.json_to_sheet(data);
-		const workbook = xlsx.utils.book_new();
+		const sheet = this.xlsx.utils.json_to_sheet(data);
+		const workbook = this.xlsx.utils.book_new();
 
-		xlsx.utils.book_append_sheet(workbook, sheet, "Data");
-		xlsx.writeFile(workbook, "sheet.xlsx");
+		this.xlsx.utils.book_append_sheet(workbook, sheet, "Data");
+		this.xlsx.writeFile(workbook, "sheet.xlsx");
 	}
 }
