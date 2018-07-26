@@ -3,6 +3,7 @@ import firebase from "firebase/app";
 export function config(
 	$locationProvider,
 	$logProvider,
+	$ocLazyLoadProvider,
 	$qProvider,
 	$urlRouterProvider
 ) {
@@ -53,6 +54,11 @@ export function config(
 			"remarks",
 		],
 	};
+
+	$ocLazyLoadProvider.config({
+		debug: true,
+		events: true,
+	});
 }
 
 export function run($document, $transitions) {
