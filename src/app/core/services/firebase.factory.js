@@ -136,8 +136,7 @@ export function FirebaseFactory() {
 	function update(db, id, data) {
 		return Promise.resolve(firebase.database()
 			.ref(`/${db}/${id}`)
-			.update(data))
-			.catch((error) => Promise.reject(new Error(error)));
+			.update(data));
 	}
 
 	function softDelete(id) {
