@@ -101,11 +101,16 @@ export class ViewHomeController {
 			closeOnCancel: false,
 		}, (isConfirm) => {
 			if (isConfirm) {
-				this.SweetAlert.swal({
-					title: "Deleted",
-					text: "Entry has been deleted",
-					type: "success",
-				});
+				this.firebase.hardDelete("anime", this.$stateParams.id)
+					.then(() => {
+						this.SweetAlert.swal({
+							title: "Deleted",
+							text: "Entry has been deleted",
+							type: "success",
+						}, () => {
+							this.$state.go("home.manage");
+						});
+					});
 			} else {
 				this.SweetAlert.swal({
 					title: "Cancelled",
