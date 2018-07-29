@@ -143,8 +143,10 @@ export function FirebaseFactory() {
 		return id;
 	}
 
-	function hardDelete(id) {
-		return id;
+	function hardDelete(db = "anime", id) {
+		return Promise.resolve(firebase.database()
+			.ref(`/${db}/${id}`)
+			.remove());
 	}
 
 	function _objectToArray(data) {
