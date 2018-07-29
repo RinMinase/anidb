@@ -69,10 +69,13 @@ export class UpdateHomeController {
 			.format("MMM D YYYY");
 		this.data.dateFinished = "";
 
-		const { hours, minutes, seconds } = this.data.duration;
+		if (this.data.duration) {
+			const { hours, minutes, seconds } = this.data.duration;
 
-		this.raw.duration = `${hours}:${minutes}:${seconds}`;
-		this.data.duration = "";
+			this.raw.duration = `${hours}:${minutes}:${seconds}`;
+			this.data.duration = "";
+		}
+
 
 		if (this.data.offquel) {
 			this.data.offquel = this.data.offquel.join(",");
