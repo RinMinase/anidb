@@ -1,9 +1,11 @@
-import _ from "lodash";
+import addSeasonListDOM from "../add/season/add-season-download.html";
+import addTitleDOM from "../add/title/add-title-download.html";
 
 export class ManageDownloadController {
 	constructor(
 		$scope,
 		$state,
+		$uibModal,
 		firebase
 	) {
 		"ngInject";
@@ -11,7 +13,9 @@ export class ManageDownloadController {
 		_.extend(this, {
 			$scope,
 			$state,
+			$uibModal,
 			firebase,
+
 			category: {
 				year: 0,
 				season: 0,
@@ -30,20 +34,43 @@ export class ManageDownloadController {
 	}
 
 	activate() {
-		this.firebase.auth()
-			.then(() => {
-				this.firebase.retrieve()
-					.then((data) => {
-						this.formatData(data);
-						this.dataLoaded = true;
-						this.$scope.$digest();
-					});
-			}).catch(() => {
-				this.$state.go("login");
-			});
+		// this.firebase.auth()
+		// 	.then(() => {
+		// 		this.firebase.retrieve()
+		// 			.then((data) => {
+		// 				this._formatData(data);
+		// 				this.dataLoaded = true;
+		// 				this.$scope.$digest();
+		// 			});
+		// 	}).catch(() => {
+		// 		this.$state.go("login");
+		// 	});
+
+
+		this.dataLoaded = true;
 	}
 
-	formatData(rawData) {
+	addSeasonList() {
+		this.$uibModal.open({
+			templateUrl: addSeasonListDOM,
+			controller: "AddSeasonDownloadController",
+			controllerAs: "vm",
+			backdrop: "static",
+			size: "lg",
+		});
+	}
+
+	addTitle() {
+		this.$uibModal.open({
+			templateUrl: addTitleDOM,
+			controller: "AddTitleDownloadController",
+			controllerAs: "vm",
+			backdrop: "static",
+			size: "lg",
+		});
+	}
+
+	_formatData(rawData) {
 		rawData.map((data) => {
 			const {
 				releaseYear,
@@ -72,19 +99,19 @@ export class ManageDownloadController {
 
 			switch (releaseSeason) {
 				case "Winter":
-					this.initializeObject(releaseYear, 0, watchStatus);
+					this._initializeObject(releaseYear, 0, watchStatus);
 					this.data[releaseYear][0][watchStatus].push(data);
 					break;
 				case "Spring":
-					this.initializeObject(releaseYear, 1, watchStatus);
+					this._initializeObject(releaseYear, 1, watchStatus);
 					this.data[releaseYear][1][watchStatus].push(data);
 					break;
 				case "Summer":
-					this.initializeObject(releaseYear, 2, watchStatus);
+					this._initializeObject(releaseYear, 2, watchStatus);
 					this.data[releaseYear][2][watchStatus].push(data);
 					break;
 				case "Fall":
-					this.initializeObject(releaseYear, 3, watchStatus);
+					this._initializeObject(releaseYear, 3, watchStatus);
 					this.data[releaseYear][3][watchStatus].push(data);
 					break;
 			}
@@ -94,7 +121,7 @@ export class ManageDownloadController {
 		delete this.keys[""];
 	}
 
-	initializeObject(releaseYear, releaseSeason, watchStatus) {
+	_initializeObject(releaseYear, releaseSeason, watchStatus) {
 		if (!this.data[releaseYear][releaseSeason]) {
 			this.data[releaseYear][releaseSeason] = {};
 
