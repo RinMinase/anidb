@@ -34,20 +34,17 @@ export class ManageDownloadController {
 	}
 
 	activate() {
-		// this.firebase.auth()
-		// 	.then(() => {
-		// 		this.firebase.retrieve()
-		// 			.then((data) => {
-		// 				this._formatData(data);
-		// 				this.dataLoaded = true;
-		// 				this.$scope.$digest();
-		// 			});
-		// 	}).catch(() => {
-		// 		this.$state.go("login");
-		// 	});
-
-
-		this.dataLoaded = true;
+		this.firebase.auth()
+			.then(() => {
+				this.firebase.retrieve()
+					.then((data) => {
+						this._formatData(data);
+						this.dataLoaded = true;
+						this.$scope.$digest();
+					});
+			}).catch(() => {
+				this.$state.go("login");
+			});
 	}
 
 	addSeasonList() {
