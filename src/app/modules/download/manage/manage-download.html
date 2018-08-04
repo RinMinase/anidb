@@ -8,26 +8,39 @@
 
 	<div class="row" ng-if="vm.dataLoaded === true">
 		<div class="col-lg-3 animate slideInLeft">
-			<div class="row d-none">
-				<div class="col-xs-3 col-sm-2 col-md-3">
-					<div class="dropdown">
-						<a class="btn btn-primary btn-block dropdown-toggle" data-toggle="dropdown">
-							<i class="fa fa-plus"></i>
-						</a>
-						<ul class="dropdown-menu">
-							<li><a href="#" onclick="showAddTitle()">Add a Title</a></li>
-							<li><a href="#" onclick="showAddSeasonList()">Add a Season List</a></li>
-						</ul>
+			<div class="row">
+				<div class="col-lg-3 col-sm-2 col-3 pr-0">
+					<div class="dropdown" uib-dropdown>
+						<button class="btn btn-primary btn-block dropdown-toggle" uib-dropdown-toggle>
+							<i class="fa fa-plus d-lg-inline d-sm-none d-inline"></i>
+							<span class="d-lg-none d-sm-inline d-none">Add</span>
+						</button>
+						<div class="dropdown-menu" uib-dropdown-menu>
+							<a ng-href="#"
+								class="dropdown-item"
+								ng-click="vm.addTitle()">
+								Add a Title
+							</a>
+							<a ng-href="#"
+								class="dropdown-item"
+								ng-click="vm.addSeasonList()">
+								Add a Season List
+							</a>
+						</div>
 					</div>
 				</div>
-				<div class="col-xs-9 col-sm-10 col-md-9">
-					<div class="form-group has-feedback">
-						<input type="text"
-							class="form-control"
+				<div class="col-lg-9 col-sm-10 col-9 form-group">
+					<div class="input-group">
+						<input type="search"
+							class="form-control border-right-0 border"
+							ng-model="vm.search"
+							ng-model-options="{debounce: 200}"
 							placeholder="Search..."
-							ng-model="vm.searchCategory">
-						<span class="form-control-feedback">
-							<i class="fa fa-search"></i>
+							autofocus>
+						<span class="input-group-append">
+							<div class="input-group-text bg-transparent border-left-0 border">
+								<i class="fa fa-search"></i>
+							</div>
 						</span>
 					</div>
 				</div>
@@ -35,7 +48,6 @@
 
 			<div class="row">
 				<div class="col-md-12">
-
 					<div class="list-group">
 						<a ng-href="#"
 							class="list-group-item first-item link px-3 py-2"
@@ -103,7 +115,6 @@
 						</div>
 
 					</div>
-
 				</div>
 			</div>
 		</div>
