@@ -21,4 +21,10 @@
 		.download-legend-prio-normal { border: 1px solid #777777; }
 		.download-legend-prio-low { background-color: #CC6666; }
 	}
+
+	input[type=search].form-control:focus {
+		outline: 0 !important;
+		border-color: initial;
+		box-shadow: none;
+	}
 }
