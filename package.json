@@ -73,7 +73,7 @@
     "ui-bootstrap4": "^3.0.4",
     "velocity-animate": "^1.5.2",
     "webpack": "^4.16.5",
-    "webpack-stream": "^5.0.0",
+    "webpack-stream": "5.0.0",
     "xlsx": "^0.13.3"
   },
   "engines": {
