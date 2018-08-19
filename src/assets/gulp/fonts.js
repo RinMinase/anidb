@@ -25,10 +25,6 @@ var robotofonts = [
 	"node_modules/roboto-fontface/fonts/roboto/Roboto-Light.woff2"
 ];
 
-var lazyLoadedModules = [
-	"node_modules/xlsx/dist/xlsx.full.min.js"
-]
-
 gulp.task("fonts_roboto", function () {
 	if (!fs.existsSync(path.join(conf.paths.tmp, "/serve/fonts/roboto"))) {
 		return gulp.src(robotofonts)
@@ -51,14 +47,4 @@ gulp.task("fonts", ["fonts_roboto"], function () {
 gulp.task("fonts:dist", ["fonts_roboto:dist"], function () {
 	return gulp.src(fontpaths)
 		.pipe(gulp.dest(path.join(conf.paths.dist, "/fonts")));
-});
-
-gulp.task("lazyload", function () {
-	return gulp.src(lazyLoadedModules)
-		.pipe(gulp.dest(path.join(conf.paths.tmp, "/serve/dependencies")));
-});
-
-gulp.task("lazyload:dist", function () {
-	return gulp.src(lazyLoadedModules)
-		.pipe(gulp.dest(path.join(conf.paths.dist, "/dependencies")));
 });
