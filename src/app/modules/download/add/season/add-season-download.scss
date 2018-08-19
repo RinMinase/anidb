@@ -1,0 +1,8 @@
+.add-season-download {
+	textarea {
+		resize: none;
+		height: 115px;
+
+		@media (max-width: 576px) { height: 70px; }
+	}
+}
