@@ -145,7 +145,6 @@ export class ViewHomeController {
 			controller: "ViewRewatchHomeController",
 			controllerAs: "vm",
 			backdrop: "static",
-			size: "lg",
 		});
 	}
 
