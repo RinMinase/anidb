@@ -1,6 +1,7 @@
 import moment from "moment";
 
 import updateHomeDOM from "../update/update-home.html";
+import viewRewatchHomeDOM from "./rewatch/view-rewatch-home.html";
 
 export class ViewHomeController {
 	constructor (
@@ -135,6 +136,16 @@ export class ViewHomeController {
 				id: () => this.$stateParams.id,
 				years: () => this._iterateYears(),
 			},
+		});
+	}
+
+	openRewatch() {
+		this.$uibModal.open({
+			templateUrl: viewRewatchHomeDOM,
+			controller: "ViewRewatchHomeController",
+			controllerAs: "vm",
+			backdrop: "static",
+			size: "lg",
 		});
 	}
 
