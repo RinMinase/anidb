@@ -91,7 +91,7 @@ browserSync.use(browserSyncSpa({
 	selector: "[ng-app]"	// Only needed for angular apps
 }));
 
-gulp.task("serve", ["lazyload", "fonts", "watch"], function () {
+gulp.task("serve", ["dev"], function () {
 	browserSyncInit([
 		path.join(conf.paths.tmp, "/serve"),
 		conf.paths.src
@@ -110,8 +110,7 @@ function isOnlyChange(event) {
 	return event.type === "changed";
 }
 
-gulp.task("watch", ["scripts:watch", "inject"], function () {
-
+gulp.task("watch", function () {
 	gulp.watch(
 		path.join(conf.paths.src, "/*.html"),
 		["inject-reload"]
@@ -123,20 +122,15 @@ gulp.task("watch", ["scripts:watch", "inject"], function () {
 		path.join(conf.paths.src, "/assets/styles/*.css"),
 		path.join(conf.paths.src, "/assets/styles/*.scss")
 	], function(event) {
-		if (isOnlyChange(event)) {
-			gulp.start("styles-reload");
-		} else {
-			gulp.start("inject-reload");
-		}
+		isOnlyChange(event) ? gulp.start("styles-reload") : gulp.start("inject-reload");
 	});
 
 	gulp.watch([
 		path.join(conf.paths.src, "/app/**/*.html"),
 		path.join(conf.paths.src, "/assets/index.html")
 	], function(event) {
-			browserSync.reload(event.path);
-		}
-	);
+		browserSync.reload(event.path);
+	});
 });
 
 
@@ -232,10 +226,24 @@ gulp.task("clean", function () {
 	]);
 });
 
+gulp.task("dev", function (done) {
+	runSequence(
+		["lazyload", "fonts", "scripts:watch"],
+		"styles",
+		"inject",
+		"watch",
+		function() {
+			done();
+		}
+	);
+});
+
 gulp.task("build", function (done) {
 	runSequence(
 		"clean",
-		["lazyload:dist", "fonts:dist", "inject", "partials", "other"],
+		["lazyload:dist", "fonts:dist", "scripts"],
+		"styles",
+		["inject", "partials", "other"],
 		"html",
 		function() {
 			syncDeleteFolder(conf.paths.tmp);
