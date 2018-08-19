@@ -145,6 +145,10 @@ export class ViewHomeController {
 			controller: "ViewRewatchHomeController",
 			controllerAs: "vm",
 			backdrop: "static",
+			resolve: {
+				id: () => this.$stateParams.id,
+				rewatch: () => this.data.rewatch || [],
+			},
 		});
 	}
 
