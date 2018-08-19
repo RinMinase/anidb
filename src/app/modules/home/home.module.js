@@ -2,6 +2,7 @@ import { AddHomeController } from "./add/add-home.controller";
 import { ManageHomeController } from "./manage/manage-home.controller";
 import { UpdateHomeController } from "./update/update-home.controller";
 import { ViewHomeController } from "./view/view-home.controller";
+import { ViewRewatchHomeController } from "./view/rewatch/view-rewatch-home.controller";
 
 import manageHomeDOM from "./manage/manage-home.html";
 import viewHomeDOM from "./view/view-home.html";
@@ -13,6 +14,7 @@ export default angular
 	.controller("ManageHomeController", ManageHomeController)
 	.controller("UpdateHomeController", UpdateHomeController)
 	.controller("ViewHomeController", ViewHomeController)
+	.controller("ViewRewatchHomeController", ViewRewatchHomeController)
 
 	.config(($stateProvider) => {
 		$stateProvider
