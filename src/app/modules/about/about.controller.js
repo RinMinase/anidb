@@ -282,12 +282,6 @@ export class AboutController {
 			reason: "-",
 			severity: "red",
 			version: "0.0.0",
-		}, {
-			package: "webpack-stream",
-			reason: "Has a problem with the current build setup \
-				using 2 runtimes for webpack (watch & compile)",
-			severity: "orange",
-			version: "5.1.0",
 		}];
 	}
 }
