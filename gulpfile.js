@@ -16,7 +16,7 @@ fs.readdirSync("./src/assets/gulp").filter(function(file) {
 	require("./src/assets/gulp/" + file);
 });
 
-gulp.task("default", ["clean"], function () {
+gulp.task("default", function () {
 	gulp.start("build");
 });
 
