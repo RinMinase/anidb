@@ -61,6 +61,7 @@ td.wrap, th.wrap { white-space: normal; }
 .pagination { justify-content: center; }
 .big { font-size: 120%; }
 .abc-checkbox label::before { width: 19px; }
+.dropdown-item.active, .dropdown-item:active { cursor: default }
 
 .flex-form-container {
 	height: calc(100vh - 70px - 50px);
