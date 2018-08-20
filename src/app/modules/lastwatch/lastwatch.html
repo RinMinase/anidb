@@ -65,7 +65,10 @@
 							</td>
 
 							<td class="text-center">{{ data.filesize }}</td>
-							<td class="text-center">{{ data.dateFinished }}</td>
+							<td class="text-center">
+								<span ng-if="data.rewatchLast">{{ data.rewatchLast }}</span>
+								<span ng-if="!data.rewatchLast">{{ data.dateFinished }}</span>
+							</td>
 						</tr>
 					</tbody>
 				</table>
