@@ -94,8 +94,14 @@ export class ManageHomeController {
 		data.map((value, index) => {
 			if (value.watchStatus <= 1) {
 				const filesize = this._convertFilesize(value.filesize);
-				const dateFinished = moment.unix(value.dateFinished).format("MMM DD, YYYY");
 				const id = dataKeys[index];
+				let dateFinished;
+
+				if (!value.rewatch) {
+					dateFinished = moment.unix(value.dateFinished).format("MMM DD, YYYY");
+				} else {
+					dateFinished = moment.unix(value.rewatch.split(",")[0]).format("MMM DD, YYYY");
+				}
 
 				this.titleList.push(value.title);
 				this.data.push({
