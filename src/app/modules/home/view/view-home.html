@@ -66,7 +66,7 @@
 					<h4 class="text-muted" ng-if="vm.data.shortTitle">
 						<em>&#10077;&nbsp;{{ ::vm.data.shortTitle }}&#10078;</em>
 					</h4>
-					<h5 class="text-muted">{{ ::vm.data.filesize }}</h5>
+					<h5 class="text-muted" ng-if="vm.data.filesize">{{ ::vm.data.filesize }}</h5>
 				</div>
 			</div>
 			<div class="row">
@@ -155,7 +155,7 @@
 										<span>{{ ::vm.data.duration.seconds }}s&nbsp;</span>
 									</p>
 								</div>
-								<div class="col-lg-12">
+								<div class="col-lg-12" ng-if="vm.data.firstSeasonTitle">
 									<p class="big">
 										<span>Season {{ ::vm.data.seasonNumber }} of&nbsp;<span>
 										<span>{{ ::vm.data.firstSeasonTitle }}</span>
