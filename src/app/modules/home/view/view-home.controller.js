@@ -76,8 +76,7 @@ export class ViewHomeController {
 							const rewatches = data.rewatch.split(",");
 
 							data.rewatchCount = rewatches.length;
-							data.lastRewatch = moment.unix(rewatches[rewatches.length - 1])
-								.format("MMM DD, YYYY");
+							data.lastRewatch = moment.unix(rewatches[0]).format("MMM DD, YYYY");
 						} else {
 							data.rewatchCount = 0;
 						}
