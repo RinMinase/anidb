@@ -43,6 +43,7 @@ export class ViewRewatchHomeController {
 			this.rewatch.sort((a, b) => b - a);
 			this.firebase.update("anime", this.id, {
 				rewatch: this.rewatch.toString(),
+				rewatchLast: this.rewatch[0],
 			});
 			this._formatRewatch();
 		}
