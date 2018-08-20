@@ -22,9 +22,20 @@
 								<th class="text-center">{{ ::vm.totalEpisodes }}</th>
 							</tr>
 							<tr>
-								<th>Days Since Last Anime</th>
+								<th>
+									<span>Days Since Last Anime<br></span>
+									<small>{{ ::vm.dateFirst }}</small>
+								</th>
 								<th>:</th>
 								<th class="text-center">{{ ::vm.daysSinceLastAnime }}</th>
+							</tr>
+							<tr>
+								<th>
+									<span>Days Since Last Date Counted<br></span>
+									<small>{{ ::vm.dateLast }}</small>
+								</th>
+								<th>:</th>
+								<th class="text-center">{{ ::vm.daysSinceLastDateCounted }}</th>
 							</tr>
 							<tr>
 								<th>Titles per Day</th>

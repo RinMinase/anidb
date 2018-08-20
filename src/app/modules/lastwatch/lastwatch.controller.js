@@ -145,6 +145,9 @@ export class LastWatchController {
 
 		const dateDiffLast = moment().diff(dateLast, "days", true);
 
+		this.dateFirst = dateFirst.format("MMM DD, YYYY");
+		this.dateLast = dateLast.format("MMM DD, YYYY");
+		this.daysSinceLastDateCounted = moment().diff(dateLast, "days");
 		this.daysSinceLastAnime = moment().diff(dateFirst, "days");
 		this.titlesPerDay = parseFloat(sortedData.length / dateDiffLast).toFixed(2);
 		this.singleSeasonPerDay = parseFloat((this.totalEpisodes / 12) / dateDiffLast).toFixed(2);
