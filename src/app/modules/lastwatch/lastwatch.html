@@ -19,27 +19,27 @@
 							<tr>
 								<th>Total Episodes</th>
 								<th>:</th>
-								<th class="text-center">{{ vm.totalEpisodes }}</th>
+								<th class="text-center">{{ ::vm.totalEpisodes }}</th>
 							</tr>
 							<tr>
 								<th>Days Since Last Anime</th>
 								<th>:</th>
-								<th class="text-center">{{ vm.daysSinceLastAnime }}</th>
+								<th class="text-center">{{ ::vm.daysSinceLastAnime }}</th>
 							</tr>
 							<tr>
 								<th>Titles per Day</th>
 								<th>:</th>
-								<th class="text-center">{{ vm.titlesPerDay }}</th>
+								<th class="text-center">{{ ::vm.titlesPerDay }}</th>
 							</tr>
 							<tr>
 								<th>Single Season per Day<br><small>(12 Episodes)</small></th>
 								<th>:</th>
-								<th class="text-center">{{ vm.singleSeasonPerDay }}</th>
+								<th class="text-center">{{ ::vm.singleSeasonPerDay }}</th>
 							</tr>
 							<tr>
 								<th>Episodes per Day</th>
 								<th>:</th>
-								<th class="text-center">{{ vm.episodesPerDay }}</th>
+								<th class="text-center">{{ ::vm.episodesPerDay }}</th>
 							</tr>
 						</table>
 					</div>
@@ -60,14 +60,14 @@
 					<tbody>
 						<tr ng-repeat="data in vm.data">
 							<td class="wrap" ng-switch="data.quality">
-								<quality-legend value="{{ data.quality }}"></quality-legend>
-								<span>{{ data.title }}</span>
+								<quality-legend value="{{ ::data.quality }}"></quality-legend>
+								<span>{{ ::data.title }}</span>
 							</td>
 
-							<td class="text-center">{{ data.filesize }}</td>
+							<td class="text-center">{{ ::data.filesize }}</td>
 							<td class="text-center">
-								<span ng-if="data.rewatchLast">{{ data.rewatchLast }}</span>
-								<span ng-if="!data.rewatchLast">{{ data.dateFinished }}</span>
+								<span ng-if="data.rewatchLast">{{ ::data.rewatchLast }}</span>
+								<span ng-if="!data.rewatchLast">{{ ::data.dateFinished }}</span>
 							</td>
 						</tr>
 					</tbody>
