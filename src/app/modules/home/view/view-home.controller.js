@@ -73,10 +73,8 @@ export class ViewHomeController {
 						}
 
 						if (data.rewatch) {
-							const rewatches = data.rewatch.split(",");
-
-							data.rewatchCount = rewatches.length;
-							data.lastRewatch = moment.unix(rewatches[0]).format("MMM DD, YYYY");
+							data.rewatchCount = data.rewatch.split(",").length;
+							data.lastRewatch = moment.unix(data.rewatchLast).format("MMM DD, YYYY");
 						} else {
 							data.rewatchCount = 0;
 						}

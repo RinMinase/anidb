@@ -97,10 +97,10 @@ export class ManageHomeController {
 				const id = dataKeys[index];
 				let dateFinished;
 
-				if (!value.rewatch) {
+				if (!value.rewatchLast) {
 					dateFinished = moment.unix(value.dateFinished).format("MMM DD, YYYY");
 				} else {
-					dateFinished = moment.unix(value.rewatch.split(",")[0]).format("MMM DD, YYYY");
+					dateFinished = moment.unix(value.rewatchLast).format("MMM DD, YYYY");
 				}
 
 				this.titleList.push(value.title);
