@@ -62,8 +62,8 @@ export class ViewRewatchHomeController {
 	}
 
 	_formatRewatch() {
+		this.dataRewatch = [];
 		if (this.rewatch.length > 0) {
-			this.dataRewatch = [];
 			this.rewatch.forEach((value, index) => {
 				this.dataRewatch[index] = moment.unix(value).format("MMM DD, YYYY");
 			});
