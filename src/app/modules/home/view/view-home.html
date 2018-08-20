@@ -79,7 +79,7 @@
 					<button class="btn btn-success py-2 px-3" ng-click="vm.openRewatch()">
 						<h5 class="mb-0">
 							<span>Rewatches&nbsp;</span>
-							<span class="badge badge-light">&nbsp;&nbsp;0&nbsp;&nbsp;</span>
+							<span class="badge badge-light px-3">{{ ::vm.data.rewatchCount }}</span>
 						</h5>
 					</button>
 				</div>
@@ -138,8 +138,14 @@
 										<span>{{ ::vm.data.releaseYear }}</span>
 									</p>
 								</div>
+								<div class="col-12" ng-if="vm.data.lastRewatch">
+									<p class="big">Last Finished on {{ ::vm.data.lastRewatch }}</p>
+								</div>
 								<div class="col-12">
-									<p class="big">Finished on {{ ::vm.data.dateFinished }}</p>
+									<p class="big">
+										<span ng-if="vm.data.lastRewatch">Initially&nbsp;</span>
+										<span>Finished on {{ ::vm.data.dateFinished }}</span>
+									</p>
 								</div>
 								<div class="col-12" ng-if="vm.data.duration">
 									<p class="big">

@@ -72,6 +72,16 @@ export class ViewHomeController {
 							};
 						}
 
+						if (data.rewatch) {
+							const rewatches = data.rewatch.split(",");
+
+							data.rewatchCount = rewatches.length;
+							data.lastRewatch = moment.unix(rewatches[rewatches.length - 1])
+								.format("MMM DD, YYYY");
+						} else {
+							data.rewatchCount = 0;
+						}
+
 						this.data = data;
 						this.dataLoaded = true;
 						this.$scope.$digest();
