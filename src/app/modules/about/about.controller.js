@@ -2,6 +2,7 @@ import moment from "moment";
 
 export class AboutController {
 	constructor(
+		$document,
 		$scope,
 		$state,
 		firebase,
@@ -10,6 +11,7 @@ export class AboutController {
 		"ngInject";
 
 		_.extend(this, {
+			$document: $document[0],
 			$scope,
 			$state,
 			firebase,
@@ -27,6 +29,9 @@ export class AboutController {
 			dataLoaded: false,
 			githubCommits: {},
 			githubIssues: {0: [], 1: []},
+			images: {
+				user: "",
+			},
 			issuesCurrentPage: 1,
 			issuesMaxSize: 10,
 		});
@@ -48,6 +53,7 @@ export class AboutController {
 				this.$state.go("login");
 			});
 
+		this._getFirebaseImages();
 		this._getGithubCommits();
 		this._getGithubIssues();
 
@@ -62,6 +68,10 @@ export class AboutController {
 			return moment(new Date(date))
 				.format("MMM DD, YYYY HH:mm");
 		}
+	}
+
+	_element(querySelector) {
+		return angular.element(this.$document.querySelectorAll(querySelector));
 	}
 
 	_formatData(data) {
@@ -158,6 +168,33 @@ export class AboutController {
 				}],
 			},
 		};
+	}
+
+	_getFirebaseImages() {
+		this.firebase.retrieveImageUrl("/assets/acknowledgements.png")
+			.then((url) => {
+				this._element(".anidb-about div.acknowledgements")
+					.css("background-image", `url(${url})`);
+			});
+
+		this.firebase.retrieveImageUrl("/assets/frameworks.png")
+			.then((url) => {
+				this._element(".anidb-about a.frameworks")
+					.css("background-image", `url(${url})`);
+			});
+
+		this.firebase.retrieveImageUrl("/assets/platforms.png")
+			.then((url) => {
+				this._element(".anidb-about a.platforms")
+					.css("background-image", `url(${url})`);
+			});
+
+		this.firebase.retrieveImageUrl("/assets/user.jpg")
+			.then((url) => {
+				this.images.user = url;
+				// this._element(".anidb-about img.img-user")
+				// 	.attr("src", `url(${url})`);
+			});
 	}
 
 	_getGithubCommits() {
