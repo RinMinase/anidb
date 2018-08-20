@@ -30,7 +30,7 @@
 					</thead>
 					<tbody>
 						<tr ng-repeat="(key, keyValue) in vm.dataRewatch">
-							<td class="text-center">{{ keyValue }}</td>
+							<td class="text-center">{{ ::keyValue }}</td>
 							<td>
 								<button class="btn btn-danger btn-block" ng-click="vm.delete(key)">
 									<i class="fa fa-trash"></i>
