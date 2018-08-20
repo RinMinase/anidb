@@ -14,6 +14,8 @@ export class LastWatchController {
 			firebase,
 
 			data: [],
+			dataByDateFinished: [],
+			dataByRewatchLast: [],
 			dataLoaded: false,
 			totalEpisodes: 0,
 		});
@@ -25,18 +27,33 @@ export class LastWatchController {
 		this.firebase.auth()
 			.then(() => {
 				this.firebase.retrieve("anime", null, 20, "dateFinished")
-					.then((data) => {
-						this.formatData(data);
-						this.dataLoaded = true;
-						this.$scope.$digest();
+					.then((dataDateFinished) => {
+						this.firebase.retrieve("anime", null, 20, "rewatchLast")
+							.then((dataRewatchLast) => {
+								this._formatData(dataDateFinished, dataRewatchLast);
+								this.dataLoaded = true;
+								this.$scope.$digest();
+							});
 					});
 			}).catch(() => {
 				this.$state.go("login");
 			});
 	}
 
-	formatData(data) {
-		const formattedData = data.map((value) => {
+	_convertFilesize(filesize) {
+		filesize = parseFloat(filesize);
+
+		if (filesize === 0) {
+			return "-";
+		} else if (filesize < 1073741824) {
+			return `${(filesize / 1048576).toFixed(2)} MB`;
+		} else {
+			return `${(filesize / 1073741824).toFixed(2)} GB`;
+		}
+	}
+
+	_formatData(dataDateFinished, dataRewatchLast) {
+		const formattedDataByDate = dataDateFinished.map((value) => {
 			if (!isNaN( parseInt(value.episodes) )) {
 				this.totalEpisodes += parseInt(value.episodes);
 			}
@@ -56,6 +73,7 @@ export class LastWatchController {
 				filesize,
 				ovas: value.ovas,
 				quality: value.quality,
+				rewatchLast: value.rewatchLast,
 				specials: value.specials,
 				title: value.title,
 			};
@@ -63,13 +81,72 @@ export class LastWatchController {
 			return formattedValue;
 		});
 
-		const dateFirst = moment.unix(data[0].dateFinished);
-		const dateLast = moment.unix(data[data.length - 1].dateFinished);
-		const dateDiffLast = moment().diff(dateLast, "days", true);
+		const formattedDataByRewatch = [];
+
+		dataRewatchLast.forEach((value) => {
+			if (value.rewatchLast) {
+				if (!isNaN( parseInt(value.episodes) )) {
+					this.totalEpisodes += parseInt(value.episodes);
+				}
+
+				if (!isNaN( parseInt(value.ovas) )) {
+					this.totalEpisodes += parseInt(value.ovas);
+				}
+
+				if (!isNaN( parseInt(value.specials) )) {
+					this.totalEpisodes += parseInt(value.specials);
+				}
+
+				const filesize = this._convertFilesize(value.filesize);
+				const formattedValue = {
+					dateFinished: value.dateFinished,
+					episodes: value.episodes,
+					filesize,
+					ovas: value.ovas,
+					quality: value.quality,
+					rewatchLast: value.rewatchLast,
+					specials: value.specials,
+					title: value.title,
+				};
+
+				formattedDataByRewatch.push(formattedValue);
+			}
+		});
+
+		const filteredData = [];
+
+		formattedDataByDate.forEach((valueByDate, indexByDate) => {
+			formattedDataByRewatch.forEach((valueByRewatch, indexByRewatch) => {
+				if (valueByDate.title === valueByRewatch.title) {
+					formattedDataByRewatch.splice(indexByRewatch, 1);
+				}
+			});
+
+			filteredData.push(formattedDataByDate[indexByDate]);
+		});
+
+		const formattedData = formattedDataByDate.concat(formattedDataByRewatch);
 		const sortedData = formattedData.sort(this._sortData);
 
+		let dateFirst;
+		let dateLast;
+
+		if (sortedData[0].rewatchLast) {
+			dateFirst = moment.unix(sortedData[0].rewatchLast);
+		} else {
+			dateFirst = moment.unix(sortedData[0].dateFinished);
+		}
+
+		if (sortedData[sortedData.length - 1].rewatchLast) {
+			dateLast = moment.unix(sortedData[sortedData.length - 1].rewatchLast);
+		} else {
+			dateLast = moment.unix(sortedData[sortedData.length - 1].dateFinished);
+		}
+
+		const dateDiffLast = moment().diff(dateLast, "days", true);
+
 		this.daysSinceLastAnime = moment().diff(dateFirst, "days");
-		this.titlesPerDay = parseFloat(data.length / dateDiffLast).toFixed(2);
+		this.titlesPerDay = parseFloat(sortedData.length / dateDiffLast).toFixed(2);
 		this.singleSeasonPerDay = parseFloat((this.totalEpisodes / 12) / dateDiffLast).toFixed(2);
 		this.episodesPerDay = parseFloat(this.totalEpisodes / dateDiffLast).toFixed(2);
 
@@ -80,26 +157,21 @@ export class LastWatchController {
 				value.dateFinished = moment.unix(value.dateFinished).format("MMM DD, YYYY");
 			}
 
+			if (value.rewatchLast) {
+				value.rewatchLast = moment.unix(value.rewatchLast).format("MMM DD, YYYY");
+			}
+
 			this.data.push(value);
 		});
 	}
 
-	_convertFilesize(filesize) {
-		filesize = parseFloat(filesize);
-
-		if (filesize === 0) {
-			return "-";
-		} else if (filesize < 1073741824) {
-			return `${(filesize / 1048576).toFixed(2)} MB`;
-		} else {
-			return `${(filesize / 1073741824).toFixed(2)} GB`;
-		}
-	}
-
 	_sortData(a, b) {
-		if (a.dateFinished < b.dateFinished) {
+		const aDate = a.rewatchLast || a.dateFinished;
+		const bDate = b.rewatchLast || b.dateFinished;
+
+		if (aDate < bDate) {
 			return 1;
-		} else if (a.dateFinished > b.dateFinished) {
+		} else if (aDate > bDate) {
 			return -1;
 		}
 
