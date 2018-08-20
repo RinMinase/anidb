@@ -3,7 +3,7 @@
 		".read": "auth != null",
 		".write": "auth != null",
 		"anime": {
-			".indexOn": ["dateFinished"]
+			".indexOn": ["dateFinished", "rewatchLast"]
 		}
 	}
 }
