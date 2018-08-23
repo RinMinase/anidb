@@ -27,7 +27,7 @@
     "angular-hammer": "^2.2.0",
     "angular-sweetalert": "^1.1.2",
     "animatewithsass": "^3.2.1",
-    "ansi-colors": "^3.0.3",
+    "ansi-colors": "^3.0.4",
     "awesome-bootstrap-checkbox": "^1.0.1",
     "babel-core": "^6.7.4",
     "babel-loader": "^7.1.5",
@@ -72,7 +72,7 @@
     "selenium-server": "^3.14.0",
     "ui-bootstrap4": "^3.0.4",
     "velocity-animate": "^1.5.2",
-    "webpack": "^4.16.5",
+    "webpack": "^4.17.1",
     "webpack-stream": "5.1.1",
     "xlsx": "^0.13.4"
   },
