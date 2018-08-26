@@ -78,19 +78,33 @@ export class AddHomeController {
 		this.data.seasonNumber = parseInt(this.data.seasonNumber) || 1;
 
 		if (this.raw.dateFinished) {
-			if (this.raw.dateFinished.split(" ").length < 3) {
-				const month = parseInt(this.raw.dateFinished.split(" ")[0]);
-				const day = parseInt(this.raw.dateFinished.split(" ")[1]);
+			if (this.raw.dateFinished.split(" ").length === 2) {
+				const monthRaw = parseInt(this.raw.dateFinished.split(" ")[0])
+					|| this.raw.dateFinished.split(" ")[0];
+				const day = parseInt(this.raw.dateFinished.split(" ")[1])
+					|| this.raw.dateFinished.split(" ")[1];
 				const monthToday = parseInt(moment().format("M"));
 				const dayToday = parseInt(moment().format("D"));
+				let month;
 
-				if (month === monthToday && day > dayToday) {
+				if (isNaN(monthRaw)) {
+					month = parseInt(moment(monthRaw, "MMM").format("MM"));
+				} else {
+					month = parseInt(moment(monthRaw, "MM").format("MM"));
+				}
+
+				if (month >= monthToday && day > dayToday) {
 					this.raw.dateFinished += ` ${(moment().year() - 1).toString()}`;
 				} else {
 					this.raw.dateFinished += ` ${(moment().year()).toString()}`;
 				}
 			}
-			this.data.dateFinished = moment(new Date(this.raw.dateFinished)).unix();
+
+			if ((new Date(this.raw.dateFinished)).toString().indexOf("Invalid Date") === 0) {
+				this.data.date = moment().unix();
+			} else {
+				this.data.dateFinished = moment(new Date(this.raw.dateFinished)).unix();
+			}
 		} else {
 			this.data.dateFinished = moment().unix();
 		}
