@@ -36,31 +36,7 @@ export class ViewRewatchHomeController {
 	}
 
 	add() {
-		if (this.raw.date.split(" ").length === 2) {
-			const monthRaw = parseInt(this.raw.date.split(" ")[0]) || this.raw.date.split(" ")[0];
-			const day = parseInt(this.raw.date.split(" ")[1]) || this.raw.date.split(" ")[1];
-			const monthToday = parseInt(moment().format("M"));
-			const dayToday = parseInt(moment().format("D"));
-			let month;
-
-			if (isNaN(monthRaw)) {
-				month = parseInt(moment(monthRaw, "MMM").format("MM"));
-			} else {
-				month = parseInt(moment(monthRaw, "MM").format("MM"));
-			}
-
-			if (month >= monthToday && day > dayToday) {
-				this.raw.date += ` ${(moment().year() - 1).toString()}`;
-			} else {
-				this.raw.date += ` ${(moment().year()).toString()}`;
-			}
-		}
-
-		if ((new Date(this.raw.date)).toString().indexOf("Invalid Date") === 0) {
-			this.data.date = moment().unix();
-		} else {
-			this.data.date = moment(new Date(this.raw.date)).unix();
-		}
+		this.data.date = this._autofillYear(this.raw.date);
 
 		if (!this.rewatch.includes(this.data.date)) {
 			this.rewatch.push(this.data.date);
@@ -85,6 +61,37 @@ export class ViewRewatchHomeController {
 			rewatchLast: this.rewatch[0] || "",
 		});
 		this._formatRewatch();
+	}
+
+	_autofillYear(date) {
+		if (date.split(" ").length === 2) {
+			const monthRaw = parseInt(date.split(" ")[0]) || date.split(" ")[0];
+			const day = parseInt(date.split(" ")[1]) || date.split(" ")[1];
+			let month;
+
+			if (isNaN(monthRaw)) {
+				month = parseInt(moment(monthRaw, "MMM").format("MM"));
+			} else {
+				month = parseInt(moment(monthRaw, "MM").format("MM"));
+			}
+
+			const yearToday = moment().year();
+			const dateParsed = `${month} ${day} ${yearToday}`;
+			const dateParsedUnix = moment(dateParsed, "MM D YYYY").unix();
+			const dateTodaytUnix = moment().unix();
+
+			if (dateParsedUnix > dateTodaytUnix) {
+				date += ` ${(moment().year() - 1).toString()}`;
+			} else {
+				date += ` ${(moment().year()).toString()}`;
+			}
+		}
+
+		if ((new Date(date)).toString().indexOf("Invalid Date") === 0) {
+			return moment().unix();
+		} else {
+			return moment(new Date(date)).unix();
+		}
 	}
 
 	_formatRewatch() {
