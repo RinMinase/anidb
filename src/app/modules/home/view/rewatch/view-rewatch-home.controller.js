@@ -36,7 +36,31 @@ export class ViewRewatchHomeController {
 	}
 
 	add() {
-		this.data.date = moment(new Date(this.raw.date)).unix();
+		if (this.raw.date.split(" ").length === 2) {
+			const monthRaw = parseInt(this.raw.date.split(" ")[0]) || this.raw.date.split(" ")[0];
+			const day = parseInt(this.raw.date.split(" ")[1]) || this.raw.date.split(" ")[1];
+			const monthToday = parseInt(moment().format("M"));
+			const dayToday = parseInt(moment().format("D"));
+			let month;
+
+			if (isNaN(monthRaw)) {
+				month = parseInt(moment(monthRaw, "MMM").format("MM"));
+			} else {
+				month = parseInt(moment(monthRaw, "MM").format("MM"));
+			}
+
+			if (month >= monthToday && day > dayToday) {
+				this.raw.date += ` ${(moment().year() - 1).toString()}`;
+			} else {
+				this.raw.date += ` ${(moment().year()).toString()}`;
+			}
+		}
+
+		if ((new Date(this.raw.date)).toString().indexOf("Invalid Date") === 0) {
+			this.data.date = moment().unix();
+		} else {
+			this.data.date = moment(new Date(this.raw.date)).unix();
+		}
 
 		if (!this.rewatch.includes(this.data.date)) {
 			this.rewatch.push(this.data.date);
