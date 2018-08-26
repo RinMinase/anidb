@@ -27,7 +27,7 @@
     "angular-hammer": "^2.2.0",
     "angular-sweetalert": "^1.1.2",
     "animatewithsass": "^3.2.1",
-    "ansi-colors": "^3.0.4",
+    "ansi-colors": "^3.0.5",
     "awesome-bootstrap-checkbox": "^1.0.1",
     "babel-core": "^6.7.4",
     "babel-loader": "^7.1.5",
@@ -45,7 +45,7 @@
     "eslint-loader": "^2.1.0",
     "eslint-plugin-angular": "^3.3.0",
     "fancy-log": "^1.3.2",
-    "firebase": "^5.4.0",
+    "firebase": "^5.4.1",
     "font-awesome": "^4.7.0",
     "fuse.js": "^3.2.1",
     "gulp": "^3.9.0",
@@ -74,7 +74,7 @@
     "velocity-animate": "^1.5.2",
     "webpack": "^4.17.1",
     "webpack-stream": "5.1.1",
-    "xlsx": "^0.13.4"
+    "xlsx": "^0.13.5"
   },
   "engines": {
     "node": "^6.14.0 || ^8.10.0 || >=9.10.0"
