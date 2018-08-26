@@ -45,8 +45,14 @@ export class ManageSummerController {
 	formatData(summerData, animeData) {
 		summerData.forEach((summer, index) => {
 			const timeStart = moment.unix(summer.timeStart);
-			const timeEnd = moment.unix(summer.timeEnd);
-			const days = timeEnd.diff(timeStart, "days", true);
+			const today = moment().unix();
+			let timeEnd = moment.unix(summer.timeEnd);
+
+			if (today < timeEnd) {
+				timeEnd = moment.unix(today);
+			}
+
+			const days = timeEnd.diff(timeStart, "days");
 
 			this.data.push({
 				summer: {
