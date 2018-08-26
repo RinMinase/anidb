@@ -189,6 +189,8 @@ export class ManageSummerController {
 				titlesPerDay,
 			});
 		});
+
+		this._invertDataArray();
 	}
 
 	_convertFilesize(filesize) {
@@ -201,6 +203,17 @@ export class ManageSummerController {
 		} else {
 			return `${(filesize / 1073741824).toFixed(2)} GB`;
 		}
+	}
+
+	_invertDataArray() {
+		const sortedData = [this.data.length];
+		let index = this.data.length - 1;
+
+		this.data.forEach((data) => {
+			sortedData[index--] = data;
+		});
+
+		this.data = sortedData;
 	}
 
 	_sortData(a, b) {
