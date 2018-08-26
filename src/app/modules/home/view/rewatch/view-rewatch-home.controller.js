@@ -58,7 +58,7 @@ export class ViewRewatchHomeController {
 		this.rewatch.splice(id, 1);
 		this.firebase.update("anime", this.id, {
 			rewatch: this.rewatch.toString(),
-			rewatchLast: this.rewatch[0],
+			rewatchLast: this.rewatch[0] || "",
 		});
 		this._formatRewatch();
 	}
