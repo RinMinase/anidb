@@ -176,7 +176,7 @@
 							<th>Title</th>
 							<th class="text-center">E / O / S</th>
 							<th class="text-center">File Size</th>
-							<th class="text-center">Date Finished</th>
+							<th>Date Finished</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -189,7 +189,10 @@
 								{{ data.episodes }} / {{ data.ovas }} / {{ data.specials }}
 							</td>
 							<td class="text-center">{{ data.filesize }}</td>
-							<td class="text-center">{{ data.dateFinished }}</td>
+							<td>
+								<span>{{ data.dateFinished }}</span>
+								<span ng-if="data.rewatchFlag" class="text-muted small">&nbsp;(Rewatch)</span>
+							</td>
 						</tr>
 					</tbody>
 				</table>

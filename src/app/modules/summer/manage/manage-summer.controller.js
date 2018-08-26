@@ -69,7 +69,53 @@ export class ManageSummerController {
 
 			animeData.map((anime) => {
 				if (anime.inhdd === 1 && anime.watchStatus <= 1) {
-					if (anime.dateFinished >= summer.timeStart
+					if (anime.rewatch) {
+						const rewatch = anime.rewatch.split(",");
+
+						rewatch.forEach((date) => {
+							const rewatchDate = parseInt(date);
+
+							if (rewatchDate >= summer.timeStart && rewatchDate <= summer.timeEnd) {
+								totalFilesize += anime.filesize;
+								totalEpisodes += anime.episodes;
+								totalEpisodes += anime.ovas;
+								totalEpisodes += anime.specials;
+
+								this.data[index].entries.push({
+									episodes: anime.episodes,
+									filesize: this._convertFilesize(anime.filesize),
+									ovas: anime.ovas,
+									quality: anime.quality,
+									specials: anime.specials,
+									title: anime.title,
+									dateFinished: moment.unix(rewatchDate).format("MMM DD, YYYY"),
+									rewatchFlag: true,
+								});
+
+								if (lastDate > rewatchDate) {
+									lastDate = rewatchDate;
+								}
+
+								switch (anime.quality) {
+									case "4K 2160p":
+										qualityUHD++;
+										break;
+									case "FHD 1080p":
+										qualityFHD++;
+										break;
+									case "HD 720p":
+										qualityHD++;
+										break;
+									case "HQ 480p":
+										qualityHQ++;
+										break;
+									case "LQ 360p":
+										qualityLQ++;
+										break;
+								}
+							}
+						});
+					} else if (anime.dateFinished >= summer.timeStart
 						&& anime.dateFinished <= summer.timeEnd) {
 
 						totalFilesize += anime.filesize;
@@ -85,6 +131,7 @@ export class ManageSummerController {
 							specials: anime.specials,
 							title: anime.title,
 							dateFinished: moment.unix(anime.dateFinished).format("MMM DD, YYYY"),
+							rewatchFlag: false,
 						});
 
 						if (lastDate > anime.dateFinished) {
