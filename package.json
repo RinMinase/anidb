@@ -50,7 +50,7 @@
     "fuse.js": "^3.2.1",
     "gulp": "^3.9.0",
     "gulp-angular-templatecache": "^2.2.1",
-    "gulp-autoprefixer": "^5.0.0",
+    "gulp-autoprefixer": "^6.0.0",
     "gulp-filter": "^5.1.0",
     "gulp-htmlmin": "^4.0.0",
     "gulp-inject": "^4.3.2",
