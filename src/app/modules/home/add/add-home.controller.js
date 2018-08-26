@@ -78,33 +78,7 @@ export class AddHomeController {
 		this.data.seasonNumber = parseInt(this.data.seasonNumber) || 1;
 
 		if (this.raw.dateFinished) {
-			if (this.raw.dateFinished.split(" ").length === 2) {
-				const monthRaw = parseInt(this.raw.dateFinished.split(" ")[0])
-					|| this.raw.dateFinished.split(" ")[0];
-				const day = parseInt(this.raw.dateFinished.split(" ")[1])
-					|| this.raw.dateFinished.split(" ")[1];
-				const monthToday = parseInt(moment().format("M"));
-				const dayToday = parseInt(moment().format("D"));
-				let month;
-
-				if (isNaN(monthRaw)) {
-					month = parseInt(moment(monthRaw, "MMM").format("MM"));
-				} else {
-					month = parseInt(moment(monthRaw, "MM").format("MM"));
-				}
-
-				if (month >= monthToday && day > dayToday) {
-					this.raw.dateFinished += ` ${(moment().year() - 1).toString()}`;
-				} else {
-					this.raw.dateFinished += ` ${(moment().year()).toString()}`;
-				}
-			}
-
-			if ((new Date(this.raw.dateFinished)).toString().indexOf("Invalid Date") === 0) {
-				this.data.date = moment().unix();
-			} else {
-				this.data.dateFinished = moment(new Date(this.raw.dateFinished)).unix();
-			}
+			this.data.dateFinished = this._autofillYear(this.raw.dateFinished);
 		} else {
 			this.data.dateFinished = moment().unix();
 		}
@@ -173,6 +147,37 @@ export class AddHomeController {
 
 	removeNonNumeric() {
 		this.data.filesize = this.data.filesize.replace(/\D/g, "");
+	}
+
+	_autofillYear(date) {
+		if (date.split(" ").length === 2) {
+			const monthRaw = parseInt(date.split(" ")[0]) || date.split(" ")[0];
+			const day = parseInt(date.split(" ")[1]) || date.split(" ")[1];
+			let month;
+
+			if (isNaN(monthRaw)) {
+				month = parseInt(moment(monthRaw, "MMM").format("MM"));
+			} else {
+				month = parseInt(moment(monthRaw, "MM").format("MM"));
+			}
+
+			const yearToday = moment().year();
+			const dateParsed = `${month} ${day} ${yearToday}`;
+			const dateParsedUnix = moment(dateParsed, "MM D YYYY").unix();
+			const dateTodaytUnix = moment().unix();
+
+			if (dateParsedUnix > dateTodaytUnix) {
+				date += ` ${(moment().year() - 1).toString()}`;
+			} else {
+				date += ` ${(moment().year()).toString()}`;
+			}
+		}
+
+		if ((new Date(date)).toString().indexOf("Invalid Date") === 0) {
+			return moment().unix();
+		} else {
+			return moment(new Date(date)).unix();
+		}
 	}
 
 	_getCurrentSeason() {
