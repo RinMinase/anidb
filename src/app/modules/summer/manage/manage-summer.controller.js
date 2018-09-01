@@ -48,7 +48,7 @@ export class ManageSummerController {
 			const today = moment().unix();
 			let timeEnd = moment.unix(summer.timeEnd);
 
-			if (today < timeEnd) {
+			if (today < timeEnd.unix()) {
 				timeEnd = moment.unix(today);
 			}
 
