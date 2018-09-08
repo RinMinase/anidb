@@ -78,7 +78,7 @@ export class ByNameController {
 			this.collapse.push(false);
 
 			_.extend(this.data[index], {
-				content: contents[index],
+				content: contents[index].sort(this._sortByTitle),
 				filesize: filesizes[index],
 				key: keys[index],
 				panel: index,
@@ -100,5 +100,17 @@ export class ByNameController {
 		} else {
 			return `${(filesize / 1073741824).toFixed(2)} GB`;
 		}
+	}
+
+	_sortByTitle(a, b) {
+		if (a.title > b.title) {
+			return 1;
+		}
+
+		if (a.title < b.title) {
+			return -1;
+		}
+
+		return 0;
 	}
 }
