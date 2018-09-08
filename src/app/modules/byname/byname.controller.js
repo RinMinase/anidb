@@ -53,7 +53,7 @@ export class ByNameController {
 		}
 
 		rawData.map((data) => {
-			if (data.watchStatus === 0) {
+			if (data.inhdd === 1) {
 				const currCharCode = data.title[0].toLowerCase().charCodeAt();
 
 				if (currCharCode >= 48 && currCharCode <= 57) {
