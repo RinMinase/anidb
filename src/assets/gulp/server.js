@@ -44,7 +44,8 @@ function browserSyncInit(baseDir, browser) {
 		port: process.env.PORT || 3000,
 		ui: false,			// Disables :3001 browsersync options UI
 		open: false,		// Disables opening of browser on serving
-		notify: false		// Removes top right browsersync notification
+		notify: false,		// Removes top right browsersync notification
+		ghostMode: false
 	});
 }
 
