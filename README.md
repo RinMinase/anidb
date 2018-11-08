@@ -9,4 +9,11 @@
 ## Getting Started
 
 ## Built with
-
+* [AngularJS](https://angularjs.org/) - Web Framework
+* [Babel ES8 / ES2017 Preset](https://babeljs.io/) - Syntax and compiler
+* [Sassy CSS (SCSS)](https://sass-lang.com/) - CSS pre-processor
+* [Bootstrap 4](https://getbootstrap.com/) - HTML Framework (layout)
+* [Firebase](https://firebase.google.com/) - Database
+* [Webpack 4](https://webpack.js.org/) - Project bundler
+* [Cordova](https://cordova.apache.org/) - Android APK bundler
+* [NightwatchJS](http://nightwatchjs.org/) - Testing Framework
