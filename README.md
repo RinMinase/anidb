@@ -4,11 +4,24 @@
 [![Node](https://img.shields.io/badge/node-%5E6.14.0%20%7C%7C%20%5E8.10.0%20%7C%7C%20%3E%3D9.10.0-brightgreen.svg)](https://nodejs.org)
 [![Yarn](https://img.shields.io/badge/yarn-1.12.3-blue.svg)](https://yarnpkg.com/)
 
-## Introduction
+# Introduction
+_Add info here_
 
-## Getting Started
+# Getting Started
 
-## Built with
+## Creating and cloning the project
+_Add info here_
+
+## Building the project
+_Add info here_
+
+## Bundling the project for Android
+_Add info here_
+
+## Testing the project
+_Add info here_
+
+# Built with
 * [AngularJS](https://angularjs.org/) - Web Framework
 * [Babel ES8 / ES2017 Preset](https://babeljs.io/) - Syntax and compiler
 * [Sassy CSS (SCSS)](https://sass-lang.com/) - CSS pre-processor
