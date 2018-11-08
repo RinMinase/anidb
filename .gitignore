@@ -42,3 +42,6 @@ bower_components/
 .gradle
 platforms/
 plugins/
+
+# Firebase cache directory
+.firebase/
