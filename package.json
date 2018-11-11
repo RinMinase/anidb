@@ -29,7 +29,7 @@
     "animatewithsass": "^3.2.1",
     "ansi-colors": "^3.2.1",
     "awesome-bootstrap-checkbox": "^1.0.1",
-    "babel-core": "^6.7.4",
+    "babel-core": "6.26.3",
     "babel-loader": "^7.1.5",
     "babel-preset-env": "^1.7.0",
     "bluebird": "^3.5.3",
