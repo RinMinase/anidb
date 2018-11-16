@@ -74,7 +74,7 @@
     "velocity-animate": "^1.5.2",
     "webpack": "^4.25.0",
     "webpack-stream": "5.1.1",
-    "xlsx": "^0.14.0"
+    "xlsx": "^0.14.1"
   },
   "resolutions": {
     "**/@firebase/app-types": "0.3.2",
