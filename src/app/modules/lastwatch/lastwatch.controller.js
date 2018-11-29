@@ -126,7 +126,7 @@ export class LastWatchController {
 		});
 
 		const formattedData = formattedDataByDate.concat(formattedDataByRewatch);
-		const sortedData = formattedData.sort(this._sortData);
+		const sortedData = formattedData.sort(this._sortData).slice(0, 20);
 
 		let dateFirst;
 		let dateLast;
