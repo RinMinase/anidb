@@ -30,7 +30,7 @@
     "ansi-colors": "^3.2.3",
     "awesome-bootstrap-checkbox": "^1.0.1",
     "babel-core": "^6.26.3",
-    "babel-loader": "^7.1.5",
+    "babel-loader": "7.1.5",
     "babel-preset-env": "^1.7.0",
     "bluebird": "^3.5.3",
     "bootstrap": "^4.1.3",
