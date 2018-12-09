@@ -36,7 +36,7 @@
     "bootstrap": "^4.1.3",
     "browser-sync": "^2.26.3",
     "browser-sync-spa": "^1.0.3",
-    "chromedriver": "^2.44.0",
+    "chromedriver": "^2.44.1",
     "compression-webpack-plugin": "^2.0.0",
     "cordova-android": "^7.1.4",
     "cordova-plugin-whitelist": "^1.3.3",
