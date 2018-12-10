@@ -49,7 +49,7 @@
     "font-awesome": "^4.7.0",
     "fuse.js": "^3.3.0",
     "gulp": "^3.9.0",
-    "gulp-angular-templatecache": "^2.2.3",
+    "gulp-angular-templatecache": "^2.2.5",
     "gulp-autoprefixer": "^6.0.0",
     "gulp-filter": "^5.1.0",
     "gulp-htmlmin": "^5.0.1",
