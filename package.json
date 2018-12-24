@@ -45,7 +45,7 @@
     "eslint-loader": "^2.1.1",
     "eslint-plugin-angular": "^4.0.0",
     "fancy-log": "^1.3.3",
-    "firebase": "^5.7.0",
+    "firebase": "^5.7.1",
     "font-awesome": "^4.7.0",
     "fuse.js": "^3.3.0",
     "gulp": "^3.9.0",
