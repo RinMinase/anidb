@@ -151,7 +151,8 @@ export function FirebaseFactory() {
 
 	function _objectToArray(data) {
 		if (!isNaN(Object.keys(data)[0])
-			&& angular.isObject(data)) {
+			&& data.constructor.toString().indexOf("Object") !== -1) {
+
 			const output = [];
 
 			Object.keys(data).map((key, index) => {
