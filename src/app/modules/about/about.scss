@@ -28,6 +28,11 @@
 		font-weight: bold;
 	}
 
+	table.table-specs td:not(.table-specs-border) {
+		border-top: 0px;
+		&:not(.table-specs-value) { font-weight: bold; }
+	}
+
 	li.pt-0-5{ padding-top: 0.15rem; }
 
 	h6 .badge.badge-pill {
