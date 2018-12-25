@@ -1,15 +1,35 @@
 .anidb-login {
-	.flex-form-container { height: calc(100vh); }
 	.form-container { width: 320px; }
 	.text-dark-white { color: #DEDEDE; }
 	.flex-form-container-loading { height: 108px; }
 
 	&.container-fluid {
-		background-image: url("https://firebasestorage.googleapis.com/v0/b/rin-anidb.appspot.com/o/assets%2Fbg.jpg?alt=media&token=d16e13d4-8958-4788-89cf-fd7d090c9131");
+		padding: 0px;
+		overflow: hidden;
+	}
+
+	.background-image {
+		background-image: url("https://firebasestorage.googleapis.com/v0/b/rin-anidb.appspot.com/o/assets%2Fbg.jpg?alt=media&token=21686d1b-22e1-464e-95e3-10f78cfd7b69");
 		background-position: center;
 		background-repeat: no-repeat;
 		background-attachment: fixed;
 		background-size: cover;
+		filter: blur(6px);
+		transform: scale(1.1);
+		height: 100vh;
+		z-index: 1;
+		overflow: hidden;
+	}
+
+	.flex-form-container {
+		height: calc(100vh);
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		margin-left: auto;
+		margin-right: auto;
+		z-index: 2;
 	}
 
 	.flex-center {
