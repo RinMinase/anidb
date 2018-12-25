@@ -26,7 +26,7 @@ gulp.task("inject", function () {
 		path.join(conf.paths.tmp, "/serve/app/**/*.module.js")
 	], { read: false });
 
-	var injectOptions = {
+	var injectStylesOptions = {
 		ignorePath: [
 			conf.paths.src,
 			path.join(conf.paths.tmp, "/serve")
@@ -34,9 +34,20 @@ gulp.task("inject", function () {
 		addRootSlash: false
 	};
 
+	var injectScriptsOptions = {
+		ignorePath: [
+			conf.paths.src,
+			path.join(conf.paths.tmp, "/serve")
+		],
+		addRootSlash: false,
+		transform: (path) => {
+			return "<script src='" + path + "' defer></script>";
+		}
+	};
+
 	return gulp.src(path.join(conf.paths.src, "/index.html"))
-		.pipe(inject(injectStyles, injectOptions))
-		.pipe(inject(injectScripts, injectOptions))
+		.pipe(inject(injectStyles, injectStylesOptions))
+		.pipe(inject(injectScripts, injectScriptsOptions))
 		.pipe(gulp.dest(path.join(conf.paths.tmp, "/serve")));
 });
 
