@@ -119,7 +119,7 @@ gulp.task("build", function (done) {
 		"clean",
 		["lazyload:dist", "fonts:dist", "scripts"],
 		"styles",
-		["inject", "partials", "other"],
+		["inject", "partials", "other", "robots"],
 		"html",
 		function() {
 			syncDeleteFolder(conf.paths.tmp);
@@ -131,7 +131,7 @@ gulp.task("build", function (done) {
 gulp.task("bundle", function (done) {
 	runSequence(
 		"clean",
-		["lazyload:dist", "fonts:dist", "inject:bundle", "partials", "other"],
+		["lazyload:dist", "fonts:dist", "inject:bundle", "partials", "other", "robots"],
 		"html",
 		"relocate",
 		function() {

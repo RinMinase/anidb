@@ -92,6 +92,11 @@ gulp.task("other", function () {
 	.pipe(gulp.dest(path.join(conf.paths.dist, "/")));
 });
 
+gulp.task("robots", function () {
+	gulp.src(conf.paths.src + "/assets/robots.txt")
+		.pipe(gulp.dest(path.join(conf.paths.dist, "/")));
+});
+
 gulp.task("relocate", function () {
 	gulp.src(conf.paths.dist + "/**/*")
 		.pipe(gulp.dest(conf.paths.www));
