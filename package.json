@@ -67,7 +67,6 @@
     "ngtemplate-loader": "^2.0.1",
     "nightwatch": "^1.0.17",
     "oclazyload": "^1.1.0",
-    "popper.js": "1.14.6",
     "roboto-fontface": "^0.10.0",
     "run-sequence": "^2.2.1",
     "selenium-server": "^3.141.59",
