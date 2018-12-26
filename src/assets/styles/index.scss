@@ -9,30 +9,24 @@ $roboto-font-path: "../fonts";
 @import "node_modules/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.scss";
 @import "node_modules/sweetalert/lib/sweet-alert.scss";
 
-@import "./animate-scss-extension";
-@import "./spinner-eclipse";
-
-.browsehappy {
-	margin: 0.2em 0;
-	background: #ccc;
-	color: #000;
-	padding: 0.2em 0;
-}
-
-body {
-	font-family: "Roboto", Arial, Helvetica, sans-serif;
-	font-size: 14px;
-	line-height: 1.428571429;
-}
+@import "./chunks/animate-scss-extension";
+@import "./chunks/bootstrap-extension";
+@import "./chunks/spinner-eclipse";
 
 html {
 	position: relative;
 	min-height: 100%;
 
-	body > div,
-	body > div > div {
-		> div.container, > div.container-fluid {
-			&:not(.no-footer) { margin-bottom: 50px; }
+	body {
+		font-family: "Roboto", Arial, Helvetica, sans-serif;
+		font-size: 14px;
+		line-height: 1.428571429;
+
+		> div,
+		> div > div {
+			> div.container, > div.container-fluid {
+				&:not(.no-footer) { margin-bottom: 50px; }
+			}
 		}
 	}
 
@@ -45,17 +39,15 @@ html {
 	}
 }
 
-.form-control, .dropdown-menu { font-size: 14px; }
-.btn { font-size: 15px; }
-
 hr { border-color: #E4E6E8 }
-
 thead th { border-top: 0px !important; }
 td, th { white-space: nowrap; }
 td.wrap, th.wrap { white-space: normal; }
 .table-sm th, .table-sm td { padding: 0.5rem }
 .table-unbordered td, .table-unbordered th { border-top: 0px; }
 
+.form-control, .dropdown-menu { font-size: 14px; }
+.btn { font-size: 15px; }
 .checkbox label { cursor: default; }
 .bg-success-light { background-color: #95CE92 !important; }
 .pagination { justify-content: center; }
@@ -70,12 +62,6 @@ td.wrap, th.wrap { white-space: normal; }
 	justify-content: center;
 }
 
-.btn-success-light {
-	background-color: #66BB6A;
-	border-color: #66BB6A;
-	color: #FFF;
-}
-
 a.link {
 	text-decoration: none !important;
 	color: #000;
@@ -84,57 +70,6 @@ a.link {
 .card-header {
 	padding: 1.25rem;
 	h5 { font-size: 17px; }
-}
-
-.display-5 {
-	font-size: 3rem;
-	font-weight: 300;
-	line-height: 1.2;
-}
-
-.display-6 {
-	font-size: 2.5rem;
-	font-weight: 300;
-	line-height: 1.2;
-}
-
-.display-7 {
-	font-size: 2rem;
-	font-weight: 300;
-	line-height: 1.2;
-}
-
-
-/**
- * Bootstrap Extensions
- */
-
-@mixin lpad-d() { padding-left: 15px !important; }
-@mixin rpad-d() { padding-right: 15px !important; }
-
-@media (max-width: 575px) {
-	.pl-def { @include lpad-d(); }
-	.pr-def { @include rpad-d(); }
-}
-
-@media (min-width: 576px) and (max-width: 767px) {
-	.pl-sm-def { @include lpad-d(); }
-	.pr-sm-def { @include rpad-d(); }
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-	.pl-md-def { @include lpad-d(); }
-	.pr-md-def { @include rpad-d(); }
-}
-
-@media (min-width: 992px) and (max-width: 1199px) {
-	.pl-lg-def { @include lpad-d(); }
-	.pr-lg-def { @include rpad-d(); }
-}
-
-@media (min-width: 1200px) {
-	.pl-xl-def { @include lpad-d(); }
-	.pr-xl-def { @include rpad-d(); }
 }
 
 /**

@@ -1,0 +1,45 @@
+.display-5 {
+	font-size: 3rem;
+	font-weight: 300;
+	line-height: 1.2;
+}
+
+.display-6 {
+	font-size: 2.5rem;
+	font-weight: 300;
+	line-height: 1.2;
+}
+
+.display-7 {
+	font-size: 2rem;
+	font-weight: 300;
+	line-height: 1.2;
+}
+
+@mixin lpad-d() { padding-left: 15px !important; }
+@mixin rpad-d() { padding-right: 15px !important; }
+
+@media (max-width: 575px) {
+	.pl-def { @include lpad-d(); }
+	.pr-def { @include rpad-d(); }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+	.pl-sm-def { @include lpad-d(); }
+	.pr-sm-def { @include rpad-d(); }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+	.pl-md-def { @include lpad-d(); }
+	.pr-md-def { @include rpad-d(); }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+	.pl-lg-def { @include lpad-d(); }
+	.pr-lg-def { @include rpad-d(); }
+}
+
+@media (min-width: 1200px) {
+	.pl-xl-def { @include lpad-d(); }
+	.pr-xl-def { @include rpad-d(); }
+}
