@@ -17,6 +17,7 @@ export function FirebaseFactory() {
 		update,
 		softDelete,
 		hardDelete,
+		increaseCacheControl,
 		retrieveImageUrl,
 	};
 
@@ -163,6 +164,21 @@ export function FirebaseFactory() {
 		}
 
 		return data;
+	}
+
+	function increaseCacheControl(ref) {
+		return new Promise((resolve, reject) => {
+			firebase.storage()
+				.ref(ref)
+				.updateMetadata({
+					cacheControl: "public,max-age=31536000",
+				})
+				.then(() => {
+					resolve();
+				}).catch((error) => {
+					reject(error);
+				});
+		});
 	}
 
 	function retrieveImageUrl(ref) {
