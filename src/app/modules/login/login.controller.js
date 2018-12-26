@@ -38,7 +38,10 @@ export class LoginController {
 
 					ngElement.bind("blur", () => {
 						if (!ngElement.val()) {
+							ngElement.removeClass("filled");
 							ngElement.parent().removeClass("focused");
+						} else {
+							ngElement.addClass("filled");
 						}
 					});
 				});
