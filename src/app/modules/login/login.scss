@@ -83,8 +83,23 @@
 
 			&:focus, &.filled { box-shadow: 0 2px 0 0 #28a745; }
 			&:-webkit-autofill {
-				transition: background-color 5000s ease-in-out 0s;
+				-webkit-animation: autofill 0s forwards;
+				animation: autofill 0s forwards;
 				box-shadow: 0 2px 0 0 #FF8A65;
+			}
+
+			@keyframes autofill {
+				100% {
+					background: transparent;
+					color: inherit;
+				}
+			}
+
+			@-webkit-keyframes autofill {
+				100% {
+					background: transparent;
+					color: inherit;
+				}
 			}
 		}
 	}
