@@ -80,6 +80,11 @@
 			border: 0;
 			background: transparent;
 			transition: box-shadow 150ms ease-out;
+
+			&:-webkit-autofill {
+				transition: background-color 5000s ease-in-out 0s;
+				box-shadow: 0 2px 0 0 #FF8A65;
+			}
 		}
 	}
 }
