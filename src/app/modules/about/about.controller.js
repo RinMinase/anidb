@@ -319,6 +319,16 @@ export class AboutController {
 			reason: "-",
 			severity: "red",
 			version: "0.0.0",
+		}, {
+			package: "babel-loader",
+			reason: "Upgrade babel to v7",
+			severity: "red",
+			version: "7.1.5",
+		}, {
+			package: "gulp",
+			reason: "Still has a lot of problems with current setup",
+			severity: "red",
+			version: "4.0.0",
 		}];
 	}
 }
