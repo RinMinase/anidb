@@ -42,7 +42,7 @@ export class LoginController {
 						}
 					});
 				});
-		}, 300);
+		}, 500);
 	}
 
 	authenticate() {
