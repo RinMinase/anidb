@@ -1,14 +1,18 @@
 export class LoginController {
 	constructor (
+		$document,
 		$scope,
 		$state,
+		$timeout,
 		firebase
 	) {
 		"ngInject";
 
 		_.extend(this, {
+			$document,
 			$scope,
 			$state,
+			$timeout,
 			firebase,
 
 			alert: null,
@@ -19,7 +23,26 @@ export class LoginController {
 	}
 
 	activate() {
+		this.$timeout(() => {
+			this.$document[0].querySelectorAll(".animated-input")
+				.forEach((element) => {
+					const ngElement = angular.element(element);
 
+					if (ngElement.val()) {
+						ngElement.parent().addClass("focused");
+					}
+
+					ngElement.bind("focus", () => {
+						ngElement.parent().addClass("focused");
+					});
+
+					ngElement.bind("blur", () => {
+						if (!ngElement.val()) {
+							ngElement.parent().removeClass("focused");
+						}
+					});
+				});
+		}, 300);
 	}
 
 	authenticate() {

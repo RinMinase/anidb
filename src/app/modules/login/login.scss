@@ -49,4 +49,37 @@
 		color: #000;
 		font-weight: bold;
 	}
+
+	.animated-input-container {
+		position:relative;
+
+		.animated-label {
+			position: absolute;
+			left: 0;
+			right: 0px;
+			margin-left: auto;
+			margin-right: auto;
+			top: 10px;
+			color: #000;
+			z-index: 10;
+			transition: transform 150ms ease-out, font-size 150ms ease-out;
+		}
+
+		&.focused .animated-label {
+			transform: translateY(-110%);
+			font-size: .95em;
+		}
+
+		.animated-input {
+			&:focus { box-shadow: 0 2px 0 0 #28a745; }
+
+			position: relative;
+			padding: 12px 0px 5px 0;
+			width: 100%;
+			outline: 0;
+			border: 0;
+			background: transparent;
+			transition: box-shadow 150ms ease-out;
+		}
+	}
 }
