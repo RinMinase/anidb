@@ -453,7 +453,7 @@
 									<span>Hooray!! No package issues found!</span>
 								</li>
 								<li class="package-issues"
-									ng-repeat="issues in vm.packageIssues"
+									ng-repeat="issues in vm.packageIssues | limitTo: (1 - vm.packageIssues.length)"
 									ng-if="vm.packageIssues.length > 1">
 
 									<code class="{{ ::issues.severity }}">[{{ ::issues.package }}]</code>
