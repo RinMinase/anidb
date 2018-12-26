@@ -84,6 +84,7 @@
 			&:focus, &.filled { box-shadow: 0 2px 0 0 #28a745; }
 			&:-webkit-autofill {
 				-webkit-animation: autofill 0s forwards;
+				-webkit-text-fill-color: #000;
 				animation: autofill 0s forwards;
 				box-shadow: 0 2px 0 0 #FF8A65;
 			}
