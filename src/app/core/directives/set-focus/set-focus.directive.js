@@ -1,4 +1,4 @@
-export function setFocusDirective($document) {
+export function SetFocusDirective($document) {
 	"ngInject";
 
 	const directive = {
