@@ -34,10 +34,17 @@ function webpackWrapper(watch, callback) {
 			}, {
 				test: /\.js$/,
 				exclude: /node_modules/,
-				use: [
-					"ng-annotate-loader",
-					"babel-loader?presets[]=env"
-				]
+				use: [{
+					loader: "ng-annotate-loader",
+					options: {
+						ngAnnotate: "ng-annotate-patched",
+						es6: true,
+						explicitOnly: false
+					}
+				}, {
+					loader: "babel-loader",
+					options: { presets: ["@babel/preset-env"] }
+				}],
 			}]
 		},
 		optimization: {
