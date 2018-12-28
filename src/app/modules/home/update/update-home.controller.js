@@ -57,7 +57,7 @@ export class UpdateHomeController {
 	activate() {
 		this.firebase.auth()
 			.then(() => {
-				this.firebase.retrieve()
+				this.firebase.retrieve("anime", "", 0, "", false, false)
 					.then((data) => {
 						data.map((value) => {
 							this.titleList.push(value.title);

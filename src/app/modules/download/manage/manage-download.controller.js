@@ -36,7 +36,7 @@ export class ManageDownloadController {
 	activate() {
 		this.firebase.auth()
 			.then(() => {
-				this.firebase.retrieve()
+				this.firebase.retrieve("anime", "", 0, "", false, false)
 					.then((data) => {
 						this._formatData(data);
 						this.dataLoaded = true;

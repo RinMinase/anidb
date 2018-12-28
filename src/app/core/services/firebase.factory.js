@@ -74,13 +74,15 @@ export function FirebaseFactory() {
 		id = "",
 		limit = 0,
 		orderKey = "",
-		orderDesc = false
+		orderDesc = false,
+		inhdd = true
 	) {
 		id = (id) ? `/${id}` : "";
 
 		limit = (!isNaN(parseInt(limit))) ? parseInt(limit) : 0;
 
 		let orderKeyValid = false;
+		const inHddValue = (inhdd && db === "anime") ? 1 : 0;
 
 		if (orderKey || orderKey === "dateFinished") {
 			orderKeyValid = true;
@@ -88,7 +90,14 @@ export function FirebaseFactory() {
 
 		firebase.database().ref(`/${db}${id}`).on("value", () => {});
 
-		if (!limit && !orderKey) {
+		if (!limit && !orderKey && inHddValue) {
+			return firebase.database()
+				.ref(`/${db}${id}`)
+				.orderByChild("inhdd")
+				.equalTo(1)
+				.once("value")
+				.then((data) => _objectToArray(data.val()));
+		} else if (!limit && !orderKey && !inHddValue) {
 			return firebase.database()
 				.ref(`/${db}${id}`)
 				.once("value")
