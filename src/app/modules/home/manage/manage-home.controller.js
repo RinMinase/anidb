@@ -89,7 +89,7 @@ export class ManageHomeController {
 	}
 
 	formatData(data) {
-		data.map((value, index) => {
+		data.map((value) => {
 			if (value.watchStatus <= 1) {
 				const filesize = this._convertFilesize(value.filesize);
 				let dateFinished;
@@ -106,7 +106,7 @@ export class ManageHomeController {
 					encoder: value.encoder,
 					episodes: value.episodes,
 					filesize,
-					id: index,
+					id: value.id,
 					ovas: value.ovas,
 					quality: value.quality,
 					releaseSeason: value.releaseSeason,

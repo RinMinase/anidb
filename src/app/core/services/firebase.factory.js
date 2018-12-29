@@ -78,7 +78,6 @@ export function FirebaseFactory() {
 		inhdd = true
 	) {
 		id = (id) ? `/${id}` : "";
-
 		limit = (!isNaN(parseInt(limit))) ? parseInt(limit) : 0;
 
 		let orderKeyValid = false;
@@ -90,14 +89,14 @@ export function FirebaseFactory() {
 
 		firebase.database().ref(`/${db}${id}`).on("value", () => {});
 
-		if (!limit && !orderKey && inHddValue) {
+		if (id === "" && !limit && !orderKey && inHddValue) {
 			return firebase.database()
 				.ref(`/${db}${id}`)
 				.orderByChild("inhdd")
 				.equalTo(1)
 				.once("value")
 				.then((data) => _objectToArray(data.val()));
-		} else if (!limit && !orderKey && !inHddValue) {
+		} else if (!limit && !orderKey) {
 			return firebase.database()
 				.ref(`/${db}${id}`)
 				.once("value")
@@ -159,22 +158,6 @@ export function FirebaseFactory() {
 			.remove());
 	}
 
-	function _objectToArray(data) {
-		if (!isNaN(Object.keys(data)[0])
-			&& data.constructor.toString().indexOf("Object") !== -1) {
-
-			const output = [];
-
-			Object.keys(data).map((key, index) => {
-				output[index] = data[key];
-			});
-
-			return output;
-		}
-
-		return data;
-	}
-
 	function increaseCacheControl(ref) {
 		return new Promise((resolve, reject) => {
 			firebase.storage()
@@ -214,5 +197,22 @@ export function FirebaseFactory() {
 					}
 				});
 		});
+	}
+
+	function _objectToArray(data) {
+		if (!isNaN(Object.keys(data)[0])
+			&& data.constructor.toString().indexOf("Object") !== -1) {
+
+			const output = [];
+
+			Object.keys(data).map((key, index) => {
+				output[index] = data[key];
+				output[index].id = parseInt(key);
+			});
+
+			return output;
+		}
+
+		return data;
 	}
 }
