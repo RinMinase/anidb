@@ -28,9 +28,7 @@ export class ByNameController {
 						this.dataLoaded = true;
 						this.$scope.$digest();
 					});
-			}).catch(() => {
-				this.$state.go("login");
-			});
+			}).catch(() => this.$state.go("login"));
 	}
 
 	formatData(rawData) {

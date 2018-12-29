@@ -61,9 +61,7 @@ export class ManageHomeController {
 							this.$anchorScroll(this.$stateParams.id);
 						}
 					});
-			}).catch(() => {
-				this.$state.go("login");
-			});
+			}).catch(() => this.$state.go("login"));
 
 		this.$scope.$watch(
 			() => this.search,

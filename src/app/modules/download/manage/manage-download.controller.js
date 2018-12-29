@@ -42,9 +42,7 @@ export class ManageDownloadController {
 						this.dataLoaded = true;
 						this.$scope.$digest();
 					});
-			}).catch(() => {
-				this.$state.go("login");
-			});
+			}).catch(() => this.$state.go("login"));
 	}
 
 	addSeasonList() {

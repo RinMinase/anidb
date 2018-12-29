@@ -29,8 +29,6 @@ class NavbarController {
 
 	logout() {
 		this.firebase.logout()
-			.then(() => {
-				this.$state.go("login");
-			});
+			.then(() => this.$state.go("login"));
 	}
 }

@@ -82,12 +82,8 @@ export class ViewHomeController {
 						this.data = data;
 						this.dataLoaded = true;
 						this.$scope.$digest();
-					}).catch(() => {
-						this.$state.go("home.manage");
-					});
-			}).catch(() => {
-				this.$state.go("login");
-			});
+					}).catch(() => this.$state.go("home.manage"));
+			}).catch(() => this.$state.go("login"));
 	}
 
 	back() {

@@ -35,9 +35,7 @@ export class ManageHddController {
 						this.dataLoaded = true;
 						this.$scope.$digest();
 					});
-			}).catch(() => {
-				this.$state.go("login");
-			});
+			}).catch(() => this.$state.go("login"));
 	}
 
 	formatData(hddData, animeData) {

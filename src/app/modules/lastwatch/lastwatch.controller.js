@@ -35,9 +35,7 @@ export class LastWatchController {
 								this.$scope.$digest();
 							});
 					});
-			}).catch(() => {
-				this.$state.go("login");
-			});
+			}).catch(() => this.$state.go("login"));
 	}
 
 	_convertFilesize(filesize) {

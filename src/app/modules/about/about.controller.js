@@ -49,9 +49,7 @@ export class AboutController {
 						this.dataLoaded = true;
 						this.$scope.$digest();
 					});
-			}).catch(() => {
-				this.$state.go("login");
-			});
+			}).catch(() => this.$state.go("login"));
 
 		this._getFirebaseImages();
 		this._getGithubCommits();
