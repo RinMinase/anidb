@@ -73,7 +73,7 @@
     "selenium-server": "^3.141.59",
     "ui-bootstrap4": "^3.0.5",
     "velocity-animate": "^1.5.2",
-    "webpack": "^4.28.2",
+    "webpack": "^4.28.3",
     "webpack-stream": "^5.2.1",
     "xlsx": "^0.14.1"
   },
