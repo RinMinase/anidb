@@ -48,7 +48,7 @@
     "firebase": "^5.7.2",
     "font-awesome": "^4.7.0",
     "fuse.js": "^3.3.0",
-    "gulp": "3.9.1",
+    "gulp": "^4.0.0",
     "gulp-angular-templatecache": "^2.2.5",
     "gulp-autoprefixer": "^6.0.0",
     "gulp-filter": "^5.1.0",
@@ -72,6 +72,7 @@
     "run-sequence": "^2.2.1",
     "selenium-server": "^3.141.59",
     "ui-bootstrap4": "^3.0.5",
+    "undertaker-forward-reference": "^1.0.2",
     "velocity-animate": "^1.5.2",
     "webpack": "^4.28.3",
     "webpack-stream": "^5.2.1",
@@ -80,6 +81,7 @@
   "resolutions": {
     "**/@firebase/app-types": "0.3.2",
     "**/angular": "1.7.5",
+    "**/gulp": "4.0.0",
     "**/jquery": "3.3.1",
     "**/popper.js": "1.14.6"
   },
