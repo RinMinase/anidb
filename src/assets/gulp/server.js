@@ -3,13 +3,15 @@
 require("dotenv").config({ path: "./src/assets/.env" });
 
 var fs = require("fs");
-var path = require("path");
-var gulp = require("gulp");
+var join = require("path").join;
 var conf = require("../../../gulpfile.js");
+
+var task = require("gulp").task;
+var series = require("gulp").series;
+var parallel = require("gulp").parallel;
 
 var browserSync = require("browser-sync");
 var browserSyncSpa = require("browser-sync-spa");
-var runSequence = require("run-sequence");
 
 function browserSyncInit(baseDir, browser) {
 	browser = browser || "default";
@@ -83,60 +85,59 @@ browserSync.use(browserSyncSpa({
 	selector: "[ng-app]"	// Only needed for angular apps
 }));
 
-gulp.task("serve", ["dev"], function () {
+task("serve", series("dev", function () {
 	browserSyncInit([
-		path.join(conf.paths.tmp, "/serve"),
+		join(conf.paths.tmp, "/serve"),
 		conf.paths.src
 	]);
-});
+}));
 
-gulp.task("serve:dist", ["build"], function () {
+task("serve:dist", series("build", function () {
 	browserSyncInit(conf.paths.dist);
-});
+}));
 
-gulp.task("clean", function () {
-	return syncDeleteFolder([
+task("clean", function (done) {
+	syncDeleteFolder([
 		conf.paths.tmp,
 		conf.paths.dist,
 		conf.paths.www
 	]);
+
+	done();
 });
 
-gulp.task("dev", function (done) {
-	runSequence(
-		["lazyload", "fonts", "scripts:watch"],
+task("dev",
+	series(
+		parallel("lazyload", "fonts", "scripts:watch"),
 		"styles",
 		"inject",
-		"watch",
-		function() {
-			done();
-		}
-	);
-});
+		"watch"
+	)
+);
 
-gulp.task("build", function (done) {
-	runSequence(
+task("build",
+	series(
 		"clean",
-		["lazyload:dist", "fonts:dist", "scripts"],
+		parallel("lazyload:dist", "fonts:dist", "scripts"),
 		"styles",
-		["inject", "partials", "other", "robots"],
+		parallel("inject", "partials", "other", "robots"),
 		"html",
-		function() {
+		function(done) {
 			syncDeleteFolder(conf.paths.tmp);
 			done();
 		}
-	);
-});
+	)
+);
 
-gulp.task("bundle", function (done) {
-	runSequence(
+task("bundle",
+	series(
 		"clean",
-		["lazyload:dist", "fonts:dist", "inject:bundle", "partials", "other", "robots"],
+		parallel("lazyload:dist", "fonts:dist", "inject:bundle", "partials", "other", "robots"),
 		"html",
 		"relocate",
-		function() {
+		function(done) {
 			syncDeleteFolder(conf.paths.tmp);
 			done();
 		}
-	);
-});
+	)
+);
