@@ -1,9 +1,11 @@
 "use strict";
 
-var fs = require("fs");
-var path = require("path");
-var gulp = require("gulp");
+var join = require("path").join;
 var conf = require("../../../gulpfile.js");
+
+var task = require("gulp").task;
+var src = require("gulp").src;
+var dest = require("gulp").dest;
 
 var angularTemplatecache = require("gulp-angular-templatecache");
 var filter = require("gulp-filter");
@@ -17,14 +19,14 @@ var useref = require("gulp-useref");
 /**
  * Build Tasks
  */
-gulp.task("html", function () {
-	var partialsInjectFile = gulp.src(
-		path.join(conf.paths.tmp, "/partials/templateCacheHtml.js"),
+task("html", function () {
+	var partialsInjectFile = src(
+		join(conf.paths.tmp, "/partials/templateCacheHtml.js"),
 		{ read: false }
 	);
 	var partialsInjectOptions = {
 		starttag: "<!-- inject:partials -->",
-		ignorePath: path.join(conf.paths.tmp, "/partials"),
+		ignorePath: join(conf.paths.tmp, "/partials"),
 		addRootSlash: false
 	};
 
@@ -32,7 +34,7 @@ gulp.task("html", function () {
 	var jsFilter = filter("**/*.js", { restore: true });
 	var cssFilter = filter("**/*.css", { restore: true });
 
-	return gulp.src(path.join(conf.paths.tmp, "/serve/*.html"))
+	return src(conf.paths.tmp + "/serve/*.html")
 		.pipe(inject(partialsInjectFile, partialsInjectOptions))
 		.pipe(useref())
 		.pipe(jsFilter)
@@ -44,17 +46,17 @@ gulp.task("html", function () {
 		.pipe(revReplace())
 		.pipe(htmlFilter)
 		.pipe(htmlFilter.restore)
-		.pipe(gulp.dest(path.join(conf.paths.dist, "/")))
+		.pipe(dest(join(conf.paths.dist, "/")))
 		.pipe(size({
-			title: path.join(conf.paths.dist, "/"),
+			title: join(conf.paths.dist, "/"),
 			showFiles: true
 		}));
 });
 
-gulp.task("partials", function () {
-	return gulp.src([
-		path.join(conf.paths.src, "/app/**/*.html"),
-		path.join(conf.paths.tmp, "/serve/app/**/*.html")
+task("partials", function () {
+	return src([
+		conf.paths.src + "/app/**/*.html",
+		conf.paths.tmp + "/serve/app/**/*.html"
 	])
 	.pipe(
 		htmlmin({
@@ -73,32 +75,34 @@ gulp.task("partials", function () {
 			}
 		)
 	)
-	.pipe(gulp.dest(conf.paths.tmp + "/partials/"));
+	.pipe(dest(conf.paths.tmp + "/partials/"));
 });
 
-gulp.task("other", function () {
+task("other", function () {
 	var fileFilter = filter(function (file) {
 		return file.stat.isFile();
 	});
 
-	return gulp.src([
-		path.join(conf.paths.src, "/**/*"),
-		path.join("!" + conf.paths.src, "/**/*.{html,css,js,scss}"),
-		path.join("!" + conf.paths.src, "/assets/firebase/*"),
-		path.join("!" + conf.paths.src, "/assets/testing/*"),
-		path.join("!" + conf.paths.src, "/assets/robots.txt"),
-		path.join("!" + conf.paths.src, "/res/**/*")
+	return src([
+		conf.paths.src + "/**/*",
+		"!" + conf.paths.src + "/**/*.{html,css,js,scss}",
+		"!" + conf.paths.src + "/assets/firebase/*",
+		"!" + conf.paths.src + "/assets/testing/*",
+		"!" + conf.paths.src + "/assets/robots.txt",
+		"!" + conf.paths.src + "/res/**/*"
 	])
 	.pipe(fileFilter)
-	.pipe(gulp.dest(path.join(conf.paths.dist, "/")));
+	.pipe(dest(join(conf.paths.dist, "/")));
 });
 
-gulp.task("robots", function () {
-	gulp.src(conf.paths.src + "/assets/robots.txt")
-		.pipe(gulp.dest(path.join(conf.paths.dist, "/")));
+task("robots", function (done) {
+	src(conf.paths.src + "/assets/robots.txt")
+		.pipe(dest(join(conf.paths.dist, "/")));
+
+	done();
 });
 
-gulp.task("relocate", function () {
-	gulp.src(conf.paths.dist + "/**/*")
-		.pipe(gulp.dest(conf.paths.www));
+task("relocate", function () {
+	src(conf.paths.dist + "/**/*")
+		.pipe(dest(conf.paths.www));
 });
