@@ -73,6 +73,7 @@ export class AboutController {
 	}
 
 	_formatData(data) {
+		this.chart.data = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 		this.data.quality = {
 			uhd: 0,
 			fhd: 0,
@@ -80,6 +81,7 @@ export class AboutController {
 			hq: 0,
 			lq: 0,
 		};
+
 
 		let totalDuration = 0;
 		let totalFilesize = 0;
@@ -89,6 +91,13 @@ export class AboutController {
 
 			if (value.watchStatus > 1) {
 				return;
+			}
+
+			const dateFinished = moment.unix(value.dateFinished);
+			const month = dateFinished.month();
+
+			if (month > -1 && month < 12) {
+				this.chart.data[month]++;
 			}
 
 			totalDuration += parseInt(value.duration);
@@ -137,7 +146,6 @@ export class AboutController {
 
 	_generateChartData() {
 		this.chart.labels = ["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"];
-		this.chart.data = [[65, 59, 80, 81, 56, 55, 40, 65, 59, 80, 81, 56, 55, 40]];
 		this.chart.series = ["Series A"];
 		this.chart.datasetOverride = [{
 			yAxisID: "y-axis-1",
