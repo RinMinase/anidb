@@ -1,78 +1,69 @@
-"use strict";
+const { join } = require("path");
+const { task, series, src, dest } = require("gulp");
+const conf = require("../../../gulpfile.js");
 
-var join = require("path").join;
-var conf = require("../../../gulpfile.js");
+const browserSync = require("browser-sync");
+const inject = require("gulp-inject");
+const rename = require("gulp-rename");
 
-var task = require("gulp").task;
-var series = require("gulp").series;
-var src = require("gulp").src;
-var dest = require("gulp").dest;
-
-var browserSync = require("browser-sync");
-var inject = require("gulp-inject");
-var rename = require('gulp-rename');
-
-/**
- * Injection Tasks
- */
-task("inject", function () {
-	var injectStyles = src([
+task("inject", () => {
+	const injectStyles = src([
 		join(conf.paths.tmp, "/serve/app/**/*.css"),
-		join("!" + conf.paths.tmp, "/serve/app/vendor.css")
+		join(`!${conf.paths.tmp}`, "/serve/app/vendor.css")
 	], { read: false });
 
-	var injectScripts = src([
+	const injectScripts = src([
 		join(conf.paths.tmp, "/serve/app/**/*.module.js")
 	], { read: false });
 
-	var injectStylesOptions = {
+	const injectStylesOptions = {
 		ignorePath: [
 			conf.paths.src,
 			join(conf.paths.tmp, "/serve")
 		],
-		addRootSlash: false
+		addRootSlash: false,
 	};
 
-	var injectScriptsOptions = {
+	const injectScriptsOptions = {
 		ignorePath: [
 			conf.paths.src,
 			join(conf.paths.tmp, "/serve")
 		],
 		addRootSlash: false,
 		transform: (path) => {
-			return "<script src='" + path + "' defer></script>";
+			return `<script src='${path}' defer></script>`;
 		}
 	};
 
-	return src(conf.paths.src + "/index.html")
+	return src(`${conf.paths.src}/index.html`)
 		.pipe(inject(injectStyles, injectStylesOptions))
 		.pipe(inject(injectScripts, injectScriptsOptions))
 		.pipe(dest(join(conf.paths.tmp, "/serve")));
 });
 
-task("inject-reload", series("inject", function() {
+task("inject-reload", series("inject", () => {
 	browserSync.reload();
 }));
 
-task("inject:bundle", series("scripts", "styles", function () {
-	var injectStyles = src([
+task("inject:bundle", series("scripts", "styles", () => {
+	const injectStyles = src([
 		join(conf.paths.tmp, "/serve/app/**/*.css"),
-		join("!" + conf.paths.tmp, "/serve/app/vendor.css")
+		join(`!${conf.paths.tmp}`, "/serve/app/vendor.css")
 	], { read: false });
 
-	var injectScripts = src([
+	const injectScripts = src([
 		join(conf.paths.tmp, "/serve/app/**/*.module.js")
 	], { read: false });
 
-	var injectOptions = {
+	const injectOptions = {
 		ignorePath: [
 			conf.paths.src,
 			join(conf.paths.tmp, "/serve")
 		],
-		addRootSlash: false
+		addRootSlash: false,
 	};
 
-	return src(conf.paths.src + "/index-mobile.html")
+	return src(`${conf.paths.src}/index-mobile.html`)
 		.pipe(inject(injectStyles, injectOptions))
 		.pipe(inject(injectScripts, injectOptions))
 		.pipe(rename("index.html"))
