@@ -1,14 +1,9 @@
-"use strict";
-
-var readdirSync = require("fs").readdirSync;
-var join = require("path").join;
-var log = require("fancy-log");
-var colors = require("ansi-colors");
-var fwdRef = require("undertaker-forward-reference");
-
-var registry = require("gulp").registry;
-var task = require("gulp").task;
-var series = require("gulp").series;
+const { readdirSync } = require("fs");
+const { join } = require("path");
+const { registry, task, series } = require("gulp");
+const log = require("fancy-log");
+const colors = require("ansi-colors");
+const fwdRef = require("undertaker-forward-reference");
 
 registry(fwdRef());
 
@@ -16,20 +11,13 @@ registry(fwdRef());
  *  This will load all js or coffee files in the gulp directory
  *  in order to load all gulp tasks
  */
-readdirSync("./src/assets/gulp").filter(function(file) {
-	return (/\.(js|coffee)$/i).test(file);
-}).map(function(file) {
-	require("./src/assets/gulp/" + file);
-});
+readdirSync("./src/assets/gulp")
+	.filter((file) => (/\.(js|coffee)$/i).test(file))
+	.map((file) => {
+		require("./src/assets/gulp/" + file); //eslint-disable-line
+	});
 
 task("default", series("build"));
-
-/**
- *  These are the variables used in other gulp files.
- *  By design, we only put very generic config values
- *  which are used in different places to keep a good
- *  readability of the tasks
- */
 
 /**
  *  The main paths of your project handle these with care
@@ -57,13 +45,8 @@ exports.paths = {
  *  Common implementation for an error handler of a Gulp plugin
  */
 exports.errorHandler = function(title) {
-	"use strict";
-
 	return function(err) {
-		log(
-			colors.red("[" + title + "]"),
-			err.toString()
-		);
+		log(colors.red(`[ ${title} ]`), err.toString());
 		this.emit("end");
 	};
 };
