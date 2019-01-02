@@ -325,11 +325,6 @@ export class AboutController {
 			reason: "-",
 			severity: "red",
 			version: "0.0.0",
-		}, {
-			package: "gulp",
-			reason: "Still has a lot of problems with current setup",
-			severity: "red",
-			version: "4.0.0",
 		}];
 	}
 }
