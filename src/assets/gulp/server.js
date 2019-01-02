@@ -1,17 +1,18 @@
-"use strict";
-
 require("dotenv").config({ path: "./src/assets/.env" });
 
-var fs = require("fs");
-var join = require("path").join;
-var conf = require("../../../gulpfile.js");
+const {
+	existsSync,
+	readdirSync,
+	lstatSync,
+	unlinkSync,
+	rmdirSync,
+} = require("fs");
+const { join } = require("path");
+const { task, series, parallel } = require("gulp");
+const conf = require("../../../gulpfile.js");
 
-var task = require("gulp").task;
-var series = require("gulp").series;
-var parallel = require("gulp").parallel;
-
-var browserSync = require("browser-sync");
-var browserSyncSpa = require("browser-sync-spa");
+const browserSync = require("browser-sync");
+const browserSyncSpa = require("browser-sync-spa");
 
 function browserSyncInit(baseDir, browser) {
 	browser = browser || "default";
@@ -21,86 +22,70 @@ function browserSyncInit(baseDir, browser) {
 	 * You just have to configure a context which will we redirected and the target url.
 	 * Example: $http.get("/users") requests will be automatically proxified.
 	 *
-	 * For more details and option,
-	 * https://github.com/chimurai/http-proxy-middleware/blob/v0.9.0/README.md
-	 *
 	 * Example:
-	 *
 	 * var proxyMiddleware = require("http-proxy-middleware");
 	 * server.middleware = proxyMiddleware(
-	 * 		"/users", {
-	 * 			target: "http://jsonplaceholder.typicode.com",
-	 * 			changeOrigin: true
-	 * 		}
+	 * 		"/users", { target: "http://jsonplaceholder.typicode.com", changeOrigin: true }
 	 * );
-	 *
 	 */
 
 	browserSync.instance = browserSync.init({
 		startPath: "/",
 		server: {
-			baseDir: baseDir,
-			routes: null
+			baseDir,
+			routes: null,
 		},
-		browser: browser,
+		browser,
 		port: process.env.PORT || 3000,
-		ui: false,			// Disables :3001 browsersync options UI
-		open: false,		// Disables opening of browser on serving
-		notify: false,		// Removes top right browsersync notification
-		ghostMode: false
+		ui: false,
+		open: false,
+		notify: false,
+		ghostMode: false,
 	});
 }
 
 function syncDeleteFolder(path) {
 	if (Array.isArray(path)) {
-		path.forEach(function(el) {
-			if (fs.existsSync(el)) {
-				fs.readdirSync(el).forEach(function(file){
-					var curPath = el + "/" + file;
-					if (fs.lstatSync(curPath).isDirectory()) {
-						syncDeleteFolder(curPath);
-					} else {
-						fs.unlinkSync(curPath);
-					}
+		path.forEach((el) => {
+			if (existsSync(el)) {
+				readdirSync(el).forEach((file) => {
+					const curPath = `${el}/${file}`;
+
+					lstatSync(curPath).isDirectory() ? syncDeleteFolder(curPath) : unlinkSync(curPath);
 				});
-				fs.rmdirSync(el);
+				rmdirSync(el);
 			}
 		});
-	} else {
-		if (fs.existsSync(path) && path) {
-			fs.readdirSync(path).forEach(function(file){
-				var curPath = path + "/" + file;
-				if (fs.lstatSync(curPath).isDirectory()) {
-					syncDeleteFolder(curPath);
-				} else {
-					fs.unlinkSync(curPath);
-				}
-			});
-			fs.rmdirSync(path);
-		}
+	} else if (existsSync(path) && path) {
+		readdirSync(path).forEach((file) => {
+			const curPath = `${path}/${file}`;
+
+			lstatSync(curPath).isDirectory() ? syncDeleteFolder(curPath) : unlinkSync(curPath);
+		});
+		rmdirSync(path);
 	}
-};
+}
 
 browserSync.use(browserSyncSpa({
-	selector: "[ng-app]"	// Only needed for angular apps
+	selector: "[ng-app]",
 }));
 
-task("serve", series("dev", function () {
+task("serve", series("dev", () => {
 	browserSyncInit([
 		join(conf.paths.tmp, "/serve"),
-		conf.paths.src
+		conf.paths.src,
 	]);
 }));
 
-task("serve:dist", series("build", function () {
+task("serve:dist", series("build", () => {
 	browserSyncInit(conf.paths.dist);
 }));
 
-task("clean", function (done) {
+task("clean", (done) => {
 	syncDeleteFolder([
 		conf.paths.tmp,
 		conf.paths.dist,
-		conf.paths.www
+		conf.paths.www,
 	]);
 
 	done();
@@ -122,7 +107,7 @@ task("build",
 		"styles",
 		parallel("inject", "partials", "other", "robots"),
 		"html",
-		function(done) {
+		(done) => {
 			syncDeleteFolder(conf.paths.tmp);
 			done();
 		}
@@ -135,7 +120,7 @@ task("bundle",
 		parallel("lazyload:dist", "fonts:dist", "inject:bundle", "partials", "other", "robots"),
 		"html",
 		"relocate",
-		function(done) {
+		(done) => {
 			syncDeleteFolder(conf.paths.tmp);
 			done();
 		}
