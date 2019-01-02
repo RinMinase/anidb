@@ -1,24 +1,28 @@
 "use strict";
 
-var fs = require("fs");
-var gulp = require("gulp");
-var path = require("path");
+var readdirSync = require("fs").readdirSync;
+var join = require("path").join;
 var log = require("fancy-log");
 var colors = require("ansi-colors");
+var fwdRef = require("undertaker-forward-reference");
+
+var registry = require("gulp").registry;
+var task = require("gulp").task;
+var series = require("gulp").series;
+
+registry(fwdRef());
 
 /**
  *  This will load all js or coffee files in the gulp directory
  *  in order to load all gulp tasks
  */
-fs.readdirSync("./src/assets/gulp").filter(function(file) {
+readdirSync("./src/assets/gulp").filter(function(file) {
 	return (/\.(js|coffee)$/i).test(file);
 }).map(function(file) {
 	require("./src/assets/gulp/" + file);
 });
 
-gulp.task("default", function () {
-	gulp.start("build");
-});
+task("default", series("build"));
 
 /**
  *  These are the variables used in other gulp files.
@@ -31,7 +35,7 @@ gulp.task("default", function () {
  *  The main paths of your project handle these with care
  */
 exports.paths = {
-	root: path.join(__dirname),
+	root: join(__dirname),
 	src: "src",
 	dist: "dist",
 	www: "www",
