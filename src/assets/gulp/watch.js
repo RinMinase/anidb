@@ -1,38 +1,41 @@
 "use strict";
 
-var fs = require("fs");
-var path = require("path");
-var gulp = require("gulp");
+var join = require("path").join;
 var conf = require("../../../gulpfile.js");
+
+var task = require("gulp").task;
+var watch = require("gulp").watch;
+var start = require("gulp").start;
 
 var browserSync = require("browser-sync");
 
-/**
- * Watch Tasks
- */
 function isOnlyChange(event) {
 	return event.type === "changed";
 }
 
-gulp.task("watch", function () {
-	gulp.watch(
-		path.join(conf.paths.src, "/*.html"),
-		["inject-reload"]
+task("watch", function (done) {
+	watch(
+		join(conf.paths.src, "/*.html"),
+		function () {
+			start("inject-reload")
+		}
 	);
 
-	gulp.watch([
-		path.join(conf.paths.src, "/app/**/*.css"),
-		path.join(conf.paths.src, "/app/**/*.scss"),
-		path.join(conf.paths.src, "/assets/styles/*.css"),
-		path.join(conf.paths.src, "/assets/styles/*.scss")
+	watch([
+		join(conf.paths.src, "/app/**/*.css"),
+		join(conf.paths.src, "/app/**/*.scss"),
+		join(conf.paths.src, "/assets/styles/*.css"),
+		join(conf.paths.src, "/assets/styles/*.scss")
 	], function(event) {
-		isOnlyChange(event) ? gulp.start("styles-reload") : gulp.start("inject-reload");
+		isOnlyChange(event) ? start("styles-reload") : start("inject-reload");
 	});
 
-	gulp.watch([
-		path.join(conf.paths.src, "/app/**/*.html"),
-		path.join(conf.paths.src, "/assets/index.html")
+	watch([
+		join(conf.paths.src, "/app/**/*.html"),
+		join(conf.paths.src, "/assets/index.html")
 	], function(event) {
 		browserSync.reload(event.path);
 	});
+
+	done();
 });
