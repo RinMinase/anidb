@@ -1,10 +1,12 @@
 "use strict";
 
-var fs = require("fs");
-var path = require("path");
-var gulp = require("gulp");
+var join = require("path").join;
 var log = require("fancy-log");
 var conf = require("../../../gulpfile.js");
+
+var task = require("gulp").task;
+var src = require("gulp").src;
+var dest = require("gulp").dest;
 
 var browserSync = require("browser-sync");
 var dotenv = require('dotenv').config({ path: "./src/assets/.env" });
@@ -12,9 +14,6 @@ var webpack = require("webpack");
 var webpackStream = require("webpack-stream");
 var CompressionPlugin = require("compression-webpack-plugin");
 
-/**
- * Script Tasks
- */
 function webpackWrapper(watch, callback) {
 	var webpackOptions = {
 		watch: watch,
@@ -29,7 +28,7 @@ function webpackWrapper(watch, callback) {
 				exclude: /node_modules/,
 				use: [{
 					loader: "ngtemplate-loader",
-					options: { relativeTo: path.join(conf.paths.root, conf.paths.src) }
+					options: { relativeTo: join(conf.paths.root, conf.paths.src) }
 				}, { loader: "html-loader" }]
 			}, {
 				test: /\.js$/,
@@ -52,7 +51,7 @@ function webpackWrapper(watch, callback) {
 		},
 		output: {
 			filename: "index.module.js",
-			path: path.join(conf.paths.root, conf.paths.tmp, "/serve/app"),
+			path: join(conf.paths.root, conf.paths.tmp, "/serve/app"),
 		},
 		performance: { hints: false },
 		plugins: []
@@ -92,7 +91,7 @@ function webpackWrapper(watch, callback) {
 		}
 	};
 
-	return gulp.src(path.join(conf.paths.src, "/app/index.module.js"))
+	return src(conf.paths.src + "/app/index.module.js")
 		.pipe(
 			webpackStream(
 				webpackOptions,
@@ -100,13 +99,13 @@ function webpackWrapper(watch, callback) {
 				webpackChangeHandler
 			)
 		)
-		.pipe(gulp.dest(path.join(conf.paths.tmp, "/serve/app")));
+		.pipe(dest(join(conf.paths.tmp, "/serve/app")));
 }
 
-gulp.task("scripts", function () {
+task("scripts", function () {
 	return webpackWrapper(false);
 });
 
-gulp.task("scripts:watch", function (callback) {
+task("scripts:watch", function (callback) {
 	return webpackWrapper(true, callback);
 });
