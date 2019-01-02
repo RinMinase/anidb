@@ -1,10 +1,13 @@
 "use strict";
 
 var fs = require("fs");
-var path = require("path");
-var gulp = require("gulp");
-
+var join = require("path").join;
 var conf = require("../../../gulpfile.js");
+
+var task = require("gulp").task;
+var series = require("gulp").series;
+var src = require("gulp").src;
+var dest = require("gulp").dest;
 
 /**
  * Font Tasks
@@ -26,26 +29,30 @@ var robotofonts = [
 	"node_modules/roboto-fontface/fonts/roboto/Roboto-Light.woff2"
 ];
 
-gulp.task("fonts_roboto", function () {
-	if (!fs.existsSync(path.join(conf.paths.tmp, "/serve/fonts/roboto"))) {
-		return gulp.src(robotofonts)
-			.pipe(gulp.dest(path.join(conf.paths.tmp, "/serve/fonts/roboto")));
+task("fonts_roboto", function (done) {
+	if (!fs.existsSync(join(conf.paths.tmp, "/serve/fonts/roboto"))) {
+		return src(robotofonts)
+			.pipe(dest(join(conf.paths.tmp, "/serve/fonts/roboto")));
 	}
+
+	done();
 });
 
-gulp.task("fonts_roboto:dist", function () {
-	return gulp.src(robotofonts)
-		.pipe(gulp.dest(path.join(conf.paths.dist, "/fonts/roboto")));
+task("fonts_roboto:dist", function () {
+	return src(robotofonts)
+		.pipe(dest(join(conf.paths.dist, "/fonts/roboto")));
 });
 
-gulp.task("fonts", ["fonts_roboto"], function () {
-	if (!fs.existsSync(path.join(conf.paths.tmp, "/serve/fonts/fontawesome-webfont.woff2"))) {
-		return gulp.src(fontpaths)
-			.pipe(gulp.dest(path.join(conf.paths.tmp, "/serve/fonts")));
+task("fonts", series("fonts_roboto", function (done) {
+	if (!fs.existsSync(join(conf.paths.tmp, "/serve/fonts/fontawesome-webfont.woff2"))) {
+		return src(fontpaths)
+			.pipe(dest(join(conf.paths.tmp, "/serve/fonts")));
 	}
-});
 
-gulp.task("fonts:dist", ["fonts_roboto:dist"], function () {
-	return gulp.src(fontpaths)
-		.pipe(gulp.dest(path.join(conf.paths.dist, "/fonts")));
-});
+	done();
+}));
+
+task("fonts:dist", series("fonts_roboto:dist", function () {
+	return src(fontpaths)
+		.pipe(dest(join(conf.paths.dist, "/fonts")));
+}));
