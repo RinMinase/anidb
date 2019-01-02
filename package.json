@@ -97,6 +97,7 @@
     ]
   },
   "eslintIgnore": [
-    "src/assets/*"
+    "src/assets/firebase/*",
+    "src/res/*"
   ]
 }
