@@ -7,7 +7,6 @@ const browserSync = require("browser-sync");
 const dotenv = require("dotenv").config({ path: "./src/assets/.env" });
 const webpack = require("webpack");
 const webpackStream = require("webpack-stream");
-const CompressionPlugin = require("compression-webpack-plugin");
 
 function webpackWrapper(watch, callback) {
 	const webpackOptions = {
@@ -57,7 +56,6 @@ function webpackWrapper(watch, callback) {
 		webpackOptions.devtool = "inline-source-map";
 	} else {
 		webpackOptions.mode = "production";
-		webpackOptions.plugins.push(new CompressionPlugin());
 		webpackOptions.plugins.push(new webpack.DefinePlugin({ "process.env": dotenv.parsed }));
 	}
 
