@@ -41,7 +41,10 @@ function webpackWrapper(watch, callback) {
 			}],
 		},
 		optimization: {
-			splitChunks: { chunks: "all" },
+			splitChunks: {
+				chunks: "all",
+				maxSize: 200000,
+			},
 		},
 		output: {
 			filename: "index.module.js",
