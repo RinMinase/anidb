@@ -8,7 +8,6 @@ const htmlmin = require("gulp-htmlmin");
 const inject = require("gulp-inject");
 const rev = require("gulp-rev");
 const revReplace = require("gulp-rev-replace");
-const size = require("gulp-size");
 const useref = require("gulp-useref");
 
 /**
@@ -42,11 +41,7 @@ task("html", () => {
 		.pipe(revReplace())
 		.pipe(htmlFilter)
 		.pipe(htmlFilter.restore)
-		.pipe(dest(join(conf.paths.dist, "/")))
-		.pipe(size({
-			title: join(conf.paths.dist, "/"),
-			showFiles: true,
-		}));
+		.pipe(dest(join(conf.paths.dist, "/")));
 });
 
 task("partials", () => {
