@@ -81,6 +81,13 @@ task("serve:dist", series("build", () => {
 	browserSyncInit(conf.paths.dist);
 }));
 
+task("browsersync", () => {
+	browserSyncInit([
+		join(conf.paths.tmp, "/serve"),
+		conf.paths.src,
+	]);
+});
+
 task("clean", (done) => {
 	syncDeleteFolder([
 		conf.paths.tmp,
@@ -96,7 +103,7 @@ task("dev",
 		parallel("lazyload", "fonts", "scripts:watch"),
 		"styles",
 		"inject",
-		"watch"
+		parallel("watch", "browsersync")
 	)
 );
 
