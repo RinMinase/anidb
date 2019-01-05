@@ -43,7 +43,6 @@ function webpackWrapper(watch, callback) {
 		optimization: {
 			splitChunks: {
 				chunks: "all",
-				maxSize: 200000,
 			},
 		},
 		output: {
@@ -59,6 +58,8 @@ function webpackWrapper(watch, callback) {
 		webpackOptions.devtool = "inline-source-map";
 	} else {
 		webpackOptions.mode = "production";
+		webpackOptions.optimization.splitChunks.minSize = 153600;
+		webpackOptions.optimization.splitChunks.maxSize = 512000;
 		webpackOptions.plugins.push(new webpack.DefinePlugin({ "process.env": dotenv.parsed }));
 	}
 
