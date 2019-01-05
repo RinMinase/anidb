@@ -20,28 +20,20 @@ const htmlminOptions = {
 	collapseWhitespace: true,
 };
 
-/**
- * Build Tasks
- */
 task("html", () => {
-	const partialsInjectFile = src(
-		join(conf.paths.tmp, "/serve/app/index.template.js"),
-		{ read: false }
-	);
-
-	const partialsInjectOptions = {
+	const htmlFilter = filter("*.html", { restore: true });
+	const jsFilter = filter("**/*.js", { restore: true });
+	const cssFilter = filter("**/*.css", { restore: true });
+	const partialsFile = src(`${conf.paths.tmp}/serve/app/index.template.js`, { read: false });
+	const partialsOptions = {
 		starttag: "<!-- inject:partials -->",
 		ignorePath: join(conf.paths.tmp, "/serve"),
 		addRootSlash: false,
 		transform: (path) => `<script src="${path}" defer></script>`,
 	};
 
-	const htmlFilter = filter("*.html", { restore: true });
-	const jsFilter = filter("**/*.js", { restore: true });
-	const cssFilter = filter("**/*.css", { restore: true });
-
 	return src(`${conf.paths.tmp}/serve/*.html`)
-		.pipe(inject(partialsInjectFile, partialsInjectOptions))
+		.pipe(inject(partialsFile, partialsOptions))
 		.pipe(useref({ noconcat: true }))
 		.pipe(jsFilter)
 		.pipe(rev())
@@ -65,14 +57,14 @@ task("partials", () =>
 	src([
 		`${conf.paths.src}/app/**/*.html`,
 		`${conf.paths.tmp}/serve/app/**/*.html`,
-	]).pipe(htmlmin(htmlminOptions)).pipe(
-		angularTemplatecache(
+	]).pipe(htmlmin(htmlminOptions))
+		.pipe(angularTemplatecache(
 			"index.template.js", {
 				module: "anidbAngular",
 				root: "app",
 			}
-		)
-	).pipe(dest(`${conf.paths.tmp}/serve/app/`))
+		))
+		.pipe(dest(`${conf.paths.tmp}/serve/app/`))
 );
 
 task("other", () =>
