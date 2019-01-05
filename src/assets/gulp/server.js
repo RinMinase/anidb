@@ -98,6 +98,11 @@ task("clean", (done) => {
 	done();
 });
 
+task("clean:tmp", (done) => {
+	syncDeleteFolder(conf.paths.tmp);
+	done();
+});
+
 task("dev",
 	series(
 		parallel("lazyload", "fonts", "scripts:watch"),
@@ -114,10 +119,7 @@ task("build",
 		"styles",
 		parallel("inject", "partials", "other", "robots"),
 		"html",
-		(done) => {
-			syncDeleteFolder(conf.paths.tmp);
-			done();
-		}
+		"clean:tmp"
 	)
 );
 
@@ -127,9 +129,6 @@ task("bundle",
 		parallel("lazyload:dist", "fonts:dist", "inject:bundle", "partials", "other", "robots"),
 		"html",
 		"relocate",
-		(done) => {
-			syncDeleteFolder(conf.paths.tmp);
-			done();
-		}
+		"clean:tmp"
 	)
 );
