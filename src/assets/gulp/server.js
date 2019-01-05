@@ -117,7 +117,7 @@ task("build",
 		"clean",
 		parallel("lazyload:dist", "fonts:dist", "scripts"),
 		"styles",
-		parallel("inject", "partials", "other", "robots"),
+		parallel("inject", "partials", "other"),
 		"html",
 		"clean:tmp"
 	)
@@ -126,7 +126,7 @@ task("build",
 task("bundle",
 	series(
 		"clean",
-		parallel("lazyload:dist", "fonts:dist", "inject:bundle", "partials", "other", "robots"),
+		parallel("lazyload:dist", "fonts:dist", "inject:bundle", "partials", "other"),
 		"html",
 		"relocate",
 		"clean:tmp"

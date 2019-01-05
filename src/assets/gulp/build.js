@@ -75,23 +75,20 @@ task("partials", () =>
 	).pipe(dest(`${conf.paths.tmp}/serve/app/`))
 );
 
-task("other", () => {
-	const fileFilter = filter((file) => file.stat.isFile());
-
-	return src([
+task("other", () =>
+	src([
 		`${conf.paths.src}/**/*`,
 		`!${conf.paths.src}/**/*.{html,css,js,scss}`,
 		`!${conf.paths.src}/assets/firebase/*`,
 		`!${conf.paths.src}/assets/testing/*`,
 		`!${conf.paths.src}/assets/robots.txt`,
 		`!${conf.paths.src}/res/**/*`,
-	]).pipe(fileFilter)
-		.pipe(dest(join(conf.paths.dist, "/")));
-});
-
-task("robots", () =>
-	src(`${conf.paths.src}/assets/robots.txt`)
+	]).pipe(filter((file) => file.stat.isFile()))
 		.pipe(dest(join(conf.paths.dist, "/")))
+		.on("end", () =>
+			src(`${conf.paths.src}/assets/robots.txt`)
+				.pipe(dest(join(conf.paths.dist, "/")))
+		)
 );
 
 task("relocate", () =>
