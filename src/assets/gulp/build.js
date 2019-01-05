@@ -3,26 +3,37 @@ const { task, src, dest } = require("gulp");
 const conf = require("../../../gulpfile.js");
 
 const angularTemplatecache = require("gulp-angular-templatecache");
+const del = require("del");
 const filter = require("gulp-filter");
 const htmlmin = require("gulp-htmlmin");
 const inject = require("gulp-inject");
 const rev = require("gulp-rev");
 const revReplace = require("gulp-rev-replace");
 const useref = require("gulp-useref");
+const vinylPaths = require("vinyl-paths");
+
+const htmlminOptions = {
+	removeComments: true,
+	removeEmptyAttributes: true,
+	removeAttributeQuotes: true,
+	collapseBooleanAttributes: true,
+	collapseWhitespace: true,
+};
 
 /**
  * Build Tasks
  */
 task("html", () => {
 	const partialsInjectFile = src(
-		join(conf.paths.tmp, "/partials/templateCacheHtml.js"),
+		join(conf.paths.tmp, "/serve/app/index.template.js"),
 		{ read: false }
 	);
 
 	const partialsInjectOptions = {
 		starttag: "<!-- inject:partials -->",
-		ignorePath: join(conf.paths.tmp, "/partials"),
+		ignorePath: join(conf.paths.tmp, "/serve"),
 		addRootSlash: false,
+		transform: (path) => `<script src="${path}" defer></script>`,
 	};
 
 	const htmlFilter = filter("*.html", { restore: true });
@@ -31,7 +42,7 @@ task("html", () => {
 
 	return src(`${conf.paths.tmp}/serve/*.html`)
 		.pipe(inject(partialsInjectFile, partialsInjectOptions))
-		.pipe(useref())
+		.pipe(useref({ noconcat: true }))
 		.pipe(jsFilter)
 		.pipe(rev())
 		.pipe(jsFilter.restore)
@@ -41,30 +52,28 @@ task("html", () => {
 		.pipe(revReplace())
 		.pipe(htmlFilter)
 		.pipe(htmlFilter.restore)
-		.pipe(dest(join(conf.paths.dist, "/")));
+		.pipe(dest(`${conf.paths.dist}/`))
+		.on("end", () =>
+			src(`${conf.paths.dist}/index.html`)
+				.pipe(vinylPaths(del))
+				.pipe(htmlmin(htmlminOptions))
+				.pipe(dest(`${conf.paths.dist}/`))
+		);
 });
 
-task("partials", () => {
-	return src([
+task("partials", () =>
+	src([
 		`${conf.paths.src}/app/**/*.html`,
 		`${conf.paths.tmp}/serve/app/**/*.html`,
-	]).pipe(
-		htmlmin({
-			removeComments: true,
-			removeEmptyAttributes: true,
-			removeAttributeQuotes: true,
-			collapseBooleanAttributes: true,
-			collapseWhitespace: true,
-		})
-	).pipe(
+	]).pipe(htmlmin(htmlminOptions)).pipe(
 		angularTemplatecache(
-			"templateCacheHtml.js", {
+			"index.template.js", {
 				module: "anidbAngular",
 				root: "app",
 			}
 		)
-	).pipe(dest(`${conf.paths.tmp}/partials/`));
-});
+	).pipe(dest(`${conf.paths.tmp}/serve/app/`))
+);
 
 task("other", () => {
 	const fileFilter = filter((file) => file.stat.isFile());
