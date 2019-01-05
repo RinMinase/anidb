@@ -61,6 +61,10 @@ function webpackWrapper(watch, callback) {
 		webpackOptions.optimization.splitChunks.minSize = 153600;
 		webpackOptions.optimization.splitChunks.maxSize = 512000;
 		webpackOptions.plugins.push(new webpack.DefinePlugin({ "process.env": dotenv.parsed }));
+		// webpackOptions.plugins.push(new webpack.optimize.LimitChunkCountPlugin({
+		// 	maxChunks: 7,
+		// 	minChunkSize: 153600,
+		// }));
 	}
 
 	const webpackChangeHandler = function(err, stats) {
