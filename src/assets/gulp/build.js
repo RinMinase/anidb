@@ -14,7 +14,6 @@ const vinylPaths = require("vinyl-paths");
 const htmlminOptions = {
 	removeComments: true,
 	removeEmptyAttributes: true,
-	removeAttributeQuotes: true,
 	collapseBooleanAttributes: true,
 	collapseWhitespace: true,
 };
