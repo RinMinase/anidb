@@ -7,27 +7,18 @@ const {
 	unlinkSync,
 	rmdirSync,
 } = require("fs");
-const { join } = require("path");
 const { task, series, parallel } = require("gulp");
 const conf = require("../../../gulpfile.js");
 
 const browserSync = require("browser-sync");
 const browserSyncSpa = require("browser-sync-spa");
 
+browserSync.use(browserSyncSpa({
+	selector: "[ng-app]",
+}));
+
 function browserSyncInit(baseDir, browser) {
 	browser = browser || "default";
-
-	/**
-	 * You can add a proxy to your backend by uncommenting the line below.
-	 * You just have to configure a context which will we redirected and the target url.
-	 * Example: $http.get("/users") requests will be automatically proxified.
-	 *
-	 * Example:
-	 * var proxyMiddleware = require("http-proxy-middleware");
-	 * server.middleware = proxyMiddleware(
-	 * 		"/users", { target: "http://jsonplaceholder.typicode.com", changeOrigin: true }
-	 * );
-	 */
 
 	browserSync.instance = browserSync.init({
 		startPath: "/",
@@ -66,27 +57,15 @@ function syncDeleteFolder(path) {
 	}
 }
 
-browserSync.use(browserSyncSpa({
-	selector: "[ng-app]",
-}));
-
-task("serve", series("dev", () => {
-	browserSyncInit([
-		join(conf.paths.tmp, "/serve"),
-		conf.paths.src,
-	]);
-}));
-
-task("serve:dist", series("build", () => {
-	browserSyncInit(conf.paths.dist);
-}));
+task("serve", series("dev"));
 
 task("browsersync", () => {
-	browserSyncInit([
-		join(conf.paths.tmp, "/serve"),
-		conf.paths.src,
-	]);
+	browserSyncInit([ `${conf.paths.tmp}/serve`, conf.paths.src ]);
 });
+
+task("serve:dist", series("build", function browsersync() {
+	browserSyncInit(conf.paths.dist);
+}));
 
 task("clean", (done) => {
 	syncDeleteFolder([
