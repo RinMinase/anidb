@@ -2,7 +2,6 @@ const { readdirSync } = require("fs");
 const { join } = require("path");
 const { registry, task, series } = require("gulp");
 const log = require("fancy-log");
-const colors = require("ansi-colors");
 const fwdRef = require("undertaker-forward-reference");
 
 registry(fwdRef());
@@ -28,7 +27,7 @@ exports.paths = {
 
 exports.errorHandler = function(title) {
 	return function(err) {
-		log(colors.red(`[ ${title} ]`), err.toString());
+		log(`[ ${title} ]`, err.toString());
 		this.emit("end");
 	};
 };
