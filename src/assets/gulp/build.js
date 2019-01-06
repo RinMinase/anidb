@@ -1,4 +1,3 @@
-const { join } = require("path");
 const { task, src, dest } = require("gulp");
 const conf = require("../../../gulpfile.js");
 
@@ -27,7 +26,7 @@ task("html", () => {
 	const partialsFile = src(`${conf.paths.tmp}/serve/app/index.template.js`, { read: false });
 	const partialsOptions = {
 		starttag: "<!-- inject:partials -->",
-		ignorePath: join(conf.paths.tmp, "/serve"),
+		ignorePath: `${conf.paths.tmp}/serve`,
 		addRootSlash: false,
 		transform: (path) => `<script src="${path}" defer></script>`,
 	};
@@ -76,10 +75,10 @@ task("other", () =>
 		`!${conf.paths.src}/assets/robots.txt`,
 		`!${conf.paths.src}/res/**/*`,
 	]).pipe(filter((file) => file.stat.isFile()))
-		.pipe(dest(join(conf.paths.dist, "/")))
+		.pipe(dest(`${conf.paths.dist}/`))
 		.on("end", () =>
 			src(`${conf.paths.src}/assets/robots.txt`)
-				.pipe(dest(join(conf.paths.dist, "/")))
+				.pipe(dest(`${conf.paths.dist}/`))
 		)
 );
 

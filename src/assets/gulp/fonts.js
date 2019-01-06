@@ -1,5 +1,4 @@
 const fs = require("fs");
-const { join } = require("path");
 const { task, series, src, dest } = require("gulp");
 const conf = require("../../../gulpfile.js");
 
@@ -18,22 +17,22 @@ const robotofonts = [
 	"node_modules/roboto-fontface/fonts/roboto/Roboto-MediumItalic.woff2",
 	"node_modules/roboto-fontface/fonts/roboto/Roboto-Bold.woff2",
 	"node_modules/roboto-fontface/fonts/roboto/Roboto-BoldItalic.woff2",
-	"node_modules/roboto-fontface/fonts/roboto/Roboto-Light.woff2"
+	"node_modules/roboto-fontface/fonts/roboto/Roboto-Light.woff2",
 ];
 
 task("fonts_roboto", (done) => {
-	if (!fs.existsSync(join(conf.paths.tmp, "/serve/fonts/roboto"))) {
+	if (!fs.existsSync(`${conf.paths.tmp}/serve/fonts/roboto`)) {
 		return src(robotofonts)
-			.pipe(dest(join(conf.paths.tmp, "/serve/fonts/roboto")));
+			.pipe(dest(`${conf.paths.tmp}/serve/fonts/roboto`));
 	}
 
 	done();
 });
 
 task("fonts", series("fonts_roboto", (done) => {
-	if (!fs.existsSync(join(conf.paths.tmp, "/serve/fonts/fontawesome-webfont.woff2"))) {
+	if (!fs.existsSync(`${conf.paths.tmp}/serve/fonts/fontawesome-webfont.woff2`)) {
 		return src(fontpaths)
-			.pipe(dest(join(conf.paths.tmp, "/serve/fonts")));
+			.pipe(dest(`${conf.paths.tmp}/serve/fonts`));
 	}
 
 	done();
@@ -41,10 +40,10 @@ task("fonts", series("fonts_roboto", (done) => {
 
 task("fonts_roboto:dist", () =>
 	src(robotofonts)
-		.pipe(dest(join(conf.paths.dist, "/fonts/roboto")))
+		.pipe(dest(`${conf.paths.dist}/fonts/roboto`))
 );
 
 task("fonts:dist", series("fonts_roboto:dist", () =>
 	src(fontpaths)
-		.pipe(dest(join(conf.paths.dist, "/fonts")))
+		.pipe(dest(`${conf.paths.dist}/fonts`))
 ));
