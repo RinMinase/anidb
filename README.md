@@ -22,12 +22,12 @@ _Add info here_
 _Add info here_
 
 ## Built with
-* ![](https://angularjs.org/favicon.ico =20x20) [AngularJS](https://angularjs.org/) - Web Framework
-* ![](https://babeljs.io/img/favicon.png =20x20) [Babel ES9 / ES2018 Preset](https://babeljs.io/) - Syntax and compiler
-* ![](https://sass-lang.com/favicon.ico =20x20) [Sassy CSS (SCSS)](https://sass-lang.com/) - CSS pre-processor
-* ![](https://getbootstrap.com/favicon.ico =20x20) [Bootstrap 4](https://getbootstrap.com/) - HTML Framework (layout)
-* ![](https://firebase.google.com/favicon.ico =20x20) [Firebase](https://firebase.google.com/) - Database
-* ![](https://gulpjs.com/img/favicon.png =20x20) [Gulp 4](https://gulpjs.com/) - Task runner
-* ![](https://webpack.js.org/assets/favicon.ico =20x20) [Webpack 4](https://webpack.js.org/) - Project bundler
-* ![](https://cordova.apache.org/favicon.ico =20x20) [Cordova](https://cordova.apache.org/) - Android APK bundler
-* ![](http://nightwatchjs.org/favicon.ico =20x20) [NightwatchJS](http://nightwatchjs.org/) - Testing Framework
+* <img width=20 height=20 src="https://angularjs.org/favicon.ico"> [AngularJS](https://angularjs.org/) - Web Framework
+* <img width=20 height=20 src="https://babeljs.io/img/favicon.png"> [Babel ES9 / ES2018 Preset](https://babeljs.io/) - Syntax and compiler
+* <img width=20 height=20 src="https://sass-lang.com/favicon.ico"> [Sassy CSS (SCSS)](https://sass-lang.com/) - CSS pre-processor
+* <img width=20 height=20 src="https://getbootstrap.com/favicon.ico"> [Bootstrap 4](https://getbootstrap.com/) - HTML Framework (layout)
+* <img width=20 height=20 src="https://firebase.google.com/favicon.ico"> [Firebase](https://firebase.google.com/) - Database
+* <img width=20 height=20 src="https://gulpjs.com/img/favicon.png"> [Gulp 4](https://gulpjs.com/) - Task runner
+* <img width=20 height=20 src="https://webpack.js.org/assets/favicon.ico"> [Webpack 4](https://webpack.js.org/) - Project bundler
+* <img width=20 height=20 src="https://cordova.apache.org/favicon.ico"> [Cordova](https://cordova.apache.org/) - Android APK bundler
+* <img width=20 height=20 src="http://nightwatchjs.org/favicon.ico"> [NightwatchJS](http://nightwatchjs.org/) - Testing Framework
