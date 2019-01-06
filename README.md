@@ -22,11 +22,12 @@ _Add info here_
 _Add info here_
 
 ## Built with
-* [AngularJS](https://angularjs.org/) - Web Framework
-* [Babel ES9 / ES2018 Preset](https://babeljs.io/) - Syntax and compiler
-* [Sassy CSS (SCSS)](https://sass-lang.com/) - CSS pre-processor
-* [Bootstrap 4](https://getbootstrap.com/) - HTML Framework (layout)
-* [Firebase](https://firebase.google.com/) - Database
-* [Webpack 4](https://webpack.js.org/) - Project bundler
-* [Cordova](https://cordova.apache.org/) - Android APK bundler
-* [NightwatchJS](http://nightwatchjs.org/) - Testing Framework
+* ![](https://angularjs.org/favicon.ico =20x20) [AngularJS](https://angularjs.org/) - Web Framework
+* ![](https://babeljs.io/img/favicon.png =20x20) [Babel ES9 / ES2018 Preset](https://babeljs.io/) - Syntax and compiler
+* ![](https://sass-lang.com/favicon.ico =20x20) [Sassy CSS (SCSS)](https://sass-lang.com/) - CSS pre-processor
+* ![](https://getbootstrap.com/favicon.ico =20x20) [Bootstrap 4](https://getbootstrap.com/) - HTML Framework (layout)
+* ![](https://firebase.google.com/favicon.ico =20x20) [Firebase](https://firebase.google.com/) - Database
+* ![](https://gulpjs.com/img/favicon.png =20x20) [Gulp 4](https://gulpjs.com/) - Task runner
+* ![](https://webpack.js.org/assets/favicon.ico =20x20) [Webpack 4](https://webpack.js.org/) - Project bundler
+* ![](https://cordova.apache.org/favicon.ico =20x20) [Cordova](https://cordova.apache.org/) - Android APK bundler
+* ![](http://nightwatchjs.org/favicon.ico =20x20) [NightwatchJS](http://nightwatchjs.org/) - Testing Framework
