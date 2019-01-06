@@ -1,4 +1,3 @@
-const { join } = require("path");
 const { task, src, dest } = require("gulp");
 const conf = require("../../../gulpfile.js");
 
@@ -8,10 +7,10 @@ const lazyLoadedModules = [
 
 task("lazyload", () =>
 	src(lazyLoadedModules)
-		.pipe(dest(join(conf.paths.tmp, "/serve/dependencies")))
+		.pipe(dest(`${conf.paths.tmp}/serve/dependencies`))
 );
 
 task("lazyload:dist", () =>
 	src(lazyLoadedModules)
-		.pipe(dest(join(conf.paths.dist, "/dependencies")))
+		.pipe(dest(`${conf.paths.dist}/dependencies`))
 );

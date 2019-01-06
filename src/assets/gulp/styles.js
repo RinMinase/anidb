@@ -1,4 +1,3 @@
-const { join } = require("path");
 const { task, series, src, dest } = require("gulp");
 const conf = require("../../../gulpfile.js");
 
@@ -14,14 +13,11 @@ task("styles-reload", series("styles", () =>
 task("styles", () => buildStyles());
 
 const buildStyles = function() {
+	const injectFiles = src(`${conf.paths.src}/app/**/*.scss`, { read: false });
 	const sassOptions = {
 		outputStyle: "compressed",
 		precision: 10,
 	};
-
-	const injectFiles = src([
-		join(conf.paths.src, "/app/**/*.scss"),
-	], { read: false });
 
 	const injectOptions = {
 		transform: (filePath) => `@import "${filePath}";`,
@@ -36,5 +32,5 @@ const buildStyles = function() {
 		.on("error", conf.errorHandler("Sass"))
 		.pipe(autoprefixer())
 		.on("error", conf.errorHandler("Autoprefixer"))
-		.pipe(dest(join(conf.paths.tmp, "/serve/app/")));
+		.pipe(dest(`${conf.paths.tmp}/serve/app/`));
 };
