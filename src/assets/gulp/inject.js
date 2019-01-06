@@ -5,8 +5,9 @@ const browserSync = require("browser-sync");
 const inject = require("gulp-inject");
 const rename = require("gulp-rename");
 
-task("inject-reload", series("inject", () => {
+task("inject-reload", series("inject", function reload(done) {
 	browserSync.reload();
+	done();
 }));
 
 task("inject", () => {
