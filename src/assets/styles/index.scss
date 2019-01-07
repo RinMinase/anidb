@@ -3,7 +3,7 @@
 @import "node_modules/font-awesome/scss/font-awesome";
 
 $roboto-font-path: "../fonts";
-@import "node_modules/roboto-fontface/css/roboto/sass/roboto-fontface";
+@import "./chunks/roboto-fonts";
 
 @import "node_modules/animatewithsass/animate.scss";
 @import "node_modules/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.scss";
@@ -17,8 +17,7 @@ $roboto-font-path: "../fonts";
 @import "./chunks/main";
 
 /**
- * Do not remove the comments below. It's the markers
- * used by gulp-inject to inject all your sass files automatically
+ * Markers used by gulp-inject to inject sass files
  */
 // injector
 // endinjector
