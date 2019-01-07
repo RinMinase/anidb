@@ -7,7 +7,7 @@ export function JikanApiFactory() {
 	const factory = {
 		getData,
 		searchData,
-	}
+	};
 
 	return factory;
 
