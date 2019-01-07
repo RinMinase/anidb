@@ -1,3 +1,5 @@
+$roboto-font-path: '../fonts';
+
 @mixin roboto-font($folder, $variant, $type, $weight, $style) {
 	$font-full-path: '#{$roboto-font-path}/#{$folder}/#{$variant}';
 
