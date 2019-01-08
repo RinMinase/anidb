@@ -3,6 +3,7 @@ import DirectivesModule from "./directives/directives.module";
 import { FirebaseFactory } from "./services/firebase.factory";
 import { GithubApiFactory } from "./services/github-api.factory";
 import { JikanApiFactory } from "./services/jikan-api.factory";
+import { RandomizerFactory } from "./services/randomizer.factory";
 
 import { FuseOptionsBuilder } from "./services/builders/fuse-options.builder";
 
@@ -14,6 +15,7 @@ export default angular
 	.factory("firebase", FirebaseFactory)
 	.factory("githubApi", GithubApiFactory)
 	.factory("jikanApi", JikanApiFactory)
+	.factory("randomizer", RandomizerFactory)
 
 	.factory("fuseOptionsBuilder", FuseOptionsBuilder)
 
