@@ -55,7 +55,6 @@ function webpackWrapper(watch, callback) {
 
 	if (watch) {
 		webpackOptions.mode = "development";
-		webpackOptions.devtool = "inline-source-map";
 	} else {
 		webpackOptions.mode = "production";
 		webpackOptions.optimization.splitChunks.minSize = 153600;
