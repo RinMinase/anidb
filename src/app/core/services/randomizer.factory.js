@@ -5,29 +5,40 @@ export function RandomizerFactory() {
 
 	return factory;
 
-	function randomize(length = 2, ucaseOut = false, ucase = true, lcase = true, numeric = true) {
-		let text = "";
+	function randomize(length = 2, ucaseOut = false, type = "alphanumeric") {
 		const ucaseValues = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		const lcaseValues = "abcdefghijklmnopqrstuvwxyz";
+		const ucaseHexValue = "ABCDE";
+		const lcaseHexValue = "abcde";
 		const numericValues = "0123456789";
+		let text = "";
 		let possibleValues = "";
 
-		if (ucase) {
-			possibleValues += ucaseValues;
-		}
+		possibleValues += numericValues;
 
-		if (lcase) {
+		if (ucaseOut) {
+			possibleValues += ucaseValues;
+		} else {
+			possibleValues += ucaseValues;
 			possibleValues += lcaseValues;
 		}
 
-		if (numeric) {
+		if (type.toLowerCase() === "hex") {
+			possibleValues = "";
 			possibleValues += numericValues;
+
+			if (ucaseOut) {
+				possibleValues += ucaseHexValue;
+			} else {
+				possibleValues += ucaseHexValue;
+				possibleValues += lcaseHexValue;
+			}
 		}
 
 		for (let i = 0; i < length; i++) {
 			text += possibleValues.charAt(Math.random() * possibleValues.length);
 		}
 
-		return (ucaseOut) ? text.toUpperCase() : text;
+		return text;
 	}
 }
