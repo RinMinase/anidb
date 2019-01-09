@@ -7,6 +7,15 @@ const inject = require("gulp-inject");
 const sass = require("gulp-sass");
 const sassLint = require("gulp-sass-lint");
 
+const sassLintConfig = {
+	rules: {
+		"hex-notation":  [ 1, {style: "uppercase"} ],
+		indentation: [ 1, {size: "tab"} ],
+		"no-color-literals": 0,
+		"property-sort-order": 0,
+	},
+};
+
 task("styles-reload", series("lint-styles", "stream-styles"));
 
 task("styles", series("lint-styles", "build-styles"));
@@ -17,7 +26,7 @@ task("build-styles", buildStyles);
 
 task("lint-styles", () =>
 	src(`${conf.paths.src}/app/**/*.scss`)
-		.pipe(sassLint())
+		.pipe(sassLint(sassLintConfig))
 		.pipe(sassLint.format())
 		.pipe(sassLint.failOnError())
 );
