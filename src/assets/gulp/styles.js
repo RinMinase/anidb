@@ -7,20 +7,22 @@ const inject = require("gulp-inject");
 const sass = require("gulp-sass");
 const sassLint = require("gulp-sass-lint");
 
-task("styles-reload", series("styles", () =>
-	buildStyles().pipe(browserSync.stream())
-));
+task("styles-reload", series("lint-styles", "stream-styles"));
 
-task("styles", series("styles-lint", () => buildStyles()));
+task("styles", series("lint-styles", "build-styles"));
 
-task("styles-lint", () =>
+task("stream-styles", () => buildStyles().pipe(browserSync.stream()));
+
+task("build-styles", buildStyles);
+
+task("lint-styles", () =>
 	src(`${conf.paths.src}/app/**/*.scss`)
 		.pipe(sassLint())
 		.pipe(sassLint.format())
 		.pipe(sassLint.failOnError())
 );
 
-const buildStyles = function() {
+function buildStyles() {
 	const injectFiles = src(`${conf.paths.src}/app/**/*.scss`, { read: false });
 	const sassOptions = {
 		outputStyle: "compressed",
@@ -41,4 +43,4 @@ const buildStyles = function() {
 		.pipe(autoprefixer())
 		.on("error", conf.errorHandler("Autoprefixer"))
 		.pipe(dest(`${conf.paths.tmp}/serve/app/`));
-};
+}
