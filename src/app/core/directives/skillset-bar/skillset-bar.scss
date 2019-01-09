@@ -11,46 +11,250 @@ skillset-bar {
 		background-repeat: no-repeat;
 		overflow: hidden;
 
-		&.android { background-position: -24px -0px; width: 20px; height: 20px; }
-		&.angular { background-position: -46px -0px; width: 20px; height: 20px; }
-		&.apache { background-position: -68px -0px; width: 20px; height: 20px; }
-		&.apacheisis { background-position: -90px -0px; width: 20px; height: 20px; }
-		&.bs3 { background-position: -112px -0px; width: 20px; height: 20px; }
-		&.bs4 { background-position: -2px -22px; width: 20px; height: 20px; }
-		&.c { background-position: -24px -22px; width: 20px; height: 20px; }
-		&.cakephp { background-position: -46px -22px; width: 20px; height: 20px; }
-		&.chai { background-position: -68px -22px; width: 20px; height: 20px; }
-		&.ci { background-position: -90px -22px; width: 20px; height: 20px; }
-		&.cordova { background-position: -112px -22px; width: 20px; height: 20px; }
-		&.cpp { background-position: -2px -44px; width: 20px; height: 20px; }
-		&.css { background-position: -24px -44px; width: 20px; height: 20px; }
-		&.django { background-position: -46px -44px; width: 20px; height: 20px; }
-		&.docker { background-position: -68px -44px; width: 20px; height: 20px; }
-		&.es6 { background-position: -90px -44px; width: 20px; height: 20px; }
-		&.firebase { background-position: -112px -44px; width: 20px; height: 20px; }
-		&.gulp { background-position: -2px -66px; width: 20px; height: 20px; }
-		&.html { background-position: -24px -66px; width: 20px; height: 20px; }
-		&.java { background-position: -46px -66px; width: 20px; height: 20px; }
-		&.js { background-position: -68px -66px; width: 20px; height: 20px; }
-		&.laravel { background-position: -90px -66px; width: 20px; height: 20px; }
-		&.less { background-position: -112px -66px; width: 20px; height: 20px; }
-		&.mocha { background-position: -2px -88px; width: 20px; height: 20px; }
-		&.mongodb { background-position: -24px -88px; width: 20px; height: 20px; }
-		&.mysql { background-position: -46px -88px; width: 20px; height: 20px; }
-		&.nginx { background-position: -68px -88px; width: 20px; height: 20px; }
-		&.nightwatch { background-position: -90px -88px; width: 20px; height: 20px; }
-		&.node { background-position: -112px -88px; width: 20px; height: 20px; }
-		&.php { background-position: -2px -110px; width: 20px; height: 20px; }
-		&.python { background-position: -24px -110px; width: 20px; height: 20px; }
-		&.react { background-position: -46px -110px; width: 20px; height: 20px; }
-		&.redis { background-position: -68px -110px; width: 20px; height: 20px; }
-		&.sails { background-position: -90px -110px; width: 20px; height: 20px; }
-		&.scss { background-position: -112px -110px; width: 20px; height: 20px; }
-		&.shell { background-position: -2px -132px; width: 20px; height: 20px; }
-		&.strider { background-position: -24px -132px; width: 20px; height: 20px; }
-		&.stylus { background-position: -2px -0px; width: 20px; height: 20px; }
-		&.travis { background-position: -46px -132px; width: 20px; height: 20px; }
-		&.webpack { background-position: -68px -132px; width: 20px; height: 20px; }
-		&.yarn { background-position: -90px -132px; width: 20px; height: 20px; }
+		&.android {
+			background-position: -24px -0px;
+			width: 20px;
+			height: 20px;
+		}
+
+		&.angular {
+			background-position: -46px -0px;
+			width: 20px;
+			height: 20px;
+		}
+
+		&.apache {
+			background-position: -68px -0px;
+			width: 20px;
+			height: 20px;
+		}
+
+		&.apacheisis {
+			background-position: -90px -0px;
+			width: 20px;
+			height: 20px;
+		}
+
+		&.bs3 {
+			background-position: -112px -0px;
+			width: 20px;
+			height: 20px;
+		}
+
+		&.bs4 {
+			background-position: -2px -22px;
+			width: 20px;
+			height: 20px;
+		}
+
+		&.c {
+			background-position: -24px -22px;
+			width: 20px;
+			height: 20px;
+		}
+
+		&.cakephp {
+			background-position: -46px -22px;
+			width: 20px;
+			height: 20px;
+		}
+
+		&.chai {
+			background-position: -68px -22px;
+			width: 20px;
+			height: 20px;
+		}
+
+		&.ci {
+			background-position: -90px -22px;
+			width: 20px;
+			height: 20px;
+		}
+
+		&.cordova {
+			background-position: -112px -22px;
+			width: 20px;
+			height: 20px;
+		}
+
+		&.cpp {
+			background-position: -2px -44px;
+			width: 20px;
+			height: 20px;
+		}
+
+		&.css {
+			background-position: -24px -44px;
+			width: 20px;
+			height: 20px;
+		}
+
+		&.django {
+			background-position: -46px -44px;
+			width: 20px;
+			height: 20px;
+		}
+
+		&.docker {
+			background-position: -68px -44px;
+			width: 20px;
+			height: 20px;
+		}
+
+		&.es6 {
+			background-position: -90px -44px;
+			width: 20px;
+			height: 20px;
+		}
+
+		&.firebase {
+			background-position: -112px -44px;
+			width: 20px;
+			height: 20px;
+		}
+
+		&.gulp {
+			background-position: -2px -66px;
+			width: 20px;
+			height: 20px;
+		}
+
+		&.html {
+			background-position: -24px -66px;
+			width: 20px;
+			height: 20px;
+		}
+
+		&.java {
+			background-position: -46px -66px;
+			width: 20px;
+			height: 20px;
+		}
+
+		&.js {
+			background-position: -68px -66px;
+			width: 20px;
+			height: 20px;
+		}
+
+		&.laravel {
+			background-position: -90px -66px;
+			width: 20px;
+			height: 20px;
+		}
+
+		&.less {
+			background-position: -112px -66px;
+			width: 20px;
+			height: 20px;
+		}
+
+		&.mocha {
+			background-position: -2px -88px;
+			width: 20px;
+			height: 20px;
+		}
+
+		&.mongodb {
+			background-position: -24px -88px;
+			width: 20px;
+			height: 20px;
+		}
+
+		&.mysql {
+			background-position: -46px -88px;
+			width: 20px;
+			height: 20px;
+		}
+
+		&.nginx {
+			background-position: -68px -88px;
+			width: 20px;
+			height: 20px;
+		}
+
+		&.nightwatch {
+			background-position: -90px -88px;
+			width: 20px;
+			height: 20px;
+		}
+
+		&.node {
+			background-position: -112px -88px;
+			width: 20px;
+			height: 20px;
+		}
+
+		&.php {
+			background-position: -2px -110px;
+			width: 20px;
+			height: 20px;
+		}
+
+		&.python {
+			background-position: -24px -110px;
+			width: 20px;
+			height: 20px;
+		}
+
+		&.react {
+			background-position: -46px -110px;
+			width: 20px;
+			height: 20px;
+		}
+
+		&.redis {
+			background-position: -68px -110px;
+			width: 20px;
+			height: 20px;
+		}
+
+		&.sails {
+			background-position: -90px -110px;
+			width: 20px;
+			height: 20px;
+		}
+
+		&.scss {
+			background-position: -112px -110px;
+			width: 20px;
+			height: 20px;
+		}
+
+		&.shell {
+			background-position: -2px -132px;
+			width: 20px;
+			height: 20px;
+		}
+
+		&.strider {
+			background-position: -24px -132px;
+			width: 20px;
+			height: 20px;
+		}
+
+		&.stylus {
+			background-position: -2px -0px;
+			width: 20px;
+			height: 20px;
+		}
+
+		&.travis {
+			background-position: -46px -132px;
+			width: 20px;
+			height: 20px;
+		}
+
+		&.webpack {
+			background-position: -68px -132px;
+			width: 20px;
+			height: 20px;
+		}
+
+		&.yarn {
+			background-position: -90px -132px;
+			width: 20px;
+			height: 20px;
+		}
 	}
 }
