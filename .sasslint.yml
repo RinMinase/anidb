@@ -1,11 +1,11 @@
 rules:
-	hex-notation:
-		- 1
-		- style: uppercase
-	indentation:
-		- 1
-		- size: tab
-	no-color-literals:
-		- 0
-	property-sort-order:
-		- 0
+  hex-notation:
+    - 1
+    - style: uppercase
+  indentation:
+    - 1
+    - size: tab
+  no-color-literals:
+    - 0
+  property-sort-order:
+    - 0
