@@ -5,12 +5,20 @@ const autoprefixer = require("gulp-autoprefixer");
 const browserSync = require("browser-sync");
 const inject = require("gulp-inject");
 const sass = require("gulp-sass");
+const sassLint = require("gulp-sass-lint");
 
 task("styles-reload", series("styles", () =>
 	buildStyles().pipe(browserSync.stream())
 ));
 
-task("styles", () => buildStyles());
+task("styles", series("styles-lint", () => buildStyles()));
+
+task("styles-lint", () =>
+	src(`${conf.paths.src}/app/**/*.scss`)
+		.pipe(sassLint())
+		.pipe(sassLint.format())
+		.pipe(sassLint.failOnError())
+);
 
 const buildStyles = function() {
 	const injectFiles = src(`${conf.paths.src}/app/**/*.scss`, { read: false });
