@@ -1,5 +1,6 @@
 {
 	"rules": {
+		"attribute-quotes": 0,
 		"brace-style": [1, {
 			"allow-single-line": true,
 			"style": "stroustrup"
