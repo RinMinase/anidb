@@ -1,8 +1,13 @@
 {
 	"rules": {
+		"brace-style": [1, {
+			"allow-single-line": true,
+			"style": "stroustrup"
+		}],
 		"force-element-nesting": 0,
 		"hex-notation": [1, { "style": "uppercase" }],
 		"indentation": [1, { "size": "tab" }],
+		"nesting-depth": [1, { "max-depth": 5 }],
 		"no-color-literals": 0,
 		"no-ids": 0,
 		"no-qualifying-elements": [1, {
@@ -11,6 +16,9 @@
 		}],
 		"no-url-domains": 0,
 		"no-url-protocols": 0,
+		"no-vendor-prefixes": [1, {
+			"excluded-identifiers": ["webkit", "moz"]
+		}],
 		"property-sort-order": 0,
 		"quotes": [1, { "style": "double" }],
 		"single-line-per-selector": 0
