@@ -1,11 +1,11 @@
 .view-home {
 	div.image-container {
-		background-color: lightgray;
+		background-color: #D3D3D3;
 		width: 100%;
 		max-width: 262.5px;
 		height: 300px;
 
-		@media screen and (max-width: 767px) { margin: 0px auto; }
+		@media screen and (max-width: 767px) { margin: 0 auto; }
 	}
 
 	.data-heading {
@@ -16,9 +16,9 @@
 	}
 
 	i {
-		&.fa-snowflake-o { color: skyblue; }
-		&.fa-leaf { color: green; }
-		&.fa-sun-o { color: orange; }
-		&.fa-tree { color: orangered; }
+		&.fa-snowflake-o { color: #87CEEB; }
+		&.fa-leaf { color: #008000; }
+		&.fa-sun-o { color: #FFA500; }
+		&.fa-tree { color: #FF4500; }
 	}
 }
