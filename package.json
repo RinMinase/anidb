@@ -22,7 +22,7 @@
   "dependencies": {
     "@babel/core": "^7.2.2",
     "@babel/preset-env": "^7.2.3",
-    "@uirouter/angularjs": "^1.0.20",
+    "@uirouter/angularjs": "^1.0.21",
     "angular": "^1.7.5",
     "angular-animate": "^1.7.5",
     "angular-chart.js": "^1.1.1",
