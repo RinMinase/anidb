@@ -4,10 +4,15 @@
 		"hex-notation": [1, { "style": "uppercase" }],
 		"indentation": [1, { "size": "tab" }],
 		"no-color-literals": 0,
+		"no-ids": 0,
 		"no-qualifying-elements": [1, {
 			"allow-element-with-attribute": true,
 			"allow-element-with-class": true
 		}],
-		"property-sort-order": 0
+		"no-url-domains": 0,
+		"no-url-protocols": 0,
+		"property-sort-order": 0,
+		"quotes": [1, { "style": "double" }],
+		"single-line-per-selector": 0
 	}
 }
