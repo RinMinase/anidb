@@ -4,9 +4,9 @@
 	.download-badge { width: 3em; }
 
 	.list-group-item {
-		&:first-child, &:last-child { border-radius: 0px; }
+		&:first-child, &:last-child { border-radius: 0; }
 		&:last-child { margin-bottom: -1px; }
-		&.first-item { border-radius: 4px 4px 0px 0px; }
+		&.first-item { border-radius: 4px 4px 0 0; }
 	}
 
 	.download-legend {
@@ -14,12 +14,12 @@
 		height: 10px;
 		display: inline-block;
 
-		.download-legend-watched { background-color: #CC6699; }
-		.download-legend-downloaded { background-color: #99CCFF; }
-		.download-legend-queued { background-color: #FFCC66; }
-		.download-legend-prio-high { background-color: #99FF99; }
-		.download-legend-prio-normal { border: 1px solid #777777; }
-		.download-legend-prio-low { background-color: #CC6666; }
+		.download-legend-watched { background-color: #C69; }
+		.download-legend-downloaded { background-color: #9CF; }
+		.download-legend-queued { background-color: #FC6; }
+		.download-legend-prio-high { background-color: #9F9; }
+		.download-legend-prio-normal { border: 1px solid #777; }
+		.download-legend-prio-low { background-color: #C66; }
 	}
 
 	input[type=search].form-control:focus {
