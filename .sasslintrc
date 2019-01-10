@@ -1,8 +1,13 @@
 {
 	"rules": {
+		"force-element-nesting": 0,
 		"hex-notation": [1, { "style": "uppercase" }],
 		"indentation": [1, { "size": "tab" }],
 		"no-color-literals": 0,
+		"no-qualifying-elements": [1, {
+			"allow-element-with-attribute": true,
+			"allow-element-with-class": true
+		}],
 		"property-sort-order": 0
 	}
 }
