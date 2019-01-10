@@ -5,6 +5,7 @@
 			"allow-single-line": true,
 			"style": "stroustrup"
 		}],
+		"force-attribute-nesting": 0,
 		"force-element-nesting": 0,
 		"force-pseudo-nesting": 0,
 		"hex-notation": [1, { "style": "uppercase" }],
