@@ -30,16 +30,16 @@
 	}
 
 	table.table-statistics td:not(.table-statistics-border) {
-		border-top: 0px;
+		border-top: 0;
 		font-weight: bold;
 	}
 
 	table.table-specs td:not(.table-specs-border) {
-		border-top: 0px;
+		border-top: 0;
 		&:not(.table-specs-value) { font-weight: bold; }
 	}
 
-	li.pt-0-5{ padding-top: 0.15rem; }
+	li.pt-0-5 { padding-top: .15rem; }
 
 	h6 .badge.badge-pill {
 		width: 85px;
@@ -49,19 +49,19 @@
 	.issues-badge {
 		color: #333;
 		.badge.badge-pill { width: 120px; }
-		.platform-android { background-color: #AED581 }
-		.platform-chrome { background-color: #00ACC1 }
-		.platform-firefox { background-color: #FFB300 }
-		.platform-mobile { background-color: #B39DDB }
-		.priority-critical { background-color: #FF8A65 }
-		.priority-high { background-color: #FFD54F }
-		.priority-normal { background-color: #81C784 }
-		.resolution-abandoned { background-color: #424242 }
-		.resolution-duplicate { background-color: #BDBDBD }
-		.resolution-invalid { background-color: #E0E0E0 }
-		.type-bug { background-color: #EF5350 }
-		.type-enhancement { background-color: #1E88E5 }
-		.type-feature-request { background-color: #BA68C8 }
+		.platform-android { background-color: #AED581; }
+		.platform-chrome { background-color: #00ACC1; }
+		.platform-firefox { background-color: #FFB300; }
+		.platform-mobile { background-color: #B39DDB; }
+		.priority-critical { background-color: #FF8A65; }
+		.priority-high { background-color: #FFD54F; }
+		.priority-normal { background-color: #81C784; }
+		.resolution-abandoned { background-color: #424242; }
+		.resolution-duplicate { background-color: #BDBDBD; }
+		.resolution-invalid { background-color: #E0E0E0; }
+		.type-bug { background-color: #EF5350; }
+		.type-enhancement { background-color: #1E88E5; }
+		.type-feature-request { background-color: #BA68C8; }
 	}
 
 	.list-unstyled hr {
@@ -74,9 +74,29 @@
 		background-repeat: no-repeat;
 		overflow: hidden;
 
-		&.alice { background-position: -2px -0px; width: 120px; height: 120px; border-radius: 60px; border: 1px solid #CECECE }
-		&.maid { background-position: -2px -122px; width: 120px; height: 120px; border-radius: 60px; border: 1px solid #CECECE }
-		&.ruka { background-position: -2px -244px; width: 120px; height: 120px; border-radius: 60px; border: 1px solid #CECECE }
+		&.alice {
+			background-position: -2px 0;
+			width: 120px;
+			height: 120px;
+			border-radius: 60px;
+			border: 1px solid #CECECE;
+		}
+
+		&.maid {
+			background-position: -2px -122px;
+			width: 120px;
+			height: 120px;
+			border-radius: 60px;
+			border: 1px solid #CECECE;
+		}
+
+		&.ruka {
+			background-position: -2px -244px;
+			width: 120px;
+			height: 120px;
+			border-radius: 60px;
+			border: 1px solid #CECECE;
+		}
 	}
 
 	a.frameworks {
@@ -84,16 +104,65 @@
 		background-repeat: no-repeat;
 		overflow: hidden;
 
-		&.angular { background-position: -2px -0px; width: 120px; height: 120px; }
-		&.bootstrap { background-position: -124px -0px; width: 120px; height: 120px; }
-		&.cordova { background-position: -246px -0px; width: 120px; height: 120px; }
-		&.es8 { background-position: -2px -122px; width: 120px; height: 120px; }
-		&.firebase { background-position: -124px -122px; width: 120px; height: 120px; }
-		&.nightwatch { background-position: -246px -122px; width: 120px; height: 120px; }
-		&.scss { background-position: -2px -244px; width: 120px; height: 120px; }
-		&.travis { background-position: -124px -244px; width: 120px; height: 120px; }
-		&.webpack { background-position: -246px -244px; width: 120px; height: 120px; }
-		&.yarn { background-position: -2px -366px; width: 120px; height: 120px; }
+		&.angular {
+			background-position: -2px 0;
+			width: 120px;
+			height: 120px;
+		}
+
+		&.bootstrap {
+			background-position: -124px 0;
+			width: 120px;
+			height: 120px;
+		}
+
+		&.cordova {
+			background-position: -246px 0;
+			width: 120px;
+			height: 120px;
+		}
+
+		&.es8 {
+			background-position: -2px -122px;
+			width: 120px;
+			height: 120px;
+		}
+
+		&.firebase {
+			background-position: -124px -122px;
+			width: 120px;
+			height: 120px;
+		}
+
+		&.nightwatch {
+			background-position: -246px -122px;
+			width: 120px;
+			height: 120px;
+		}
+
+		&.scss {
+			background-position: -2px -244px;
+			width: 120px;
+			height: 120px;
+		}
+
+		&.travis {
+			background-position: -124px -244px;
+			width: 120px;
+			height: 120px;
+		}
+
+		&.webpack {
+			background-position: -246px -244px;
+			width: 120px;
+			height: 120px;
+		}
+
+		&.yarn {
+			background-position: -2px -366px;
+			width: 120px;
+			height: 120px;
+		}
 	}
 
 	a.platforms {
@@ -101,9 +170,23 @@
 		background-repeat: no-repeat;
 		overflow: hidden;
 
-		&.android { background-position: -2px -0px; width: 120px; height: 120px; }
-		&.chrome { background-position: -2px -122px; width: 120px; height: 120px; }
-		&.firefox { background-position: -2px -244px; width: 120px; height: 120px; }
+		&.android {
+			background-position: -2px 0;
+			width: 120px;
+			height: 120px;
+		}
+
+		&.chrome {
+			background-position: -2px -122px;
+			width: 120px;
+			height: 120px;
+		}
+
+		&.firefox {
+			background-position: -2px -244px;
+			width: 120px;
+			height: 120px;
+		}
 	}
 
 	.btn-group {
@@ -113,9 +196,9 @@
 	}
 
 	.package-issues {
-		code.blue { color: #1565C0 }
-		code.green { color: #388E3C }
-		code.orange { color: #EF6C00 }
-		code.red { color: #D32F2F }
+		code.blue { color: #1565C0; }
+		code.green { color: #388E3C; }
+		code.orange { color: #EF6C00; }
+		code.red { color: #D32F2F; }
 	}
 }
