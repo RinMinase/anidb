@@ -5,6 +5,7 @@
 			"style": "stroustrup"
 		}],
 		"force-element-nesting": 0,
+		"force-pseudo-nesting": 0,
 		"hex-notation": [1, { "style": "uppercase" }],
 		"indentation": [1, { "size": "tab" }],
 		"nesting-depth": [1, { "max-depth": 5 }],
