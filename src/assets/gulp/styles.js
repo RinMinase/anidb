@@ -17,7 +17,7 @@ task("build-styles", buildStyles);
 
 task("lint-styles", () =>
 	src(`${conf.paths.src}/app/**/*.scss`)
-		.pipe(sassLint({ configFile: "./.sasslint.yml" }))
+		.pipe(sassLint({ configFile: "./.sasslintrc" }))
 		.pipe(sassLint.format())
 		.pipe(sassLint.failOnError())
 );
