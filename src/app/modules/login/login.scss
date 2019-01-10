@@ -4,7 +4,7 @@
 	.flex-form-container-loading { height: 108px; }
 
 	&.container-fluid {
-		padding: 0px;
+		padding: 0;
 		overflow: hidden;
 	}
 
@@ -46,18 +46,18 @@
 	}
 
 	.btn-login {
-		color: #FFFFFF;
+		color: #FFF;
 		background-color: #495A5F;
-		letter-spacing: 0.75px;
+		letter-spacing: .75px;
 	}
 
 	.animated-input-container {
-		position:relative;
+		position: relative;
 
 		.animated-label {
 			position: absolute;
 			left: 0;
-			right: 0px;
+			right: 0;
 			margin-left: auto;
 			margin-right: auto;
 			top: 10px;
@@ -68,20 +68,21 @@
 
 		&.focused .animated-label {
 			transform: translateY(-110%);
-			font-size: .80em;
+			font-size: .8em;
 		}
 
 		.animated-input {
 			color: #000;
 			position: relative;
-			padding: 12px 0px 5px 0;
+			padding: 12px 0 5px;
 			width: 100%;
 			outline: 0;
 			border: 0;
 			background: transparent;
 			transition: box-shadow 150ms ease-out;
 
-			&:focus, &.filled { box-shadow: 0 2px 0 0 #28a745; }
+			&:focus, &.filled { box-shadow: 0 2px 0 0 #28A745; }
+
 			&:-webkit-autofill {
 				-webkit-animation: autofill 0s forwards;
 				-webkit-text-fill-color: #000;
