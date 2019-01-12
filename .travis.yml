@@ -17,8 +17,7 @@ install:
 - yarn
 before_script:
 - npm install -g gulp-cli
-script:
-- gulp && cd dist && du -a && cd ..
+script: gulp
 deploy:
 	skip_cleanup: true
   provider: firebase
