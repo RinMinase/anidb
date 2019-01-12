@@ -1,4 +1,4 @@
-const { task, src, dest } = require("gulp");
+const { task, src, dest, series } = require("gulp");
 const conf = require("../../../gulpfile.js");
 
 const angularTemplatecache = require("gulp-angular-templatecache");
@@ -84,4 +84,5 @@ task("other", () =>
 task("relocate", () =>
 	src(`${conf.paths.dist}/**/*`)
 		.pipe(dest(conf.paths.www))
+		.on("end", series("clean:dist"))
 );
