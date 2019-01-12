@@ -20,6 +20,7 @@ before_script:
 script:
 - gulp && cd dist && du -a && cd ..
 deploy:
+	skip_cleanup: true
   provider: firebase
 env:
   global:
