@@ -85,5 +85,4 @@ task("other", () =>
 task("relocate", () =>
 	src(`${conf.paths.dist}/**/*`)
 		.pipe(dest(conf.paths.www))
-		.on("end", series("clean:dist"))
 );

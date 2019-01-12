@@ -110,7 +110,8 @@ task("bundle",
 		"build-assets",
 		"inject-base:bundle",
 		"html",
-		"relocate"
+		"relocate",
+		"clean:dist"
 	)
 );
 
