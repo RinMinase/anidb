@@ -99,25 +99,26 @@ task("dev",
 
 task("build",
 	series(
-		"clean",
-		parallel("lazyload:dist", "fonts:dist", "scripts"),
-		"styles",
-		parallel("inject", "partials", "other"),
+		"build-assets",
 		"inject-base",
-		"html",
-		"clean:tmp"
+		"html"
 	)
 );
 
 task("bundle",
 	series(
+		"build-assets",
+		"inject-base:bundle",
+		"html",
+		"relocate"
+	)
+);
+
+task("build-assets",
+	series(
 		"clean",
 		parallel("lazyload:dist", "fonts:dist", "scripts"),
 		"styles",
-		parallel("inject", "partials", "other"),
-		"inject-base:bundle",
-		"html",
-		"relocate",
-		"clean:tmp"
+		parallel("inject", "partials", "other")
 	)
 );
