@@ -19,7 +19,7 @@ before_script:
 - npm install -g gulp-cli
 script: gulp
 deploy:
-	skip_cleanup: true
+  skip_cleanup: true
   provider: firebase
 env:
   global:
