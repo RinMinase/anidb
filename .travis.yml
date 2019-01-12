@@ -18,6 +18,8 @@ install:
 before_script:
 - npm install -g gulp-cli
 script: gulp
+after_script:
+- cd dist && du -a && cd ..
 deploy:
   provider: firebase
 env:
