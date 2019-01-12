@@ -82,6 +82,11 @@ task("clean:tmp", (done) => {
 	done();
 });
 
+task("clean:dist", (done) => {
+	syncDeleteFolder(conf.paths.dist);
+	done();
+});
+
 task("dev",
 	series(
 		parallel("lazyload", "fonts", "scripts:watch"),
