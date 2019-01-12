@@ -87,6 +87,7 @@ task("dev",
 		parallel("lazyload", "fonts", "scripts:watch"),
 		"styles",
 		"inject",
+		"inject-base",
 		parallel("watch", "browsersync")
 	)
 );
@@ -97,6 +98,7 @@ task("build",
 		parallel("lazyload:dist", "fonts:dist", "scripts"),
 		"styles",
 		parallel("inject", "partials", "other"),
+		"inject-base",
 		"html",
 		"clean:tmp"
 	)
@@ -105,7 +107,10 @@ task("build",
 task("bundle",
 	series(
 		"clean",
-		parallel("lazyload:dist", "fonts:dist", "inject:bundle", "partials", "other"),
+		parallel("lazyload:dist", "fonts:dist", "scripts"),
+		"styles",
+		parallel("inject", "partials", "other"),
+		"inject-base:bundle",
 		"html",
 		"relocate",
 		"clean:tmp"
