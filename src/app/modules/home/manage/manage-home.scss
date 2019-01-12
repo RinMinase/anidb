@@ -3,7 +3,7 @@
 	#animeTable tr.anime-table-row td { cursor: pointer; }
 
 	.form-control:focus {
-		outline: 0 !important;
+		outline: 0;
 		border-color: initial;
 		box-shadow: none;
 	}
