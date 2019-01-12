@@ -1,12 +1,6 @@
 require("dotenv").config({ path: "./src/assets/.env" });
 
-const {
-	existsSync,
-	readdirSync,
-	lstatSync,
-	unlinkSync,
-	rmdirSync,
-} = require("fs");
+const { existsSync, readdirSync, lstatSync, unlinkSync, rmdirSync } = require("fs");
 const { task, series, parallel } = require("gulp");
 const conf = require("../../../gulpfile.js");
 
