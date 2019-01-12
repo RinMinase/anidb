@@ -73,7 +73,7 @@
     "undertaker-forward-reference": "^1.0.2",
     "velocity-animate": "^1.5.2",
     "vinyl-paths": "^2.1.0",
-    "webpack": "^4.28.3",
+    "webpack": "^4.28.4",
     "webpack-stream": "^5.2.1",
     "xlsx": "^0.14.1"
   },
