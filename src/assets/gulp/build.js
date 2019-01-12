@@ -48,6 +48,7 @@ task("html", () => {
 				.pipe(vinylPaths(del))
 				.pipe(htmlmin(htmlminOptions))
 				.pipe(dest(`${conf.paths.dist}/`))
+				.on("end", series("clean:tmp"))
 		);
 });
 
