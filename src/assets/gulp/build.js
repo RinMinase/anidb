@@ -73,6 +73,8 @@ task("other", () =>
 		`!${conf.paths.src}/assets/firebase/*`,
 		`!${conf.paths.src}/assets/testing/*`,
 		`!${conf.paths.src}/assets/robots.txt`,
+		`!${conf.paths.src}/assets/.env.example`,
+		`!${conf.paths.src}/assets/.env`,
 		`!${conf.paths.src}/res/**/*`,
 	]).pipe(filter((file) => file.stat.isFile()))
 		.pipe(dest(`${conf.paths.dist}/`))
