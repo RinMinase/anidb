@@ -16,7 +16,7 @@ before_install:
 install:
 - yarn
 before_script:
-- npm install -g gulp-cli
+- yarn global add gulp-cli
 script: gulp
 deploy:
   skip_cleanup: true
