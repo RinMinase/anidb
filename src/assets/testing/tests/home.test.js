@@ -1,3 +1,5 @@
+require("dotenv").config({ path: "./src/assets/.env" });
+
 module.exports = {
 	tags: ["home"],
 
@@ -8,8 +10,8 @@ module.exports = {
 			.assert.title("Rin's Anime Database")
 			.waitForElementVisible("input[type=email]")
 			.waitForElementVisible("input[type=password]")
-			.setValue("input[type=email]", "nightwatch@testing.com")
-			.setValue("input[type=password]", "nightwatch")
+			.setValue("input[type=email]", process.env.TEST_USERNAME)
+			.setValue("input[type=password]", process.env.TEST_PASSWORD)
 			.submitForm("form")
 			.assert.urlEquals(browser.launchUrl)
 			.waitForElementVisible("body")
@@ -25,8 +27,8 @@ module.exports = {
 			.assert.title("Rin's Anime Database")
 			.waitForElementVisible("input[type=email]")
 			.waitForElementVisible("input[type=password]")
-			.setValue("input[type=email]", "nightwatch@testing.com")
-			.setValue("input[type=password]", "nightwatch")
+			.setValue("input[type=email]", process.env.TEST_USERNAME)
+			.setValue("input[type=password]", process.env.TEST_PASSWORD)
 			.submitForm("form")
 			.assert.urlEquals(browser.launchUrl)
 			.waitForElementVisible("body")

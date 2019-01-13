@@ -1,3 +1,5 @@
+require("dotenv").config({ path: "./src/assets/.env" });
+
 module.exports = {
 	tags: ["login"],
 
@@ -8,8 +10,8 @@ module.exports = {
 			.assert.title("Rin's Anime Database")
 			.assert.visible("input[type=email]")
 			.assert.visible("input[type=password]")
-			.setValue("input[type=email]", "nightwatch@testing.com")
-			.setValue("input[type=password]", "-")
+			.setValue("input[type=email]", process.env.TEST_USERNAME)
+			.setValue("input[type=password]", process.env.TEST_PASSWORD)
 			.submitForm("form")
 			.assert.elementPresent(".spinner.eclipse")
 			.end();
@@ -22,7 +24,7 @@ module.exports = {
 			.assert.title("Rin's Anime Database")
 			.assert.visible("input[type=email]")
 			.assert.visible("input[type=password]")
-			.setValue("input[type=email]", "nightwatch@testing.com")
+			.setValue("input[type=email]", process.env.TEST_USERNAME)
 			.setValue("input[type=password]", "invalid")
 			.submitForm("form")
 			.assert.elementPresent(".alert.alert-dismissible")
@@ -36,8 +38,8 @@ module.exports = {
 			.assert.title("Rin's Anime Database")
 			.assert.visible("input[type=email]")
 			.assert.visible("input[type=password]")
-			.setValue("input[type=email]", "nightwatch@testing.com")
-			.setValue("input[type=password]", "nightwatch")
+			.setValue("input[type=email]", process.env.TEST_USERNAME)
+			.setValue("input[type=password]", process.env.TEST_PASSWORD)
 			.submitForm("form")
 			.assert.urlEquals(browser.launchUrl)
 			.waitForElementVisible("body")
