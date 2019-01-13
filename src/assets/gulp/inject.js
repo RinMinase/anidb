@@ -7,7 +7,7 @@ const inject = require("gulp-inject");
 const injectString = require("gulp-inject-string");
 const vinylPaths = require("vinyl-paths");
 
-task("inject-reload", series("inject", function reload(done) {
+task("inject-reload", series("inject", "inject-base", function reload(done) {
 	browserSync.reload();
 	done();
 }));
