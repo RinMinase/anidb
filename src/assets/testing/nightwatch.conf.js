@@ -4,7 +4,7 @@ const seleniumServer = require("selenium-server");
 const chromedriver = require("chromedriver");
 const { log } = console;
 
-log("Configuration Detals:");
+log("\nConfiguration Detals:");
 log("=====================");
 log(`URL: ${process.env.TEST_URL}`);
 log(`Username: ${process.env.TEST_USERNAME}`);
@@ -32,7 +32,7 @@ module.exports = {
 			"silent": true,
 			"launch_url" : process.env.TEST_URL || "http://localhost:3000",
 			"globals": {
-				"waitForConditionTimeout": 3000,
+				"waitForConditionTimeout": 5000,
 				"retryAssertionTimeout": 20000
 			},
 			"desiredCapabilities": {
