@@ -3,9 +3,9 @@ require("dotenv").config({ path: "./src/assets/.env" });
 module.exports = {
 	tags: ["login"],
 
-	'Login: Spinner Test': function(browser) {
+	'Login: Spinner Test': (browser) => {
 		browser
-			.url(browser.launchUrl + "login")
+			.url(browser.launchUrl + "/login")
 			.waitForElementVisible("body")
 			.assert.title("Rin's Anime Database")
 			.assert.visible("input[type=email]")
@@ -17,9 +17,9 @@ module.exports = {
 			.end();
 	},
 
-	'Login: Invalid Credentials': function(browser) {
+	'Login: Invalid Credentials': (browser) => {
 		browser
-			.url(browser.launchUrl + "login")
+			.url(browser.launchUrl + "/login")
 			.waitForElementVisible("body")
 			.assert.title("Rin's Anime Database")
 			.assert.visible("input[type=email]")
@@ -31,9 +31,9 @@ module.exports = {
 			.end();
 	},
 
-	'Login: Valid Credentials': function(browser) {
+	'Login: Valid Credentials': (browser) => {
 		browser
-			.url(browser.launchUrl + "login")
+			.url(browser.launchUrl + "/login")
 			.waitForElementVisible("body")
 			.assert.title("Rin's Anime Database")
 			.assert.visible("input[type=email]")
