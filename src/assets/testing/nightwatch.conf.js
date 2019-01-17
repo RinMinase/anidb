@@ -1,3 +1,5 @@
+require("dotenv").config({ path: "./src/assets/.env" });
+
 const seleniumServer = require("selenium-server");
 const chromedriver = require("chromedriver");
 
@@ -15,7 +17,7 @@ module.exports = {
 	"test_settings": {
 		"default": {
 			"silent": true,
-			"launch_url" : "http://localhost:3000/",
+			"launch_url" : process.env.TEST_URL || "http://localhost:3000",
 			"globals": {
 				"waitForConditionTimeout": 3000,
 				"retryAssertionTimeout": 20000
