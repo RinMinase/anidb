@@ -2,6 +2,12 @@ require("dotenv").config({ path: "./src/assets/.env" });
 
 const seleniumServer = require("selenium-server");
 const chromedriver = require("chromedriver");
+const { log } = console;
+
+log("Configuration Detals:");
+log("=====================");
+log(`URL: ${process.env.TEST_URL}`);
+log(`Username: ${process.env.TEST_USERNAME}\n`);
 
 module.exports = {
 	"src_folders": ["src/assets/testing/tests"],
