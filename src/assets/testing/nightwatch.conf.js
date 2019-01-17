@@ -7,7 +7,14 @@ const { log } = console;
 log("Configuration Detals:");
 log("=====================");
 log(`URL: ${process.env.TEST_URL}`);
-log(`Username: ${process.env.TEST_USERNAME}\n`);
+log(`Username: ${process.env.TEST_USERNAME}`);
+log(`Headless: ${process.env.TEST_HEADLESS || "false"}\n`);
+
+const args = Array();
+
+if (process.env.TEST_HEADLESS === "true") {
+	args.push("headless");
+}
 
 module.exports = {
 	"src_folders": ["src/assets/testing/tests"],
@@ -30,8 +37,11 @@ module.exports = {
 			},
 			"desiredCapabilities": {
 				"browserName": "chrome",
-				"javascriptEnabled": true
+				"javascriptEnabled": true,
+				"chromeOptions": {
+					"args": args,
+				}
 			}
 		}
-	}
+	},
 }
