@@ -22,6 +22,7 @@ module.exports = {
 			.assert.containsText("div.row.mt-4 div.card-header h6", "Changelog")
 			.assert.containsText("div.row.my-3 div.card-header h6", "Issues and Future Changes")
 			.assert.containsText("div.row.my-3 .card-body h5:nth-child(6)", "Package Update Issues")
+			.closeWindow()
 			.end();
 	}
 };

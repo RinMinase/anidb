@@ -14,6 +14,7 @@ module.exports = {
 			.setValue("input[type=password]", process.env.TEST_PASSWORD)
 			.submitForm("form")
 			.assert.elementPresent(".spinner.eclipse")
+			.closeWindow()
 			.end();
 	},
 
@@ -28,6 +29,7 @@ module.exports = {
 			.setValue("input[type=password]", "invalid")
 			.submitForm("form")
 			.assert.elementPresent(".alert.alert-dismissible")
+			.closeWindow()
 			.end();
 	},
 
@@ -44,6 +46,7 @@ module.exports = {
 			.assert.urlEquals(browser.launchUrl)
 			.waitForElementVisible("body")
 			.assert.elementPresent("#animeTable")
+			.closeWindow()
 			.end();
 	}
 };

@@ -17,6 +17,7 @@ module.exports = {
 			.waitForElementVisible("body")
 			.assert.elementPresent("anidb-navbar")
 			.assert.elementPresent("anidb-footer")
+			.closeWindow()
 			.end();
 	},
 
@@ -36,6 +37,7 @@ module.exports = {
 			.click(".manage-home .row .form-group a.btn-success")
 			.waitForElementVisible(".modal")
 			.assert.containsText(".modal h4.modal-title", "Add Title")
+			.closeWindow()
 			.end();
 	}
 };
