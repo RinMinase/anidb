@@ -1,7 +1,7 @@
 {
   "name": "rin-anidb",
-	"description": "Rin Minase's Anime Database using AngularJS in ES6 compiled for Android with Cordova and deployed to Firebase using Travis CI",
-	"homepage": "https://rin-anidb.firebaseapp.com/",
+  "description": "Rin Minase's Anime Database using AngularJS in ES6 compiled for Android with Cordova and deployed to Firebase using Travis CI",
+  "homepage": "https://rin-anidb.firebaseapp.com/",
   "version": "0.1.0",
   "license": "MIT",
   "author": "Rin Minase",
