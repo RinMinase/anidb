@@ -13,7 +13,7 @@ log(`Headless: ${process.env.TEST_HEADLESS || "false"}\n`);
 const args = Array();
 
 if (process.env.TEST_HEADLESS === "true") {
-	args.push("headless");
+	args.push("--headless");
 }
 
 module.exports = {
