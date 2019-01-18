@@ -1,6 +1,6 @@
 require("dotenv").config({ path: "./src/assets/.env" });
 
 module.exports = {
-    tags: ["export"],
+	tags: ["export"],
 
 }
