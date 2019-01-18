@@ -27,7 +27,7 @@ module.exports = {
 		"server_path": seleniumServer.path,
 		"host": "127.0.0.1",
 		"port": 4444,
-		"cli_args": { "webdriver.chrome.driver" : chromedriver.path }
+		"cli_args": { "webdriver.chrome.driver" : chromedriver.path },
 	},
 	"test_settings": {
 		"default": {
@@ -42,8 +42,8 @@ module.exports = {
 				"javascriptEnabled": true,
 				"chromeOptions": {
 					"args": args,
-				}
-			}
-		}
+				},
+			},
+		},
 	},
 }
