@@ -10,9 +10,11 @@ log(`URL: ${process.env.TEST_URL}`);
 log(`Username: ${process.env.TEST_USERNAME}`);
 log(`Headless: ${process.env.TEST_HEADLESS || "false"}\n`);
 
-const args = Array();
+const args = [];
 
 if (process.env.TEST_HEADLESS === "true") {
+	args.push("--proxy-server='direct://'");
+	args.push("--proxy-bypass-list=*");
 	args.push("--headless");
 }
 
