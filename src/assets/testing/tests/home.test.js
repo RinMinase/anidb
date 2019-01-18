@@ -5,7 +5,7 @@ module.exports = {
 
 	'Home: Navbar and Footer': (browser) => {
 		browser
-			.url(browser.launchUrl + "/login")
+			.url(`${browser.launchUrl}/login`)
 			.waitForElementVisible("body")
 			.assert.title("Rin's Anime Database")
 			.waitForElementVisible("input[type=email]")
@@ -23,7 +23,7 @@ module.exports = {
 
 	'Home: Add Modal': (browser) => {
 		browser
-			.url(browser.launchUrl + "/login")
+			.url(`${browser.launchUrl}/login`)
 			.waitForElementVisible("body")
 			.assert.title("Rin's Anime Database")
 			.waitForElementVisible("input[type=email]")

@@ -3,7 +3,7 @@ require("dotenv").config({ path: "./src/assets/.env" });
 module.exports = {
 	tags: ["about"],
 
-	"About: Content": function(browser) {
+	"About: Content": (browser) => {
 		browser
 			.url(`${browser.launchUrl}/login`)
 			.waitForElementVisible("body")

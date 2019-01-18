@@ -5,7 +5,7 @@ module.exports = {
 
 	'Login: Spinner Test': (browser) => {
 		browser
-			.url(browser.launchUrl + "/login")
+			.url(`${browser.launchUrl}/login`)
 			.waitForElementVisible("body")
 			.assert.title("Rin's Anime Database")
 			.assert.visible("input[type=email]")
@@ -20,7 +20,7 @@ module.exports = {
 
 	'Login: Invalid Credentials': (browser) => {
 		browser
-			.url(browser.launchUrl + "/login")
+			.url(`${browser.launchUrl}/login`)
 			.waitForElementVisible("body")
 			.assert.title("Rin's Anime Database")
 			.assert.visible("input[type=email]")
@@ -35,7 +35,7 @@ module.exports = {
 
 	'Login: Valid Credentials': (browser) => {
 		browser
-			.url(browser.launchUrl + "/login")
+			.url(`${browser.launchUrl}/login`)
 			.waitForElementVisible("body")
 			.assert.title("Rin's Anime Database")
 			.assert.visible("input[type=email]")
@@ -43,7 +43,7 @@ module.exports = {
 			.setValue("input[type=email]", process.env.TEST_USERNAME)
 			.setValue("input[type=password]", process.env.TEST_PASSWORD)
 			.submitForm("form")
-			.assert.urlEquals(browser.launchUrl)
+			.assert.urlEquals(`${browser.launchUrl}/`)
 			.waitForElementVisible("body")
 			.assert.elementPresent("#animeTable")
 			.closeWindow()
