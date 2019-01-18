@@ -5,6 +5,7 @@
 		<meta name="description" content="Rin Minase's Anime Database using AngularJS in ES6 compiled for Android with Cordova.">
 		<meta name="viewport" content="width=device-width">
 		<meta name="theme-color" content="#28A745"/>
+		<meta name="google-signin-client_id" content="669722574117-vl1de9g5p538cc9dkgutvvv31hbhg1e9.apps.googleusercontent.com">
 
 		<link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon">
 		<link rel="preconnect" href="https://firebasestorage.googleapis.com">
@@ -26,6 +27,19 @@
 		<!-- inject:partials -->
 		<!-- endinject -->
 		<!-- endbuild -->
+
+		<!-- <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+		<script>
+			function renderGoogleButton() {
+				if(!gapi) return
+				gapi.signin2.render('gSignIn', { onsuccess: function(user) { onSignIn(user) } });
+			}
+
+			setTimeout(() => {
+				renderGoogleButton()
+			});
+		</script> -->
 
 		<noscript>
 			<div class="row text-center" style="height: 100vh !important;">
