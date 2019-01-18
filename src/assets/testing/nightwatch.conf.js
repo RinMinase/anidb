@@ -18,6 +18,7 @@ if (process.env.TEST_HEADLESS === "true") {
 	args.push("--headless");
 }
 
+/* eslint-disable quote-props */
 module.exports = {
 	"src_folders": ["src/assets/testing/tests"],
 	"output_folder": false,
@@ -35,14 +36,12 @@ module.exports = {
 			"launch_url" : process.env.TEST_URL || "http://localhost:3000",
 			"globals": {
 				"waitForConditionTimeout": 5000,
-				"retryAssertionTimeout": 20000
+				"retryAssertionTimeout": 20000,
 			},
 			"desiredCapabilities": {
 				"browserName": "chrome",
 				"javascriptEnabled": true,
-				"chromeOptions": {
-					"args": args,
-				},
+				"chromeOptions": { args },
 			},
 		},
 	},
