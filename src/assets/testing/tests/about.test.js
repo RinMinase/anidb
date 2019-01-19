@@ -24,5 +24,5 @@ module.exports = {
 			.assert.containsText("div.row.my-3 .card-body h5:nth-child(6)", "Package Update Issues")
 			.closeWindow()
 			.end();
-	}
+	},
 };

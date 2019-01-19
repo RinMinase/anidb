@@ -3,7 +3,7 @@ require("dotenv").config({ path: "./src/assets/.env" });
 module.exports = {
 	tags: ["home"],
 
-	'Home: Navbar and Footer': (browser) => {
+	"Home: Navbar and Footer": (browser) => {
 		browser
 			.url(`${browser.launchUrl}/login`)
 			.waitForElementVisible("body")
@@ -21,7 +21,7 @@ module.exports = {
 			.end();
 	},
 
-	'Home: Add Modal': (browser) => {
+	"Home: Add Modal": (browser) => {
 		browser
 			.url(`${browser.launchUrl}/login`)
 			.waitForElementVisible("body")
@@ -39,5 +39,5 @@ module.exports = {
 			.assert.containsText(".modal h4.modal-title", "Add Title")
 			.closeWindow()
 			.end();
-	}
+	},
 };

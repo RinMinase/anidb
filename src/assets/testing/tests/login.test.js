@@ -3,7 +3,7 @@ require("dotenv").config({ path: "./src/assets/.env" });
 module.exports = {
 	tags: ["login"],
 
-	'Login: Spinner Test': (browser) => {
+	"Login: Spinner Test": (browser) => {
 		browser
 			.url(`${browser.launchUrl}/login`)
 			.waitForElementVisible("body")
@@ -18,7 +18,7 @@ module.exports = {
 			.end();
 	},
 
-	'Login: Invalid Credentials': (browser) => {
+	"Login: Invalid Credentials": (browser) => {
 		browser
 			.url(`${browser.launchUrl}/login`)
 			.waitForElementVisible("body")
@@ -33,7 +33,7 @@ module.exports = {
 			.end();
 	},
 
-	'Login: Valid Credentials': (browser) => {
+	"Login: Valid Credentials": (browser) => {
 		browser
 			.url(`${browser.launchUrl}/login`)
 			.waitForElementVisible("body")
@@ -48,5 +48,5 @@ module.exports = {
 			.assert.elementPresent("#animeTable")
 			.closeWindow()
 			.end();
-	}
+	},
 };
