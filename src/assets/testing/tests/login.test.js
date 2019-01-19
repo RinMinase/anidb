@@ -49,4 +49,22 @@ module.exports = {
 			.closeWindow()
 			.end();
 	},
+
+	"Login: Logout Redirection": (browser) => {
+		browser
+			.url(`${browser.launchUrl}/login`)
+			.waitForElementVisible("body")
+			.assert.title("Rin's Anime Database")
+			.assert.visible("input[type=email]")
+			.assert.visible("input[type=password]")
+			.setValue("input[type=email]", process.env.TEST_USERNAME)
+			.setValue("input[type=password]", process.env.TEST_PASSWORD)
+			.submitForm("form")
+			.assert.urlEquals(`${browser.launchUrl}/`)
+			.waitForElementVisible("anidb-navbar")
+			.click("anidb-navbar ul:nth-child(2) > li:nth-child(2) > a")
+			.assert.urlEquals(`${browser.launchUrl}/login`)
+			.closeWindow()
+			.end();
+	}
 };
