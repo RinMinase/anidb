@@ -3,6 +3,8 @@
 [![Travis-CI](https://api.travis-ci.org/RinMinase/anidb.svg?branch=master)](https://travis-ci.org/RinMinase/anidb)
 [![David-DM](https://david-dm.org/RinMinase/anidb.svg)](https://david-dm.org/RinMinase/anidb)
 [![David-DM](https://david-dm.org/RinMinase/anidb/dev-status.svg)](https://david-dm.org/RinMinase/anidb)
+[![Issue-Resolution](http://isitmaintained.com/badge/resolution/RinMinase/anidb.svg)](http://isitmaintained.com/project/RinMinase/anidb)
+[![Open-Issues](http://isitmaintained.com/badge/open/RinMinase/anidb.svg)](http://isitmaintained.com/project/RinMinase/anidb)
 [![Node](https://img.shields.io/badge/node-%5E6.14.0%20%7C%7C%20%5E8.10.0%20%7C%7C%20%3E%3D9.10.0-green.svg)](https://nodejs.org)
 [![Yarn](https://img.shields.io/badge/yarn-1.13.0-blue.svg)](https://yarnpkg.com/)
 
