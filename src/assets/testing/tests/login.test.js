@@ -66,5 +66,5 @@ module.exports = {
 			.assert.urlEquals(`${browser.launchUrl}/login`)
 			.closeWindow()
 			.end();
-	}
+	},
 };
