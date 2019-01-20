@@ -1,7 +1,5 @@
 require("dotenv").config({ path: "./src/assets/.env" });
 
-const seleniumServer = require("selenium-server");
-const chromedriver = require("chromedriver");
 const { log } = console;
 
 log("\nConfiguration Detals:");
@@ -22,16 +20,12 @@ if (process.env.TEST_HEADLESS === "true") {
 module.exports = {
 	"src_folders": ["src/assets/testing/tests"],
 	"output_folder": false,
-	"selenium": {
-		"start_process": true,
-		"log_path": false,
-		"server_path": seleniumServer.path,
-		"host": "127.0.0.1",
-		"port": 4444,
-		"cli_args": { "webdriver.chrome.driver" : chromedriver.path },
-	},
+	"selenium": { "start_process": false },
+	"globals_path": "./chromedriver.conf.js",
 	"test_settings": {
 		"default": {
+			"selenium_host": "127.0.0.1",
+			"selenium_port": 9515,
 			"silent": true,
 			"launch_url" : process.env.TEST_URL || "http://localhost:3000",
 			"globals": {
