@@ -74,7 +74,7 @@ export class ViewHomeController {
 
 						if (data.rewatch) {
 							data.rewatchCount = data.rewatch.split(",").length;
-							data.lastRewatch = moment.unix(data.rewatchLast).format("MMM DD, YYYY");
+							data.lastRewatch = moment.unix(data.rewatchLast).format("MMMM DD, YYYY");
 						} else {
 							data.rewatchCount = 0;
 						}
