@@ -73,7 +73,10 @@
 								{{ ::data.episodes }} / {{ ::data.ovas }} / {{ ::data.specials }}
 							</td>
 							<td class="text-center">{{ ::data.filesize }}</td>
-							<td class="text-center">{{ ::data.dateFinished }}</td>
+							<td class="text-center">
+								<span>{{ ::data.dateFinished }}</span>
+								<span class="text-muted small" ng-if="data.rewatchCount">&nbsp;(Rewatch)</span>
+							</td>
 							<td>{{ ::data.releaseSeason }} {{ ::data.releaseYear }}</td>
 							<td>{{ ::data.encoder }}</td>
 						</tr>

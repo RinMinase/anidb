@@ -109,6 +109,7 @@ export class ManageHomeController {
 					quality: value.quality,
 					releaseSeason: value.releaseSeason,
 					releaseYear: value.releaseYear,
+					rewatchCount: value.rewatchCount,
 					specials: value.specials,
 					title: value.title,
 				});
