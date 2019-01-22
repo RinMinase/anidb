@@ -39,7 +39,7 @@
     "moment": "^2.23.0",
     "oclazyload": "^1.1.0",
     "roboto-fontface": "^0.10.0",
-    "ui-bootstrap4": "^3.0.5",
+    "ui-bootstrap4": "^3.0.6",
     "velocity-animate": "^1.5.2",
     "xlsx": "^0.14.1"
   },
