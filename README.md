@@ -1,6 +1,6 @@
 <h1 align="center"> Rin Minase's Anime Database </h1>
 
-[![Travis-CI](https://api.travis-ci.org/RinMinase/anidb.svg?branch=master)](https://travis-ci.org/RinMinase/anidb)
+[![Travis-CI](https://img.shields.io/travis/RinMinase/anidb.svg?logo=travis)](https://travis-ci.org/RinMinase/anidb)
 [![David-DM](https://david-dm.org/RinMinase/anidb.svg)](https://david-dm.org/RinMinase/anidb)
 [![David-DM](https://david-dm.org/RinMinase/anidb/dev-status.svg)](https://david-dm.org/RinMinase/anidb)
 [![Issue-Resolution](http://isitmaintained.com/badge/resolution/RinMinase/anidb.svg)](http://isitmaintained.com/project/RinMinase/anidb)
