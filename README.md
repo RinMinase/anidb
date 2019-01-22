@@ -1,16 +1,30 @@
 <h1 align="center"> Rin Minase's Anime Database </h1>
 
-<center>
-
-[![Travis-CI](https://img.shields.io/travis/RinMinase/anidb.svg?logo=travis)](https://travis-ci.org/RinMinase/anidb)
-[![David-DM](https://david-dm.org/RinMinase/anidb.svg)](https://david-dm.org/RinMinase/anidb)
-[![David-DM](https://david-dm.org/RinMinase/anidb/dev-status.svg)](https://david-dm.org/RinMinase/anidb)
-
-[![Issue-Resolution](http://isitmaintained.com/badge/resolution/RinMinase/anidb.svg)](http://isitmaintained.com/project/RinMinase/anidb)
-[![Open-Issues](http://isitmaintained.com/badge/open/RinMinase/anidb.svg)](http://isitmaintained.com/project/RinMinase/anidb)
-[![Node](https://img.shields.io/badge/node-%5E6.14.0%20%7C%7C%20%5E8.10.0%20%7C%7C%20%3E%3D9.10.0-green.svg)](https://nodejs.org)
-[![Yarn](https://img.shields.io/badge/yarn-1.13.0-blue.svg)](https://yarnpkg.com/)
-</center>
+<p align="center">
+    <a href="https://travis-ci.org/RinMinase/anidb">
+        <img alt="Travis-CI" src="https://img.shields.io/travis/RinMinase/anidb.svg?logo=travis">
+    </a>
+    <a href="https://david-dm.org/RinMinase/anidb">
+        <img alt="David-DM" src="https://david-dm.org/RinMinase/anidb.svg">
+    </a>
+    <a href="https://david-dm.org/RinMinase/anidb">
+        <img alt="David-DM" src="https://david-dm.org/RinMinase/anidb/dev-status.svg">
+    </a>
+</p>
+<p align="center">
+    <a href="http://isitmaintained.com/project/RinMinase/anidb">
+        <img alt="Issue Resolution" src="http://isitmaintained.com/badge/resolution/RinMinase/anidb.svg">
+    </a>
+    <a href="http://isitmaintained.com/project/RinMinase/anidb">
+        <img alt="Open Issues" src="http://isitmaintained.com/badge/open/RinMinase/anidb.svg">
+    </a>
+    <a href="https://nodejs.org">
+        <img alt="Node" src="https://img.shields.io/badge/node-%5E6.14.0%20%7C%7C%20%5E8.10.0%20%7C%7C%20%3E%3D9.10.0-green.svg">
+    </a>
+    <a href="https://yarnpkg.com/">
+        <img alt="Yarn" src="https://img.shields.io/badge/yarn-1.13.0-blue.svg">
+    </a>
+</p>
 
 ## Introduction
 _Add info here_
