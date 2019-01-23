@@ -4,7 +4,6 @@ const conf = require("../../../gulpfile.js");
 
 const log = require("fancy-log");
 const browserSync = require("browser-sync");
-const dotenv = require("dotenv").config({ path: "./src/assets/.env" });
 const webpack = require("webpack");
 const webpackStream = require("webpack-stream");
 
@@ -59,7 +58,6 @@ function webpackWrapper(watch, callback) {
 		webpackOptions.mode = "production";
 		webpackOptions.optimization.splitChunks.minSize = 153600;
 		webpackOptions.optimization.splitChunks.maxSize = 512000;
-		webpackOptions.plugins.push(new webpack.DefinePlugin({ "process.env": dotenv.parsed }));
 		webpackOptions.plugins.push(new webpack.optimize.LimitChunkCountPlugin({
 			maxChunks: 5,
 			minChunkSize: 153600,
