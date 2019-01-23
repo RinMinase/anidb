@@ -1,34 +1,44 @@
-/* eslint-disable */
+const { join } = require("path");
+const {
+	readdir,
+	unlink,
+	existsSync,
+	mkdirSync,
+	createReadStream,
+	createWriteStream,
+} = require("fs");
 
-module.exports = function(context) {
-	var fs = require("fs");
-	var path = require("path")
-	var ConfigParser = context.requireCordovaModule("cordova-lib").configparser;
-	var config = new ConfigParser("config.xml");
+module.exports = (context) => {
+	const ConfigParser = context.requireCordovaModule("cordova-lib").configparser;
+	const config = new ConfigParser("config.xml");
 
-	var dir = "./build"
-	var buildLogDir = "platforms/android/build/android-profile";
+	const dir = "./build";
+	const buildLogDir = "platforms/android/build/android-profile";
 
-	var apkLocation = "platforms/android/app/build/outputs/apk/debug";
-	var apkFilename = "app-debug.apk";
+	const apkLocation = "platforms/android/app/build/outputs/apk/debug";
+	const apkFilename = "app-debug.apk";
 
-	var apkOutput = "build";
-	var apkOutputFilename = config.packageName() + "_" + config.version() + ".apk"
+	const apkOutput = "build";
+	const apkOutputFilename = `${config.packageName()}_${config.version()}.apk`;
 
-	fs.readdir(buildLogDir, function (err, files) {
-		if (err) throw err;
+	readdir(buildLogDir, (err, files) => {
+		if (err) {
+			throw err;
+		}
 
 		for (const file of files) {
-			fs.unlink(path.join(buildLogDir, file), function(err) {
-				if (err) throw err;
+			unlink(join(buildLogDir, file), (unlinkErr) => {
+				if (unlinkErr) {
+					throw unlinkErr;
+				}
 			});
 		}
 	});
 
-	if (!fs.existsSync(dir)){
-		fs.mkdirSync(dir);
+	if (!existsSync(dir)){
+		mkdirSync(dir);
 	}
 
-	fs.createReadStream(path.join(apkLocation, apkFilename))
-		.pipe(fs.createWriteStream(path.join(apkOutput, apkOutputFilename)));
-}
+	createReadStream(join(apkLocation, apkFilename))
+		.pipe(createWriteStream(join(apkOutput, apkOutputFilename)));
+};
