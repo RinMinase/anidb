@@ -1,3 +1,5 @@
+import extend from "lodash/extend";
+
 export function FuseOptionsBuilder() {
 	"ngInject";
 
@@ -18,7 +20,7 @@ export function FuseOptionsBuilder() {
 
 	function init(cleanObject = false) {
 		if (!cleanObject) {
-			_.extend(fuseOptions, {
+			extend(fuseOptions, {
 				shouldSort: true,
 				threshold: 0.6,
 				location: 0,

@@ -10,7 +10,7 @@ export class AboutController {
 	) {
 		"ngInject";
 
-		_.extend(this, {
+		extend(this, {
 			$document: $document[0],
 			$scope,
 			$state,

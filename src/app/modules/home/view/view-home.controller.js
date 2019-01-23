@@ -1,3 +1,4 @@
+import extend from "lodash/extend";
 import moment from "moment";
 
 import updateHomeDOM from "../update/update-home.html";
@@ -14,7 +15,7 @@ export class ViewHomeController {
 	) {
 		"ngInject";
 
-		_.extend(this, {
+		extend(this, {
 			$scope,
 			$state,
 			$stateParams,

@@ -1,3 +1,4 @@
+import extend from "lodash/extend";
 import Fuse from "fuse.js";
 import moment from "moment";
 
@@ -28,7 +29,7 @@ export class ManageHomeController {
 			.addKeys("remarks")
 			.build();
 
-		_.extend(this, {
+		extend(this, {
 			$anchorScroll,
 			$scope,
 			$state,

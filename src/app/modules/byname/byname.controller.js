@@ -1,3 +1,5 @@
+import extend from "lodash/extend";
+
 export class ByNameController {
 	constructor(
 		$scope,
@@ -6,7 +8,7 @@ export class ByNameController {
 	) {
 		"ngInject";
 
-		_.extend(this, {
+		extend(this, {
 			$scope,
 			$state,
 			firebase,
@@ -75,7 +77,7 @@ export class ByNameController {
 		contents.forEach((element, index) => {
 			this.collapse.push(false);
 
-			_.extend(this.data[index], {
+			extend(this.data[index], {
 				content: contents[index].sort(this._sortByTitle),
 				filesize: filesizes[index],
 				key: keys[index],

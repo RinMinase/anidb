@@ -1,3 +1,5 @@
+import extend from "lodash/extend";
+
 export class LoginController {
 	constructor (
 		$document,
@@ -8,7 +10,7 @@ export class LoginController {
 	) {
 		"ngInject";
 
-		_.extend(this, {
+		extend(this, {
 			$document,
 			$scope,
 			$state,

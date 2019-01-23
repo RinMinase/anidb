@@ -1,4 +1,4 @@
-import _ from "lodash";
+import extend from "lodash/extend";
 
 import navbarDOM from "./navbar.html";
 
@@ -21,7 +21,7 @@ class NavbarController {
 	constructor($state, firebase) {
 		"ngInject";
 
-		_.extend(this, {
+		extend(this, {
 			$state,
 			firebase,
 		});

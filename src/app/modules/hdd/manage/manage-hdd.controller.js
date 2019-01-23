@@ -1,3 +1,5 @@
+import extend from "lodash/extend";
+
 export class ManageHddController {
 	constructor (
 		$scope,
@@ -5,7 +7,7 @@ export class ManageHddController {
 	) {
 		"ngInject";
 
-		_.extend(this, {
+		extend(this, {
 			$scope,
 			firebase,
 
@@ -114,7 +116,7 @@ export class ManageHddController {
 
 			this.collapse.push(false);
 
-			_.extend(this.data[index].hdd, {
+			extend(this.data[index].hdd, {
 				free: `${free} GB`,
 				panel: this.collapse.length,
 				percent,

@@ -1,3 +1,4 @@
+import extend from "lodash/extend";
 import moment from "moment";
 
 export class UpdateHomeController {
@@ -13,7 +14,7 @@ export class UpdateHomeController {
 	) {
 		"ngInject";
 
-		_.extend(this, {
+		extend(this, {
 			$uibModalInstance,
 			$state,
 			firebase,
@@ -47,7 +48,7 @@ export class UpdateHomeController {
 			titleList: [],
 		});
 
-		_.extend(this.data, {
+		extend(this.data, {
 			filesize,
 		});
 

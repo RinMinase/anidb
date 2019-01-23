@@ -1,3 +1,4 @@
+import extend from "lodash/extend";
 import moment from "moment";
 
 export class LastWatchController {
@@ -8,7 +9,7 @@ export class LastWatchController {
 	) {
 		"ngInject";
 
-		_.extend(this, {
+		extend(this, {
 			$scope,
 			$state,
 			firebase,

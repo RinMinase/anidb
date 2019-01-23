@@ -17,7 +17,7 @@ export function config(
 
 	$qProvider.errorOnUnhandledRejections(false);
 
-	// _.extend(toastrConfig, {
+	// extend(toastrConfig, {
 	// 	allowHtml: true,
 	// 	positionClass: "toast-top-right",
 	// 	preventDuplicates: true,

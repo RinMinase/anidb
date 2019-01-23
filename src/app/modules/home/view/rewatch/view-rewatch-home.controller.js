@@ -1,3 +1,4 @@
+import extend from "lodash/extend";
 import moment from "moment";
 
 export class ViewRewatchHomeController {
@@ -10,7 +11,7 @@ export class ViewRewatchHomeController {
 	) {
 		"ngInject";
 
-		_.extend(this, {
+		extend(this, {
 			$state,
 			$uibModalInstance,
 			firebase,

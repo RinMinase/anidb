@@ -1,10 +1,11 @@
+import extend from "lodash/extend";
 import moment from "moment";
 
 export class AddTitleDownloadController {
 	constructor($uibModalInstance) {
 		"ngInject";
 
-		_.extend(this, {
+		extend(this, {
 			$uibModalInstance,
 
 			data: {

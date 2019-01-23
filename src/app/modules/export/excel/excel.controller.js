@@ -1,8 +1,10 @@
+import extend from "lodash/extend";
+
 export class ExcelController {
 	constructor () {
 		"ngInject";
 
-		_.extend(this, {
+		extend(this, {
 			xlsx: XLSX,
 		});
 

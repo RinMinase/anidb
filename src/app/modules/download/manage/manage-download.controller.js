@@ -1,3 +1,5 @@
+import extend from "lodash/extend";
+
 import addSeasonListDOM from "../add/season/add-season-download.html";
 import addTitleDOM from "../add/title/add-title-download.html";
 
@@ -10,7 +12,7 @@ export class ManageDownloadController {
 	) {
 		"ngInject";
 
-		_.extend(this, {
+		extend(this, {
 			$scope,
 			$state,
 			$uibModal,

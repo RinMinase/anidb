@@ -1,3 +1,4 @@
+import extend from "lodash/extend";
 import moment from "moment";
 
 export class ManageSummerController {
@@ -7,7 +8,7 @@ export class ManageSummerController {
 	) {
 		"ngInject";
 
-		_.extend(this, {
+		extend(this, {
 			$scope,
 			firebase,
 
@@ -172,7 +173,7 @@ export class ManageSummerController {
 			const titlesPerDay = (totalTitles / days).toFixed(2);
 			const episodesPerDay = (totalEpisodes / days).toFixed(2);
 
-			_.extend(this.data[index].summer, {
+			extend(this.data[index].summer, {
 				episodes: totalEpisodes,
 				episodesPerDay,
 				filesize: this._convertFilesize(totalFilesize),
