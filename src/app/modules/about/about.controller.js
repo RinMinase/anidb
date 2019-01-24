@@ -1,3 +1,4 @@
+import extend from "lodash/extend";
 import moment from "moment";
 
 export class AboutController {
