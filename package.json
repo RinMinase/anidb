@@ -81,7 +81,7 @@
     "webpack-stream": "^5.2.1"
   },
   "resolutions": {
-    "**/@firebase/app-types": "0.3.2",
+    "**/@firebase/app-types": "0.3.3",
     "**/angular": "1.7.6",
     "**/gulp": "4.0.0",
     "**/jquery": "3.3.1",
