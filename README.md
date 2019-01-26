@@ -102,8 +102,15 @@ Task automation is based on [Gulp tasks](https://gulpjs.com/), [Yarn scripts](ht
 
 | Task                                  | Description                                                                                           |
 | ------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| `npm start` or `gulp serve`           | Run **development server** on `http://localhost:3000/` with file watching on changes                  |
-| `gulp serve:dist `                    | Run **test server** on `http://localhost:3000/`                                                       |
+| `gulp serve` or `yarn start`          | Run **development server** on `http://localhost:3000/` with file watching on changes                  |
+| `gulp serve:dist` or `yarn run build` | Run **test server** on `http://localhost:3000/`                                                       |
+| `gulp build` or `gulp`                |                                                                                                    
+| `yarn test <args>`                    |                                                                                                       |   |
+| `yarn run bundle`                     |                                                                                                       |
+| `yarn run deploy`                     |                                                                                                       |
+| `yarn run setup`                      |                                                                                                       |
+| `yarn run setup-android`              |                                                                                                       |
+| `yarn run setup-testing`              |                                                                                                       |
 
 ### Testing the project
 _Add info here_
