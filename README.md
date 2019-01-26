@@ -35,6 +35,8 @@ _Add info here_
 _Add info here_
 
 ### Project Structure
+
+#### Directory Structure
     .
     ├── .tmp                          # Local development server 
     ├── dist                          # Local production server
@@ -46,6 +48,7 @@ _Add info here_
     │   │   │   └── services          # Project services
     │   │   │       └── builders      # Project builders
     │   │   ├── modules               # Project modules
+    │   │   │   └── <module-name>     # Module folder (refer to structure below)
     │   │   ├── index.config.js       # Configuration file for main module
     │   │   └── index.module.js       # Main module
     │   ├── assets                    # Project assets
@@ -74,6 +77,15 @@ _Add info here_
     ├── firebase.json                 # Firebase hosting configuation
     ├── gulpfile.js                   # Main gulp file
     └── ...                           # Other project files
+
+#### Module Structure
+    .
+    ├── <sub-module name>      # Sub-module
+    │    └── ...               # Sub-module files
+    ├── <name>.controller.js   # Module controller
+    ├── <name>.html            # Module template
+    ├── <name>.module.js       # Module
+    └── <name>.scss            # Module stylesheet
 
 ### Building the project
 _Add info here_
