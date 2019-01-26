@@ -88,10 +88,10 @@ _Add info here_
 
 Task automation is based on [Gulp tasks](https://gulpjs.com/), [Yarn scripts](https://yarnpkg.com/lang/en/docs/cli/run/) and [NPM scripts](https://docs.npmjs.com/misc/scripts).
 
-| Task                                            | Description                                                                                                      |
-| ----------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| `npm start` or `gulp serve`                     | Run **development server** on `http://localhost:3000/` with file watching on changes                             |
-| `gulp serve:dist `                              | Run **test server** on `http://localhost:3000/`                                                                  |
+| Task                                  | Description                                                                                           |
+| ------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| `npm start` or `gulp serve`           | Run **development server** on `http://localhost:3000/` with file watching on changes                  |
+| `gulp serve:dist `                    | Run **test server** on `http://localhost:3000/`                                                       |
 
 ### Testing the project
 _Add info here_
