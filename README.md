@@ -35,7 +35,45 @@ _Add info here_
 _Add info here_
 
 ### Project Structure
-_Add info here_
+    .
+    ├── .tmp                          # Local development server 
+    ├── dist                          # Local production server
+    ├── src                           # Project source code
+    │   ├── app                       # Project components
+    │   │   ├── core                  # System-wide components
+    │   │   │   ├── constants         # Project constants
+    │   │   │   ├── directives        # Project directives
+    │   │   │   └── services          # Project services
+    │   │   │       └── builders      # Project builders
+    │   │   ├── modules               # Project modules
+    │   │   ├── index.config.js       # Configuration file for main module
+    │   │   └── index.module.js       # Main module
+    │   ├── assets                    # Project assets
+    │   │   ├── firebase              # Firebase configurations
+    │   │   ├── gulp                  # Gulp files
+    │   │   ├── styles                # Stylesheet folder 
+    │   │   │   └── chunks            # Stylesheet modules
+    │   │   ├── testing               # Testing asets
+    │   │   │   └── tests             # Unit tests
+    │   │   ├── .env                  # Environment variables
+    │   │   ├── .env.example          # Environment variables template
+    │   │   ├── favicon.ico           # Wepage icon
+    │   │   └── robots.txt            # Robots file
+    │   ├── res                       # Cordova resources folder
+    │   │   └── android               # Android resources
+    │   │       ├── hooks             # Android build hooks
+    │   │       ├── icon              # Android icons
+    │   │       └── screen            # Android splash screens
+    │   └── index.html                # Main HTML file
+    ├── .editorconfig                 # IDE / Editor configuration
+    ├── .eslintrc                     # JS linting configuration
+    ├── .firebaserc                   # Firebase project configuration
+    ├── .sasslintrc                   # SCSS linting configuration
+    ├── .travis.yml                   # Travis deployment configuration
+    ├── config.xml                    # Cordova build configuration
+    ├── firebase.json                 # Firebase hosting configuation
+    ├── gulpfile.js                   # Main gulp file
+    └── ...                           # Other project files
 
 ### Building the project
 _Add info here_
