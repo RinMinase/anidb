@@ -12,7 +12,7 @@ function webpackWrapper(watch, callback) {
 		watch,
 		module: {
 			rules: [{
-				test: /\.js$/,
+				test: /^(?!.*\.test\.js$).*\.js$/,
 				enforce: "pre",
 				exclude: /node_modules/,
 				loader: "eslint-loader",
@@ -24,7 +24,7 @@ function webpackWrapper(watch, callback) {
 					options: { relativeTo: join(conf.paths.root, conf.paths.src) },
 				}, { loader: "html-loader" }],
 			}, {
-				test: /\.js$/,
+				test: /^(?!.*\.test\.js$).*\.js$/,
 				exclude: /node_modules/,
 				use: [{
 					loader: "ng-annotate-loader",
