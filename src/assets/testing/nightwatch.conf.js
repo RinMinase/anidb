@@ -31,6 +31,7 @@ module.exports = {
 			selenium_host: "127.0.0.1",
 			selenium_port: 9515,
 			silent: true,
+			filter: "**/*.test.js",
 			launch_url : process.env.TEST_URL || "http://localhost:3000",
 			globals: {
 				waitForConditionTimeout: 5000,
