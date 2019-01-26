@@ -81,6 +81,9 @@ _Add info here_
 ### Bundling the project for Android
 _Add info here_
 
+### Deploying the project to Firebase
+_Add info here_
+
 ### Project tasks
 
 Task automation is based on [Gulp tasks](https://gulpjs.com/), [Yarn scripts](https://yarnpkg.com/lang/en/docs/cli/run/) and [NPM scripts](https://docs.npmjs.com/misc/scripts).
