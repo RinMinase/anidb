@@ -61,7 +61,9 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "anidb:build"
+            "port": 3000,
+            "browserTarget": "anidb:build",
+            "sourceMap": false
           },
           "configurations": {
             "production": {
