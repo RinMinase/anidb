@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "anidb-ngx": {
+    "anidb": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/anidb-ngx",
+            "outputPath": "dist/anidb",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -61,18 +61,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "anidb-ngx:build"
+            "browserTarget": "anidb:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "anidb-ngx:build:production"
+              "browserTarget": "anidb:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "anidb-ngx:build"
+            "browserTarget": "anidb:build"
           }
         },
         "test": {
@@ -106,7 +106,7 @@
         }
       }
     },
-    "anidb-ngx-e2e": {
+    "anidb-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
@@ -115,11 +115,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "anidb-ngx:serve"
+            "devServerTarget": "anidb:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "anidb-ngx:serve:production"
+              "devServerTarget": "anidb:serve:production"
             }
           }
         },
@@ -135,5 +135,5 @@
       }
     }
   },
-  "defaultProject": "anidb-ngx"
+  "defaultProject": "anidb"
 }
