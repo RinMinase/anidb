@@ -1,16 +1,33 @@
 # General
 .env
-.tmp/
-true!ng-annotate/
-dist/
-coverage/
-src/app/index.database.js
+/coverage
+/libpeerconnection.log
+/connect.lock
+/typings
 
-# Yeoman Generator files
-.yo-rc.json
+# compiled output
+/dist
+/tmp
+/out-tsc
+
+# Profiling files
+chrome-profiler-events.json
+speed-measure-plugin.json
 
 # IntelliJ IDE storage
-.idea/
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
 
 # Node/NPM/Yarn Logs
 logs
@@ -45,3 +62,7 @@ plugins/
 
 # Firebase cache directory
 .firebase/
+
+# System Files
+.DS_Store
+Thumbs.db
