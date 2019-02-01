@@ -16,7 +16,7 @@ before_install:
 - export PATH="$HOME/.yarn/bin:$PATH"
 install:
 - yarn
-script: npm run build
+script: yarn build
 deploy:
   skip_cleanup: true
   provider: firebase
