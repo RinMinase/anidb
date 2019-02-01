@@ -22,6 +22,10 @@ script: gulp
 deploy:
   skip_cleanup: true
   provider: firebase
+  on:
+    branches:
+      only:
+      - master
 env:
   global:
     secure: sOzA+Gp0QzG1tx8dCla7hsQLoMr+qptyZukKUvVH4hKMppzGdhB0+lyjOjEg95Gg0Dm4ef+9zWNvuQf89gFgaYXMyZ0HOYXyuJ897sMHTvteKQo7st8ZLoH1cRPNVW1Wg/v7tkmjltGeUzycUqtYWufTGH4H12sIriRoowEx9Hr9v1bWbEwjrJruWwZDZvIo8n3FSZLxO6QgkfkkCyE3TkmFanz7ocdJ0vRzss9X3vyIQp8oQ/mRB14a4lMUCenOjbCuZTslRvibQe4tDGCvnfwPxkRniHZbRdIL6XCWtFvRgDUVvH6LA7iSsIZS/aj5bx21FEgnk+02d9v25BtT+eRwcNbVfCSmw/Y0PvkhgFX3qQDs9NzSQv+mee+1eFLFvaU0WtH+5ozoPDGlfGfeWjFiLYfL3RdyTp2dWOkpEXhpGQy0NNxAyxO6MDgEdNKVO4UyO9UNca1RdW3USPSiT3LwaNZQrcxGHUT9BuYxI1i91dpcfeuyB9FKBInwdEFvWUbvATDaTqbqYp8filK6G3UKAzlDED68RQ5hXUdxBlEf7Q0jg/cCnLkqWslTyMN8a+W7eOiHg7Vr5Gn9C/ZZyT2hPrBrMnLbVdmEbxNm9VSYufNVEhiRK0rqX/Drk/S0PZr9izpJaP7jB3sYwp1JEUqqHAY9BIMfmMqQDHFXp44=
