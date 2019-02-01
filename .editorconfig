@@ -31,6 +31,10 @@ insert_final_newline = true
 max_line_length = off
 trim_trailing_whitespace = false
 
+[*.yml]
+max_line_length = off
+indent_style = space
+
 [.sasslint.yml]
 indent_style = space
 indent_size = 2
