@@ -26,10 +26,15 @@
 						"main": "src/main.ts",
 						"polyfills": "src/polyfills.ts",
 						"tsConfig": "src/assets/config/tsconfig.app.json",
-						"assets": [
-							"src/assets/favicon.ico",
-							"src/assets/robots.txt"
-						],
+						"assets": [{
+							"glob": "favicon.ico",
+							"input": "src/assets/",
+							"output": "/assets/"
+						}, {
+							"glob": "robots.txt",
+							"input": "src/assets/",
+							"output": "/"
+						}],
 						"styles": [ "src/styles.scss" ],
 						"scripts": []
 					},
@@ -81,8 +86,7 @@
 						"styles": [ "src/styles.scss" ],
 						"scripts": [],
 						"assets": [
-							"src/assets/favicon.ico",
-							"src/assets/robots.txt"
+							"src/assets/favicon.ico"
 						]
 					}
 				},
