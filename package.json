@@ -30,13 +30,18 @@
     "@angular/platform-browser-dynamic": "^7.2.3",
     "@angular/router": "^7.2.3",
     "@ng-bootstrap/ng-bootstrap": "^4.0.2",
+    "animatewithsass": "^3.2.1",
     "bluebird": "^3.5.3",
     "bootstrap": "^4.2.1",
     "cordova-android": "^7.0.0",
+    "firebase": "^5.8.2",
     "font-awesome": "^4.7.0",
+    "fuse.js": "^3.3.0",
+    "moment": "^2.24.0",
     "roboto-fontface": "^0.10.0",
     "rxjs": "^6.3.3",
     "sweetalert2": "^8.0.5",
+    "xlsx": "^0.14.1",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {
