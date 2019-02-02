@@ -6,6 +6,6 @@ module.exports = {
 		"dist/index.html",
 		"dist/**.js",
 		"dist/**.css",
-		"dist/assets/favicon.ico"
+		"dist/assets/**/*"
 	]
 };
