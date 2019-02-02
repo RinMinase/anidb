@@ -2,14 +2,29 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Rin"s AniDB</title>
-	<base href="/">
-
+	<meta name="description" content="Rin Minase's Anime Database using AngularJS in ES6 compiled for Android with Cordova.">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#28A745"/>
+	<meta name="google-signin-client_id" content="669722574117-vl1de9g5p538cc9dkgutvvv31hbhg1e9.apps.googleusercontent.com">
+
 	<link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
+	<link rel="preconnect" href="https://firebasestorage.googleapis.com">
+
+	<base href="/">
+	<title>Rin's Anime Database</title>
 </head>
 <body>
 	<app-root></app-root>
+
+	<noscript>
+		<div class="row text-center" style="height: 100vh !important;">
+			<div class="col-12 my-auto">
+				<i class="fa fa-5x fa-code"></i>
+				<p class="display-6 mt-5">This website needs JavaScript</p>
+				<p class="lead text-muted">This uses technologies that will work best<br>with modern browsers with JavaScript enabled.</p>
+			</div>
+		</div>
+	</noscript>
 
 	<script>
 		if ("serviceWorker" in navigator && location.hostname !== "localhost") {
