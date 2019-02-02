@@ -1,6 +1,16 @@
 {
-  "name": "anidb",
-  "version": "0.1.0",
+  "name": "rin-anidb",
+  "description": "Rin Minase's Anime Database using AngularJS in ES6 compiled for Android with Cordova and deployed to Firebase using Travis CI",
+  "homepage": "https://rin-anidb.firebaseapp.com/",
+  "version": "0.2.0",
+  "license": "MIT",
+  "author": "Rin Minase",
+  "private": true,
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RinMinase/anidb"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -9,7 +19,6 @@
     "lint": "ng lint",
     "setup": "cordova platform add android && yarn"
   },
-  "private": true,
   "dependencies": {
     "@angular/animations": "^7.2.3",
     "@angular/common": "^7.2.0",
