@@ -1,9 +1,10 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
 import { AppComponent } from "./app.component";
 import { TestModuleModule } from "./test-module/test-module.module";
-import { Routes, RouterModule } from "@angular/router";
 
 const routes: Routes = [{
 	path: "lazy-test-module",
@@ -21,6 +22,7 @@ const routes: Routes = [{
 	imports: [
 		BrowserModule,
 		RouterModule.forRoot(routes),
+		NgbModule,
 
 		TestModuleModule,
 	],
