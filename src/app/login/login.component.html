@@ -1,0 +1,57 @@
+<div class="container-fluid no-footer anidb-login">
+	<div class="background-image"></div>
+	<div class="flex-form-container login-form-container animate fadeInDown">
+		<div class="form-container">
+			<div class="text-center mb-3">
+				<div class="img-logo mx-auto"></div>
+			</div>
+			<!-- <form ng-submit="vm.authenticate()"> -->
+				<!-- <div class="flex-form-container flex-form-container-loading"
+					ng-if="vm.loading === true">
+					<div class="spinner eclipse"></div>
+				</div> -->
+				<!-- <div ng-if="vm.loading === false"> -->
+					<!-- <div uib-alert
+						class="alert-danger"
+						ng-if="vm.alert !== null"
+						close="vm.closeAlert()">
+						{{ ::vm.alert }}
+					</div> -->
+					<div class="form-group animated-input-container">
+						<label for="email" class="text-center animated-label">Email Address</label>
+						<input type="email"
+							class="form-control text-center animated-input"
+							id="email"
+							(focus)="rerenderInputFocus($event)"
+							(blur)="rerenderInputBlur($event)"
+							required>
+					</div>
+					<div class="form-group animated-input-container">
+						<label for="password" class="text-center animated-label">Password</label>
+						<input type="password"
+							class="form-control text-center animated-input"
+							id="password"
+							(focus)="rerenderInputFocus($event)"
+							(blur)="rerenderInputBlur($event)"
+							required>
+					</div>
+				<!-- </div> -->
+				<div class="form-group">
+					<button type="submit"
+						class="btn btn-block btn-login">
+						LOGIN
+					</button>
+				</div>
+				<div class="form-group text-center">
+					<span class="text-dark-white">Forgot password?</span>
+				</div>
+				<!-- <hr class="bg-light">
+				<div class="row">
+					<div class="col google-sign-in">
+						<div id="gSignIn" class="g-signin2" data-onsuccess="onSignIn"></div>
+					</div>
+				</div> -->
+			<!-- </form> -->
+		</div>
+	</div>
+</div>
