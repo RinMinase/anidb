@@ -1,0 +1,8 @@
+.flex-form-container { height: calc(100vh - 70px - 54px - 50px); }
+#animeTable tr.anime-table-row td { cursor: pointer; }
+
+.form-control:focus {
+	outline: 0;
+	border-color: initial;
+	box-shadow: none;
+}
