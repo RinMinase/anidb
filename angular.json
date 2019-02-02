@@ -29,13 +29,20 @@
 						"assets": [{
 							"glob": "favicon.ico",
 							"input": "src/assets/",
-							"output": "/assets/"
+							"output": "/assets"
 						}, {
 							"glob": "robots.txt",
 							"input": "src/assets/",
 							"output": "/"
+						}, {
+							"glob": "**/*.woff2",
+							"input": "node_modules/font-awesome/fonts",
+							"output": "/assets/fonts"
 						}],
-						"styles": [ "src/styles.scss" ],
+						"styles": [
+							"src/assets/styles/font-awesome/font-awesome.scss",
+							"src/styles.scss"
+						],
 						"scripts": []
 					},
 					"configurations": {
@@ -83,11 +90,20 @@
 						"polyfills": "src/polyfills.ts",
 						"tsConfig": "src/assets/config/tsconfig.spec.json",
 						"karmaConfig": "src/assets/testing/karma.conf.js",
-						"styles": [ "src/styles.scss" ],
+						"styles": [
+							"src/assets/styles/font-awesome/font-awesome.scss",
+							"src/styles.scss"
+						],
 						"scripts": [],
-						"assets": [
-							"src/assets/favicon.ico"
-						]
+						"assets": [{
+							"glob": "favicon.ico",
+							"input": "src/assets/",
+							"output": "/assets"
+						}, {
+							"glob": "**/*.woff2",
+							"input": "node_modules/font-awesome/fonts",
+							"output": "/assets/fonts"
+						}]
 					}
 				},
 				"lint": {
