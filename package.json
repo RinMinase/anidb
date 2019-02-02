@@ -15,7 +15,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build --prod && sw-precache --root=dist --config=src/assets/config/sw-precache-config.js",
-    "bundle": "rm -rf www && mkdir www && npm run build && rm -rf www && mv dist www && cordova build android",
+    "bundle": "rm -rf www && mkdir www && npm run build && rm -rf www && mv dist www && cordova build android && rm -rf www",
     "test": "ng test",
     "lint": "ng lint",
     "setup": "cordova platform add android && yarn"
