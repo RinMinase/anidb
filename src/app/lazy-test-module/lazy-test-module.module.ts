@@ -1,14 +1,19 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 
-import { LazyTestModuleRoutingModule } from "./lazy-test-module-routing.module";
 import { LazyTestModuleComponent } from "./lazy-test-module.component";
+import { RouterModule, Routes } from "@angular/router";
+
+const routes: Routes = [{
+	path: "",
+	component: LazyTestModuleComponent,
+}];
 
 @NgModule({
 	declarations: [LazyTestModuleComponent],
 	imports: [
 		CommonModule,
-		LazyTestModuleRoutingModule,
+		RouterModule.forChild(routes),
 	],
 })
 export class LazyTestModuleModule { }
