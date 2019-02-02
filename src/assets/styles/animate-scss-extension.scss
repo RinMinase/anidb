@@ -1,0 +1,90 @@
+.animate {
+	&.bounce { @include bounce(); }
+	&.flash { @include flash(); }
+	&.pulse { @include pulse(); }
+	&.rubberBand { @include rubberBand(); }
+	&.shake { @include shake(); }
+	&.swing { @include swing(); }
+	&.tada { @include tada(); }
+	&.wobble { @include wobble(); }
+	&.jello { @include jello(); }
+
+	&.bounceIn { @include bounceIn(); }
+	&.bounceInDown { @include bounceInDown(); }
+	&.bounceInLeft { @include bounceInLeft(); }
+	&.bounceInRight { @include bounceInRight(); }
+	&.bounceInUp { @include bounceInUp(); }
+
+	&.bounceOut { @include bounceOut(); }
+	&.bounceOutDown { @include bounceOutDown(); }
+	&.bounceOutLeft { @include bounceOutLeft(); }
+	&.bounceOutRight { @include bounceOutRight(); }
+	&.bounceOutUp { @include bounceOutUp(); }
+
+	&.fadeIn { @include fadeIn(); }
+	&.fadeInDown { @include fadeInDown(); }
+	&.fadeInDownBig { @include fadeInDownBig(); }
+	&.fadeInLeft { @include fadeInLeft(); }
+	&.fadeInLeftBig { @include fadeInLeftBig(); }
+	&.fadeInRight { @include fadeInRight(); }
+	&.fadeInRightBig { @include fadeInRightBig(); }
+	&.fadeInUp { @include fadeInUp(); }
+	&.fadeInUpBig { @include fadeInUpBig(); }
+
+	&.fadeOut { @include fadeOut(); }
+	&.fadeOutDown { @include fadeOutDown(); }
+	&.fadeOutDownBig { @include fadeOutDownBig(); }
+	&.fadeOutLeft { @include fadeOutLeft(); }
+	&.fadeOutLeftBig { @include fadeOutLeftBig(); }
+	&.fadeOutRight { @include fadeOutRight(); }
+	&.fadeOutRightBig { @include fadeOutRightBig(); }
+	&.fadeOutUp { @include fadeOutUp(); }
+	&.fadeOutUpBig { @include fadeOutUpBig(); }
+
+	&.flipInX { @include flipInX(); }
+	&.flipInY { @include flipInY(); }
+	&.flipOutX { @include flipOutX(); }
+	&.flipOutY { @include flipOutY(); }
+
+	&.lightSpeedIn { @include lightSpeedIn(); }
+	&.lightSpeedOut { @include lightSpeedOut(); }
+
+	&.rotateIn { @include rotateIn(); }
+	&.rotateInDownLeft { @include rotateInDownLeft(); }
+	&.rotateInDownRight { @include rotateInDownRight(); }
+	&.rotateInUpLeft { @include rotateInUpLeft(); }
+	&.rotateInUpRight { @include rotateInUpRight(); }
+
+	&.rotateOut { @include rotateOut(); }
+	&.rotateOutDownLeft { @include rotateOutDownLeft(); }
+	&.rotateOutDownRight { @include rotateOutDownRight(); }
+	&.rotateOutUpLeft { @include rotateOutUpLeft(); }
+	&.rotateOutUpRight { @include rotateOutUpRight(); }
+
+	&.hinge { @include hinge(); }
+	// &.jackInTheBox { @include jackInTheBox(); }
+	&.rollIn { @include rollIn(); }
+	&.rollOut { @include rollOut(); }
+
+	&.zoomIn { @include zoomIn(); }
+	&.zoomInDown { @include zoomInDown(); }
+	&.zoomInLeft { @include zoomInLeft(); }
+	&.zoomInRight { @include zoomInRight(); }
+	&.zoomInUp { @include zoomInUp(); }
+
+	&.zoomOut { @include zoomOut(); }
+	&.zoomOutDown { @include zoomOutDown(); }
+	&.zoomOutLeft { @include zoomOutLeft(); }
+	&.zoomOutRight { @include zoomOutRight(); }
+	&.zoomOutUp { @include zoomOutUp(); }
+
+	&.slideInDown { @include slideInDown(); }
+	&.slideInLeft { @include slideInLeft(); }
+	&.slideInRight { @include slideInRight(); }
+	&.slideInUp { @include slideInUp(); }
+
+	&.slideOutDown { @include slideOutDown(); }
+	&.slideOutLeft { @include slideOutLeft(); }
+	&.slideOutRight { @include slideOutRight(); }
+	&.slideOutUp { @include slideOutUp(); }
+}
