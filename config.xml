@@ -22,7 +22,7 @@
         <icon density="hdpi" src="src/assets/res/android/icon/hdpi.png" />
         <icon density="xhdpi" src="src/assets/res/android/icon/xhdpi.png" />
         <icon density="xxhdpi" src="src/assets/res/android/icon/xxhdpi.png" />
-        <hook src="src/res/android/hooks/after_build.js" type="after_build" />
+        <hook src="src/assets/res/android/hooks/after_build.js" type="after_build" />
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
