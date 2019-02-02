@@ -40,7 +40,6 @@
 							"output": "/assets/fonts"
 						}],
 						"styles": [
-							"src/assets/styles/font-awesome/font-awesome.scss",
 							"src/styles.scss"
 						],
 						"scripts": []
@@ -91,7 +90,6 @@
 						"tsConfig": "src/assets/config/tsconfig.spec.json",
 						"karmaConfig": "src/assets/testing/karma.conf.js",
 						"styles": [
-							"src/assets/styles/font-awesome/font-awesome.scss",
 							"src/styles.scss"
 						],
 						"scripts": [],
