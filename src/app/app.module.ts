@@ -8,6 +8,7 @@ import { TestModuleModule } from "./test-module/test-module.module";
 import { LoginModule } from "./login/login.module";
 import { HomeModule } from "./home/home.module";
 import { NavbarComponent } from "./navbar/navbar.component";
+import { FooterComponent } from "./footer/footer.component";
 
 const routes: Routes = [{
 	path: "lazy-test-module",
@@ -22,6 +23,7 @@ const routes: Routes = [{
 	declarations: [
 		AppComponent,
 		NavbarComponent,
+		FooterComponent,
 	],
 	imports: [
 		BrowserModule,
