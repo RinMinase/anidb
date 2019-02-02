@@ -5,6 +5,7 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
 import { AppComponent } from "./app.component";
 import { TestModuleModule } from "./test-module/test-module.module";
+import { LoginModule } from './login/login.module';
 
 const routes: Routes = [{
 	path: "lazy-test-module",
@@ -25,6 +26,7 @@ const routes: Routes = [{
 		NgbModule,
 
 		TestModuleModule,
+		LoginModule,
 	],
 	providers: [],
 	bootstrap: [AppComponent],
