@@ -9,7 +9,13 @@
 			"projectType": "application",
 			"prefix": "app",
 			"schematics": {
-				"@schematics/angular:component": { "styleext": "scss" }
+				"@schematics/angular:module": {
+					"lintFix": true
+				},
+				"@schematics/angular:component": {
+					"style": "scss",
+					"lintFix": true
+				}
 			},
 			"architect": {
 				"build": {
