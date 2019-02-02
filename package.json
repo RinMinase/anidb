@@ -7,7 +7,7 @@
     "build": "ng build --prod && sw-precache --root=dist --config=src/assets/config/sw-precache-config.js",
     "test": "ng test",
     "lint": "ng lint",
-    "setup": "cordova platform add android"
+    "setup": "cordova platform add android && yarn"
   },
   "private": true,
   "dependencies": {
