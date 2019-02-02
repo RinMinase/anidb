@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build --prod --source-map=false",
     "test": "ng test",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "sw": "sw-precache --root=dist --config=src/assets/config/sw-precache-config.js"
   },
   "private": true,
   "dependencies": {
