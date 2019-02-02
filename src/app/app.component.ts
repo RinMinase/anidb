@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import Swal from "sweetalert2";
+import { Router } from "@angular/router";
 
 @Component({
 	selector: "app-root",
@@ -8,6 +9,8 @@ import Swal from "sweetalert2";
 })
 export class AppComponent {
 	title = "anidb";
+
+	constructor(private router: Router) {}
 
 	buttonClick() {
 		Swal.fire("Good job!", "You clicked the button!", "success");
