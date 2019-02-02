@@ -34,6 +34,7 @@
     "bootstrap": "^4.2.1",
     "cordova-android": "^7.0.0",
     "font-awesome": "^4.7.0",
+    "roboto-fontface": "^0.10.0",
     "rxjs": "^6.3.3",
     "sweetalert2": "^8.0.5",
     "zone.js": "^0.8.26"
