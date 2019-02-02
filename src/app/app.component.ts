@@ -10,7 +10,7 @@ import { Router } from "@angular/router";
 export class AppComponent {
 	title = "anidb";
 
-	constructor(private router: Router) {}
+	constructor(public router: Router) {}
 
 	buttonClick() {
 		Swal.fire("Good job!", "You clicked the button!", "success");
