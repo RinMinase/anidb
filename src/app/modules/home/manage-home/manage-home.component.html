@@ -62,7 +62,7 @@
 							*ngFor="let data of data">
 
 							<td class="wrap">
-								<!-- <quality-legend value="{{ data.quality }}"></quality-legend> -->
+								<app-legend [value]="data.quality"></app-legend>
 								<span>{{ data.title }}</span>
 							</td>
 							<td class="text-center">
