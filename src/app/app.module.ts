@@ -12,7 +12,7 @@ import { FooterComponent } from "./core/components/footer/footer.component";
 
 const routes: Routes = [{
 	path: "lazy-test-module",
-	loadChildren: "./lazy-test-module/lazy-test-module.module#LazyTestModuleModule",
+	loadChildren: "./modules/lazy-test-module/lazy-test-module.module#LazyTestModuleModule",
 }, {
 	path: "",
 	pathMatch: "full",
