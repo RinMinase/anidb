@@ -1,7 +1,8 @@
 import { Component, OnInit, Renderer } from "@angular/core";
-import { FirebaseService } from "src/app/core/services/firebase.service";
 import { FormControl } from "@angular/forms";
 import { Router } from "@angular/router";
+
+import { FirebaseService } from "../../core/services/firebase.service";
 
 @Component({
 	selector: "app-login",

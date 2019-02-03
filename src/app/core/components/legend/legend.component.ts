@@ -1,5 +1,4 @@
-import { Component, OnInit, Input, NgModule } from "@angular/core";
-import { NgbTooltip } from "@ng-bootstrap/ng-bootstrap";
+import { Component, OnInit, Input } from "@angular/core";
 
 @Component({
 	selector: "app-legend",
