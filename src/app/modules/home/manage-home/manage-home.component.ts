@@ -11,7 +11,6 @@ import { FirebaseService } from "src/app/core/services/firebase.service";
 export class ManageHomeComponent implements OnInit {
 	data: Array<Object> = [];
 	dataLoaded: Boolean = false;
-	test: String = "testing";
 
 	constructor(
 		private firebase: FirebaseService,
@@ -39,7 +38,7 @@ export class ManageHomeComponent implements OnInit {
 		data.map((value: any) => {
 			if (value.watchStatus <= 1) {
 				const filesize = this._convertFilesize(value.filesize);
-				let dateFinished: String;
+				let dateFinished: string;
 
 				if (!value.rewatchLast) {
 					dateFinished = moment.unix(value.dateFinished).format("MMM DD, YYYY");
