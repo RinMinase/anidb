@@ -4,10 +4,11 @@ import { Routes, RouterModule } from "@angular/router";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
 import { AppComponent } from "./app.component";
-import { LoginModule } from "./login/login.module";
-import { HomeModule } from "./home/home.module";
-import { NavbarComponent } from "./navbar/navbar.component";
-import { FooterComponent } from "./footer/footer.component";
+import { LoginModule } from "./modules/login/login.module";
+import { HomeModule } from "./modules/home/home.module";
+
+import { NavbarComponent } from "./modules/navbar/navbar.component";
+import { FooterComponent } from "./modules/footer/footer.component";
 
 const routes: Routes = [{
 	path: "lazy-test-module",
