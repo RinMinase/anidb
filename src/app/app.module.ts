@@ -7,8 +7,8 @@ import { AppComponent } from "./app.component";
 import { LoginModule } from "./modules/login/login.module";
 import { HomeModule } from "./modules/home/home.module";
 
-import { NavbarComponent } from "./modules/navbar/navbar.component";
-import { FooterComponent } from "./modules/footer/footer.component";
+import { NavbarComponent } from "./core/components/navbar/navbar.component";
+import { FooterComponent } from "./core/components/footer/footer.component";
 
 const routes: Routes = [{
 	path: "lazy-test-module",
