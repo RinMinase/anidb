@@ -10,8 +10,8 @@ import { Router } from "@angular/router";
 })
 export class LoginComponent implements OnInit {
 
-	loading: Boolean = false;
-	alert: String = null;
+	loading = false;
+	alert: string = null;
 	email = new FormControl("");
 	password = new FormControl("");
 
