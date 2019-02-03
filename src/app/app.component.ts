@@ -10,8 +10,6 @@ import * as firebase from "firebase/app";
 	styleUrls: ["./app.component.scss"],
 })
 export class AppComponent {
-	title = "anidb";
-
 	constructor(public router: Router) {
 		const firebaseConfig = {
 			apiKey: "AIzaSyCVsm1c-nS9qS1fFfFo6JCAb908AfPU6Ag",
