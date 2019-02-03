@@ -2,7 +2,7 @@
   "extends": "../../../tsconfig.json",
   "compilerOptions": {
     "outDir": "../out-tsc/app",
-    "types": []
+    "types": [ "bluebird-global", "node" ]
   },
   "exclude": [ "../testing/test.ts", "../../**/*.spec.ts" ],
   "include": [ "../../**/*" ]
