@@ -20,6 +20,7 @@
 				<input type="search"
 					class="form-control border-right-0 border"
 					placeholder="Keywords (comma-separated): sort/order, quality, release, encoder, remarks, inhdd"
+					[formControl]="search"
 					autofocus>
 				<span class="input-group-append">
 					<div class="input-group-text bg-transparent border-left-0 border">
@@ -59,7 +60,7 @@
 					<tbody>
 						<tr class="anime-table-row"
 							id="{{ data.id }}"
-							*ngFor="let data of data">
+							*ngFor="let data of getData()">
 
 							<td class="wrap">
 								<app-legend [value]="data.quality"></app-legend>

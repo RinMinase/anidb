@@ -1,7 +1,12 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, OnChanges } from "@angular/core";
+import { Router } from "@angular/router";
+import { FormControl } from "@angular/forms";
+import { debounceTime } from "rxjs/operators";
 import * as moment from "moment";
+import * as Fuse from "fuse.js";
 
 import { FirebaseService } from "src/app/core/services/firebase.service";
+import { FuseService } from "src/app/core/builders/fuse.service";
 
 @Component({
 	selector: "app-manage-home",
@@ -10,28 +15,56 @@ import { FirebaseService } from "src/app/core/services/firebase.service";
 })
 export class ManageHomeComponent implements OnInit {
 	data: Array<Object> = [];
+	pristineData: Array<Object> = [];
+	titleList: Array<string> = [];
 	dataLoaded: Boolean = false;
+	fuseOptions = {};
+	search = new FormControl("");
 
 	constructor(
+		private router: Router,
 		private firebase: FirebaseService,
-	) { }
+		private fuseOptionsBuilder: FuseService,
+	) {}
 
 	ngOnInit() {
+		this.fuseOptions = this.fuseOptionsBuilder
+			.threshold(0.3)
+			.maxPatternLength(48)
+			.minMatchCharLength(0)
+			.addKeys("title")
+			.addKeys("quality")
+			.addKeys("releaseSeason")
+			.addKeys("releaseYear")
+			.addKeys("encoder")
+			.addKeys("variants")
+			.addKeys("remarks")
+			.build();
+
 		this.firebase.auth()
 			.then(() => {
 				this.firebase.retrieve()
 					.then((data) => {
 						this.formatData(data);
 						this.dataLoaded = true;
+						this.onChanges();
 
 						// if (this.$stateParams.id) {
 						// 	this.$anchorScroll.yOffset = 55;
 						// 	this.$anchorScroll(this.$stateParams.id);
 						// }
 					});
-			}).catch((err) => console.log(err));
+			}).catch(() => this.router.navigateByUrl("/login"));
+	}
 
-			// this.$state.go("login")
+	onChanges() {
+		this.search.valueChanges
+			.pipe(debounceTime(250))
+			.subscribe(value => {
+				if (value && this.pristineData) {
+					this.data = new Fuse(this.pristineData, this.fuseOptions).search(value);
+				}
+			});
 	}
 
 	formatData(data: any) {
@@ -46,7 +79,7 @@ export class ManageHomeComponent implements OnInit {
 					dateFinished = moment.unix(value.rewatchLast).format("MMM DD, YYYY");
 				}
 
-				// this.titleList.push(value.title);
+				this.titleList.push(value.title);
 				this.data.push({
 					dateFinished,
 					encoder: value.encoder,
@@ -65,11 +98,15 @@ export class ManageHomeComponent implements OnInit {
 		});
 
 		this.data = this.data.sort(this._compareFunction);
-		// angular.copy(this.data, this.pristineData);
+		this.pristineData = [ ...this.data ];
 
-		// if (this.search) {
-		// 	this.data = new Fuse(this.pristineData, this.fuseOptions).search(this.search);
-		// }
+		if (this.search.value) {
+			this.data = new Fuse(this.pristineData, this.fuseOptions).search(this.search.value);
+		}
+	}
+
+	getData() {
+		return (this.search.value) ? this.data : this.pristineData;
 	}
 
 	_compareFunction(a: any, b: any) {

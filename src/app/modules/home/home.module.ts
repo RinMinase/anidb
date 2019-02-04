@@ -4,6 +4,7 @@ import { RouterModule, Routes } from "@angular/router";
 
 import { ManageHomeComponent } from "./manage-home/manage-home.component";
 import { LegendModule } from "../../core/components/legend/legend.module";
+import { ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [{
 	path: "", component: ManageHomeComponent,
@@ -14,6 +15,7 @@ const routes: Routes = [{
 	imports: [
 		CommonModule,
 		RouterModule.forChild(routes),
+		ReactiveFormsModule,
 		LegendModule,
 	],
 })
