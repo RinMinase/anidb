@@ -13,10 +13,12 @@ export class AboutComponent implements OnInit {
 
 	userImage: string;
 	dataLoaded = false;
+	pageSize = 10;
+	page = 1;
+
 	githubCommits = [];
 	githubIssues = [];
-	page = 1;
-	pageSize = 10;
+	packageIssues: Object[];
 
 	constructor(
 		private firebase: FirebaseService,
@@ -27,6 +29,7 @@ export class AboutComponent implements OnInit {
 		this.getFirebaseImages();
 		this.getGithubCommits();
 		this.getGithubIssues();
+		this.getPackageIssues();
 	}
 
 	private getFirebaseImages() {
@@ -148,6 +151,15 @@ export class AboutComponent implements OnInit {
 					}
 				});
 			});
+	}
+
+	private getPackageIssues() {
+		this.packageIssues = [{
+			package: "template",
+			reason: "-",
+			severity: "red",
+			version: "0.0.0",
+		}];
 	}
 
 	private convertDate(date: string, omitSeconds = false) {

@@ -473,19 +473,16 @@
 							</ngb-pagination><hr>
 
 							<h5 class="card-title">Package Update Issues</h5>
-							<!-- <ul>
-								<li ng-if="vm.packageIssues.length === 1">
+							<ul>
+								<li *ngIf="packageIssues.length === 1">
 									<span>Hooray!! No package issues found!</span>
 								</li>
-								<li class="package-issues"
-									ng-repeat="issues in vm.packageIssues | limitTo: (1 - vm.packageIssues.length)"
-									ng-if="vm.packageIssues.length > 1">
-
-									<code class="{{ ::issues.severity }}">[{{ ::issues.package }}]</code>
-									<code class="blue">[{{ ::issues.version }}]</code>
-									<span>{{ ::issues.reason }}</span>
+								<li class="package-issues" *ngFor="let issues of packageIssues | slice: 1">
+									<code class="{{ issues.severity }}">[{{ issues.package }}]</code>
+									<code class="blue">[{{ issues.version }}]</code>
+									<span>{{ issues.reason }}</span>
 								</li>
-							</ul> -->
+							</ul>
 
 							<hr><h5 class="card-title">Future Changes</h5>
 							<ul>
