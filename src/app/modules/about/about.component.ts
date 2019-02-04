@@ -74,7 +74,7 @@ export class AboutComponent implements OnInit {
 							.trimStart()
 							.toLowerCase()
 							.replace(new RegExp("_", "g"), " ");
-						const module = (rawModule === "anidb") ? "" : rawModule;
+						const module = (rawModule === "anidb" || rawModule === "transition") ? "" : rawModule;
 						const message = rawMessage[1].trimStart();
 						const commitDate = `c${moment(new Date(date)).format("YYYYMMDD")}`;
 						const title = moment(new Date(date)).format("MMM DD, YYYY");
