@@ -12,9 +12,6 @@ import { LoginModule } from "./modules/login/login.module";
 import { HomeModule } from "./modules/home/home.module";
 
 const routes: Routes = [{
-	path: "lazy-test-module",
-	loadChildren: "./modules/lazy-test-module/lazy-test-module.module#LazyTestModuleModule",
-}, {
 	path: "about",
 	loadChildren: "./modules/about/about.module#AboutModule",
 }, {
