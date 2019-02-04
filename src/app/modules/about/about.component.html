@@ -441,19 +441,20 @@
 						</div>
 						<div class="card-body">
 							<h5 class="card-title">Issues</h5>
-							<!-- <ul uib-pagination
-								total-items="vm.issuesMaxSize"
-								ng-model="vm.issuesCurrentPage"
-								max-size="5"
-								class="pagination-sm"
-								boundary-link-numbers="true">
-							</ul>
+							<ngb-pagination
+								[collectionSize]="githubIssues.length"
+								[(page)]="page"
+								[pageSize]="pageSize"
+								[maxSize]="6"
+								[rotate]="true"
+								[ellipses]="false">
+							</ngb-pagination>
 							<ul class="list-unstyled">
-								<li ng-repeat="issue in vm.githubIssues[vm.issuesCurrentPage]">
+								<li *ngFor="let issue of githubIssues | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
 									<hr><span>#{{ issue.number }} &mdash; {{ issue.title }}</span><br>
 									<span>
 										<h6 class="d-inline mr-2 issues-badge"
-											ng-repeat="labels in issue.labels">
+											*ngFor ="let labels of issue.labels">
 											<span class="badge badge-pill py-1 {{ labels.class }}">
 												<span>{{ labels.name }}</span>
 											</span>
@@ -462,13 +463,14 @@
 									<span class="small pull-right">{{ issue.date }}</span>
 								</li>
 							</ul>
-							<ul uib-pagination
-								total-items="vm.issuesMaxSize"
-								ng-model="vm.issuesCurrentPage"
-								max-size="5"
-								class="pagination-sm"
-								boundary-link-numbers="true">
-							</ul><hr> -->
+							<ngb-pagination
+								[collectionSize]="githubIssues.length"
+								[(page)]="page"
+								[pageSize]="pageSize"
+								[maxSize]="6"
+								[rotate]="true"
+								[ellipses]="false">
+							</ngb-pagination><hr>
 
 							<h5 class="card-title">Package Update Issues</h5>
 							<!-- <ul>

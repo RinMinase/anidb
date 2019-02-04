@@ -14,7 +14,9 @@ export class AboutComponent implements OnInit {
 	userImage: string;
 	dataLoaded = false;
 	githubCommits = [];
-	githubIssues: {0: [], 1: []};
+	githubIssues = [];
+	page = 1;
+	pageSize = 10;
 
 	constructor(
 		private firebase: FirebaseService,
@@ -24,6 +26,7 @@ export class AboutComponent implements OnInit {
 	ngOnInit() {
 		this.getFirebaseImages();
 		this.getGithubCommits();
+		this.getGithubIssues();
 	}
 
 	private getFirebaseImages() {
@@ -108,6 +111,41 @@ export class AboutComponent implements OnInit {
 
 				Object.keys(formattedCommits).map((index) => {
 					this.githubCommits.push(formattedCommits[index]);
+				});
+			});
+	}
+
+	private getGithubIssues() {
+		this.github.getIssues()
+			.subscribe((response) => {
+				response.body.map((data: any) => {
+					if (data.state === "open") {
+						const labels = [];
+
+						data.labels.map((label: any) => {
+							if (!(label.name === "to do" || label.name === "in progress")) {
+								const className = label.name.replace(":", "")
+									.replace(new RegExp(" ", "g"), "-")
+									.toLowerCase();
+
+								labels.push({
+									class: className,
+									name: label.name.split(" ")[1].toUpperCase(),
+								});
+							}
+						});
+
+						labels.reverse();
+
+						this.githubIssues.push({
+							body: data.body,
+							date: this.convertDate(data.created_at, true),
+							labels,
+							number: data.number,
+							title: data.title,
+							url: data.html_url,
+						});
+					}
 				});
 			});
 	}
