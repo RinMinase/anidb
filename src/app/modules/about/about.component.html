@@ -392,14 +392,16 @@
 			<div class="row mt-4">
 				<div class="col-md-12">
 					<div class="card">
+
 						<div class="card-header bg-success-light">
 							<h6 class="m-0">Changelog</h6>
 						</div>
-						<!-- <div class="card-body">
-							<ul class="list-unstyled" ng-repeat="commits in vm.githubCommits">
+
+						<div class="card-body">
+							<ul class="list-unstyled" *ngFor="let commits of githubCommits">
 								<li class="font-weight-bold">{{ commits.title }}</li>
 								<ul class="list-unstyled">
-									<li ng-repeat="fix in commits.fix" class="pt-0-5">
+									<li *ngFor="let fix of commits.fix" class="pt-0-5">
 										<h6 class="d-inline mr-2">
 											<span class="badge badge-pill badge-success py-1">FIX</span>
 										</h6>
@@ -407,7 +409,7 @@
 										<span ng-if="fix.module"> on&nbsp;</span>
 										<code ng-if="fix.module">{{ fix.module }}</code>
 									</li>
-									<li ng-repeat="new in commits.new" class="pt-0-5">
+									<li *ngFor="let new of commits.new" class="pt-0-5">
 										<h6 class="d-inline mr-2">
 											<span class="badge badge-pill badge-primary py-1">NEW</span>
 										</h6>
@@ -415,7 +417,7 @@
 										<span ng-if="new.module"> on&nbsp;</span>
 										<code>{{ new.module }}</code>
 									</li>
-									<li ng-repeat="improve in commits.improve" class="pt-0-5">
+									<li *ngFor="let improve of commits.improve" class="pt-0-5">
 										<h6 class="d-inline mr-2">
 											<span class="badge badge-pill badge-warning text-white py-1">IMPROVED</span>
 										</h6>
@@ -425,8 +427,8 @@
 									</li>
 								</ul>
 							</ul>
+						</div>
 
-						</div> -->
 					</div>
 				</div>
 			</div>
