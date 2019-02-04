@@ -19,15 +19,12 @@ html {
 		font-size: 14px;
 		line-height: 1.428571429;
 
-		> div,
-		> div > div {
-			> div.container, > div.container-fluid {
-				&:not(.no-footer) { margin-bottom: 50px; }
-			}
+		 div.container, div.container-fluid {
+			&:not(.no-footer) { margin-bottom: 50px; }
 		}
 	}
 
-	app-footer {
+	.footer {
 		position: absolute;
 		bottom: 0;
 		height: 50px;
