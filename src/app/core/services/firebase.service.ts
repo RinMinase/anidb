@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import * as firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/database";
+import "firebase/storage";
 
 @Injectable({
 	providedIn: "root",
@@ -77,5 +78,31 @@ export class FirebaseService {
 		}
 
 		return data;
+	}
+
+	retrieveImageUrl(ref: string) {
+		return new Promise((resolve, reject) => {
+			firebase.storage()
+				.ref(ref)
+				.getDownloadURL()
+				.then((url) => {
+					resolve(url);
+				}).catch((error) => {
+					switch (error.code) {
+						case "storage/object_not_found":
+							reject("File doesn't exist");
+							break;
+						case "storage/unauthorized":
+							reject("User doesn't have permission to access the object");
+							break;
+						case "storage/canceled":
+							reject("User canceled the upload");
+							break;
+						case "storage/unknown":
+							reject("Unknown error occurred");
+							break;
+					}
+				});
+		});
 	}
 }
