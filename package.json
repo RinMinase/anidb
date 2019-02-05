@@ -38,6 +38,7 @@
     "font-awesome": "^4.7.0",
     "fuse.js": "^3.3.0",
     "moment": "^2.24.0",
+    "moment-mini": "^2.22.1",
     "roboto-fontface": "^0.10.0",
     "rxjs": "^6.3.3",
     "sweetalert2": "^8.0.5",
