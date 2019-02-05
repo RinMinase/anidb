@@ -19,6 +19,9 @@ const routes: Routes = [{
 	path: "export",
 	loadChildren: "./modules/export/export.module#ExportModule",
 }, {
+	path: "child",
+	loadChildren: "./modules/child/child.module#ChildModule",
+}, {
 	path: "",
 	pathMatch: "full",
 	redirectTo: "",
