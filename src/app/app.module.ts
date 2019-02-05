@@ -16,6 +16,9 @@ const routes: Routes = [{
 	path: "about",
 	loadChildren: "./modules/about/about.module#AboutModule",
 }, {
+	path: "export",
+	loadChildren: "./modules/export/export.module#ExportModule",
+}, {
 	path: "child",
 	loadChildren: "./modules/child/child.module#ChildModule",
 }, {
