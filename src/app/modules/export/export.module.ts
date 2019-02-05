@@ -10,6 +10,9 @@ const routes: Routes = [{
 	path: "",
 	component: ExportComponent,
 	children: [{
+		path: "",
+		component: ExcelComponent,
+	}, {
 		path: "csv",
 		component: CsvComponent,
 	}, {
