@@ -16,8 +16,26 @@ const routes: Routes = [{
 	path: "about",
 	loadChildren: "./modules/about/about.module#AboutModule",
 }, {
+	path: "byname",
+	loadChildren: "./modules/byname/byname.module#BynameModule",
+}, {
+	path: "download",
+	loadChildren: "./modules/download/download.module#DownloadModule",
+}, {
 	path: "export",
 	loadChildren: "./modules/export/export.module#ExportModule",
+}, {
+}, {
+	path: "hdd",
+	loadChildren: "./modules/hdd/hdd.module#HddModule",
+}, {
+}, {
+	path: "lastwatch",
+	loadChildren: "./modules/lastwatch/lastwatch.module#LastwatchModule",
+}, {
+}, {
+	path: "summer",
+	loadChildren: "./modules/summer/summer.module#SummerModule",
 }, {
 	path: "child",
 	loadChildren: "./modules/child/child.module#ChildModule",
