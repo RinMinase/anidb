@@ -23,8 +23,8 @@
   },
   "dependencies": {
     "@uirouter/angularjs": "^1.0.22",
-    "angular": "1.7.6",
-    "angular-animate": "^1.7.6",
+    "angular": "1.7.7",
+    "angular-animate": "^1.7.7",
     "angular-chart.js": "^1.1.1",
     "angular-hammer": "^2.2.0",
     "angular-sweetalert": "^1.1.2",
@@ -85,12 +85,10 @@
     "webpack-stream": "^5.2.1"
   },
   "resolutions": {
-    "**/@firebase/app-types": "0.3.4",
-    "**/@firebase/auth-types": "0.5.2",
-    "**/@firebase/firestore-types": "1.0.2",
-    "**/@firebase/messaging-types": "0.2.5",
-    "**/@firebase/storage-types": "0.2.5",
-    "**/@firebase/util": "0.2.7",
+    "**/@firebase/app-types": "0.3.3",
+    "**/@firebase/util": "0.2.6",
+    "**/angular": "1.7.7",
+    "**/gulp": "4.0.0",
     "**/jquery": "3.3.1",
     "**/popper.js": "1.14.7",
     "**/terser": "3.14.1"
