@@ -16,6 +16,9 @@ const routes: Routes = [{
 	path: "about",
 	loadChildren: "./modules/about/about.module#AboutModule",
 }, {
+	path: "child",
+	loadChildren: "./modules/child/child.module#ChildModule",
+}, {
 	path: "",
 	pathMatch: "full",
 	redirectTo: "",
