@@ -60,7 +60,7 @@
 							"namedChunks": false,
 							"aot": true,
 							"extractLicenses": false,
-							"vendorChunk": false,
+							"vendorChunk": true,
 							"buildOptimizer": true,
 							"budgets": [{
 								"type": "initial",
