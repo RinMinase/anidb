@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import * as moment from "moment";
+import * as moment from "moment-mini";
 
 import { FirebaseService } from "src/app/core/services/firebase.service";
 import { GithubService } from "src/app/core/services/github.service";

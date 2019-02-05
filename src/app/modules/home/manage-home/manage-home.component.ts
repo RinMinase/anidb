@@ -2,7 +2,7 @@ import { Component, OnInit, OnChanges } from "@angular/core";
 import { Router } from "@angular/router";
 import { FormControl } from "@angular/forms";
 import { debounceTime } from "rxjs/operators";
-import * as moment from "moment";
+import * as moment from "moment-mini";
 import * as Fuse from "fuse.js";
 
 import { FirebaseService } from "src/app/core/services/firebase.service";
