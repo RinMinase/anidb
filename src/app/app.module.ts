@@ -25,14 +25,11 @@ const routes: Routes = [{
 	path: "export",
 	loadChildren: "./modules/export/export.module#ExportModule",
 }, {
-}, {
 	path: "hdd",
 	loadChildren: "./modules/hdd/hdd.module#HddModule",
 }, {
-}, {
 	path: "lastwatch",
 	loadChildren: "./modules/lastwatch/lastwatch.module#LastwatchModule",
-}, {
 }, {
 	path: "summer",
 	loadChildren: "./modules/summer/summer.module#SummerModule",
