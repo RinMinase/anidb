@@ -1,32 +1,28 @@
-import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
-import * as moment from "moment-mini";
+import extend from "lodash/extend";
+import moment from "moment-mini";
 
-import { FirebaseService } from "@services/firebase.service";
-import { FirebaseQueryBuilder } from "@builders/firebase-query.service";
-import { UtilityService } from "@services/utility.service";
+export class ManageSummerController {
+	constructor (
+		$scope,
+		firebase
+	) {
+		"ngInject";
 
-@Component({
-	selector: "app-manage-summer",
-	templateUrl: "./manage-summer.component.html",
-})
-export class ManageSummerComponent implements OnInit {
+		extend(this, {
+			$scope,
+			firebase,
 
-	objKeys = Object.keys;
-	data: Array<any> = [];
-	dataLoaded: Boolean = false;
-	category = "0";
+			category: 0,
+			data: [],
+			dataLoaded: false,
+		});
 
-	constructor(
-		private router: Router,
-		private firebase: FirebaseService,
-		private firebaseQueryBuilder: FirebaseQueryBuilder,
-		private utility: UtilityService,
-	) { }
+		this.activate();
+	}
 
-	ngOnInit() {
-		let summerData: Array<Object>;
-		let animeData: Array<Object>;
+	activate() {
+		let summerData;
+		let animeData;
 
 		this.firebase.auth()
 			.then(() => {
