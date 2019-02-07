@@ -34,7 +34,7 @@
     "bootstrap": "^4.2.1",
     "firebase": "^5.8.2",
     "font-awesome": "^4.7.0",
-    "fuse.js": "^3.3.1",
+    "fuse.js": "^3.4.0",
     "lodash": "^4.17.11",
     "moment-mini": "^2.22.1",
     "oclazyload": "^1.1.0",
