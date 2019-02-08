@@ -4,9 +4,7 @@ import { Routes, RouterModule } from "@angular/router";
 
 import { LastwatchComponent } from "./lastwatch.component";
 
-const routes: Routes = [{
-	path: "login", component: LastwatchComponent,
-}];
+const routes: Routes = [{ path: "", component: LastwatchComponent }];
 
 @NgModule({
 	declarations: [LastwatchComponent],
