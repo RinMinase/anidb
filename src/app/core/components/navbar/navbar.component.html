@@ -13,33 +13,28 @@
 					<i class="fa fa-home"></i><span class="pl-2">Home</span>
 				</a>
 			</li>
-			<li class="nav-item" routerLinkActive="active">
-				<a class="nav-link" routerLink="/login">
-					<i class="fa fa-home"></i><span class="pl-2">Login (Temporary)</span>
-				</a>
-			</li>
-			<!-- <li class="nav-item dropdown" uib-dropdown> -->
-				<!-- <a class="nav-link dropdown-toggle" routerLink="#" uib-dropdown-toggle>
+			<li class="nav-item" ngbDropdown>
+				<a class="nav-link" style="cursor: pointer" ngbDropdownToggle>
 					<i class="fa fa-list"></i><span class="pl-2">Anime List</span>
 				</a>
-				<div class="dropdown-menu" uib-dropdown-menu>
-					<a class="dropdown-item" routerLinkActive="active" routerLink="lastwatch">
+				<div ngbDropdownMenu>
+					<a class="dropdown-item" routerLinkActive="active" routerLink="/lastwatch">
 						<i class="fa fa-play"></i><span class="pl-2">Last 20 Watched</span>
 					</a>
 					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" routerLinkActive="active" routerLink="byname">
+					<a class="dropdown-item" routerLinkActive="active" routerLink="/byname">
 						<i class="fa fa-font"></i><span class="pl-2">Anime List by Name</span>
 					</a>
-					<a class="dropdown-item" routerLinkActive="active" routerLink="download.manage">
+					<a class="dropdown-item" routerLinkActive="active" routerLink="/download">
 						<i class="fa fa-download"></i><span class="pl-2">Download List</span>
 					</a>
-					<a class="dropdown-item" routerLinkActive="active" routerLink="summer.manage">
+					<a class="dropdown-item" routerLinkActive="active" routerLink="/summer">
 						<i class="fa fa-list"></i><span class="pl-2">Summer List</span>
 					</a>
 					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" routerLinkActive="active" routerLink="hdd.manage">
+					<a class="dropdown-item" routerLinkActive="active" routerLink="/hdd">
 						<i class="fa fa-hdd-o"></i><span class="pl-2">Hard Drive List</span>
-					</a> -->
+					</a>
 					<!-- <a class="dropdown-item">
 						<i class="fa fa-flask"></i><span class="pl-2">Hard Drive Simulator</span>
 					</a>
@@ -47,24 +42,24 @@
 					<a class="dropdown-item">
 						<i class="fa fa-area-chart"></i><span class="pl-2">Chart Statistics</span>
 					</a> -->
-				<!-- </div>
-			</li> -->
-			<!-- <li class="nav-item dropdown" uib-dropdown>
-				<a class="nav-link dropdown-toggle" ng-href="#" uib-dropdown-toggle>
+				</div>
+			</li>
+			<li class="nav-item" ngbDropdown>
+				<a class="nav-link" style="cursor: pointer" ngbDropdownToggle>
 					<i class="fa fa-pencil"></i><span class="pl-2">Manage</span>
 				</a>
-				<div class="dropdown-menu" uib-dropdown-menu> -->
+				<div ngbDropdownMenu>
 					<!-- <a class="dropdown-item">
 						<i class="fa fa-plus"></i><span class="pl-2">Add an Entry</span>
 					</a>
 					<div class="dropdown-divider"></div> -->
-					<!-- <a class="dropdown-item" routerLinkActive="active" routerLink="export.csv">
+					<a class="dropdown-item" routerLinkActive="active" routerLink="/export/csv">
 						<i class="fa fa-file-text-o"></i>
 						<span class="pl-2">Export List (.csv)</span>
 					</a>
-					<a class="dropdown-item" routerLinkActive="active" routerLink="export.excel">
+					<a class="dropdown-item" routerLinkActive="active" routerLink="/export/excel">
 						<i class="fa fa-file-text-o"></i><span class="pl-2">Export List (.xlsx)</span>
-					</a> -->
+					</a>
 					<!-- <div class="dropdown-divider"></div>
 					<a class="dropdown-item">
 						<i class="fa fa-plus"></i>
@@ -82,8 +77,8 @@
 						<i class="fa fa-code"></i>
 						<span class="pl-2">Manage Package Issues and Future Changes List</span>
 					</a> -->
-				<!-- </div>
-			</li> -->
+				</div>
+			</li>
 		</ul>
 		<ul class="navbar-nav">
 			<!-- <li class="nav-item">
@@ -98,13 +93,13 @@
 					<label for="switch-id" class="mt-1 mr-1"></label>
 				</span>
 			</li> -->
-			<!-- <li class="nav-item" routerLinkActive="active">
-				<a class="nav-link" routerLink="about">
+			<li class="nav-item" routerLinkActive="active">
+				<a class="nav-link" routerLink="/about">
 					<i class="fa fa-question"></i><span class="pl-2">About</span>
 				</a>
-			</li> -->
+			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="#">
+				<a class="nav-link" (click)="!!logout()" href>
 					<i class="fa fa-power-off"></i><span class="pl-2">Logout</span>
 				</a>
 			</li>
