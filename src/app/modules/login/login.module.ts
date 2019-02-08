@@ -15,8 +15,8 @@ const routes: Routes = [{
 	imports: [
 		CommonModule,
 		RouterModule.forChild(routes),
-		NgbAlertModule,
 		ReactiveFormsModule,
+		NgbAlertModule,
 	],
 })
 export class LoginModule { }
