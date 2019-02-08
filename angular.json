@@ -23,7 +23,7 @@
 					"options": {
 						"outputPath": "dist",
 						"index": "src/index.html",
-						"main": "src/main.ts",
+						"main": "src/index.ts",
 						"tsConfig": "src/assets/config/tsconfig.app.json",
 						"assets": [{
 							"glob": "favicon.ico",
@@ -43,7 +43,7 @@
 							"output": "/assets/fonts"
 						}],
 						"styles": [
-							"src/styles.scss"
+							"src/index.scss"
 						],
 						"scripts": []
 					},
@@ -93,7 +93,7 @@
 						"tsConfig": "src/assets/config/tsconfig.spec.json",
 						"karmaConfig": "src/assets/testing/karma.conf.js",
 						"styles": [
-							"src/styles.scss"
+							"src/index.scss"
 						],
 						"scripts": [],
 						"assets": [{
