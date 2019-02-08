@@ -11,7 +11,15 @@ import { UpdateHomeComponent } from "./update-home/update-home.component";
 import { HomeComponent } from "./home.component";
 
 const routes: Routes = [{
-	path: "", component: ManageHomeComponent,
+	path: "",
+	component: HomeComponent,
+	children: [{
+		path: "",
+		component: ManageHomeComponent,
+	}, {
+		path: "view/:id",
+		component: ViewHomeComponent,
+	}],
 }];
 
 @NgModule({
