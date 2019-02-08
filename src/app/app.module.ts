@@ -34,9 +34,6 @@ const routes: Routes = [{
 	path: "summer",
 	loadChildren: "./modules/summer/summer.module#SummerModule",
 }, {
-	path: "child",
-	loadChildren: "./modules/child/child.module#ChildModule",
-}, {
 	path: "",
 	pathMatch: "full",
 	redirectTo: "",
