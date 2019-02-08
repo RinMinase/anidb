@@ -9,9 +9,7 @@
 				<div class="spinner eclipse"></div>
 			</div>
 			<div *ngIf="loading === false">
-				<ngb-alert [dismissible]="true" [type]="danger" *ngIf="alert !== null">
-					{{ alert }}
-				</ngb-alert>
+				<ngb-alert type="danger" *ngIf="!!alert" (close)="alert = null">{{ alert }}</ngb-alert>
 				<div class="form-group animated-input-container">
 					<label for="email" class="text-center animated-label">Email Address</label>
 					<input type="email"
