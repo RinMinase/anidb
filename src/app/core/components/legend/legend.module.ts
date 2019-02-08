@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 
 import { LegendComponent } from "./legend.component";
 
@@ -8,7 +8,7 @@ import { LegendComponent } from "./legend.component";
 	declarations: [LegendComponent],
 	imports: [
 		CommonModule,
-		NgbModule,
+		NgbTooltipModule,
 	],
 	exports: [LegendComponent],
 })
