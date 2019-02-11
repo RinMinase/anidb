@@ -20,7 +20,12 @@
     "test": "ng test",
     "lint": "ng lint",
     "setup": "cordova platform add android && yarn"
-  },
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "ng lint"
+		}
+	},
   "dependencies": {
     "@angular/animations": "^7.2.4",
     "@angular/common": "^7.2.4",
