@@ -25,7 +25,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-push": "npm run lint"
+      "pre-push": "ng lint && stylelint src/**/*.scss"
     }
   },
   "dependencies": {
