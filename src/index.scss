@@ -10,6 +10,8 @@ $fa-font-path: "/assets/fonts/";
 @import "./assets/styles/roboto-fonts";
 @import "./assets/styles/spinner-eclipse";
 
+$footer-height: 52px;
+
 html {
 	position: relative;
 	min-height: 100%;
@@ -20,14 +22,14 @@ html {
 		line-height: 1.428571429;
 
 		 div.container, div.container-fluid {
-			&:not(.no-footer) { margin-bottom: 50px; }
+			&:not(.no-footer) { margin-bottom: $footer-height; }
 		}
 	}
 
 	.footer {
 		position: absolute;
 		bottom: 0;
-		height: 50px;
+		height: $footer-height;
 		width: 100%;
 		background-color: #f3f3f3;
 	}
