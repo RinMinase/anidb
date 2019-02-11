@@ -18,7 +18,9 @@
     "build-bh": "ng build --prod --base-href ./ && sw-precache --root=dist --config=src/assets/config/sw-precache-config.js",
     "bundle": "rm -rf www && npm run build-bh && mv dist www && cordova build android && rm -rf www",
     "test": "ng test",
-    "lint": "ng lint",
+		"lint": "ng lint && stylelint src/**/*.scss",
+		"slint": "stylelint src/**/*.scss",
+		"tslint": "ng lint",
     "setup": "cordova platform add android && yarn"
   },
   "husky": {
