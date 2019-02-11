@@ -17,11 +17,11 @@ html {
 	min-height: 100%;
 
 	body {
-		font-family: "Roboto", Arial, Helvetica, sans-serif;
+		font-family: Roboto, Arial, Helvetica, sans-serif;
 		font-size: 14px;
 		line-height: 1.428571429;
 
-		 div.container, div.container-fluid {
+		div.container, div.container-fluid {
 			&:not(.no-footer) { margin-bottom: $footer-height; }
 		}
 	}
@@ -31,15 +31,15 @@ html {
 		bottom: 0;
 		height: $footer-height;
 		width: 100%;
-		background-color: #f3f3f3;
+		background-color: #F3F3F3;
 	}
 }
 
-hr { border-color: #E4E6E8 }
+hr { border-color: #E4E6E8; }
 thead th { border-top: 0px !important; }
 td, th { white-space: nowrap; }
 td.wrap, th.wrap { white-space: normal; }
-.table-sm th, .table-sm td { padding: 0.5rem }
+.table-sm th, .table-sm td { padding: .5rem; }
 .table-unbordered td, .table-unbordered th { border-top: 0px; }
 
 .form-control, .dropdown-menu { font-size: 14px; }
@@ -49,7 +49,7 @@ td.wrap, th.wrap { white-space: normal; }
 .pagination { justify-content: center; }
 .big { font-size: 120%; }
 .abc-checkbox label::before { width: 19px; }
-.dropdown-item.active, .dropdown-item:active { cursor: default }
+.dropdown-item.active, .dropdown-item:active { cursor: default; }
 
 .flex-form-container {
 	height: calc(100vh - 70px - 50px);

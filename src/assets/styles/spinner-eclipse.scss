@@ -1,7 +1,7 @@
 $inner-size: 24px;
 $outer-size: 60px;
 $clear-border: solid 6px transparent;
-$color-border: solid 6px #28a745;
+$color-border: solid 6px #28A745;
 
 @mixin display-box($size) {
 	width: $size;
@@ -28,17 +28,17 @@ $color-border: solid 6px #28a745;
 	&.eclipse{
 		@include display-box($inner-size);
 		border-radius: 50%;
-		background: #28a745;
+		background: #28A745;
 		margin: 12px;
 		animation: eclipse-animate 1s ease-out infinite;
 
-		&:before{
+		&::before{
 			@include draw-borders();
 			border-right: $color-border;
 			border-left: $clear-border;
 		}
 
-		&:after{
+		&::after{
 			@include draw-borders();
 			border-right: $clear-border;
 			border-left: $color-border;
@@ -47,6 +47,6 @@ $color-border: solid 6px #28a745;
 }
 
 @keyframes eclipse-animate{
-	0% { transform:rotate(0) }
-	100% { transform:rotate(360deg) }
+	0% { transform: rotate(0); }
+	100% { transform: rotate(360deg); }
 }
