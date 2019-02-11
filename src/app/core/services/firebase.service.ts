@@ -63,23 +63,6 @@ export class FirebaseService {
 		return Promise.reject();
 	}
 
-	private _objectToArray(data: any) {
-		if (!isNaN(Object.keys(data)[0] as any)
-			&& data.constructor.toString().indexOf("Object") !== -1) {
-
-			const output = [];
-
-			Object.keys(data).map((key, index) => {
-				output[index] = data[key];
-				output[index].id = parseInt(key, 10);
-			});
-
-			return output;
-		}
-
-		return data;
-	}
-
 	retrieveImageUrl(ref: string) {
 		return new Promise((resolve, reject) => {
 			firebase.storage()
@@ -104,5 +87,22 @@ export class FirebaseService {
 					}
 				});
 		});
+	}
+
+	private _objectToArray(data: any) {
+		if (!isNaN(Object.keys(data)[0] as any)
+			&& data.constructor.toString().indexOf("Object") !== -1) {
+
+			const output = [];
+
+			Object.keys(data).map((key, index) => {
+				output[index] = data[key];
+				output[index].id = parseInt(key, 10);
+			});
+
+			return output;
+		}
+
+		return data;
 	}
 }
