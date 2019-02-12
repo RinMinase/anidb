@@ -7,6 +7,8 @@ import { NavbarComponent } from "@components/navbar/navbar.component";
 import { FooterComponent } from "@components/footer/footer.component";
 
 import { FuseService } from "@builders/fuse.service";
+import { FirebaseQueryService } from "@builders/firebase-query.service";
+
 import { GithubService } from "@services/github.service";
 import { FirebaseService } from "@services/firebase.service";
 
@@ -35,6 +37,15 @@ describe("FuseService", () => {
 
 	// it("should be created", () => {
 	// 	const service: FuseService = TestBed.get(FuseService);
+	// 	expect(service).toBeTruthy();
+	// });
+});
+
+describe("FirebaseQueryService", () => {
+	// beforeEach(() => TestBed.configureTestingModule({}));
+
+	// it("should be created", () => {
+	// 	const service: FirebaseQueryService = TestBed.get(FirebaseQueryService);
 	// 	expect(service).toBeTruthy();
 	// });
 });
