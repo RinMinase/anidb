@@ -18,9 +18,9 @@
     "build-bh": "ng build --prod --base-href ./ && sw-precache --root=dist --config=src/assets/config/sw-precache-config.js",
     "bundle": "rm -rf www && npm run build-bh && mv dist www && cordova build android && rm -rf www",
     "test": "ng test",
-		"lint": "ng lint && stylelint src/**/*.scss",
-		"slint": "stylelint src/**/*.scss",
-		"tslint": "ng lint",
+    "lint": "ng lint && stylelint src/**/*.scss",
+    "slint": "stylelint src/**/*.scss",
+    "tslint": "ng lint",
     "setup": "cordova platform add android && yarn"
   },
   "husky": {
@@ -57,7 +57,7 @@
     "@angular/platform-browser-dynamic": "^7.2.4",
     "@types/jasmine": "^3.3.8",
     "@types/jasminewd2": "^2.0.3",
-    "@types/node": "^10.12.24",
+    "@types/node": "^11.9.0",
     "codelyzer": "^4.5.0",
     "cordova-android": "^7.0.0",
     "cordova-plugin-whitelist": "^1.3.3",
