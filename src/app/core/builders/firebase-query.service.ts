@@ -51,3 +51,21 @@ export class FirebaseQueryService {
 		return this.firebaseOptions;
 	}
 }
+
+export class FirebaseQuery {
+	db: string;
+	id: number;
+	limit: number;
+	orderKey: string;
+	orderDirection: string;
+	inhdd: number;
+
+	constructor() {
+		this.db = "anime";
+		this.id = null;
+		this.limit = null;
+		this.orderKey = null;
+		this.orderDirection = null;
+		this.inhdd = 1;
+	}
+}
