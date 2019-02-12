@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 @Injectable({
 	providedIn: "root",
 })
-export class FuseService {
+export class FuseOptionsBuilder {
 	fuseOptions = {
 		shouldSort: true,
 		threshold: 0.6,
