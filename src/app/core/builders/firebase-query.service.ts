@@ -53,12 +53,12 @@ export class FirebaseQueryService {
 }
 
 export class FirebaseQuery {
-	db: string;
-	id: number;
-	limit: number;
-	orderKey: string;
-	orderDirection: string;
-	inhdd: number;
+	db?: string;
+	id?: number;
+	limit?: number;
+	orderKey?: string;
+	orderDirection?: string;
+	inhdd?: number;
 
 	constructor() {
 		this.db = "anime";
