@@ -7,6 +7,7 @@ import * as Fuse from "fuse.js";
 
 import { FirebaseService } from "@services/firebase.service";
 import { FuseService } from "@builders/fuse.service";
+import { FirebaseNewService } from "@services/firebase-new.service";
 
 @Component({
 	selector: "app-manage-home",
@@ -24,6 +25,7 @@ export class ManageHomeComponent implements OnInit {
 	constructor(
 		private router: Router,
 		private firebase: FirebaseService,
+		private firebaseNew: FirebaseNewService,
 		private fuseOptionsBuilder: FuseService,
 	) {}
 
@@ -43,7 +45,7 @@ export class ManageHomeComponent implements OnInit {
 
 		this.firebase.auth()
 			.then(() => {
-				this.firebase.retrieve()
+				this.firebaseNew.retrieve()
 					.then((data) => {
 						this.formatData(data);
 						this.dataLoaded = true;
