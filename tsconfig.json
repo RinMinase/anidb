@@ -12,6 +12,15 @@
     "importHelpers": true,
     "target": "es5",
     "typeRoots": [ "node_modules/@types" ],
-    "lib": [ "es2018", "dom" ]
+		"lib": [ "es2018", "dom" ],
+		"paths": {
+			"@app/*": ["src/app/*"],
+			"@core/*": ["src/app/core/*"],
+			"@builders/*": ["src/app/core/builders/*"],
+			"@components/*": ["src/app/core/components/*"],
+			"@services/*": ["src/app/core/services/*"],
+			"@modules/*": ["src/app/modules/*"],
+			"@env/*": ["src/environments/*"],
+		}
   }
 }
