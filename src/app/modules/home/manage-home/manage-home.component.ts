@@ -5,8 +5,8 @@ import { debounceTime } from "rxjs/operators";
 import * as moment from "moment-mini";
 import * as Fuse from "fuse.js";
 
-import { FirebaseService } from "src/app/core/services/firebase.service";
-import { FuseService } from "src/app/core/builders/fuse.service";
+import { FirebaseService } from "@services/firebase.service";
+import { FuseService } from "@builders/fuse.service";
 
 @Component({
 	selector: "app-manage-home",

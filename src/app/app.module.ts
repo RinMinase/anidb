@@ -5,11 +5,11 @@ import { HttpClientModule } from "@angular/common/http";
 
 import { AppComponent } from "./app.component";
 
-import { NavbarModule } from "./core/components/navbar/navbar.module";
-import { FooterModule } from "./core/components/footer/footer.module";
+import { NavbarModule } from "@components/navbar/navbar.module";
+import { FooterModule } from "@components/footer/footer.module";
 
-import { LoginModule } from "./modules/login/login.module";
-import { HomeModule } from "./modules/home/home.module";
+import { LoginModule } from "@modules/login/login.module";
+import { HomeModule } from "@modules/home/home.module";
 
 const routes: Routes = [{
 	path: "about",
