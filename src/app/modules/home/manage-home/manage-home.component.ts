@@ -6,7 +6,7 @@ import * as moment from "moment-mini";
 import * as Fuse from "fuse.js";
 
 import { FirebaseService } from "@services/firebase.service";
-import { FuseService } from "@builders/fuse.service";
+import { FuseOptionsBuilder } from "@builders/fuse-options.service";
 import { FirebaseNewService } from "@services/firebase-new.service";
 
 @Component({
@@ -26,7 +26,7 @@ export class ManageHomeComponent implements OnInit {
 		private router: Router,
 		private firebase: FirebaseService,
 		private firebaseNew: FirebaseNewService,
-		private fuseOptionsBuilder: FuseService,
+		private fuseOptionsBuilder: FuseOptionsBuilder,
 	) {}
 
 	ngOnInit() {
