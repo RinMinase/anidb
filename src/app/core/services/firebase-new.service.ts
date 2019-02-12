@@ -5,7 +5,7 @@ import "firebase/auth";
 import "firebase/database";
 import "firebase/storage";
 
-import { FirebaseQueryService, FirebaseQuery } from "@builders/firebase-query.service";
+import { FirebaseQuery } from "@builders/firebase-query.service";
 
 @Injectable({
 	providedIn: "root",
@@ -14,8 +14,8 @@ export class FirebaseNewService {
 
 	constructor() { }
 
-	retrieve(params?: FirebaseQueryService) {
-		const query = (params) ? params.firebaseOptions : new FirebaseQuery;
+	retrieve(params?: FirebaseQuery) {
+		const query = params || new FirebaseQuery;
 		const idQuery = (query.id) ? `/${query.id}` : "";
 
 		firebase.database().ref(`/${query.db}${query.id}`).on("value", () => {});
