@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 @Injectable({
 	providedIn: "root",
 })
-export class FirebaseQueryService {
+export class FirebaseQueryBuilder {
 	firebaseOptions = {
 		db: "anime",
 		id: null,
