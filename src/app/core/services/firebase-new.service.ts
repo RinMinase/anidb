@@ -14,6 +14,24 @@ export class FirebaseNewService {
 
 	constructor() { }
 
+	login(email: string, password: string) {
+		return Promise.resolve(firebase.auth().signInWithEmailAndPassword(email, password))
+			.catch((error) => Promise.reject(error));
+	}
+
+	logout() {
+		return Promise.resolve(firebase.auth().signOut())
+			.catch((error) => Promise.reject(error));
+	}
+
+	auth() {
+		return new Promise((resolve, reject) => {
+			firebase.auth().onAuthStateChanged((isAuthenticated: any) => {
+				(isAuthenticated) ? resolve() : reject(new Error("Not authenticated"));
+			});
+		});
+	}
+
 	retrieve(params?: FirebaseQuery) {
 		const query = params || new FirebaseQuery;
 		const idQuery = (query.id) ? `/${query.id}` : "";
@@ -47,6 +65,32 @@ export class FirebaseNewService {
 		}
 
 		return Promise.reject();
+	}
+
+	retrieveImageUrl(ref: string) {
+		return new Promise((resolve, reject) => {
+			firebase.storage()
+				.ref(ref)
+				.getDownloadURL()
+				.then((url) => {
+					resolve(url);
+				}).catch((error) => {
+					switch (error.code) {
+						case "storage/object_not_found":
+							reject("File doesn't exist");
+							break;
+						case "storage/unauthorized":
+							reject("User doesn't have permission to access the object");
+							break;
+						case "storage/canceled":
+							reject("User canceled the upload");
+							break;
+						case "storage/unknown":
+							reject("Unknown error occurred");
+							break;
+					}
+				});
+		});
 	}
 
 	private _objectToArray(data: any) {
