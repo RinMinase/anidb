@@ -15,6 +15,7 @@ export class FirebaseQueryBuilder {
 
 	validOrderKeys = [
 		"dateFinished",
+		"rewatchLast",
 	];
 
 	constructor() { }
