@@ -8,7 +8,7 @@
 
 	<div class="collapse navbar-collapse" [ngbCollapse]="!isNavCollapsed">
 		<ul class="navbar-nav mr-auto">
-			<li class="nav-item" routerLinkActive="active">
+			<li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
 				<a class="nav-link" routerLink="/">
 					<i class="fa fa-home"></i><span class="pl-2">Home</span>
 				</a>
