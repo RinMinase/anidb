@@ -2,8 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import * as moment from "moment-mini";
 
-import { FirebaseNewService } from "@services/firebase-new.service";
 import { FirebaseQueryBuilder } from "@builders/firebase-query.service";
+import { FirebaseService } from "@services/firebase.service";
 
 @Component({
 	selector: "app-lastwatch",
@@ -19,8 +19,8 @@ export class LastwatchComponent implements OnInit {
 
 	constructor(
 		private router: Router,
-		private firebase: FirebaseNewService,
 		private firebaseQueryBuilder: FirebaseQueryBuilder,
+		private firebase: FirebaseService,
 	) { }
 
 	ngOnInit() {

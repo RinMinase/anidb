@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import * as moment from "moment-mini";
 
-import { FirebaseNewService } from "@services/firebase-new.service";
+import { FirebaseService } from "@services/firebase.service";
 import { GithubService } from "@services/github.service";
 
 @Component({
@@ -21,7 +21,7 @@ export class AboutComponent implements OnInit {
 	packageIssues: Object[];
 
 	constructor(
-		private firebase: FirebaseNewService,
+		private firebase: FirebaseService,
 		private github: GithubService,
 	) { }
 

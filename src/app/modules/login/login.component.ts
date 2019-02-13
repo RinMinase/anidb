@@ -2,7 +2,7 @@ import { Component, OnInit, Renderer } from "@angular/core";
 import { FormControl } from "@angular/forms";
 import { Router } from "@angular/router";
 
-import { FirebaseNewService } from "@services/firebase-new.service";
+import { FirebaseService } from "@services/firebase.service";
 
 @Component({
 	selector: "app-login",
@@ -18,8 +18,8 @@ export class LoginComponent implements OnInit {
 
 	constructor(
 		private renderer: Renderer,
-		private firebase: FirebaseNewService,
 		private router: Router,
+		private firebase: FirebaseService,
 	) { }
 
 	ngOnInit() { }
