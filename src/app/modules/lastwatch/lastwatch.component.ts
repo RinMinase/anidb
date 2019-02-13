@@ -2,7 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import * as moment from "moment-mini";
 
-import { FirebaseService } from "../../core/services/firebase.service";
+import { FirebaseNewService } from "@services/firebase-new.service";
+import { FirebaseQueryBuilder } from "@builders/firebase-query.service";
 
 @Component({
 	selector: "app-lastwatch",
@@ -18,19 +19,25 @@ export class LastwatchComponent implements OnInit {
 
 	constructor(
 		private router: Router,
-		private firebase: FirebaseService,
+		private firebase: FirebaseNewService,
+		private firebaseQueryBuilder: FirebaseQueryBuilder,
 	) { }
 
 	ngOnInit() {
 		this.firebase.auth()
 			.then(() => {
-				this.firebase.retrieve("anime", null, 20, "dateFinished")
-					.then((dataDateFinished) => {
-						this.firebase.retrieve("anime", null, 20, "rewatchLast")
-							.then((dataRewatchLast) => {
-								console.log("dataDateFinished", dataDateFinished);
-								console.log("dataRewatchLast", dataRewatchLast);
-
+				this.firebase.retrieve(
+					this.firebaseQueryBuilder.db("anime")
+						.limit(20)
+						.order("dateFinished", "desc")
+						.build(),
+				).then((dataDateFinished: Array<any>) => {
+						this.firebase.retrieve(
+							this.firebaseQueryBuilder.db("anime")
+								.limit(20)
+								.order("rewatchLast", "desc")
+								.build(),
+							).then((dataRewatchLast: Array<any>) => {
 								this.formatData(dataDateFinished, dataRewatchLast);
 								this.dataLoaded = true;
 							});
