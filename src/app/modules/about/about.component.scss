@@ -105,61 +105,73 @@ a.frameworks {
 	overflow: hidden;
 
 	&.angular {
-		background-position: -2px 0;
+		background-position: -2px -0px;
 		width: 120px;
 		height: 120px;
 	}
 
 	&.bootstrap {
-		background-position: -124px 0;
+		background-position: -124px -0px;
 		width: 120px;
 		height: 120px;
 	}
 
 	&.cordova {
-		background-position: -246px 0;
-		width: 120px;
-		height: 120px;
-	}
-
-	&.es8 {
-		background-position: -2px -122px;
+		background-position: -246px -0px;
 		width: 120px;
 		height: 120px;
 	}
 
 	&.firebase {
+		background-position: -2px -122px;
+		width: 120px;
+		height: 120px;
+	}
+
+	&.jasmine {
 		background-position: -124px -122px;
 		width: 120px;
 		height: 120px;
 	}
 
-	&.nightwatch {
+	&.karma {
 		background-position: -246px -122px;
 		width: 120px;
 		height: 120px;
 	}
 
-	&.scss {
+	&.ngb {
 		background-position: -2px -244px;
 		width: 120px;
 		height: 120px;
 	}
 
-	&.travis {
+	&.scss {
 		background-position: -124px -244px;
 		width: 120px;
 		height: 120px;
 	}
 
-	&.webpack {
+	&.travis {
 		background-position: -246px -244px;
 		width: 120px;
 		height: 120px;
 	}
 
-	&.yarn {
+	&.ts {
 		background-position: -2px -366px;
+		width: 120px;
+		height: 120px;
+	}
+
+	&.webpack {
+		background-position: -124px -366px;
+		width: 120px;
+		height: 120px;
+	}
+
+	&.yarn {
+		background-position: -246px -366px;
 		width: 120px;
 		height: 120px;
 	}
