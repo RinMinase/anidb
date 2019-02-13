@@ -26,6 +26,24 @@ export class FirebaseNewService {
 					.equalTo(1)
 					.on("value", (data) => resolve(this._objectToArray(data.val())));
 			});
+		} else if (query.limit && query.orderKey) {
+			if (query.orderDirection === "asc") {
+				return new Promise((resolve) => {
+					firebase.database()
+						.ref(`/${query.db}${idQuery}`)
+						.orderByChild(query.orderKey)
+						.limitToFirst(query.limit)
+						.on("value", (data) => resolve(this._objectToArray(data.val())));
+				});
+			} else {
+				return new Promise((resolve) => {
+					firebase.database()
+						.ref(`/${query.db}${idQuery}`)
+						.orderByChild(query.orderKey)
+						.limitToLast(query.limit)
+						.on("value", (data) => resolve(this._objectToArray(data.val())));
+				});
+			}
 		}
 
 		return Promise.reject();
