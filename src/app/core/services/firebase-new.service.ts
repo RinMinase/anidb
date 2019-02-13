@@ -18,15 +18,14 @@ export class FirebaseNewService {
 		const query = params || new FirebaseQuery;
 		const idQuery = (query.id) ? `/${query.id}` : "";
 
-		firebase.database().ref(`/${query.db}${query.id}`).on("value", () => {});
-
 		if (!query.limit && !query.orderKey && query.inhdd) {
-			return firebase.database()
-				.ref(`/${query.db}${idQuery}`)
-				.orderByChild("inhdd")
-				.equalTo(1)
-				.once("value")
-				.then((data) => this._objectToArray(data.val()));
+			return new Promise((resolve) => {
+				firebase.database()
+					.ref(`/${query.db}${idQuery}`)
+					.orderByChild("inhdd")
+					.equalTo(1)
+					.on("value", (data) => resolve(this._objectToArray(data.val())));
+			});
 		}
 
 		return Promise.reject();
