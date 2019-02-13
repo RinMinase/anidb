@@ -6,8 +6,8 @@ import { AppComponent } from "./app.component";
 import { NavbarComponent } from "@components/navbar/navbar.component";
 import { FooterComponent } from "@components/footer/footer.component";
 
-import { FuseService } from "@builders/fuse.service";
-import { FirebaseQueryService } from "@builders/firebase-query.service";
+import { FuseOptionsBuilder } from "@builders/fuse-options.service";
+import { FirebaseQueryBuilder } from "@builders/firebase-query.service";
 
 import { GithubService } from "@services/github.service";
 import { FirebaseService } from "@services/firebase.service";
