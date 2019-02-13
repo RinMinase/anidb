@@ -36,6 +36,16 @@ export class AboutComponent implements OnInit {
 		lq: 0,
 	};
 
+	chart = {
+		data: [{
+			data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+			label: "Series A",
+		}],
+		colors: [],
+		labels: [],
+		options: {},
+	};
+
 	githubCommits = [];
 	githubIssues = [];
 	packageIssues: Object[];
@@ -45,6 +55,7 @@ export class AboutComponent implements OnInit {
 		private firebase: FirebaseService,
 		private github: GithubService,
 	) { }
+
 
 	ngOnInit() {
 		this.firebase.auth()
@@ -62,27 +73,22 @@ export class AboutComponent implements OnInit {
 		this.getGithubCommits();
 		this.getGithubIssues();
 		this.getPackageIssues();
+		this.generateChartData();
 	}
 
 	private formatData(data: Array<any>) {
-		// this.chart.data = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-
 		let totalDuration = 0;
 		let totalFilesize = 0;
 		let totalEpisodes = 0;
 
 		data.map((value: any) => {
 
-			if (value.watchStatus > 1) {
-				return;
+			if (value.watchStatus > 1) { return; }
+
+			const month = moment.unix(value.dateFinished).month();
+			if (month > -1 && month < 12) {
+				this.chart.data[0].data[month]++;
 			}
-
-			// const dateFinished = moment.unix(value.dateFinished);
-			// const month = dateFinished.month();
-
-			// if (month > -1 && month < 12) {
-			// 	this.chart.data[month]++;
-			// }
 
 			totalDuration += parseInt(value.duration, 10);
 			totalFilesize += parseInt(value.filesize, 10);
@@ -246,6 +252,23 @@ export class AboutComponent implements OnInit {
 			severity: "red",
 			version: "0.0.0",
 		}];
+	}
+
+	private generateChartData() {
+		this.chart.labels = ["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"];
+
+		this.chart.colors = [{
+			borderColor: "rgba(149, 206, 146, 1)",
+			pointBackgroundColor: "rgba(76, 175, 80, 1)",
+			pointBorderColor: "rgba(220, 220, 220, 0.3)",
+			borderWidth: 2.3,
+			fill: false,
+			tension: 0.2,
+		}];
+
+		this.chart.options = {
+			responsive: true,
+		};
 	}
 
 	private convertDate(date: string, omitSeconds = false) {

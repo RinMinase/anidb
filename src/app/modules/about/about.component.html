@@ -78,7 +78,7 @@
 				</div>
 			</div>
 
-			<div class="row">
+			<div class="row" *ngIf="dataLoaded === true">
 				<div class="col-12 mt-4">
 					<h4 class="text-center user-data-heading">Chart Data</h4>
 				</div>
@@ -95,17 +95,15 @@
 						<button type="button" class="btn btn-success">Year</button>
 					</div>
 				</div>
-				<!-- <div class="col-12">
-					<canvas id="line"
-						class="chart chart-line"
-						chart-colors="vm.chart.colors"
-						chart-data="vm.chart.data"
-						chart-labels="vm.chart.labels"
-						chart-series="vm.chart.series"
-						chart-options="vm.chart.options"
-						chart-dataset-override="vm.chart.datasetOverride">
+				<div class="col-12">
+					<canvas baseChart
+						[datasets]="chart.data"
+						[colors]="chart.colors"
+						[labels]="chart.labels"
+						[options]="chart.options"
+						chartType="line">
 					</canvas>
-				</div> -->
+				</div>
 			</div>
 
 			<div class="row">
