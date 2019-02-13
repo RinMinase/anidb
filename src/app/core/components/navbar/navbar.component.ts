@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 
-import { FirebaseService } from "../../services/firebase.service";
+import { FirebaseNewService } from "@services/firebase-new.service";
 
 @Component({
 	selector: "app-navbar",
@@ -12,7 +12,7 @@ export class NavbarComponent implements OnInit {
 
 	constructor(
 		private router: Router,
-		private firebase: FirebaseService,
+		private firebase: FirebaseNewService,
 	) { }
 
 	ngOnInit() {

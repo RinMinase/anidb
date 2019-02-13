@@ -5,7 +5,6 @@ import { debounceTime } from "rxjs/operators";
 import * as moment from "moment-mini";
 import * as Fuse from "fuse.js";
 
-import { FirebaseService } from "@services/firebase.service";
 import { FuseOptionsBuilder } from "@builders/fuse-options.service";
 import { FirebaseNewService } from "@services/firebase-new.service";
 
@@ -24,8 +23,7 @@ export class ManageHomeComponent implements OnInit {
 
 	constructor(
 		private router: Router,
-		private firebase: FirebaseService,
-		private firebaseNew: FirebaseNewService,
+		private firebase: FirebaseNewService,
 		private fuseOptionsBuilder: FuseOptionsBuilder,
 	) {}
 
@@ -45,7 +43,7 @@ export class ManageHomeComponent implements OnInit {
 
 		this.firebase.auth()
 			.then(() => {
-				this.firebaseNew.retrieve()
+				this.firebase.retrieve()
 					.then((data) => {
 						this.formatData(data);
 						this.dataLoaded = true;
