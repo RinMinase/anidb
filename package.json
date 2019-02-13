@@ -46,7 +46,7 @@
     "moment-mini": "^2.22.1",
     "roboto-fontface": "^0.10.0",
     "rxjs": "^6.3.3",
-    "sweetalert2": "^8.0.6",
+    "sweetalert2": "^8.0.7",
     "xlsx": "^0.14.1",
     "zone.js": "^0.8.26"
   },
