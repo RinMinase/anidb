@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 import * as moment from "moment-mini";
 
 import { FirebaseService } from "@services/firebase.service";
@@ -16,20 +17,105 @@ export class AboutComponent implements OnInit {
 	pageSize = 10;
 	page = 1;
 
+	totalEpisodes: number;
+	totalFilesizeGB: string;
+	totalFilesizeTB: string;
+
+	totalDuration = {
+		days: null,
+		hours: null,
+		minutes: null,
+		seconds: null,
+	};
+
+	quality = {
+		uhd: 0,
+		fhd: 0,
+		hd: 0,
+		hq: 0,
+		lq: 0,
+	};
+
 	githubCommits = [];
 	githubIssues = [];
 	packageIssues: Object[];
 
 	constructor(
+		private router: Router,
 		private firebase: FirebaseService,
 		private github: GithubService,
 	) { }
 
 	ngOnInit() {
+		this.firebase.auth()
+			.then(() => {
+				this.firebase.retrieve()
+				.then((data: Array<any>) => {
+					this.formatData(data);
+					this.dataLoaded = true;
+				});
+		});
+
+		// .catch(() => this.router.navigateByUrl("/login"));
+
 		this.getFirebaseImages();
 		this.getGithubCommits();
 		this.getGithubIssues();
 		this.getPackageIssues();
+	}
+
+	private formatData(data: Array<any>) {
+		// this.chart.data = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+		let totalDuration = 0;
+		let totalFilesize = 0;
+		let totalEpisodes = 0;
+
+		data.map((value: any) => {
+
+			if (value.watchStatus > 1) {
+				return;
+			}
+
+			// const dateFinished = moment.unix(value.dateFinished);
+			// const month = dateFinished.month();
+
+			// if (month > -1 && month < 12) {
+			// 	this.chart.data[month]++;
+			// }
+
+			totalDuration += parseInt(value.duration, 10);
+			totalFilesize += parseInt(value.filesize, 10);
+
+			if (!isNaN( parseInt(value.episodes, 10) )) {
+				totalEpisodes += parseInt(value.episodes, 10);
+			}
+
+			if (!isNaN( parseInt(value.ovas, 10) )) {
+				totalEpisodes += parseInt(value.ovas, 10);
+			}
+
+			if (!isNaN( parseInt(value.specials, 10) )) {
+				totalEpisodes += parseInt(value.specials, 10);
+			}
+
+			switch (value.quality) {
+				case "4K 2160p": this.quality.uhd++; break;
+				case "FHD 1080p": this.quality.fhd++; break;
+				case "HD 720p": this.quality.hd++; break;
+				case "HQ 480p": this.quality.hq++; break;
+				case "LQ 360p": this.quality.lq++; break;
+			}
+		});
+
+		this.totalEpisodes = totalEpisodes;
+		this.totalDuration.days = (totalDuration / 86400).toFixed(0);
+		this.totalDuration.hours = (totalDuration % 86400 / 3600).toFixed(0);
+		this.totalDuration.minutes = (totalDuration % 86400 % 3600 / 60).toFixed(0);
+		this.totalDuration.seconds = (totalDuration % 86400 % 3600 % 60).toFixed(0);
+
+		this.totalFilesizeGB = (totalFilesize / 1073741824).toFixed(2);
+		this.totalFilesizeTB = (totalFilesize / 1099511627776).toFixed(2);
 	}
 
 	private getFirebaseImages() {

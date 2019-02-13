@@ -14,7 +14,7 @@
 					</div>
 					<h4 class="text-center user-data-heading">Statistics</h4>
 
-					<!-- <div class="flex-form-container"
+					<div class="flex-form-container"
 						*ngIf="dataLoaded === false">
 						<div class="spinner eclipse"></div>
 					</div>
@@ -26,9 +26,9 @@
 								<td>Watch Time</td>
 								<td>:</td>
 								<td>
-									{{ vm.data.totalDays }} days, {{ vm.data.totalHours }} hours,
+									{{ totalDuration.days }} days, {{ totalDuration.hours }} hours,
 									<br>
-									{{ vm.data.totalMinutes }} minutes, {{ vm.data.totalSeconds }} seconds
+									{{ totalDuration.minutes }} minutes, {{ totalDuration.seconds }} seconds
 								</td>
 							</tr>
 							<tr><td class="p-1" colspan="3"></td></tr>
@@ -36,12 +36,12 @@
 							<tr>
 								<td>Total Size</td>
 								<td>:</td>
-								<td>{{ vm.data.totalFilesizeGB }} GB ({{ vm.data.totalFilesizeTB }} TB)</td>
+								<td>{{ totalFilesizeGB }} GB ({{ totalFilesizeTB }} TB)</td>
 							</tr>
 							<tr>
 								<td>Total Episodes</td>
 								<td>:</td>
-								<td>{{ vm.data.totalEpisodes }} Episodes</td>
+								<td>{{ totalEpisodes }} Episodes</td>
 							</tr>
 							<tr><td class="p-1" colspan="3"></td></tr>
 							<tr><td class="table-statistics-border p-1" colspan="3"></td></tr>
@@ -51,30 +51,30 @@
 							<tr>
 								<td>4k 2160p</td>
 								<td class="text-center">:</td>
-								<td class="text-center">{{ vm.data.quality.uhd }}</td>
+								<td class="text-center">{{ quality.uhd }}</td>
 							</tr>
 							<tr>
 								<td>FHD 1080p</td>
 								<td class="text-center">:</td>
-								<td class="text-center">{{ vm.data.quality.fhd }}</td>
+								<td class="text-center">{{ quality.fhd }}</td>
 							</tr>
 							<tr>
 								<td>HD 720p</td>
 								<td class="text-center">:</td>
-								<td class="text-center">{{ vm.data.quality.hd }}</td>
+								<td class="text-center">{{ quality.hd }}</td>
 							</tr>
 							<tr>
 								<td>HQ 480p</td>
 								<td class="text-center">:</td>
-								<td class="text-center">{{ vm.data.quality.hq }}</td>
+								<td class="text-center">{{ quality.hq }}</td>
 							</tr>
 							<tr>
 								<td>LQ 360p</td>
 								<td class="text-center">:</td>
-								<td class="text-center">{{ vm.data.quality.lq }}</td>
+								<td class="text-center">{{ quality.lq }}</td>
 							</tr>
 						</tbody>
-					</table> -->
+					</table>
 				</div>
 			</div>
 
