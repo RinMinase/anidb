@@ -20,9 +20,9 @@
 		"member-ordering": [
 			true, {
 				"order": [
-					"public-instance-field",
-					"private-instance-field",
 					"protected-instance-field",
+					"private-instance-field",
+					"public-instance-field",
 
 					"public-constructor",
 					"private-constructor",
