@@ -4,6 +4,7 @@ import * as moment from "moment-mini";
 
 import { FirebaseService } from "@services/firebase.service";
 import { FirebaseQueryBuilder } from "@builders/firebase-query.service";
+import { UtilityService } from "@services/utility.service";
 
 @Component({
 	selector: "app-view-home",
@@ -21,6 +22,7 @@ export class ViewHomeComponent implements OnInit {
 		private route: ActivatedRoute,
 		private firebase: FirebaseService,
 		private firebaseQueryBuilder: FirebaseQueryBuilder,
+		private utility: UtilityService,
 	) { }
 
 	ngOnInit() {
@@ -39,7 +41,7 @@ export class ViewHomeComponent implements OnInit {
 						if (data.offquel) { data.offquel = data.offquel.split(","); }
 
 						// this.filesizeForUpdateModal = data.filesize;
-						data.filesize = this.convertFilesize(data.filesize);
+						data.filesize = this.utility.convertFilesize(data.filesize);
 						data.dateFinished = moment.unix(data.dateFinished)
 							.format("MMMM DD, YYYY");
 
@@ -63,17 +65,5 @@ export class ViewHomeComponent implements OnInit {
 						this.dataLoaded = true;
 					}).catch(() => this.router.navigateByUrl("/home"));
 			}).catch(() => this.router.navigateByUrl("/login"));
-	}
-
-	private convertFilesize(filesize: any) {
-		filesize = parseFloat(filesize);
-
-		if (filesize === 0) {
-			return "";
-		} else if (filesize < 1073741824) {
-			return `${(filesize / 1048576).toFixed(2)} MB`;
-		} else {
-			return `${(filesize / 1073741824).toFixed(2)} GB`;
-		}
 	}
 }

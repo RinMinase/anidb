@@ -5,8 +5,9 @@ import { debounceTime } from "rxjs/operators";
 import * as moment from "moment-mini";
 import * as Fuse from "fuse.js";
 
-import { FuseOptionsBuilder } from "@builders/fuse-options.service";
 import { FirebaseService } from "@services/firebase.service";
+import { FuseOptionsBuilder } from "@builders/fuse-options.service";
+import { UtilityService } from "@services/utility.service";
 import { HomeService } from "../home.service";
 
 @Component({
@@ -29,8 +30,9 @@ export class ManageHomeComponent implements OnInit {
 
 	constructor(
 		private router: Router,
-		private fuseOptionsBuilder: FuseOptionsBuilder,
 		private firebase: FirebaseService,
+		private fuseOptionsBuilder: FuseOptionsBuilder,
+		private utility: UtilityService,
 		private homeService: HomeService,
 	) {}
 
@@ -89,7 +91,7 @@ export class ManageHomeComponent implements OnInit {
 	private formatData(data: any) {
 		data.map((value: any) => {
 			if (value.watchStatus <= 1) {
-				const filesize = this.convertFilesize(value.filesize);
+				const filesize = this.utility.convertFilesize(value.filesize);
 				let dateFinished: string;
 
 				if (!value.rewatchLast) {
@@ -146,18 +148,6 @@ export class ManageHomeComponent implements OnInit {
 			return -1;
 		} else if (a.title > b.title) {
 			return 1;
-		}
-	}
-
-	private convertFilesize(filesize: any) {
-		filesize = parseFloat(filesize);
-
-		if (filesize === 0) {
-			return "-";
-		} else if (filesize < 1073741824) {
-			return `${(filesize / 1048576).toFixed(2)} MB`;
-		} else {
-			return `${(filesize / 1073741824).toFixed(2)} GB`;
 		}
 	}
 }
