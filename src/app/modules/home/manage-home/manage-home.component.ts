@@ -70,7 +70,7 @@ export class ManageHomeComponent implements OnInit {
 	formatData(data: any) {
 		data.map((value: any) => {
 			if (value.watchStatus <= 1) {
-				const filesize = this._convertFilesize(value.filesize);
+				const filesize = this.convertFilesize(value.filesize);
 				let dateFinished: string;
 
 				if (!value.rewatchLast) {
@@ -97,7 +97,7 @@ export class ManageHomeComponent implements OnInit {
 			}
 		});
 
-		this.data = this.data.sort(this._compareFunction);
+		this.data = this.data.sort(this.compareFunction);
 		this.pristineData = [ ...this.data ];
 
 		if (this.search.value) {
@@ -109,7 +109,7 @@ export class ManageHomeComponent implements OnInit {
 		return (this.search.value) ? this.data : this.pristineData;
 	}
 
-	_compareFunction(a: any, b: any) {
+	private compareFunction(a: any, b: any) {
 		if (a.quality < b.quality) {
 			return -1;
 		} else if (a.quality > b.quality) {
@@ -123,7 +123,7 @@ export class ManageHomeComponent implements OnInit {
 		}
 	}
 
-	_convertFilesize(filesize: any) {
+	private convertFilesize(filesize: any) {
 		filesize = parseFloat(filesize);
 
 		if (filesize === 0) {
