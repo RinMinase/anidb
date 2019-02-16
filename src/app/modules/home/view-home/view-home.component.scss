@@ -1,0 +1,27 @@
+div.image-container {
+	background-color: #D3D3D3;
+	width: 100%;
+	max-width: 262.5px;
+	height: 300px;
+
+	@media screen and (max-width: 767px) { margin: 0 auto; }
+}
+
+.data-heading {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	border-bottom: 2px solid #95CE92;
+	padding-bottom: 5px;
+}
+
+.btn-warning {
+	background-color: #FF9800;
+	border-color: #FF9800;
+}
+
+i {
+	&.fa-snowflake-o { color: #87CEEB; }
+	&.fa-leaf { color: #008000; }
+	&.fa-sun-o { color: #FFA500; }
+	&.fa-tree { color: #FF4500; }
+}
