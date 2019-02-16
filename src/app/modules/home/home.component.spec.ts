@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { HomeComponent } from "./home.component";
+import { HomeService } from "./home.service";
 
 describe("HomeComponent", () => {
 	// let component: HomeComponent;
@@ -21,5 +22,14 @@ describe("HomeComponent", () => {
 
 	// it("should create", () => {
 	// 	expect(component).toBeTruthy();
+	// });
+});
+
+describe("HomeService", () => {
+	// beforeEach(() => TestBed.configureTestingModule({}));
+
+	// it("should be created", () => {
+	// 	const service: HomeService = TestBed.get(HomeService);
+	// 	expect(service).toBeTruthy();
 	// });
 });
