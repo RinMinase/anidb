@@ -16,6 +16,10 @@
 	line-height: 1.2;
 }
 
+.c-pointer {
+	cursor: pointer;
+}
+
 @mixin lpad-d() { padding-left: 15px !important; }
 @mixin rpad-d() { padding-right: 15px !important; }
 
