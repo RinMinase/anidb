@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { FormControl } from "@angular/forms";
 import { debounceTime } from "rxjs/operators";
@@ -7,6 +7,7 @@ import * as Fuse from "fuse.js";
 
 import { FuseOptionsBuilder } from "@builders/fuse-options.service";
 import { FirebaseService } from "@services/firebase.service";
+import { HomeService } from "../home.service";
 
 @Component({
 	selector: "app-manage-home",
@@ -14,17 +15,23 @@ import { FirebaseService } from "@services/firebase.service";
 	styleUrls: ["./manage-home.component.scss"],
 })
 export class ManageHomeComponent implements OnInit {
+
 	data: Array<Object> = [];
 	pristineData: Array<Object> = [];
-	titleList: Array<string> = [];
 	dataLoaded: Boolean = false;
-	fuseOptions = {};
+
+	titleList: Array<string> = [];
 	search = new FormControl("");
+
+	fuseOptions = {};
+	searchQuery = "";
+	homeState = null;
 
 	constructor(
 		private router: Router,
 		private fuseOptionsBuilder: FuseOptionsBuilder,
 		private firebase: FirebaseService,
+		private homeService: HomeService,
 	) {}
 
 	ngOnInit() {
@@ -41,33 +48,45 @@ export class ManageHomeComponent implements OnInit {
 			.addKeys("remarks")
 			.build();
 
+		this.homeService.currentState.subscribe((state) => this.homeState = state);
+		this.onChanges();
+
 		this.firebase.auth()
 			.then(() => {
 				this.firebase.retrieve()
 					.then((data) => {
 						this.formatData(data);
 						this.dataLoaded = true;
-						this.onChanges();
 
-						// if (this.$stateParams.id) {
-						// 	this.$anchorScroll.yOffset = 55;
-						// 	this.$anchorScroll(this.$stateParams.id);
-						// }
+						if (this.homeState.id !== null) {
+							setTimeout(() => {
+								document.getElementById(`${this.homeState.id}`).scrollIntoView();
+								window.scrollBy(0, -2046);
+							});
+						}
+
+						if (this.homeState.search) {
+							this.searchQuery = this.homeState.search;
+							this.search.patchValue(this.searchQuery);
+
+							if (this.pristineData) {
+								this.data = new Fuse(this.pristineData, this.fuseOptions).search(this.searchQuery);
+							}
+						}
 					});
 			}).catch(() => this.router.navigateByUrl("/login"));
 	}
 
-	onChanges() {
-		this.search.valueChanges
-			.pipe(debounceTime(250))
-			.subscribe(value => {
-				if (value && this.pristineData) {
-					this.data = new Fuse(this.pristineData, this.fuseOptions).search(value);
-				}
-			});
+	getData() {
+		return (this.search.value) ? this.data : this.pristineData;
 	}
 
-	formatData(data: any) {
+	viewTitle(id: number) {
+		this.homeService.changeState(this.searchQuery, id);
+		this.router.navigateByUrl(`/view/${id}`);
+	}
+
+	private formatData(data: any) {
 		data.map((value: any) => {
 			if (value.watchStatus <= 1) {
 				const filesize = this.convertFilesize(value.filesize);
@@ -105,8 +124,15 @@ export class ManageHomeComponent implements OnInit {
 		}
 	}
 
-	getData() {
-		return (this.search.value) ? this.data : this.pristineData;
+	private onChanges() {
+		this.search.valueChanges
+			.pipe(debounceTime(250))
+			.subscribe(value => {
+				if (value && this.pristineData) {
+					this.data = new Fuse(this.pristineData, this.fuseOptions).search(value);
+					this.searchQuery = value;
+				}
+			});
 	}
 
 	private compareFunction(a: any, b: any) {

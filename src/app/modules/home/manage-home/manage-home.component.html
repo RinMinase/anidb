@@ -37,9 +37,9 @@
 		<div class="spinner eclipse"></div>
 	</div>
 
-	<div class="row animate"
+	<div class="row"
 		*ngIf="dataLoaded === true"
-		[ngClass]="{'slideInUp': true}">
+		[ngClass]="{'animate slideInUp': !homeState.search}">
 		<div class="col-md-12">
 			<div class="table-responsive">
 				<table class="table table-hover table-sm" id="animeTable">
@@ -57,10 +57,10 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr class="anime-table-row"
+						<tr class="anime-table-row c-pointer"
 							id="{{ data.id }}"
 							*ngFor="let data of getData()"
-							routerLink="/view/{{data.id}}">
+							(click)="viewTitle(data.id)">
 
 							<td class="wrap">
 								<app-legend [value]="data.quality"></app-legend>
