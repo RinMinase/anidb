@@ -5,6 +5,8 @@ import * as moment from "moment-mini";
 import { FirebaseService } from "@services/firebase.service";
 import { GithubService } from "@services/github.service";
 
+import transitionProgress from "src/assets/transition-progress.json";
+
 @Component({
 	selector: "app-about",
 	templateUrl: "./about.component.html",
@@ -74,6 +76,7 @@ export class AboutComponent implements OnInit {
 		this.getGithubIssues();
 		this.getPackageIssues();
 		this.generateChartData();
+		this.generateTransitionProgress();
 	}
 
 	private formatData(data: Array<any>) {
@@ -269,6 +272,10 @@ export class AboutComponent implements OnInit {
 		this.chart.options = {
 			responsive: true,
 		};
+	}
+
+	private generateTransitionProgress() {
+
 	}
 
 	private convertDate(date: string, omitSeconds = false) {
