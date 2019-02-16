@@ -67,9 +67,7 @@ export class AboutComponent implements OnInit {
 					this.formatData(data);
 					this.dataLoaded = true;
 				});
-		});
-
-		// .catch(() => this.router.navigateByUrl("/login"));
+		}).catch(() => this.router.navigateByUrl("/login"));
 
 		this.getFirebaseImages();
 		this.getGithubCommits();
