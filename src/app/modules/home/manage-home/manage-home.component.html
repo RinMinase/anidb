@@ -56,11 +56,11 @@
 							<th>Encoder</th>
 						</tr>
 					</thead>
-					<!-- ng-click="vm.$state.go('home.view', {id: data.id, search: vm.search})" -->
 					<tbody>
 						<tr class="anime-table-row"
 							id="{{ data.id }}"
-							*ngFor="let data of getData()">
+							*ngFor="let data of getData()"
+							routerLink="/view/{{data.id}}">
 
 							<td class="wrap">
 								<app-legend [value]="data.quality"></app-legend>
