@@ -11,6 +11,7 @@ import { FirebaseQueryBuilder } from "@builders/firebase-query.service";
 
 import { GithubService } from "@services/github.service";
 import { FirebaseService } from "@services/firebase.service";
+import { UtilityService } from "@services/utility.service";
 
 describe("AppComponent", () => {
 	beforeEach(async(() => {
@@ -67,3 +68,13 @@ describe("FirebaseService", () => {
 	// 	expect(service).toBeTruthy();
 	// });
 });
+
+describe("UtilityService", () => {
+	// beforeEach(() => TestBed.configureTestingModule({}));
+
+	// it("should be created", () => {
+	// 	const service: UtilityService = TestBed.get(UtilityService);
+	// 	expect(service).toBeTruthy();
+	// });
+});
+
