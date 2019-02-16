@@ -36,12 +36,18 @@ export class FirebaseService {
 		const query = params || new FirebaseQuery;
 		const idQuery = (query.id) ? `/${query.id}` : "";
 
-		if (!query.limit && !query.orderKey && query.inhdd) {
+		if (!query.limit && !query.orderKey && query.inhdd && !idQuery) {
+			return new Promise((resolve) => {
+				firebase.database()
+					.ref(`/${query.db}`)
+					.orderByChild("inhdd")
+					.equalTo(1)
+					.on("value", (data) => resolve(this._objectToArray(data.val())));
+			});
+		} else if (!query.limit && !query.orderKey && query.inhdd && idQuery) {
 			return new Promise((resolve) => {
 				firebase.database()
 					.ref(`/${query.db}${idQuery}`)
-					.orderByChild("inhdd")
-					.equalTo(1)
 					.on("value", (data) => resolve(this._objectToArray(data.val())));
 			});
 		} else if (query.limit && query.orderKey) {
