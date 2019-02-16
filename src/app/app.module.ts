@@ -42,7 +42,7 @@ const routes: Routes = [{
 	declarations: [AppComponent],
 	imports: [
 		BrowserModule,
-		RouterModule.forRoot(routes),
+		RouterModule.forRoot(routes, { anchorScrolling: "enabled" }),
 		HttpClientModule,
 
 		NavbarModule,
