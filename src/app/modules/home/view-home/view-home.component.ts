@@ -35,13 +35,8 @@ export class ViewHomeComponent implements OnInit {
 								.sort((a: any, b: any) => a.length - b.length)[0];
 						}
 
-						if (data.variants) {
-							data.variants = data.variants.split(",");
-						}
-
-						if (data.offquel) {
-							data.offquel = data.offquel.split(",");
-						}
+						if (data.variants) { data.variants = data.variants.split(","); }
+						if (data.offquel) { data.offquel = data.offquel.split(","); }
 
 						// this.filesizeForUpdateModal = data.filesize;
 						data.filesize = this.convertFilesize(data.filesize);
@@ -50,21 +45,11 @@ export class ViewHomeComponent implements OnInit {
 
 						if (data.duration) {
 							const { duration } = data;
-							const hours = (duration / 3600).toFixed(0)
-								.toString()
-								.padStart(2, "0");
-							const minutes = ((duration % 3600) / 60).toFixed(0)
-								.toString()
-								.padStart(2, "0");
-							const seconds = ((duration % 3600) % 60).toFixed(0)
-								.toString()
-								.padStart(2, "0");
+							const hours = (duration / 3600).toFixed(0).padStart(2, "0");
+							const minutes = ((duration % 3600) / 60).toFixed(0).padStart(2, "0");
+							const seconds = ((duration % 3600) % 60).toFixed(0).padStart(2, "0");
 
-							data.duration = {
-								hours,
-								minutes,
-								seconds,
-							};
+							data.duration = { hours, minutes, seconds };
 						}
 
 						if (data.rewatch) {
