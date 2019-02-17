@@ -37,37 +37,15 @@ export class FirebaseService {
 		const idQuery = (query.id) ? `/${query.id}` : "";
 
 		if (!query.limit && !query.orderKey && query.inhdd && !idQuery) {
-			return new Promise((resolve) => {
-				firebase.database()
-					.ref(`/${query.db}`)
-					.orderByChild("inhdd")
-					.equalTo(1)
-					.on("value", (data) => resolve(this._objectToArray(data.val())));
-			});
+			return this.retrieveAllInHDD(query);
 		} else if (!query.limit && !query.orderKey && query.inhdd && idQuery) {
-			return new Promise((resolve) => {
-				firebase.database()
-					.ref(`/${query.db}${idQuery}`)
-					.on("value", (data) => resolve(this._objectToArray(data.val())));
-			});
+			return this.retrieveSpecific(query, idQuery);
 		} else if (query.limit && query.orderKey) {
 			if (query.orderDirection === "asc") {
-				return new Promise((resolve) => {
-					firebase.database()
-						.ref(`/${query.db}${idQuery}`)
-						.orderByChild(query.orderKey)
-						.limitToFirst(query.limit)
-						.on("value", (data) => resolve(this._objectToArray(data.val())));
-				});
-			} else {
-				return new Promise((resolve) => {
-					firebase.database()
-						.ref(`/${query.db}${idQuery}`)
-						.orderByChild(query.orderKey)
-						.limitToLast(query.limit)
-						.on("value", (data) => resolve(this._objectToArray(data.val())));
-				});
+				return this.retrieveWithAscQuery(query);
 			}
+
+			return this.retrieveWithDescQuery(query);
 		}
 
 		return Promise.reject();
@@ -96,6 +74,44 @@ export class FirebaseService {
 							break;
 					}
 				});
+		});
+	}
+
+	private retrieveAllInHDD(query: FirebaseQuery) {
+		return new Promise((resolve) => {
+			firebase.database()
+				.ref(`/${query.db}`)
+				.orderByChild("inhdd")
+				.equalTo(1)
+				.on("value", (data) => resolve(this._objectToArray(data.val())));
+		});
+	}
+
+	private retrieveSpecific(query: FirebaseQuery, idQuery: string) {
+		return new Promise((resolve) => {
+			firebase.database()
+				.ref(`/${query.db}${idQuery}`)
+				.on("value", (data) => resolve(this._objectToArray(data.val())));
+		});
+	}
+
+	private retrieveWithAscQuery(query: FirebaseQuery) {
+		return new Promise((resolve) => {
+			firebase.database()
+				.ref(`/${query.db}`)
+				.orderByChild(query.orderKey)
+				.limitToFirst(query.limit)
+				.on("value", (data) => resolve(this._objectToArray(data.val())));
+		});
+	}
+
+	private retrieveWithDescQuery(query: FirebaseQuery) {
+		return new Promise((resolve) => {
+			firebase.database()
+				.ref(`/${query.db}`)
+				.orderByChild(query.orderKey)
+				.limitToLast(query.limit)
+				.on("value", (data) => resolve(this._objectToArray(data.val())));
 		});
 	}
 
