@@ -274,7 +274,22 @@ export class AboutComponent implements OnInit {
 	}
 
 	private generateTransitionProgress() {
+		Object.keys(this.transitionProgress).forEach((key) => {
+			Object.keys(this.transitionProgress[key]).forEach((subkey) => {
 
+				let subkeyTotal = 0;
+				let subkeyFinished = 0;
+
+				this.transitionProgress[key][subkey].forEach((subElement: any) => {
+					subkeyTotal += subElement.points;
+					if (subElement.status === true) { subkeyFinished += subElement.points; }
+				});
+
+				const subkeyPercentage = ((subkeyFinished / subkeyTotal) * 100).toFixed(2);
+				this.transitionProgress[key][subkey].unshift(subkeyPercentage);
+
+			});
+		});
 	}
 
 	private convertDate(date: string, omitSeconds = false) {
