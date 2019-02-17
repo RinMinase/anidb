@@ -1,10 +1,14 @@
 {
-	"HOME": {
-		"Functions": [
-			"Functionality 1"
+	"HOME": [
+		"ADD", [
+			{ "task": "Layout", "status": true, "points": 2 },
+			{ "task": "Functionality", "status": false, "points": 3 },
+			{ "task": "Test Scripts", "status": false, "points": 1 }
 		],
-		"Testing": [
-			"Testing 1"
+		"MANAGE", [
+			{ "task": "Layout", "status": true, "points": 2 },
+			{ "task": "Functionality", "status": true, "points": 3 },
+			{ "task": "Test Scripts", "status": false, "points": 1 }
 		]
-	}
+	]
 }
