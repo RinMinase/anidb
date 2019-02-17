@@ -75,7 +75,7 @@
 					"options": {
 						"port": 3000,
 						"browserTarget": "anidb:build",
-						"sourceMap": false
+						"sourceMap": true
 					},
 					"configurations": {
 						"production": { "browserTarget": "anidb:build:production" }
