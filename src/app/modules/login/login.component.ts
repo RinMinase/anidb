@@ -1,5 +1,5 @@
 import { Component, OnInit, Renderer } from "@angular/core";
-import { FormControl } from "@angular/forms";
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 
 import { FirebaseService } from "@services/firebase.service";
@@ -13,21 +13,32 @@ export class LoginComponent implements OnInit {
 
 	loading = false;
 	alert: string = null;
-	email = new FormControl("");
-	password = new FormControl("");
+	loginForm: FormGroup;
 
 	constructor(
+		private formBuilder: FormBuilder,
 		private renderer: Renderer,
 		private router: Router,
 		private firebase: FirebaseService,
 	) { }
 
-	ngOnInit() { }
+	ngOnInit() {
+		this.loginForm = this.formBuilder.group({
+			email: ["", Validators.required],
+			password: ["", Validators.required],
+		});
+	}
 
 	authenticate() {
 		this.loading = true;
 
-		this.firebase.login(this.email.value, this.password.value)
+		if (this.loginForm.invalid) {
+			this.loading = false;
+			return;
+		}
+
+		const { email, password } = this.loginForm.controls;
+		this.firebase.login(email.value, password.value)
 			.then(() => this.router.navigateByUrl("/"))
 			.catch((error) => {
 				this.loading = false;
