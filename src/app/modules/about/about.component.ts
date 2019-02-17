@@ -51,6 +51,7 @@ export class AboutComponent implements OnInit {
 	githubCommits = [];
 	githubIssues = [];
 	packageIssues: Object[];
+	transitionProgress = transitionProgress;
 
 	constructor(
 		private router: Router,

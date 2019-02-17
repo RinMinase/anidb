@@ -1,8 +1,13 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { RouterModule, Routes } from "@angular/router";
-import { NgbPaginationModule, NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { ChartsModule } from "ng2-charts";
+
+import {
+	NgbPaginationModule,
+	NgbTooltipModule,
+	NgbProgressbarModule,
+} from "@ng-bootstrap/ng-bootstrap";
 
 import { AboutComponent } from "./about.component";
 
@@ -14,6 +19,7 @@ const routes: Routes = [{ path: "", component: AboutComponent }];
 		CommonModule,
 		RouterModule.forChild(routes),
 		NgbPaginationModule,
+		NgbProgressbarModule,
 		NgbTooltipModule,
 		ChartsModule,
 	],
