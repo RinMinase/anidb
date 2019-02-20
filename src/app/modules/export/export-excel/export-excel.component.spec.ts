@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { ExcelComponent } from "./excel.component";
+import { ExcelComponent } from "./export-excel.component";
 
 describe("ExcelComponent", () => {
 	// let component: ExcelComponent;

@@ -2,8 +2,8 @@ import { Component, OnInit } from "@angular/core";
 
 @Component({
 	selector: "app-excel",
-	templateUrl: "./excel.component.html",
-	styleUrls: ["./excel.component.scss"],
+	templateUrl: "./export-excel.component.html",
+	styleUrls: ["./export-excel.component.scss"],
 })
 export class ExcelComponent implements OnInit {
 
