@@ -59,15 +59,14 @@ deploy-job:
 workflows:
   version: 2
 
-  -deploy:
-    jobs:
-      - build-job
-      - deploy-job:
-        requires:
-          - build-job
-        filter:
-          branches:
-            only: ngx
+  jobs:
+    - build-job
+    - deploy-job:
+      requires:
+        - build-job
+      filter:
+        branches:
+          only: ngx
 
 # version: 2
 # jobs:
