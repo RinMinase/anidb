@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { HomeComponent } from "./home.component";
+import { AddHomeComponent } from "./add-home/add-home.component";
+import { ManageHomeComponent } from "./manage-home/manage-home.component";
+import { UpdateHomeComponent } from "./update-home/update-home.component";
+import { ViewHomeComponent } from "./view-home/view-home.component";
 import { HomeService } from "./home.service";
 
 describe("HomeComponent", () => {
@@ -16,6 +20,94 @@ describe("HomeComponent", () => {
 
 	// beforeEach(() => {
 	// 	fixture = TestBed.createComponent(HomeComponent);
+	// 	component = fixture.componentInstance;
+	// 	fixture.detectChanges();
+	// });
+
+	// it("should create", () => {
+	// 	expect(component).toBeTruthy();
+	// });
+});
+
+describe("AddHomeComponent", () => {
+	// let component: AddHomeComponent;
+	// let fixture: ComponentFixture<AddHomeComponent>;
+
+	// beforeEach(async(() => {
+	// 	TestBed.configureTestingModule({
+	// 		declarations: [ AddHomeComponent ],
+	// 	})
+	// 	.compileComponents();
+	// }));
+
+	// beforeEach(() => {
+	// 	fixture = TestBed.createComponent(AddHomeComponent);
+	// 	component = fixture.componentInstance;
+	// 	fixture.detectChanges();
+	// });
+
+	// it("should create", () => {
+	// 	expect(component).toBeTruthy();
+	// });
+});
+
+describe("ManageHomeComponent", () => {
+	// let component: ManageHomeComponent;
+	// let fixture: ComponentFixture<ManageHomeComponent>;
+
+	// beforeEach(async(() => {
+	// 	TestBed.configureTestingModule({
+	// 		declarations: [ ManageHomeComponent ],
+	// 	})
+	// 	.compileComponents();
+	// }));
+
+	// beforeEach(() => {
+	// 	fixture = TestBed.createComponent(ManageHomeComponent);
+	// 	component = fixture.componentInstance;
+	// 	fixture.detectChanges();
+	// });
+
+	// it("should create", () => {
+	// 	expect(component).toBeTruthy();
+	// });
+});
+
+describe("UpdateHomeComponent", () => {
+	// let component: UpdateHomeComponent;
+	// let fixture: ComponentFixture<UpdateHomeComponent>;
+
+	// beforeEach(async(() => {
+	// 	TestBed.configureTestingModule({
+	// 		declarations: [ UpdateHomeComponent ],
+	// 	})
+	// 	.compileComponents();
+	// }));
+
+	// beforeEach(() => {
+	// 	fixture = TestBed.createComponent(UpdateHomeComponent);
+	// 	component = fixture.componentInstance;
+	// 	fixture.detectChanges();
+	// });
+
+	// it("should create", () => {
+	// 	expect(component).toBeTruthy();
+	// });
+});
+
+describe("ViewHomeComponent", () => {
+	// let component: ViewHomeComponent;
+	// let fixture: ComponentFixture<ViewHomeComponent>;
+
+	// beforeEach(async(() => {
+	// 	TestBed.configureTestingModule({
+	// 		declarations: [ ViewHomeComponent ],
+	// 	})
+	// 	.compileComponents();
+	// }));
+
+	// beforeEach(() => {
+	// 	fixture = TestBed.createComponent(ViewHomeComponent);
 	// 	component = fixture.componentInstance;
 	// 	fixture.detectChanges();
 	// });
