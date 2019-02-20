@@ -1,37 +1,3 @@
-# build-job:
-# - restore_cache:
-#   name: Restore Yarn Package Cache
-#   keys:
-#   - yarn-packages-{{ checksum "yarn.lock" }}
-# - run:
-#   name: Install Dependencies
-#   command: yarn install
-# - save_cache:
-#   name: Save Yarn Package Cache
-#   key: yarn-packages-{{ checksum "yarn.lock" }}
-#   paths:
-#     - ~/.cache/yarn
-
-# deploy-job:
-#   working_directory: /dist
-#   steps:
-#   - run:
-#     name: Deploy Master to Firebase
-#     command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
-
-# workflows:
-#   version: 2
-
-#   -deploy:
-#     jobs:
-#     - build-job
-#     - deploy-job:
-#       requires:
-#       - build-job
-#       filters:
-#         branches:
-#           only: master
-
 build-job:
   docker:
     - image: circleci/node:10.12
@@ -58,7 +24,6 @@ deploy-job:
 
 workflows:
   version: 2
-
   jobs:
     - build-job
     - deploy-job:
