@@ -3,26 +3,26 @@ import { CommonModule } from "@angular/common";
 import { Routes, RouterModule } from "@angular/router";
 
 import { ExportComponent } from "./export.component";
-import { CsvComponent } from "./export-csv/export-csv.component";
-import { ExcelComponent } from "./export-excel/export-excel.component";
+import { ExportCsvComponent } from "./export-csv/export-csv.component";
+import { ExportExcelComponent } from "./export-excel/export-excel.component";
 
 const routes: Routes = [{
 	path: "",
 	component: ExportComponent,
 	children: [{
 		path: "",
-		component: ExcelComponent,
+		component: ExportExcelComponent,
 	}, {
 		path: "csv",
-		component: CsvComponent,
+		component: ExportCsvComponent,
 	}, {
 		path: "excel",
-		component: ExcelComponent,
+		component: ExportExcelComponent,
 	}],
 }];
 
 @NgModule({
-	declarations: [ExportComponent, CsvComponent, ExcelComponent],
+	declarations: [ExportComponent, ExportCsvComponent, ExportExcelComponent],
 	imports: [
 		CommonModule,
 		RouterModule.forChild(routes),

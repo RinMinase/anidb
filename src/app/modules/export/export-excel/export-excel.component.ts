@@ -5,7 +5,7 @@ import { Component, OnInit } from "@angular/core";
 	templateUrl: "./export-excel.component.html",
 	styleUrls: ["./export-excel.component.scss"],
 })
-export class ExcelComponent implements OnInit {
+export class ExportExcelComponent implements OnInit {
 
 	constructor() { }
 

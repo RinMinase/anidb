@@ -1,8 +1,8 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { ExportComponent } from "./export.component";
-import { CsvComponent } from "./export-csv/export-csv.component";
-import { ExcelComponent } from "./export-excel/export-excel.component";
+import { ExportCsvComponent } from "./export-csv/export-csv.component";
+import { ExportExcelComponent } from "./export-excel/export-excel.component";
 
 describe("ExportComponent", () => {
 	// let component: ExportComponent;
@@ -32,7 +32,7 @@ describe("CsvComponent", () => {
 
 	// beforeEach(async(() => {
 	// 	TestBed.configureTestingModule({
-	// 		declarations: [ CsvComponent ],
+	// 		declarations: [ ExportCsvComponent ],
 	// 	})
 	// 	.compileComponents();
 	// }));
@@ -54,7 +54,7 @@ describe("ExcelComponent", () => {
 
 	// beforeEach(async(() => {
 	// 	TestBed.configureTestingModule({
-	// 		declarations: [ ExcelComponent ],
+	// 		declarations: [ ExportExcelComponent ],
 	// 	})
 	// 	.compileComponents();
 	// }));
