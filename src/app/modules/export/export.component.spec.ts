@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { ExportComponent } from "./export.component";
+import { CsvComponent } from "./export-csv/export-csv.component";
+import { ExcelComponent } from "./export-excel/export-excel.component";
 
 describe("ExportComponent", () => {
 	// let component: ExportComponent;
@@ -15,6 +17,50 @@ describe("ExportComponent", () => {
 
 	// beforeEach(() => {
 	// 	fixture = TestBed.createComponent(ExportComponent);
+	// 	component = fixture.componentInstance;
+	// 	fixture.detectChanges();
+	// });
+
+	// it("should create", () => {
+	// 	expect(component).toBeTruthy();
+	// });
+});
+
+describe("CsvComponent", () => {
+	// let component: CsvComponent;
+	// let fixture: ComponentFixture<CsvComponent>;
+
+	// beforeEach(async(() => {
+	// 	TestBed.configureTestingModule({
+	// 		declarations: [ CsvComponent ],
+	// 	})
+	// 	.compileComponents();
+	// }));
+
+	// beforeEach(() => {
+	// 	fixture = TestBed.createComponent(CsvComponent);
+	// 	component = fixture.componentInstance;
+	// 	fixture.detectChanges();
+	// });
+
+	// it("should create", () => {
+	// 	expect(component).toBeTruthy();
+	// });
+});
+
+describe("ExcelComponent", () => {
+	// let component: ExcelComponent;
+	// let fixture: ComponentFixture<ExcelComponent>;
+
+	// beforeEach(async(() => {
+	// 	TestBed.configureTestingModule({
+	// 		declarations: [ ExcelComponent ],
+	// 	})
+	// 	.compileComponents();
+	// }));
+
+	// beforeEach(() => {
+	// 	fixture = TestBed.createComponent(ExcelComponent);
 	// 	component = fixture.componentInstance;
 	// 	fixture.detectChanges();
 	// });
