@@ -10,11 +10,12 @@ import {
 } from "@ng-bootstrap/ng-bootstrap";
 
 import { AboutComponent } from "./about.component";
+import { SkillsetComponent } from "./skillset/skillset.component";
 
 const routes: Routes = [{ path: "", component: AboutComponent }];
 
 @NgModule({
-	declarations: [AboutComponent],
+	declarations: [AboutComponent, SkillsetComponent],
 	imports: [
 		CommonModule,
 		RouterModule.forChild(routes),
