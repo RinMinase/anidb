@@ -60,4 +60,4 @@ jobs:
       #     - node_modules
 
       # - run: yarn test
-      - run: yarn build --no-progress
+      - run: yarn build-np
