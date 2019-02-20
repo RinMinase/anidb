@@ -88,7 +88,7 @@
 					"options": {
 						"main": "src/assets/testing/test.ts",
 						"tsConfig": "src/assets/config/tsconfig.spec.json",
-						"karmaConfig": "src/assets/testing/karma.conf.js",
+						"karmaConfig": "src/assets/testing/karma.conf.ts",
 						"styles": ["src/index.scss"],
 						"scripts": [],
 						"assets": [{
