@@ -39,25 +39,17 @@ jobs:
       - image: circleci/node:10.12
     steps:
       - checkout
+
       - restore_cache:
           keys:
             - dependency-cache-{{ checksum "yarn.lock" }}
             - dependency-cache-
-      # - restore_cache:
-      #   keys:
-      #     - v1-dependencies-{{ checksum "package.json" }}
-      #     - v1-dependencies-
+      - run: yarn install
       - save_cache:
           key: dependency-cache-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn
             - ./node_modules
-
-      - run: yarn install
-      # - save_cache:
-      #   key: v1-dependencies-{{ checksum "package.json" }}
-      #   paths:
-      #     - node_modules
 
       # - run: yarn test
       - run: yarn build-np
