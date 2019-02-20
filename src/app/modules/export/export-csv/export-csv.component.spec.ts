@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { CsvComponent } from "./csv.component";
+import { CsvComponent } from "./export-csv.component";
 
 describe("CsvComponent", () => {
 	// let component: CsvComponent;

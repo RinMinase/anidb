@@ -2,8 +2,8 @@ import { Component, OnInit } from "@angular/core";
 
 @Component({
 	selector: "app-csv",
-	templateUrl: "./csv.component.html",
-	styleUrls: ["./csv.component.scss"],
+	templateUrl: "./export-csv.component.html",
+	styleUrls: ["./export-csv.component.scss"],
 })
 export class CsvComponent implements OnInit {
 
