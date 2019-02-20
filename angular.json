@@ -42,9 +42,7 @@
 							"input": "node_modules/roboto-fontface/fonts/roboto",
 							"output": "/assets/fonts"
 						}],
-						"styles": [
-							"src/index.scss"
-						],
+						"styles": ["src/index.scss"],
 						"scripts": []
 					},
 					"configurations": {
@@ -89,12 +87,9 @@
 					"builder": "@angular-devkit/build-angular:karma",
 					"options": {
 						"main": "src/assets/testing/test.ts",
-						"polyfills": "src/assets/testing/polyfills.ts",
 						"tsConfig": "src/assets/config/tsconfig.spec.json",
 						"karmaConfig": "src/assets/testing/karma.conf.js",
-						"styles": [
-							"src/index.scss"
-						],
+						"styles": ["src/index.scss"],
 						"scripts": [],
 						"assets": [{
 							"glob": "favicon.ico",
