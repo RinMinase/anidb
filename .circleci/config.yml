@@ -41,9 +41,7 @@ jobs:
       - checkout
 
       - restore_cache:
-          keys:
-            - dependency-cache-{{ checksum "yarn.lock" }}
-            - dependency-cache-
+          key: dependency-cache-{{ checksum "yarn.lock" }}
       - run: yarn install
       - save_cache:
           key: dependency-cache-{{ checksum "yarn.lock" }}
