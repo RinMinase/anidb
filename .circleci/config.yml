@@ -1,4 +1,4 @@
-build-job:
+build:
   docker:
     - image: circleci/node:10.12
   steps:
@@ -15,7 +15,7 @@ build-job:
 
     - run: yarn build-np
 
-deploy-job:
+deploy:
   working_directory: /dist
   steps:
     - run:
@@ -24,14 +24,15 @@ deploy-job:
 
 workflows:
   version: 2
-  jobs:
-    - build-job
-    - deploy-job:
-      requires:
-        - build-job
-      filter:
-        branches:
-          only: ngx
+  -deploy:
+    jobs:
+      - build
+      - deploy:
+        requires:
+          - build
+        filter:
+          branches:
+            only: ngx
 
 # version: 2
 # jobs:
