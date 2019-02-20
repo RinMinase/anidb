@@ -3,8 +3,8 @@ import { CommonModule } from "@angular/common";
 import { Routes, RouterModule } from "@angular/router";
 
 import { ExportComponent } from "./export.component";
-import { CsvComponent } from "./csv/csv.component";
-import { ExcelComponent } from "./excel/excel.component";
+import { CsvComponent } from "./export-csv/export-csv.component";
+import { ExcelComponent } from "./export-excel/export-excel.component";
 
 const routes: Routes = [{
 	path: "",
