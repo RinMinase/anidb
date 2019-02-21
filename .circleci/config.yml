@@ -44,7 +44,9 @@ jobs:
 
       - restore_cache:
           key: dependency-cache-{{ checksum "yarn.lock" }}
-      - run: yarn install
+      - run:
+          name: Installing dependenices
+          command: yarn install
       - save_cache:
           key: dependency-cache-{{ checksum "yarn.lock" }}
           paths:
@@ -52,11 +54,11 @@ jobs:
             - ./node_modules
 
       # - run: yarn test
-      - run: yarn build-np
-  deploy:
-    requires:
-      - build
-    filters:
-      branches:
-        only: master
+      - run:
+          name: Building source code
+          command: yarn build-np
+
+      - run:
+          name: Deploying to Firebase
+          command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN --non-interactive
 
