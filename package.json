@@ -37,7 +37,7 @@
     "@angular/forms": "^7.2.6",
     "@angular/platform-browser": "^7.2.6",
     "@angular/router": "^7.2.6",
-    "@ng-bootstrap/ng-bootstrap": "^4.0.3",
+    "@ng-bootstrap/ng-bootstrap": "^4.0.4",
     "animatewithsass": "^3.2.1",
     "bootstrap": "^4.3.1",
     "chart.js": "^2.7.3",
