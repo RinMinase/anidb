@@ -98,19 +98,16 @@ _Add info here_
 
 ### Project tasks
 
-Task automation is based on [Gulp tasks](https://gulpjs.com/), [Yarn scripts](https://yarnpkg.com/lang/en/docs/cli/run/) and [NPM scripts](https://docs.npmjs.com/misc/scripts).
+Task automation is based on [Yarn scripts](https://yarnpkg.com/lang/en/docs/cli/run/) or [NPM scripts](https://docs.npmjs.com/misc/scripts).
 
-| Task                                  | Description                                                                                           |
-| ------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| `gulp serve` or `yarn start`          | Run **development server** on `http://localhost:3000/` with file watching on changes                  |
-| `gulp serve:dist` or `yarn run build` | Run **test server** on `http://localhost:3000/`                                                       |
-| `gulp build` or `gulp`                |                                                                                                    
-| `yarn test <args>`                    |                                                                                                       |   |
-| `yarn run bundle`                     |                                                                                                       |
-| `yarn run deploy`                     |                                                                                                       |
-| `yarn run setup`                      |                                                                                                       |
-| `yarn run setup-android`              |                                                                                                       |
-| `yarn run setup-testing`              |                                                                                                       |
+| Task                  | Description                                                                           |
+| --------------------- | ------------------------------------------------------------------------------------- |
+| `yarn start`          | Run **development server** on `http://localhost:3000/` with file watching on changes  |
+| `yarn start --prod`   | Run **production server** on `http://localhost:3000/` with file watching on changes   |
+| `yarn build`          | Build production code and add service worker to built code                            |
+| `yarn test <args>`    | Run test scripts on using a Headless Chrome Browser                                   |
+| `yarn bundle`         | Builds production code with service worker then compiles it for Android using Cordova |
+| `yarn setup`          | Runs Cordova pre-requisites and installs dependencies                                 |
 
 ### Testing the project
 _Add info here_
