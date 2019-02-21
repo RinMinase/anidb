@@ -1,8 +1,8 @@
 <h1 align="center"> Rin Minase's Anime Database </h1>
 
 <p align="center">
-    <a href="https://travis-ci.org/RinMinase/anidb">
-        <img alt="Travis-CI" src="https://img.shields.io/travis/RinMinase/anidb.svg?logo=travis">
+    <a href="https://circleci.com/gh/RinMinase/anidb/tree/ngx">
+        <img alt="Circle-CI" src="https://img.shields.io/circleci/project/github/RinMinase/anidb/ngx.svg?logo=circleci">
     </a>
     <a href="https://david-dm.org/RinMinase/anidb">
         <img alt="David-DM" src="https://david-dm.org/RinMinase/anidb.svg">
@@ -22,7 +22,7 @@
         <img alt="Node" src="https://img.shields.io/badge/node-%5E6.14.0%20%7C%7C%20%5E8.10.0%20%7C%7C%20%3E%3D9.10.0-green.svg?logo=node.js&logoColor=white">
     </a>
     <a href="https://yarnpkg.com/">
-        <img alt="Yarn" src="https://img.shields.io/badge/yarn-1.13.0-blue.svg">
+        <img alt="Yarn" src="https://img.shields.io/badge/yarn-%5E1.10.0-blue.svg">
     </a>
 </p>
 
@@ -125,5 +125,5 @@ _Add info here_
 * <img width=20 height=20 src="https://cordova.apache.org/favicon.ico"> [Cordova](https://cordova.apache.org/) - Android APK bundler
 * <img width=20 height=20 src="https://jasmine.github.io/favicon.ico"> [Jasmine](https://jasmine.github.io/) - Testing Framework
 * <img width=20 height=20 src="https://karma-runner.github.io/assets/img/favicon/favicon.ico"> [Karma](https://karma-runner.github.io) - Test Runner Framework
-* <img width=20 height=20 src="https://travis-ci.org/images/favicon.png"> [Travis CI](https://travis-ci.org/) - Continuous Integration (CI) service
+* <img width=20 height=20 src="https://d3r49iyjzglexf.cloudfront.net/favicon-066b37ff00f0f968b903c13ae88b5573b62665aea8fbe91bb61c55dfa9446523.ico"> [Circle CI](https://circleci.com/) - Continuous Integration (CI) service
 * <img width=20 height=20 src="https://yarnpkg.com/favicon.ico"> [Yarn](https://yarnpkg.com/) - Package Manager
