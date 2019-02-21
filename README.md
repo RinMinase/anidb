@@ -44,9 +44,9 @@ _Add info here_
     ├── src/                            # Project source code
     │   ├── app/                        # Project components
     │   │   ├── core/                   # System-wide components
-    │   │   │   ├── constants/          # Project constants
-    │   │   │   ├── services/           # Project services
-    │   │   │   └── builders/           # Project builders
+    │   │   │   ├── builders/           # Project builders
+    │   │   │   ├── components/         # Project components
+    │   │   │   └── services/           # Project services
     │   │   ├── modules/                # Project modules
     │   │   │   └── <module-name>       # Module folder (refer to structure below)
     │   │   ├── app.component.spec.ts   # Test scripts of main module and core module
