@@ -14,7 +14,7 @@ import { UtilityService } from "@services/utility.service";
 export class ViewHomeComponent implements OnInit {
 
 	data: Array<Object> = [];
-	dataLoaded: Boolean = true;
+	dataLoaded: Boolean = false;
 	stateId: number;
 
 	constructor(
