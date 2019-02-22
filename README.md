@@ -1,6 +1,14 @@
 <h1 align="center"> Rin Minase's Anime Database </h1>
 
 <p align="center">
+    <a href="https://travis-ci.org/RinMinase/anidb">
+        <img alt="Travis-CI" src="https://img.shields.io/travis/RinMinase/anidb.svg?label=production&logo=travis">
+    </a>
+    <a href="https://circleci.com/gh/RinMinase/anidb/tree/ngx">
+        <img alt="Circle-CI" src="https://img.shields.io/circleci/project/github/RinMinase/anidb/ngx.svg?label=staging&logo=circleci">
+    </a>
+</p>
+<p align="center">
     <a href="https://circleci.com/gh/RinMinase/anidb/tree/ngx">
         <img alt="Circle-CI" src="https://img.shields.io/circleci/project/github/RinMinase/anidb/ngx.svg?logo=circleci">
     </a>
