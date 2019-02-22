@@ -36,15 +36,11 @@ export class FirebaseService {
 		const query = params || new FirebaseQuery;
 		const idQuery = (query.id) ? `/${query.id}` : "";
 
-		if (!query.limit && !query.orderKey && query.inhdd && !idQuery) {
-			return this.retrieveAllInHDD(query);
-		} else if (!query.limit && !query.orderKey && query.inhdd && idQuery) {
-			return this.retrieveSpecific(query, idQuery);
+		if (!query.limit && !query.orderKey) {
+			if (idQuery) { return this.retrieveSpecific(query, idQuery); }
+			return (!query.inhdd) ? this.retrieveAll(query) : this.retrieveAllInHDD(query);
 		} else if (query.limit && query.orderKey) {
-			if (query.orderDirection === "asc") {
-				return this.retrieveWithAscQuery(query);
-			}
-
+			if (query.orderDirection === "asc") { return this.retrieveWithAscQuery(query); }
 			return this.retrieveWithDescQuery(query);
 		}
 
@@ -77,13 +73,21 @@ export class FirebaseService {
 		});
 	}
 
+	private retrieveAll(query: FirebaseQuery) {
+		return new Promise((resolve) => {
+			firebase.database()
+				.ref(`/${query.db}`)
+				.on("value", (data) => resolve(this.objectToArray(data.val())));
+		});
+	}
+
 	private retrieveAllInHDD(query: FirebaseQuery) {
 		return new Promise((resolve) => {
 			firebase.database()
 				.ref(`/${query.db}`)
 				.orderByChild("inhdd")
 				.equalTo(1)
-				.on("value", (data) => resolve(this._objectToArray(data.val())));
+				.on("value", (data) => resolve(this.objectToArray(data.val())));
 		});
 	}
 
@@ -91,7 +95,7 @@ export class FirebaseService {
 		return new Promise((resolve) => {
 			firebase.database()
 				.ref(`/${query.db}${idQuery}`)
-				.on("value", (data) => resolve(this._objectToArray(data.val())));
+				.on("value", (data) => resolve(this.objectToArray(data.val())));
 		});
 	}
 
@@ -101,7 +105,7 @@ export class FirebaseService {
 				.ref(`/${query.db}`)
 				.orderByChild(query.orderKey)
 				.limitToFirst(query.limit)
-				.on("value", (data) => resolve(this._objectToArray(data.val())));
+				.on("value", (data) => resolve(this.objectToArray(data.val())));
 		});
 	}
 
@@ -111,11 +115,11 @@ export class FirebaseService {
 				.ref(`/${query.db}`)
 				.orderByChild(query.orderKey)
 				.limitToLast(query.limit)
-				.on("value", (data) => resolve(this._objectToArray(data.val())));
+				.on("value", (data) => resolve(this.objectToArray(data.val())));
 		});
 	}
 
-	private _objectToArray(data: any) {
+	private objectToArray(data: any) {
 		if (!isNaN(Object.keys(data)[0] as any)
 			&& data.constructor.toString().indexOf("Object") !== -1) {
 
