@@ -5,6 +5,7 @@ import { debounceTime } from "rxjs/operators";
 import * as moment from "moment-mini";
 import * as Fuse from "fuse.js";
 
+import { environment } from "@env/environment";
 import { FirebaseService } from "@services/firebase.service";
 import { FuseOptionsBuilder } from "@builders/fuse-options.service";
 import { UtilityService } from "@services/utility.service";
@@ -52,6 +53,11 @@ export class ManageHomeComponent implements OnInit {
 
 		this.homeService.currentState.subscribe((state) => this.homeState = state);
 		this.onChanges();
+
+		if (environment.disableManageHomeQuery) {
+			this.dataLoaded = true;
+			return;
+		}
 
 		this.firebase.auth()
 			.then(() => {
