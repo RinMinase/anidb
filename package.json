@@ -12,7 +12,8 @@
   },
   "scripts": {
     "start": "gulp serve",
-    "build": "gulp serve:dist",
+    "start-prod": "gulp serve:dist",
+    "build": "gulp build",
     "bundle": "gulp bundle && cordova build android && adb install -r build/com.minase.anidb_0.1.0.apk",
     "deploy": "gulp build && firebase deploy",
     "lint": "eslint --ext .js src\\app",
