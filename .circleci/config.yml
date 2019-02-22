@@ -5,7 +5,6 @@ jobs:
       - image: circleci/node:10.12
     branches:
       only:
-        - master
         - ngx
     steps:
       - checkout
