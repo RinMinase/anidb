@@ -49,46 +49,47 @@ _Add info here_
 
 #### Directory Structure
     .
-    ├── .circleci/                      # Circle CI folder
-    │   └── config.yml                  # Circle CI configuration file
-    ├── dist/                           # Compiled production code
-    ├── src/                            # Project source code
-    │   ├── app/                        # Project components
-    │   │   ├── core/                   # System-wide components
-    │   │   │   ├── builders/           # Project builders
-    │   │   │   ├── components/         # Project components
-    │   │   │   └── services/           # Project services
-    │   │   ├── modules/                # Project modules
-    │   │   │   └── <module-name>       # Module folder (refer to structure below)
-    │   │   ├── app.component.spec.ts   # Test scripts of main module and core module
-    │   │   ├── app.component.ts        # Component of main module
-    │   │   ├── app.module.ts           # Main module
-    │   │   └── ...                     # Other project related files
-    │   ├── assets/                     # Project assets
-    │   │   ├── config/                 # Project configurations
-    │   │   ├── firebase/               # Firebase configurations
-    │   │   ├── res/                    # Cordova resources folder
-    │   │   │   └── android/            # Android resources
-    │   │   │       ├── hooks/          # Android build hooks
-    │   │   │       ├── icon/           # Android icons
-    │   │   │       └── screen/         # Android splash screens
-    │   │   ├── styles/                 # Stylesheet folder
-    │   │   ├── testing/                # Testing configurations
-    │   │   ├── favicon.ico             # Web Application icon
-    │   │   └── robots.txt              # Robots file
-    │   ├── environments/               # Environments folder
-    │   ├── index.html                  # Main HTML file
-    │   ├── index.scss                  # Main Stylesheet (SCSS) file
-    │   └── index.ts                    # Main TypeScript file
-    ├── .editorconfig                   # IDE / Editor configuration
-    ├── .firebaserc                     # Firebase project configuration
-    ├── .stylelintrc                    # SCSS linting configuration
-    ├── angular.json                    # Angular CLI configuration
-    ├── config.xml                      # Cordova build configuration
-    ├── firebase.json                   # Firebase hosting configuation
-    ├── tsconfig.json                   # Main TypeScript configuration file
-    ├── tslint.json                     # TypeScript linting file
-    └── ...                             # Other project files
+    ├── .circleci/                    # Circle CI folder
+    │   └── config.yml                # Circle CI configuration file
+    ├── .tmp/                         # Local development server 
+    ├── dist/                         # Local production server
+    ├── src/                          # Project source code
+    │   ├── app/                      # Project components
+    │   │   ├── core/                 # System-wide components
+    │   │   │   ├── constants/        # Project constants
+    │   │   │   ├── directives/       # Project directives
+    │   │   │   └── services/         # Project services
+    │   │   │       └── builders/     # Project builders
+    │   │   ├── modules/              # Project modules
+    │   │   │   └── <module-name>     # Module folder (refer to structure below)
+    │   │   ├── index.config.js       # Configuration file for main module
+    │   │   └── index.module.js       # Main module
+    │   ├── assets/                   # Project assets
+    │   │   ├── firebase/             # Firebase configurations
+    │   │   ├── gulp/                 # Gulp files
+    │   │   ├── styles/               # Stylesheet folder 
+    │   │   │   └── chunks/           # Stylesheet modules
+    │   │   ├── testing/              # Testing asets
+    │   │   │   └── tests/            # Unit tests
+    │   │   ├── .env                  # Environment variables
+    │   │   ├── .env.example          # Environment variables template
+    │   │   ├── favicon.ico           # Wepage icon
+    │   │   └── robots.txt            # Robots file
+    │   ├── res/                      # Cordova resources folder
+    │   │   └── android/              # Android resources
+    │   │       ├── hooks/            # Android build hooks
+    │   │       ├── icon/             # Android icons
+    │   │       └── screen/           # Android splash screens
+    │   └── index.html                # Main HTML file
+    ├── .editorconfig                 # IDE / Editor configuration
+    ├── .eslintrc                     # JS linting configuration
+    ├── .firebaserc                   # Firebase project configuration
+    ├── .sasslintrc                   # SCSS linting configuration
+    ├── .travis.yml                   # Travis deployment configuration
+    ├── config.xml                    # Cordova build configuration
+    ├── firebase.json                 # Firebase hosting configuation
+    ├── gulpfile.js                   # Main gulp file
+    └── ...                           # Other project files
 
 #### Module Structure
     .
