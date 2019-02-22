@@ -129,19 +129,19 @@ export class AboutComponent implements OnInit {
 	private getFirebaseImages() {
 		this.firebase.retrieveImageUrl("/assets/acknowledgements.png")
 			.then((url) => {
-				this.element(".anidb-about div.acknowledgements")
+				this.element("div.acknowledgements")
 					.forEach(element => { element.style.backgroundImage = `url(${url})`; });
 			});
 
 		this.firebase.retrieveImageUrl("/assets/ngx-frameworks.png")
 			.then((url) => {
-				this.element(".anidb-about a.frameworks")
+				this.element("a.frameworks")
 					.forEach(element => { element.style.backgroundImage = `url(${url})`; });
 			});
 
 		this.firebase.retrieveImageUrl("/assets/platforms.png")
 			.then((url) => {
-				this.element(".anidb-about a.platforms")
+				this.element("a.platforms")
 					.forEach(element => { element.style.backgroundImage = `url(${url})`; });
 			});
 
