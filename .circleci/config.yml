@@ -5,6 +5,7 @@ jobs:
       - image: circleci/node:10.12
     branches:
       only:
+        - master
         - ngx
     steps:
       - checkout
@@ -26,7 +27,7 @@ jobs:
 
       - run:
           name: Building source code
-          command: yarn build-np
+          command: yarn build
 
       - run:
           name: Deploying to Firebase
