@@ -7,11 +7,11 @@ export class UtilityService {
 
 	constructor() { }
 
-	convertFilesize(filesize: any) {
+	convertFilesize(filesize: any, blankPlaceholder?: string) {
 		filesize = parseFloat(filesize);
 
 		if (filesize === 0) {
-			return "";
+			return blankPlaceholder || "";
 		} else if (filesize < 1073741824) {
 			return `${(filesize / 1048576).toFixed(2)} MB`;
 		} else {
