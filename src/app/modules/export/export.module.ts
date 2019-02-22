@@ -22,7 +22,11 @@ const routes: Routes = [{
 }];
 
 @NgModule({
-	declarations: [ExportComponent, ExportCsvComponent, ExportExcelComponent],
+	declarations: [
+		ExportComponent,
+		ExportCsvComponent,
+		ExportExcelComponent,
+	],
 	imports: [
 		CommonModule,
 		RouterModule.forChild(routes),
