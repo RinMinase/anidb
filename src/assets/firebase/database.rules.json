@@ -4,6 +4,12 @@
 		".write": "auth != null",
 		"anime": {
 			".indexOn": ["dateFinished", "rewatchLast", "inhdd"]
+		},
+		"hdd": {
+			".indexOn": ["rewatchLast"]
+		},
+		"summer": {
+			".indexOn": ["rewatchLast"]
 		}
 	}
 }
