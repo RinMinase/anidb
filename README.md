@@ -42,6 +42,9 @@ _Add info here_
 ### Creating and cloning the project
 _Add info here_
 
+### Code Scaffolding
+_Add info here_
+
 ### Project Structure
 
 #### Directory Structure
