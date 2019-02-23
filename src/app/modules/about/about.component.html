@@ -23,54 +23,42 @@
 						*ngIf="dataLoaded === true">
 						<tbody>
 							<tr>
-								<td>Watch Time</td>
-								<td>:</td>
+								<td>Watch Time</td><td>:</td>
 								<td>
-									{{ totalDuration.days }} days, {{ totalDuration.hours }} hours,
-									<br>
+									{{ totalDuration.days }} days, {{ totalDuration.hours }} hours,<br>
 									{{ totalDuration.minutes }} minutes, {{ totalDuration.seconds }} seconds
 								</td>
 							</tr>
 							<tr><td class="p-1" colspan="3"></td></tr>
 							<tr><td class="table-statistics-border p-1" colspan="3"></td></tr>
 							<tr>
-								<td>Total Size</td>
-								<td>:</td>
+								<td>Total Size</td><td>:</td>
 								<td>{{ totalFilesizeGB }} GB ({{ totalFilesizeTB }} TB)</td>
 							</tr>
 							<tr>
-								<td>Total Episodes</td>
-								<td>:</td>
-								<td>{{ totalEpisodes }} Episodes</td>
+								<td>Total Episodes</td><td>:</td><td>{{ totalEpisodes }} Episodes</td>
 							</tr>
 							<tr><td class="p-1" colspan="3"></td></tr>
 							<tr><td class="table-statistics-border p-1" colspan="3"></td></tr>
+							<tr><td colspan="3">Anime Count Per Quality</td></tr>
 							<tr>
-								<td colspan="3">Anime Count Per Quality</td>
-							</tr>
-							<tr>
-								<td>4k 2160p</td>
-								<td class="text-center">:</td>
+								<td>4k 2160p</td><td class="text-center">:</td>
 								<td class="text-center">{{ quality.uhd }}</td>
 							</tr>
 							<tr>
-								<td>FHD 1080p</td>
-								<td class="text-center">:</td>
+								<td>FHD 1080p</td><td class="text-center">:</td>
 								<td class="text-center">{{ quality.fhd }}</td>
 							</tr>
 							<tr>
-								<td>HD 720p</td>
-								<td class="text-center">:</td>
+								<td>HD 720p</td><td class="text-center">:</td>
 								<td class="text-center">{{ quality.hd }}</td>
 							</tr>
 							<tr>
-								<td>HQ 480p</td>
-								<td class="text-center">:</td>
+								<td>HQ 480p</td><td class="text-center">:</td>
 								<td class="text-center">{{ quality.hq }}</td>
 							</tr>
 							<tr>
-								<td>LQ 360p</td>
-								<td class="text-center">:</td>
+								<td>LQ 360p</td><td class="text-center">:</td>
 								<td class="text-center">{{ quality.lq }}</td>
 							</tr>
 						</tbody>
