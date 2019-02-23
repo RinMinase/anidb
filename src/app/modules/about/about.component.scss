@@ -33,11 +33,6 @@ table.table-statistics td:not(.table-statistics-border) {
 	font-weight: bold;
 }
 
-table.table-specs td:not(.table-specs-border) {
-	border-top: 0;
-	&:not(.table-specs-value) { font-weight: bold; }
-}
-
 li.pt-0-5 { padding-top: .15rem; }
 
 h6 .badge.badge-pill {
