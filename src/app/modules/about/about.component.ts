@@ -16,8 +16,6 @@ export class AboutComponent implements OnInit {
 
 	userImage: string;
 	dataLoaded = false;
-	pageSize = 10;
-	page = 1;
 
 	totalEpisodes: number;
 	totalFilesizeGB: string;

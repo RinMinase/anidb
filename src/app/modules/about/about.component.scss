@@ -33,25 +33,6 @@ table.table-statistics td:not(.table-statistics-border) {
 	font-weight: bold;
 }
 
-.issues-badge {
-	color: #333;
-	.badge.badge-pill { width: 130px; }
-	.platform-android { background-color: #AED581; }
-	.platform-chrome { background-color: #00ACC1; }
-	.platform-documentation { background-color: #64B5F6; }
-	.platform-firefox { background-color: #FFB300; }
-	.platform-mobile { background-color: #B39DDB; }
-	.priority-critical { background-color: #FF8A65; }
-	.priority-high { background-color: #FFD54F; }
-	.priority-normal { background-color: #81C784; }
-	.resolution-abandoned { background-color: #424242; }
-	.resolution-duplicate { background-color: #BDBDBD; }
-	.resolution-invalid { background-color: #E0E0E0; }
-	.type-bug { background-color: #EF5350; }
-	.type-enhancement { background-color: #1E88E5; }
-	.type-feature-request { background-color: #BA68C8; }
-}
-
 .list-unstyled hr {
 	margin-top: 5px;
 	margin-bottom: 5px;
@@ -115,11 +96,4 @@ a.platforms {
 	width: 80%;
 	&.btn-group-2 .btn { width: 50%; }
 	&.btn-group-3 .btn { width: 33.33%; }
-}
-
-.package-issues {
-	code.blue { color: #1565C0; }
-	code.green { color: #388E3C; }
-	code.orange { color: #EF6C00; }
-	code.red { color: #D32F2F; }
 }
