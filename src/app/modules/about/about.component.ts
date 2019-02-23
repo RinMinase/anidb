@@ -3,10 +3,6 @@ import { Router } from "@angular/router";
 import * as moment from "moment-mini";
 
 import { FirebaseService } from "@services/firebase.service";
-import { GithubService } from "@services/github.service";
-import { UtilityService } from "@services/utility.service";
-
-import transitionProgress from "src/assets/transition-progress.json";
 
 @Component({
 	selector: "app-about",
@@ -32,15 +28,9 @@ export class AboutComponent implements OnInit {
 		options: {},
 	};
 
-	githubIssues = [];
-	packageIssues: Object[];
-	transitionProgress = transitionProgress;
-
 	constructor(
 		private router: Router,
 		private firebase: FirebaseService,
-		private github: GithubService,
-		private utility: UtilityService,
 	) { }
 
 
@@ -55,10 +45,7 @@ export class AboutComponent implements OnInit {
 		}).catch(() => this.router.navigateByUrl("/login"));
 
 		this.getFirebaseImages();
-		this.getGithubIssues();
-		this.getPackageIssues();
 		this.generateChartData();
-		this.generateTransitionProgress();
 	}
 
 	private formatData(data: Array<any>) {
@@ -116,50 +103,6 @@ export class AboutComponent implements OnInit {
 			.then((url) => { this.userImage = url as string; });
 	}
 
-	private getGithubIssues() {
-		this.github.getIssues()
-			.subscribe((response) => {
-				response.body.map((data: any) => {
-					if (data.state === "open") {
-						const labels = [];
-
-						data.labels.map((label: any) => {
-							if (!(label.name === "to do" || label.name === "in progress")) {
-								const className = label.name.replace(":", "")
-									.replace(new RegExp(" ", "g"), "-")
-									.toLowerCase();
-
-								labels.push({
-									class: className,
-									name: label.name.split(" ")[1].toUpperCase(),
-								});
-							}
-						});
-
-						labels.reverse();
-
-						this.githubIssues.push({
-							body: data.body,
-							date: this.utility.convertDate(data.created_at, true),
-							labels,
-							number: data.number,
-							title: data.title,
-							url: data.html_url,
-						});
-					}
-				});
-			});
-	}
-
-	private getPackageIssues() {
-		this.packageIssues = [{
-			package: "template",
-			reason: "-",
-			severity: "red",
-			version: "0.0.0",
-		}];
-	}
-
 	private generateChartData() {
 		this.chart.labels = ["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"];
 
@@ -175,25 +118,6 @@ export class AboutComponent implements OnInit {
 		this.chart.options = {
 			responsive: true,
 		};
-	}
-
-	private generateTransitionProgress() {
-		Object.keys(this.transitionProgress).forEach((key) => {
-			Object.keys(this.transitionProgress[key]).forEach((subkey) => {
-
-				let subkeyTotal = 0;
-				let subkeyFinished = 0;
-
-				this.transitionProgress[key][subkey].forEach((subElement: any) => {
-					subkeyTotal += subElement.points;
-					if (subElement.status === true) { subkeyFinished += subElement.points; }
-				});
-
-				const subkeyPercentage = ((subkeyFinished / subkeyTotal) * 100).toFixed(2);
-				this.transitionProgress[key][subkey].unshift(subkeyPercentage);
-
-			});
-		});
 	}
 
 	private element(querySelector: string) {
