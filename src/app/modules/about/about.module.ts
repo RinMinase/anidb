@@ -14,6 +14,7 @@ import { SkillsetComponent } from "./skillsets/skillset/skillset.component";
 import { UnitSpecsComponent } from "./unit-specs/unit-specs.component";
 import { FrameworksComponent } from "./frameworks/frameworks.component";
 import { SkillsetsComponent } from "./skillsets/skillsets.component";
+import { ChangelogComponent } from "./changelog/changelog.component";
 
 const routes: Routes = [{ path: "", component: AboutComponent }];
 
@@ -24,6 +25,7 @@ const routes: Routes = [{ path: "", component: AboutComponent }];
 		UnitSpecsComponent,
 		FrameworksComponent,
 		SkillsetsComponent,
+		ChangelogComponent,
 	],
 	imports: [
 		CommonModule,
