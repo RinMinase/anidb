@@ -1,0 +1,4 @@
+table.table-specs td:not(.table-specs-border) {
+	border-top: 0;
+	&:not(.table-specs-value) { font-weight: bold; }
+}

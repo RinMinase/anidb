@@ -11,11 +11,16 @@ import {
 
 import { AboutComponent } from "./about.component";
 import { SkillsetComponent } from "./skillset/skillset.component";
+import { UnitSpecsComponent } from "./unit-specs/unit-specs.component";
 
 const routes: Routes = [{ path: "", component: AboutComponent }];
 
 @NgModule({
-	declarations: [AboutComponent, SkillsetComponent],
+	declarations: [
+		AboutComponent,
+		SkillsetComponent,
+		UnitSpecsComponent,
+	],
 	imports: [
 		CommonModule,
 		RouterModule.forChild(routes),
