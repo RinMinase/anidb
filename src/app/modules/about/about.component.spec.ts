@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { AboutComponent } from "./about.component";
 import { UnitSpecsComponent } from "./unit-specs/unit-specs.component";
+import { FrameworksComponent } from "./frameworks/frameworks.component";
 
 describe("AboutComponent", () => {
 	// let component: AboutComponent;
@@ -25,7 +26,6 @@ describe("AboutComponent", () => {
 	// });
 });
 
-
 describe("UnitSpecsComponent", () => {
 	// let component: UnitSpecsComponent;
 	// let fixture: ComponentFixture<UnitSpecsComponent>;
@@ -39,6 +39,28 @@ describe("UnitSpecsComponent", () => {
 
 	// beforeEach(() => {
 	// 	fixture = TestBed.createComponent(UnitSpecsComponent);
+	// 	component = fixture.componentInstance;
+	// 	fixture.detectChanges();
+	// });
+
+	// it("should create", () => {
+	// 	expect(component).toBeTruthy();
+	// });
+});
+
+describe("FrameworksComponent", () => {
+	// let component: FrameworksComponent;
+	// let fixture: ComponentFixture<FrameworksComponent>;
+
+	// beforeEach(async(() => {
+	// 	TestBed.configureTestingModule({
+	// 		declarations: [ FrameworksComponent ],
+	// 	})
+	// 	.compileComponents();
+	// }));
+
+	// beforeEach(() => {
+	// 	fixture = TestBed.createComponent(FrameworksComponent);
 	// 	component = fixture.componentInstance;
 	// 	fixture.detectChanges();
 	// });
