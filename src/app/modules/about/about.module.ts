@@ -10,7 +10,7 @@ import {
 } from "@ng-bootstrap/ng-bootstrap";
 
 import { AboutComponent } from "./about.component";
-import { SkillsetComponent } from "./skillset/skillset.component";
+import { SkillsetComponent } from "./skillsets/skillset/skillset.component";
 import { UnitSpecsComponent } from "./unit-specs/unit-specs.component";
 import { FrameworksComponent } from "./frameworks/frameworks.component";
 import { SkillsetsComponent } from "./skillsets/skillsets.component";
