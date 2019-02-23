@@ -1,7 +1,8 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import * as moment from "moment-mini";
 
 import { GithubService } from "@services/github.service";
+import { UtilityService } from "@services/utility.service";
 
 @Component({
 	selector: "app-changelog",
@@ -12,7 +13,10 @@ export class ChangelogComponent implements OnInit {
 
 	githubCommits = [];
 
-	constructor(private github: GithubService) { }
+	constructor(
+		private github: GithubService,
+		private utility: UtilityService,
+	) { }
 
 	ngOnInit() {
 		this.github.getCommits().subscribe((response) => {
@@ -40,7 +44,7 @@ export class ChangelogComponent implements OnInit {
 					const commitDate = `c${moment(new Date(date)).format("YYYYMMDD")}`;
 					const title = moment(new Date(date)).format("MMM DD, YYYY");
 					const commitData = {
-						date: this.convertDate(date),
+						date: this.utility.convertDate(date),
 						email: data.commit.author.email,
 						name: data.commit.author.name,
 						message,
@@ -49,12 +53,7 @@ export class ChangelogComponent implements OnInit {
 					};
 
 					if (!formattedCommits[commitDate]) {
-						formattedCommits[commitDate] = {
-							fix: [],
-							new: [],
-							improve: [],
-							title,
-						};
+						formattedCommits[commitDate] = { fix: [], new: [], improve: [], title };
 					}
 
 					if (message.indexOf("fixed") !== -1 || message.indexOf("removed") !== -1) {
@@ -74,16 +73,6 @@ export class ChangelogComponent implements OnInit {
 				this.githubCommits.push(formattedCommits[index]);
 			});
 		});
-	}
-
-	private convertDate(date: string, omitSeconds = false) {
-		if (!omitSeconds) {
-			return moment(new Date(date))
-				.format("MMM DD, YYYY HH:mm:ss");
-		} else {
-			return moment(new Date(date))
-				.format("MMM DD, YYYY HH:mm");
-		}
 	}
 
 }
