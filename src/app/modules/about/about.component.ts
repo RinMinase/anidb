@@ -133,12 +133,6 @@ export class AboutComponent implements OnInit {
 					.forEach(element => { element.style.backgroundImage = `url(${url})`; });
 			});
 
-		this.firebase.retrieveImageUrl("/assets/ngx-frameworks.png")
-			.then((url) => {
-				this.element("a.frameworks")
-					.forEach(element => { element.style.backgroundImage = `url(${url})`; });
-			});
-
 		this.firebase.retrieveImageUrl("/assets/platforms.png")
 			.then((url) => {
 				this.element("a.platforms")
