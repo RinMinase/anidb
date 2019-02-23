@@ -13,6 +13,7 @@ import { AboutComponent } from "./about.component";
 import { SkillsetComponent } from "./skillset/skillset.component";
 import { UnitSpecsComponent } from "./unit-specs/unit-specs.component";
 import { FrameworksComponent } from "./frameworks/frameworks.component";
+import { SkillsetsComponent } from "./skillsets/skillsets.component";
 
 const routes: Routes = [{ path: "", component: AboutComponent }];
 
@@ -22,6 +23,7 @@ const routes: Routes = [{ path: "", component: AboutComponent }];
 		SkillsetComponent,
 		UnitSpecsComponent,
 		FrameworksComponent,
+		SkillsetsComponent,
 	],
 	imports: [
 		CommonModule,
