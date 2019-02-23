@@ -33,13 +33,6 @@ table.table-statistics td:not(.table-statistics-border) {
 	font-weight: bold;
 }
 
-li.pt-0-5 { padding-top: .15rem; }
-
-h6 .badge.badge-pill {
-	width: 85px;
-	&.badge-warning { background-color: #EBA821; }
-}
-
 .issues-badge {
 	color: #333;
 	.badge.badge-pill { width: 130px; }
