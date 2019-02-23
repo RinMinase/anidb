@@ -6,6 +6,7 @@ import { FrameworksComponent } from "./frameworks/frameworks.component";
 import { SkillsetsComponent } from "./skillsets/skillsets.component";
 import { SkillsetComponent } from "./skillsets/skillset/skillset.component";
 import { ChangelogComponent } from "./changelog/changelog.component";
+import { IssuesComponent } from "./issues/issues.component";
 
 describe("AboutComponent", () => {
 	// let component: AboutComponent;
@@ -130,6 +131,28 @@ describe("ChangelogComponent", () => {
 
 	// beforeEach(() => {
 	// 	fixture = TestBed.createComponent(ChangelogComponent);
+	// 	component = fixture.componentInstance;
+	// 	fixture.detectChanges();
+	// });
+
+	// it("should create", () => {
+	// 	expect(component).toBeTruthy();
+	// });
+});
+
+describe("IssuesComponent", () => {
+	// let component: IssuesComponent;
+	// let fixture: ComponentFixture<IssuesComponent>;
+
+	// beforeEach(async(() => {
+	// 	TestBed.configureTestingModule({
+	// 		declarations: [ IssuesComponent ],
+	// 	})
+	// 	.compileComponents();
+	// }));
+
+	// beforeEach(() => {
+	// 	fixture = TestBed.createComponent(IssuesComponent);
 	// 	component = fixture.componentInstance;
 	// 	fixture.detectChanges();
 	// });
