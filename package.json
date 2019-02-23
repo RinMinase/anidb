@@ -24,11 +24,6 @@
     "tslint": "ng lint",
     "setup": "cordova platform add android && yarn"
   },
-  "husky": {
-    "hooks": {
-      "pre-push": "ng lint && stylelint src/**/*.scss"
-    }
-  },
   "dependencies": {
     "@angular/animations": "^7.2.6",
     "@angular/common": "^7.2.6",
