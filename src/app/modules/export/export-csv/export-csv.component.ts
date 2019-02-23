@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 
-import * as xlsx from "xlsx";
+import * as xlsx from "xlsx/dist/xlsx.core.min";
 
 @Component({
 	selector: "app-csv",
