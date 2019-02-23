@@ -71,24 +71,14 @@ export class AboutComponent implements OnInit {
 			if (value.watchStatus > 1) { return; }
 
 			const month = moment.unix(value.dateFinished).month();
-			if (month > -1 && month < 12) {
-				this.chart.data[0].data[month]++;
-			}
+			if (month > -1 && month < 12) { this.chart.data[0].data[month]++; }
 
 			totalDuration += parseInt(value.duration, 10);
 			totalFilesize += parseInt(value.filesize, 10);
 
-			if (!isNaN( parseInt(value.episodes, 10) )) {
-				totalEpisodes += parseInt(value.episodes, 10);
-			}
-
-			if (!isNaN( parseInt(value.ovas, 10) )) {
-				totalEpisodes += parseInt(value.ovas, 10);
-			}
-
-			if (!isNaN( parseInt(value.specials, 10) )) {
-				totalEpisodes += parseInt(value.specials, 10);
-			}
+			if (!isNaN( parseInt(value.episodes, 10) )) { totalEpisodes += parseInt(value.episodes, 10); }
+			if (!isNaN( parseInt(value.ovas, 10) )) { totalEpisodes += parseInt(value.ovas, 10); }
+			if (!isNaN( parseInt(value.specials, 10) )) { totalEpisodes += parseInt(value.specials, 10); }
 
 			switch (value.quality) {
 				case "4K 2160p": this.quality.uhd++; break;
