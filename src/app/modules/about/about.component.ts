@@ -4,6 +4,7 @@ import * as moment from "moment-mini";
 
 import { FirebaseService } from "@services/firebase.service";
 import { GithubService } from "@services/github.service";
+import { UtilityService } from "@services/utility.service";
 
 import transitionProgress from "src/assets/transition-progress.json";
 
@@ -39,6 +40,7 @@ export class AboutComponent implements OnInit {
 		private router: Router,
 		private firebase: FirebaseService,
 		private github: GithubService,
+		private utility: UtilityService,
 	) { }
 
 
@@ -148,7 +150,7 @@ export class AboutComponent implements OnInit {
 
 						this.githubIssues.push({
 							body: data.body,
-							date: this.convertDate(data.created_at, true),
+							date: this.utility.convertDate(data.created_at, true),
 							labels,
 							number: data.number,
 							title: data.title,
@@ -202,16 +204,6 @@ export class AboutComponent implements OnInit {
 
 			});
 		});
-	}
-
-	private convertDate(date: string, omitSeconds = false) {
-		if (!omitSeconds) {
-			return moment(new Date(date))
-				.format("MMM DD, YYYY HH:mm:ss");
-		} else {
-			return moment(new Date(date))
-				.format("MMM DD, YYYY HH:mm");
-		}
 	}
 
 	private element(querySelector: string) {
