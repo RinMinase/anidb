@@ -3,7 +3,7 @@ import { CommonModule } from "@angular/common";
 import { Routes, RouterModule } from "@angular/router";
 
 import { LastwatchComponent } from "./lastwatch.component";
-import { LegendModule } from "../../core/components/legend/legend.module";
+import { LegendModule } from "@components/legend/legend.module";
 
 const routes: Routes = [{ path: "", component: LastwatchComponent }];
 
