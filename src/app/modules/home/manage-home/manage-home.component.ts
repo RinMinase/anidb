@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { FormControl } from "@angular/forms";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { debounceTime } from "rxjs/operators";
 import * as moment from "moment-mini";
 import * as Fuse from "fuse.js";
@@ -10,6 +11,7 @@ import { FirebaseService } from "@services/firebase.service";
 import { FuseOptionsBuilder } from "@builders/fuse-options.service";
 import { UtilityService } from "@services/utility.service";
 import { HomeService } from "../home.service";
+import { AddHomeComponent } from "../add-home/add-home.component";
 
 @Component({
 	selector: "app-manage-home",
@@ -31,6 +33,7 @@ export class ManageHomeComponent implements OnInit {
 
 	constructor(
 		private router: Router,
+		private modalService: NgbModal,
 		private firebase: FirebaseService,
 		private fuseOptionsBuilder: FuseOptionsBuilder,
 		private utility: UtilityService,
@@ -83,6 +86,13 @@ export class ManageHomeComponent implements OnInit {
 						}
 					});
 			}).catch(() => this.router.navigateByUrl("/login"));
+	}
+
+	addTitle() {
+		this.modalService.open(AddHomeComponent, {
+			size: "lg",
+			windowClass: "animate bounceInDown",
+		});
 	}
 
 	getData() {
