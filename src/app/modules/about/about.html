@@ -1,0 +1,520 @@
+<anidb-navbar></anidb-navbar>
+
+<div class="container anidb-about">
+	<div class="jumbotron">
+		<h2 class="display-4">Rin Minase's Anime Database</h2>
+		<p class="lead mb-0">Minase Conglomerate</p>
+	</div>
+
+	<div class="row">
+		<div class="col-lg-4 col-12 animate slideInLeft">
+
+			<div class="row">
+				<div class="col-12">
+					<div class="text-center">
+						<img class="rounded-circle img-fluid img-user"
+							ng-src="{{ vm.images.user }}">
+					</div>
+					<h4 class="text-center user-data-heading">Statistics</h4>
+
+					<div class="flex-form-container"
+						ng-if="vm.dataLoaded === false">
+						<div class="spinner eclipse"></div>
+					</div>
+
+					<table class="table table-sm table-statistics"
+						ng-if="vm.dataLoaded === true">
+						<tbody>
+							<tr>
+								<td>Watch Time</td>
+								<td>:</td>
+								<td>
+									{{ vm.data.totalDays }} days, {{ vm.data.totalHours }} hours,
+									<br>
+									{{ vm.data.totalMinutes }} minutes, {{ vm.data.totalSeconds }} seconds
+								</td>
+							</tr>
+							<tr><td class="p-1" colspan="3"></td></tr>
+							<tr><td class="table-statistics-border p-1" colspan="3"></td></tr>
+							<tr>
+								<td>Total Size</td>
+								<td>:</td>
+								<td>{{ vm.data.totalFilesizeGB }} GB ({{ vm.data.totalFilesizeTB }} TB)</td>
+							</tr>
+							<tr>
+								<td>Total Episodes</td>
+								<td>:</td>
+								<td>{{ vm.data.totalEpisodes }} Episodes</td>
+							</tr>
+							<tr><td class="p-1" colspan="3"></td></tr>
+							<tr><td class="table-statistics-border p-1" colspan="3"></td></tr>
+							<tr>
+								<td colspan="3">Anime Count Per Quality</td>
+							</tr>
+							<tr>
+								<td>4k 2160p</td>
+								<td class="text-center">:</td>
+								<td class="text-center">{{ vm.data.quality.uhd }}</td>
+							</tr>
+							<tr>
+								<td>FHD 1080p</td>
+								<td class="text-center">:</td>
+								<td class="text-center">{{ vm.data.quality.fhd }}</td>
+							</tr>
+							<tr>
+								<td>HD 720p</td>
+								<td class="text-center">:</td>
+								<td class="text-center">{{ vm.data.quality.hd }}</td>
+							</tr>
+							<tr>
+								<td>HQ 480p</td>
+								<td class="text-center">:</td>
+								<td class="text-center">{{ vm.data.quality.hq }}</td>
+							</tr>
+							<tr>
+								<td>LQ 360p</td>
+								<td class="text-center">:</td>
+								<td class="text-center">{{ vm.data.quality.lq }}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-12 mt-4">
+					<h4 class="text-center user-data-heading">Chart Data</h4>
+				</div>
+				<div class="col-lg-12 col-sm-6 col-12 text-center mb-3 px-0">
+					<div class="btn-group btn-group-2">
+						<button type="button" class="btn btn-success">Episodes</button>
+						<button type="button" class="btn btn-success-light">Titles</button>
+					</div>
+				</div>
+				<div class="col-lg-12 col-sm-6 col-12 text-center mb-3 px-0">
+					<div class="btn-group btn-group-3">
+						<button type="button" class="btn btn-success">Week</button>
+						<button type="button" class="btn btn-success-light">Month</button>
+						<button type="button" class="btn btn-success">Year</button>
+					</div>
+				</div>
+				<div class="col-12">
+					<canvas id="line"
+						class="chart chart-line"
+						chart-colors="vm.chart.colors"
+						chart-data="vm.chart.data"
+						chart-labels="vm.chart.labels"
+						chart-series="vm.chart.series"
+						chart-options="vm.chart.options"
+						chart-dataset-override="vm.chart.datasetOverride">
+					</canvas>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-12 mt-4">
+					<h4 class="text-center user-data-heading">Unit Specs</h4>
+					<table class="table table-sm table-specs">
+						<tbody>
+							<tr>
+								<td>CPU</td>
+								<td>:</td>
+								<td class="table-specs-value">Intel Core i7-2600 (8M, 3.4GHz)</td>
+							</tr>
+							<tr>
+								<td>RAM</td>
+								<td>:</td>
+								<td class="table-specs-value">Kingston 16GB (2 &times; 8GB)<br>1600MHz DDR3</td>
+							</tr>
+							<tr>
+								<td>GPU</td>
+								<td>:</td>
+								<td class="table-specs-value">Asus ROG Strix GTX 1070 OC<br>(8GB DDR5)</td>
+							</tr>
+							<tr><td class="p-1" colspan="3"></td></tr>
+							<tr><td class="table-specs-border p-1" colspan="3"></td></tr>
+							<tr>
+								<td>Motherboard</td>
+								<td>:</td>
+								<td class="table-specs-value">Gigabyte GA-B75M-HD3</td>
+							</tr>
+							<tr>
+								<td>PSU</td>
+								<td>:</td>
+								<td class="table-specs-value">CoolerMaster MasterWatt 650W<br>80+ Bronze</td>
+							</tr>
+							<tr>
+								<td>CPU Cooler</td>
+								<td>:</td>
+								<td class="table-specs-value">FSP Windale 4 120mm HSF</td>
+							</tr>
+							<tr>
+								<td>SSD</td>
+								<td>:</td>
+								<td class="table-specs-value">Samsung 860 EVO 250GB</td>
+							</tr>
+							<tr>
+								<td>HDD</td>
+								<td>:</td>
+								<td class="table-specs-value">Western Digital Black 2TB</td>
+							</tr>
+							<tr><td class="p-1" colspan="3"></td></tr>
+							<tr><td class="table-specs-border p-1" colspan="3"></td></tr>
+							<tr>
+								<td>Case</td>
+								<td>:</td>
+								<td class="table-specs-value">Tecware Edge (Mid-Tower)</td>
+							</tr>
+							<tr>
+								<td>Case Fans</td>
+								<td>:</td>
+								<td class="table-specs-value">Thermaltake Riing Premium 120</td>
+							</tr>
+							<tr><td class="p-1" colspan="3"></td></tr>
+							<tr><td class="table-specs-border p-1" colspan="3"></td></tr>
+							<tr>
+								<td>Monitor</td>
+								<td>:</td>
+								<td class="table-specs-value">Samsung S20D300 (1600 &times; 900)</td>
+							</tr>
+							<tr>
+								<td>Speakers</td>
+								<td>:</td>
+								<td class="table-specs-value">Creative A320 2.1<br>(2 &times; 4W, 8W SW)</td>
+							</tr>
+							<tr><td class="p-1" colspan="3"></td></tr>
+							<tr><td class="table-specs-border p-1" colspan="3"></td></tr>
+							<tr>
+								<td>Keyboard</td>
+								<td>:</td>
+								<td class="table-specs-value">Razer Blackwidow TE Chroma</td>
+							</tr>
+							<tr>
+								<td>Mouse</td>
+								<td>:</td>
+								<td class="table-specs-value">Razer Deathadder Chroma</td>
+							</tr>
+							<tr>
+								<td>Mousepad</td>
+								<td>:</td>
+								<td class="table-specs-value">Steelseries QCK XXL<br>900mm &times; 300mm Mat</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+		</div>
+
+		<div class="col-lg-8 col-12 user-data-column animate slideInUp">
+
+			<h4 class="user-data-heading mt-lg-0">Developer</h4>
+			<h3><strong>Rin Minase</strong> <small>(Kristian Alunan)</small></h3>
+			<h5>Minase Conglomerate</h5>
+			<div class="row">
+				<div class="col-md-6">
+					<h6>
+						<table class="table table-sm">
+							<tbody>
+								<tr>
+									<td class="text-center"><i class="fa fa-envelope"></i></td>
+									<td>rin.black.raison.detre@gmail.com</td>
+								</tr>
+								<tr>
+									<td class="text-center"><i class="fa fa-phone"></i></td>
+									<td>(+63) 977 263 6093</td>
+								</tr>
+								<tr>
+									<td class="text-center"><i class="fa fa-facebook"></i></td>
+									<td>facebook.com/RinMinase666</td>
+								</tr>
+								<tr>
+									<td class="text-center"><i class="fa fa-github"></i></td>
+									<td>github.com/RinMinase</td>
+								</tr>
+								<tr>
+									<td class="text-center"><i class="fa fa-bitbucket"></i></td>
+									<td>bitbucket.com/kralunan</td>
+								</tr>
+							</tbody>
+						</table>
+					</h6>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-12">
+					<h4 class="user-data-heading">Acknowledgements</h4>
+					<div class="row">
+						<div class="col-sm-4 col-12 text-center">
+							<div class="acknowledgements ruka"></div>
+							<h5>Ruka Suirenji</h5>
+						</div>
+						<div class="col-sm-4 col-6 text-center">
+							<div class="acknowledgements alice"></div>
+							<h5>Alice (ClariS)</h5>
+						</div>
+						<div class="col-sm-4 col-6 text-center">
+							<div class="acknowledgements maid"></div>
+							<h5>Maid-chan</h5>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-12">
+					<h4 class="user-data-heading">This Project is Made by</h4>
+					<div class="row">
+						<div class="col-sm-4 col-6 text-center">
+							<a ng-href="https://angular.io/"
+								class="frameworks angular"
+								uib-tooltip="AngularJS"></a>
+						</div>
+						<div class="col-sm-4 col-6 text-center">
+							<a ng-href="https://babeljs.io/docs/plugins/preset-es2017/"
+								class="frameworks es8"
+								uib-tooltip="Babel ES8"></a>
+						</div>
+						<div class="col-sm-4 col-6 text-center">
+							<a ng-href="https://sass-lang.com/"
+								class="frameworks scss"
+								uib-tooltip="Sassy CSS"></a>
+						</div>
+						<div class="col-sm-4 col-6 text-center">
+							<a ng-href="https://getbootstrap.com/"
+								class="frameworks bootstrap"
+								uib-tooltip="Bootstrap 4"></a>
+						</div>
+						<div class="col-sm-4 col-6 text-center">
+							<a ng-href="https://firebase.google.com/"
+								class="frameworks firebase"
+								uib-tooltip="Firebase"></a>
+						</div>
+						<div class="col-sm-4 col-6 text-center">
+							<a ng-href="https://webpack.js.org/"
+								class="frameworks webpack"
+								uib-tooltip="Webpack"></a>
+						</div>
+						<div class="col-sm-4 col-6 text-center">
+							<a ng-href="https://cordova.apache.org/"
+								class="frameworks cordova"
+								uib-tooltip="Cordova"></a>
+						</div>
+						<div class="col-sm-4 col-6 text-center">
+							<a ng-href="http://nightwatchjs.org/"
+								class="frameworks nightwatch"
+								uib-tooltip="NightwatchJS"></a>
+						</div>
+						<div class="col-sm-4 col-6 text-center">
+							<a ng-href="https://travis-ci.org/"
+								class="frameworks travis"
+								uib-tooltip="Travis-CI"></a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-12">
+					<h4 class="user-data-heading">Target Platforms</h4>
+					<div class="row">
+						<div class="col-sm-4 col-6 text-center">
+							<a ng-href="https://www.google.com/chrome/"
+								class="platforms chrome"></a>
+						</div>
+						<div class="col-sm-4 col-6 text-center">
+							<a ng-href="https://www.mozilla.org/en-US/firefox/"
+								class="platforms firefox"></a>
+						</div>
+						<div class="col-sm-4 col-12 text-center">
+							<a ng-href="https://www.android.com/"
+								class="platforms android"></a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-12">
+					<h4 class="user-data-heading">Programming Skillsets</h4>
+					<div class="row">
+						<div class="col-sm-6 col-md-4">
+							<skillset-bar name="HTML" value="5" sprite="html"></skillset-bar>
+							<skillset-bar name="CSS" value="4" sprite="css"></skillset-bar>
+							<skillset-bar name="LESS" value="3" sprite="less"></skillset-bar>
+							<skillset-bar name="SCSS" value="5" sprite="scss"></skillset-bar>
+							<skillset-bar name="Stylus" value="1" sprite="stylus"></skillset-bar>
+							<skillset-bar name="JavaScript" value="4" sprite="js"></skillset-bar>
+							<skillset-bar name="JS (ES6)" value="4" sprite="es6"></skillset-bar>
+							<skillset-bar name="TypeScript" value="3" sprite="ts"></skillset-bar>
+							<skillset-bar name="Android" value="1" sprite="android"></skillset-bar>
+							<skillset-bar name="PHP" value="3" sprite="php"></skillset-bar>
+							<skillset-bar name="Python" value="2" sprite="python"></skillset-bar>
+							<skillset-bar name="C" value="4" sprite="c"></skillset-bar>
+							<skillset-bar name="C++" value="3" sprite="cpp"></skillset-bar>
+							<skillset-bar name="Java" value="3" sprite="java"></skillset-bar>
+							<skillset-bar name="Shell" value="4" sprite="shell"></skillset-bar>
+						</div>
+
+						<div class="col-sm-6 col-md-4">
+							<skillset-bar name="Bootstrap 3" value="5" sprite="bs3"></skillset-bar>
+							<skillset-bar name="Bootstrap 4" value="5" sprite="bs4"></skillset-bar>
+							<skillset-bar name="NodeJS" value="3" sprite="node"></skillset-bar>
+							<skillset-bar name="SailsJS" value="3" sprite="sails"></skillset-bar>
+							<skillset-bar name="ReactJS" value="3" sprite="react"></skillset-bar>
+							<skillset-bar name="AngularJS" value="4" sprite="angularjs"></skillset-bar>
+							<skillset-bar name="Angular" value="3" sprite="angular"></skillset-bar>
+							<skillset-bar name="Mocha" value="1" sprite="mocha"></skillset-bar>
+							<skillset-bar name="ChaiJS" value="2" sprite="chai"></skillset-bar>
+							<skillset-bar name="Jasmine" value="1" sprite="jasmine"></skillset-bar>
+							<skillset-bar name="Karma" value="1" sprite="karma"></skillset-bar>
+							<skillset-bar name="NightwatchJS" value="3" sprite="nightwatch"></skillset-bar>
+							<skillset-bar name="CodeIgniter" value="4" sprite="ci"></skillset-bar>
+							<skillset-bar name="CakePHP" value="3" sprite="cakephp"></skillset-bar>
+							<skillset-bar name="Laravel" value="3" sprite="laravel"></skillset-bar>
+							<skillset-bar name="Symfony" value="1" sprite="symfony"></skillset-bar>
+							<skillset-bar name="Django" value="1" sprite="django"></skillset-bar>
+							<skillset-bar name="Apache Isis" value="3" sprite="apacheisis"></skillset-bar>
+						</div>
+
+						<div class="col-sm-6 col-md-4">
+							<skillset-bar name="Docker" value="3" sprite="docker"></skillset-bar>
+							<skillset-bar name="Strider CI" value="2" sprite="strider"></skillset-bar>
+							<skillset-bar name="Travis CI" value="5" sprite="travis"></skillset-bar>
+							<skillset-bar name="Circle CI" value="4" sprite="circle"></skillset-bar>
+							<skillset-bar name="Apache" value="1" sprite="apache"></skillset-bar>
+							<skillset-bar name="Nginx" value="3" sprite="nginx"></skillset-bar>
+							<skillset-bar name="Firebase" value="3" sprite="firebase"></skillset-bar>
+							<skillset-bar name="MySQL" value="3" sprite="mysql"></skillset-bar>
+							<skillset-bar name="MongoDB" value="2" sprite="mongodb"></skillset-bar>
+							<skillset-bar name="Redis" value="1" sprite="redis"></skillset-bar>
+							<skillset-bar name="Gulp" value="5" sprite="gulp"></skillset-bar>
+							<skillset-bar name="Webpack" value="4" sprite="webpack"></skillset-bar>
+							<skillset-bar name="Cordova" value="2" sprite="cordova"></skillset-bar>
+							<skillset-bar name="Greenkeeper" value="1" sprite="greenkeeper"></skillset-bar>
+							<skillset-bar name="Renovate" value="1" sprite="renovate"></skillset-bar>
+							<skillset-bar name="Puppeteer" value="1" sprite="puppeteer"></skillset-bar>
+							<skillset-bar name="Yarn" value="5" sprite="yarn"></skillset-bar>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row mt-4">
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-header bg-success-light">
+							<h6 class="m-0">Changelog</h6>
+						</div>
+						<div class="card-body">
+							<ul class="list-unstyled" ng-repeat="commits in vm.githubCommits">
+								<li class="font-weight-bold">{{ commits.title }}</li>
+								<ul class="list-unstyled">
+									<li ng-repeat="fix in commits.fix" class="pt-0-5">
+										<h6 class="d-inline mr-2">
+											<span class="badge badge-pill badge-success py-1">FIX</span>
+										</h6>
+										<span>{{ fix.message }}</span>
+										<span ng-if="fix.module"> on&nbsp;</span>
+										<code ng-if="fix.module">{{ fix.module }}</code>
+									</li>
+									<li ng-repeat="new in commits.new" class="pt-0-5">
+										<h6 class="d-inline mr-2">
+											<span class="badge badge-pill badge-primary py-1">NEW</span>
+										</h6>
+										<span>{{ new.message }}</span>
+										<span ng-if="new.module"> on&nbsp;</span>
+										<code>{{ new.module }}</code>
+									</li>
+									<li ng-repeat="improve in commits.improve" class="pt-0-5">
+										<h6 class="d-inline mr-2">
+											<span class="badge badge-pill badge-warning text-white py-1">IMPROVED</span>
+										</h6>
+										<span>{{ improve.message }}</span>
+										<span ng-if="improve.module"> on&nbsp;</span>
+										<code ng-if="improve.module">{{ improve.module }}</code>
+									</li>
+								</ul>
+							</ul>
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row my-3">
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-header bg-success-light">
+							<h6 class="m-0">Issues and Future Changes</h6>
+						</div>
+						<div class="card-body">
+							<h5 class="card-title">Issues</h5>
+							<ul uib-pagination
+								total-items="vm.issuesMaxSize"
+								ng-model="vm.issuesCurrentPage"
+								max-size="5"
+								class="pagination-sm"
+								boundary-link-numbers="true">
+							</ul>
+							<ul class="list-unstyled">
+								<li ng-repeat="issue in vm.githubIssues[vm.issuesCurrentPage]">
+									<hr><span>#{{ issue.number }} &mdash; {{ issue.title }}</span><br>
+									<span>
+										<h6 class="d-inline mr-2 issues-badge"
+											ng-repeat="labels in issue.labels">
+											<span class="badge badge-pill py-1 {{ labels.class }}">
+												<span>{{ labels.name }}</span>
+											</span>
+										</h6>
+									</span>
+									<span class="small pull-right">{{ issue.date }}</span>
+								</li>
+							</ul>
+							<ul uib-pagination
+								total-items="vm.issuesMaxSize"
+								ng-model="vm.issuesCurrentPage"
+								max-size="5"
+								class="pagination-sm"
+								boundary-link-numbers="true">
+							</ul><hr>
+
+							<h5 class="card-title">Package Update Issues</h5>
+							<ul>
+								<li ng-if="vm.packageIssues.length === 1">
+									<span>Hooray!! No package issues found!</span>
+								</li>
+								<li class="package-issues"
+									ng-repeat="issues in vm.packageIssues | limitTo: (1 - vm.packageIssues.length)"
+									ng-if="vm.packageIssues.length > 1">
+
+									<code class="{{ ::issues.severity }}">[{{ ::issues.package }}]</code>
+									<code class="blue">[{{ ::issues.version }}]</code>
+									<span>{{ ::issues.reason }}</span>
+								</li>
+							</ul>
+
+							<!-- <hr><h5 class="card-title">Future Changes</h5>
+							<ul>
+								<li><code class="red">[FEATURE]</code> Fuzzy Search by Title</li>
+								<li><code class="red">[FEATURE]</code> Edit and Delete an Entry (AniDB)</li>
+								<li><code class="red">[FEATURE]</code> Add, Edit and Delete an Entry (dlDB)</li>
+								<li><code class="orange">[IMPROVEMENT]</code> Fuzzy Search using comma-separated keywords</li>
+								<ul>
+									<li>size: 40-50gb</li>
+									<li>finished: lastweek / lastmonth / august / 2012</li>
+									<li>remarks: redownload / redl</li>
+								</ul>
+							</ul> -->
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+</div>
+
+<anidb-footer></anidb-footer>
