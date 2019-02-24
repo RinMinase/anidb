@@ -9,9 +9,7 @@ import { FirebaseService } from "@services/firebase.service";
 })
 export class FrameworksComponent implements OnInit {
 
-	constructor(
-		private firebase: FirebaseService,
-	) { }
+	constructor(private firebase: FirebaseService) { }
 
 	ngOnInit() {
 		this.firebase.retrieveImageUrl("/assets/ngx-frameworks.png")
