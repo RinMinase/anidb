@@ -36,11 +36,11 @@ html {
 }
 
 hr { border-color: #E4E6E8; }
-thead th { border-top: 0px !important; }
+thead th { border-top: 0 !important; }
 td, th { white-space: nowrap; }
 td.wrap, th.wrap { white-space: normal; }
 .table-sm th, .table-sm td { padding: .5rem; }
-.table-unbordered td, .table-unbordered th { border-top: 0px; }
+.table-unbordered td, .table-unbordered th { border-top: 0; }
 
 .form-control, .dropdown-menu { font-size: 14px; }
 .btn { font-size: 15px; }
