@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { RouterModule, Routes } from "@angular/router";
 import { ReactiveFormsModule } from "@angular/forms";
+import { NgbModalModule } from "@ng-bootstrap/ng-bootstrap";
 
 import { LegendModule } from "@components/legend/legend.module";
 import { ManageHomeComponent } from "./manage-home/manage-home.component";
@@ -34,8 +35,12 @@ const routes: Routes = [{
 		CommonModule,
 		RouterModule.forChild(routes),
 		ReactiveFormsModule,
+		NgbModalModule,
 
 		LegendModule,
+	],
+	entryComponents: [
+		AddHomeComponent,
 	],
 })
 export class HomeModule { }
