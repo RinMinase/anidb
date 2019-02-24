@@ -34,7 +34,7 @@ export class ManageHomeComponent implements OnInit {
 		private firebase: FirebaseService,
 		private fuseOptionsBuilder: FuseOptionsBuilder,
 		private utility: UtilityService,
-		private homeService: HomeService,
+		private service: HomeService,
 	) {}
 
 	ngOnInit() {
@@ -51,7 +51,7 @@ export class ManageHomeComponent implements OnInit {
 			.addKeys("remarks")
 			.build();
 
-		this.homeService.currentState.subscribe((state) => this.homeState = state);
+		this.service.currentState.subscribe((state) => this.homeState = state);
 		this.onChanges();
 
 		if (environment.disableManageHomeQuery) {
@@ -90,7 +90,7 @@ export class ManageHomeComponent implements OnInit {
 	}
 
 	viewTitle(id: number) {
-		this.homeService.changeState(this.searchQuery, id);
+		this.service.changeState(this.searchQuery, id);
 		this.router.navigateByUrl(`/view/${id}`);
 	}
 
