@@ -1,15 +1,7 @@
-<h1 align="center"> Rin Minase's Anime Database ( Angular 7 ) </h1>
+<h1 align="center"> Rin Minase's Anime Database </h1>
 
 <p align="center">
-    <a href="https://circleci.com/gh/RinMinase/anidb/tree/master">
-        <img alt="Circle-CI" src="https://img.shields.io/circleci/project/github/RinMinase/anidb/master.svg?label=production&logo=circleci">
-    </a>
-    <a href="https://circleci.com/gh/RinMinase/anidb/tree/ngx">
-        <img alt="Circle-CI" src="https://img.shields.io/circleci/project/github/RinMinase/anidb/ngx.svg?label=staging&logo=circleci">
-    </a>
-</p>
-<p align="center">
-    <a href="https://circleci.com/gh/RinMinase/anidb/tree/master">
+    <a href="https://circleci.com/gh/RinMinase/anidb">
         <img alt="Circle-CI" src="https://img.shields.io/circleci/project/github/RinMinase/anidb/master.svg?logo=circleci">
     </a>
     <a href="https://david-dm.org/RinMinase/anidb">
@@ -49,47 +41,46 @@ _Add info here_
 
 #### Directory Structure
     .
-    ├── .circleci/                    # Circle CI folder
-    │   └── config.yml                # Circle CI configuration file
-    ├── .tmp/                         # Local development server 
-    ├── dist/                         # Local production server
-    ├── src/                          # Project source code
-    │   ├── app/                      # Project components
-    │   │   ├── core/                 # System-wide components
-    │   │   │   ├── constants/        # Project constants
-    │   │   │   ├── directives/       # Project directives
-    │   │   │   └── services/         # Project services
-    │   │   │       └── builders/     # Project builders
-    │   │   ├── modules/              # Project modules
-    │   │   │   └── <module-name>     # Module folder (refer to structure below)
-    │   │   ├── index.config.js       # Configuration file for main module
-    │   │   └── index.module.js       # Main module
-    │   ├── assets/                   # Project assets
-    │   │   ├── firebase/             # Firebase configurations
-    │   │   ├── gulp/                 # Gulp files
-    │   │   ├── styles/               # Stylesheet folder 
-    │   │   │   └── chunks/           # Stylesheet modules
-    │   │   ├── testing/              # Testing asets
-    │   │   │   └── tests/            # Unit tests
-    │   │   ├── .env                  # Environment variables
-    │   │   ├── .env.example          # Environment variables template
-    │   │   ├── favicon.ico           # Wepage icon
-    │   │   └── robots.txt            # Robots file
-    │   ├── res/                      # Cordova resources folder
-    │   │   └── android/              # Android resources
-    │   │       ├── hooks/            # Android build hooks
-    │   │       ├── icon/             # Android icons
-    │   │       └── screen/           # Android splash screens
-    │   └── index.html                # Main HTML file
-    ├── .editorconfig                 # IDE / Editor configuration
-    ├── .eslintrc                     # JS linting configuration
-    ├── .firebaserc                   # Firebase project configuration
-    ├── .sasslintrc                   # SCSS linting configuration
-    ├── .travis.yml                   # Travis deployment configuration
-    ├── config.xml                    # Cordova build configuration
-    ├── firebase.json                 # Firebase hosting configuation
-    ├── gulpfile.js                   # Main gulp file
-    └── ...                           # Other project files
+    ├── .circleci/                      # Circle CI folder
+    │   └── config.yml                  # Circle CI configuration file
+    ├── dist/                           # Compiled production code
+    ├── src/                            # Project source code
+    │   ├── app/                        # Project components
+    │   │   ├── core/                   # System-wide components
+    │   │   │   ├── builders/           # Project builders
+    │   │   │   ├── components/         # Project components
+    │   │   │   └── services/           # Project services
+    │   │   ├── modules/                # Project modules
+    │   │   │   └── <module-name>       # Module folder (refer to structure below)
+    │   │   ├── app.component.spec.ts   # Test scripts of main module and core module
+    │   │   ├── app.component.ts        # Component of main module
+    │   │   ├── app.module.ts           # Main module
+    │   │   └── ...                     # Other project related files
+    │   ├── assets/                     # Project assets
+    │   │   ├── config/                 # Project configurations
+    │   │   ├── firebase/               # Firebase configurations
+    │   │   ├── res/                    # Cordova resources folder
+    │   │   │   └── android/            # Android resources
+    │   │   │       ├── hooks/          # Android build hooks
+    │   │   │       ├── icon/           # Android icons
+    │   │   │       └── screen/         # Android splash screens
+    │   │   ├── styles/                 # Stylesheet folder
+    │   │   ├── testing/                # Testing configurations
+    │   │   ├── favicon.ico             # Web Application icon
+    │   │   └── robots.txt              # Robots file
+    │   ├── environments/               # Environments folder
+    │   ├── index.html                  # Main HTML file
+    │   ├── index.scss                  # Main Stylesheet (SCSS) file
+    │   └── index.ts                    # Main TypeScript file
+    ├── .editorconfig                   # IDE / Editor configuration
+    ├── .firebaserc                     # Firebase project configuration
+    ├── .stylelintrc                    # SCSS linting configuration
+    ├── angular.json                    # Angular CLI configuration
+    ├── config.xml                      # Cordova build configuration
+    ├── firebase.json                   # Firebase hosting configuation
+    ├── tsconfig.json                   # Main TypeScript configuration file
+    ├── tslint.json                     # TypeScript linting file
+    └── ...                             # Other project files
 
 #### Module Structure
     .
@@ -114,17 +105,14 @@ _Add info here_
 
 Task automation is based on [Yarn scripts](https://yarnpkg.com/lang/en/docs/cli/run/) or [NPM scripts](https://docs.npmjs.com/misc/scripts).
 
-| Task                                  | Description                                                                                           |
-| ------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| `gulp serve` or `yarn start`          | Run **development server** on `http://localhost:3000/` with file watching on changes                  |
-| `gulp serve:dist` or `yarn run build` | Run **test server** on `http://localhost:3000/`                                                       |
-| `gulp build` or `gulp`                |                                                                                                       |
-| `yarn test <args>`                    |                                                                                                       |
-| `yarn run bundle`                     |                                                                                                       |
-| `yarn run deploy`                     |                                                                                                       |
-| `yarn run setup`                      |                                                                                                       |
-| `yarn run setup-android`              |                                                                                                       |
-| `yarn run setup-testing`              |                                                                                                       |
+| Task                  | Description                                                                           |
+| --------------------- | ------------------------------------------------------------------------------------- |
+| `yarn start`          | Run **development server** on `http://localhost:3000/` with file watching on changes  |
+| `yarn start --prod`   | Run **production server** on `http://localhost:3000/` with file watching on changes   |
+| `yarn build`          | Build production code and add service worker to built code                            |
+| `yarn test <args>`    | Run test scripts on using a Headless Chrome Browser                                   |
+| `yarn bundle`         | Builds production code with service worker then compiles it for Android using Cordova |
+| `yarn setup`          | Runs Cordova pre-requisites and installs dependencies                                 |
 
 ### Testing the project
 _Add info here_
@@ -135,9 +123,9 @@ _Add info here_
 * <img width=20 height=20 src="https://sass-lang.com/favicon.ico"> [Sassy CSS (SCSS)](https://sass-lang.com/) - CSS pre-processor
 * <img width=20 height=20 src="https://getbootstrap.com/favicon.ico"> [Bootstrap 4](https://getbootstrap.com/) - HTML Framework (layout)
 * <img width=20 height=20 src="https://firebase.google.com/favicon.ico"> [Firebase](https://firebase.google.com/) - Database
-* <img width=20 height=20 src="https://gulpjs.com/img/favicon.png"> [Gulp 4](https://gulpjs.com/) - Task runner
 * <img width=20 height=20 src="https://webpack.js.org/bc3effb418df77da9e04825c48a58a49.ico"> [Webpack 4](https://webpack.js.org/) - Project bundler
 * <img width=20 height=20 src="https://cordova.apache.org/favicon.ico"> [Cordova](https://cordova.apache.org/) - Android APK bundler
-* <img width=20 height=20 src="http://nightwatchjs.org/favicon.ico"> [NightwatchJS](http://nightwatchjs.org/) - Testing Framework
+* <img width=20 height=20 src="https://jasmine.github.io/favicon.ico"> [Jasmine](https://jasmine.github.io/) - Testing Framework
+* <img width=20 height=20 src="https://karma-runner.github.io/assets/img/favicon/favicon.ico"> [Karma](https://karma-runner.github.io) - Test Runner Framework
 * <img width=20 height=20 src="https://d3r49iyjzglexf.cloudfront.net/favicon-066b37ff00f0f968b903c13ae88b5573b62665aea8fbe91bb61c55dfa9446523.ico"> [Circle CI](https://circleci.com/) - Continuous Integration (CI) service
 * <img width=20 height=20 src="https://yarnpkg.com/favicon.ico"> [Yarn](https://yarnpkg.com/) - Package Manager
