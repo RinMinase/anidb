@@ -4,6 +4,8 @@ import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
 import Swal from "sweetalert2";
 import * as moment from "moment-mini";
 
+import { FirebaseService } from "@services/firebase.service";
+
 @Component({
 	selector: "app-add-home",
 	templateUrl: "./add-home.component.html",
@@ -39,6 +41,7 @@ export class AddHomeComponent implements OnInit {
 	constructor(
 		private formBuilder: FormBuilder,
 		private modal: NgbActiveModal,
+		private firebase: FirebaseService,
 	) { }
 
 	ngOnInit() {
@@ -51,7 +54,7 @@ export class AddHomeComponent implements OnInit {
 			specials: [""],
 			dateFinishedRaw: [""],
 			filesize: [""],
-			hdd: [""],
+			inhdd: [""],
 			seasonNumber: [""],
 			firstSeasonTitle: [""],
 			durationRaw: [""],
@@ -81,9 +84,11 @@ export class AddHomeComponent implements OnInit {
 		if (this.addTitleForm.valid) {
 			Swal.fire({
 				title: "Are you sure?",
-				text: "This will save your edits",
+				text: "Please confirm the details of your entry",
 				type: "question",
 				showCancelButton: true,
+				confirmButtonColor: "#DD6B55",
+				confirmButtonText: "Yes, I'm sure",
 			}).then((result) => {
 				if (result.value) {
 					const { value } = this.addTitleForm;
@@ -96,7 +101,7 @@ export class AddHomeComponent implements OnInit {
 						specials: parseInt(value.specials, 10) || 0,
 						dateFinished: null,
 						filesize: parseInt(value.filesize, 10) || 0,
-						hdd: 1,
+						inhdd: 1,
 						seasonNumber: parseInt(value.seasonNumber, 10) || 0,
 						firstSeasonTitle: value.firstSeasonTitle,
 						duration: null,
@@ -110,17 +115,20 @@ export class AddHomeComponent implements OnInit {
 						offquel: value.offquel,
 					};
 
-					if (value.dateFinishedRaw) {
-						data.dateFinished = this.parseDateFinished(value.dateFinishedRaw);
-					} else {
-						data.dateFinished = moment().unix();
-					}
+					const dateRaw = value.dateFinishedRaw;
+					data.dateFinished = (dateRaw) ? this.parseDateFinished(dateRaw) : moment().unix();
+					data.duration = (value.durationRaw) ? this.parseDuration(value.durationRaw) : 0;
 
-					if (value.durationRaw) {
-						data.duration = this.parseDuration(value.durationRaw);
-					} else {
-						data.duration = 0;
-					}
+					this.firebase.create("anime", data)
+						.then(() => {
+							Swal.fire({
+								title: "Success",
+								text: "Your entry has been added",
+								type: "success",
+							}).then((successResult) => {
+								if (successResult.value) { this.modal.close(); }
+							});
+						});
 				}
 			});
 		}
