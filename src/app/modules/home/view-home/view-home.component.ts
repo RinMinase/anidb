@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import Swal from "sweetalert2";
 import * as moment from "moment-mini";
 
 import { FirebaseService } from "@services/firebase.service";
@@ -47,6 +48,25 @@ export class ViewHomeComponent implements OnInit {
 			.catch(() => {});
 	}
 
+	deleteTitle() {
+		Swal.fire({
+			title: "Are you sure?",
+			text: "Your will not be able to recover this entry!",
+			type: "warning",
+			showCancelButton: true,
+			confirmButtonColor: "#DD6B55",
+			confirmButtonText: "Yes, delete it!",
+		}).then((result) => {
+			if (result.value) {
+				this.firebase.hardDelete(this.firebaseQueryBuilder.id(this.stateId).build())
+					.then(() => {
+						Swal.fire("Deleted", "Entry has been deleted", "success")
+							.then(() => this.router.navigateByUrl("/"));
+					});
+			}
+		});
+	}
+
 	private fetchData() {
 		this.firebase.auth()
 			.then(() => {
@@ -82,7 +102,7 @@ export class ViewHomeComponent implements OnInit {
 
 						this.data = data;
 						this.dataLoaded = true;
-					}).catch(() => this.router.navigateByUrl("/home"));
+					}).catch(() => this.router.navigateByUrl("/"));
 			}).catch(() => this.router.navigateByUrl("/login"));
 	}
 }
