@@ -98,6 +98,17 @@ export class FirebaseService {
 		});
 	}
 
+	update(params: FirebaseQuery) {
+		const { db, id, data } = params;
+		if (db && id && data) {
+			return Promise.resolve(firebase.database()
+				.ref(`/${db}/${id}`)
+				.update(data));
+		}
+
+		return Promise.reject(0);
+	}
+
 	private retrieveAll(query: FirebaseQuery) {
 		return new Promise((resolve) => {
 			firebase.database()
