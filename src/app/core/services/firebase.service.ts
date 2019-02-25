@@ -40,7 +40,7 @@ export class FirebaseService {
 				.orderByKey()
 				.limitToLast(1)
 				.once("value")
-				.then((finalData) => {
+				.then((finalData: any) => {
 					lastIndex = parseInt(Object.keys(finalData.val())[0], 10);
 					resolve();
 				});
@@ -50,9 +50,7 @@ export class FirebaseService {
 			firebase.database()
 				.ref(`${db}/${lastIndex + 1}`)
 				.set(data)
-				.then(() => {
-					resolve();
-				});
+				.then(() => { resolve(); });
 		});
 
 		return retrieveLast()
@@ -71,7 +69,7 @@ export class FirebaseService {
 			return this.retrieveWithDescQuery(query);
 		}
 
-		return Promise.reject();
+		return Promise.reject(0);
 	}
 
 	retrieveImageUrl(ref: string) {

@@ -38,11 +38,11 @@ export class AboutComponent implements OnInit {
 		this.firebase.auth()
 			.then(() => {
 				this.firebase.retrieve()
-				.then((data: Array<any>) => {
-					this.formatData(data);
-					this.dataLoaded = true;
-				});
-		}).catch(() => this.router.navigateByUrl("/login"));
+					.then((data: Array<any>) => {
+						this.formatData(data);
+						this.dataLoaded = true;
+					});
+			}).catch(() => this.router.navigateByUrl("/login"));
 
 		this.getFirebaseImages();
 		this.generateChartData();
