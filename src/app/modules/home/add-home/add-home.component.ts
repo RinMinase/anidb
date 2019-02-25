@@ -86,7 +86,41 @@ export class AddHomeComponent implements OnInit {
 				showCancelButton: true,
 			}).then((result) => {
 				if (result.value) {
-					// success
+					const { value } = this.addTitleForm;
+					const data = {
+						watchStatus: value.watchStatus,
+						quality: value.quality,
+						title: value.title,
+						episodes: parseInt(value.episodes, 10) || 0,
+						ovas: parseInt(value.ovas, 10) || 0,
+						specials: parseInt(value.specials, 10) || 0,
+						dateFinished: null,
+						filesize: parseInt(value.filesize, 10) || 0,
+						hdd: 1,
+						seasonNumber: parseInt(value.seasonNumber, 10) || 0,
+						firstSeasonTitle: value.firstSeasonTitle,
+						duration: null,
+						releaseSeason: value.releaseSeason,
+						releaseYear: value.releaseYear,
+						encoder: value.encoder,
+						remarks: value.remarks,
+						variants: value.variants,
+						prequel: value.prequel,
+						sequel: value.sequel,
+						offquel: value.offquel,
+					};
+
+					if (value.dateFinishedRaw) {
+						data.dateFinished = this.autofillYear(value.dateFinishedRaw);
+					} else {
+						data.dateFinished = moment().unix();
+					}
+
+					if (value.durationRaw) {
+						data.duration = this.parseDuration(value.durationRaw);
+					} else {
+						data.duration = 0;
+					}
 				}
 			});
 		}
@@ -105,23 +139,22 @@ export class AddHomeComponent implements OnInit {
 
 	private autofillYear(date: string) {
 		if (date.split(" ").length === 2) {
-			const monthRaw = parseInt(date.split(" ")[0], 10) || date.split(" ")[0];
+			const monthRaw: any = parseInt(date.split(" ")[0], 10) || date.split(" ")[0];
 			const day = parseInt(date.split(" ")[1], 10) || date.split(" ")[1];
-			// let month;
-			const month = "January";
+			let month: any;
 
-			// if (isNaN(monthRaw)) {
-			// 	month = parseInt(moment(monthRaw, "MMM").format("MM"), 10);
-			// } else {
-			// 	month = parseInt(moment(monthRaw, "MM").format("MM"), 10);
-			// }
+			if (isNaN(monthRaw)) {
+				month = parseInt(moment(monthRaw, "MMM").format("MM"), 10);
+			} else {
+				month = parseInt(moment(monthRaw, "MM").format("MM"), 10);
+			}
 
 			const yearToday = moment().year();
 			const dateParsed = `${month} ${day} ${yearToday}`;
 			const dateParsedUnix = moment(dateParsed, "MM D YYYY").unix();
-			const dateTodaytUnix = moment().unix();
+			const dateTodayUnix = moment().unix();
 
-			if (dateParsedUnix > dateTodaytUnix) {
+			if (dateParsedUnix > dateTodayUnix) {
 				date += ` ${(moment().year() - 1).toString()}`;
 			} else {
 				date += ` ${(moment().year()).toString()}`;
@@ -166,6 +199,24 @@ export class AddHomeComponent implements OnInit {
 		}
 
 		return years;
+	}
+
+	private parseDuration(duration: string) {
+		const durationParts = duration.split(":");
+
+		if (durationParts.length === 3) {
+			const hours = (parseInt(durationParts[0], 10) * 3600);
+			const minutes = (parseInt(durationParts[1], 10) * 60);
+			const seconds = parseInt(durationParts[2], 10);
+			return hours + minutes + seconds;
+		} else if (durationParts.length === 2) {
+			const minutes = (parseInt(durationParts[0], 10) * 60);
+			const seconds = parseInt(durationParts[1], 10);
+			return minutes + seconds;
+		} else {
+			const seconds = parseInt(durationParts[0], 10);
+			return seconds;
+		}
 	}
 
 }
