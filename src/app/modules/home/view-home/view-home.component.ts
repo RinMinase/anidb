@@ -1,10 +1,12 @@
 import { Component, OnInit } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import * as moment from "moment-mini";
 
 import { FirebaseService } from "@services/firebase.service";
 import { FirebaseQueryBuilder } from "@builders/firebase-query.service";
 import { UtilityService } from "@services/utility.service";
+import { UpdateHomeComponent } from "../update-home/update-home.component";
 
 @Component({
 	selector: "app-view-home",
@@ -20,6 +22,7 @@ export class ViewHomeComponent implements OnInit {
 	constructor(
 		private router: Router,
 		private route: ActivatedRoute,
+		private modalService: NgbModal,
 		private firebase: FirebaseService,
 		private firebaseQueryBuilder: FirebaseQueryBuilder,
 		private utility: UtilityService,
@@ -65,5 +68,12 @@ export class ViewHomeComponent implements OnInit {
 						this.dataLoaded = true;
 					}).catch(() => this.router.navigateByUrl("/home"));
 			}).catch(() => this.router.navigateByUrl("/login"));
+	}
+
+	editTitle() {
+		this.modalService.open(UpdateHomeComponent, {
+			size: "lg",
+			windowClass: "animate bounceInDown",
+		});
 	}
 }

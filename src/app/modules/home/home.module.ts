@@ -41,6 +41,7 @@ const routes: Routes = [{
 	],
 	entryComponents: [
 		AddHomeComponent,
+		UpdateHomeComponent,
 	],
 })
 export class HomeModule { }
