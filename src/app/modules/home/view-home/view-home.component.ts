@@ -71,9 +71,11 @@ export class ViewHomeComponent implements OnInit {
 	}
 
 	editTitle() {
-		this.modalService.open(UpdateHomeComponent, {
+		const updateModal = this.modalService.open(UpdateHomeComponent, {
 			size: "lg",
 			windowClass: "animate bounceInDown",
 		});
+
+		updateModal.componentInstance.data = this.data;
 	}
 }
