@@ -11,6 +11,7 @@ export class FirebaseQueryBuilder {
 		orderKey: null,
 		orderDirection: null,
 		inhdd: 1,
+		data: null,
 	};
 
 	validOrderKeys = [
@@ -48,6 +49,11 @@ export class FirebaseQueryBuilder {
 		return this;
 	}
 
+	data(value: any) {
+		this.firebaseOptions.data = value;
+		return this;
+	}
+
 	build() {
 		return this.firebaseOptions;
 	}
@@ -60,6 +66,7 @@ export class FirebaseQuery {
 	orderKey?: string;
 	orderDirection?: string;
 	inhdd?: number;
+	data?: any;
 
 	constructor() {
 		this.db = "anime";
@@ -68,5 +75,6 @@ export class FirebaseQuery {
 		this.orderKey = null;
 		this.orderDirection = null;
 		this.inhdd = 1;
+		this.data = null;
 	}
 }
