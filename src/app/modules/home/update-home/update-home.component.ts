@@ -15,6 +15,7 @@ import { FirebaseQueryBuilder } from "@builders/firebase-query.service";
 export class UpdateHomeComponent implements OnInit {
 
 	@Input() data: any;
+	@Input() id: number;
 
 	editTitleForm: FormGroup;
 	submitted: Boolean = false;
@@ -91,7 +92,60 @@ export class UpdateHomeComponent implements OnInit {
 	}
 
 	edit() {
+		this.submitted = true;
 
+		if (this.editTitleForm.valid) {
+			const { value } = this.editTitleForm;
+			const data = {
+				watchStatus: value.watchStatus,
+				quality: value.quality,
+				title: value.title,
+				episodes: parseInt(value.episodes, 10) || 0,
+				ovas: parseInt(value.ovas, 10) || 0,
+				specials: parseInt(value.specials, 10) || 0,
+				dateFinished: null,
+				filesize: parseInt(value.filesize, 10) || 0,
+				inhdd: 1,
+				seasonNumber: parseInt(value.seasonNumber, 10) || 0,
+				firstSeasonTitle: value.firstSeasonTitle,
+				duration: null,
+				releaseSeason: value.releaseSeason,
+				releaseYear: value.releaseYear,
+				encoder: value.encoder,
+				remarks: value.remarks,
+				variants: value.variants,
+				prequel: value.prequel,
+				sequel: value.sequel,
+				offquel: value.offquel,
+			};
+
+			const dateRaw = value.dateFinishedRaw;
+			data.dateFinished = (dateRaw) ? this.parseDateFinished(dateRaw) : moment().unix();
+			data.duration = (value.durationRaw) ? this.parseDuration(value.durationRaw) : 0;
+
+			Swal.fire({
+				title: "Are you sure?",
+				text: "Please confirm the details of your entry",
+				type: "question",
+				showCancelButton: true,
+				confirmButtonColor: "#DD6B55",
+				confirmButtonText: "Yes, I'm sure",
+			}).then((result) => {
+				if (result.value) {
+					this.firebase.update(
+						this.firebaseQueryBuilder.id(this.id).data(this.editTitleForm.value).build(),
+					).then(() => {
+							Swal.fire({
+								title: "Success",
+								text: "Your edits has been saved",
+								type: "success",
+							}).then((successResult) => {
+								if (successResult.value) { this.modal.close(); }
+							});
+						});
+				}
+			});
+		}
 	}
 
 	private initFormValues() {
@@ -127,6 +181,55 @@ export class UpdateHomeComponent implements OnInit {
 			sequel: this.data.sequel,
 			offquel,
 		});
+	}
+
+	private parseDateFinished(date: string) {
+		if (date.split(" ").length === 2) {
+			const monthRaw: any = parseInt(date.split(" ")[0], 10) || date.split(" ")[0];
+			const day = parseInt(date.split(" ")[1], 10) || date.split(" ")[1];
+			let month: any;
+
+			if (isNaN(monthRaw)) {
+				month = parseInt(moment(monthRaw, "MMM").format("MM"), 10);
+			} else {
+				month = parseInt(moment(monthRaw, "MM").format("MM"), 10);
+			}
+
+			const yearToday = moment().year();
+			const dateParsed = `${month} ${day} ${yearToday}`;
+			const dateParsedUnix = moment(dateParsed, "MM D YYYY").unix();
+			const dateTodayUnix = moment().unix();
+
+			if (dateParsedUnix > dateTodayUnix) {
+				date += ` ${(moment().year() - 1).toString()}`;
+			} else {
+				date += ` ${(moment().year()).toString()}`;
+			}
+		}
+
+		if ((new Date(date)).toString().indexOf("Invalid Date") === 0) {
+			return moment().unix();
+		} else {
+			return moment(new Date(date)).unix();
+		}
+	}
+
+	private parseDuration(duration: string) {
+		const durationParts = duration.split(":");
+
+		if (durationParts.length === 3) {
+			const hours = (parseInt(durationParts[0], 10) * 3600);
+			const minutes = (parseInt(durationParts[1], 10) * 60);
+			const seconds = parseInt(durationParts[2], 10);
+			return hours + minutes + seconds;
+		} else if (durationParts.length === 2) {
+			const minutes = (parseInt(durationParts[0], 10) * 60);
+			const seconds = parseInt(durationParts[1], 10);
+			return minutes + seconds;
+		} else {
+			const seconds = parseInt(durationParts[0], 10);
+			return seconds;
+		}
 	}
 
 }

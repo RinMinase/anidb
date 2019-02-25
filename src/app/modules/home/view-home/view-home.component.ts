@@ -30,7 +30,24 @@ export class ViewHomeComponent implements OnInit {
 
 	ngOnInit() {
 		this.route.params.subscribe((params) => this.stateId = params["id"]);
+		this.fetchData();
+	}
 
+	editTitle() {
+		const updateModal = this.modalService.open(UpdateHomeComponent, {
+			size: "lg",
+			windowClass: "animate bounceInDown",
+		});
+
+		updateModal.componentInstance.data = this.data;
+		updateModal.componentInstance.id = this.stateId;
+
+		updateModal.result
+			.then(() => { this.fetchData(); })
+			.catch(() => {});
+	}
+
+	private fetchData() {
 		this.firebase.auth()
 			.then(() => {
 				this.firebase.retrieve(this.firebaseQueryBuilder.id(this.stateId).build())
@@ -43,7 +60,6 @@ export class ViewHomeComponent implements OnInit {
 						if (data.variants) { data.variants = data.variants.split(","); }
 						if (data.offquel) { data.offquel = data.offquel.split(","); }
 
-						// this.filesizeForUpdateModal = data.filesize;
 						data.filesize = this.utility.convertFilesize(data.filesize);
 						data.dateFinished = moment.unix(data.dateFinished)
 							.format("MMMM DD, YYYY");
@@ -68,14 +84,5 @@ export class ViewHomeComponent implements OnInit {
 						this.dataLoaded = true;
 					}).catch(() => this.router.navigateByUrl("/home"));
 			}).catch(() => this.router.navigateByUrl("/login"));
-	}
-
-	editTitle() {
-		const updateModal = this.modalService.open(UpdateHomeComponent, {
-			size: "lg",
-			windowClass: "animate bounceInDown",
-		});
-
-		updateModal.componentInstance.data = this.data;
 	}
 }
