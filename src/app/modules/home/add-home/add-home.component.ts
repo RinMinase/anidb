@@ -81,7 +81,36 @@ export class AddHomeComponent implements OnInit {
 
 	add() {
 		this.submitted = true;
+
 		if (this.addTitleForm.valid) {
+			const { value } = this.addTitleForm;
+			const data = {
+				watchStatus: value.watchStatus,
+				quality: value.quality,
+				title: value.title,
+				episodes: parseInt(value.episodes, 10) || 0,
+				ovas: parseInt(value.ovas, 10) || 0,
+				specials: parseInt(value.specials, 10) || 0,
+				dateFinished: null,
+				filesize: parseInt(value.filesize, 10) || 0,
+				inhdd: 1,
+				seasonNumber: parseInt(value.seasonNumber, 10) || 0,
+				firstSeasonTitle: value.firstSeasonTitle,
+				duration: null,
+				releaseSeason: value.releaseSeason,
+				releaseYear: value.releaseYear,
+				encoder: value.encoder,
+				remarks: value.remarks,
+				variants: value.variants,
+				prequel: value.prequel,
+				sequel: value.sequel,
+				offquel: value.offquel,
+			};
+
+			const dateRaw = value.dateFinishedRaw;
+			data.dateFinished = (dateRaw) ? this.parseDateFinished(dateRaw) : moment().unix();
+			data.duration = (value.durationRaw) ? this.parseDuration(value.durationRaw) : 0;
+
 			Swal.fire({
 				title: "Are you sure?",
 				text: "Please confirm the details of your entry",
@@ -91,34 +120,6 @@ export class AddHomeComponent implements OnInit {
 				confirmButtonText: "Yes, I'm sure",
 			}).then((result) => {
 				if (result.value) {
-					const { value } = this.addTitleForm;
-					const data = {
-						watchStatus: value.watchStatus,
-						quality: value.quality,
-						title: value.title,
-						episodes: parseInt(value.episodes, 10) || 0,
-						ovas: parseInt(value.ovas, 10) || 0,
-						specials: parseInt(value.specials, 10) || 0,
-						dateFinished: null,
-						filesize: parseInt(value.filesize, 10) || 0,
-						inhdd: 1,
-						seasonNumber: parseInt(value.seasonNumber, 10) || 0,
-						firstSeasonTitle: value.firstSeasonTitle,
-						duration: null,
-						releaseSeason: value.releaseSeason,
-						releaseYear: value.releaseYear,
-						encoder: value.encoder,
-						remarks: value.remarks,
-						variants: value.variants,
-						prequel: value.prequel,
-						sequel: value.sequel,
-						offquel: value.offquel,
-					};
-
-					const dateRaw = value.dateFinishedRaw;
-					data.dateFinished = (dateRaw) ? this.parseDateFinished(dateRaw) : moment().unix();
-					data.duration = (value.durationRaw) ? this.parseDuration(value.durationRaw) : 0;
-
 					this.firebase.create("anime", data)
 						.then(() => {
 							Swal.fire({
