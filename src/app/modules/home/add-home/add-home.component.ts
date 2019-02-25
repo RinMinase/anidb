@@ -12,6 +12,7 @@ import * as moment from "moment-mini";
 export class AddHomeComponent implements OnInit {
 
 	addTitleForm: FormGroup;
+	submitted: Boolean = false;
 	options = {
 		quality: [
 			{id: "4K 2160p", label: "4K 2160p"},
@@ -42,26 +43,26 @@ export class AddHomeComponent implements OnInit {
 
 	ngOnInit() {
 		this.addTitleForm = this.formBuilder.group({
-			watchStatus: ["", Validators.required],
-			quality: ["", Validators.required],
+			watchStatus: [""],
+			quality: [""],
 			title: ["", Validators.required],
-			episodes: ["", Validators.required],
-			ovas: ["", Validators.required],
-			specials: ["", Validators.required],
-			dateFinishedRaw: ["", Validators.required],
-			filesize: ["", Validators.required],
-			hdd: ["", Validators.required],
-			seasonNumber: ["", Validators.required],
-			firstSeasonTitle: ["", Validators.required],
-			durationRaw: ["", Validators.required],
-			releaseSeason: ["", Validators.required],
-			releaseYear: ["", Validators.required],
-			encoder: ["", Validators.required],
-			remarks: ["", Validators.required],
-			variants: ["", Validators.required],
-			prequel: ["", Validators.required],
-			sequel: ["", Validators.required],
-			offquel: ["", Validators.required],
+			episodes: [""],
+			ovas: [""],
+			specials: [""],
+			dateFinishedRaw: [""],
+			filesize: [""],
+			hdd: [""],
+			seasonNumber: [""],
+			firstSeasonTitle: [""],
+			durationRaw: [""],
+			releaseSeason: [""],
+			releaseYear: [""],
+			encoder: [""],
+			remarks: [""],
+			variants: [""],
+			prequel: [""],
+			sequel: [""],
+			offquel: [""],
 		});
 
 		this.options.releaseYear = this.iterateYears();
@@ -71,17 +72,24 @@ export class AddHomeComponent implements OnInit {
 		this.addTitleForm.controls.releaseYear.setValue(this.getCurrentYear());
 	}
 
+	get form() {
+		return this.addTitleForm.controls;
+	}
+
 	add() {
-		Swal.fire({
-			title: "Are you sure?",
-			text: "This will save your edits",
-			type: "question",
-			showCancelButton: true,
-		}).then((result) => {
-			if (result.value) {
-				// success
-			}
-		});
+		this.submitted = true;
+		if (this.addTitleForm.valid) {
+			Swal.fire({
+				title: "Are you sure?",
+				text: "This will save your edits",
+				type: "question",
+				showCancelButton: true,
+			}).then((result) => {
+				if (result.value) {
+					// success
+				}
+			});
+		}
 	}
 
 	cancel() {
