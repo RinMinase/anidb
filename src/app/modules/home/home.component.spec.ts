@@ -5,6 +5,7 @@ import { AddHomeComponent } from "./add-home/add-home.component";
 import { ManageHomeComponent } from "./manage-home/manage-home.component";
 import { UpdateHomeComponent } from "./update-home/update-home.component";
 import { ViewHomeComponent } from "./view-home/view-home.component";
+import { RewatchComponent } from "./view-home/rewatch/rewatch.component";
 import { HomeService } from "./home.service";
 
 describe("HomeComponent", () => {
@@ -108,6 +109,28 @@ describe("ViewHomeComponent", () => {
 
 	// beforeEach(() => {
 	// 	fixture = TestBed.createComponent(ViewHomeComponent);
+	// 	component = fixture.componentInstance;
+	// 	fixture.detectChanges();
+	// });
+
+	// it("should create", () => {
+	// 	expect(component).toBeTruthy();
+	// });
+});
+
+describe("RewatchComponent", () => {
+	// let component: RewatchComponent;
+	// let fixture: ComponentFixture<RewatchComponent>;
+
+	// beforeEach(async(() => {
+	// 	TestBed.configureTestingModule({
+	// 		declarations: [ RewatchComponent ],
+	// 	})
+	// 	.compileComponents();
+	// }));
+
+	// beforeEach(() => {
+	// 	fixture = TestBed.createComponent(RewatchComponent);
 	// 	component = fixture.componentInstance;
 	// 	fixture.detectChanges();
 	// });
