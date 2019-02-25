@@ -6,6 +6,7 @@ import * as moment from "moment-mini";
 
 import { FirebaseService } from "@services/firebase.service";
 import { FirebaseQueryBuilder } from "@builders/firebase-query.service";
+import { UtilityService } from "@services/utility.service";
 
 @Component({
 	selector: "app-update-home",
@@ -47,6 +48,7 @@ export class UpdateHomeComponent implements OnInit {
 		private modal: NgbActiveModal,
 		private firebase: FirebaseService,
 		private firebaseQueryBuilder: FirebaseQueryBuilder,
+		private utility: UtilityService,
 	) { }
 
 	ngOnInit() {
@@ -120,7 +122,7 @@ export class UpdateHomeComponent implements OnInit {
 			};
 
 			const dateRaw = value.dateFinishedRaw;
-			data.dateFinished = (dateRaw) ? this.parseDateFinished(dateRaw) : moment().unix();
+			data.dateFinished = (dateRaw) ? this.utility.autofillYear(dateRaw) : moment().unix();
 			data.duration = (value.durationRaw) ? this.parseDuration(value.durationRaw) : 0;
 
 			Swal.fire({
@@ -181,37 +183,6 @@ export class UpdateHomeComponent implements OnInit {
 			sequel: this.data.sequel,
 			offquel,
 		});
-	}
-
-	private parseDateFinished(date: string) {
-		if (date.split(" ").length === 2) {
-			const monthRaw: any = parseInt(date.split(" ")[0], 10) || date.split(" ")[0];
-			const day = parseInt(date.split(" ")[1], 10) || date.split(" ")[1];
-			let month: any;
-
-			if (isNaN(monthRaw)) {
-				month = parseInt(moment(monthRaw, "MMM").format("MM"), 10);
-			} else {
-				month = parseInt(moment(monthRaw, "MM").format("MM"), 10);
-			}
-
-			const yearToday = moment().year();
-			const dateParsed = `${month} ${day} ${yearToday}`;
-			const dateParsedUnix = moment(dateParsed, "MM D YYYY").unix();
-			const dateTodayUnix = moment().unix();
-
-			if (dateParsedUnix > dateTodayUnix) {
-				date += ` ${(moment().year() - 1).toString()}`;
-			} else {
-				date += ` ${(moment().year()).toString()}`;
-			}
-		}
-
-		if ((new Date(date)).toString().indexOf("Invalid Date") === 0) {
-			return moment().unix();
-		} else {
-			return moment(new Date(date)).unix();
-		}
 	}
 
 	private parseDuration(duration: string) {
