@@ -90,6 +90,10 @@ export class UpdateHomeComponent implements OnInit {
 		});
 	}
 
+	edit() {
+
+	}
+
 	private initFormValues() {
 		const dateFinishedRaw = moment(new Date(this.data.dateFinished)).format("MMM D YYYY");
 		const offquel = (this.data.offquel) ? this.data.offquel.join(",") : "";
