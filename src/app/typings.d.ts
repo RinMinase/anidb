@@ -3,4 +3,4 @@ declare module "*.json" {
 	export default value;
 }
 
-declare module 'xlsx/dist/xlsx.core.min';
+declare module "xlsx/dist/xlsx.core.min";
