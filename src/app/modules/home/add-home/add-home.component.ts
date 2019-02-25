@@ -111,7 +111,7 @@ export class AddHomeComponent implements OnInit {
 					};
 
 					if (value.dateFinishedRaw) {
-						data.dateFinished = this.autofillYear(value.dateFinishedRaw);
+						data.dateFinished = this.parseDateFinished(value.dateFinishedRaw);
 					} else {
 						data.dateFinished = moment().unix();
 					}
@@ -135,37 +135,6 @@ export class AddHomeComponent implements OnInit {
 		}).then((result) => {
 			if (result.value) { this.modal.dismiss(); }
 		});
-	}
-
-	private autofillYear(date: string) {
-		if (date.split(" ").length === 2) {
-			const monthRaw: any = parseInt(date.split(" ")[0], 10) || date.split(" ")[0];
-			const day = parseInt(date.split(" ")[1], 10) || date.split(" ")[1];
-			let month: any;
-
-			if (isNaN(monthRaw)) {
-				month = parseInt(moment(monthRaw, "MMM").format("MM"), 10);
-			} else {
-				month = parseInt(moment(monthRaw, "MM").format("MM"), 10);
-			}
-
-			const yearToday = moment().year();
-			const dateParsed = `${month} ${day} ${yearToday}`;
-			const dateParsedUnix = moment(dateParsed, "MM D YYYY").unix();
-			const dateTodayUnix = moment().unix();
-
-			if (dateParsedUnix > dateTodayUnix) {
-				date += ` ${(moment().year() - 1).toString()}`;
-			} else {
-				date += ` ${(moment().year()).toString()}`;
-			}
-		}
-
-		if ((new Date(date)).toString().indexOf("Invalid Date") === 0) {
-			return moment().unix();
-		} else {
-			return moment(new Date(date)).unix();
-		}
 	}
 
 	private getCurrentSeason() {
@@ -199,6 +168,37 @@ export class AddHomeComponent implements OnInit {
 		}
 
 		return years;
+	}
+
+	private parseDateFinished(date: string) {
+		if (date.split(" ").length === 2) {
+			const monthRaw: any = parseInt(date.split(" ")[0], 10) || date.split(" ")[0];
+			const day = parseInt(date.split(" ")[1], 10) || date.split(" ")[1];
+			let month: any;
+
+			if (isNaN(monthRaw)) {
+				month = parseInt(moment(monthRaw, "MMM").format("MM"), 10);
+			} else {
+				month = parseInt(moment(monthRaw, "MM").format("MM"), 10);
+			}
+
+			const yearToday = moment().year();
+			const dateParsed = `${month} ${day} ${yearToday}`;
+			const dateParsedUnix = moment(dateParsed, "MM D YYYY").unix();
+			const dateTodayUnix = moment().unix();
+
+			if (dateParsedUnix > dateTodayUnix) {
+				date += ` ${(moment().year() - 1).toString()}`;
+			} else {
+				date += ` ${(moment().year()).toString()}`;
+			}
+		}
+
+		if ((new Date(date)).toString().indexOf("Invalid Date") === 0) {
+			return moment().unix();
+		} else {
+			return moment(new Date(date)).unix();
+		}
 	}
 
 	private parseDuration(duration: string) {
