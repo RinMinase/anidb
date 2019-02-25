@@ -57,6 +57,17 @@ export class FirebaseService {
 			.then(dataInsert);
 	}
 
+	hardDelete(params: FirebaseQuery) {
+		const { db, id } = params;
+		if (db && id) {
+			return Promise.resolve(firebase.database()
+				.ref(`/${db}/${id}`)
+				.remove());
+		}
+
+		return Promise.reject();
+	}
+
 	retrieve(params?: FirebaseQuery) {
 		const query = params || new FirebaseQuery;
 		const idQuery = (query.id) ? `/${query.id}` : "";
@@ -69,7 +80,7 @@ export class FirebaseService {
 			return this.retrieveWithDescQuery(query);
 		}
 
-		return Promise.reject(0);
+		return Promise.reject();
 	}
 
 	retrieveImageUrl(ref: string) {
@@ -106,7 +117,7 @@ export class FirebaseService {
 				.update(data));
 		}
 
-		return Promise.reject(0);
+		return Promise.reject();
 	}
 
 	private retrieveAll(query: FirebaseQuery) {
@@ -156,6 +167,8 @@ export class FirebaseService {
 	}
 
 	private objectToArray(data: any) {
+		if (!data) { return null; }
+
 		if (!isNaN(Object.keys(data)[0] as any)
 			&& data.constructor.toString().indexOf("Object") !== -1) {
 
