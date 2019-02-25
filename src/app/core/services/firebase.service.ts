@@ -32,6 +32,33 @@ export class FirebaseService {
 		});
 	}
 
+	create(db = "anime", data: any) {
+		let lastIndex: number;
+		const retrieveLast = () => new Promise((resolve) => {
+			firebase.database()
+				.ref(db)
+				.orderByKey()
+				.limitToLast(1)
+				.once("value")
+				.then((finalData) => {
+					lastIndex = parseInt(Object.keys(finalData.val())[0], 10);
+					resolve();
+				});
+		});
+
+		const dataInsert = () => new Promise((resolve) => {
+			firebase.database()
+				.ref(`${db}/${lastIndex + 1}`)
+				.set(data)
+				.then(() => {
+					resolve();
+				});
+		});
+
+		return retrieveLast()
+			.then(dataInsert);
+	}
+
 	retrieve(params?: FirebaseQuery) {
 		const query = params || new FirebaseQuery;
 		const idQuery = (query.id) ? `/${query.id}` : "";
