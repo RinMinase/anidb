@@ -145,7 +145,7 @@ export class ManageHomeComponent implements OnInit {
 	private onChanges() {
 		this.search.valueChanges
 			.pipe(debounceTime(250))
-			.subscribe(value => {
+			.subscribe((value) => {
 				if (value && this.pristineData) {
 					this.data = new Fuse(this.pristineData, this.fuseOptions).search(value);
 					this.searchQuery = value;

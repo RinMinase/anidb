@@ -90,13 +90,13 @@ export class AboutComponent implements OnInit {
 		this.firebase.retrieveImageUrl("/assets/acknowledgements.png")
 			.then((url) => {
 				this.element("div.acknowledgements")
-					.forEach(element => { element.style.backgroundImage = `url(${url})`; });
+					.forEach((element) => { element.style.backgroundImage = `url(${url})`; });
 			});
 
 		this.firebase.retrieveImageUrl("/assets/platforms.png")
 			.then((url) => {
 				this.element("a.platforms")
-					.forEach(element => { element.style.backgroundImage = `url(${url})`; });
+					.forEach((element) => { element.style.backgroundImage = `url(${url})`; });
 			});
 
 		this.firebase.retrieveImageUrl("/assets/user.jpg")

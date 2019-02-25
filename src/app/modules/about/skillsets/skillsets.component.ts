@@ -14,7 +14,7 @@ export class SkillsetsComponent implements OnInit {
 		this.firebase.retrieveImageUrl("/assets/skillsets.png")
 			.then((url) => {
 				this.element(".skillset-sprite")
-					.forEach(element => { element.style.backgroundImage = `url(${url})`; });
+					.forEach((element) => { element.style.backgroundImage = `url(${url})`; });
 			});
 	}
 

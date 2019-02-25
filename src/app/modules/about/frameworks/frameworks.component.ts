@@ -15,7 +15,7 @@ export class FrameworksComponent implements OnInit {
 		this.firebase.retrieveImageUrl("/assets/ngx-frameworks.png")
 			.then((url) => {
 				this.element("a.frameworks")
-					.forEach(element => { element.style.backgroundImage = `url(${url})`; });
+					.forEach((element) => { element.style.backgroundImage = `url(${url})`; });
 			});
 	}
 
