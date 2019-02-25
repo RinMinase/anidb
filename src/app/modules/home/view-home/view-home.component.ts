@@ -8,6 +8,7 @@ import { FirebaseService } from "@services/firebase.service";
 import { FirebaseQueryBuilder } from "@builders/firebase-query.service";
 import { UtilityService } from "@services/utility.service";
 import { UpdateHomeComponent } from "../update-home/update-home.component";
+import { RewatchComponent } from "./rewatch/rewatch.component";
 
 @Component({
 	selector: "app-view-home",
@@ -16,7 +17,7 @@ import { UpdateHomeComponent } from "../update-home/update-home.component";
 })
 export class ViewHomeComponent implements OnInit {
 
-	data: Array<Object> = [];
+	data: any;
 	dataLoaded: Boolean = false;
 	stateId: number;
 
@@ -44,6 +45,22 @@ export class ViewHomeComponent implements OnInit {
 		updateModal.componentInstance.id = this.stateId;
 
 		updateModal.result
+			.then(() => { this.fetchData(); })
+			.catch(() => {});
+	}
+
+	viewRewatch() {
+		const rewatchModal = this.modalService.open(RewatchComponent, {
+			windowClass: "animate bounceInDown",
+			centered: true,
+		});
+
+		const rewatch = (this.data.rewatch) ? this.data.rewatch.split(",") : [];
+
+		rewatchModal.componentInstance.id = this.stateId;
+		rewatchModal.componentInstance.rewatch = rewatch;
+
+		rewatchModal.result
 			.then(() => { this.fetchData(); })
 			.catch(() => {});
 	}

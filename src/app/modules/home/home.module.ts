@@ -44,6 +44,7 @@ const routes: Routes = [{
 	entryComponents: [
 		AddHomeComponent,
 		UpdateHomeComponent,
+		RewatchComponent,
 	],
 })
 export class HomeModule { }

@@ -1,3 +1,58 @@
-<p>
-  rewatch works!
-</p>
+<div>
+	<div class="modal-header">
+		<h4 class="modal-title">Rewatches</h4>
+		<button type="button" class="close" (click)="cancel()"><i>&times;</i></button>
+	</div>
+
+	<div class="modal-body">
+		<form class="row" [formGroup]="rewatchForm" (ngSubmit)="add()">
+			<div class="form-group col-8">
+				<label class="font-weight-bold">Date</label>
+				<input type="text"
+					class="form-control"
+					formControlName="date"
+					[ngClass]="{ 'is-invalid': submitted && form.date.errors }">
+				<div class="invalid-feedback d-block" *ngIf="submitted && form.date.errors">
+					<span *ngIf="form.date.errors.required">Date is required</span>
+				</div>
+			</div>
+			<div class="form-group col-4 pt-4">
+				<button type="submit" class="btn btn-success btn-block mt-1">
+					<i class="fa fa-plus pr-2"></i><span>Add</span>
+				</button>
+			</div>
+		</form>
+		<div class="row">
+			<div class="col-12">
+				<table class="table table-sm">
+					<colgroup>
+						<col width="70%">
+						<col width="30%">
+					</colgroup>
+					<thead><tr><th class="text-center">Date</th><th></th></tr></thead>
+					<tbody>
+						<tr *ngFor="let rewatch of dataRewatch; index as i">
+							<td class="text-center">{{ rewatch }}</td>
+							<td>
+								<button class="btn btn-danger btn-block" (click)="delete(i)">
+									<i class="fa fa-trash"></i>
+									<span class="d-md-inline d-none pl-2">Delete</span>
+								</button>
+							</td>
+						</tr>
+						<tr *ngIf="!dataRewatch.length">
+							<td colspan="2" class="text-center font-italic">No items to show</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal-footer">
+		<button type="button" (click)="cancel()" class="btn btn-secondary">
+			<i class="fa fa-times pr-2"></i>
+			<span>Close</span>
+		</button>
+	</div>
+</div>
