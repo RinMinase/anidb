@@ -10766,6 +10766,11 @@ sver-compat@^1.5.0:
     es6-iterator "^2.0.1"
     es6-symbol "^3.1.1"
 
+sweetalert2@^8.2.4:
+  version "8.2.4"
+  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-8.2.4.tgz#d1f0c7367bc015e83582e86146e88e2508d8a968"
+  integrity sha512-r0Eu4tfloXr6W7RslNOM0kfBeE6Tzs6sYjaKHDoD1pWxLkuxZ5t54GWcQClvkGWa+yqgJri3SXlMWob1mZZBaA==
+
 sweetalert@^0.4.2:
   version "0.4.2"
   resolved "https://registry.yarnpkg.com/sweetalert/-/sweetalert-0.4.2.tgz#fc09ef88948d0f25e4f1232a22149f09e703753e"
@@ -11171,11 +11176,6 @@ uglify-js@3.4.x:
     commander "~2.17.1"
     source-map "~0.6.1"
 
-ui-bootstrap4@^3.0.6:
-  version "3.0.6"
-  resolved "https://registry.yarnpkg.com/ui-bootstrap4/-/ui-bootstrap4-3.0.6.tgz#bec796879455569872a1575786ca643ab00172ea"
-  integrity sha512-Kh38WAu/S8EiyKRMaATkFjsbQplJHvP+g2lxitE5SbjQTDieua8T7d+mQNxbxTjfmJqGtVzsHQCHRmBVdKPeOg==
-
 ultron@~1.1.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/ultron/-/ultron-1.1.1.tgz#9fe1536a10a664a65266a1e3ccf85fd36302bc9c"
@@ -11502,11 +11502,6 @@ vary@~1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
   integrity sha1-IpnwLG3tMNSllhsLn3RSShj2NPw=
-
-velocity-animate@^1.5.2:
-  version "1.5.2"
-  resolved "https://registry.yarnpkg.com/velocity-animate/-/velocity-animate-1.5.2.tgz#5a351d75fca2a92756f5c3867548b873f6c32105"
-  integrity sha512-m6EXlCAMetKztO1ppBhGU1/1MR3IiEevO6ESq6rcrSQ3Q77xYSW13jkfXW88o4xMrkXJhy/U7j4wFR/twMB0Eg==
 
 verror@1.10.0:
   version "1.10.0"
@@ -12100,3 +12095,8 @@ zip-stream@^1.2.0:
     compress-commons "^1.2.0"
     lodash "^4.8.0"
     readable-stream "^2.0.0"
+
+zone.js@^0.8.26:
+  version "0.8.29"
+  resolved "https://registry.yarnpkg.com/zone.js/-/zone.js-0.8.29.tgz#8dce92aa0dd553b50bc5bfbb90af9986ad845a12"
+  integrity sha512-mla2acNCMkWXBD+c+yeUrBUrzOxYMNFdQ6FGfigGGtEVBPJx07BQeJekjt9DmH1FtZek4E9rE1eRR9qQpxACOQ==
