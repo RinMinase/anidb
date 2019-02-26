@@ -22,7 +22,7 @@ export class ManageHomeComponent implements OnInit {
 
 	data: Array<Object> = [];
 	pristineData: Array<Object> = [];
-	dataLoaded: Boolean = false;
+	dataLoaded: boolean = false;
 
 	titleList: Array<string> = [];
 	search = new FormControl("");

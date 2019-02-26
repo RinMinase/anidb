@@ -51,7 +51,7 @@ export class UtilityService {
 		}
 	}
 
-	convertDate(date: string, omitSeconds: Boolean = false, format?: string) {
+	convertDate(date: string, omitSeconds: boolean = false, format?: string) {
 		if (format) { return moment(new Date(date)).format(format); }
 
 		if (!omitSeconds) {

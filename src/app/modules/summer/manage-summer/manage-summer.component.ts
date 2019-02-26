@@ -14,7 +14,7 @@ export class ManageSummerComponent implements OnInit {
 
 	objKeys = Object.keys;
 	data: Array<any> = [];
-	dataLoaded: Boolean = false;
+	dataLoaded: boolean = false;
 	category = "0";
 
 	constructor(
@@ -73,7 +73,7 @@ export class ManageSummerComponent implements OnInit {
 			let qualityHQ = 0;
 			let qualityLQ = 0;
 
-			animeData.map((anime) => {
+			animeData.forEach((anime) => {
 				if (anime.inhdd === 1 && anime.watchStatus <= 1) {
 					if (anime.rewatch) {
 						const rewatch = anime.rewatch.split(",");
@@ -101,11 +101,21 @@ export class ManageSummerComponent implements OnInit {
 								if (lastDate > rewatchDate) { lastDate = rewatchDate; }
 
 								switch (anime.quality) {
-									case "4K 2160p": qualityUHD++; break;
-									case "FHD 1080p": qualityFHD++; break;
-									case "HD 720p": qualityHD++; break;
-									case "HQ 480p": qualityHQ++; break;
-									case "LQ 360p": qualityLQ++; break;
+									case "4K 2160p":
+										qualityUHD++;
+										break;
+									case "FHD 1080p":
+										qualityFHD++;
+										break;
+									case "HD 720p":
+										qualityHD++;
+										break;
+									case "HQ 480p":
+										qualityHQ++;
+										break;
+									case "LQ 360p":
+										qualityLQ++;
+										break;
 								}
 							}
 						});
@@ -131,11 +141,21 @@ export class ManageSummerComponent implements OnInit {
 						if (lastDate > anime.dateFinished) { lastDate = anime.dateFinished; }
 
 						switch (anime.quality) {
-							case "4K 2160p": qualityUHD++; break;
-							case "FHD 1080p": qualityFHD++; break;
-							case "HD 720p": qualityHD++; break;
-							case "HQ 480p": qualityHQ++; break;
-							case "LQ 360p": qualityLQ++; break;
+							case "4K 2160p":
+								qualityUHD++;
+								break;
+							case "FHD 1080p":
+								qualityFHD++;
+								break;
+							case "HD 720p":
+								qualityHD++;
+								break;
+							case "HQ 480p":
+								qualityHQ++;
+								break;
+							case "LQ 360p":
+								qualityLQ++;
+								break;
 						}
 					}
 				}

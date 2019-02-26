@@ -53,7 +53,7 @@ export class AboutComponent implements OnInit {
 		let totalFilesize = 0;
 		let totalEpisodes = 0;
 
-		data.map((value: any) => {
+		data.forEach((value: any) => {
 
 			if (value.watchStatus > 1) { return; }
 
@@ -68,11 +68,21 @@ export class AboutComponent implements OnInit {
 			if (!isNaN( parseInt(value.specials, 10) )) { totalEpisodes += parseInt(value.specials, 10); }
 
 			switch (value.quality) {
-				case "4K 2160p": this.quality.uhd++; break;
-				case "FHD 1080p": this.quality.fhd++; break;
-				case "HD 720p": this.quality.hd++; break;
-				case "HQ 480p": this.quality.hq++; break;
-				case "LQ 360p": this.quality.lq++; break;
+				case "4K 2160p":
+					this.quality.uhd++;
+					break;
+				case "FHD 1080p":
+					this.quality.fhd++;
+					break;
+				case "HD 720p":
+					this.quality.hd++;
+					break;
+				case "HQ 480p":
+					this.quality.hq++;
+					break;
+				case "LQ 360p":
+					this.quality.lq++;
+					break;
 			}
 		});
 

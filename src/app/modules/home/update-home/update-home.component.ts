@@ -19,7 +19,7 @@ export class UpdateHomeComponent implements OnInit {
 	@Input() id: number;
 
 	editTitleForm: FormGroup;
-	submitted: Boolean = false;
+	submitted: boolean = false;
 	options = {
 		quality: [
 			{id: "4K 2160p", label: "4K 2160p"},

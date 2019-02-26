@@ -22,7 +22,7 @@ export class ChangelogComponent implements OnInit {
 		this.github.getCommits().subscribe((response) => {
 			const formattedCommits = {};
 
-			response.body.map((data: any) => {
+			response.body.forEach((data: any) => {
 				if (data.commit.message.indexOf("Merge branch") === -1) {
 					const { date } = data.commit.author;
 					let rawMessage = data.commit.message.split(":");
@@ -69,7 +69,7 @@ export class ChangelogComponent implements OnInit {
 				}
 			});
 
-			Object.keys(formattedCommits).map((index) => {
+			Object.keys(formattedCommits).forEach((index) => {
 				this.githubCommits.push(formattedCommits[index]);
 			});
 		});

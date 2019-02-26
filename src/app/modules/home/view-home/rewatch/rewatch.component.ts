@@ -17,7 +17,7 @@ export class RewatchComponent implements OnInit {
 	@Input() rewatch: Array<any>;
 
 	rewatchForm: FormGroup;
-	submitted: Boolean = false;
+	submitted: boolean = false;
 	dataRewatch: Array<any> = [];
 
 	constructor(

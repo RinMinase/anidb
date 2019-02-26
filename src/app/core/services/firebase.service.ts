@@ -174,7 +174,7 @@ export class FirebaseService {
 
 			const output = [];
 
-			Object.keys(data).map((key, index) => {
+			Object.keys(data).forEach((key, index) => {
 				output[index] = data[key];
 				output[index].id = parseInt(key, 10);
 			});

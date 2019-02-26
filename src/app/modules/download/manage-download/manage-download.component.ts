@@ -13,7 +13,7 @@ export class ManageDownloadComponent implements OnInit {
 
 	objKeys = Object.keys;
 	data = {};
-	dataLoaded: Boolean = false;
+	dataLoaded: boolean = false;
 	category = { year: 0, season: 0 };
 	keys = {};
 	collapse = {
@@ -40,21 +40,19 @@ export class ManageDownloadComponent implements OnInit {
 	}
 
 	private formatData(rawData: Array<any>) {
-		rawData.map((data: any) => {
+		rawData.forEach((data: any) => {
 			const { releaseYear, releaseSeason, watchStatus } = data;
 
-			if (!releaseYear) {
-				if (!releaseSeason) {
-					if (!this.data[0]) {
-						this.data[0] = {0: {}};
-					}
-
-					if (!this.data[0][0][watchStatus]) {
-						this.data[0][0][watchStatus] = [];
-					}
-
-					this.data[0][0][watchStatus].push(data);
+			if (!releaseYear && !releaseSeason) {
+				if (!this.data[0]) {
+					this.data[0] = {0: {}};
 				}
+
+				if (!this.data[0][0][watchStatus]) {
+					this.data[0][0][watchStatus] = [];
+				}
+
+				this.data[0][0][watchStatus].push(data);
 			}
 
 			if (!this.data[releaseYear]) {

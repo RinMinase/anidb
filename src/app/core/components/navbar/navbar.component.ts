@@ -8,7 +8,7 @@ import { FirebaseService } from "@services/firebase.service";
 	templateUrl: "./navbar.component.html",
 })
 export class NavbarComponent implements OnInit {
-	isNavCollapsed: Boolean = false;
+	isNavCollapsed: boolean = false;
 
 	constructor(
 		private router: Router,

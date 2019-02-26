@@ -15,7 +15,7 @@ import { UtilityService } from "@services/utility.service";
 export class AddHomeComponent implements OnInit {
 
 	addTitleForm: FormGroup;
-	submitted: Boolean = false;
+	submitted: boolean = false;
 	options = {
 		quality: [
 			{id: "4K 2160p", label: "4K 2160p"},

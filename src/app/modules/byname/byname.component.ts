@@ -11,8 +11,8 @@ import { UtilityService } from "@services/utility.service";
 export class BynameComponent implements OnInit {
 
 	data: Array<Object> = [];
-	dataLoaded: Boolean = false;
-	collapse: Array<Boolean> = [];
+	dataLoaded: boolean = false;
+	collapse: Array<boolean> = [];
 
 	constructor(
 		private router: Router,

@@ -13,7 +13,7 @@ import { FirebaseService } from "@services/firebase.service";
 export class LastwatchComponent implements OnInit {
 
 	data: Array<Object> = [];
-	dataLoaded = false;
+	dataLoaded: boolean = false;
 	stats: any = {};
 	totalEpisodes = 0;
 
@@ -149,7 +149,7 @@ export class LastwatchComponent implements OnInit {
 		this.stats.episodesPerDay = (this.stats.totalEpisodes / dateDiffLast).toFixed(2);
 		this.stats.episodesPerWeek = (this.stats.episodesPerDay * 7).toFixed(2);
 
-		sortedData.map((value) => {
+		sortedData.forEach((value) => {
 			if (value.dateFinished === "") {
 				value.dateFinished = "-";
 			} else {
@@ -191,6 +191,8 @@ export class LastwatchComponent implements OnInit {
 		} else if (a.title > b.title) {
 			return 1;
 		}
+
+		return 0;
 	}
 
 }

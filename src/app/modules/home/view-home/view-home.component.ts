@@ -18,7 +18,7 @@ import { RewatchComponent } from "./rewatch/rewatch.component";
 export class ViewHomeComponent implements OnInit {
 
 	data: any;
-	dataLoaded: Boolean = false;
+	dataLoaded: boolean = false;
 	stateId: number;
 
 	constructor(

@@ -12,8 +12,8 @@ import { UtilityService } from "@services/utility.service";
 export class ManageHddComponent implements OnInit {
 
 	data: Array<any> = [];
-	dataLoaded: Boolean = false;
-	collapse: Array<Boolean> = [];
+	dataLoaded: boolean = false;
+	collapse: Array<boolean> = [];
 
 	constructor(
 		private router: Router,
@@ -56,7 +56,7 @@ export class ManageHddComponent implements OnInit {
 				entries: [],
 			});
 
-			animeData.map((anime) => {
+			animeData.forEach((anime) => {
 				if (anime.inhdd === 1) {
 					const firstLetter = anime.title.charAt(0).toUpperCase();
 					const from = hdd.from.toUpperCase().charCodeAt();
