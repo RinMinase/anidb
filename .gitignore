@@ -65,3 +65,6 @@ plugins/
 # System Files
 .DS_Store
 Thumbs.db
+
+# Sonar Linting
+.sonarlint/
