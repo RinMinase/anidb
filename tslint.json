@@ -1,7 +1,6 @@
 {
-	"rulesDirectory": [
-		"codelyzer"
-	],
+	"extends": [ "tslint-sonarts" ],
+	"rulesDirectory": [ "codelyzer" ],
 	"rules": {
 		"arrow-parens": true,
 		"arrow-return-shorthand": true,
