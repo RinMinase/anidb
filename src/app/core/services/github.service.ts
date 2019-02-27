@@ -18,6 +18,10 @@ export class GithubService {
 	) { }
 
 	getCommits(): Observable<any> {
+		return this.http.get(this.commits, { observe: "response" });
+	}
+
+	getBranchCommits(): Observable<any> {
 		return this.http.get(this.branchCommits, { observe: "response" });
 	}
 
