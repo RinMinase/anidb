@@ -60,7 +60,8 @@ export class LastwatchComponent implements OnInit {
 			}
 
 			const filesize = this.convertFilesize(value.filesize);
-			const formattedValue = {
+
+			return {
 				dateFinished: value.dateFinished,
 				episodes: value.episodes,
 				filesize,
@@ -70,8 +71,6 @@ export class LastwatchComponent implements OnInit {
 				specials: value.specials,
 				title: value.title,
 			};
-
-			return formattedValue;
 		});
 
 		const formattedDataByRewatch = [];
