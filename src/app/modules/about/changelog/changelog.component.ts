@@ -70,13 +70,11 @@ export class ChangelogComponent implements OnInit {
 			rawMessage[1] = rawMessage[1].replace(new RegExp(", resolved #[0-9]+", "ig"), "");
 		}
 
-		const rawModule = rawMessage[0]
-			.trimStart()
-			.toLowerCase()
-			.replace(new RegExp("_", "g"), " ");
+		const rawModule = rawMessage[0].trimStart().toLowerCase().replace(new RegExp("_", "g"), " ");
 		const module = (rawModule === "anidb" || rawModule === "transition") ? "" : rawModule;
 		const message = rawMessage[1].trimStart();
-		const commitData = {
+
+		return {
 			date: this.utility.convertDate(date),
 			email: commit.author.email,
 			name: commit.author.name,
@@ -84,8 +82,6 @@ export class ChangelogComponent implements OnInit {
 			module,
 			url,
 		};
-
-		return commitData;
 	}
 
 }
