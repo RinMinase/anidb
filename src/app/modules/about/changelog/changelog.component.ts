@@ -13,6 +13,11 @@ export class ChangelogComponent implements OnInit {
 
 	githubCommits = [];
 
+	keywords = {
+		fix: [ "fixed", "removed" ],
+		new: [ "added", "functional", "migrated" ],
+	};
+
 	constructor(
 		private github: GithubService,
 		private utility: UtilityService,
@@ -25,43 +30,21 @@ export class ChangelogComponent implements OnInit {
 			response.body.forEach((data: any) => {
 				if (data.commit.message.indexOf("Merge branch") === -1) {
 					const { date } = data.commit.author;
-					let rawMessage = data.commit.message.split(":");
-
-					if (rawMessage.length === 1) {
-						rawMessage = data.commit.message.split(new RegExp(" (.+)"));
-					}
-
-					if (rawMessage[1].indexOf(", resolved #") !== -1) {
-						rawMessage[1] = rawMessage[1].replace(new RegExp(", resolved #[0-9]+", "ig"), "");
-					}
-
-					const rawModule = rawMessage[0]
-						.trimStart()
-						.toLowerCase()
-						.replace(new RegExp("_", "g"), " ");
-					const module = (rawModule === "anidb" || rawModule === "transition") ? "" : rawModule;
-					const message = rawMessage[1].trimStart();
 					const commitDate = `c${moment(new Date(date)).format("YYYYMMDD")}`;
 					const title = moment(new Date(date)).format("MMM DD, YYYY");
-					const commitData = {
-						date: this.utility.convertDate(date),
-						email: data.commit.author.email,
-						name: data.commit.author.name,
-						message,
-						module,
-						url: data.html_url,
-					};
+					const commitData = this.formatCommit(data.commit, data.html_url);
+					const { message } = commitData;
 
 					if (!formattedCommits[commitDate]) {
 						formattedCommits[commitDate] = { fix: [], new: [], improve: [], title };
 					}
 
-					if (message.indexOf("fixed") !== -1 || message.indexOf("removed") !== -1) {
-						formattedCommits[commitDate].fix.push(commitData);
-					} else if (message.indexOf("added") !== -1
-						|| message.indexOf("functional") !== -1
-						|| message.indexOf("migrated") !== -1) {
+					const isFix = this.keywords.fix.some((key) => message.indexOf(key) >= 0);
+					const isNew = this.keywords.new.some((key) => message.indexOf(key) >= 0);
 
+					if (isFix) {
+						formattedCommits[commitDate].fix.push(commitData);
+					} else if (isNew) {
 						formattedCommits[commitDate].new.push(commitData);
 					} else {
 						formattedCommits[commitDate].improve.push(commitData);
@@ -73,6 +56,36 @@ export class ChangelogComponent implements OnInit {
 				this.githubCommits.push(formattedCommits[index]);
 			});
 		});
+	}
+
+	private formatCommit(commit: any, url: any) {
+		const { date } = commit.author;
+		let rawMessage = commit.message.split(":");
+
+		if (rawMessage.length === 1) {
+			rawMessage = commit.message.split(new RegExp(" (.+)"));
+		}
+
+		if (rawMessage[1].indexOf(", resolved #") !== -1) {
+			rawMessage[1] = rawMessage[1].replace(new RegExp(", resolved #[0-9]+", "ig"), "");
+		}
+
+		const rawModule = rawMessage[0]
+			.trimStart()
+			.toLowerCase()
+			.replace(new RegExp("_", "g"), " ");
+		const module = (rawModule === "anidb" || rawModule === "transition") ? "" : rawModule;
+		const message = rawMessage[1].trimStart();
+		const commitData = {
+			date: this.utility.convertDate(date),
+			email: commit.author.email,
+			name: commit.author.name,
+			message,
+			module,
+			url,
+		};
+
+		return commitData;
 	}
 
 }
