@@ -14,4 +14,21 @@ export class HomeService {
 	changeState(search?: string, id?: number) {
 		this.state.next({ search, id });
 	}
+
+	parseDuration(duration: string) {
+		const durationParts = duration.split(":");
+
+		if (durationParts.length === 3) {
+			const hours = (parseInt(durationParts[0], 10) * 3600);
+			const minutes = (parseInt(durationParts[1], 10) * 60);
+			const seconds = parseInt(durationParts[2], 10);
+			return hours + minutes + seconds;
+		} else if (durationParts.length === 2) {
+			const minutes = (parseInt(durationParts[0], 10) * 60);
+			const seconds = parseInt(durationParts[1], 10);
+			return minutes + seconds;
+		} else {
+			return parseInt(durationParts[0], 10);
+		}
+	}
 }
