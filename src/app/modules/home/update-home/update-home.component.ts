@@ -7,6 +7,7 @@ import * as moment from "moment-mini";
 import { FirebaseService } from "@services/firebase.service";
 import { FirebaseQueryBuilder } from "@builders/firebase-query.service";
 import { UtilityService } from "@services/utility.service";
+import { HomeService } from "../home.service";
 
 @Component({
 	selector: "app-update-home",
@@ -49,6 +50,7 @@ export class UpdateHomeComponent implements OnInit {
 		private firebase: FirebaseService,
 		private firebaseQueryBuilder: FirebaseQueryBuilder,
 		private utility: UtilityService,
+		private service: HomeService,
 	) { }
 
 	ngOnInit() {
@@ -123,30 +125,9 @@ export class UpdateHomeComponent implements OnInit {
 
 			const dateRaw = value.dateFinishedRaw;
 			data.dateFinished = (dateRaw) ? this.utility.autofillYear(dateRaw) : moment().unix();
-			data.duration = (value.durationRaw) ? this.parseDuration(value.durationRaw) : 0;
+			data.duration = (value.durationRaw) ? this.service.parseDuration(value.durationRaw) : 0;
 
-			Swal.fire({
-				title: "Are you sure?",
-				text: "Please confirm the details of your entry",
-				type: "question",
-				showCancelButton: true,
-				confirmButtonColor: "#DD6B55",
-				confirmButtonText: "Yes, I'm sure",
-			}).then((result) => {
-				if (result.value) {
-					this.firebase.update(
-						this.firebaseQueryBuilder.id(this.id).data(this.editTitleForm.value).build(),
-					).then(() => {
-							Swal.fire({
-								title: "Success",
-								text: "Your edits has been saved",
-								type: "success",
-							}).then((successResult) => {
-								if (successResult.value) { this.modal.close(); }
-							});
-						});
-				}
-			});
+			this.updateEntry(data);
 		}
 	}
 
@@ -185,21 +166,28 @@ export class UpdateHomeComponent implements OnInit {
 		});
 	}
 
-	private parseDuration(duration: string) {
-		const durationParts = duration.split(":");
-
-		if (durationParts.length === 3) {
-			const hours = (parseInt(durationParts[0], 10) * 3600);
-			const minutes = (parseInt(durationParts[1], 10) * 60);
-			const seconds = parseInt(durationParts[2], 10);
-			return hours + minutes + seconds;
-		} else if (durationParts.length === 2) {
-			const minutes = (parseInt(durationParts[0], 10) * 60);
-			const seconds = parseInt(durationParts[1], 10);
-			return minutes + seconds;
-		} else {
-			return parseInt(durationParts[0], 10);
-		}
+	private updateEntry(data: any) {
+		Swal.fire({
+			title: "Are you sure?",
+			text: "Please confirm the details of your entry",
+			type: "question",
+			showCancelButton: true,
+			confirmButtonColor: "#DD6B55",
+			confirmButtonText: "Yes, I'm sure",
+		}).then((result) => {
+			if (result.value) {
+				this.firebase.update(this.firebaseQueryBuilder.id(this.id).data(data).build())
+					.then(() => {
+						Swal.fire({
+							title: "Success",
+							text: "Your edits has been saved",
+							type: "success",
+						}).then((successResult) => {
+							if (successResult.value) { this.modal.close(); }
+						});
+					});
+			}
+		});
 	}
 
 }

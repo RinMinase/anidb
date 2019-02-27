@@ -89,37 +89,46 @@ export class ViewHomeComponent implements OnInit {
 			.then(() => {
 				this.firebase.retrieve(this.firebaseQueryBuilder.id(this.stateId).build())
 					.then((data: any) => {
-						if (data.variants) {
-							data.shortTitle = data.variants.split(",")
-								.sort((a: any, b: any) => a.length - b.length)[0];
-						}
-
-						if (data.variants) { data.variants = data.variants.split(","); }
-						if (data.offquel) { data.offquel = data.offquel.split(","); }
-
-						data.filesize = this.utility.convertFilesize(data.filesize);
-						data.dateFinished = moment.unix(data.dateFinished)
-							.format("MMMM DD, YYYY");
-
-						if (data.duration) {
-							const { duration } = data;
-							const hours = (duration / 3600).toFixed(0).padStart(2, "0");
-							const minutes = ((duration % 3600) / 60).toFixed(0).padStart(2, "0");
-							const seconds = ((duration % 3600) % 60).toFixed(0).padStart(2, "0");
-
-							data.duration = { hours, minutes, seconds };
-						}
-
-						if (data.rewatch) {
-							data.rewatchCount = data.rewatch.split(",").length;
-							data.lastRewatch = moment.unix(data.rewatchLast).format("MMMM DD, YYYY");
-						} else {
-							data.rewatchCount = 0;
-						}
-
-						this.data = data;
+						this.data = this.parseData(data);
 						this.dataLoaded = true;
 					}).catch(() => this.router.navigateByUrl("/"));
 			}).catch(() => this.router.navigateByUrl("/login"));
+	}
+
+	private parseData(data: any) {
+		if (data.variants) {
+			data.shortTitle = this.parseVariants(data.variants);
+		}
+
+		if (data.variants) { data.variants = data.variants.split(","); }
+		if (data.offquel) { data.offquel = data.offquel.split(","); }
+
+		data.filesize = this.utility.convertFilesize(data.filesize);
+		data.dateFinished = moment.unix(data.dateFinished).format("MMMM DD, YYYY");
+
+		if (data.duration) {
+			data.duration = this.parseDuration(data.duration);
+		}
+
+		if (data.rewatch) {
+			data.rewatchCount = data.rewatch.split(",").length;
+			data.lastRewatch = moment.unix(data.rewatchLast).format("MMMM DD, YYYY");
+		} else {
+			data.rewatchCount = 0;
+		}
+
+		return data;
+	}
+
+	private parseDuration(duration: number) {
+		const hours = (duration / 3600).toFixed(0).padStart(2, "0");
+		const minutes = ((duration % 3600) / 60).toFixed(0).padStart(2, "0");
+		const seconds = ((duration % 3600) % 60).toFixed(0).padStart(2, "0");
+
+		return { hours, minutes, seconds };
+	}
+
+	private parseVariants(variants: string) {
+		return variants.split(",").sort((a: any, b: any) => a.length - b.length)[0];
 	}
 }
