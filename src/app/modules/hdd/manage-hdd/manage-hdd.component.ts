@@ -57,50 +57,27 @@ export class ManageHddComponent implements OnInit {
 			});
 
 			animeData.forEach((anime) => {
-				if (anime.inhdd === 1) {
-					const firstLetter = anime.title.charAt(0).toUpperCase();
-					const from = hdd.from.toUpperCase().charCodeAt();
-					const to = hdd.to.toUpperCase().charCodeAt();
-					const ranges = [];
+				const firstLetter = anime.title.toUpperCase().charCodeAt();
+				const from = hdd.from.toUpperCase().charCodeAt();
+				const to = hdd.to.toUpperCase().charCodeAt();
 
-					for (let i = 65; i <= 90; i++) {
-						if (i >= from && i <= to) {
-							ranges.push(String.fromCharCode(i));
-						}
-					}
+				const charCode0 = 48;
+				const charCode9 = 57;
+				const isTitleNumeric: boolean = firstLetter >= charCode0
+					&& firstLetter <= charCode9
+					&& String.fromCharCode(from) === "A";
 
-					ranges.some((letter): boolean => {
-						if (letter === "A"
-							&& firstLetter.charCodeAt() >= 48
-							&& firstLetter.charCodeAt() <= 57) {
-
-							this.data[index].entries.push({
-								filesize: this.utility.convertFilesize(anime.filesize),
-								quality: anime.quality,
-								title: anime.title,
-							});
-							totalSize += anime.filesize;
-
-							return;
-						} else if (firstLetter === letter) {
-							this.data[index].entries.push({
-								filesize: this.utility.convertFilesize(anime.filesize),
-								quality: anime.quality,
-								title: anime.title,
-							});
-							totalSize += anime.filesize;
-
-							return;
-						}
+				if (isTitleNumeric || (firstLetter >= from && firstLetter <= to)) {
+					this.data[index].entries.push({
+						filesize: this.utility.convertFilesize(anime.filesize),
+						quality: anime.quality,
+						title: anime.title,
 					});
+					totalSize += anime.filesize;
 				}
 			});
 
-			this.data.map((data) => {
-				data.entries.sort(this.compareFunction);
-
-				return data;
-			});
+			this.data.forEach((data) => data.entries.sort(this.compareFunction));
 
 			const free = ((hdd.size - totalSize) / 1073741824).toFixed(2);
 			const used = (totalSize / 1073741824).toFixed(2);
