@@ -198,8 +198,7 @@ export class UpdateHomeComponent implements OnInit {
 			const seconds = parseInt(durationParts[1], 10);
 			return minutes + seconds;
 		} else {
-			const seconds = parseInt(durationParts[0], 10);
-			return seconds;
+			return parseInt(durationParts[0], 10);
 		}
 	}
 
