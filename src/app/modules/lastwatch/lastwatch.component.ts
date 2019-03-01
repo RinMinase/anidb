@@ -54,7 +54,7 @@ export class LastwatchComponent implements OnInit {
 		const formattedDataByRewatch = this.formatDataByRewatch(dataRewatchLast);
 
 		const formattedData = formattedDataByDate.concat(formattedDataByRewatch);
-		const sortedData = formattedData.sort(this.sortData).slice(0, 20);
+		const sortedData = formattedData.sort(this.utility.sortByDateThenTitle).slice(0, 20);
 
 		let dateFirst: any;
 		let dateLast: any;
@@ -156,25 +156,6 @@ export class LastwatchComponent implements OnInit {
 				};
 			}
 		});
-	}
-
-	private sortData(a: any, b: any) {
-		const aDate = a.rewatchLast || a.dateFinished;
-		const bDate = b.rewatchLast || b.dateFinished;
-
-		if (aDate < bDate) {
-			return 1;
-		} else if (aDate > bDate) {
-			return -1;
-		}
-
-		if (a.title < b.title) {
-			return -1;
-		} else if (a.title > b.title) {
-			return 1;
-		}
-
-		return 0;
 	}
 
 }
