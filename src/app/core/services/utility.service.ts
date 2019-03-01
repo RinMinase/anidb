@@ -80,4 +80,14 @@ export class UtilityService {
 		return 0;
 	}
 
+	sortByTitle(a: any, b: any) {
+		if (a.title < b.title) {
+			return -1;
+		} else if (a.title > b.title) {
+			return 1;
+		}
+	}
+
+
+
 }
