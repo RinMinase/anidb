@@ -134,7 +134,7 @@ export class ManageHomeComponent implements OnInit {
 			}
 		});
 
-		this.data = this.data.sort(this.utility.sortByQualityThenTitle);
+		this.data.sort(this.utility.sortByQualityThenTitle);
 		this.pristineData = [ ...this.data ];
 
 		if (this.search.value) {
