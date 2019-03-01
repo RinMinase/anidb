@@ -30,5 +30,5 @@
     </platform>
     <preference name="android-targetSdkVersion" value="19" />
     <preference name="android-minSdkVersion" value="19" />
-    <engine name="android" spec="^7.0.0" />
+    <engine name="android" spec="^8.0.0" />
 </widget>
