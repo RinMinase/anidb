@@ -13,8 +13,7 @@
   },
   "scripts": {
     "start": "ng serve",
-    "build": "ng build --prod && npm run sw-cache",
-    "build-np": "ng build --prod --no-progress && npm run sw-cache",
+    "build": "ng build --prod --no-progress && npm run sw-cache",
     "build-bh": "ng build --prod --base-href ./ && npm run sw-cache && mv dist www",
     "bundle": "npm run build-bh && npm run bundle-app && npm run bundle-post",
     "bundle-app": "tsc src/assets/res/android/hooks/after_build.ts && cordova build android",
