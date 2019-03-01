@@ -3,8 +3,6 @@ import { Component, OnInit, Input } from "@angular/core";
 import { GithubService } from "@services/github.service";
 import { UtilityService } from "@services/utility.service";
 
-import transitionProgress from "src/assets/transition-progress.json";
-
 @Component({
 	selector: "app-issues",
 	templateUrl: "./issues.component.html",
@@ -17,7 +15,6 @@ export class IssuesComponent implements OnInit {
 
 	githubIssues = [];
 	packageIssues: Object[];
-	transitionProgress = transitionProgress;
 
 	constructor(
 		private github: GithubService,
@@ -27,7 +24,6 @@ export class IssuesComponent implements OnInit {
 	ngOnInit() {
 		this.getGithubIssues();
 		this.getPackageIssues();
-		this.generateTransitionProgress();
 	}
 
 	private getGithubIssues() {
@@ -72,25 +68,6 @@ export class IssuesComponent implements OnInit {
 			severity: "red",
 			version: "0.0.0",
 		}];
-	}
-
-	private generateTransitionProgress() {
-		Object.keys(this.transitionProgress).forEach((key) => {
-			Object.keys(this.transitionProgress[key]).forEach((subkey) => {
-
-				let subkeyTotal = 0;
-				let subkeyFinished = 0;
-
-				this.transitionProgress[key][subkey].forEach((subElement: any) => {
-					subkeyTotal += subElement.points;
-					if (subElement.status === true) { subkeyFinished += subElement.points; }
-				});
-
-				const subkeyPercentage = ((subkeyFinished / subkeyTotal) * 100).toFixed(2);
-				this.transitionProgress[key][subkey].unshift(subkeyPercentage);
-
-			});
-		});
 	}
 
 }
