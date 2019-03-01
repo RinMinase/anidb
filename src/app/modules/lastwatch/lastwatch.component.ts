@@ -4,6 +4,7 @@ import * as moment from "moment-mini";
 
 import { FirebaseQueryBuilder } from "@builders/firebase-query.service";
 import { FirebaseService } from "@services/firebase.service";
+import { UtilityService } from '@services/utility.service';
 
 @Component({
 	selector: "app-lastwatch",
@@ -21,6 +22,7 @@ export class LastwatchComponent implements OnInit {
 		private router: Router,
 		private firebaseQueryBuilder: FirebaseQueryBuilder,
 		private firebase: FirebaseService,
+		private utility: UtilityService,
 	) { }
 
 	ngOnInit() {
@@ -59,7 +61,7 @@ export class LastwatchComponent implements OnInit {
 				this.totalEpisodes += parseInt(value.specials, 10);
 			}
 
-			const filesize = this.convertFilesize(value.filesize);
+			const filesize = this.utility.convertFilesize(value.filesize);
 
 			return {
 				dateFinished: value.dateFinished,
@@ -89,7 +91,7 @@ export class LastwatchComponent implements OnInit {
 					this.totalEpisodes += parseInt(value.specials, 10);
 				}
 
-				const filesize = this.convertFilesize(value.filesize);
+				const filesize = this.utility.convertFilesize(value.filesize);
 				const formattedValue = {
 					dateFinished: value.dateFinished,
 					episodes: value.episodes,
@@ -161,18 +163,6 @@ export class LastwatchComponent implements OnInit {
 
 			this.data.push(value);
 		});
-	}
-
-	private convertFilesize(filesize: any) {
-		filesize = parseFloat(`${filesize}`);
-
-		if (filesize === 0 || filesize === NaN) {
-			return "-";
-		} else if (filesize < 1073741824) {
-			return `${(filesize / 1048576).toFixed(2)} MB`;
-		} else {
-			return `${(filesize / 1073741824).toFixed(2)} GB`;
-		}
 	}
 
 	private sortData(a: any, b: any) {
