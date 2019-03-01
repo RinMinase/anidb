@@ -17,6 +17,8 @@ export class ManageSummerComponent implements OnInit {
 	dataLoaded: boolean = false;
 	category = "0";
 
+	dateFormat = "MMM DD, YYYY";
+
 	constructor(
 		private router: Router,
 		private firebase: FirebaseService,
@@ -57,8 +59,8 @@ export class ManageSummerComponent implements OnInit {
 			this.data.push({
 				summer: {
 					days,
-					end: timeEnd.format("MMM DD, YYYY"),
-					start: timeStart.format("MMM DD, YYYY"),
+					end: timeEnd.format(this.dateFormat),
+					start: timeStart.format(this.dateFormat),
 					title: summer.title,
 				},
 				entries: [],
@@ -94,7 +96,7 @@ export class ManageSummerComponent implements OnInit {
 									quality: anime.quality,
 									specials: anime.specials,
 									title: anime.title,
-									dateFinished: moment.unix(rewatchDate).format("MMM DD, YYYY"),
+									dateFinished: moment.unix(rewatchDate).format(this.dateFormat),
 									rewatchFlag: true,
 								});
 
@@ -134,7 +136,7 @@ export class ManageSummerComponent implements OnInit {
 							quality: anime.quality,
 							specials: anime.specials,
 							title: anime.title,
-							dateFinished: moment.unix(anime.dateFinished).format("MMM DD, YYYY"),
+							dateFinished: moment.unix(anime.dateFinished).format(this.dateFormat),
 							rewatchFlag: false,
 						});
 
@@ -201,8 +203,8 @@ export class ManageSummerComponent implements OnInit {
 	}
 
 	private sortData(a: any, b: any) {
-		const aDate = moment(a.dateFinished, "MMM DD, YYYY").valueOf();
-		const bDate = moment(b.dateFinished, "MMM DD, YYYY").valueOf();
+		const aDate = moment(a.dateFinished, this.dateFormat).valueOf();
+		const bDate = moment(b.dateFinished, this.dateFormat).valueOf();
 
 		if (aDate < bDate) {
 			return 1;
