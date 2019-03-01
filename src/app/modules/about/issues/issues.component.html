@@ -42,7 +42,7 @@
 			</li>
 			<li class="package-issues" *ngFor="let issues of packageIssues | slice: 1">
 				<code class="{{ issues.severity }}">[{{ issues.package }}]</code>
-				<code class="blue">[{{ issues.version }}]</code>
+				<code class="blue pr-2">[{{ issues.version }}]</code>
 				<span>{{ issues.reason }}</span>
 			</li>
 		</ul>
