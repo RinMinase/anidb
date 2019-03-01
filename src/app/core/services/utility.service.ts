@@ -74,6 +74,20 @@ export class UtilityService {
 		return 0;
 	}
 
+	sortByDateStringThenTitle(a: any, b: any) {
+		const dateFormat = "MMM DD, YYYY";
+		const aDate = moment(a.dateFinished, dateFormat).valueOf();
+		const bDate = moment(b.dateFinished, dateFormat).valueOf();
+
+		if (aDate < bDate) { return 1; }
+		if (aDate > bDate) { return -1; }
+
+		if (a.title < b.title) { return -1; }
+		if (a.title > b.title) { return 1; }
+
+		return 0;
+	}
+
 	sortByQualityThenTitle(a: any, b: any) {
 		if (a.quality < b.quality) { return -1; }
 		if (a.quality > b.quality) { return 1; }
