@@ -27,7 +27,7 @@ jobs:
 
       - run:
           name: Building source code
-          command: yarn build-np
+          command: yarn build
 
       - run:
           name: Deploying to Firebase
