@@ -61,4 +61,23 @@ export class UtilityService {
 		}
 	}
 
+	sortByDateThenTitle(a: any, b: any) {
+		const aDate = a.rewatchLast || a.dateFinished;
+		const bDate = b.rewatchLast || b.dateFinished;
+
+		if (aDate < bDate) {
+			return 1;
+		} else if (aDate > bDate) {
+			return -1;
+		}
+
+		if (a.title < b.title) {
+			return -1;
+		} else if (a.title > b.title) {
+			return 1;
+		}
+
+		return 0;
+	}
+
 }
