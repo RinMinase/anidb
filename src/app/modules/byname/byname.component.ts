@@ -80,18 +80,12 @@ export class BynameComponent implements OnInit {
 			this.collapse.push(false);
 
 			Object.assign(this.data[index], {
-				content: contents[index].sort(this.sortByTitle),
+				content: contents[index].sort(this.utility.sortByTitle),
 				filesize: filesizes[index],
 				key: keys[index],
 				panel: index,
 			});
 		});
-	}
-
-	private sortByTitle(a: any, b: any) {
-		if (a.title > b.title) { return 1; }
-		if (a.title < b.title) { return -1; }
-		return 0;
 	}
 
 }

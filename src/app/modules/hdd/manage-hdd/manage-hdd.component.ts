@@ -77,7 +77,7 @@ export class ManageHddComponent implements OnInit {
 				}
 			});
 
-			this.data.forEach((data) => data.entries.sort(this.compareFunction));
+			this.data.forEach((data) => data.entries.sort(this.utility.sortByTitle));
 
 			const free = ((hdd.size - totalSize) / 1073741824).toFixed(2);
 			const used = (totalSize / 1073741824).toFixed(2);
@@ -108,14 +108,6 @@ export class ManageHddComponent implements OnInit {
 
 	panelCollapse(panel: number) {
 		this.collapse[panel - 1] = !this.collapse[panel - 1];
-	}
-
-	private compareFunction(a: any, b: any) {
-		if (a.title.toLowerCase() < b.title.toLowerCase()) {
-			return -1;
-		} else if (a.title.toLowerCase() > b.title.toLowerCase()) {
-			return 1;
-		}
 	}
 
 }

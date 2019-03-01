@@ -134,7 +134,7 @@ export class ManageHomeComponent implements OnInit {
 			}
 		});
 
-		this.data = this.data.sort(this.compareFunction);
+		this.data = this.data.sort(this.utility.sortByQualityThenTitle);
 		this.pristineData = [ ...this.data ];
 
 		if (this.search.value) {
@@ -153,17 +153,4 @@ export class ManageHomeComponent implements OnInit {
 			});
 	}
 
-	private compareFunction(a: any, b: any) {
-		if (a.quality < b.quality) {
-			return -1;
-		} else if (a.quality > b.quality) {
-			return 1;
-		}
-
-		if (a.title < b.title) {
-			return -1;
-		} else if (a.title > b.title) {
-			return 1;
-		}
-	}
 }
