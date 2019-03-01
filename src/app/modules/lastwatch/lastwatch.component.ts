@@ -4,7 +4,7 @@ import * as moment from "moment-mini";
 
 import { FirebaseQueryBuilder } from "@builders/firebase-query.service";
 import { FirebaseService } from "@services/firebase.service";
-import { UtilityService } from '@services/utility.service';
+import { UtilityService } from "@services/utility.service";
 
 @Component({
 	selector: "app-lastwatch",
@@ -17,6 +17,8 @@ export class LastwatchComponent implements OnInit {
 	dataLoaded: boolean = false;
 	stats: any = {};
 	totalEpisodes = 0;
+
+	dateFormat = "MMM DD, YYYY";
 
 	constructor(
 		private router: Router,
@@ -48,7 +50,57 @@ export class LastwatchComponent implements OnInit {
 	}
 
 	private formatData(dataDateFinished: Array<any>, dataRewatchLast: Array<any>) {
-		const formattedDataByDate = dataDateFinished.map((value) => {
+		const formattedDataByDate = this.formatDataByDate(dataDateFinished);
+		const formattedDataByRewatch = this.formatDataByRewatch(dataRewatchLast);
+
+		const formattedData = formattedDataByDate.concat(formattedDataByRewatch);
+		const sortedData = formattedData.sort(this.sortData).slice(0, 20);
+
+		let dateFirst: any;
+		let dateLast: any;
+
+		if (sortedData[0].rewatchLast) {
+			dateFirst = moment.unix(sortedData[0].rewatchLast);
+		} else {
+			dateFirst = moment.unix(sortedData[0].dateFinished);
+		}
+
+		if (sortedData[sortedData.length - 1].rewatchLast) {
+			dateLast = moment.unix(sortedData[sortedData.length - 1].rewatchLast);
+		} else {
+			dateLast = moment.unix(sortedData[sortedData.length - 1].dateFinished);
+		}
+
+		const dateDiffLast = moment().diff(dateLast, "days", true);
+		const singleSeason = this.totalEpisodes / 12;
+
+		this.stats.totalEpisodes = this.totalEpisodes;
+		this.stats.dateFirst = dateFirst.format(this.dateFormat);
+		this.stats.dateLast = dateLast.format(this.dateFormat);
+		this.stats.daysSinceLastDateCounted = moment().diff(dateLast, "days");
+		this.stats.daysSinceLastAnime = moment().diff(dateFirst, "days");
+		this.stats.titlesPerWeek = ((sortedData.length / dateDiffLast) * 7).toFixed(2);
+		this.stats.singleSeasonPerWeek = ((singleSeason / dateDiffLast) * 7).toFixed(2);
+		this.stats.episodesPerDay = (this.stats.totalEpisodes / dateDiffLast).toFixed(2);
+		this.stats.episodesPerWeek = (this.stats.episodesPerDay * 7).toFixed(2);
+
+		sortedData.forEach((value: any) => {
+			if (value.dateFinished === "") {
+				value.dateFinished = "-";
+			} else {
+				value.dateFinished = moment.unix(value.dateFinished).format(this.dateFormat);
+			}
+
+			if (value.rewatchLast) {
+				value.rewatchLast = moment.unix(value.rewatchLast).format(this.dateFormat);
+			}
+
+			this.data.push(value);
+		});
+	}
+
+	private formatDataByDate(data: any) {
+		return data.map((value: any) => {
 			if (!isNaN( parseInt(value.episodes, 10) )) {
 				this.totalEpisodes += parseInt(value.episodes, 10);
 			}
@@ -74,10 +126,10 @@ export class LastwatchComponent implements OnInit {
 				title: value.title,
 			};
 		});
+	}
 
-		const formattedDataByRewatch = [];
-
-		dataRewatchLast.forEach((value: any) => {
+	private formatDataByRewatch(data: any) {
+		return data.map((value: any) => {
 			if (value.rewatchLast) {
 				if (!isNaN( parseInt(value.episodes, 10) )) {
 					this.totalEpisodes += parseInt(value.episodes, 10);
@@ -92,7 +144,7 @@ export class LastwatchComponent implements OnInit {
 				}
 
 				const filesize = this.utility.convertFilesize(value.filesize);
-				const formattedValue = {
+				return {
 					dateFinished: value.dateFinished,
 					episodes: value.episodes,
 					filesize,
@@ -102,66 +154,7 @@ export class LastwatchComponent implements OnInit {
 					specials: value.specials,
 					title: value.title,
 				};
-
-				formattedDataByRewatch.push(formattedValue);
 			}
-		});
-
-		const filteredData = [];
-
-		formattedDataByDate.forEach((valueByDate, indexByDate) => {
-			formattedDataByRewatch.forEach((valueByRewatch, indexByRewatch) => {
-				if (valueByDate.title === valueByRewatch.title) {
-					formattedDataByRewatch.splice(indexByRewatch, 1);
-				}
-			});
-
-			filteredData.push(formattedDataByDate[indexByDate]);
-		});
-
-		const formattedData = formattedDataByDate.concat(formattedDataByRewatch);
-		const sortedData = formattedData.sort(this.sortData).slice(0, 20);
-
-		let dateFirst: any;
-		let dateLast: any;
-
-		if (sortedData[0].rewatchLast) {
-			dateFirst = moment.unix(sortedData[0].rewatchLast);
-		} else {
-			dateFirst = moment.unix(sortedData[0].dateFinished);
-		}
-
-		if (sortedData[sortedData.length - 1].rewatchLast) {
-			dateLast = moment.unix(sortedData[sortedData.length - 1].rewatchLast);
-		} else {
-			dateLast = moment.unix(sortedData[sortedData.length - 1].dateFinished);
-		}
-
-		const dateDiffLast = moment().diff(dateLast, "days", true);
-		const singleSeason = this.stats.totalEpisodes / 12;
-
-		this.stats.totalEpisodes = this.totalEpisodes;
-		this.stats.dateFirst = dateFirst.format("MMM DD, YYYY");
-		this.stats.dateLast = dateLast.format("MMM DD, YYYY");
-		this.stats.daysSinceLastDateCounted = moment().diff(dateLast, "days");
-		this.stats.daysSinceLastAnime = moment().diff(dateFirst, "days");
-		this.stats.titlesPerWeek = ((sortedData.length / dateDiffLast) * 7).toFixed(2);
-		this.stats.singleSeasonPerWeek = ((singleSeason / dateDiffLast) * 7).toFixed(2);
-		this.stats.episodesPerDay = (this.stats.totalEpisodes / dateDiffLast).toFixed(2);
-		this.stats.episodesPerWeek = (this.stats.episodesPerDay * 7).toFixed(2);
-
-		sortedData.forEach((value) => {
-			if (value.dateFinished === "") {
-				value.dateFinished = "-";
-			} else {
-				value.dateFinished = moment.unix(value.dateFinished).format("MMM DD, YYYY");
-			}
-
-			if (value.rewatchLast) {
-				value.rewatchLast = moment.unix(value.rewatchLast).format("MMM DD, YYYY");
-			}
-
-			this.data.push(value);
 		});
 	}
 
