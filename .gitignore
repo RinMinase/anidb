@@ -9,6 +9,7 @@
 /dist
 /tmp
 /out-tsc
+src/assets/res/android/hooks/after_build.js
 
 # Profiling files
 chrome-profiler-events.json
@@ -68,3 +69,4 @@ Thumbs.db
 
 # Sonar Linting
 .sonarlint/
+
