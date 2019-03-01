@@ -17,6 +17,10 @@ export class ManageSummerComponent implements OnInit {
 	dataLoaded: boolean = false;
 	category = "0";
 
+	totalEpisodes: number;
+	totalFilesize: number;
+	quality: any;
+
 	dateFormat = "MMM DD, YYYY";
 
 	constructor(
@@ -66,123 +70,22 @@ export class ManageSummerComponent implements OnInit {
 				entries: [],
 			});
 
-			let totalEpisodes = 0;
-			let totalFilesize = 0;
-			let lastDate = 0;
-			let qualityUHD = 0;
-			let qualityFHD = 0;
-			let qualityHD = 0;
-			let qualityHQ = 0;
-			let qualityLQ = 0;
-
-			animeData.forEach((anime) => {
-				if (anime.inhdd === 1 && anime.watchStatus <= 1) {
-					if (anime.rewatch) {
-						const rewatch = anime.rewatch.split(",");
-
-						rewatch.forEach((date: string) => {
-							const rewatchDate = parseInt(date, 10);
-
-							if (rewatchDate >= summer.timeStart && rewatchDate <= summer.timeEnd) {
-								totalFilesize += anime.filesize;
-								totalEpisodes += anime.episodes;
-								totalEpisodes += anime.ovas;
-								totalEpisodes += anime.specials;
-
-								this.data[index].entries.push({
-									episodes: anime.episodes,
-									filesize: this.utility.convertFilesize(anime.filesize),
-									ovas: anime.ovas,
-									quality: anime.quality,
-									specials: anime.specials,
-									title: anime.title,
-									dateFinished: moment.unix(rewatchDate).format(this.dateFormat),
-									rewatchFlag: true,
-								});
-
-								if (lastDate > rewatchDate) { lastDate = rewatchDate; }
-
-								switch (anime.quality) {
-									case "4K 2160p":
-										qualityUHD++;
-										break;
-									case "FHD 1080p":
-										qualityFHD++;
-										break;
-									case "HD 720p":
-										qualityHD++;
-										break;
-									case "HQ 480p":
-										qualityHQ++;
-										break;
-									case "LQ 360p":
-										qualityLQ++;
-										break;
-								}
-							}
-						});
-					} else if (anime.dateFinished >= summer.timeStart
-						&& anime.dateFinished <= summer.timeEnd) {
-
-						totalFilesize += anime.filesize;
-						totalEpisodes += anime.episodes;
-						totalEpisodes += anime.ovas;
-						totalEpisodes += anime.specials;
-
-						this.data[index].entries.push({
-							episodes: anime.episodes,
-							filesize: this.utility.convertFilesize(anime.filesize),
-							ovas: anime.ovas,
-							quality: anime.quality,
-							specials: anime.specials,
-							title: anime.title,
-							dateFinished: moment.unix(anime.dateFinished).format(this.dateFormat),
-							rewatchFlag: false,
-						});
-
-						if (lastDate > anime.dateFinished) { lastDate = anime.dateFinished; }
-
-						switch (anime.quality) {
-							case "4K 2160p":
-								qualityUHD++;
-								break;
-							case "FHD 1080p":
-								qualityFHD++;
-								break;
-							case "HD 720p":
-								qualityHD++;
-								break;
-							case "HQ 480p":
-								qualityHQ++;
-								break;
-							case "LQ 360p":
-								qualityLQ++;
-								break;
-						}
-					}
-				}
-			});
+			this.processData(animeData, summer, index);
 
 			const { entries } = this.data[index];
-			const sortedEntries = entries.sort(this.sortData);
+			const sortedEntries = entries.sort(this.utility.sortByDateStringThenTitle);
 
 			this.data[index].entries = sortedEntries;
 
 			const totalTitles = this.data[index].entries.length;
 			const titlesPerDay = (totalTitles / days).toFixed(2);
-			const episodesPerDay = (totalEpisodes / days).toFixed(2);
+			const episodesPerDay = (this.totalEpisodes / days).toFixed(2);
 
 			Object.assign(this.data[index].summer, {
-				episodes: totalEpisodes,
+				episodes: this.totalEpisodes,
 				episodesPerDay,
-				filesize: this.utility.convertFilesize(totalFilesize),
-				quality: {
-					uhd: qualityUHD,
-					fhd: qualityFHD,
-					hd: qualityHD,
-					hq: qualityHQ,
-					lq: qualityLQ,
-				},
+				filesize: this.utility.convertFilesize(this.totalFilesize),
+				quality: this.quality,
 				titles: totalTitles,
 				titlesPerDay,
 			});
@@ -195,28 +98,72 @@ export class ManageSummerComponent implements OnInit {
 		const sortedData = [this.data.length];
 		let index = this.data.length - 1;
 
-		this.data.forEach((data) => {
-			sortedData[index--] = data;
-		});
-
+		this.data.forEach((data) => { sortedData[index--] = data; });
 		this.data = sortedData;
 	}
 
-	private sortData(a: any, b: any) {
-		const aDate = moment(a.dateFinished, this.dateFormat).valueOf();
-		const bDate = moment(b.dateFinished, this.dateFormat).valueOf();
+	private processData(animeData: any, summer: any, index: number) {
+		this.totalEpisodes = 0;
+		this.totalFilesize = 0;
+		this.quality = { uhd: 0, fhd: 0, hd: 0, hq: 0, lq: 0 };
 
-		if (aDate < bDate) {
-			return 1;
-		} else if (aDate > bDate) {
-			return -1;
-		}
+		animeData.forEach((anime: any) => {
+			if (anime.watchStatus <= 1) {
+				const isWithinTimeBoundary = anime.dateFinished >= summer.timeStart
+					&& anime.dateFinished <= summer.timeEnd;
 
-		if (a.title < b.title) {
-			return -1;
-		} else if (a.title > b.title) {
-			return 1;
-		}
+				if (anime.rewatch) {
+					this.processRewatch(summer, anime, index);
+				} else if (isWithinTimeBoundary) {
+					this.totalFilesize += anime.filesize;
+					this.totalEpisodes += anime.episodes;
+					this.totalEpisodes += anime.ovas;
+					this.totalEpisodes += anime.specials;
+
+					this.pushToEntries(anime, index, false);
+					this.processQuality(anime.quality);
+				}
+			}
+		});
+	}
+
+	private processQuality(quality: any) {
+		if (quality === "4K 2160p") { this.quality.uhd++; }
+		if (quality === "FHD 1080p") { this.quality.fhd++; }
+		if (quality === "HD 720p") { this.quality.hd++; }
+		if (quality === "HQ 480p") { this.quality.hq++; }
+		if (quality === "LQ 360p") { this.quality.lq++; }
+	}
+
+	private processRewatch(summer: any, anime: any, index: any) {
+		const rewatch = anime.rewatch.split(",");
+
+		rewatch.forEach((date: string) => {
+			const rewatchDate = parseInt(date, 10);
+
+			if (rewatchDate >= summer.timeStart && rewatchDate <= summer.timeEnd) {
+				this.totalFilesize += anime.filesize;
+				this.totalEpisodes += anime.episodes;
+				this.totalEpisodes += anime.ovas;
+				this.totalEpisodes += anime.specials;
+
+				this.pushToEntries(anime, index, true, rewatchDate);
+				this.processQuality(anime.quality);
+			}
+		});
+	}
+
+	private pushToEntries(anime: any, index: number, rewatchFlag: boolean, rewatchDate?: any) {
+		this.data[index].entries.push({
+			episodes: anime.episodes,
+			filesize: this.utility.convertFilesize(anime.filesize),
+			ovas: anime.ovas,
+			quality: anime.quality,
+			specials: anime.specials,
+			title: anime.title,
+			dateFinished: moment.unix(rewatchDate || anime.dateFinished).format(this.dateFormat),
+			rewatchFlag,
+		});
 	}
 
 }
