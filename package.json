@@ -18,7 +18,7 @@
     "bundle-build": "ng build --prod --base-href ./ && npm run sw-cache && mv dist www",
     "bundle-app": "tsc src/assets/res/android/hooks/after_build.ts && cordova build android",
     "bundle-post": "rm -rf www && rm src/assets/res/android/hooks/after_build.js",
-    "sw-cache": "sw-precache --root=dist --config=src/assets/config/sw-precache-config.ts",
+    "sw-cache": "sw-precache --root=dist --config=src/assets/config/sw-precache.ts",
     "test": "ng test",
     "lint": "stylelint src/**/*.scss & ng lint",
     "setup": "cordova platform add android && yarn"
