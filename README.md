@@ -58,6 +58,7 @@ _Add info here_
     │   │   └── ...                     # Other project related files
     │   ├── assets/                     # Project assets
     │   │   ├── config/                 # Project configurations
+    │   │   │   ├── testing/            # Testing configuration files
     │   │   │   ├── firebase*           # Firebase configuration files
     │   │   │   ├── sw-precache.ts      # Service worker configuration file
     │   │   │   ├── webpack.ts          # Extended webpack configuration file
@@ -68,7 +69,6 @@ _Add info here_
     │   │   │       ├── icon/           # Android icons
     │   │   │       └── screen/         # Android splash screens
     │   │   ├── styles/                 # Stylesheet folder
-    │   │   ├── testing/                # Testing configurations
     │   │   ├── favicon.ico             # Web Application icon
     │   │   └── robots.txt              # Robots file
     │   ├── environments/               # Environments folder
