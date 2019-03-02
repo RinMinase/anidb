@@ -1,41 +1,38 @@
 import { Injectable } from "@angular/core";
-import * as moment from "moment-mini";
+import { format, getTime, getYear, parse } from "date-fns";
+import { DateService } from "./date.service";
 
 @Injectable({
 	providedIn: "root",
 })
 export class UtilityService {
 
-	constructor() { }
+	constructor(private date: DateService) { }
 
 	autofillYear(date: string) {
 		if (date.split(" ").length === 2) {
 			const monthRaw: any = parseInt(date.split(" ")[0], 10) || date.split(" ")[0];
-			const day = parseInt(date.split(" ")[1], 10) || date.split(" ")[1];
+			const day = date.split(" ")[1];
 			let month: any;
 
-			if (isNaN(monthRaw)) {
-				month = parseInt(moment(monthRaw, "MMM").format("MM"), 10);
-			} else {
-				month = parseInt(moment(monthRaw, "MM").format("MM"), 10);
-			}
+			month = (isNaN(monthRaw)) ? this.getMonthByName(monthRaw) : format(parse(monthRaw), "MM");
 
-			const yearToday = moment().year();
-			const dateParsed = `${month} ${day} ${yearToday}`;
-			const dateParsedUnix = moment(dateParsed, "MM D YYYY").unix();
-			const dateTodayUnix = moment().unix();
+			const yearToday = getYear(new Date());
+			const dateParsed = `${month}-${day}-${yearToday}`;
+			const dateParsedUnix = this.date.getUnix(parse(dateParsed));
+			const dateTodayUnix = this.date.getUnix();
 
 			if (dateParsedUnix > dateTodayUnix) {
-				date += ` ${(moment().year() - 1).toString()}`;
+				date += ` ${(yearToday - 1).toString()}`;
 			} else {
-				date += ` ${(moment().year()).toString()}`;
+				date += ` ${yearToday.toString()}`;
 			}
 		}
 
 		if ((new Date(date)).toString().indexOf("Invalid Date") === 0) {
-			return moment().unix();
+			return this.date.getUnix();
 		} else {
-			return moment(new Date(date)).unix();
+			return this.date.getUnix(new Date(date));
 		}
 	}
 
@@ -51,13 +48,13 @@ export class UtilityService {
 		}
 	}
 
-	convertDate(date: string, omitSeconds: boolean = false, format?: string) {
-		if (format) { return moment(new Date(date)).format(format); }
+	convertDate(date: string, omitSeconds: boolean = false, dateFormat?: string) {
+		if (dateFormat) { return format(new Date(date), dateFormat); }
 
 		if (!omitSeconds) {
-			return moment(new Date(date)).format("MMM DD, YYYY HH:mm:ss");
+			return format(new Date(date), "MMM DD, YYYY HH:mm:ss");
 		} else {
-			return moment(new Date(date)).format("MMM DD, YYYY HH:mm");
+			return format(new Date(date), "MMM DD, YYYY HH:mm");
 		}
 	}
 
@@ -75,9 +72,8 @@ export class UtilityService {
 	}
 
 	sortByDateStringThenTitle(a: any, b: any) {
-		const dateFormat = "MMM DD, YYYY";
-		const aDate = moment(a.dateFinished, dateFormat).valueOf();
-		const bDate = moment(b.dateFinished, dateFormat).valueOf();
+		const aDate = getTime(new Date(a.dateFinished));
+		const bDate = getTime(new Date(b.dateFinished));
 
 		if (aDate < bDate) { return 1; }
 		if (aDate > bDate) { return -1; }
@@ -102,6 +98,27 @@ export class UtilityService {
 		if (a.title < b.title) { return -1; }
 		if (a.title > b.title) { return 1; }
 		return 0;
+	}
+
+	private getMonthByName(month: string): number {
+		switch (month.toLowerCase()) {
+			case "jan":
+				return 1;
+			case "feb": return 2;
+			case "mar": return 3;
+			case "apr": return 4;
+			case "may": return 5;
+			case "june": return 6;
+			case "jul": return 7;
+			case "aug": return 8;
+			case "sep":
+			case "sept":
+				return 9;
+			case "oct": return 10;
+			case "nov": return 11;
+			case "dec": return 12;
+			default: return 1;
+		}
 	}
 
 }
