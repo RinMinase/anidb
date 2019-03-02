@@ -39,5 +39,9 @@ indent_style = space
 indent_style = space
 indent_size = 2
 
+[*.json]
+indent_style = space
+indent_size = 2
+
 [package.json]
 insert_final_newline = false
