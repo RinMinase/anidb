@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import * as moment from "moment-mini";
+import { parse, format } from "date-fns";
 
 import { FirebaseService } from "@services/firebase.service";
 import { FirebaseQueryBuilder } from "@builders/firebase-query.service";
@@ -52,19 +52,19 @@ export class ManageSummerComponent implements OnInit {
 
 	formatData(summerData: Array<any>, animeData: Array<any>) {
 		summerData.forEach((summer, index) => {
-			const timeStart = moment.unix(summer.timeStart);
-			const today = moment().unix();
-			let timeEnd = moment.unix(summer.timeEnd);
+			const timeStart = parse(summer.timeStart * 1000);
+			const today = new Date();
+			let timeEnd = parse(summer.timeEnd * 1000);
 
-			if (today < timeEnd.unix()) { timeEnd = moment.unix(today); }
+			if (today < timeEnd) { timeEnd = today; }
 
-			const days = timeEnd.diff(timeStart, "days");
+			const days = parseInt(format((timeEnd.getTime() - timeStart.getTime()), "DDD"), 10) - 1;
 
 			this.data.push({
 				summer: {
 					days,
-					end: timeEnd.format(this.dateFormat),
-					start: timeStart.format(this.dateFormat),
+					end: format(timeEnd, this.dateFormat),
+					start: format(timeStart, this.dateFormat),
 					title: summer.title,
 				},
 				entries: [],
@@ -161,7 +161,7 @@ export class ManageSummerComponent implements OnInit {
 			quality: anime.quality,
 			specials: anime.specials,
 			title: anime.title,
-			dateFinished: moment.unix(rewatchDate || anime.dateFinished).format(this.dateFormat),
+			dateFinished: format(parse(rewatchDate * 1000 || anime.dateFinished * 1000), this.dateFormat),
 			rewatchFlag,
 		});
 	}
