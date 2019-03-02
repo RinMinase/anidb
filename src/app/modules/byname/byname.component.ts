@@ -76,7 +76,7 @@ export class BynameComponent implements OnInit {
 			filesizes[index] = this.utility.convertFilesize(element, "-");
 		});
 
-		contents.forEach((element, index) => {
+		contents.forEach((_element, index) => {
 			this.collapse.push(false);
 
 			Object.assign(this.data[index], {
