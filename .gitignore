@@ -10,6 +10,7 @@
 /tmp
 /out-tsc
 src/assets/res/android/hooks/after_build.js
+src/assets/config/sw-precache-config.js
 
 # Profiling files
 chrome-profiler-events.json
