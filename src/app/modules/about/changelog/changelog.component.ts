@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import * as moment from "moment-mini";
+import { format } from "date-fns";
 
 import { GithubService } from "@services/github.service";
 import { UtilityService } from "@services/utility.service";
@@ -30,8 +30,8 @@ export class ChangelogComponent implements OnInit {
 			response.body.forEach((data: any) => {
 				if (data.commit.message.indexOf("Merge branch") === -1) {
 					const { date } = data.commit.author;
-					const commitDate = `c${moment(new Date(date)).format("YYYYMMDD")}`;
-					const title = moment(new Date(date)).format("MMM DD, YYYY");
+					const commitDate = `c${format(new Date(date), "YYYYMMDD")}`;
+					const title = format(new Date(date), "MMM DD, YYYY");
 					const commitData = this.formatCommit(data.commit, data.html_url);
 					const { message } = commitData;
 

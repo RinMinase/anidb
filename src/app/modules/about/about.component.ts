@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import * as moment from "moment-mini";
+import { getMonth, parse } from "date-fns";
 
 import { FirebaseService } from "@services/firebase.service";
 
@@ -57,7 +57,7 @@ export class AboutComponent implements OnInit {
 
 			if (value.watchStatus > 1) { return; }
 
-			const month = moment.unix(value.dateFinished).month();
+			const month = getMonth(parse(value.dateFinished * 1000));
 			if (month > -1 && month < 12) { this.chart.data[0].data[month]++; }
 
 			totalDuration += parseInt(value.duration, 10);
