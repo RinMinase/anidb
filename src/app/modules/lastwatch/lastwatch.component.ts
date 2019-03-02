@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import * as moment from "moment-mini";
+import { parse, format } from "date-fns";
 
 import { FirebaseQueryBuilder } from "@builders/firebase-query.service";
 import { FirebaseService } from "@services/firebase.service";
@@ -56,29 +56,30 @@ export class LastwatchComponent implements OnInit {
 		const formattedData = formattedDataByDate.concat(formattedDataByRewatch);
 		const sortedData = formattedData.sort(this.utility.sortByDateThenTitle).slice(0, 20);
 
-		let dateFirst: any;
-		let dateLast: any;
+		let dateFirst: Date;
+		let dateLast: Date;
 
 		if (sortedData[0].rewatchLast) {
-			dateFirst = moment.unix(sortedData[0].rewatchLast);
+			dateFirst = parse(sortedData[0].rewatchLast * 1000);
 		} else {
-			dateFirst = moment.unix(sortedData[0].dateFinished);
+			dateFirst = parse(sortedData[0].dateFinished * 1000);
 		}
 
 		if (sortedData[sortedData.length - 1].rewatchLast) {
-			dateLast = moment.unix(sortedData[sortedData.length - 1].rewatchLast);
+			dateLast = parse(sortedData[sortedData.length - 1].rewatchLast * 1000);
 		} else {
-			dateLast = moment.unix(sortedData[sortedData.length - 1].dateFinished);
+			dateLast = parse(sortedData[sortedData.length - 1].dateFinished * 1000);
 		}
 
-		const dateDiffLast = moment().diff(dateLast, "days", true);
+		const oneDay = 24 * 60 * 60 * 1000;
+		const dateDiffLast = ((new Date).getTime() - dateLast.getTime()) / oneDay;
 		const singleSeason = this.totalEpisodes / 12;
 
 		this.stats.totalEpisodes = this.totalEpisodes;
-		this.stats.dateFirst = dateFirst.format(this.dateFormat);
-		this.stats.dateLast = dateLast.format(this.dateFormat);
-		this.stats.daysSinceLastDateCounted = moment().diff(dateLast, "days");
-		this.stats.daysSinceLastAnime = moment().diff(dateFirst, "days");
+		this.stats.dateFirst = format(dateFirst, this.dateFormat);
+		this.stats.dateLast = format(dateLast, this.dateFormat);
+		this.stats.daysSinceLastDateCounted = format((new Date).getTime() - dateLast.getTime(), "DDD");
+		this.stats.daysSinceLastAnime = format((new Date).getTime() - dateFirst.getTime(), "DDD");
 		this.stats.titlesPerWeek = ((sortedData.length / dateDiffLast) * 7).toFixed(2);
 		this.stats.singleSeasonPerWeek = ((singleSeason / dateDiffLast) * 7).toFixed(2);
 		this.stats.episodesPerDay = (this.stats.totalEpisodes / dateDiffLast).toFixed(2);
@@ -88,11 +89,11 @@ export class LastwatchComponent implements OnInit {
 			if (value.dateFinished === "") {
 				value.dateFinished = "-";
 			} else {
-				value.dateFinished = moment.unix(value.dateFinished).format(this.dateFormat);
+				value.dateFinished = format(parse(value.dateFinished * 1000), this.dateFormat);
 			}
 
 			if (value.rewatchLast) {
-				value.rewatchLast = moment.unix(value.rewatchLast).format(this.dateFormat);
+				value.rewatchLast = format(parse(value.rewatchLast * 1000), this.dateFormat);
 			}
 
 			this.data.push(value);
