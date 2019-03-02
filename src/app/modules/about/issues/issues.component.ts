@@ -72,6 +72,11 @@ export class IssuesComponent implements OnInit {
 			reason: "Angular 7 only supports typescript versions below 3.3",
 			severity: "orange",
 			version: "3.3.3333",
+		}, {
+			package: "webpack",
+			reason: "Angular 7 builder only supports webpack version 4.29.0",
+			severity: "green",
+			version: "4.29.6",
 		}];
 	}
 
