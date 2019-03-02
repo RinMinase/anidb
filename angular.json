@@ -1,121 +1,121 @@
 {
-	"$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-	"version": 1,
-	"newProjectRoot": "projects",
-	"projects": {
-		"anidb": {
-			"root": "",
-			"sourceRoot": "src",
-			"projectType": "application",
-			"prefix": "app",
-			"schematics": {
-				"@schematics/angular:module": { "lintFix": true },
-				"@schematics/angular:service": { "lintFix": true },
-				"@schematics/angular:directive": { "lintFix": true },
-				"@schematics/angular:component": {
-					"style": "scss",
-					"lintFix": true
-				}
-			},
-			"architect": {
-				"build": {
-					"builder": "@angular-devkit/build-angular:browser",
-					"options": {
-						"outputPath": "dist",
-						"index": "src/index.html",
-						"main": "src/index.ts",
-						"tsConfig": "src/assets/config/tsconfig.app.json",
-						"assets": [{
-							"glob": "favicon.ico",
-							"input": "src/assets/",
-							"output": "/assets"
-						}, {
-							"glob": "robots.txt",
-							"input": "src/assets/",
-							"output": "/"
-						}, {
-							"glob": "**/*.woff2",
-							"input": "node_modules/font-awesome/fonts",
-							"output": "/assets/fonts"
-						}, {
-							"glob": "**/*.woff2",
-							"input": "node_modules/roboto-fontface/fonts/roboto",
-							"output": "/assets/fonts"
-						}],
-						"styles": ["src/index.scss"],
-						"scripts": []
-					},
-					"configurations": {
-						"production": {
-							"fileReplacements": [{
-								"replace": "src/environments/environment.ts",
-								"with": "src/environments/environment.prod.ts"
-							}],
-							"optimization": true,
-							"outputHashing": "all",
-							"sourceMap": false,
-							"extractCss": true,
-							"namedChunks": false,
-							"aot": true,
-							"extractLicenses": false,
-							"vendorChunk": false,
-							"buildOptimizer": true,
-							"budgets": [{
-								"type": "initial",
-								"maximumWarning": "2mb",
-								"maximumError": "5mb"
-							}]
-						}
-					}
-				},
-				"serve": {
-					"builder": "@angular-devkit/build-angular:dev-server",
-					"options": {
-						"port": 3000,
-						"browserTarget": "anidb:build",
-						"sourceMap": true,
-						"progress": false
-					},
-					"configurations": {
-						"production": { "browserTarget": "anidb:build:production" }
-					}
-				},
-				"extract-i18n": {
-					"builder": "@angular-devkit/build-angular:extract-i18n",
-					"options": { "browserTarget": "anidb:build" }
-				},
-				"test": {
-					"builder": "@angular-devkit/build-angular:karma",
-					"options": {
-						"main": "src/assets/testing/test.ts",
-						"tsConfig": "src/assets/config/tsconfig.spec.json",
-						"karmaConfig": "src/assets/testing/karma.conf.ts",
-						"styles": ["src/index.scss"],
-						"scripts": [],
-						"assets": [{
-							"glob": "favicon.ico",
-							"input": "src/assets/",
-							"output": "/assets"
-						}, {
-							"glob": "**/*.woff2",
-							"input": "node_modules/font-awesome/fonts",
-							"output": "/assets/fonts"
-						}, {
-							"glob": "**/*.woff2",
-							"input": "node_modules/roboto-fontface/fonts/roboto",
-							"output": "/assets/fonts"
-						}]
-					}
-				},
-				"lint": {
-					"builder": "@angular-devkit/build-angular:tslint",
-					"options": {
-						"tsConfig": [ "src/assets/config/tsconfig.app.json", "src/assets/config/tsconfig.spec.json" ],
-						"exclude": [ "**/node_modules/**", "**/*.spec.ts" ]
-					}
-				}
-			}
-		}
-	},
-	"defaultProject": "anidb"
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "anidb": {
+      "root": "",
+      "sourceRoot": "src",
+      "projectType": "application",
+      "prefix": "app",
+      "schematics": {
+        "@schematics/angular:module": { "lintFix": true },
+        "@schematics/angular:service": { "lintFix": true },
+        "@schematics/angular:directive": { "lintFix": true },
+        "@schematics/angular:component": {
+          "style": "scss",
+          "lintFix": true
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist",
+            "index": "src/index.html",
+            "main": "src/index.ts",
+            "tsConfig": "src/assets/config/tsconfig.app.json",
+            "assets": [{
+              "glob": "favicon.ico",
+              "input": "src/assets/",
+              "output": "/assets"
+            }, {
+              "glob": "robots.txt",
+              "input": "src/assets/",
+              "output": "/"
+            }, {
+              "glob": "**/*.woff2",
+              "input": "node_modules/font-awesome/fonts",
+              "output": "/assets/fonts"
+            }, {
+              "glob": "**/*.woff2",
+              "input": "node_modules/roboto-fontface/fonts/roboto",
+              "output": "/assets/fonts"
+            }],
+            "styles": ["src/index.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [{
+                "replace": "src/environments/environment.ts",
+                "with": "src/environments/environment.prod.ts"
+              }],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": false,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [{
+                "type": "initial",
+                "maximumWarning": "2mb",
+                "maximumError": "5mb"
+              }]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "port": 3000,
+            "browserTarget": "anidb:build",
+            "sourceMap": true,
+            "progress": false
+          },
+          "configurations": {
+            "production": { "browserTarget": "anidb:build:production" }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": { "browserTarget": "anidb:build" }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "src/assets/testing/test.ts",
+            "tsConfig": "src/assets/config/tsconfig.spec.json",
+            "karmaConfig": "src/assets/testing/karma.conf.ts",
+            "styles": ["src/index.scss"],
+            "scripts": [],
+            "assets": [{
+              "glob": "favicon.ico",
+              "input": "src/assets/",
+              "output": "/assets"
+            }, {
+              "glob": "**/*.woff2",
+              "input": "node_modules/font-awesome/fonts",
+              "output": "/assets/fonts"
+            }, {
+              "glob": "**/*.woff2",
+              "input": "node_modules/roboto-fontface/fonts/roboto",
+              "output": "/assets/fonts"
+            }]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [ "src/assets/config/tsconfig.app.json", "src/assets/config/tsconfig.spec.json" ],
+            "exclude": [ "**/node_modules/**", "**/*.spec.ts" ]
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "anidb"
 }
