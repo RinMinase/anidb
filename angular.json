@@ -89,9 +89,9 @@
         "test": {
           "builder": "ngx-build-plus:karma",
           "options": {
-            "main": "src/assets/testing/test.ts",
+            "main": "src/assets/config/testing/test.ts",
             "tsConfig": "src/assets/config/tsconfig.spec.json",
-            "karmaConfig": "src/assets/testing/karma.conf.ts",
+            "karmaConfig": "src/assets/config/testing/karma.conf.ts",
             "styles": [ "src/index.scss" ],
             "scripts": [],
             "assets": [{

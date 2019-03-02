@@ -4,6 +4,6 @@
     "outDir": "../out-tsc/app",
     "types": [ "node" ]
   },
-  "exclude": [ "../testing/test.ts", "../../**/*.spec.ts", "../*.ts" ],
+  "exclude": [ "../../**/*.spec.ts", "../*.ts" ],
   "include": [ "../../**/*" ]
 }
