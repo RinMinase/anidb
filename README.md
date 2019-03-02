@@ -58,7 +58,10 @@ _Add info here_
     │   │   └── ...                     # Other project related files
     │   ├── assets/                     # Project assets
     │   │   ├── config/                 # Project configurations
-    │   │   ├── firebase/               # Firebase configurations
+    │   │   │   ├── firebase*           # Firebase configuration files
+    │   │   │   ├── sw-precache.ts      # Service worker configuration file
+    │   │   │   ├── webpack.ts          # Extended webpack configuration file
+    │   │   │   └── ...                 # Other configuration files
     │   │   ├── res/                    # Cordova resources folder
     │   │   │   └── android/            # Android resources
     │   │   │       ├── hooks/          # Android build hooks
