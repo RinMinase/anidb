@@ -12,8 +12,8 @@
     "url": "https://github.com/RinMinase/anidb"
   },
   "scripts": {
-    "start": "ng serve",
-    "build": "ng build --prod --no-progress && npm run sw-cache",
+    "start": "ng serve --extra-webpack-config src/assets/config/webpack.ts",
+    "build": "ng build --prod --no-progress --extra-webpack-config src/assets/config/webpack.ts && npm run sw-cache",
     "bundle": "npm run bundle-build && npm run bundle-app && npm run bundle-post",
     "bundle-build": "ng build --prod --base-href ./ && npm run sw-cache && mv dist www",
     "bundle-app": "tsc src/assets/res/android/hooks/after_build.ts && cordova build android",
