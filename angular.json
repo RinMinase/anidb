@@ -60,6 +60,7 @@
               "extractLicenses": false,
               "vendorChunk": false,
               "buildOptimizer": true,
+              "extraWebpackConfig": "src/assets/config/webpack.ts",
               "budgets": [{
                 "type": "initial",
                 "maximumWarning": "2mb",
@@ -74,7 +75,8 @@
             "port": 3000,
             "browserTarget": "anidb:build",
             "sourceMap": true,
-            "progress": false
+            "progress": false,
+            "extraWebpackConfig": "src/assets/config/webpack.ts"
           },
           "configurations": {
             "production": { "browserTarget": "anidb:build:production" }
