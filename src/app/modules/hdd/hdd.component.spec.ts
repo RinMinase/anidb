@@ -1,7 +1,7 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+// import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { HddComponent } from "./hdd.component";
-import { ManageHddComponent } from "./manage-hdd/manage-hdd.component";
+// import { HddComponent } from "./hdd.component";
+// import { ManageHddComponent } from "./manage-hdd/manage-hdd.component";
 
 describe("HddComponent", () => {
 	// let component: HddComponent;

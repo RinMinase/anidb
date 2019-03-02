@@ -1,12 +1,12 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+// import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { HomeComponent } from "./home.component";
-import { AddHomeComponent } from "./add-home/add-home.component";
-import { ManageHomeComponent } from "./manage-home/manage-home.component";
-import { UpdateHomeComponent } from "./update-home/update-home.component";
-import { ViewHomeComponent } from "./view-home/view-home.component";
-import { RewatchComponent } from "./view-home/rewatch/rewatch.component";
-import { HomeService } from "./home.service";
+// import { HomeComponent } from "./home.component";
+// import { AddHomeComponent } from "./add-home/add-home.component";
+// import { ManageHomeComponent } from "./manage-home/manage-home.component";
+// import { UpdateHomeComponent } from "./update-home/update-home.component";
+// import { ViewHomeComponent } from "./view-home/view-home.component";
+// import { RewatchComponent } from "./view-home/rewatch/rewatch.component";
+// import { HomeService } from "./home.service";
 
 describe("HomeComponent", () => {
 	// let component: HomeComponent;

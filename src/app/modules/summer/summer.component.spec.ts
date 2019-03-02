@@ -1,7 +1,7 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+// import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { SummerComponent } from "./summer.component";
-import { ManageSummerComponent } from "./manage-summer/manage-summer.component";
+// import { SummerComponent } from "./summer.component";
+// import { ManageSummerComponent } from "./manage-summer/manage-summer.component";
 
 describe("SummerComponent", () => {
 	// let component: SummerComponent;

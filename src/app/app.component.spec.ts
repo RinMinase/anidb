@@ -6,13 +6,13 @@ import { AppComponent } from "./app.component";
 import { NavbarComponent } from "@components/navbar/navbar.component";
 import { FooterComponent } from "@components/footer/footer.component";
 
-import { FuseOptionsBuilder } from "@builders/fuse-options.service";
-import { FirebaseQueryBuilder } from "@builders/firebase-query.service";
+// import { FuseOptionsBuilder } from "@builders/fuse-options.service";
+// import { FirebaseQueryBuilder } from "@builders/firebase-query.service";
 
-import { GithubService } from "@services/github.service";
-import { FirebaseService } from "@services/firebase.service";
-import { UtilityService } from "@services/utility.service";
-import { DateService } from "@services/date.service";
+// import { GithubService } from "@services/github.service";
+// import { FirebaseService } from "@services/firebase.service";
+// import { UtilityService } from "@services/utility.service";
+// import { DateService } from "@services/date.service";
 
 describe("AppComponent", () => {
 	beforeEach(async(() => {

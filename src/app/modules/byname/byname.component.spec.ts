@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+// import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { BynameComponent } from "./byname.component";
+// import { BynameComponent } from "./byname.component";
 
 describe("BynameComponent", () => {
 	// let component: BynameComponent;

@@ -1,7 +1,7 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+// import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { DownloadComponent } from "./download.component";
-import { ManageDownloadComponent } from "./manage-download/manage-download.component";
+// import { DownloadComponent } from "./download.component";
+// import { ManageDownloadComponent } from "./manage-download/manage-download.component";
 
 describe("DownloadComponent", () => {
 	// let component: DownloadComponent;

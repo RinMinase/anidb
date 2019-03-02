@@ -1,13 +1,13 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+// import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { AboutComponent } from "./about.component";
-import { UnitSpecsComponent } from "./unit-specs/unit-specs.component";
-import { FrameworksComponent } from "./frameworks/frameworks.component";
-import { SkillsetsComponent } from "./skillsets/skillsets.component";
-import { SkillsetComponent } from "./skillsets/skillset/skillset.component";
-import { ChangelogComponent } from "./changelog/changelog.component";
-import { IssuesComponent } from "./issues/issues.component";
-import { DeveloperComponent } from "./developer/developer.component";
+// import { AboutComponent } from "./about.component";
+// import { UnitSpecsComponent } from "./unit-specs/unit-specs.component";
+// import { FrameworksComponent } from "./frameworks/frameworks.component";
+// import { SkillsetsComponent } from "./skillsets/skillsets.component";
+// import { SkillsetComponent } from "./skillsets/skillset/skillset.component";
+// import { ChangelogComponent } from "./changelog/changelog.component";
+// import { IssuesComponent } from "./issues/issues.component";
+// import { DeveloperComponent } from "./developer/developer.component";
 
 describe("AboutComponent", () => {
 	// let component: AboutComponent;
