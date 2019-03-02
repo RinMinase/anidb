@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import Swal from "sweetalert2";
-import * as moment from "moment-mini";
+import { format } from "date-fns";
 
 import { FirebaseService } from "@services/firebase.service";
 import { FirebaseQueryBuilder } from "@builders/firebase-query.service";
@@ -109,7 +109,7 @@ export class ViewHomeComponent implements OnInit {
 		if (data.offquel) { data.offquel = data.offquel.split(","); }
 
 		data.filesize = this.utility.convertFilesize(data.filesize);
-		data.dateFinished = moment.unix(data.dateFinished).format("MMMM DD, YYYY");
+		data.dateFinished = format(data.dateFinished * 1000, "MMMM DD, YYYY");
 
 		if (data.duration) {
 			data.duration = this.parseDuration(data.duration);
@@ -117,7 +117,7 @@ export class ViewHomeComponent implements OnInit {
 
 		if (data.rewatch) {
 			data.rewatchCount = data.rewatch.split(",").length;
-			data.lastRewatch = moment.unix(data.rewatchLast).format("MMMM DD, YYYY");
+			data.lastRewatch = format(data.rewatchLast * 1000, "MMMM DD, YYYY");
 		} else {
 			data.rewatchCount = 0;
 		}

@@ -1,13 +1,14 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
+import { format } from "date-fns";
 import Swal from "sweetalert2";
-import * as moment from "moment-mini";
 
 import { FirebaseService } from "@services/firebase.service";
 import { FirebaseQueryBuilder } from "@builders/firebase-query.service";
 import { UtilityService } from "@services/utility.service";
 import { HomeService } from "../home.service";
+import { DateService } from "@services/date.service";
 
 @Component({
 	selector: "app-update-home",
@@ -47,6 +48,7 @@ export class UpdateHomeComponent implements OnInit {
 	constructor(
 		private formBuilder: FormBuilder,
 		private modal: NgbActiveModal,
+		private date: DateService,
 		private firebase: FirebaseService,
 		private firebaseQueryBuilder: FirebaseQueryBuilder,
 		private utility: UtilityService,
@@ -124,7 +126,7 @@ export class UpdateHomeComponent implements OnInit {
 			};
 
 			const dateRaw = value.dateFinishedRaw;
-			data.dateFinished = (dateRaw) ? this.utility.autofillYear(dateRaw) : moment().unix();
+			data.dateFinished = (dateRaw) ? this.utility.autofillYear(dateRaw) : this.date.getUnix();
 			data.duration = (value.durationRaw) ? this.service.parseDuration(value.durationRaw) : 0;
 
 			this.updateEntry(data);
@@ -132,7 +134,7 @@ export class UpdateHomeComponent implements OnInit {
 	}
 
 	private initFormValues() {
-		const dateFinishedRaw = moment(new Date(this.data.dateFinished)).format("MMM D YYYY");
+		const dateFinishedRaw = format(new Date(this.data.dateFinished), "MMM D YYYY");
 		const offquel = (this.data.offquel) ? this.data.offquel.join(",") : "";
 		const variants = (this.data.variants) ? this.data.variants.join(",") : "";
 

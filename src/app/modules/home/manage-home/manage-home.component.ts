@@ -3,7 +3,7 @@ import { Router } from "@angular/router";
 import { FormControl } from "@angular/forms";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { debounceTime } from "rxjs/operators";
-import * as moment from "moment-mini";
+import { format } from "date-fns";
 import * as Fuse from "fuse.js";
 
 import { environment } from "@env/environment";
@@ -111,9 +111,9 @@ export class ManageHomeComponent implements OnInit {
 				let dateFinished: string;
 
 				if (!value.rewatchLast) {
-					dateFinished = moment.unix(value.dateFinished).format("MMM DD, YYYY");
+					dateFinished = format(value.dateFinished * 1000, "MMM DD, YYYY");
 				} else {
-					dateFinished = moment.unix(value.rewatchLast).format("MMM DD, YYYY");
+					dateFinished = format(value.rewatchLast * 1000, "MMM DD, YYYY");
 				}
 
 				this.titleList.push(value.title);

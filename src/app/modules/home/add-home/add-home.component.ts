@@ -2,8 +2,9 @@ import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
 import Swal from "sweetalert2";
-import * as moment from "moment-mini";
+import { getMonth, getYear } from "date-fns";
 
+import { DateService } from "@services/date.service";
 import { FirebaseService } from "@services/firebase.service";
 import { UtilityService } from "@services/utility.service";
 import { HomeService } from "../home.service";
@@ -43,6 +44,7 @@ export class AddHomeComponent implements OnInit {
 	constructor(
 		private formBuilder: FormBuilder,
 		private modal: NgbActiveModal,
+		private date: DateService,
 		private firebase: FirebaseService,
 		private utility: UtilityService,
 		private service: HomeService,
@@ -112,7 +114,7 @@ export class AddHomeComponent implements OnInit {
 			};
 
 			const dateRaw = value.dateFinishedRaw;
-			data.dateFinished = (dateRaw) ? this.utility.autofillYear(dateRaw) : moment().unix();
+			data.dateFinished = (dateRaw) ? this.utility.autofillYear(dateRaw) : this.date.getUnix();
 			data.duration = (value.durationRaw) ? this.service.parseDuration(value.durationRaw) : 0;
 
 			this.addEntry(data);
@@ -155,7 +157,7 @@ export class AddHomeComponent implements OnInit {
 	}
 
 	private getCurrentSeason() {
-		const month = moment().month() + 1;
+		const month = getMonth(new Date()) + 1;
 
 		if (month >= 1 && month <= 3) {
 			return "Winter";
@@ -169,13 +171,13 @@ export class AddHomeComponent implements OnInit {
 	}
 
 	private getCurrentYear() {
-		return moment().year().toString();
+		return getYear(new Date()).toString();
 	}
 
 	private iterateYears(): Array<any> {
 		const years = [{ id: "0", label: "" }];
 		const limit = 1995;
-		const yearToday = moment().year();
+		const yearToday = getYear(new Date());
 
 		for (let i = yearToday; i >= limit; i--) {
 			years.push({
