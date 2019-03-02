@@ -43,7 +43,6 @@
     "firebase": "^5.8.5",
     "font-awesome": "^4.7.0",
     "fuse.js": "^3.4.2",
-    "moment-mini": "^2.22.1",
     "ng2-charts": "^1.6.0",
     "roboto-fontface": "^0.10.0",
     "rxjs": "^6.3.3",
