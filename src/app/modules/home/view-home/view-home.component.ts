@@ -9,6 +9,7 @@ import { FirebaseQueryBuilder } from "@builders/firebase-query.service";
 import { UtilityService } from "@services/utility.service";
 import { UpdateHomeComponent } from "../update-home/update-home.component";
 import { RewatchComponent } from "./rewatch/rewatch.component";
+import { HomeService } from "../home.service";
 
 @Component({
 	selector: "app-view-home",
@@ -20,6 +21,7 @@ export class ViewHomeComponent implements OnInit {
 	data: any;
 	dataLoaded: boolean = false;
 	stateId: number;
+	homeState: any;
 
 	constructor(
 		private router: Router,
@@ -28,10 +30,12 @@ export class ViewHomeComponent implements OnInit {
 		private firebase: FirebaseService,
 		private firebaseQueryBuilder: FirebaseQueryBuilder,
 		private utility: UtilityService,
+		private service: HomeService,
 	) { }
 
 	ngOnInit() {
 		this.route.params.subscribe((params) => this.stateId = params["id"]);
+		this.service.currentState.subscribe((state) => this.homeState = state);
 		this.fetchData();
 	}
 
@@ -75,6 +79,7 @@ export class ViewHomeComponent implements OnInit {
 			confirmButtonText: "Yes, delete it!",
 		}).then((result) => {
 			if (result.value) {
+				this.service.changeState(this.homeState.search, null);
 				this.firebase.hardDelete(this.firebaseQueryBuilder.id(this.stateId).build())
 					.then(() => {
 						Swal.fire("Deleted", "Entry has been deleted", "success")
