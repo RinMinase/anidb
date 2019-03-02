@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 
 import { GithubService } from "@services/github.service";
 import { UtilityService } from "@services/utility.service";
