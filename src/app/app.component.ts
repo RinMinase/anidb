@@ -1,7 +1,6 @@
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
 
-import Swal from "sweetalert2";
 import * as firebase from "firebase/app";
 
 @Component({
@@ -24,9 +23,5 @@ export class AppComponent {
 		};
 
 		firebase.initializeApp(firebaseConfig);
-	}
-
-	buttonClick() {
-		Swal.fire("Good job!", "You clicked the button!", "success");
 	}
 }
