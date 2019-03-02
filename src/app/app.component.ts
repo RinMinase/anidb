@@ -1,7 +1,6 @@
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
-
-import * as firebase from "firebase/app";
+import { initializeApp } from "firebase/app";
 
 @Component({
 	selector: "app-root",
@@ -22,6 +21,6 @@ export class AppComponent {
 			messagingSenderId: "669722574117",
 		};
 
-		firebase.initializeApp(firebaseConfig);
+		initializeApp(firebaseConfig);
 	}
 }
