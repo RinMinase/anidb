@@ -12,6 +12,7 @@ import { FuseOptionsBuilder } from "@builders/fuse-options.service";
 import { UtilityService } from "@services/utility.service";
 import { HomeService } from "../home.service";
 import { AddHomeComponent } from "../add-home/add-home.component";
+import { DarkModeService } from "@services/dark-mode.service";
 
 @Component({
 	selector: "app-manage-home",
@@ -20,6 +21,7 @@ import { AddHomeComponent } from "../add-home/add-home.component";
 })
 export class ManageHomeComponent implements OnInit {
 
+	dark: boolean;
 	data: Array<Object> = [];
 	pristineData: Array<Object> = [];
 	dataLoaded: boolean = false;
@@ -34,6 +36,7 @@ export class ManageHomeComponent implements OnInit {
 	constructor(
 		private router: Router,
 		private modalService: NgbModal,
+		private darkMode: DarkModeService,
 		private firebase: FirebaseService,
 		private fuseOptionsBuilder: FuseOptionsBuilder,
 		private utility: UtilityService,
@@ -54,6 +57,7 @@ export class ManageHomeComponent implements OnInit {
 			.addKeys("remarks")
 			.build();
 
+		this.darkMode.currentState.subscribe((value) => this.dark = value);
 		this.service.currentState.subscribe((state) => this.homeState = state);
 		this.onChanges();
 
