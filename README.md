@@ -99,7 +99,28 @@ _Add info here_
 _Add info here_
 
 ### Bundling the project for Android
-_Add info here_
+
+#### Installation
+Installations Required:
+- Java JDK
+- Android SDK Commandline Tools
+- Gradle
+
+**Java JDK**
+1. Download the latest Java Development Kit. The version should be 1.8.x (where _x_ could be any number depending on the latest patch).
+2. Install it on your machine
+3. Head over to the commandline then type: `java -version`.
+    1. If it prints out `java is not recognized as an internal or external command, operable program or batch file`
+    2. Go to the location on where your java is installed (Usually it's in `C:\Program Files\Java\jdk1.8.xxx`)
+    3. Press `win + pause` to open your system information and click `Advanced system settings` on the sidebar.
+    4. When the `System Properties` window opens click on `Environmental Variables`
+    5. Go to `System Variables` and look for `Path`.
+    6. Double click path, or click `Edit`, then add the location of the `\bin` folder. (`C:\Program Files\Java\jdk1.8.xxx\bin`)
+4. If it prints out the version of the java you are using, open or re-open the environmental paths window.
+5. In `System Variables` add `JAVA_HOME` by pressing `New` where:
+    1. The variable name should be: `JAVA_HOME`
+    2. The variable value should be: (the installation folder of your JDK, usually it's in `C:\Program Files\Java\jdk1.8.0_xxx`)
+        - So the value should be `C:\Program Files\Java\jdk1.8.0_xxx`
 
 ### Deploying the project to Firebase
 _Add info here_
