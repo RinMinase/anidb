@@ -9,10 +9,11 @@ import { FooterComponent } from "@components/footer/footer.component";
 // import { FuseOptionsBuilder } from "@builders/fuse-options.service";
 // import { FirebaseQueryBuilder } from "@builders/firebase-query.service";
 
-// import { GithubService } from "@services/github.service";
-// import { FirebaseService } from "@services/firebase.service";
-// import { UtilityService } from "@services/utility.service";
 // import { DateService } from "@services/date.service";
+// import { DarkModeService } from '@services/dark-mode.service';
+// import { FirebaseService } from "@services/firebase.service";
+// import { GithubService } from "@services/github.service";
+// import { UtilityService } from "@services/utility.service";
 
 describe("AppComponent", () => {
 	beforeEach(async(() => {
@@ -33,6 +34,16 @@ describe("AppComponent", () => {
 		expect(app).toBeTruthy();
 	});
 });
+
+describe("DarkModeService", () => {
+	// beforeEach(() => TestBed.configureTestingModule({}));
+
+	// it("should be created", () => {
+	// 	const service: DarkModeService = TestBed.get(DarkModeService);
+	// 	expect(service).toBeTruthy();
+	// });
+});
+
 
 describe("DateService", () => {
 	// beforeEach(() => TestBed.configureTestingModule({}));
