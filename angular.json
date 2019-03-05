@@ -92,6 +92,7 @@
             "main": "src/assets/config/testing/test.ts",
             "tsConfig": "src/assets/config/tsconfig.spec.json",
             "karmaConfig": "src/assets/config/testing/karma.conf.ts",
+            "codeCoverage": true,
             "styles": [ "src/index.scss" ],
             "scripts": [],
             "assets": [{
