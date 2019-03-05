@@ -59,7 +59,6 @@ _Add info here_
     │   ├── assets/                     # Project assets
     │   │   ├── config/                 # Project configurations
     │   │   │   ├── testing/            # Testing configuration files
-    │   │   │   ├── firebase*           # Firebase configuration files
     │   │   │   ├── sw-precache.ts      # Service worker configuration file
     │   │   │   ├── webpack.ts          # Extended webpack configuration file
     │   │   │   └── ...                 # Other configuration files
@@ -76,7 +75,6 @@ _Add info here_
     │   ├── index.scss                  # Main Stylesheet (SCSS) file
     │   └── index.ts                    # Main TypeScript file
     ├── .editorconfig                   # IDE / Editor configuration
-    ├── .firebaserc                     # Firebase project configuration
     ├── .stylelintrc                    # SCSS linting configuration
     ├── angular.json                    # Angular CLI configuration
     ├── config.xml                      # Cordova build configuration
