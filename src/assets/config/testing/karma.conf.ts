@@ -11,7 +11,7 @@ module.exports = (config) => {
 		],
 		client: { clearContext: false },
 		coverageIstanbulReporter: {
-			dir: require("path").join(__dirname, "../../../coverage"),
+			dir: require("path").join(__dirname, "../../../../coverage"),
 			reports: ["html", "lcovonly", "text-summary"],
 			fixWebpackSourcePaths: true,
 		},
