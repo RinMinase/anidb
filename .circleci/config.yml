@@ -31,5 +31,5 @@ jobs:
 
       - run:
           name: Deploying to Firebase
-          command: ./node_modules/.bin/firebase deploy --project "rin-anidb" --token=$FIREBASE_DEPLOY_TOKEN --non-interactive
+          command: ./node_modules/.bin/firebase deploy --project "rin-anidb" --only hosting --token=$FIREBASE_DEPLOY_TOKEN --non-interactive
 
