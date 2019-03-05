@@ -1,4 +1,4 @@
-import "zone.js/dist/zone"; // Zone JS is required by default for Angular itself.
+import "zone.js/dist/zone";
 
 import { enableProdMode } from "@angular/core";
 import { platformBrowserDynamic } from "@angular/platform-browser-dynamic";
