@@ -1,35 +1,15 @@
 # General
 .env
-/coverage
-/libpeerconnection.log
-/connect.lock
-/typings
+coverage/
 
 # compiled output
-/dist
-/tmp
-/out-tsc
+dist/
+out-tsc/
 src/assets/res/android/hooks/after_build.js
 src/assets/config/sw-precache-config.js
 
-# Profiling files
-chrome-profiler-events.json
-speed-measure-plugin.json
-
 # IntelliJ IDE storage
-/.idea
-.project
-.classpath
-.c9/
-*.launch
-.settings/
-*.sublime-workspace
 .vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-.history/*
 
 # Node/NPM/Yarn Logs
 logs
@@ -39,21 +19,12 @@ yarn-debug.log*
 yarn-error.log*
 
 # Node/NPM/Yarn cache/storage/lock files
-.npm
 node_modules/
 package-lock.json
 
-# Optional eslint cache
-.eslintcache
-
-# Bower dependency directory
-bower_components/
-
-# Sass cache directory
-.sass-cache/
-
 # Android
-/www
+www/
+build/
 *.apk
 *.ap_
 *.dex
@@ -63,10 +34,6 @@ plugins/
 
 # Firebase cache directory
 .firebase/
-
-# System Files
-.DS_Store
-Thumbs.db
 
 # Sonar Linting
 .sonarlint/
