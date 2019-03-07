@@ -76,7 +76,7 @@
 			<div class="row d-sm-flex d-none">
 				<div class="col-12">
 					<h3>{{ data.title }}</h3>
-					<h5 class="text-muted" ng-if="data.shortTitle">
+					<h5 class="text-muted" *ngIf="data.shortTitle">
 						<em>&#10077;&nbsp;{{ data.shortTitle }}&#10078;</em>
 					</h5>
 					<h6 class="text-muted">{{ data.filesize }}</h6>
