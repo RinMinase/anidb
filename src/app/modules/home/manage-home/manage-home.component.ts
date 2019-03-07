@@ -76,7 +76,7 @@ export class ManageHomeComponent implements OnInit {
 		});
 
 		addModal.result
-			.then(() => { this.fetchData(); })
+			.then(() => (environment.disableManageHomeQuery) ? this.dataLoaded = true : this.fetchData())
 			.catch(() => {});
 	}
 
