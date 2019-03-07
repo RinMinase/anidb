@@ -21,6 +21,20 @@ export class FirebaseQueryBuilder {
 
 	constructor() { }
 
+	init() {
+		this.firebaseOptions = {
+			db: "anime",
+			id: null,
+			limit: null,
+			orderKey: null,
+			orderDirection: null,
+			inhdd: 1,
+			data: null,
+		};
+
+		return this;
+	}
+
 	db(value: string) {
 		this.firebaseOptions.db = value;
 		return this;
