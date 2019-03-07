@@ -55,7 +55,7 @@ export class RewatchComponent implements OnInit {
 					rewatchLast: this.rewatch[0],
 				};
 
-				this.firebase.update(this.firebaseQueryBuilder.id(this.id).data(data).build());
+				this.firebase.update(this.firebaseQueryBuilder.init().id(this.id).data(data).build());
 				this.initializeForm();
 				this.formatRewatch();
 			}
@@ -73,7 +73,7 @@ export class RewatchComponent implements OnInit {
 			rewatchLast: this.rewatch[0] || "",
 		};
 
-		this.firebase.update(this.firebaseQueryBuilder.id(this.id).data(data).build());
+		this.firebase.update(this.firebaseQueryBuilder.init().id(this.id).data(data).build());
 		this.formatRewatch();
 	}
 

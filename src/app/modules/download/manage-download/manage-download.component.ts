@@ -31,7 +31,7 @@ export class ManageDownloadComponent implements OnInit {
 	ngOnInit() {
 		this.firebase.auth()
 			.then(() => {
-				this.firebase.retrieve(this.firebaseQueryBuilder.db("anime").inhdd(false).build())
+				this.firebase.retrieve(this.firebaseQueryBuilder.init().db("anime").inhdd(false).build())
 					.then((data: Array<any>) => {
 						this.formatData(data);
 						this.dataLoaded = true;

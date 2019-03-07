@@ -80,7 +80,7 @@ export class ViewHomeComponent implements OnInit {
 		}).then((result) => {
 			if (result.value) {
 				this.service.changeState(this.homeState.search, null);
-				this.firebase.hardDelete(this.firebaseQueryBuilder.id(this.stateId).build())
+				this.firebase.hardDelete(this.firebaseQueryBuilder.init().id(this.stateId).build())
 					.then(() => {
 						Swal.fire("Deleted", "Entry has been deleted", "success")
 							.then(() => this.router.navigateByUrl("/"));
@@ -92,7 +92,7 @@ export class ViewHomeComponent implements OnInit {
 	private fetchData() {
 		this.firebase.auth()
 			.then(() => {
-				this.firebase.retrieve(this.firebaseQueryBuilder.id(this.stateId).build())
+				this.firebase.retrieve(this.firebaseQueryBuilder.init().id(this.stateId).build())
 					.then((data: any) => {
 						this.data = this.parseData(data);
 						this.dataLoaded = true;

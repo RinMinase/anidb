@@ -31,13 +31,15 @@ export class LastwatchComponent implements OnInit {
 		this.firebase.auth()
 			.then(() => {
 				this.firebase.retrieve(
-					this.firebaseQueryBuilder.db("anime")
+					this.firebaseQueryBuilder.init()
+						.db("anime")
 						.limit(20)
 						.order("dateFinished", "desc")
 						.build(),
 				).then((dataDateFinished: Array<any>) => {
 						this.firebase.retrieve(
-							this.firebaseQueryBuilder.db("anime")
+							this.firebaseQueryBuilder.init()
+								.db("anime")
 								.limit(20)
 								.order("rewatchLast", "desc")
 								.build(),

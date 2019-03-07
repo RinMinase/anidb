@@ -33,7 +33,7 @@ export class ManageHddComponent implements OnInit {
 						animeData = data;
 					});
 			}).then(() => {
-				this.firebase.retrieve(this.firebaseQueryBuilder.db("hdd").inhdd(false).build())
+				this.firebase.retrieve(this.firebaseQueryBuilder.init().db("hdd").inhdd(false).build())
 					.then((data: Array<Object>) => {
 						hddData = data;
 						this.formatData(hddData, animeData);

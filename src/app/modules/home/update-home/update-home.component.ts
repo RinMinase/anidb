@@ -194,7 +194,7 @@ export class UpdateHomeComponent implements OnInit {
 			confirmButtonText: "Yes, I'm sure",
 		}).then((result) => {
 			if (result.value) {
-				this.firebase.update(this.firebaseQueryBuilder.id(this.id).data(data).build())
+				this.firebase.update(this.firebaseQueryBuilder.init().id(this.id).data(data).build())
 					.then(() => {
 						Swal.fire({
 							title: "Success",

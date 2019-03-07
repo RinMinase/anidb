@@ -41,7 +41,7 @@ export class ManageSummerComponent implements OnInit {
 						animeData = data;
 					});
 			}).then(() => {
-				this.firebase.retrieve(this.firebaseQueryBuilder.db("summer").inhdd(false).build())
+				this.firebase.retrieve(this.firebaseQueryBuilder.init().db("summer").inhdd(false).build())
 					.then((data: Array<Object>) => {
 						summerData = data;
 						this.formatData(summerData, animeData);
