@@ -41,7 +41,7 @@ export class ManageHomeComponent implements OnInit {
 		private fuseOptionsBuilder: FuseOptionsBuilder,
 		private utility: UtilityService,
 		private service: HomeService,
-	) {}
+	) { }
 
 	ngOnInit() {
 		this.fuseOptions = this.fuseOptionsBuilder
@@ -66,6 +66,30 @@ export class ManageHomeComponent implements OnInit {
 			return;
 		}
 
+		this.fetchData();
+	}
+
+	addTitle() {
+		const addModal = this.modalService.open(AddHomeComponent, {
+			size: "lg",
+			windowClass: "animate bounceInDown",
+		});
+
+		addModal.result
+			.then(() => { this.fetchData(); })
+			.catch(() => {});
+	}
+
+	getData() {
+		return (this.search.value) ? this.data : this.pristineData;
+	}
+
+	viewTitle(id: number) {
+		this.service.changeState(this.searchQuery, id);
+		this.router.navigateByUrl(`/view/${id}`);
+	}
+
+	private fetchData() {
 		this.firebase.auth()
 			.then(() => {
 				this.firebase.retrieve()
@@ -90,22 +114,6 @@ export class ManageHomeComponent implements OnInit {
 						}
 					});
 			}).catch(() => this.router.navigateByUrl("/login"));
-	}
-
-	addTitle() {
-		this.modalService.open(AddHomeComponent, {
-			size: "lg",
-			windowClass: "animate bounceInDown",
-		});
-	}
-
-	getData() {
-		return (this.search.value) ? this.data : this.pristineData;
-	}
-
-	viewTitle(id: number) {
-		this.service.changeState(this.searchQuery, id);
-		this.router.navigateByUrl(`/view/${id}`);
 	}
 
 	private formatData(data: any) {
