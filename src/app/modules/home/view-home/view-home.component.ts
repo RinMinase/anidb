@@ -122,6 +122,23 @@ export class ViewHomeComponent implements OnInit {
 			data.rewatchCount = 0;
 		}
 
+		switch (data.quality) {
+			case "4k 2160p":
+				data.qualityClass = "uhd";
+				break;
+			case "FHD 1080p":
+				data.qualityClass = "fhd";
+				break;
+			case "HD 720p":
+				data.qualityClass = "hd";
+				break;
+			case "HQ 480p":
+				data.qualityClass = "hq";
+				break;
+			default:
+				data.qualityClass = "lq";
+		}
+
 		return data;
 	}
 

@@ -45,6 +45,7 @@
 			</div>
 			<div class="row d-sm-none mb-3 text-center">
 				<div class="col-12">
+					<h5><span class="badge badge-{{data.qualityClass}}">{{ data.quality }}</span></h5>
 					<h2>{{ data.title }}</h2>
 					<h4 class="text-muted" *ngIf="data.shortTitle">
 						<em>&#10077;&nbsp;{{ data.shortTitle }}&#10078;</em>
@@ -75,7 +76,12 @@
 		<div class="col-lg-9 col-md-8 col-sm-7 col-12 animate slideInUp">
 			<div class="row d-sm-flex d-none">
 				<div class="col-12">
-					<h3>{{ data.title }}</h3>
+					<p class="h3">
+						<span>{{ data.title }}</span>
+						<span class="h5">
+							<span class="badge badge-{{data.qualityClass}} ml-2">{{ data.quality }}</span>
+						</span>
+					</p>
 					<h5 class="text-muted" *ngIf="data.shortTitle">
 						<em>&#10077;&nbsp;{{ data.shortTitle }}&#10078;</em>
 					</h5>
