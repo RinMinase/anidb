@@ -15,6 +15,8 @@ export class AboutComponent implements OnInit {
 	dataLoaded = false;
 
 	totalEpisodes: number;
+	totalSeasons: number = 0;
+	totalTitles: number = 0;
 	totalFilesizeGB: string;
 	totalFilesizeTB: string;
 
@@ -67,23 +69,8 @@ export class AboutComponent implements OnInit {
 			if (!isNaN( parseInt(value.ovas, 10) )) { totalEpisodes += parseInt(value.ovas, 10); }
 			if (!isNaN( parseInt(value.specials, 10) )) { totalEpisodes += parseInt(value.specials, 10); }
 
-			switch (value.quality) {
-				case "4K 2160p":
-					this.quality.uhd++;
-					break;
-				case "FHD 1080p":
-					this.quality.fhd++;
-					break;
-				case "HD 720p":
-					this.quality.hd++;
-					break;
-				case "HQ 480p":
-					this.quality.hq++;
-					break;
-				case "LQ 360p":
-					this.quality.lq++;
-					break;
-			}
+			this.parseSeasonNumber(value.seasonNumber);
+			this.parseQuality(value.quality);
 		});
 
 		this.totalEpisodes = totalEpisodes;
@@ -94,6 +81,34 @@ export class AboutComponent implements OnInit {
 
 		this.totalFilesizeGB = (totalFilesize / 1073741824).toFixed(2);
 		this.totalFilesizeTB = (totalFilesize / 1099511627776).toFixed(2);
+	}
+
+	private parseSeasonNumber(seasonNumber: any) {
+		if (!isNaN( parseInt(seasonNumber, 10) )) {
+			if (seasonNumber === 1) { this.totalSeasons++; }
+
+			this.totalTitles++;
+		}
+	}
+
+	private parseQuality(quality: string) {
+		switch (quality) {
+			case "4K 2160p":
+				this.quality.uhd++;
+				break;
+			case "FHD 1080p":
+				this.quality.fhd++;
+				break;
+			case "HD 720p":
+				this.quality.hd++;
+				break;
+			case "HQ 480p":
+				this.quality.hq++;
+				break;
+			case "LQ 360p":
+				this.quality.lq++;
+				break;
+		}
 	}
 
 	private getFirebaseImages() {
