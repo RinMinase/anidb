@@ -5,4 +5,4 @@ textarea {
 	@media (max-width: 576px) { height: 70px; }
 }
 
-.abc-checkbox label { cursor: default; }
+.switch input:checked + label::before { background-color: #28A745; }
