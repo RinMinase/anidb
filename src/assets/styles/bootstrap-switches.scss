@@ -16,7 +16,6 @@ $custom-control-indicator-bg: #DEE2E6;
 $custom-control-indicator-disabled-bg: #E9ECEF;
 $custom-control-description-disabled-color: #868E96;
 $white: #FFF;
-$theme-colors: ("dark": #343A40);
 
 //
 // These variables can be used to customize the switch component.
@@ -26,7 +25,7 @@ $switch-height-sm: calc(#{$input-height-sm} * .8) !default;
 $switch-height-lg: calc(#{$input-height-lg} * .8) !default;
 $switch-border-radius: $switch-height !default;
 $switch-bg: $custom-control-indicator-bg !default;
-$switch-checked-bg: map-get($theme-colors, "dark") !default;
+$switch-checked-bg: #28A745 !default;
 $switch-disabled-bg: $custom-control-indicator-disabled-bg !default;
 $switch-disabled-color: $custom-control-description-disabled-color !default;
 $switch-thumb-bg: $white !default;
