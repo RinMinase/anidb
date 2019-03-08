@@ -12,18 +12,24 @@
 			[rotate]="true"
 			[ellipses]="false">
 		</ngb-pagination>
+		<hr class="my-2 my-md-3">
 		<ul class="list-unstyled">
 			<li *ngFor="let issue of githubIssues | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
-				<hr><span>#{{ issue.number }} &mdash; {{ issue.title }}</span><br>
+				<div class="mb-1">
+					<span>#{{ issue.number }}</span>
+					<span class="d-none d-md-inline-block">&nbsp;&mdash;&nbsp;{{ issue.title }}</span>
+					<span class="pull-right d-block d-md-none">{{ issue.date }}</span>
+				</div>
+				<div class="d-block d-md-none mb-1">{{ issue.title }}</div>
 				<span>
-					<h6 class="d-inline mr-2 issues-badge"
-						*ngFor ="let labels of issue.labels">
-						<span class="badge badge-pill py-1 {{ labels.class }}">
+					<h6 class="d-inline mr-2 issues-badge" *ngFor ="let labels of issue.labels">
+						<span class="badge badge-pill py-1 mb-1 mb-md-0 {{ labels.class }}">
 							<span>{{ labels.name }}</span>
 						</span>
 					</h6>
 				</span>
-				<span class="small pull-right">{{ issue.date }}</span>
+				<span class="small pull-right d-none d-md-inline-block">{{ issue.date }}</span>
+				<hr class="my-2 my-md-3">
 			</li>
 		</ul>
 		<ngb-pagination
