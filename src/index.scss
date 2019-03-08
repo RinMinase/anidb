@@ -68,3 +68,7 @@ a.link {
 	padding: 1.25rem;
 	h5 { font-size: 17px; }
 }
+
+nav .switch input:checked + label::before {
+	background-color: #343A40;
+}
