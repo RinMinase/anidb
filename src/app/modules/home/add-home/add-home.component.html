@@ -196,21 +196,17 @@
 							class="form-control"
 							formControlName="offquel">
 					</div>
-					<!-- <div class="input-group-append col-sm-7 col-12 pl-0 pr-0 pl-xl-def pl-lg-def pl-md-def pl-sm-def">
+					<div class="input-group-append col-sm-7 col-12 pl-0 pr-0 pl-xl-def pl-lg-def pl-md-def pl-sm-def">
 						<div class="input-group">
 							<input type="text"
-								id="offquelSelection"
 								class="form-control"
-								ng-model="vm.offquelSelection"
-								uib-typeahead="o for o in vm.titleList | filter: $viewValue | limitTo:4">
+								[formControl]="offquelSelection"
+								[ngbTypeahead]="titleSearch">
 							<div class="input-group-btn">
-								<button class="btn btn-default"
-									type="button"
-									ng-click="vm.addOffquel()"
-									set-focus="offquelSelection">Add</button>
+								<button class="btn btn-secondary" type="button" (click)="addOffquel()">Add</button>
 							</div>
 						</div>
-					</div> -->
+					</div>
 				</div>
 			</div>
 		</div>

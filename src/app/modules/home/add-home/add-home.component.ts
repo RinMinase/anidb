@@ -1,8 +1,10 @@
 import { Component, OnInit } from "@angular/core";
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
-import Swal from "sweetalert2";
+import { Observable } from "rxjs";
+import { debounceTime, distinctUntilChanged, map } from "rxjs/operators";
 import { getMonth, getYear } from "date-fns";
+import Swal from "sweetalert2";
 
 import { DateService } from "@services/date.service";
 import { FirebaseService } from "@services/firebase.service";
@@ -17,7 +19,9 @@ import { HomeService } from "../home.service";
 export class AddHomeComponent implements OnInit {
 
 	addTitleForm: FormGroup;
+	offquelSelection = new FormControl("");
 	submitted: boolean = false;
+	titleList: Array<string> = [];
 	options = {
 		quality: [
 			{id: "4K 2160p", label: "4K 2160p"},
@@ -51,6 +55,8 @@ export class AddHomeComponent implements OnInit {
 	) { }
 
 	ngOnInit() {
+		this.service.currTitleList.subscribe((titleList) => this.titleList = titleList);
+
 		this.addTitleForm = this.formBuilder.group({
 			watchStatus: [""],
 			quality: [""],
@@ -121,6 +127,14 @@ export class AddHomeComponent implements OnInit {
 		}
 	}
 
+	addOffquel() {
+		const { value } = this.offquelSelection;
+		const oldValue = this.form.offquel.value;
+
+		this.form.offquel.setValue((!oldValue) ? value : `${oldValue}, ${value}`);
+		this.offquelSelection.setValue("");
+	}
+
 	cancel() {
 		Swal.fire({
 			title: "Are you sure?",
@@ -130,6 +144,22 @@ export class AddHomeComponent implements OnInit {
 		}).then((result) => {
 			if (result.value) { this.modal.dismiss(); }
 		});
+	}
+
+	titleSearch = (text: Observable<string>) => {
+		return text
+			.pipe(debounceTime(200), distinctUntilChanged())
+			.pipe(
+				map((term) => {
+					if (term.length < 2) {
+						return [];
+					} else {
+						return this.titleList
+							.filter((title) => title.toLowerCase().indexOf(term.toLowerCase()) > -1)
+							.slice(0, 5);
+					}
+				}),
+			);
 	}
 
 	private addEntry(data: any) {
