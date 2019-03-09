@@ -81,10 +81,14 @@ export class AddHomeComponent implements OnInit {
 		});
 
 		this.options.releaseYear = this.service.iterateYears();
-		this.addTitleForm.controls.watchStatus.setValue(0);
-		this.addTitleForm.controls.quality.setValue("FHD 1080p");
-		this.addTitleForm.controls.releaseSeason.setValue(this.getCurrentSeason());
-		this.addTitleForm.controls.releaseYear.setValue(this.getCurrentYear());
+		this.form.watchStatus.setValue(0);
+		this.form.quality.setValue("FHD 1080p");
+		this.form.releaseSeason.setValue(this.getCurrentSeason());
+		this.form.releaseYear.setValue(this.getCurrentYear());
+
+		this.form.filesize.valueChanges
+			.pipe(distinctUntilChanged())
+			.subscribe((value) => this.form.filesize.setValue(value.replace(/\D/g, "")));
 	}
 
 	get form() {
