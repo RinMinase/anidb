@@ -4,6 +4,7 @@ import { FormControl } from "@angular/forms";
 
 import { DarkModeService } from "@services/dark-mode.service";
 import { FirebaseService } from "@services/firebase.service";
+import { distinctUntilChanged } from "rxjs/operators";
 
 @Component({
 	selector: "app-navbar",
@@ -21,9 +22,11 @@ export class NavbarComponent implements OnInit {
 	) { }
 
 	ngOnInit() {
-		this.darkModeToggle.valueChanges.subscribe((value) => {
-			(value) ? this.darkMode.enableDarkMode() : this.darkMode.disableDarkMode();
-		});
+		this.darkModeToggle.valueChanges
+			.pipe(distinctUntilChanged())
+			.subscribe((value) => {
+				(value) ? this.darkMode.enableDarkMode() : this.darkMode.disableDarkMode();
+			});
 	}
 
 	logout() {
