@@ -7,12 +7,19 @@ import { BehaviorSubject } from "rxjs";
 export class HomeService {
 
 	private state = new BehaviorSubject({ search: "", id: null });
+	private titleList = new BehaviorSubject([]);
+
 	currentState = this.state.asObservable();
+	currTitleList = this.titleList.asObservable();
 
 	constructor() { }
 
 	changeState(search?: string, id?: number) {
 		this.state.next({ search, id });
+	}
+
+	changeTitleList(titleList: Array<string>) {
+		this.titleList.next(titleList);
 	}
 
 	parseDuration(duration: string) {
