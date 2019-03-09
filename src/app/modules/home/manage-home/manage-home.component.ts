@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { FormControl } from "@angular/forms";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
-import { debounceTime } from "rxjs/operators";
+import { debounceTime, distinctUntilChanged } from "rxjs/operators";
 import { format } from "date-fns";
 import * as Fuse from "fuse.js";
 
@@ -157,7 +157,7 @@ export class ManageHomeComponent implements OnInit {
 
 	private onChanges() {
 		this.search.valueChanges
-			.pipe(debounceTime(250))
+			.pipe(debounceTime(250), distinctUntilChanged())
 			.subscribe((value) => {
 				if (value && this.pristineData) {
 					this.data = new Fuse(this.pristineData, this.fuseOptions).search(value);
