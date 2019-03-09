@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
+import { Observable } from "rxjs";
+import { debounceTime, distinctUntilChanged, map } from "rxjs/operators";
 import { format } from "date-fns";
 import Swal from "sweetalert2";
 
@@ -21,7 +23,9 @@ export class UpdateHomeComponent implements OnInit {
 	@Input() id: number;
 
 	editTitleForm: FormGroup;
+	offquelSelection = new FormControl("");
 	submitted: boolean = false;
+	titleList: Array<string> = [];
 	options = {
 		quality: [
 			{id: "4K 2160p", label: "4K 2160p"},
@@ -56,6 +60,8 @@ export class UpdateHomeComponent implements OnInit {
 	) { }
 
 	ngOnInit() {
+		this.service.currTitleList.subscribe((titleList) => this.titleList = titleList);
+
 		this.editTitleForm = this.formBuilder.group({
 			watchStatus: [""],
 			quality: [""],
@@ -85,6 +91,14 @@ export class UpdateHomeComponent implements OnInit {
 
 	get form() {
 		return this.editTitleForm.controls;
+	}
+
+	addOffquel() {
+		const { value } = this.offquelSelection;
+		const oldValue = this.form.offquel.value;
+
+		this.form.offquel.setValue((!oldValue) ? value : `${oldValue}, ${value}`);
+		this.offquelSelection.setValue("");
 	}
 
 	cancel() {
@@ -132,6 +146,22 @@ export class UpdateHomeComponent implements OnInit {
 
 			this.updateEntry(data);
 		}
+	}
+
+	titleSearch = (text: Observable<string>) => {
+		return text
+			.pipe(debounceTime(200), distinctUntilChanged())
+			.pipe(
+				map((term) => {
+					if (term.length < 2) {
+						return [];
+					} else {
+						return this.titleList
+							.filter((title) => title.toLowerCase().indexOf(term.toLowerCase()) > -1)
+							.slice(0, 5);
+					}
+				}),
+			);
 	}
 
 	private initFormValues() {
