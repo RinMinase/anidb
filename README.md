@@ -101,12 +101,12 @@ _Add info here_
 #### Installation
 Installations Required:
 - Java JDK
-- Android SDK Commandline Tools
+- Android SDK Command-line Tools
 - Gradle
 
 **Java JDK**
 1. Download the latest Java Development Kit. The version should be 1.8.x (where _x_ could be any number depending on the latest patch).
-2. Install it on your machine
+2. Install it in your machine
 3. Head over to the commandline then type: `java -version`.
     1. If it prints out `java is not recognized as an internal or external command, operable program or batch file`
     2. Go to the location on where your java is installed (Usually it's in `C:\Program Files\Java\jdk1.8.xxx`)
@@ -119,6 +119,18 @@ Installations Required:
     1. The variable name should be: `JAVA_HOME`
     2. The variable value should be: (the installation folder of your JDK, usually it's in `C:\Program Files\Java\jdk1.8.0_xxx`)
         - So the value should be `C:\Program Files\Java\jdk1.8.0_xxx`
+
+**Android SDK Command-line Tools**
+
+**Gradle**
+1. Download the latest [Gradle build tool](https://gradle.org/install/#manually), select `Binary-only`
+2. Extract it in your machine
+3. Move the extracted files in a suitable location, preferably in `C:\Program Files\Gradle`
+4. Press `win + pause` to open your system information and click `Advanced system settings` on the sidebar.
+5. When the `System Properties` window opens click on `Environmental Variables`
+6. Go to `System Variables` and look for `Path`.
+7. Double click path, or click `Edit`, then add the location of the `\bin` folder. (`C:\Program Files\Gradle\bin`)
+
 
 ### Deploying the project to Firebase
 _Add info here_
