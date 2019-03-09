@@ -123,7 +123,7 @@ export class ViewHomeComponent implements OnInit {
 		}
 
 		switch (data.quality) {
-			case "4k 2160p":
+			case "4K 2160p":
 				data.qualityClass = "uhd";
 				break;
 			case "FHD 1080p":
