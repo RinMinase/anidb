@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
+import { getYear } from "date-fns";
 
 @Injectable({
 	providedIn: "root",
@@ -38,4 +39,20 @@ export class HomeService {
 			return parseInt(durationParts[0], 10);
 		}
 	}
+
+	iterateYears(): Array<any> {
+		const years = [{ id: "0", label: "" }];
+		const limit = 1995;
+		const yearToday = getYear(new Date());
+
+		for (let i = yearToday; i >= limit; i--) {
+			years.push({
+				id: i.toString(),
+				label: i.toString(),
+			});
+		}
+
+		return years;
+	}
+
 }
