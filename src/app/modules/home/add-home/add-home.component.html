@@ -177,14 +177,14 @@
 						<input type="text"
 							class="form-control"
 							formControlName="prequel"
-							uib-typeahead="o for o in vm.titleList | filter: $viewValue | limitTo:4">
+							[ngbTypeahead]="titleSearch">
 					</div>
 					<div class="form-group col-12">
 						<label>Sequel</label>
 						<input type="text"
 							class="form-control"
 							formControlName="sequel"
-							uib-typeahead="o for o in vm.titleList | filter: $viewValue | limitTo:4">
+							[ngbTypeahead]="titleSearch">
 					</div>
 				</div>
 			</div>
