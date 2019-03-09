@@ -80,7 +80,7 @@ export class AddHomeComponent implements OnInit {
 			offquel: [""],
 		});
 
-		this.options.releaseYear = this.iterateYears();
+		this.options.releaseYear = this.service.iterateYears();
 		this.addTitleForm.controls.watchStatus.setValue(0);
 		this.addTitleForm.controls.quality.setValue("FHD 1080p");
 		this.addTitleForm.controls.releaseSeason.setValue(this.getCurrentSeason());
@@ -202,21 +202,6 @@ export class AddHomeComponent implements OnInit {
 
 	private getCurrentYear() {
 		return getYear(new Date()).toString();
-	}
-
-	private iterateYears(): Array<any> {
-		const years = [{ id: "0", label: "" }];
-		const limit = 1995;
-		const yearToday = getYear(new Date());
-
-		for (let i = yearToday; i >= limit; i--) {
-			years.push({
-				id: i.toString(),
-				label: i.toString(),
-			});
-		}
-
-		return years;
 	}
 
 }

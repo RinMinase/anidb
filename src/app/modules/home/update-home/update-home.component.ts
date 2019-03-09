@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
-import { format, getYear } from "date-fns";
+import { format } from "date-fns";
 import Swal from "sweetalert2";
 
 import { FirebaseService } from "@services/firebase.service";
@@ -79,7 +79,7 @@ export class UpdateHomeComponent implements OnInit {
 			offquel: [""],
 		});
 
-		this.options.releaseYear = this.iterateYears();
+		this.options.releaseYear = this.service.iterateYears();
 		this.initFormValues();
 	}
 
@@ -167,21 +167,6 @@ export class UpdateHomeComponent implements OnInit {
 			sequel: this.data.sequel,
 			offquel,
 		});
-	}
-
-	private iterateYears(): Array<any> {
-		const years = [{ id: "0", label: "" }];
-		const limit = 1995;
-		const yearToday = getYear(new Date());
-
-		for (let i = yearToday; i >= limit; i--) {
-			years.push({
-				id: i.toString(),
-				label: i.toString(),
-			});
-		}
-
-		return years;
 	}
 
 	private updateEntry(data: any) {
