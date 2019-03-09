@@ -146,6 +146,7 @@ export class ManageHomeComponent implements OnInit {
 			}
 		});
 
+		this.service.changeTitleList(this.titleList);
 		this.data.sort(this.utility.sortByQualityThenTitle);
 		this.pristineData = [ ...this.data ];
 
