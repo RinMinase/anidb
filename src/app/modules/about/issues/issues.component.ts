@@ -68,6 +68,11 @@ export class IssuesComponent implements OnInit {
 			severity: "red",
 			version: "0.0.0",
 		}, {
+			package: "ng2-charts",
+			reason: "Still in beta stages",
+			severity: "green",
+			version: "2.0.0-beta.21",
+		}, {
 			package: "typescript",
 			reason: "Angular 7 only supports typescript versions below 3.3",
 			severity: "orange",
