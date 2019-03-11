@@ -108,13 +108,6 @@
     "@angular-devkit/core" "7.3.5"
     rxjs "6.3.3"
 
-"@angular/animations@^7.2.8":
-  version "7.2.8"
-  resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-7.2.8.tgz#0285364c839c660a934ab0f753ec21424bfb292e"
-  integrity sha512-dJn9koYukyz15TouBc+z5z9fdThDk+bKgdlij25eYSu5Mpmtk04gB4eIMQA97K0UDh1d4YukgSJ5w3ZIk0m8DQ==
-  dependencies:
-    tslib "^1.9.0"
-
 "@angular/cli@^7.3.5":
   version "7.3.5"
   resolved "https://registry.yarnpkg.com/@angular/cli/-/cli-7.3.5.tgz#7aa0294410e0a9ae18b9e686803d9b0997d8c5fa"
@@ -615,17 +608,10 @@
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.7.0.tgz#9a06f4f137ee84d7df0460c1fdb1135ffa6c50fd"
   integrity sha512-ONhaKPIufzzrlNbqtWFFd+jlnemX6lJAgq9ZeiZtS7I1PIf/la7CW4m83rTXRnVnsMbW2k56pGYu7AUFJD9Pow==
 
-"@types/jasmine@*", "@types/jasmine@^3.3.9":
+"@types/jasmine@^3.3.9":
   version "3.3.9"
   resolved "https://registry.yarnpkg.com/@types/jasmine/-/jasmine-3.3.9.tgz#ee886a9113db567e722a8a0c37f0e6283f2cefa3"
   integrity sha512-vw3VyFPa9mlba6NZPBZC3q2Zrnkgy5xuCVI43/tTLX6umdYrYvcFtQUKi2zH3PjFZQ9XCxNM/NMrM9uk8TPOzg==
-
-"@types/jasminewd2@^2.0.3":
-  version "2.0.6"
-  resolved "https://registry.yarnpkg.com/@types/jasminewd2/-/jasminewd2-2.0.6.tgz#2f57a8d9875a6c9ef328a14bd070ba14a055ac39"
-  integrity sha512-2ZOKrxb8bKRmP/po5ObYnRDgFE4i+lQiEB27bAMmtMWLgJSqlIDqlLx6S0IRorpOmOPRQ6O80NujTmQAtBkeNw==
-  dependencies:
-    "@types/jasmine" "*"
 
 "@types/node@*":
   version "11.9.5"
