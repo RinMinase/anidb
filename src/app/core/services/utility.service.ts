@@ -1,13 +1,12 @@
 import { Injectable } from "@angular/core";
 import { format, getTime, getYear, parse } from "date-fns";
-import { DateService } from "./date.service";
 
 @Injectable({
 	providedIn: "root",
 })
 export class UtilityService {
 
-	constructor(private date: DateService) { }
+	constructor() { }
 
 	autofillYear(date: string) {
 		if (date.split(" ").length === 2) {
@@ -19,8 +18,8 @@ export class UtilityService {
 
 			const yearToday = getYear(new Date());
 			const dateParsed = `${month}-${day}-${yearToday}`;
-			const dateParsedUnix = this.date.getUnix(parse(dateParsed));
-			const dateTodayUnix = this.date.getUnix();
+			const dateParsedUnix = this.getUnix(parse(dateParsed));
+			const dateTodayUnix = this.getUnix();
 
 			if (dateParsedUnix > dateTodayUnix) {
 				date += ` ${(yearToday - 1).toString()}`;
@@ -30,9 +29,9 @@ export class UtilityService {
 		}
 
 		if ((new Date(date)).toString().indexOf("Invalid Date") === 0) {
-			return this.date.getUnix();
+			return this.getUnix();
 		} else {
-			return this.date.getUnix(new Date(date));
+			return this.getUnix(new Date(date));
 		}
 	}
 
@@ -56,6 +55,10 @@ export class UtilityService {
 		} else {
 			return format(new Date(date), "MMM DD, YYYY HH:mm");
 		}
+	}
+
+	getUnix(date?: Date): number {
+		return (date) ? Math.floor(getTime(date) / 1000) : Math.floor(getTime(new Date) / 1000);
 	}
 
 	sortByDateThenTitle(a: any, b: any) {
