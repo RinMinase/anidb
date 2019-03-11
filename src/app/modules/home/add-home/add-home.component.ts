@@ -6,7 +6,6 @@ import { debounceTime, distinctUntilChanged, map } from "rxjs/operators";
 import { getMonth, getYear } from "date-fns";
 import Swal from "sweetalert2";
 
-import { DateService } from "@services/date.service";
 import { FirebaseService } from "@services/firebase.service";
 import { UtilityService } from "@services/utility.service";
 import { HomeService } from "../home.service";
@@ -48,7 +47,6 @@ export class AddHomeComponent implements OnInit {
 	constructor(
 		private formBuilder: FormBuilder,
 		private modal: NgbActiveModal,
-		private date: DateService,
 		private firebase: FirebaseService,
 		private utility: UtilityService,
 		private service: HomeService,
@@ -124,7 +122,7 @@ export class AddHomeComponent implements OnInit {
 			};
 
 			const dateRaw = value.dateFinishedRaw;
-			data.dateFinished = (dateRaw) ? this.utility.autofillYear(dateRaw) : this.date.getUnix();
+			data.dateFinished = (dateRaw) ? this.utility.autofillYear(dateRaw) : this.utility.getUnix();
 			data.duration = (value.durationRaw) ? this.service.parseDuration(value.durationRaw) : 0;
 
 			this.addEntry(data);

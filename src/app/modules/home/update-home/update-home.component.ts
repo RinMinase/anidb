@@ -10,7 +10,6 @@ import { FirebaseService } from "@services/firebase.service";
 import { FirebaseQueryBuilder } from "@builders/firebase-query.service";
 import { UtilityService } from "@services/utility.service";
 import { HomeService } from "../home.service";
-import { DateService } from "@services/date.service";
 
 @Component({
 	selector: "app-update-home",
@@ -52,7 +51,6 @@ export class UpdateHomeComponent implements OnInit {
 	constructor(
 		private formBuilder: FormBuilder,
 		private modal: NgbActiveModal,
-		private date: DateService,
 		private firebase: FirebaseService,
 		private firebaseQueryBuilder: FirebaseQueryBuilder,
 		private utility: UtilityService,
@@ -145,7 +143,7 @@ export class UpdateHomeComponent implements OnInit {
 			};
 
 			const dateRaw = value.dateFinishedRaw;
-			data.dateFinished = (dateRaw) ? this.utility.autofillYear(dateRaw) : this.date.getUnix();
+			data.dateFinished = (dateRaw) ? this.utility.autofillYear(dateRaw) : this.utility.getUnix();
 			data.duration = (value.durationRaw) ? this.service.parseDuration(value.durationRaw) : 0;
 
 			this.updateEntry(data);
