@@ -44,7 +44,7 @@
     "ngx-build-plus": "^7.7.6",
     "roboto-fontface": "^0.10.0",
     "rxjs": "^6.3.3",
-    "sweetalert2": "^8.2.6",
+    "sweetalert2": "^8.3.0",
     "xlsx": "^0.14.1",
     "zone.js": "^0.8.26"
   },
