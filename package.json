@@ -38,7 +38,7 @@
     "firebase": "^5.8.6",
     "font-awesome": "^4.7.0",
     "fuse.js": "^3.4.4",
-    "ng2-charts": "^1.6.0",
+    "ng2-charts": "^2.0.2",
     "ngx-build-plus": "^7.7.6",
     "roboto-fontface": "^0.10.0",
     "rxjs": "^6.3.3",
