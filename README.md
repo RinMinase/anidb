@@ -139,14 +139,24 @@ _Add info here_
 
 Task automation is based on [Yarn scripts](https://yarnpkg.com/lang/en/docs/cli/run/) or [NPM scripts](https://docs.npmjs.com/misc/scripts).
 
-| Task                  | Description                                                                           |
-| --------------------- | ------------------------------------------------------------------------------------- |
-| `yarn start`          | Run **development server** on `http://localhost:3000/` with file watching on changes  |
-| `yarn start --prod`   | Run **production server** on `http://localhost:3000/` with file watching on changes   |
-| `yarn build`          | Build production code and add service worker to built code                            |
-| `yarn test <args>`    | Run test scripts on using a Headless Chrome Browser                                   |
-| `yarn bundle`         | Builds production code with service worker then compiles it for Android using Cordova |
-| `yarn setup`          | Runs Cordova pre-requisites and installs dependencies                                 |
+| Task                | Description                                                                                          |
+| ------------------- | -------------------------------------------------------------------------------------                |
+| `yarn start`        | Run **development server** on `http://localhost:3000/` with file watching on changes                 |
+| `yarn start --prod` | Run **production server** on `http://localhost:3000/` with file watching on changes                  |
+| `yarn build`        | Build production code and add service worker to built code                                           |
+| `yarn test <args>`  | Run test scripts on using a Headless Chrome Browser                                                  |
+| `yarn bundle`       | Builds production code with service worker then compiles it for Android using Cordova                |
+| `yarn lint`         | Lints all TypeScript and SCSS files, takes an optional `--fix` to automatically fix linting problems |
+| `yarn setup`        | Runs Cordova pre-requisites and installs dependencies                                                |
+
+Other tasks included in `package.json` that should not be executed manually:
+
+| Task           | Description                                                                              |
+| -------------- | ---------------------------------------------------------------------------------------- |
+| `bundle-build` | Executes `build` with a change in `base-href` to `./` instead of `/`                     |
+| `bundle-app`   | Compiles TypeScript hook to JavaScript, then compiles the built code to APK with cordova |
+| `bundle-post`  | Removes `www` folder created with `build`, removes the compiled JavaScript hook          |
+| `sw-cache`     | Runs the service worker cache on the `dist` or build folder                              |
 
 ### Testing the project
 _Add info here_
