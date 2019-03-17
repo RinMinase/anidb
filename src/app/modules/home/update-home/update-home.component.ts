@@ -86,7 +86,7 @@ export class UpdateHomeComponent implements OnInit {
 		this.options.releaseYear = this.service.iterateYears();
 		this.form.filesize.valueChanges
 			.pipe(distinctUntilChanged())
-			.subscribe((value) => this.form.filesize.setValue(value.replace(/\D/g, "")));
+			.subscribe((value) => this.form.filesize.setValue(value.toString().replace(/\D/g, "")));
 
 		this.initFormValues();
 	}
@@ -185,7 +185,7 @@ export class UpdateHomeComponent implements OnInit {
 			ovas: this.data.ovas,
 			specials: this.data.specials,
 			dateFinishedRaw,
-			filesize: this.data.filesize,
+			filesize: this.data.filesizeRaw,
 			inhdd: !!this.data.inhdd,
 			seasonNumber: this.data.seasonNumber,
 			firstSeasonTitle: this.data.firstSeasonTitle,

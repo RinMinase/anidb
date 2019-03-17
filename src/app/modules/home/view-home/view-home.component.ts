@@ -108,6 +108,7 @@ export class ViewHomeComponent implements OnInit {
 		if (data.variants) { data.variants = data.variants.split(","); }
 		if (data.offquel) { data.offquel = data.offquel.split(","); }
 
+		data.filesizeRaw = data.filesize;
 		data.filesize = this.utility.convertFilesize(data.filesize);
 		data.dateFinished = format(data.dateFinished * 1000, "MMMM DD, YYYY");
 
