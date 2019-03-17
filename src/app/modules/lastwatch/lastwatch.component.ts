@@ -104,16 +104,16 @@ export class LastwatchComponent implements OnInit {
 
 	private formatDataByDate(data: any) {
 		return data.map((value: any) => {
-			if (!isNaN( parseInt(value.episodes, 10) )) {
-				this.totalEpisodes += parseInt(value.episodes, 10);
+			if (!isNaN( parseInt(value.episodes) )) {
+				this.totalEpisodes += parseInt(value.episodes);
 			}
 
-			if (!isNaN( parseInt(value.ovas, 10) )) {
-				this.totalEpisodes += parseInt(value.ovas, 10);
+			if (!isNaN( parseInt(value.ovas) )) {
+				this.totalEpisodes += parseInt(value.ovas);
 			}
 
-			if (!isNaN( parseInt(value.specials, 10) )) {
-				this.totalEpisodes += parseInt(value.specials, 10);
+			if (!isNaN( parseInt(value.specials) )) {
+				this.totalEpisodes += parseInt(value.specials);
 			}
 
 			const filesize = this.utility.convertFilesize(value.filesize);
@@ -134,16 +134,16 @@ export class LastwatchComponent implements OnInit {
 	private formatDataByRewatch(data: any) {
 		return data.map((value: any) => {
 			if (value.rewatchLast) {
-				if (!isNaN( parseInt(value.episodes, 10) )) {
-					this.totalEpisodes += parseInt(value.episodes, 10);
+				if (!isNaN( parseInt(value.episodes) )) {
+					this.totalEpisodes += parseInt(value.episodes);
 				}
 
-				if (!isNaN( parseInt(value.ovas, 10) )) {
-					this.totalEpisodes += parseInt(value.ovas, 10);
+				if (!isNaN( parseInt(value.ovas) )) {
+					this.totalEpisodes += parseInt(value.ovas);
 				}
 
-				if (!isNaN( parseInt(value.specials, 10) )) {
-					this.totalEpisodes += parseInt(value.specials, 10);
+				if (!isNaN( parseInt(value.specials) )) {
+					this.totalEpisodes += parseInt(value.specials);
 				}
 
 				const filesize = this.utility.convertFilesize(value.filesize);

@@ -64,18 +64,18 @@ export class AboutComponent implements OnInit {
 			const month = getMonth(parse(value.dateFinished * 1000));
 			if (month > -1 && month < 12) { this.chart.data[0].data[month]++; }
 
-			totalDuration += parseInt(value.duration, 10);
-			totalFilesize += parseInt(value.filesize, 10);
+			totalDuration += parseInt(value.duration);
+			totalFilesize += parseInt(value.filesize);
 
 			if (value.rewatchLast && value.rewatch.split(",").length) {
-				totalRewatchDuration += parseInt(value.duration, 10) * (value.rewatch.split(",").length + 1);
+				totalRewatchDuration += parseInt(value.duration) * (value.rewatch.split(",").length + 1);
 			} else {
-				totalRewatchDuration += parseInt(value.duration, 10);
+				totalRewatchDuration += parseInt(value.duration);
 			}
 
-			if (!isNaN( parseInt(value.episodes, 10) )) { totalEpisodes += parseInt(value.episodes, 10); }
-			if (!isNaN( parseInt(value.ovas, 10) )) { totalEpisodes += parseInt(value.ovas, 10); }
-			if (!isNaN( parseInt(value.specials, 10) )) { totalEpisodes += parseInt(value.specials, 10); }
+			if (!isNaN( parseInt(value.episodes) )) { totalEpisodes += parseInt(value.episodes); }
+			if (!isNaN( parseInt(value.ovas) )) { totalEpisodes += parseInt(value.ovas); }
+			if (!isNaN( parseInt(value.specials) )) { totalEpisodes += parseInt(value.specials); }
 
 			this.parseSeasonNumber(value.seasonNumber);
 			this.parseQuality(value.quality);
@@ -110,7 +110,7 @@ export class AboutComponent implements OnInit {
 	}
 
 	private parseSeasonNumber(seasonNumber: any) {
-		if (!isNaN( parseInt(seasonNumber, 10) )) {
+		if (!isNaN(parseInt(seasonNumber))) {
 			if (seasonNumber === 1) { this.totalSeasons++; }
 
 			this.totalTitles++;

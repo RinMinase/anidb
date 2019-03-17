@@ -58,7 +58,7 @@ export class ManageSummerComponent implements OnInit {
 
 			if (today < timeEnd) { timeEnd = today; }
 
-			const days = parseInt(format((timeEnd.getTime() - timeStart.getTime()), "DDD"), 10) - 1;
+			const days = parseInt(format((timeEnd.getTime() - timeStart.getTime()), "DDD")) - 1;
 
 			this.data.push({
 				summer: {
@@ -139,7 +139,7 @@ export class ManageSummerComponent implements OnInit {
 		const rewatch = anime.rewatch.split(",");
 
 		rewatch.forEach((date: string) => {
-			const rewatchDate = parseInt(date, 10);
+			const rewatchDate = parseInt(date);
 
 			if (rewatchDate >= summer.timeStart && rewatchDate <= summer.timeEnd) {
 				this.totalFilesize += anime.filesize;

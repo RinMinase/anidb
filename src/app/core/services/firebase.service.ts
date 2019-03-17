@@ -41,7 +41,7 @@ export class FirebaseService {
 				.limitToLast(1)
 				.once("value")
 				.then((finalData: any) => {
-					lastIndex = parseInt(Object.keys(finalData.val())[0], 10);
+					lastIndex = parseInt(Object.keys(finalData.val())[0]);
 					resolve();
 				});
 		});
@@ -176,7 +176,7 @@ export class FirebaseService {
 
 			Object.keys(data).forEach((key, index) => {
 				output[index] = data[key];
-				output[index].id = parseInt(key, 10);
+				output[index].id = parseInt(key);
 			});
 
 			return output;

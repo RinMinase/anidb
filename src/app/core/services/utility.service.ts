@@ -10,7 +10,7 @@ export class UtilityService {
 
 	autofillYear(date: string) {
 		if (date.split(" ").length === 2) {
-			const monthRaw: any = parseInt(date.split(" ")[0], 10) || date.split(" ")[0];
+			const monthRaw: any = parseInt(date.split(" ")[0]) || date.split(" ")[0];
 			const day = date.split(" ")[1];
 			let month: any;
 

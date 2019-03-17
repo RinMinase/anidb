@@ -82,7 +82,7 @@ export class ManageHddComponent implements OnInit {
 			const free = ((hdd.size - totalSize) / 1073741824).toFixed(2);
 			const used = (totalSize / 1073741824).toFixed(2);
 			const titles = this.data[index].entries.length;
-			const percent = parseInt(((totalSize / hdd.size) * 100).toFixed(0), 10);
+			const percent = parseInt(((totalSize / hdd.size) * 100).toFixed(0));
 			let percentType: string;
 
 			if (percent >= 0 && percent < 80) {
