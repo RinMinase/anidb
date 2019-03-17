@@ -31,6 +31,12 @@
 					<span *ngIf="improve.module"> on&nbsp;</span>
 					<code *ngIf="improve.module">{{ improve.module }}</code>
 				</li>
+				<li *ngFor="let dependency of commits.dep" class="pt-0-5">
+					<h6 class="d-inline mr-2">
+						<span class="badge badge-pill badge-dependency text-white py-1">DEPENDENCY</span>
+					</h6>
+					<span>{{ dependency.message }}</span>
+				</li>
 			</ul>
 		</ul>
 	</div>

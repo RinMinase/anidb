@@ -14,6 +14,7 @@ export class ChangelogComponent implements OnInit {
 	githubCommits = [];
 
 	keywords = {
+		dep: [ "dependency", "dependencies" ],
 		fix: [ "fixed", "removed" ],
 		new: [ "added", "functional", "migrated" ],
 	};
@@ -36,13 +37,16 @@ export class ChangelogComponent implements OnInit {
 					const { message } = commitData;
 
 					if (!formattedCommits[commitDate]) {
-						formattedCommits[commitDate] = { fix: [], new: [], improve: [], title };
+						formattedCommits[commitDate] = { dep: [], fix: [], new: [], improve: [], title };
 					}
 
+					const isDep = this.keywords.dep.some((key) => message.indexOf(key) >= 0);
 					const isFix = this.keywords.fix.some((key) => message.indexOf(key) >= 0);
 					const isNew = this.keywords.new.some((key) => message.indexOf(key) >= 0);
 
-					if (isFix) {
+					if (isDep) {
+						formattedCommits[commitDate].dep.push(commitData);
+					} else if (isFix) {
 						formattedCommits[commitDate].fix.push(commitData);
 					} else if (isNew) {
 						formattedCommits[commitDate].new.push(commitData);
