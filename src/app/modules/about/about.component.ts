@@ -21,6 +21,7 @@ export class AboutComponent implements OnInit {
 	totalFilesizeTB: string;
 
 	totalDuration = { days: null, hours: null, minutes: null, seconds: null };
+	totalRewatchDuration = { days: null, hours: null, minutes: null, seconds: null };
 	quality = { uhd: 0, fhd: 0, hd: 0, hq: 0, lq: 0 };
 
 	chart = {
@@ -52,6 +53,7 @@ export class AboutComponent implements OnInit {
 
 	private formatData(data: Array<any>) {
 		let totalDuration = 0;
+		let totalRewatchDuration = 0;
 		let totalFilesize = 0;
 		let totalEpisodes = 0;
 
@@ -65,6 +67,12 @@ export class AboutComponent implements OnInit {
 			totalDuration += parseInt(value.duration, 10);
 			totalFilesize += parseInt(value.filesize, 10);
 
+			if (value.rewatchLast && value.rewatch.split(",").length) {
+				totalRewatchDuration += parseInt(value.duration, 10) * (value.rewatch.split(",").length + 1);
+			} else {
+				totalRewatchDuration += parseInt(value.duration, 10);
+			}
+
 			if (!isNaN( parseInt(value.episodes, 10) )) { totalEpisodes += parseInt(value.episodes, 10); }
 			if (!isNaN( parseInt(value.ovas, 10) )) { totalEpisodes += parseInt(value.ovas, 10); }
 			if (!isNaN( parseInt(value.specials, 10) )) { totalEpisodes += parseInt(value.specials, 10); }
@@ -74,21 +82,11 @@ export class AboutComponent implements OnInit {
 		});
 
 		this.totalEpisodes = totalEpisodes;
-		this.totalDuration.days = (totalDuration / 86400).toFixed(0);
-		this.totalDuration.hours = (totalDuration % 86400 / 3600).toFixed(0);
-		this.totalDuration.minutes = (totalDuration % 86400 % 3600 / 60).toFixed(0);
-		this.totalDuration.seconds = (totalDuration % 86400 % 3600 % 60).toFixed(0);
+		this.totalDuration = this.parseTotalDuration(totalDuration);
+		this.totalRewatchDuration = this.parseTotalDuration(totalRewatchDuration);
 
 		this.totalFilesizeGB = (totalFilesize / 1073741824).toFixed(2);
 		this.totalFilesizeTB = (totalFilesize / 1099511627776).toFixed(2);
-	}
-
-	private parseSeasonNumber(seasonNumber: any) {
-		if (!isNaN( parseInt(seasonNumber, 10) )) {
-			if (seasonNumber === 1) { this.totalSeasons++; }
-
-			this.totalTitles++;
-		}
 	}
 
 	private parseQuality(quality: string) {
@@ -109,6 +107,23 @@ export class AboutComponent implements OnInit {
 				this.quality.lq++;
 				break;
 		}
+	}
+
+	private parseSeasonNumber(seasonNumber: any) {
+		if (!isNaN( parseInt(seasonNumber, 10) )) {
+			if (seasonNumber === 1) { this.totalSeasons++; }
+
+			this.totalTitles++;
+		}
+	}
+
+	private parseTotalDuration(duration: number) {
+		const days = (duration / 86400).toFixed(0);
+		const hours = (duration % 86400 / 3600).toFixed(0);
+		const minutes = (duration % 86400 % 3600 / 60).toFixed(0);
+		const seconds = (duration % 86400 % 3600 % 60).toFixed(0);
+
+		return { days, hours, minutes, seconds };
 	}
 
 	private getFirebaseImages() {
