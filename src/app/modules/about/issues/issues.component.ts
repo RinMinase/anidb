@@ -71,7 +71,7 @@ export class IssuesComponent implements OnInit {
 			package: "codelyzer",
 			reason: "Still in beta stages",
 			severity: "green",
-			version: "5.0.0-beta.0",
+			version: "5.0.0-beta.1",
 		}, {
 			package: "typescript",
 			reason: "Angular 7 only supports typescript versions below 3.3",
