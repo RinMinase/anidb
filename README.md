@@ -1,5 +1,4 @@
 <h1 align="center"> Rin Minase's Anime Database </h1>
-{: .gitlab-purple}
 
 <p align="center">
     <a href="https://circleci.com/gh/RinMinase/anidb">
@@ -26,7 +25,6 @@
         <img alt="Yarn" src="https://img.shields.io/badge/yarn-%5E1.10.0-blue.svg">
     </a>
 </p>
-{: .text-center}
 
 ## Introduction
 _Add info here_
