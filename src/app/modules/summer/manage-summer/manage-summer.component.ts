@@ -51,7 +51,7 @@ export class ManageSummerComponent implements OnInit {
 			}).catch(() => this.router.navigateByUrl("/login"));
 	}
 
-	formatData(summerData: Array<any>, animeData: Array<any>) {
+	private formatData(summerData: Array<any>, animeData: Array<any>) {
 		summerData.forEach((summer, index) => {
 			const timeStart = parse(summer.timeStart * 1000);
 			const today = new Date();
