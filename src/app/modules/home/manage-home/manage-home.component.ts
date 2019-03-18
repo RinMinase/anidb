@@ -7,12 +7,12 @@ import { format } from "date-fns";
 import * as Fuse from "fuse.js";
 
 import { environment } from "@env/environment";
+import { DarkModeService } from "@services/dark-mode.service";
 import { FirebaseService } from "@services/firebase.service";
 import { FuseOptionsBuilder } from "@builders/fuse-options.service";
 import { UtilityService } from "@services/utility.service";
 import { HomeService } from "../home.service";
 import { AddHomeComponent } from "../add-home/add-home.component";
-import { DarkModeService } from "@services/dark-mode.service";
 
 @Component({
 	selector: "app-manage-home",
