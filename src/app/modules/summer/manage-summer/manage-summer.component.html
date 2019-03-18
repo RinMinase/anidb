@@ -44,22 +44,26 @@
 							</div>
 						</form>
 					</div>
-				</div>
+				</div> -->
 
-				<div class="row">
-					<div class="col-xs-3 col-sm-2 col-md-3" id="btn_add_summer_list">
-						<a href="#" class="btn btn-primary btn-block" onclick="showAddSummerList()"><i class="fa fa-plus"></i></a>
+				<div class="row mb-3">
+					<div class="col-3 col-sm-2 col-md-3">
+						<a class="btn btn-success btn-block c-pointer" (click)="addSummerList()">
+							<i class="fa fa-plus"></i>
+							<span class="pl-2 d-none d-md-inline-block d-lg-none">Add</span>
+						</a>
 					</div>
-					<div class="col-xs-3 col-sm-2 col-md-3 hidden" id="btn_hide_summer_list">
-						<a href="#" class="btn btn-danger btn-block" onclick="hideAddSummerList()"><i class="fa fa-times"></i></a>
-					</div>
-					<div class="col-xs-9 col-sm-10 col-md-9">
-						<div class="form-group has-feedback has-feedback-left">
-							<i class="form-control-feedback glyphicon glyphicon-search"></i>
-							<input type="text" class="form-control" placeholder="Search...">
+					<div class="col-9 col-sm-10 col-md-9">
+						<div class="input-group">
+							<input type="text" class="form-control border-right-0 border" placeholder="Search...">
+							<span class="input-group-append">
+								<div class="input-group-text bg-transparent border-left-0 border">
+									<i class="fa fa-search"></i>
+								</div>
+							</span>
 						</div>
 					</div>
-				</div> -->
+				</div>
 
 				<div class="row">
 					<div class="col-12">

@@ -1,10 +1,12 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { parse, format } from "date-fns";
 
 import { FirebaseService } from "@services/firebase.service";
 import { FirebaseQueryBuilder } from "@builders/firebase-query.service";
 import { UtilityService } from "@services/utility.service";
+import { AddSummerComponent } from "../add-summer/add-summer.component";
 
 @Component({
 	selector: "app-manage-summer",
@@ -26,6 +28,7 @@ export class ManageSummerComponent implements OnInit {
 
 	constructor(
 		private router: Router,
+		private modalService: NgbModal,
 		private firebase: FirebaseService,
 		private firebaseQueryBuilder: FirebaseQueryBuilder,
 		private utility: UtilityService,
@@ -49,6 +52,17 @@ export class ManageSummerComponent implements OnInit {
 						this.dataLoaded = true;
 					});
 			}).catch(() => this.router.navigateByUrl("/login"));
+	}
+
+	addSummerList() {
+		const addModal = this.modalService.open(AddSummerComponent, {
+			centered: true,
+			windowClass: "animate bounceInDown",
+		});
+
+		addModal.result
+			.then(() => {})
+			.catch(() => {});
 	}
 
 	private formatData(summerData: Array<any>, animeData: Array<any>) {
