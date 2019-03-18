@@ -1,6 +1,7 @@
 // import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
 // import { SummerComponent } from "./summer.component";
+// import { AddSummerComponent } from "./add-summer/add-summer.component";
 // import { ManageSummerComponent } from "./manage-summer/manage-summer.component";
 
 describe("SummerComponent", () => {
@@ -38,6 +39,28 @@ describe("ManageSummerComponent", () => {
 
 	// beforeEach(() => {
 	// 	fixture = TestBed.createComponent(ManageSummerComponent);
+	// 	component = fixture.componentInstance;
+	// 	fixture.detectChanges();
+	// });
+
+	// it("should create", () => {
+	// 	expect(component).toBeTruthy();
+	// });
+});
+
+describe("AddSummerComponent", () => {
+	// let component: AddSummerComponent;
+	// let fixture: ComponentFixture<AddSummerComponent>;
+
+	// beforeEach(async(() => {
+	// 	TestBed.configureTestingModule({
+	// 		declarations: [ AddSummerComponent ],
+	// 	})
+	// 	.compileComponents();
+	// }));
+
+	// beforeEach(() => {
+	// 	fixture = TestBed.createComponent(AddSummerComponent);
 	// 	component = fixture.componentInstance;
 	// 	fixture.detectChanges();
 	// });
