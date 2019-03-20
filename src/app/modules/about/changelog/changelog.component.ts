@@ -14,7 +14,7 @@ export class ChangelogComponent implements OnInit {
 	githubCommits = [];
 
 	keywords = {
-		dep: [ "dependency", "dependencies" ],
+		dep: [ "dependency", "dependencies", "types", "updated" ],
 		fix: [ "fixed", "removed" ],
 		new: [ "added", "functional", "migrated" ],
 	};
