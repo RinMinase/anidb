@@ -14,7 +14,7 @@ export class ChangelogComponent implements OnInit {
 	githubCommits = [];
 
 	keywords = {
-		dep: [ "dependency", "dependencies", "types", "updated" ],
+		dep: [ "dependency", "dependencies", "types" ],
 		fix: [ "fixed", "removed" ],
 		new: [ "added", "functional", "migrated" ],
 	};
@@ -34,15 +34,15 @@ export class ChangelogComponent implements OnInit {
 					const commitDate = `c${format(new Date(date), "YYYYMMDD")}`;
 					const title = format(new Date(date), "MMM DD, YYYY");
 					const commitData = this.formatCommit(data.commit, data.html_url);
-					const { message } = commitData;
+					const { message, module } = commitData;
 
 					if (!formattedCommits[commitDate]) {
 						formattedCommits[commitDate] = { dep: [], fix: [], new: [], improve: [], title };
 					}
 
-					const isDep = this.keywords.dep.some((key) => message.indexOf(key) >= 0);
-					const isFix = this.keywords.fix.some((key) => message.indexOf(key) >= 0);
-					const isNew = this.keywords.new.some((key) => message.indexOf(key) >= 0);
+					const isDep = this.parseCommitMessage(message, this.keywords.dep) && module === "";
+					const isFix = this.parseCommitMessage(message, this.keywords.fix);
+					const isNew = this.parseCommitMessage(message, this.keywords.new);
 
 					if (isDep) {
 						formattedCommits[commitDate].dep.push(commitData);
@@ -86,6 +86,10 @@ export class ChangelogComponent implements OnInit {
 			module,
 			url,
 		};
+	}
+
+	private parseCommitMessage(message: string, keywords: Array<string>): boolean {
+		return keywords.some((key) => message.indexOf(key) >= 0);
 	}
 
 }
