@@ -1,0 +1,6 @@
+<dropzone [config]="config"
+	class="dropzone dropzone-container"
+	message="Click or drag images here to upload"
+	(init)="onUploadInit($event)"
+	(error)="onUploadError($event)"
+	(success)="onUploadSuccess($event)"></dropzone>

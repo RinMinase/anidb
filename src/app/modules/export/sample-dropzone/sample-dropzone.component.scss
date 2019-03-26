@@ -1,0 +1,21 @@
+.dropzone {
+	border: 2px dashed #0087F7;
+	border-radius: 5px;
+	background: #FFF;
+}
+
+.dropzone .dz-message {
+	font-weight: 400;
+}
+
+.dropzone .dz-message .note {
+	font-size: .8em;
+	font-weight: 200;
+	display: block;
+	margin-top: 1.4rem;
+}
+
+::ng-deep dropzone > .dropzone.dz-wrapper .dz-message {
+	border: unset;
+	background-color: unset;
+}

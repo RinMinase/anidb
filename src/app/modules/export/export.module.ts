@@ -1,10 +1,12 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { Routes, RouterModule } from "@angular/router";
+import { DropzoneModule, DROPZONE_CONFIG, DropzoneConfigInterface } from "ngx-dropzone-wrapper";
 
 import { ExportComponent } from "./export.component";
 import { ExportCsvComponent } from "./export-csv/export-csv.component";
 import { ExportExcelComponent } from "./export-excel/export-excel.component";
+import { SampleDropzoneComponent } from "./sample-dropzone/sample-dropzone.component";
 
 const routes: Routes = [{
 	path: "",
@@ -18,18 +20,36 @@ const routes: Routes = [{
 	}, {
 		path: "excel",
 		component: ExportExcelComponent,
+	}, {
+		path: "dropzone",
+		component: SampleDropzoneComponent,
 	}],
 }];
+
+const OVERRIDE_DZ_CONFIG: DropzoneConfigInterface = {
+	url: "https://localhost:3000/",
+	maxFiles: 50,
+	maxFilesize: 0.0001,
+	acceptedFiles: "image/*",
+	parallelUploads: 2,
+};
 
 @NgModule({
 	declarations: [
 		ExportComponent,
 		ExportCsvComponent,
 		ExportExcelComponent,
+		SampleDropzoneComponent,
 	],
 	imports: [
 		CommonModule,
 		RouterModule.forChild(routes),
+
+		DropzoneModule,
 	],
+	providers: [{
+		provide: DROPZONE_CONFIG,
+		useValue: OVERRIDE_DZ_CONFIG,
+	}],
 })
 export class ExportModule { }
