@@ -6640,10 +6640,10 @@ next-tick@1, next-tick@^1.0.0:
   resolved "https://registry.yarnpkg.com/next-tick/-/next-tick-1.0.0.tgz#ca86d1fe8828169b0120208e3dc8424b9db8342c"
   integrity sha1-yobR/ogoFpsBICCOPchCS524NCw=
 
-ng2-charts@^2.0.4:
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/ng2-charts/-/ng2-charts-2.0.4.tgz#8237e00e6045282e387e3090f691634efd5b5df8"
-  integrity sha512-3bo3AjNtLR3udiSf0fGBjEw3PekL4YZ7KmTj8QAgAaprT+QsP5c5SnPi7S3afFwNE0t6z1L5K8Oli4V9djOmjw==
+ng2-charts@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/ng2-charts/-/ng2-charts-2.2.0.tgz#dd12314b11045d320efc00a81ac99d382a61a3f2"
+  integrity sha512-IpPwRD7XP0ewC+JlQ1PpjY25poBA6kDJjzUX4rTV6n42mxhwVbjz0/CXBJdMNH5SDx1WF7n3OEPIcDIcJqu6Xg==
   dependencies:
     "@types/chart.js" "^2.7.48"
     lodash "^4.17.11"
