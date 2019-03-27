@@ -11,6 +11,7 @@ export class SampleDropzoneComponent implements OnInit {
 	@ViewChild(DropzoneComponent) componentRef?: DropzoneComponent;
 
 	log: any;
+	config: any;
 
 	constructor() { }
 
