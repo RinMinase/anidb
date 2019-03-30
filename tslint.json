@@ -7,7 +7,11 @@
     "callable-types": true,
     "class-name": true,
     "comment-format": [ true, "check-space" ],
+    "component-class-suffix": true,
+    "component-selector": [ true, "app", "element", "kebab-case" ],
     "curly": true,
+    "directive-class-suffix": true,
+    "directive-selector": [ true, "app", "attribute", "kebab-case" ],
     "eofline": true,
     "forin": true,
     "import-blacklist": [ true, "rxjs/Rx" ],
@@ -18,41 +22,44 @@
     "max-line-length": [ true, 100 ],
     "member-access": false,
     "member-ordering": [
-      true, {
-        "order": [
-          "protected-instance-field",
-          "private-instance-field",
-          "public-instance-field",
+        true, {
+            "order": [
+              "protected-instance-field",
+              "private-instance-field",
+              "public-instance-field",
 
-          "public-constructor",
-          "private-constructor",
-          "protected-constructor",
+              "public-constructor",
+              "private-constructor",
+              "protected-constructor",
 
-          "public-static-field",
-          "private-static-field",
-          "protected-static-field",
+              "public-static-field",
+              "private-static-field",
+              "protected-static-field",
 
-          "public-static-method",
-          "private-static-method",
-          "protected-static-method",
+              "public-static-method",
+              "private-static-method",
+              "protected-static-method",
 
-          "public-instance-method",
-          "private-instance-method",
-          "protected-instance-method"
-        ]
-      }
+              "public-instance-method",
+              "private-instance-method",
+              "protected-instance-method"
+            ]
+        }
     ],
     "no-arg": true,
     "no-bitwise": true,
-    "no-console": [ true, "log", "debug", "info", "time", "timeEnd", "trace" ],
+    "no-console": [ true, "debug", "info", "log", "time", "timeEnd", "trace" ],
     "no-construct": true,
     "no-debugger": true,
     "no-duplicate-super": true,
     "no-empty": false,
     "no-empty-interface": true,
     "no-eval": true,
+    "no-input-rename": true,
     "no-misused-new": true,
     "no-non-null-assertion": true,
+    "no-output-on-prefix": true,
+    "no-output-rename": true,
     "no-redundant-jsdoc": true,
     "no-shadowed-variable": true,
     "no-string-literal": false,
@@ -63,41 +70,29 @@
     "no-unused-expression": true,
     "no-var-keyword": true,
     "object-literal-sort-keys": false,
-    "one-line": [ true, "check-open-brace", "check-catch", "check-else", "check-whitespace" ],
+    "one-line": [ true, "check-catch", "check-else", "check-open-brace", "check-whitespace" ],
     "prefer-const": true,
-    "quotemark": [ true, "double", "avoid-escape" ],
+    "quotemark": [ true, "avoid-escape", "double" ],
     "radix": false,
     "semicolon": [ true, "always" ],
-    "trailing-comma": [ true, {"multiline": "always", "singleline": "never"} ],
+    "trailing-comma": [ true, { "multiline": "always", "singleline": "never" }],
     "triple-equals": [ true, "allow-null-check" ],
-    "typedef-whitespace": [ true, {
-      "call-signature": "nospace",
-      "index-signature": "nospace",
-      "parameter": "nospace",
-      "property-declaration": "nospace",
-      "variable-declaration": "nospace"
-    }],
-    "unified-signatures": true,
-    "variable-name": false,
-    "whitespace": [
-      true,
-      "check-branch",
-      "check-decl",
-      "check-operator",
-      "check-separator",
-      "check-type"
+    "typedef-whitespace": [
+        true, {
+            "call-signature": "nospace",
+            "index-signature": "nospace",
+            "parameter": "nospace",
+            "property-declaration": "nospace",
+            "variable-declaration": "nospace"
+        }
     ],
-    "no-output-on-prefix": true,
-    "use-input-property-decorator": true,
-    "use-output-property-decorator": true,
+    "unified-signatures": true,
     "use-host-property-decorator": true,
-    "no-input-rename": true,
-    "no-output-rename": true,
+    "use-input-property-decorator": true,
     "use-life-cycle-interface": true,
+    "use-output-property-decorator": true,
     "use-pipe-transform-interface": true,
-    "component-class-suffix": true,
-    "directive-class-suffix": true,
-    "directive-selector": [ true, "attribute", "app", "kebab-case" ],
-    "component-selector": [ true, "element", "app", "kebab-case"]
+    "variable-name": false,
+    "whitespace": [ true, "check-branch", "check-decl", "check-operator", "check-separator", "check-type" ]
   }
 }
