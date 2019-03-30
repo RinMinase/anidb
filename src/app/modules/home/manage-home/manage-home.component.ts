@@ -22,8 +22,8 @@ import { AddHomeComponent } from "../add-home/add-home.component";
 export class ManageHomeComponent implements OnInit {
 
 	dark: boolean;
-	data: Array<Object> = [];
-	pristineData: Array<Object> = [];
+	data: Array<object> = [];
+	pristineData: Array<object> = [];
 	dataLoaded: boolean = false;
 
 	titleList: Array<string> = [];

@@ -10,7 +10,7 @@ import { UtilityService } from "@services/utility.service";
 })
 export class BynameComponent implements OnInit {
 
-	data: Array<Object> = [];
+	data: Array<object> = [];
 	dataLoaded: boolean = false;
 	collapse: Array<boolean> = [];
 

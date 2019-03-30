@@ -23,18 +23,18 @@ export class ManageHddComponent implements OnInit {
 	) { }
 
 	ngOnInit() {
-		let hddData: Array<Object>;
-		let animeData: Array<Object>;
+		let hddData: Array<object>;
+		let animeData: Array<object>;
 
 		this.firebase.auth()
 			.then(() => {
 				this.firebase.retrieve()
-					.then((data: Array<Object>) => {
+					.then((data: Array<object>) => {
 						animeData = data;
 					});
 			}).then(() => {
 				this.firebase.retrieve(this.firebaseQueryBuilder.init().db("hdd").inhdd(false).build())
-					.then((data: Array<Object>) => {
+					.then((data: Array<object>) => {
 						hddData = data;
 						this.formatData(hddData, animeData);
 						this.dataLoaded = true;

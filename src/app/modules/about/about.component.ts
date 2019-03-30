@@ -36,7 +36,6 @@ export class AboutComponent implements OnInit {
 		private firebase: FirebaseService,
 	) { }
 
-
 	ngOnInit() {
 		this.firebase.auth()
 			.then(() => {

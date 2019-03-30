@@ -13,7 +13,7 @@ import { UtilityService } from "@services/utility.service";
 })
 export class LastwatchComponent implements OnInit {
 
-	data: Array<Object> = [];
+	data: Array<object> = [];
 	dataLoaded: boolean = false;
 	stats: any = {};
 	totalEpisodes = 0;
@@ -74,14 +74,14 @@ export class LastwatchComponent implements OnInit {
 		}
 
 		const oneDay = 24 * 60 * 60 * 1000;
-		const dateDiffLast = ((new Date).getTime() - dateLast.getTime()) / oneDay;
+		const dateDiffLast = ((new Date()).getTime() - dateLast.getTime()) / oneDay;
 		const singleSeason = this.totalEpisodes / 12;
 
 		this.stats.totalEpisodes = this.totalEpisodes;
 		this.stats.dateFirst = format(dateFirst, this.dateFormat);
 		this.stats.dateLast = format(dateLast, this.dateFormat);
-		this.stats.daysSinceLastDateCounted = format((new Date).getTime() - dateLast.getTime(), "DDD");
-		this.stats.daysSinceLastAnime = format((new Date).getTime() - dateFirst.getTime(), "DDD");
+		this.stats.daysSinceLastDateCounted = format((new Date()).getTime() - dateLast.getTime(), "DDD");
+		this.stats.daysSinceLastAnime = format((new Date()).getTime() - dateFirst.getTime(), "DDD");
 		this.stats.titlesPerWeek = ((sortedData.length / dateDiffLast) * 7).toFixed(2);
 		this.stats.singleSeasonPerWeek = ((singleSeason / dateDiffLast) * 7).toFixed(2);
 		this.stats.episodesPerDay = (this.stats.totalEpisodes / dateDiffLast).toFixed(2);

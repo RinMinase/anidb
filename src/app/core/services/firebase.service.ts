@@ -69,7 +69,7 @@ export class FirebaseService {
 	}
 
 	retrieve(params?: FirebaseQuery) {
-		const query = params || new FirebaseQuery;
+		const query = params || new FirebaseQuery();
 		const idQuery = (query.id) ? `/${query.id}` : "";
 
 		if (!query.limit && !query.orderKey) {

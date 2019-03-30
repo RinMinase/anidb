@@ -8,6 +8,7 @@ import {
 	createWriteStream,
 } from "fs";
 
+// tslint:disable-next-line:only-arrow-functions
 module.exports = function(context: any): void {
 	const ConfigParser = context.requireCordovaModule("cordova-lib").configparser;
 	const config = new ConfigParser("config.xml");

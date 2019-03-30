@@ -58,7 +58,7 @@ export class UtilityService {
 	}
 
 	getUnix(date?: Date): number {
-		return (date) ? Math.floor(getTime(date) / 1000) : Math.floor(getTime(new Date) / 1000);
+		return (date) ? Math.floor(getTime(date) / 1000) : Math.floor(getTime(new Date()) / 1000);
 	}
 
 	sortByDateThenTitle(a: any, b: any) {

@@ -1,3 +1,4 @@
+// tslint:disable-next-line:no-var-requires
 const webpack = require("webpack");
 
 module.exports = {

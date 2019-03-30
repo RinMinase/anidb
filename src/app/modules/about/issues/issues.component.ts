@@ -14,7 +14,7 @@ export class IssuesComponent implements OnInit {
 	page = 1;
 
 	githubIssues = [];
-	packageIssues: Object[];
+	packageIssues: Array<object>;
 
 	constructor(
 		private github: GithubService,
