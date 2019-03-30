@@ -34,7 +34,7 @@
               "input": "src/assets/",
               "output": "/"
             }, {
-              "glob": "**/!(*.svg)",
+              "glob": "**/*.woff2",
               "input": "node_modules/font-awesome/fonts",
               "output": "/assets/fonts"
             }, {
@@ -100,7 +100,7 @@
               "input": "src/assets/",
               "output": "/assets"
             }, {
-              "glob": "**/!(*.svg)",
+              "glob": "**/*.woff2",
               "input": "node_modules/font-awesome/fonts",
               "output": "/assets/fonts"
             }, {
