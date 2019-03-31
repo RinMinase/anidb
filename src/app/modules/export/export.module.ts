@@ -7,6 +7,7 @@ import { ExportComponent } from "./export.component";
 import { ExportCsvComponent } from "./export-csv/export-csv.component";
 import { ExportExcelComponent } from "./export-excel/export-excel.component";
 import { SampleDropzoneComponent } from "./sample-dropzone/sample-dropzone.component";
+import { SampleUploadComponent } from "./sample-upload/sample-upload.component";
 
 const routes: Routes = [{
 	path: "",
@@ -40,6 +41,7 @@ const OVERRIDE_DZ_CONFIG: DropzoneConfigInterface = {
 		ExportCsvComponent,
 		ExportExcelComponent,
 		SampleDropzoneComponent,
+		SampleUploadComponent,
 	],
 	imports: [
 		CommonModule,
