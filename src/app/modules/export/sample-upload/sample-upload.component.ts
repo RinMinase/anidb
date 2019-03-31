@@ -18,6 +18,14 @@ export class SampleUploadComponent implements OnInit {
 	ngOnInit() {
 	}
 
+	displayUploadProps() {
+		const { log } = console;
+		this.uploader.queue.forEach((q) => {
+			const { lastModified, name, size, type } = q._file;
+			log({ lastModified, name, size, type });
+		});
+	}
+
 	fileOverBase(e: any): void {
 		this.hasBaseDropZoneOver = e;
 	}
