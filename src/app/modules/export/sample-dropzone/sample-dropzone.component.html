@@ -2,5 +2,7 @@
 	class="dropzone dropzone-container"
 	message="Click or drag images here to upload"
 	(init)="onUploadInit($event)"
+	(addedFile)="onAddedFile($event)"
+	(processing)="onProcessing($event)"
 	(error)="onUploadError($event)"
 	(success)="onUploadSuccess($event)"></dropzone>

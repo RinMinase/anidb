@@ -15,7 +15,11 @@
 	margin-top: 1.4rem;
 }
 
-::ng-deep dropzone > .dropzone.dz-wrapper .dz-message {
-	border: unset;
-	background-color: unset;
+::ng-deep dropzone {
+	> .dropzone.dz-wrapper .dz-message {
+		border: unset !important;
+		background-color: unset !important;
+	}
+
+	.dz-text { font-weight: bold; }
 }

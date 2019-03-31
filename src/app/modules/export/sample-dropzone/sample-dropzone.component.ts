@@ -8,10 +8,11 @@ import { DropzoneComponent } from "ngx-dropzone-wrapper";
 })
 export class SampleDropzoneComponent implements OnInit {
 
-	@ViewChild(DropzoneComponent) componentRef?: DropzoneComponent;
+	@ViewChild(DropzoneComponent) dz?: DropzoneComponent;
 
 	log: any;
 	config: any;
+	currentFile: any;
 
 	constructor() { }
 
@@ -22,6 +23,15 @@ export class SampleDropzoneComponent implements OnInit {
 
 	onUploadInit(event: any) {
 		this.log("Upload Init", event);
+	}
+
+	onAddedFile(event: any) {
+		this.log("Added File", event);
+		this.log("dz", this.dz);
+	}
+
+	onProcessing(event: any) {
+		this.log("Processing", event);
 	}
 
 	onUploadError(event: any) {
