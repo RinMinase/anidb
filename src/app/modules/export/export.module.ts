@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { Routes, RouterModule } from "@angular/router";
 import { DropzoneModule, DROPZONE_CONFIG, DropzoneConfigInterface } from "ngx-dropzone-wrapper";
+import { FileUploadModule } from "ng2-file-upload";
 
 import { ExportComponent } from "./export.component";
 import { ExportCsvComponent } from "./export-csv/export-csv.component";
@@ -24,6 +25,9 @@ const routes: Routes = [{
 	}, {
 		path: "dropzone",
 		component: SampleDropzoneComponent,
+	}, {
+		path: "upload",
+		component: SampleUploadComponent,
 	}],
 }];
 
@@ -48,6 +52,7 @@ const OVERRIDE_DZ_CONFIG: DropzoneConfigInterface = {
 		RouterModule.forChild(routes),
 
 		DropzoneModule,
+		FileUploadModule,
 	],
 	providers: [{
 		provide: DROPZONE_CONFIG,
