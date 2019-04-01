@@ -3,76 +3,16 @@ a.frameworks {
 	background-repeat: no-repeat;
 	overflow: hidden;
 
-	&.angular {
-		background-position: -2px 0;
-		width: 120px;
-		height: 120px;
-	}
-
-	&.bootstrap {
-		background-position: -124px 0;
-		width: 120px;
-		height: 120px;
-	}
-
-	&.circle {
-		background-position: -246px 0;
-		width: 120px;
-		height: 120px;
-	}
-
-	&.cordova {
-		background-position: -2px -122px;
-		width: 120px;
-		height: 120px;
-	}
-
-	&.firebase {
-		background-position: -124px -122px;
-		width: 120px;
-		height: 120px;
-	}
-
-	&.jasmine {
-		background-position: -246px -122px;
-		width: 120px;
-		height: 120px;
-	}
-
-	&.karma {
-		background-position: -2px -244px;
-		width: 120px;
-		height: 120px;
-	}
-
-	&.ngb {
-		background-position: -124px -244px;
-		width: 120px;
-		height: 120px;
-	}
-
-	&.renovate {
-		background-position: -246px -244px;
-		width: 120px;
-		height: 120px;
-	}
-
-	&.scss {
-		background-position: -2px -366px;
-		width: 120px;
-		height: 120px;
-	}
-
-	&.ts {
-		background-position: -124px -366px;
-		width: 120px;
-		height: 120px;
-	}
-
-	&.webpack {
-		background-position: -246px -366px;
-		width: 120px;
-		height: 120px;
-	}
-
+	&.angular { background-position: -2px 0; width: 120px; height: 120px; }
+	&.bootstrap { background-position: -124px 0; width: 120px; height: 120px; }
+	&.circle { background-position: -246px 0; width: 120px; height: 120px; }
+	&.codecov { background-position: -2px -122px; width: 120px; height: 120px; }
+	&.cordova { background-position: -124px -122px; width: 120px; height: 120px; }
+	&.firebase { background-position: -246px -122px; width: 120px; height: 120px; }
+	&.jasmine { background-position: -2px -244px; width: 120px; height: 120px; }
+	&.karma { background-position: -124px -244px; width: 120px; height: 120px; }
+	&.ngb { background-position: -246px -244px; width: 120px; height: 120px; }
+	&.scss { background-position: -2px -366px; width: 120px; height: 120px; }
+	&.ts { background-position: -124px -366px; width: 120px; height: 120px; }
+	&.webpack { background-position: -246px -366px; width: 120px; height: 120px; }
 }
