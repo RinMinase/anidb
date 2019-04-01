@@ -7,6 +7,8 @@
     <a href="https://codecov.io/gh/RinMinase/anidb">
         <img alt="Codecov" src="https://codecov.io/gh/RinMinase/anidb/branch/master/graph/badge.svg" />
     </a>
+</p>
+<p align="center">
     <a href="https://david-dm.org/RinMinase/anidb">
         <img alt="David-DM" src="https://david-dm.org/RinMinase/anidb.svg">
     </a>
