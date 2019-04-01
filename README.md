@@ -4,6 +4,9 @@
     <a href="https://circleci.com/gh/RinMinase/anidb">
         <img alt="Circle-CI" src="https://img.shields.io/circleci/project/github/RinMinase/anidb/master.svg?logo=circleci">
     </a>
+    <a href="https://codecov.io/gh/RinMinase/anidb">
+        <img alt="Codecov" src="https://codecov.io/gh/RinMinase/anidb/branch/master/graph/badge.svg" />
+    </a>
     <a href="https://david-dm.org/RinMinase/anidb">
         <img alt="David-DM" src="https://david-dm.org/RinMinase/anidb.svg">
     </a>
