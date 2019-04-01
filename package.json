@@ -19,7 +19,8 @@
     "bundle-app": "tsc src/assets/res/android/hooks/after_build.ts && cordova build android",
     "bundle-post": "rm -rf www && rm src/assets/res/android/hooks/after_build.js",
     "sw-cache": "sw-precache --root=dist --config=src/assets/config/sw-precache.ts",
-    "test": "ng test --no-progress && codecov",
+    "test": "ng test --no-progress",
+    "codecov": "codecov",
     "lint": "stylelint src/**/*.scss & ng lint",
     "setup": "cordova platform add android && yarn"
   },
