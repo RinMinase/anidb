@@ -14,9 +14,9 @@ jobs:
           name: Installing dependenices
           command: yarn install --frozen-lockfile
 
-      # - run:
-      #     name: Code testing
-      #     command: yarn test
+      - run:
+          name: Run testing and upload code coverage to Codecov
+          command: yarn test --token=$CODECOV_TOKEN
 
       - run:
           name: Building source code
