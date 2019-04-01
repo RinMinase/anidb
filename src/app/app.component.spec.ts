@@ -43,12 +43,11 @@ describe("DarkModeService", () => {
 	// });
 });
 
-
-describe("FuseService", () => {
+describe("FuseOptionsBuilder", () => {
 	// beforeEach(() => TestBed.configureTestingModule({}));
 
 	// it("should be created", () => {
-	// 	const service: FuseService = TestBed.get(FuseService);
+	// 	const service: FuseOptionsBuilder = TestBed.get(FuseOptionsBuilder);
 	// 	expect(service).toBeTruthy();
 	// });
 });
