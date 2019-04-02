@@ -1,32 +1,32 @@
 version: 2
-  jobs:
-    build:
-      docker:
-        - image: circleci/node:10.12-browsers
-          environment:
-            CHROME_BIN: "/usr/bin/google-chrome"
-      branches:
-        only:
-          - master
-      steps:
-        - checkout
+jobs:
+  build:
+    docker:
+      - image: circleci/node:10.12-browsers
+        environment:
+          CHROME_BIN: "/usr/bin/google-chrome"
+    branches:
+      only:
+        - master
+    steps:
+      - checkout
 
-        - run:
-            name: Installing dependenices
-            command: yarn install --frozen-lockfile
+      - run:
+          name: Installing dependenices
+          command: yarn install --frozen-lockfile
 
-        - run:
-            name: Testing source code
-            command: yarn test
+      - run:
+          name: Testing source code
+          command: yarn test
 
-        - run:
-            name: Uploading coverage to Codecov
-            command: yarn codecov --token=$CODECOV_TOKEN
+      - run:
+          name: Uploading coverage to Codecov
+          command: yarn codecov --token=$CODECOV_TOKEN
 
-        - run:
-            name: Building source code
-            command: yarn build
+      - run:
+          name: Building source code
+          command: yarn build
 
-        - run:
-            name: Deploying to Firebase
-            command: ./node_modules/.bin/firebase deploy --project "rin-anidb" --only hosting --token=$FIREBASE_DEPLOY_TOKEN --non-interactive
+      - run:
+          name: Deploying to Firebase
+          command: ./node_modules/.bin/firebase deploy --project "rin-anidb" --only hosting --token=$FIREBASE_DEPLOY_TOKEN --non-interactive
