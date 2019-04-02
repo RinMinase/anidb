@@ -3,10 +3,6 @@ jobs:
   setup:
     docker:
       - image: circleci/node:10.12
-    branches:
-      only:
-        - master
-        - ngx
     steps:
       - checkout
 
@@ -18,10 +14,6 @@ jobs:
       - image: circleci/node:10.12-browsers
     environment:
       CHROME_BIN: "/usr/bin/google-chrome"
-    branches:
-      only:
-        - master
-        - ngx
     steps:
       - checkout
 
@@ -35,10 +27,6 @@ jobs:
   deploy:
     docker:
       - image: circleci/node:10.12
-    branches:
-      only:
-        - master
-        - ngx
     steps:
       - checkout
 
@@ -57,6 +45,12 @@ workflows:
       - test:
           requires:
             - setup
+          filters:
+            branches:
+              only: master
       - deploy:
           requires:
             - setup
+          filters:
+            branches:
+              only: master
