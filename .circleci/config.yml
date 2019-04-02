@@ -3,6 +3,7 @@ jobs:
   setup:
     docker:
       - image: circleci/node:10.12
+    working_directory: ~/anidb
     steps:
       - checkout
 
@@ -12,6 +13,7 @@ jobs:
   test:
     docker:
       - image: circleci/node:10.12-browsers
+    working_directory: ~/anidb
     environment:
       CHROME_BIN: "/usr/bin/google-chrome"
     steps:
@@ -27,6 +29,7 @@ jobs:
   deploy:
     docker:
       - image: circleci/node:10.12
+    working_directory: ~/anidb
     steps:
       - checkout
 
@@ -39,7 +42,7 @@ jobs:
           command: ./node_modules/.bin/firebase deploy --project "rin-anidb" --only hosting --token=$FIREBASE_DEPLOY_TOKEN --non-interactive
 workflows:
   version: 2
-  setup_test_and_deploy:
+  build:
     jobs:
       - setup
       - test:
