@@ -23,7 +23,7 @@ jobs:
       - checkout
 
       - attach_workspace:
-        at: ~/anidb/node_modules
+          at: ~/anidb/node_modules
 
       - run:
           name: Testing source code
@@ -40,7 +40,7 @@ jobs:
       - checkout
 
       - attach_workspace:
-        at: ~/anidb/node_modules
+          at: ~/anidb/node_modules
 
       - run:
           name: Building source code
