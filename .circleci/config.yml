@@ -3,7 +3,6 @@ jobs:
   setup:
     docker:
       - image: circleci/node:10.12
-    working_directory: ~/anidb
     steps:
       - checkout
 
@@ -16,14 +15,13 @@ jobs:
   test:
     docker:
       - image: circleci/node:10.12-browsers
-    working_directory: ~/anidb
     environment:
       CHROME_BIN: "/usr/bin/google-chrome"
     steps:
       - checkout
 
       - attach_workspace:
-          at: ~/anidb/node_modules
+          at: node_modules
 
       - run:
           name: Testing source code
@@ -35,12 +33,11 @@ jobs:
   deploy:
     docker:
       - image: circleci/node:10.12
-    working_directory: ~/anidb
     steps:
       - checkout
 
       - attach_workspace:
-          at: ~/anidb/node_modules
+          at: node_modules
 
       - run:
           name: Building source code
