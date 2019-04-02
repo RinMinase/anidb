@@ -12,6 +12,8 @@ jobs:
 
       - persist_to_workspace:
           root: node_modules
+          paths:
+            - .
   test:
     docker:
       - image: circleci/node:10.12-browsers
