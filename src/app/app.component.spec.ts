@@ -9,7 +9,7 @@ import { FooterComponent } from "@components/footer/footer.component";
 // import { FuseOptionsBuilder } from "@builders/fuse-options.service";
 // import { FirebaseQueryBuilder } from "@builders/firebase-query.service";
 
-// import { DarkModeService } from '@services/dark-mode.service';
+import { DarkModeService } from '@services/dark-mode.service';
 // import { FirebaseService } from "@services/firebase.service";
 // import { GithubService } from "@services/github.service";
 // import { UtilityService } from "@services/utility.service";
@@ -35,12 +35,22 @@ describe("AppComponent", () => {
 });
 
 describe("DarkModeService", () => {
-	// beforeEach(() => TestBed.configureTestingModule({}));
+	beforeEach(() => TestBed.configureTestingModule({}));
 
-	// it("should be created", () => {
-	// 	const service: DarkModeService = TestBed.get(DarkModeService);
-	// 	expect(service).toBeTruthy();
-	// });
+	it("should be created", () => {
+		const service: DarkModeService = TestBed.get(DarkModeService);
+		expect(service).toBeTruthy();
+	});
+
+	it("retrieve dark mode status", () => {
+		const service: DarkModeService = TestBed.get(DarkModeService);
+
+		service.enableDarkMode();
+		service.currentState.subscribe((result) => expect(result).toBeTruthy()).unsubscribe();
+
+		service.disableDarkMode();
+		service.currentState.subscribe((result) => expect(result).toBeFalsy()).unsubscribe();
+	});
 });
 
 describe("FuseOptionsBuilder", () => {
