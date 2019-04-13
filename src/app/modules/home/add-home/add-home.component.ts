@@ -119,6 +119,12 @@ export class AddHomeComponent implements OnInit {
 				prequel: value.prequel,
 				sequel: value.sequel,
 				offquel: value.offquel,
+				rating: {
+					audio: 0,
+					enjoyment: 0,
+					graphics: 0,
+					plot: 0,
+				},
 			};
 
 			const dateRaw = value.dateFinishedRaw;

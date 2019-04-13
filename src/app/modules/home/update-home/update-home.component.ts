@@ -140,6 +140,7 @@ export class UpdateHomeComponent implements OnInit {
 				prequel: value.prequel,
 				sequel: value.sequel,
 				offquel: value.offquel,
+				rating: this.parseRating(value.rating),
 			};
 
 			const dateRaw = value.dateFinishedRaw;
@@ -199,6 +200,19 @@ export class UpdateHomeComponent implements OnInit {
 			sequel: this.data.sequel,
 			offquel,
 		});
+	}
+
+	private parseRating(rating: any) {
+		if (rating) {
+			return {
+				audio: rating.audio || 0,
+				enjoyment: rating.enjoyment || 0,
+				graphics: rating.graphics || 0,
+				plot: rating.plot || 0,
+			};
+		} else {
+			return { audio: 0, enjoyment: 0, graphics: 0, plot: 0 };
+		}
 	}
 
 	private updateEntry(data: any) {
