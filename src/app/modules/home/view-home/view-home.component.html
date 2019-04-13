@@ -71,7 +71,8 @@
 					<app-rating [audio]="data.rating?.audio || 0"
 						[enjoyment]="data.rating?.enjoyment || 0"
 						[graphics]="data.rating?.graphics || 0"
-						[plot]="data.rating?.plot || 0"></app-rating>
+						[plot]="data.rating?.plot || 0"
+						(ratingChange)="updateRating($event)"></app-rating>
 				</div>
 			</div>
 		</div>

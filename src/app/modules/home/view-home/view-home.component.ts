@@ -89,6 +89,10 @@ export class ViewHomeComponent implements OnInit {
 		});
 	}
 
+	updateRating(rating: any) {
+		this.firebase.update(this.firebaseQueryBuilder.init().id(this.stateId).data({ rating }).build());
+	}
+
 	private fetchData() {
 		this.firebase.auth()
 			.then(() => {
