@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 
 @Component({
 	selector: "app-rating",
@@ -6,6 +6,13 @@ import { Component, OnInit, Input } from "@angular/core";
 	styleUrls: ["./rating.component.scss"],
 })
 export class RatingComponent implements OnInit {
+
+	@Output() ratingChange = new EventEmitter<{
+		audio: number,
+		enjoyment: number,
+		graphics: number,
+		plot: number,
+	}>();
 
 	@Input() audio: number;
 	@Input() enjoyment: number;
@@ -25,7 +32,17 @@ export class RatingComponent implements OnInit {
 		this.calculateOverall();
 	}
 
-	calculateOverall() {
+	changeRating() {
+		this.calculateOverall();
+		this.ratingChange.emit({
+			audio: this.audio,
+			enjoyment: this.enjoyment,
+			graphics: this.graphics,
+			plot: this.plot,
+		});
+	}
+
+	private calculateOverall() {
 		this.overall = (this.audio + this.enjoyment + this.graphics + this.plot) / 4;
 	}
 

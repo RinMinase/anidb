@@ -16,7 +16,7 @@
 				<span class="h6 pl-lg-3 pl-md-2 pl-5 mr-1">Audio</span>
 			</div>
 			<div class="col-6 text-center">
-					<ngb-rating [(rate)]="audio" max="5" (rateChange)="calculateOverall()">
+					<ngb-rating [(rate)]="audio" max="5" (rateChange)="changeRating()">
 						<ng-template let-fill="fill">
 							<span class="star"
 								[class.full]="fill === 100"
@@ -34,7 +34,7 @@
 				<span class="h6 pl-lg-3 pl-md-2 pl-5 mr-1">Enjoyment</span>
 			</div>
 			<div class="col-6 text-center">
-					<ngb-rating [(rate)]="enjoyment" max="5" (rateChange)="calculateOverall()">
+					<ngb-rating [(rate)]="enjoyment" max="5" (rateChange)="changeRating()">
 							<ng-template let-fill="fill">
 								<span class="star"
 									[class.full]="fill === 100"
@@ -52,7 +52,7 @@
 				<span class="h6 pl-lg-3 pl-md-2 pl-5 mr-1">Graphics</span>
 			</div>
 			<div class="col-6 text-center">
-					<ngb-rating [(rate)]="graphics" max="5" (rateChange)="calculateOverall()">
+					<ngb-rating [(rate)]="graphics" max="5" (rateChange)="changeRating()">
 							<ng-template let-fill="fill">
 								<span class="star"
 									[class.full]="fill === 100"
@@ -70,7 +70,7 @@
 				<span class="h6 pl-lg-3 pl-md-2 pl-5 mr-1">Plot</span>
 			</div>
 			<div class="col-6 text-center">
-					<ngb-rating [(rate)]="plot" max="5" (rateChange)="calculateOverall()">
+					<ngb-rating [(rate)]="plot" max="5" (rateChange)="changeRating()">
 							<ng-template let-fill="fill">
 								<span class="star"
 									[class.full]="fill === 100"
