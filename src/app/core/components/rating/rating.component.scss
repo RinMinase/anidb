@@ -1,10 +1,31 @@
-.rating {
-	i.fa-star,
-	i.fa-star-o,
-	i.fa-star-half,
-	i.fa-star-half-o {
-		color: #FFD700;
+.star {
+	font-size: 1.5rem;
+	color: #DEDEDE;
+	font-family: -apple-system, "Segoe UI", Roboto;
+
+	&.full {
+		color: #28A745;
+
+		&.low { color: #1E90FF; }
+		&.bad { color: #E57373; }
+	}
+}
+
+.heart {
+	position: relative;
+	display: inline-block;
+	font-size: 2.5rem;
+	color: #DEDEDE;
+	font-family: -apple-system, "Segoe UI", Roboto;
+
+	.half {
+		position: absolute;
+		display: inline-block;
+		overflow: hidden;
+		color: #28A745;
 	}
 
-	.total-rating { cursor: pointer; }
+	&.low .half { color: #1E90FF; }
+	&.bad .half { color: #E57373; }
+
 }

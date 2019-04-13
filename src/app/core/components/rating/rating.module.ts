@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
+import { NgbRatingModule } from "@ng-bootstrap/ng-bootstrap";
 
 import { RatingComponent } from "./rating.component";
 
@@ -7,7 +8,9 @@ import { RatingComponent } from "./rating.component";
 	declarations: [RatingComponent],
 	imports: [
 		CommonModule,
+		NgbRatingModule,
 	],
 	exports: [RatingComponent],
+	bootstrap: [RatingComponent],
 })
 export class RatingModule { }

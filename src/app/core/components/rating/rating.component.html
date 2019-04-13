@@ -1,71 +1,84 @@
-<div class="rating">
-	<div class="text-center my-2 total-rating">
-		<!-- ng-click="isRatingCollapsed = !isRatingCollapsed"
-		uib-tooltip="Ratings by Category"> -->
-		<i class="fa fa-2x fa-star"></i>
-		<i class="fa fa-2x fa-star"></i>
-		<i class="fa fa-2x fa-star"></i>
-		<i class="fa fa-2x fa-star-half-o"></i>
-		<i class="fa fa-2x fa-star-o"></i>
+<div class="row">
+	<div class="col-12 text-center mb-2">
+		<ngb-rating [(rate)]="overall" [readonly]="true" max="5">
+				<ng-template let-fill="fill" #heartTemplate>
+					<span class="heart" [class.bad]="overall < 3" [class.low]="overall === 3">
+						<span class="half" [style.width.%]="fill">&hearts;</span>&hearts;
+					</span>
+				</ng-template>
+		</ngb-rating>
+		<p class="h6 font-weight-bold mb-0">Rating: {{ overall }}</p>
 	</div>
-	<!-- <div uib-collapse="!isRatingCollapsed"> -->
+
+	<div class="col-12">
 		<div class="row">
-			<div class="col-12 my-1">
-				<div class="row">
-					<div class="col-md-5 col-6 offset-md-1">
-						<span class="h5 mr-1">Audio</span>
-					</div>
-					<div class="col-md-5 col-6">
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star-half-o"></i>
-						<i class="fa fa-star-o"></i>
-						<i class="fa fa-star-o"></i>
-					</div>
-				</div>
+			<div class="col-6 pt-2">
+				<span class="h6 pl-lg-3 pl-md-2 pl-5 mr-1">Audio</span>
 			</div>
-			<div class="col-12 my-1">
-				<div class="row">
-					<div class="col-md-5 col-6 offset-md-1">
-						<span class="h5 mr-1">Enjoyment</span>
-					</div>
-					<div class="col-md-5 col-6">
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star-o"></i>
-						<i class="fa fa-star-o"></i>
-					</div>
-				</div>
-			</div>
-			<div class="col-12 my-1">
-				<div class="row">
-					<div class="col-md-5 col-6 offset-md-1">
-						<span class="h5 mr-1">Graphics</span>
-					</div>
-					<div class="col-md-5 col-6">
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star-o"></i>
-						<i class="fa fa-star-o"></i>
-					</div>
-				</div>
-			</div>
-			<div class="col-12 my-1">
-				<div class="row">
-					<div class="col-md-5 col-6 offset-md-1">
-						<span class="h5 mr-1">Plot</span>
-					</div>
-					<div class="col-md-5 col-6">
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star-half-o"></i>
-						<i class="fa fa-star-o"></i>
-					</div>
-				</div>
+			<div class="col-6 text-center">
+					<ngb-rating [(rate)]="audio" max="5" (rateChange)="calculateOverall()">
+						<ng-template let-fill="fill">
+							<span class="star"
+								[class.full]="fill === 100"
+								[class.bad]="audio < 3"
+								[class.low]="audio === 3">&#9733;</span>
+						</ng-template>
+					</ngb-rating>
 			</div>
 		</div>
-	<!-- </div> -->
+	</div>
+
+	<div class="col-12">
+		<div class="row">
+			<div class="col-6 pt-2">
+				<span class="h6 pl-lg-3 pl-md-2 pl-5 mr-1">Enjoyment</span>
+			</div>
+			<div class="col-6 text-center">
+					<ngb-rating [(rate)]="enjoyment" max="5" (rateChange)="calculateOverall()">
+							<ng-template let-fill="fill">
+								<span class="star"
+									[class.full]="fill === 100"
+									[class.bad]="enjoyment < 3"
+									[class.low]="enjoyment === 3">&#9733;</span>
+							</ng-template>
+					</ngb-rating>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-12">
+		<div class="row">
+			<div class="col-6 pt-2">
+				<span class="h6 pl-lg-3 pl-md-2 pl-5 mr-1">Graphics</span>
+			</div>
+			<div class="col-6 text-center">
+					<ngb-rating [(rate)]="graphics" max="5" (rateChange)="calculateOverall()">
+							<ng-template let-fill="fill">
+								<span class="star"
+									[class.full]="fill === 100"
+									[class.bad]="graphics < 3"
+									[class.low]="graphics === 3">&#9733;</span>
+							</ng-template>
+					</ngb-rating>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-12">
+		<div class="row">
+			<div class="col-6 pt-2">
+				<span class="h6 pl-lg-3 pl-md-2 pl-5 mr-1">Plot</span>
+			</div>
+			<div class="col-6 text-center">
+					<ngb-rating [(rate)]="plot" max="5" (rateChange)="calculateOverall()">
+							<ng-template let-fill="fill">
+								<span class="star"
+									[class.full]="fill === 100"
+									[class.bad]="plot < 3"
+									[class.low]="plot === 3">&#9733;</span>
+							</ng-template>
+					</ngb-rating>
+			</div>
+		</div>
+	</div>
 </div>
