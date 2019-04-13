@@ -39,36 +39,6 @@ export class ViewHomeComponent implements OnInit {
 		this.fetchData();
 	}
 
-	editTitle() {
-		const updateModal = this.modalService.open(UpdateHomeComponent, {
-			size: "lg",
-			windowClass: "animate bounceInDown",
-		});
-
-		updateModal.componentInstance.data = this.data;
-		updateModal.componentInstance.id = this.stateId;
-
-		updateModal.result
-			.then(() => { this.fetchData(); })
-			.catch(() => {});
-	}
-
-	viewRewatch() {
-		const rewatchModal = this.modalService.open(RewatchComponent, {
-			windowClass: "animate bounceInDown",
-			centered: true,
-		});
-
-		const rewatch = (this.data.rewatch) ? this.data.rewatch.split(",") : [];
-
-		rewatchModal.componentInstance.id = this.stateId;
-		rewatchModal.componentInstance.rewatch = rewatch;
-
-		rewatchModal.result
-			.then(() => { this.fetchData(); })
-			.catch(() => {});
-	}
-
 	deleteTitle() {
 		Swal.fire({
 			title: "Are you sure?",
@@ -89,8 +59,38 @@ export class ViewHomeComponent implements OnInit {
 		});
 	}
 
+	editTitle() {
+		const updateModal = this.modalService.open(UpdateHomeComponent, {
+			size: "lg",
+			windowClass: "animate bounceInDown",
+		});
+
+		updateModal.componentInstance.data = this.data;
+		updateModal.componentInstance.id = this.stateId;
+
+		updateModal.result
+			.then(() => { this.fetchData(); })
+			.catch(() => {});
+	}
+
 	updateRating(rating: any) {
 		this.firebase.update(this.firebaseQueryBuilder.init().id(this.stateId).data({ rating }).build());
+	}
+
+	viewRewatch() {
+		const rewatchModal = this.modalService.open(RewatchComponent, {
+			windowClass: "animate bounceInDown",
+			centered: true,
+		});
+
+		const rewatch = (this.data.rewatch) ? this.data.rewatch.split(",") : [];
+
+		rewatchModal.componentInstance.id = this.stateId;
+		rewatchModal.componentInstance.rewatch = rewatch;
+
+		rewatchModal.result
+			.then(() => { this.fetchData(); })
+			.catch(() => {});
 	}
 
 	private fetchData() {
