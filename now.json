@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "name": "Rin's Anime Database",
+  "routes": [
+      {
+          "src": "/(.*)",
+          "dest": "dist/$1"
+      }
+  ],
+  "builds": [
+      {
+          "src": "dist/*",
+          "use": "@now/static"
+      }
+  ]
+}
