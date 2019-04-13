@@ -68,7 +68,10 @@
 					</button>
 				</div>
 				<div class="col-12">
-					<app-rating [audio]="3" [enjoyment]="2" [graphics]="4" [plot]="5"></app-rating>
+					<app-rating [audio]="data.rating?.audio || 0"
+						[enjoyment]="data.rating?.enjoyment || 0"
+						[graphics]="data.rating?.graphics || 0"
+						[plot]="data.rating?.plot || 0"></app-rating>
 				</div>
 			</div>
 		</div>
