@@ -5,11 +5,14 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { NgbModalModule, NgbTypeaheadModule } from "@ng-bootstrap/ng-bootstrap";
 
 import { LegendModule } from "@components/legend/legend.module";
+import { RatingModule } from "@components/rating/rating.module";
+
+import { HomeComponent } from "./home.component";
 import { ManageHomeComponent } from "./manage-home/manage-home.component";
 import { ViewHomeComponent } from "./view-home/view-home.component";
+
 import { AddHomeComponent } from "./add-home/add-home.component";
 import { UpdateHomeComponent } from "./update-home/update-home.component";
-import { HomeComponent } from "./home.component";
 import { RewatchComponent } from "./view-home/rewatch/rewatch.component";
 
 const routes: Routes = [{
@@ -41,6 +44,7 @@ const routes: Routes = [{
 		NgbTypeaheadModule,
 
 		LegendModule,
+		RatingModule,
 	],
 	entryComponents: [
 		AddHomeComponent,
