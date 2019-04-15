@@ -4,7 +4,7 @@
   "routes": [
       {
           "src": "/(.*)",
-          "dest": "dist/$1"
+          "dest": "dist/index.html/$1"
       }
   ],
   "builds": [
