@@ -2,10 +2,12 @@
   "version": 2,
   "name": "Rin's Anime Database",
   "routes": [
-      {
-          "src": "/(.*)",
-          "dest": "dist/index.html/$1"
-      }
+      {"src": "^/(.*)", "dest": "/index.html"},
+      {"src": "^/assets(.*)", "dest": "/assets/$1"},
+      {"src": "^/main(.*)", "dest": "/main$1"},
+      {"src": "^/polyfills(.*)", "dest": "/polyfills$1"},
+      {"src": "^/styles(.*)", "dest": "/styles$1"},
+      {"src": "^/runtime(.*)", "dest": "/runtime$1"}
   ],
   "builds": [
       {
