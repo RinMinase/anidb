@@ -2,17 +2,25 @@
   "version": 2,
   "name": "Rin's Anime Database",
   "routes": [
-      {"src": "^/(.*)", "dest": "/index.html"},
-      {"src": "^/assets(.*)", "dest": "/assets/$1"},
-      {"src": "^/main(.*)", "dest": "/main$1"},
-      {"src": "^/polyfills(.*)", "dest": "/polyfills$1"},
-      {"src": "^/styles(.*)", "dest": "/styles$1"},
-      {"src": "^/runtime(.*)", "dest": "/runtime$1"}
+    {"src": "^/assets/(.*)", "dest": "/assets/$1"},
+    {"src": "^/assets/fonts/(.*)", "dest": "/assets/fonts/$1"},
+    {"src": "^/main(.*)", "dest": "/main$1"},
+    {"src": "^/polyfills(.*)", "dest": "/polyfills$1"},
+    {"src": "^/styles(.*)", "dest": "/styles$1"},
+    {"src": "^/runtime(.*)", "dest": "/runtime$1"},
+    {"src": "^/service-worker(.*)", "dest": "/service-worker$1"},
+    {"src": "^/(.*)", "dest": "/index.html"}
   ],
   "builds": [
-      {
-          "src": "dist/*",
-          "use": "@now/static"
-      }
+    {
+      "src": "*",
+      "use": "@now/static"
+    }, {
+      "src": "assets/*",
+      "use": "@now/static"
+    }, {
+      "src": "assets/fonts/*",
+      "use": "@now/static"
+    }
   ]
 }
