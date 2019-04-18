@@ -1,8 +1,12 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 
 import { FirebaseService } from "@services/firebase.service";
 import { FirebaseQueryBuilder } from "@builders/firebase-query.service";
+
+import { AddSeasonComponent } from "../add-season/add-season.component";
+import { AddTitleComponent } from "../add-title/add-title.component";
 
 @Component({
 	selector: "app-manage-download",
@@ -24,6 +28,7 @@ export class ManageDownloadComponent implements OnInit {
 
 	constructor(
 		private router: Router,
+		private modalService: NgbModal,
 		private firebase: FirebaseService,
 		private firebaseQueryBuilder: FirebaseQueryBuilder,
 	) { }
@@ -37,6 +42,28 @@ export class ManageDownloadComponent implements OnInit {
 						this.dataLoaded = true;
 					});
 			}).catch(() => this.router.navigateByUrl("/login"));
+	}
+
+	addSeasonList() {
+		const addModal = this.modalService.open(AddSeasonComponent, {
+			centered: true,
+			windowClass: "animate bounceInDown",
+		});
+
+		addModal.result
+			.then(() => {})
+			.catch(() => {});
+	}
+
+	addTitle() {
+		const addModal = this.modalService.open(AddTitleComponent, {
+			centered: true,
+			windowClass: "animate bounceInDown",
+		});
+
+		addModal.result
+			.then(() => {})
+			.catch(() => {});
 	}
 
 	private formatData(rawData: Array<any>) {
