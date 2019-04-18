@@ -34,7 +34,9 @@ jobs:
       - run:
           name: Deploying to Zeit
           command: ./node_modules/.bin/now -t $NOW_DEPLOY_TOKEN dist -A ../now.json && ./node_modules/.bin/now -t $NOW_DEPLOY_TOKEN alias anidb
+          no_output_timeout: 35s
 
       - run:
           name: Removing previous Zeit deployments
           command: ./node_modules/.bin/now -t $NOW_DEPLOY_TOKEN rm "Rin's Anime Database" --safe --yes
+          no_output_timeout: 8s
