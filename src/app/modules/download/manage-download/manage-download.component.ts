@@ -44,7 +44,7 @@ export class ManageDownloadComponent implements OnInit {
 			}).catch(() => this.router.navigateByUrl("/login"));
 	}
 
-	addSeasonList() {
+	addSeason() {
 		const addModal = this.modalService.open(AddSeasonComponent, {
 			centered: true,
 			windowClass: "animate bounceInDown",
