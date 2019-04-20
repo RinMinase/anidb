@@ -1,6 +1,10 @@
 .card-body > div { padding: 20px; }
 .card-body.collapsing { transition-duration: 1s; }
-.download-badge { width: 3em; }
+
+.download-badge {
+	margin-left: 3px;
+	width: 3em;
+}
 
 .list-group-item {
 	&:first-child, &:last-child { border-radius: 0; }
