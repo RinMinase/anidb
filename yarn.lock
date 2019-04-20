@@ -7080,10 +7080,10 @@ normalize-url@2.0.1:
     query-string "^5.0.1"
     sort-keys "^2.0.0"
 
-now@^15.0.5:
-  version "15.0.5"
-  resolved "https://registry.yarnpkg.com/now/-/now-15.0.5.tgz#bce4e4ca2cb95866f04aaf28b415ff50eb7a90c5"
-  integrity sha512-6FcurNJIRot2Si0RMdxK1LLNygKf+Lw6UhFKEO2/r3XNUhHgGAVIRTnMiEX9CIHbirICjQRDIYq3bKHkpeBoow==
+now@^15.0.6:
+  version "15.0.6"
+  resolved "https://registry.yarnpkg.com/now/-/now-15.0.6.tgz#47cdf25c9538cee1c16101058786a59758071ea8"
+  integrity sha512-kX58WG6ioe8guduIUFW+9yTvQt5XcYQsuSQJL1J1XLpWeJIAy951Bkfvli/tLdMXB/lNwlOQUnMyL4zobBSqlA==
 
 npm-bundled@^1.0.1:
   version "1.0.6"
