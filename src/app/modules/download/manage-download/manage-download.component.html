@@ -60,9 +60,7 @@
 								<a class="list-group-item link px-3 py-2 c-pointer"
 									(click)="collapse[key] = !collapse[key]">
 									<span>{{ key }}</span>
-									<span class="">
-										<i class="fa fa-caret-down"></i>
-									</span>
+									<span class="float-right"><i class="fa fa-caret-down"></i></span>
 								</a>
 								<a class="list-group-item link pl-4 pr-3 py-0 season-list c-pointer"
 									*ngFor="let value of keys[key]"
