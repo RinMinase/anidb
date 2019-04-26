@@ -7082,10 +7082,10 @@ normalize-url@2.0.1:
     query-string "^5.0.1"
     sort-keys "^2.0.0"
 
-now@^15.0.6:
-  version "15.0.6"
-  resolved "https://registry.yarnpkg.com/now/-/now-15.0.6.tgz#47cdf25c9538cee1c16101058786a59758071ea8"
-  integrity sha512-kX58WG6ioe8guduIUFW+9yTvQt5XcYQsuSQJL1J1XLpWeJIAy951Bkfvli/tLdMXB/lNwlOQUnMyL4zobBSqlA==
+now@^15.0.8:
+  version "15.0.8"
+  resolved "https://registry.yarnpkg.com/now/-/now-15.0.8.tgz#7bd3a6d12b136b47ede7f95cce8eb090d89a3a43"
+  integrity sha512-YCzfLOXznIacdblWJsBJLpA44i2L5czmwyZbb7Rzd7aF5zglSGP2YTK9vY5H0O0g8NpVWIEZ2Lxq8sCnyTm1JA==
 
 npm-bundled@^1.0.1:
   version "1.0.6"
