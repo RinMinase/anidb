@@ -6908,10 +6908,10 @@ ng2-file-upload@^1.3.0:
   resolved "https://registry.yarnpkg.com/ng2-file-upload/-/ng2-file-upload-1.3.0.tgz#d90f8f568f62383462175f8bdfa0096b131f277a"
   integrity sha512-Pudxik6LWYsT8hNiEW7RfjgGWAnvfQywxwJYMdt1snTUe+KnlRc/QqPv3QEQW6plXTanuLkYz/TbqilSfSHOsw==
 
-ngx-build-plus@^7.8.1:
-  version "7.8.1"
-  resolved "https://registry.yarnpkg.com/ngx-build-plus/-/ngx-build-plus-7.8.1.tgz#ace6a410235e6253f2e76e6b4dc8ef669da67216"
-  integrity sha512-xOFHY8s0UrE1Z0UcMKAAh73DzH1D1xJ8Hbr5U3lqNU1gLtpHRhLepKj9H4vDBwenBD0L1Rn7B/ae8kd+4Nloxw==
+ngx-build-plus@^7.8.2:
+  version "7.8.2"
+  resolved "https://registry.yarnpkg.com/ngx-build-plus/-/ngx-build-plus-7.8.2.tgz#49e2b9652ab83025f0ab6fdd37891c114b33f7c2"
+  integrity sha512-XYQ0S/RkSPo6ESLKGluXCs2GowDAd+lm8BVC42mO3rxnEsvdtd806PMeckBg7Yiw3Vpoq7n6M5tT7WNCJXdtmg==
   dependencies:
     "@schematics/angular" "^7.2.1"
     cross-spawn "^6.0.5"
