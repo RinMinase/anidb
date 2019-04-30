@@ -9810,10 +9810,10 @@ sw-toolbox@^3.4.0:
     path-to-regexp "^1.0.1"
     serviceworker-cache-polyfill "^4.0.0"
 
-sweetalert2@^8.8.7:
-  version "8.8.7"
-  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-8.8.7.tgz#1c67e338a8610d4f9cc60563063ea9d2bebd031c"
-  integrity sha512-RYJ32Haqv7eqeMRl79IVfvWfsL0xgF6qcDvlYZVLoDhR3cAVQgsiMy40f13DkoRaz+V2smGbUNdzhO3otnJrIA==
+sweetalert2@^8.9.0:
+  version "8.9.0"
+  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-8.9.0.tgz#94a46eb79b0cb069f41f0bc7937f020fd843101d"
+  integrity sha512-gI+wL44QRbfd6FvRVB8KKLQPhD/8jP3XUNrvYGcSlU7IA09dQtQw3rrLCbM3c+HY0L3O8VTz1Gvu29n8ryIgag==
 
 symbol-observable@1.2.0:
   version "1.2.0"
