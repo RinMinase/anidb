@@ -83,7 +83,7 @@
     "**/@firebase/storage-types": "^0.2.10",
     "**/@firebase/util": "^0.2.13",
     "**/chart.js": "^2.8.0",
-    "**/jquery": "^3.4.0",
+    "**/jquery": "^3.4.1",
     "**/popper.js": "^1.15.0",
     "**/webpack": "4.29.0"
   },
