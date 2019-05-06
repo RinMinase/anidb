@@ -1,19 +1,15 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 
 import { FirebaseService } from "@services/firebase.service";
 import { FirebaseQueryBuilder } from "@builders/firebase-query.service";
 
-import { AddSeasonComponent } from "../add-season/add-season.component";
-import { AddTitleComponent } from "../add-title/add-title.component";
-
 @Component({
-	selector: "app-manage-download",
-	templateUrl: "./manage-download.component.html",
-	styleUrls: ["./manage-download.component.scss"],
+	selector: "app-byyear",
+	templateUrl: "./byyear.component.html",
+	styleUrls: ["./byyear.component.scss"],
 })
-export class ManageDownloadComponent implements OnInit {
+export class ByyearComponent implements OnInit {
 
 	objKeys = Object.keys;
 	data = {};
@@ -28,7 +24,6 @@ export class ManageDownloadComponent implements OnInit {
 
 	constructor(
 		private router: Router,
-		private modalService: NgbModal,
 		private firebase: FirebaseService,
 		private firebaseQueryBuilder: FirebaseQueryBuilder,
 	) { }
@@ -44,27 +39,9 @@ export class ManageDownloadComponent implements OnInit {
 			}).catch(() => this.router.navigateByUrl("/login"));
 	}
 
-	addSeason() {
-		const addModal = this.modalService.open(AddSeasonComponent, {
-			centered: true,
-			windowClass: "animate bounceInDown",
-		});
+	addSeason() {}
 
-		addModal.result
-			.then(() => {})
-			.catch(() => {});
-	}
-
-	addTitle() {
-		const addModal = this.modalService.open(AddTitleComponent, {
-			centered: true,
-			windowClass: "animate bounceInDown",
-		});
-
-		addModal.result
-			.then(() => {})
-			.catch(() => {});
-	}
+	addTitle() {}
 
 	private formatData(rawData: Array<any>) {
 		rawData.forEach((data: any) => {
