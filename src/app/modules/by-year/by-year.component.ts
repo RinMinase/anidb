@@ -6,10 +6,10 @@ import { FirebaseQueryBuilder } from "@builders/firebase-query.service";
 
 @Component({
 	selector: "app-byyear",
-	templateUrl: "./byyear.component.html",
-	styleUrls: ["./byyear.component.scss"],
+	templateUrl: "./by-year.component.html",
+	styleUrls: ["./by-year.component.scss"],
 })
-export class ByyearComponent implements OnInit {
+export class ByYearComponent implements OnInit {
 
 	objKeys = Object.keys;
 	data = {};

@@ -18,8 +18,8 @@ const routes: Routes = [{
 	path: "by-name",
 	loadChildren: "./modules/by-name/by-name.module#ByNameModule",
 }, {
-	path: "byyear",
-	loadChildren: "./modules/byyear/byyear.module#ByyearModule",
+	path: "by-year",
+	loadChildren: "./modules/by-year/by-year.module#ByYearModule",
 }, {
 	path: "download",
 	loadChildren: "./modules/download/download.module#DownloadModule",

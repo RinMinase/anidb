@@ -8,12 +8,12 @@ import {
 	NgbTooltipModule,
 } from "@ng-bootstrap/ng-bootstrap";
 
-import { ByyearComponent } from "./byyear.component";
+import { ByYearComponent } from "./by-year.component";
 
-const routes: Routes = [{ path: "", component: ByyearComponent }];
+const routes: Routes = [{ path: "", component: ByYearComponent }];
 
 @NgModule({
-	declarations: [ByyearComponent],
+	declarations: [ByYearComponent],
 	imports: [
 		CommonModule,
 		RouterModule.forChild(routes),
@@ -22,4 +22,4 @@ const routes: Routes = [{ path: "", component: ByyearComponent }];
 		NgbTooltipModule,
 	],
 })
-export class ByyearModule { }
+export class ByYearModule { }
