@@ -9,7 +9,8 @@
     {"src": "^/styles(.*)", "dest": "/styles$1"},
     {"src": "^/runtime(.*)", "dest": "/runtime$1"},
     {"src": "^/service-worker(.*)", "dest": "/service-worker$1"},
-    {"src": "^/(.*)", "dest": "/index.html"}
+    {"src": "^/(.*)", "dest": "/$1"},
+    {"src": "^/", "dest": "/index.html"}
   ],
   "builds": [
     {
