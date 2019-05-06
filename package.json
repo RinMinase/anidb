@@ -30,7 +30,7 @@
     "@angular/forms": "^7.2.14",
     "@angular/platform-browser": "^7.2.14",
     "@angular/router": "^7.2.14",
-    "@ng-bootstrap/ng-bootstrap": "^4.1.1",
+    "@ng-bootstrap/ng-bootstrap": "^4.1.2",
     "animatewithsass": "^3.2.1",
     "bootstrap": "^4.3.1",
     "cordova-android": "^8.0.0",
