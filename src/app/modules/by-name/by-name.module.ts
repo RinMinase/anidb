@@ -4,12 +4,12 @@ import { Routes, RouterModule } from "@angular/router";
 import { NgbCollapseModule } from "@ng-bootstrap/ng-bootstrap";
 
 import { LegendModule } from "@components/legend/legend.module";
-import { BynameComponent } from "./byname.component";
+import { ByNameComponent } from "./by-name.component";
 
-const routes: Routes = [{ path: "", component: BynameComponent }];
+const routes: Routes = [{ path: "", component: ByNameComponent }];
 
 @NgModule({
-	declarations: [BynameComponent],
+	declarations: [ByNameComponent],
 	imports: [
 		CommonModule,
 		RouterModule.forChild(routes),
@@ -18,4 +18,4 @@ const routes: Routes = [{ path: "", component: BynameComponent }];
 		LegendModule,
 	],
 })
-export class BynameModule { }
+export class ByNameModule { }

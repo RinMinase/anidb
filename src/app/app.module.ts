@@ -15,8 +15,8 @@ const routes: Routes = [{
 	path: "about",
 	loadChildren: "./modules/about/about.module#AboutModule",
 }, {
-	path: "byname",
-	loadChildren: "./modules/byname/byname.module#BynameModule",
+	path: "by-name",
+	loadChildren: "./modules/by-name/by-name.module#ByNameModule",
 }, {
 	path: "byyear",
 	loadChildren: "./modules/byyear/byyear.module#ByyearModule",

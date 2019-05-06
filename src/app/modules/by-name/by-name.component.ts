@@ -6,9 +6,9 @@ import { UtilityService } from "@services/utility.service";
 
 @Component({
 	selector: "app-byname",
-	templateUrl: "./byname.component.html",
+	templateUrl: "./by-name.component.html",
 })
-export class BynameComponent implements OnInit {
+export class ByNameComponent implements OnInit {
 
 	data: Array<object> = [];
 	dataLoaded: boolean = false;
