@@ -11,6 +11,9 @@ import { AddTitleComponent } from "./add-title/add-title.component";
 })
 export class DownloadComponent implements OnInit {
 
+	data = {};
+	dataLoaded: boolean = true;
+
 	constructor(private modalService: NgbModal) { }
 
 	ngOnInit() {

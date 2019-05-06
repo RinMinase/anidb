@@ -1,3 +1,19 @@
-<p>
-  download works!
-</p>
+<div class="container-fluid">
+	<div class="flex-form-container"
+		*ngIf="dataLoaded === false">
+		<div class="spinner eclipse"></div>
+	</div>
+
+	<div class="row" *ngIf="dataLoaded === true">
+		<div class="col-lg-3 animate slideInLeft">
+			<div class="row mb-2">
+				<div class="col-6 pr-1">
+					<button class="btn btn-primary btn-block" (click)="addTitle()">Add Title</button>
+				</div>
+				<div class="col-6 pl-1">
+					<button class="btn btn-success btn-block" (click)="addSeason()">Add Season</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
