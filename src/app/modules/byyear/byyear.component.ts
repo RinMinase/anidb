@@ -39,10 +39,6 @@ export class ByyearComponent implements OnInit {
 			}).catch(() => this.router.navigateByUrl("/login"));
 	}
 
-	addSeason() {}
-
-	addTitle() {}
-
 	private formatData(rawData: Array<any>) {
 		rawData.forEach((data: any) => {
 			const { releaseYear, releaseSeason, watchStatus } = data;
