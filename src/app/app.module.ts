@@ -18,6 +18,9 @@ const routes: Routes = [{
 	path: "byname",
 	loadChildren: "./modules/byname/byname.module#BynameModule",
 }, {
+	path: "byyear",
+	loadChildren: "./modules/byyear/byyear.module#ByyearModule",
+}, {
 	path: "download",
 	loadChildren: "./modules/download/download.module#DownloadModule",
 }, {
