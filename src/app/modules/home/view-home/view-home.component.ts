@@ -148,9 +148,9 @@ export class ViewHomeComponent implements OnInit {
 	}
 
 	private parseDuration(duration: number) {
-		const hours = (duration / 3600).toFixed(0).padStart(2, "0");
-		const minutes = ((duration % 3600) / 60).toFixed(0).padStart(2, "0");
-		const seconds = ((duration % 3600) % 60).toFixed(0).padStart(2, "0");
+		const hours = Math.trunc(duration / 3600).toString().padStart(2, "0");
+		const minutes = Math.trunc((duration % 3600) / 60).toString().padStart(2, "0");
+		const seconds = Math.trunc((duration % 3600) % 60).toString().padStart(2, "0");
 
 		return { hours, minutes, seconds };
 	}
