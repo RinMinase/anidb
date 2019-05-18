@@ -62,6 +62,8 @@ export class ViewHomeComponent implements OnInit {
 	editTitle() {
 		const updateModal = this.modalService.open(UpdateHomeComponent, {
 			size: "lg",
+			backdrop: "static",
+			keyboard: false,
 			windowClass: "animate bounceInDown",
 		});
 
@@ -79,6 +81,8 @@ export class ViewHomeComponent implements OnInit {
 
 	viewRewatch() {
 		const rewatchModal = this.modalService.open(RewatchComponent, {
+			backdrop: "static",
+			keyboard: false,
 			windowClass: "animate bounceInDown",
 			centered: true,
 		});

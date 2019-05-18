@@ -72,6 +72,8 @@ export class ManageHomeComponent implements OnInit {
 	addTitle() {
 		const addModal = this.modalService.open(AddHomeComponent, {
 			size: "lg",
+			backdrop: "static",
+			keyboard: false,
 			windowClass: "animate bounceInDown",
 		});
 
