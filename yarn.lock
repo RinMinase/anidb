@@ -1503,7 +1503,7 @@ body-parser@1.18.3:
     raw-body "2.3.3"
     type-is "~1.6.16"
 
-body-parser@^1.16.1:
+body-parser@^1.16.1, body-parser@^1.19.0:
   version "1.19.0"
   resolved "https://registry.yarnpkg.com/body-parser/-/body-parser-1.19.0.tgz#96b2709e57c9c4e09a6fd66a8fd979844f69f08a"
   integrity sha512-dhEPs72UPbDnAQJ9ZKMNTP6ptJaionhP5cBb541nXPlW60Jepo9RV/a4fX4XWW9CuFNK22krhrj1+rgzifNCsw==
@@ -3825,13 +3825,14 @@ find-up@^3.0.0:
   dependencies:
     locate-path "^3.0.0"
 
-firebase-tools@^6.9.2:
-  version "6.9.2"
-  resolved "https://registry.yarnpkg.com/firebase-tools/-/firebase-tools-6.9.2.tgz#2cb6da6287d6d0c95256804018644c173be3e6cb"
-  integrity sha512-0100ybyBFqAd4TfP5dYGtK5EOXRbGWIDxO1WEL4dToAQRmEth4Et+evlYLvcEww2T8D6ZWw8eZBc3Reo3Cyxaw==
+firebase-tools@^6.10.0:
+  version "6.10.0"
+  resolved "https://registry.yarnpkg.com/firebase-tools/-/firebase-tools-6.10.0.tgz#ccd21d80ec0100b8a18b79addb5db667d4e31415"
+  integrity sha512-6frS6a9QyjyKzSqcQDihN8udOscL8zvMb6LWqA0gROI2axEkoFgGgeFQc0Qrkye0ysmjUqackDcHhhb1qzM1+Q==
   dependencies:
     JSONStream "^1.2.1"
     archiver "^2.1.1"
+    body-parser "^1.19.0"
     chokidar "^2.1.5"
     cjson "^0.3.1"
     cli-color "^1.2.0"
