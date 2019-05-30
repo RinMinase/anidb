@@ -93,7 +93,7 @@
     rxjs "6.4.0"
     webpack-merge "4.2.1"
 
-"@angular-devkit/core@8.0.0", "@angular-devkit/core@8.0.0-rc.3", "@angular-devkit/core@^8.0.0":
+"@angular-devkit/core@8.0.0", "@angular-devkit/core@^8.0.0":
   version "8.0.0"
   resolved "https://registry.yarnpkg.com/@angular-devkit/core/-/core-8.0.0.tgz#a0ca65d8d0f928db9288316b1f3346d21f722213"
   integrity sha512-wYf4zzpYj5Y673DG8iteK0GsDDuXBKN/TOXm4lUwmXcz8QHTD+BfR6qA5TBDqlMGpU7CP1/0vgbv2px17CDETQ==
@@ -110,14 +110,6 @@
   integrity sha512-IXJOs/DkDqNbfG76sNNY5ePZ37rjkMUopmtvhN6/U1hQFwTpGa9N0bCHFphcKraXeS6Jfox5XwFEStc/1xyhfw==
   dependencies:
     "@angular-devkit/core" "8.0.0"
-    rxjs "6.4.0"
-
-"@angular-devkit/schematics@8.0.0-rc.3":
-  version "8.0.0-rc.3"
-  resolved "https://registry.yarnpkg.com/@angular-devkit/schematics/-/schematics-8.0.0-rc.3.tgz#754db2735863393066a7dd88915b5b594ccde4b8"
-  integrity sha512-u08GNDCRbm4fYYilmnT27Pp6QW/FxD7W9bpUH8Kp4i6r0f4uBuYQiQT1x6celTwj8Bh1fQqCq/kM/lAG0dd5Zg==
-  dependencies:
-    "@angular-devkit/core" "8.0.0-rc.3"
     rxjs "6.4.0"
 
 "@angular/cli@^8.0.0":
@@ -614,14 +606,6 @@
   dependencies:
     "@angular-devkit/core" "8.0.0"
     "@angular-devkit/schematics" "8.0.0"
-
-"@schematics/angular@8.0.0-rc.3":
-  version "8.0.0-rc.3"
-  resolved "https://registry.yarnpkg.com/@schematics/angular/-/angular-8.0.0-rc.3.tgz#26f253e882173a78858e999409e64844b7030ddd"
-  integrity sha512-IuunKeNof7QL7aj3X56lS5KP28asmN18G9js2m/XTpyIKOX053kGppwWfBULmDnGMd4UR1+XU/xmIFQUq7vurQ==
-  dependencies:
-    "@angular-devkit/core" "8.0.0-rc.3"
-    "@angular-devkit/schematics" "8.0.0-rc.3"
 
 "@schematics/update@0.800.0":
   version "0.800.0"
@@ -2002,7 +1986,7 @@ chartjs-color@^2.1.0:
     chartjs-color-string "^0.6.0"
     color-convert "^0.5.3"
 
-chokidar@^2.0.0, chokidar@^2.0.2, chokidar@^2.0.3, chokidar@^2.1.1, chokidar@^2.1.5, chokidar@^2.1.6:
+chokidar@^2.0.0, chokidar@^2.0.2, chokidar@^2.0.3, chokidar@^2.1.1, chokidar@^2.1.5:
   version "2.1.6"
   resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-2.1.6.tgz#b6cad653a929e244ce8a834244164d241fa954c5"
   integrity sha512-V2jUo67OKkc6ySiRpJrjlpJKl9kDuG+Xb8VgsGzb+aEouhgS1D0weyPU4lEzdAcsCAvrih2J2BqyXqHWvVLw5g==
@@ -2903,7 +2887,7 @@ defined@~1.0.0:
   resolved "https://registry.yarnpkg.com/defined/-/defined-1.0.0.tgz#c98d9bcef75674188e110969151199e39b1fa693"
   integrity sha1-yY2bzvdWdBiOEQlpFRGZ45sfppM=
 
-del@^4.1.0, del@^4.1.1:
+del@^4.1.0:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/del/-/del-4.1.1.tgz#9e8f117222ea44a31ff3a156c049b99052a9f0b4"
   integrity sha512-QwGuEUouP2kVwQenAsOof5Fv8K9t3D8Ca8NxcXKrIpEHjTXK5J2nXLdP+ALI1cgv8wj7KuwBhTwBkOZSJKM5XQ==
@@ -3519,7 +3503,7 @@ expand-brackets@^2.1.4:
     snapdragon "^0.8.1"
     to-regex "^3.0.1"
 
-express@^4.16.4, express@^4.17.0:
+express@^4.16.4:
   version "4.17.0"
   resolved "https://registry.yarnpkg.com/express/-/express-4.17.0.tgz#288af62228a73f4c8ea2990ba3b791bb87cd4438"
   integrity sha512-1Z7/t3Z5ZnBG252gKUPyItc4xdeaA0X934ca2ewckAsVsw9EG71i++ZHZPYnus8g/s5Bty8IMpSVEuRkmwwPRQ==
@@ -4794,7 +4778,7 @@ inquirer@^0.12.0:
     strip-ansi "^3.0.0"
     through "^2.3.6"
 
-internal-ip@^4.2.0, internal-ip@^4.3.0:
+internal-ip@^4.2.0:
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/internal-ip/-/internal-ip-4.3.0.tgz#845452baad9d2ca3b69c635a137acb9a0dad0907"
   integrity sha512-S1zBo1D6zcsyuC6PMmY5+55YMILQ9av8lotMx447Bq6SAgo/sDK6y6uUKmuYhW7eacnIhFfsPmCNYdDzsnnDCg==
@@ -6482,17 +6466,6 @@ ng2-file-upload@^1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/ng2-file-upload/-/ng2-file-upload-1.3.0.tgz#d90f8f568f62383462175f8bdfa0096b131f277a"
   integrity sha512-Pudxik6LWYsT8hNiEW7RfjgGWAnvfQywxwJYMdt1snTUe+KnlRc/QqPv3QEQW6plXTanuLkYz/TbqilSfSHOsw==
-
-ngx-build-plus@^8.0.0-rc.3.0.1:
-  version "8.0.0-rc.3.0.1"
-  resolved "https://registry.yarnpkg.com/ngx-build-plus/-/ngx-build-plus-8.0.0-rc.3.0.1.tgz#7ed337bd21b7a82bc9c9fcb4a20d897ef2753033"
-  integrity sha512-1ioNbai2eT3AkuyhLG9AbaoChlw56V5TS9A7HvVJO72zRRdwJZ+oaAIYDs5MzaAOOwi9f/5Z59xLquzH5p4kjA==
-  dependencies:
-    "@schematics/angular" "8.0.0-rc.3"
-    cross-spawn "^6.0.5"
-    rxjs "6.4.0"
-    webpack-dev-server "^3.1.14"
-    webpack-merge "^4.2.1"
 
 ngx-dropzone-wrapper@^7.2.1:
   version "7.2.1"
@@ -9950,7 +9923,7 @@ webpack-dev-middleware@3.6.2:
     range-parser "^1.0.3"
     webpack-log "^2.0.0"
 
-webpack-dev-middleware@^3.6.2, webpack-dev-middleware@^3.7.0:
+webpack-dev-middleware@^3.6.2:
   version "3.7.0"
   resolved "https://registry.yarnpkg.com/webpack-dev-middleware/-/webpack-dev-middleware-3.7.0.tgz#ef751d25f4e9a5c8a35da600c5fda3582b5c6cff"
   integrity sha512-qvDesR1QZRIAZHOE3iQ4CXLZZSQ1lAUsSpnQmlB1PBfoN/xdRjmge3Dok0W4IdaVLJOGJy3sGI4sZHwjRU0PCA==
@@ -9993,42 +9966,6 @@ webpack-dev-server@3.3.1:
     supports-color "^6.1.0"
     url "^0.11.0"
     webpack-dev-middleware "^3.6.2"
-    webpack-log "^2.0.0"
-    yargs "12.0.5"
-
-webpack-dev-server@^3.1.14:
-  version "3.4.1"
-  resolved "https://registry.yarnpkg.com/webpack-dev-server/-/webpack-dev-server-3.4.1.tgz#a5fd8dec95dec410098e7d9a037ff9405395d51a"
-  integrity sha512-CRqZQX2ryMtrg0r3TXQPpNh76eM1HD3Wmu6zDBxIKi/d2y+4aa28Ia8weNT0bfgWpY6Vs3Oq/K8+DjfbR+tWYw==
-  dependencies:
-    ansi-html "0.0.7"
-    bonjour "^3.5.0"
-    chokidar "^2.1.6"
-    compression "^1.7.4"
-    connect-history-api-fallback "^1.6.0"
-    debug "^4.1.1"
-    del "^4.1.1"
-    express "^4.17.0"
-    html-entities "^1.2.1"
-    http-proxy-middleware "^0.19.1"
-    import-local "^2.0.0"
-    internal-ip "^4.3.0"
-    ip "^1.1.5"
-    killable "^1.0.1"
-    loglevel "^1.6.1"
-    opn "^5.5.0"
-    portfinder "^1.0.20"
-    schema-utils "^1.0.0"
-    selfsigned "^1.10.4"
-    semver "^6.0.0"
-    serve-index "^1.9.1"
-    sockjs "0.3.19"
-    sockjs-client "1.3.0"
-    spdy "^4.0.0"
-    strip-ansi "^3.0.1"
-    supports-color "^6.1.0"
-    url "^0.11.0"
-    webpack-dev-middleware "^3.7.0"
     webpack-log "^2.0.0"
     yargs "12.0.5"
 
