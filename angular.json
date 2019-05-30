@@ -19,8 +19,12 @@
       },
       "architect": {
         "build": {
-          "builder": "ngx-build-plus:build",
+          "builder": "@angular-builders/custom-webpack:browser",
           "options": {
+            "customWebpackConfig": {
+              "path": "src/assets/config/webpack.ts",
+              "mergeStrategies": { "externals": "replace" }
+            },
             "outputPath": "dist",
             "index": "src/index.html",
             "main": "src/index.ts",
@@ -60,7 +64,6 @@
               "extractLicenses": false,
               "vendorChunk": false,
               "buildOptimizer": true,
-              "extraWebpackConfig": "src/assets/config/webpack.ts",
               "budgets": [{
                 "type": "initial",
                 "maximumWarning": "2mb",
@@ -70,7 +73,7 @@
           }
         },
         "serve": {
-          "builder": "ngx-build-plus:dev-server",
+          "builder": "@angular-builders/custom-webpack:dev-server",
           "options": {
             "port": 3000,
             "browserTarget": "anidb:build",
@@ -87,8 +90,12 @@
           "options": { "browserTarget": "anidb:build" }
         },
         "test": {
-          "builder": "ngx-build-plus:karma",
+          "builder": "@angular-builders/custom-webpack:karma",
           "options": {
+            "customWebpackConfig": {
+              "path": "src/assets/config/webpack.ts",
+              "mergeStrategies": { "externals": "replace" }
+            },
             "main": "src/assets/config/testing/test.ts",
             "tsConfig": "src/assets/config/tsconfig.spec.json",
             "karmaConfig": "src/assets/config/testing/karma.conf.ts",
