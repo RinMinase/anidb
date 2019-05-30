@@ -8,7 +8,7 @@ import { DropzoneComponent } from "ngx-dropzone-wrapper";
 })
 export class SampleDropzoneComponent implements OnInit {
 
-	@ViewChild(DropzoneComponent) dz?: DropzoneComponent;
+	@ViewChild(DropzoneComponent, { static: false }) dz?: DropzoneComponent;
 
 	log: any;
 	config: any;
