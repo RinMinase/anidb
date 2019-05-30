@@ -13,28 +13,28 @@ import { HomeModule } from "@modules/home/home.module";
 
 const routes: Routes = [{
 	path: "about",
-	loadChildren: "./modules/about/about.module#AboutModule",
+	loadChildren: () => import("./modules/about/about.module").then((m) => m.AboutModule),
 }, {
 	path: "by-name",
-	loadChildren: "./modules/by-name/by-name.module#ByNameModule",
+	loadChildren: () => import("./modules/by-name/by-name.module").then((m) => m.ByNameModule),
 }, {
 	path: "by-year",
-	loadChildren: "./modules/by-year/by-year.module#ByYearModule",
+	loadChildren: () => import("./modules/by-year/by-year.module").then((m) => m.ByYearModule),
 }, {
 	path: "download",
-	loadChildren: "./modules/download/download.module#DownloadModule",
+	loadChildren: () => import("./modules/download/download.module").then((m) => m.DownloadModule),
 }, {
 	path: "export",
-	loadChildren: "./modules/export/export.module#ExportModule",
+	loadChildren: () => import("./modules/export/export.module").then((m) => m.ExportModule),
 }, {
 	path: "hdd",
-	loadChildren: "./modules/hdd/hdd.module#HddModule",
+	loadChildren: () => import("./modules/hdd/hdd.module").then((m) => m.HddModule),
 }, {
 	path: "lastwatch",
-	loadChildren: "./modules/lastwatch/lastwatch.module#LastwatchModule",
+	loadChildren: () => import("./modules/lastwatch/lastwatch.module").then((m) => m.LastwatchModule),
 }, {
 	path: "summer",
-	loadChildren: "./modules/summer/summer.module#SummerModule",
+	loadChildren: () => import("./modules/summer/summer.module").then((m) => m.SummerModule),
 }, {
 	path: "",
 	pathMatch: "full",
