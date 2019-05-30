@@ -10,6 +10,8 @@ import { FooterModule } from "@components/footer/footer.module";
 
 import { LoginModule } from "@modules/login/login.module";
 import { HomeModule } from "@modules/home/home.module";
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 const routes: Routes = [{
 	path: "about",
@@ -53,6 +55,7 @@ const routes: Routes = [{
 
 		LoginModule,
 		HomeModule,
+		ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
 	],
 	providers: [],
 	bootstrap: [AppComponent],
