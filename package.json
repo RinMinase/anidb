@@ -25,6 +25,7 @@
     "setup": "cordova platform add android && yarn"
   },
   "dependencies": {
+    "@angular-builders/custom-webpack": "^8.0.1",
     "@angular/common": "^8.0.0",
     "@angular/core": "^8.0.0",
     "@angular/forms": "^8.0.0",
