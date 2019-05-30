@@ -75,11 +75,14 @@
         "serve": {
           "builder": "@angular-builders/custom-webpack:dev-server",
           "options": {
+            "customWebpackConfig": {
+              "path": "src/assets/config/webpack.ts",
+              "mergeStrategies": { "externals": "replace" }
+            },
             "port": 3000,
             "browserTarget": "anidb:build",
             "sourceMap": true,
-            "progress": false,
-            "extraWebpackConfig": "src/assets/config/webpack.ts"
+            "progress": false
           },
           "configurations": {
             "production": { "browserTarget": "anidb:build:production" }
