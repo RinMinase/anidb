@@ -85,14 +85,7 @@
     "**/chart.js": "^2.8.0",
     "**/jquery": "^3.4.1",
     "**/popper.js": "^1.15.0",
-    "**/webpack": "4.30.0",
-    "@ng-bootstrap/ng-bootstrap/@angular/common": "~7.2.15",
-    "@ng-bootstrap/ng-bootstrap/@angular/core": "~7.2.15",
-    "@ng-bootstrap/ng-bootstrap/@angular/forms": "~7.2.15",
-    "@ng-bootstrap/ng-bootstrap/**/@angular/platform-browser": "~7.2.15",
-    "@ng-bootstrap/ng-bootstrap/**/zone.js": "~0.8.26",
-    "ng2-charts/@angular/common": "~7.2.15",
-    "ng2-charts/@angular/core": "~7.2.15"
+    "**/webpack": "4.30.0"
   },
   "engines": {
     "node": "^8.10.0 || >=9.10.0",
