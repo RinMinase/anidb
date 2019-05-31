@@ -13,12 +13,11 @@
   },
   "scripts": {
     "start": "ng serve",
-    "build": "ng build --prod --no-progress && npm run sw-cache",
+    "build": "ng build --prod --no-progress",
     "bundle": "npm run bundle-build && npm run bundle-app && npm run bundle-post",
-    "bundle-build": "ng build --prod --base-href ./ && npm run sw-cache && mv dist www",
+    "bundle-build": "ng build --prod --base-href ./ && mv dist www",
     "bundle-app": "tsc src/assets/res/android/hooks/after_build.ts && cordova build android",
     "bundle-post": "rm -rf www && rm src/assets/res/android/hooks/after_build.js",
-    "sw-cache": "sw-precache --root=dist --config=src/assets/config/sw-precache.ts",
     "test": "ng test --no-progress",
     "codecov": "codecov",
     "lint": "stylelint src/**/*.scss & ng lint",
@@ -67,7 +66,6 @@
     "karma-jasmine": "^2.0.1",
     "now": "^15.3.0",
     "stylelint": "^10.0.1",
-    "sw-precache": "^5.2.1",
     "tslint": "^5.16.0",
     "tslint-sonarts": "^1.9.0",
     "typescript": ">=3.4 <3.5"
