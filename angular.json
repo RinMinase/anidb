@@ -9,15 +9,9 @@
       "projectType": "application",
       "prefix": "app",
       "schematics": {
-        "@schematics/angular:module": {
-          "lintFix": true
-        },
-        "@schematics/angular:service": {
-          "lintFix": true
-        },
-        "@schematics/angular:directive": {
-          "lintFix": true
-        },
+        "@schematics/angular:module": { "lintFix": true },
+        "@schematics/angular:service": { "lintFix": true },
+        "@schematics/angular:directive": { "lintFix": true },
         "@schematics/angular:component": {
           "style": "scss",
           "lintFix": true
@@ -29,9 +23,7 @@
           "options": {
             "customWebpackConfig": {
               "path": "src/assets/config/webpack.ts",
-              "mergeStrategies": {
-                "externals": "replace"
-              }
+              "mergeStrategies": { "externals": "replace" }
             },
             "outputPath": "dist",
             "index": "src/index.html",
@@ -66,12 +58,10 @@
           },
           "configurations": {
             "production": {
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                }
-              ],
+              "fileReplacements": [{
+                "replace": "src/environments/environment.ts",
+                "with": "src/environments/environment.prod.ts"
+              }],
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -81,15 +71,13 @@
               "extractLicenses": false,
               "vendorChunk": false,
               "buildOptimizer": true,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
-                }
-              ],
               "serviceWorker": true,
-              "ngswConfigPath": "ngsw-config.json"
+              "ngswConfigPath": "ngsw-config.json",
+              "budgets": [{
+                "type": "initial",
+                "maximumWarning": "2mb",
+                "maximumError": "5mb"
+              }]
             }
           }
         },
@@ -98,9 +86,7 @@
           "options": {
             "customWebpackConfig": {
               "path": "src/assets/config/webpack.ts",
-              "mergeStrategies": {
-                "externals": "replace"
-              }
+              "mergeStrategies": { "externals": "replace" }
             },
             "port": 3000,
             "browserTarget": "anidb:build",
@@ -108,9 +94,7 @@
             "progress": false
           },
           "configurations": {
-            "production": {
-              "browserTarget": "anidb:build:production"
-            }
+            "production": { "browserTarget": "anidb:build:production" }
           }
         },
         "test": {
@@ -118,9 +102,7 @@
           "options": {
             "customWebpackConfig": {
               "path": "src/assets/config/webpack.ts",
-              "mergeStrategies": {
-                "externals": "replace"
-              }
+              "mergeStrategies": { "externals": "replace" }
             },
             "main": "src/assets/config/testing/test.ts",
             "tsConfig": "src/assets/config/tsconfig.spec.json",
