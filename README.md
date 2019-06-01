@@ -46,47 +46,50 @@ _Add info here_
 
 #### Directory Structure
     .
-    ├── .circleci/                      # Circle CI folder
-    │   └── config.yml                  # Circle CI configuration file
-    ├── dist/                           # Compiled production code
-    ├── src/                            # Project source code
-    │   ├── app/                        # Project components
-    │   │   ├── core/                   # System-wide components
-    │   │   │   ├── builders/           # Project builders
-    │   │   │   ├── components/         # Project components
-    │   │   │   └── services/           # Project services
-    │   │   ├── modules/                # Project modules
-    │   │   │   └── <module-name>       # Module folder (refer to structure below)
-    │   │   ├── app.component.spec.ts   # Test scripts of main module and core module
-    │   │   ├── app.component.ts        # Component of main module
-    │   │   ├── app.module.ts           # Main module
-    │   │   └── ...                     # Other project related files
-    │   ├── assets/                     # Project assets
-    │   │   ├── config/                 # Project configurations
-    │   │   │   ├── testing/            # Testing configuration files
-    │   │   │   ├── sw-precache.ts      # Service worker configuration file
-    │   │   │   ├── webpack.ts          # Extended webpack configuration file
-    │   │   │   └── ...                 # Other configuration files
-    │   │   ├── res/                    # Cordova resources folder
-    │   │   │   └── android/            # Android resources
-    │   │   │       ├── hooks/          # Android build hooks
-    │   │   │       ├── icon/           # Android icons
-    │   │   │       └── screen/         # Android splash screens
-    │   │   ├── styles/                 # Stylesheet folder
-    │   │   ├── favicon.ico             # Web Application icon
-    │   │   └── robots.txt              # Robots file
-    │   ├── environments/               # Environments folder
-    │   ├── index.html                  # Main HTML file
-    │   ├── index.scss                  # Main Stylesheet (SCSS) file
-    │   └── index.ts                    # Main TypeScript file
-    ├── .editorconfig                   # IDE / Editor configuration
-    ├── .stylelintrc                    # SCSS linting configuration
-    ├── angular.json                    # Angular CLI configuration
-    ├── config.xml                      # Cordova build configuration
-    ├── firebase.json                   # Firebase hosting configuation
-    ├── tsconfig.json                   # Main TypeScript configuration file
-    ├── tslint.json                     # TypeScript linting file
-    └── ...                             # Other project files
+    ├── .circleci/                        # Circle CI folder
+    │   └── config.yml                    # Circle CI configuration file
+    ├── dist/                             # Compiled production code
+    ├── src/                              # Project source code
+    │   ├── app/                          # Project components
+    │   │   ├── core/                     # System-wide components
+    │   │   │   ├── builders/             # Project builders
+    │   │   │   ├── components/           # Project components
+    │   │   │   └── services/             # Project services
+    │   │   ├── modules/                  # Project modules
+    │   │   │   └── <module-name>         # Module folder (refer to structure below)
+    │   │   ├── app.component.spec.ts     # Test scripts of main module and core module
+    │   │   ├── app.component.ts          # Component of main module
+    │   │   ├── app.module.ts             # Main module
+    │   │   └── ...                       # Other project related files
+    │   ├── assets/                       # Project assets
+    │   │   ├── config/                   # Project configurations
+    │   │   │   ├── testing/              # Testing configuration files
+    │   │   │   ├── manifest.webmanifest  # Web manifest file
+    │   │   │   ├── ngsw-config.json      # PWA Service Worker configuration file
+    │   │   │   ├── sw-precache.ts        # Service worker configuration file
+    │   │   │   ├── webpack.ts            # Extended webpack configuration file
+    │   │   │   └── ...                   # Other configuration files
+    │   │   ├── icons/                    # PWA icons folder
+    │   │   ├── res/                      # Cordova resources folder
+    │   │   │   └── android/              # Android resources
+    │   │   │       ├── hooks/            # Android build hooks
+    │   │   │       ├── icon/             # Android icons
+    │   │   │       └── screen/           # Android splash screens
+    │   │   ├── styles/                   # Stylesheet folder
+    │   │   ├── favicon.ico               # Web Application icon
+    │   │   └── robots.txt                # Robots file
+    │   ├── environments/                 # Environments folder
+    │   ├── index.html                    # Main HTML file
+    │   ├── index.scss                    # Main Stylesheet (SCSS) file
+    │   └── index.ts                      # Main TypeScript file
+    ├── .editorconfig                     # IDE / Editor configuration
+    ├── .stylelintrc                      # SCSS linting configuration
+    ├── angular.json                      # Angular CLI configuration
+    ├── config.xml                        # Cordova build configuration
+    ├── firebase.json                     # Firebase hosting configuation
+    ├── tsconfig.json                     # Main TypeScript configuration file
+    ├── tslint.json                       # TypeScript linting file
+    └── ...                               # Other project files
 
 #### Module Structure
     .
