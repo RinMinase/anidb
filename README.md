@@ -164,7 +164,7 @@ Other tasks included in `package.json` that should not be executed manually:
 | `bundle-build` | Executes `build` with a change in `base-href` to `./` instead of `/`                     |
 | `bundle-app`   | Compiles TypeScript hook to JavaScript, then compiles the built code to APK with cordova |
 | `bundle-post`  | Removes `www` folder created with `build`, removes the compiled JavaScript hook          |
-| `sw-cache`     | Runs the service worker cache on the `dist` or build folder                              |
+| `codecov`      | Code coverarage uploader                                                                 |
 
 ### Testing the project
 _Add info here_
