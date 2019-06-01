@@ -43,7 +43,7 @@ export class RatingComponent implements OnInit {
 	}
 
 	private calculateOverall() {
-		this.overall = (this.audio + this.enjoyment + this.graphics + this.plot) / 4;
+		this.overall = (this.audio + this.enjoyment + this.graphics + this.plot) / 8;
 	}
 
 }
