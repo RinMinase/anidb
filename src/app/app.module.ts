@@ -2,6 +2,9 @@ import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { HttpClientModule } from "@angular/common/http";
+import { ServiceWorkerModule } from "@angular/service-worker";
+
+import { environment } from "@env/environment";
 
 import { AppComponent } from "./app.component";
 
@@ -10,8 +13,6 @@ import { FooterModule } from "@components/footer/footer.module";
 
 import { LoginModule } from "@modules/login/login.module";
 import { HomeModule } from "@modules/home/home.module";
-import { ServiceWorkerModule } from '@angular/service-worker';
-import { environment } from '../environments/environment';
 
 const routes: Routes = [{
 	path: "about",
@@ -48,6 +49,7 @@ const routes: Routes = [{
 	imports: [
 		BrowserModule,
 		RouterModule.forRoot(routes, { anchorScrolling: "enabled" }),
+		ServiceWorkerModule.register("ngsw-worker.js", { enabled: environment.production }),
 		HttpClientModule,
 
 		NavbarModule,
@@ -55,7 +57,6 @@ const routes: Routes = [{
 
 		LoginModule,
 		HomeModule,
-		ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
 	],
 	providers: [],
 	bootstrap: [AppComponent],
