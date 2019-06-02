@@ -51,7 +51,7 @@
                 "output": "/assets/fonts"
               },
               {
-                "glob": "manifest.webmanifest",
+                "glob": "manifest.json",
                 "input": "src/assets/config/",
                 "output": "/"
               },
@@ -139,7 +139,7 @@
                 "output": "/assets/fonts"
               },
               {
-                "glob": "manifest.webmanifest",
+                "glob": "manifest.json",
                 "input": "src/assets/config/",
                 "output": "/"
               },
