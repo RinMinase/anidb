@@ -66,7 +66,6 @@ _Add info here_
     │   │   │   ├── testing/           # Testing configuration files
     │   │   │   ├── manifest.json      # Web manifest file
     │   │   │   ├── ngsw-config.json   # PWA Service Worker configuration file
-    │   │   │   ├── sw-precache.ts     # Service worker configuration file
     │   │   │   ├── webpack.ts         # Extended webpack configuration file
     │   │   │   └── ...                # Other configuration files
     │   │   ├── icons/                 # PWA icons folder
