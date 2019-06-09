@@ -4,12 +4,13 @@
   "routes": [
     {"src": "^/assets/(.*)", "dest": "/assets/$1"},
     {"src": "^/assets/fonts/(.*)", "dest": "/assets/fonts/$1"},
+    {"src": "^/assets/icons/(.*)", "dest": "/assets/icons/$1"},
     {"src": "^/main(.*)", "dest": "/main$1"},
     {"src": "^/common(.*)", "dest": "/common$1"},
     {"src": "^/polyfills-es5(.*)", "dest": "/polyfills-es5$1"},
     {"src": "^/styles(.*)", "dest": "/styles$1"},
     {"src": "^/runtime(.*)", "dest": "/runtime$1"},
-    {"src": "^/service-worker(.*)", "dest": "/service-worker$1"},
+    {"src": "^/ngsw-worker(.*)", "dest": "/ngsw-worker$1"},
     {"src": "^/(.*)", "dest": "/$1"},
     {"src": "^/", "dest": "/index.html"}
   ],
