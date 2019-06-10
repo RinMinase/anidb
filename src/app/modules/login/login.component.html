@@ -39,12 +39,17 @@
 					<span class="text-dark-white">Forgot password?</span>
 				</div>
 			</form>
-			<!-- <hr class="bg-light">
-			<div class="row">
-				<div class="col google-sign-in">
-					<div id="gSignIn" class="g-signin2" data-onsuccess="onSignIn"></div>
+			<!-- <ng-container *ngIf="isFireApp || isNowApp">
+				<hr class="bg-light">
+				<div class="row">
+					<div class="col google-sign-in fire-app" *ngIf="isFireApp">
+						<div id="gSignIn" class="g-signin2" data-onsuccess="onSignIn"></div>
+					</div>
+					<div class="col google-sign-in now-app" *ngIf="isNowApp">
+						<div id="gSignIn" class="g-signin2" data-onsuccess="onSignIn"></div>
+					</div>
 				</div>
-			</div> -->
+			</ng-container> -->
 		</div>
 	</div>
 </div>
