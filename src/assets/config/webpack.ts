@@ -1,8 +1,11 @@
 // tslint:disable-next-line:no-var-requires
-const webpack = require("webpack");
+const IgnorePlugin = require("webpack").IgnorePlugin;
 
 module.exports = {
 	plugins: [
-		new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+		new IgnorePlugin(/^\.\/locale$/, /moment$/),
 	],
+	resolve: {
+		alias: { "./dist/cpexcel.js": "" },
+	},
 };
