@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-
-import * as xlsx from "xlsx/dist/xlsx.core.min";
+import { utils, writeFile } from "xlsx";
 
 @Component({
 	selector: "app-csv",
@@ -19,11 +18,11 @@ export class ExportCsvComponent implements OnInit {
 			{ "Column 1": "Data 2", "Column 3": "Another Data" },
 		];
 
-		const sheet = xlsx.utils.json_to_sheet(data);
-		const workbook = xlsx.utils.book_new();
+		const sheet = utils.json_to_sheet(data);
+		const workbook = utils.book_new();
 
-		xlsx.utils.book_append_sheet(workbook, sheet, "Data");
-		xlsx.writeFile(workbook, "sheet.csv");
+		utils.book_append_sheet(workbook, sheet, "Data");
+		writeFile(workbook, "sheet.csv");
 	}
 
 }
