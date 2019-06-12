@@ -6439,10 +6439,10 @@ ng2-file-upload@^1.3.0:
   resolved "https://registry.yarnpkg.com/ng2-file-upload/-/ng2-file-upload-1.3.0.tgz#d90f8f568f62383462175f8bdfa0096b131f277a"
   integrity sha512-Pudxik6LWYsT8hNiEW7RfjgGWAnvfQywxwJYMdt1snTUe+KnlRc/QqPv3QEQW6plXTanuLkYz/TbqilSfSHOsw==
 
-ngx-dropzone-wrapper@^7.2.1:
-  version "7.2.1"
-  resolved "https://registry.yarnpkg.com/ngx-dropzone-wrapper/-/ngx-dropzone-wrapper-7.2.1.tgz#99f1fcad1f6dd4f72fba8787c2fedd4ab28fc187"
-  integrity sha512-gE09T4ombTSFzf9R+HmiVkxOjxa+JX9udC6rotpo3yhvNzTrSL1nFXmF9VKw6Yr1SUFl2xGyHDZ/Tkgk1jEczQ==
+ngx-dropzone-wrapper@^8.0.0:
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/ngx-dropzone-wrapper/-/ngx-dropzone-wrapper-8.0.0.tgz#0828b92985d5533c25ea2ba6c179664faf77fd23"
+  integrity sha512-56nXp70DR5NRzvISi5l0bXONdda+2DGNJGBxwIn9oM9CD27aac7CT4aU5Vo4R0KDFcMNiTO3zFQvuDhHvSq54Q==
   dependencies:
     dropzone "^5.5.0"
 
