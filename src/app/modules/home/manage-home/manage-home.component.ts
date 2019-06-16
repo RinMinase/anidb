@@ -119,7 +119,9 @@ export class ManageHomeComponent implements OnInit {
 	}
 
 	private formatData(data: any) {
-		data.map((value: any) => {
+		this.data = [];
+
+		data.forEach((value: any) => {
 			if (value.watchStatus <= 1) {
 				const filesize = this.utility.convertFilesize(value.filesize);
 				let dateFinished: string;
