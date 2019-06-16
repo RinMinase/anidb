@@ -64,7 +64,7 @@
     "karma-coverage": "^1.1.2",
     "karma-coverage-istanbul-reporter": "^2.0.5",
     "karma-jasmine": "^2.0.1",
-    "now": "^15.4.0",
+    "now": "^15.5.0",
     "stylelint": "^10.1.0",
     "tslint": "^5.17.0",
     "tslint-sonarts": "^1.9.0",
