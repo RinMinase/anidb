@@ -68,20 +68,10 @@ export class IssuesComponent implements OnInit {
 			severity: "red",
 			version: "0.0.0",
 		}, {
-			package: "codelyzer",
-			reason: "Still in beta stages",
-			severity: "green",
-			version: "5.0.0-beta.1",
-		}, {
 			package: "typescript",
-			reason: "Angular 7 only supports typescript versions below 3.3",
+			reason: "Angular 8.0 only supports typescript versions below 3.5",
 			severity: "orange",
-			version: "3.3.3333",
-		}, {
-			package: "webpack",
-			reason: "Angular 7 builder only supports webpack version 4.29.0",
-			severity: "green",
-			version: "4.29.6",
+			version: "3.5.2",
 		}];
 	}
 
