@@ -1,6 +1,6 @@
 {
   "name": "rin-anidb",
-  "description": "Rin Minase's Anime Database using Angular 7 compiled for Android with Cordova and deployed to Firebase using Circle CI",
+  "description": "Rin Minase's Anime Database using Angular 8 compiled for Android with Cordova and deployed to both Firebase and Now using Circle CI",
   "homepage": "https://rin-anidb.firebaseapp.com/",
   "version": "0.2.0",
   "license": "MIT",
