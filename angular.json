@@ -59,6 +59,11 @@
                 "glob": "**/*.png",
                 "input": "src/assets/icons/",
                 "output": "/assets/icons"
+              },
+              {
+                "glob": "_redirects",
+                "input": "src/",
+                "output": "/"
               }
             ],
             "styles": [
@@ -147,6 +152,11 @@
                 "glob": "**/*.png",
                 "input": "src/assets/icons/",
                 "output": "/assets/icons"
+              },
+              {
+                "glob": "_redirects",
+                "input": "src/",
+                "output": "/"
               }
             ]
           }
