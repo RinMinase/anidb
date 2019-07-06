@@ -22,6 +22,7 @@ jobs:
       - run:
           name: Uploading coverage to Codecov
           command: yarn codecov --token=$CODECOV_TOKEN
+          no_output_timeout: 5s
 
       - run:
           name: Building source code
@@ -30,13 +31,3 @@ jobs:
       - run:
           name: Deploying to Firebase
           command: ./node_modules/.bin/firebase deploy --project "rin-anidb" --only hosting --token=$FIREBASE_DEPLOY_TOKEN --non-interactive
-
-      - run:
-          name: Deploying to Zeit
-          command: ./node_modules/.bin/now -t $NOW_DEPLOY_TOKEN dist -A ../now.json && ./node_modules/.bin/now -t $NOW_DEPLOY_TOKEN alias anidb
-          no_output_timeout: 35s
-
-      # - run:
-      #     name: Removing previous Zeit deployments
-      #     command: ./node_modules/.bin/now -t $NOW_DEPLOY_TOKEN rm "Rin's Anime Database" --safe --yes
-      #     no_output_timeout: 8s
