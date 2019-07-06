@@ -184,5 +184,4 @@ _Add info here_
 
 ## Deployed to
 * <img width=20 height=20 src="https://firebase.google.com/favicon.ico"> [Firebase](https://rin-anidb.firebaseapp.com)
-* <img width=20 height=20 src="https://assets.zeit.co/image/upload/front/favicon/apple-touch-icon-57x57.png"> [Zeit](https://anidb.now.sh)
 * <img width=20 height=20 src="https://www.netlify.com/img/global/favicon/favicon-32x32.png"> [Netlify](https://anidb.netlify.com)
