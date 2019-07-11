@@ -62,7 +62,7 @@
               },
               {
                 "glob": "_redirects",
-                "input": "src/",
+                "input": "src/assets/config/",
                 "output": "/"
               }
             ],
@@ -155,7 +155,7 @@
               },
               {
                 "glob": "_redirects",
-                "input": "src/",
+                "input": "src/assets/config/",
                 "output": "/"
               }
             ]
