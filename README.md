@@ -46,8 +46,7 @@ _Add info here_
 
 #### Directory Structure
     .
-    ├── .circleci/                     # Circle CI folder
-    │   └── config.yml                 # Circle CI configuration file
+    ├── .circleci/                     # Circle CI configuration folder
     ├── dist/                          # Compiled production code
     ├── src/                           # Project source code
     │   ├── app/                       # Project components
