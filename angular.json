@@ -57,7 +57,7 @@
               },
               {
                 "glob": "**/*.png",
-                "input": "src/assets/icons/",
+                "input": "src/assets/res/web/",
                 "output": "/assets/icons"
               },
               {
@@ -150,7 +150,7 @@
               },
               {
                 "glob": "**/*.png",
-                "input": "src/assets/icons/",
+                "input": "src/assets/res/web/",
                 "output": "/assets/icons"
               },
               {
