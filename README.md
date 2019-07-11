@@ -68,12 +68,12 @@ _Add info here_
     │   │   │   ├── ngsw-config.json   # PWA Service Worker configuration file
     │   │   │   ├── webpack.ts         # Extended webpack configuration file
     │   │   │   └── ...                # Other configuration files
-    │   │   ├── icons/                 # PWA icons folder
     │   │   ├── res/                   # Cordova resources folder
-    │   │   │   └── android/           # Android resources
-    │   │   │       ├── hooks/         # Android build hooks
-    │   │   │       ├── icon/          # Android icons
-    │   │   │       └── screen/        # Android splash screens
+    │   │   │   ├── android/           # Android resources
+    │   │   │   │   ├── hooks/         # Android build hooks
+    │   │   │   │   ├── icon/          # Android icons
+    │   │   │   │   └── screen/        # Android splash screens
+    │   │   │   └── web/               # PWA icons folder
     │   │   ├── styles/                # Stylesheet folder
     │   │   ├── favicon.ico            # Web Application icon
     │   │   └── robots.txt             # Robots file
