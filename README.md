@@ -125,7 +125,25 @@ _Add info here_
     └── <name>.module.ts               # Module
 
 ### Building the project
-_Add info here_
+Installations Required:
+- Node
+- _(Optional)_ Yarn
+
+1. Fire up your terminal inside the project folder.
+
+2. Build the project by running:
+
+    ```
+    npm run build
+    ```
+
+    **Note:** If you have installed Yarn, run these instead:
+
+    ```
+    yarn build
+    ```
+
+3. This should generate a `/dist` folder inside the project folder.
 
 ### Bundling the project for Android
 
