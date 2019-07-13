@@ -11,33 +11,33 @@ import { AppComponent } from "./app.component";
 import { NavbarModule } from "@components/navbar/navbar.module";
 import { FooterModule } from "@components/footer/footer.module";
 
-import { LoginModule } from "@modules/login/login.module";
-import { HomeModule } from "@modules/home/home.module";
+import { LoginModule } from "./login/login.module";
+import { HomeModule } from "./home/home.module";
 
 const routes: Routes = [{
 	path: "about",
-	loadChildren: () => import("./modules/about/about.module").then((m) => m.AboutModule),
+	loadChildren: () => import("./about/about.module").then((m) => m.AboutModule),
 }, {
 	path: "by-name",
-	loadChildren: () => import("./modules/by-name/by-name.module").then((m) => m.ByNameModule),
+	loadChildren: () => import("./by-name/by-name.module").then((m) => m.ByNameModule),
 }, {
 	path: "by-year",
-	loadChildren: () => import("./modules/by-year/by-year.module").then((m) => m.ByYearModule),
+	loadChildren: () => import("./by-year/by-year.module").then((m) => m.ByYearModule),
 }, {
 	path: "download",
-	loadChildren: () => import("./modules/download/download.module").then((m) => m.DownloadModule),
+	loadChildren: () => import("./download/download.module").then((m) => m.DownloadModule),
 }, {
 	path: "export",
-	loadChildren: () => import("./modules/export/export.module").then((m) => m.ExportModule),
+	loadChildren: () => import("./export/export.module").then((m) => m.ExportModule),
 }, {
 	path: "hdd",
-	loadChildren: () => import("./modules/hdd/hdd.module").then((m) => m.HddModule),
+	loadChildren: () => import("./hdd/hdd.module").then((m) => m.HddModule),
 }, {
 	path: "lastwatch",
-	loadChildren: () => import("./modules/lastwatch/lastwatch.module").then((m) => m.LastwatchModule),
+	loadChildren: () => import("./lastwatch/lastwatch.module").then((m) => m.LastwatchModule),
 }, {
 	path: "summer",
-	loadChildren: () => import("./modules/summer/summer.module").then((m) => m.SummerModule),
+	loadChildren: () => import("./summer/summer.module").then((m) => m.SummerModule),
 }, {
 	path: "",
 	pathMatch: "full",
