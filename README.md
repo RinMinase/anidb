@@ -82,17 +82,7 @@ Schematics
     ├── .circleci/                     # Circle CI configuration folder
     ├── dist/                          # Compiled production code
     ├── src/                           # Project source code
-    │   ├── app/                       # Project components
-    │   │   ├── core/                  # System-wide components
-    │   │   │   ├── builders/          # Project builders
-    │   │   │   ├── components/        # Project components
-    │   │   │   └── services/          # Project services
-    │   │   ├── modules/               # Project modules
-    │   │   │   └── <module-name>      # Module folder (refer to structure below)
-    │   │   ├── app.component.spec.ts  # Test scripts of main module and core module
-    │   │   ├── app.component.ts       # Component of main module
-    │   │   ├── app.module.ts          # Main module
-    │   │   └── ...                    # Other project related files
+    │   ├── app/                       # Project modules and components
     │   ├── assets/                    # Project assets
     │   │   ├── config/                # Project configurations
     │   │   │   ├── testing/           # Testing configuration files
@@ -100,15 +90,14 @@ Schematics
     │   │   │   ├── ngsw-config.json   # PWA Service Worker configuration file
     │   │   │   ├── webpack.ts         # Extended webpack configuration file
     │   │   │   └── ...                # Other configuration files
-    │   │   ├── res/                   # Cordova resources folder
-    │   │   │   ├── android/           # Android resources
-    │   │   │   │   ├── hooks/         # Android build hooks
-    │   │   │   │   ├── icon/          # Android icons
-    │   │   │   │   └── screen/        # Android splash screens
-    │   │   │   └── web/               # PWA icons folder
+    │   │   ├── res/                   # Platform-specific resources folder
     │   │   ├── styles/                # Stylesheet folder
     │   │   ├── favicon.ico            # Web Application icon
     │   │   └── robots.txt             # Robots file
+    │   ├── core/                      # Environments folder
+    │   │   ├── builders/              # Project builders
+    │   │   ├── components/            # Project components
+    │   │   └── services/              # Project services
     │   ├── environments/              # Environments folder
     │   ├── index.html                 # Main HTML file
     │   ├── index.scss                 # Main Stylesheet (SCSS) file
@@ -123,14 +112,14 @@ Schematics
     └── ...                            # Other project files
 
 #### Module Structure
-    .
-    ├── <sub-module name>              # Sub-module
-    │    └── ...                       # Sub-module files
-    ├── <name>.component.html          # Component template
-    ├── <name>.component.scss          # Component stylesheet
-    ├── <name>.component.spec.ts       # Component test script
-    ├── <name>.component.ts            # Module component
-    └── <name>.module.ts               # Module
+    <module-name>/
+     ├── <sub-module name>             # Sub-module
+     │    └── ...                      # Sub-module files
+     ├── <name>.component.html         # Component template
+     ├── <name>.component.scss         # Component stylesheet
+     ├── <name>.component.spec.ts      # Component test script
+     ├── <name>.component.ts           # Module component
+     └── <name>.module.ts              # Module
 
 ### Building the project
 Installations Required:
