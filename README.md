@@ -65,7 +65,15 @@ _Add info here_
 5. Fire up your browser and go to `localhost:3000`
 
 ### Code Scaffolding
-_Add info here_
+This is using `yarn ng generate <schematic> <name>` command. This can be shortened to `yarn ng g <schematic> <name>`.
+
+Schematics
+| Name                | Description                                                                  |
+| ------------------- | ---------------------------------------------------------------------------- |
+| `component` or `c`  | Creates a new [component](https://angular.io/guide/architecture-components)  |
+| `directive` or `d`  | Creates a new [directive](https://angular.io/guide/attribute-directives)     |
+| `module` or `m`     | Creates a new [NgModule](https://angular.io/guide/ngmodules)                 |
+| `service` or `s`    | Creates a new [service](https://angular.io/guide/architecture-services)      |
 
 ### Project Structure
 
