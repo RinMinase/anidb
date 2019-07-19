@@ -52,7 +52,7 @@
   "devDependencies": {
     "@angular/cli": "^8.1.1",
     "@angular/platform-browser-dynamic": "^8.1.1",
-    "@types/jasmine": "^3.3.13",
+    "@types/jasmine": "^3.3.14",
     "@types/node": "^12.6.2",
     "codecov": "^3.5.0",
     "codelyzer": "^5.1.0",
