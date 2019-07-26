@@ -46,7 +46,7 @@
     "roboto-fontface": "^0.10.0",
     "rxjs": "^6.5.2",
     "sweetalert2": "^8.14.0",
-    "xlsx": "^0.14.3",
+    "xlsx": "^0.14.4",
     "zone.js": "^0.9.1"
   },
   "devDependencies": {
