@@ -45,7 +45,7 @@
     "ngx-dropzone-wrapper": "^8.0.0",
     "roboto-fontface": "^0.10.0",
     "rxjs": "^6.5.2",
-    "sweetalert2": "^8.14.0",
+    "sweetalert2": "^8.15.0",
     "xlsx": "^0.14.4",
     "zone.js": "^0.9.1"
   },
