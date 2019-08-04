@@ -169,8 +169,7 @@ export class FirebaseService {
 	private objectToArray(data: any) {
 		if (!data) { return null; }
 
-		if (!isNaN(Object.keys(data)[0] as any)
-			&& data.constructor.toString().indexOf("Object") !== -1) {
+		if (!isNaN(Object.keys(data)[0] as any)) {
 
 			const output = [];
 
