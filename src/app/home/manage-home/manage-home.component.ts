@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { PlatformLocation } from "@angular/common";
 import { Router } from "@angular/router";
 import { FormControl } from "@angular/forms";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
@@ -6,7 +7,6 @@ import { debounceTime, distinctUntilChanged } from "rxjs/operators";
 import { format } from "date-fns";
 import * as Fuse from "fuse.js";
 
-import { environment } from "@env/environment";
 import { DarkModeService } from "@services/dark-mode.service";
 import { FirebaseService } from "@services/firebase.service";
 import { FuseOptionsBuilder } from "@builders/fuse-options.service";
@@ -20,6 +20,8 @@ import { AddHomeComponent } from "../add-home/add-home.component";
 	styleUrls: ["./manage-home.component.scss"],
 })
 export class ManageHomeComponent implements OnInit {
+
+	disableDevHomeQuery: boolean = true;
 
 	dark: boolean;
 	data: Array<object> = [];
@@ -35,6 +37,7 @@ export class ManageHomeComponent implements OnInit {
 
 	constructor(
 		private router: Router,
+		private platformLocation: PlatformLocation,
 		private modalService: NgbModal,
 		private darkMode: DarkModeService,
 		private firebase: FirebaseService,
@@ -61,7 +64,9 @@ export class ManageHomeComponent implements OnInit {
 		this.service.currentState.subscribe((state) => this.homeState = state);
 		this.onChanges();
 
-		if (environment.disableManageHomeQuery) {
+		const isDev: boolean = (this.platformLocation as any).location.origin.includes("local");
+
+		if (isDev && this.disableDevHomeQuery) {
 			this.dataLoaded = true;
 			return;
 		}
@@ -70,6 +75,7 @@ export class ManageHomeComponent implements OnInit {
 	}
 
 	addTitle() {
+		const isDev: boolean = (this.platformLocation as any).location.origin.includes("local");
 		const addModal = this.modalService.open(AddHomeComponent, {
 			size: "lg",
 			backdrop: "static",
@@ -78,7 +84,7 @@ export class ManageHomeComponent implements OnInit {
 		});
 
 		addModal.result
-			.then(() => (environment.disableManageHomeQuery) ? this.dataLoaded = true : this.fetchData())
+			.then(() => (isDev && this.disableDevHomeQuery) ? this.dataLoaded = true : this.fetchData())
 			.catch(() => {});
 	}
 

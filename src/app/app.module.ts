@@ -4,8 +4,6 @@ import { Routes, RouterModule } from "@angular/router";
 import { HttpClientModule } from "@angular/common/http";
 import { ServiceWorkerModule } from "@angular/service-worker";
 
-import { environment } from "@env/environment";
-
 import { AppComponent } from "./app.component";
 
 import { NavbarModule } from "@components/navbar/navbar.module";
@@ -14,6 +12,7 @@ import { FooterModule } from "@components/footer/footer.module";
 import { LoginModule } from "./login/login.module";
 import { HomeModule } from "./home/home.module";
 
+const isDev: boolean = window.location.origin.includes("local");
 const routes: Routes = [{
 	path: "about",
 	loadChildren: () => import("./about/about.module").then((m) => m.AboutModule),
@@ -49,7 +48,7 @@ const routes: Routes = [{
 	imports: [
 		BrowserModule,
 		RouterModule.forRoot(routes, { anchorScrolling: "enabled" }),
-		ServiceWorkerModule.register("ngsw-worker.js", { enabled: environment.production }),
+		ServiceWorkerModule.register("ngsw-worker.js", { enabled: !isDev }),
 		HttpClientModule,
 
 		NavbarModule,
