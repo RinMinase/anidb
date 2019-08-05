@@ -96,7 +96,6 @@ Schematics
     │   │   ├── builders/              # Project builders
     │   │   ├── components/            # Project components
     │   │   └── services/              # Project services
-    │   ├── environments/              # Environments folder
     │   ├── index.html                 # Main HTML file
     │   ├── index.scss                 # Main Stylesheet (SCSS) file
     │   └── index.ts                   # Main TypeScript file
