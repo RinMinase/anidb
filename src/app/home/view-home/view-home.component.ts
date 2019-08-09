@@ -70,8 +70,6 @@ export class ViewHomeComponent implements OnInit {
 		updateModal.componentInstance.data = this.data;
 		updateModal.componentInstance.id = this.stateId;
 
-		console.log(this.data);
-
 		updateModal.result
 			.then(() => { this.fetchData(); })
 			.catch(() => {});

@@ -147,7 +147,7 @@ export class UpdateHomeComponent implements OnInit {
 			data.dateFinished = (dateRaw) ? this.utility.autofillYear(dateRaw) : this.utility.getUnix();
 			data.duration = (value.durationRaw) ? this.service.parseDuration(value.durationRaw) : 0;
 
-			this.updateEntry(data);
+			// this.updateEntry(data);
 		}
 	}
 
