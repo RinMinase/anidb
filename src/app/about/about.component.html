@@ -35,15 +35,31 @@
 							<tr>
 								<td>Watch Time</td><td>:</td>
 								<td>
-									{{ totalDuration.days }} days, {{ totalDuration.hours }} hours,<br>
-									{{ totalDuration.minutes }} minutes, {{ totalDuration.seconds }} seconds
+									<span class="d-none d-sm-inline">
+										{{ totalDuration.days }} days, {{ totalDuration.hours }} hours,<br>
+										{{ totalDuration.minutes }} minutes, {{ totalDuration.seconds }} seconds
+									</span>
+									<span class="d-inline d-sm-none">
+										{{ totalDuration.days }} days,<br>
+										{{ totalDuration.hours }} hours,<br>
+										{{ totalDuration.minutes }} minutes,<br>
+										{{ totalDuration.seconds }} seconds
+									</span>
 								</td>
 							</tr>
 							<tr>
 								<td>Watch Time<br>(with Rewatches)</td><td>:</td>
 								<td>
-									{{ totalRewatchDuration.days }} days, {{ totalRewatchDuration.hours }} hours,<br>
-									{{ totalRewatchDuration.minutes }} minutes, {{ totalRewatchDuration.seconds }} seconds
+									<span class="d-none d-sm-inline">
+										{{ totalRewatchDuration.days }} days, {{ totalRewatchDuration.hours }} hours,<br>
+										{{ totalRewatchDuration.minutes }} minutes, {{ totalRewatchDuration.seconds }} seconds
+									</span>
+									<span class="d-inline d-sm-none">
+										{{ totalRewatchDuration.days }} days,<br>
+										{{ totalRewatchDuration.hours }} hours,<br>
+										{{ totalRewatchDuration.minutes }} minutes,<br>
+										{{ totalRewatchDuration.seconds }} seconds
+									</span>
 								</td>
 							</tr>
 							<tr><td class="p-1" colspan="3"></td></tr>
