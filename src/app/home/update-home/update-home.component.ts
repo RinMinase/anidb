@@ -117,6 +117,9 @@ export class UpdateHomeComponent implements OnInit {
 	edit() {
 		this.submitted = true;
 
+		console.log("rating data", this.data.rating);
+		console.log("form data", this.editTitleForm.value);
+
 		if (this.editTitleForm.valid) {
 			const { value } = this.editTitleForm;
 			const data = {
