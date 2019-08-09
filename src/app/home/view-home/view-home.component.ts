@@ -79,6 +79,7 @@ export class ViewHomeComponent implements OnInit {
 
 	updateRating(rating: any) {
 		this.firebase.update(this.firebaseQueryBuilder.init().id(this.stateId).data({ rating }).build());
+		this.data.rating = rating;
 	}
 
 	viewRewatch() {
