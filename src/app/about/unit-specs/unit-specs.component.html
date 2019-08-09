@@ -1,87 +1,128 @@
-<table class="table table-sm table-specs">
-	<tbody>
-		<tr>
-			<td>CPU</td>
-			<td>:</td>
-			<td class="table-specs-value">Intel Core i7-9700K (12M, 4.9GHz)</td>
-		</tr>
-		<tr>
-			<td>RAM</td>
-			<td>:</td>
-			<td class="table-specs-value">GSkill Trident Z RGB 16GB<br>(2 &times; 8GB) 3000MHz DDR4</td>
-		</tr>
-		<tr>
-			<td>GPU</td>
-			<td>:</td>
-			<td class="table-specs-value">Asus ROG Strix GTX 1070 OC<br>(8GB DDR5)</td>
-		</tr>
-		<tr><td class="p-1" colspan="3"></td></tr>
-		<tr><td class="table-specs-border p-1" colspan="3"></td></tr>
-		<tr>
-			<td>Motherboard</td>
-			<td>:</td>
-			<td class="table-specs-value">Asus ROG Strix Z390-E Gaming</td>
-		</tr>
-		<tr>
-			<td>PSU</td>
-			<td>:</td>
-			<td class="table-specs-value">CoolerMaster MasterWatt 650W<br>80+ Bronze</td>
-		</tr>
-		<tr>
-			<td>CPU Cooler</td>
-			<td>:</td>
-			<td class="table-specs-value">FSP Windale 4 120mm HSF</td>
-		</tr>
-		<tr>
-			<td>SSD</td>
-			<td>:</td>
-			<td class="table-specs-value">Samsung 860 EVO 250GB</td>
-		</tr>
-		<tr>
-			<td>HDD</td>
-			<td>:</td>
-			<td class="table-specs-value">Western Digital Black 2TB</td>
-		</tr>
-		<tr><td class="p-1" colspan="3"></td></tr>
-		<tr><td class="table-specs-border p-1" colspan="3"></td></tr>
-		<tr>
-			<td>Case</td>
-			<td>:</td>
-			<td class="table-specs-value">Tecware Edge (Mid-Tower)</td>
-		</tr>
-		<tr>
-			<td>Case Fans</td>
-			<td>:</td>
-			<td class="table-specs-value">Thermaltake Riing Premium 120</td>
-		</tr>
-		<tr><td class="p-1" colspan="3"></td></tr>
-		<tr><td class="table-specs-border p-1" colspan="3"></td></tr>
-		<tr>
-			<td>Monitor</td>
-			<td>:</td>
-			<td class="table-specs-value">Samsung S20D300 (1600 &times; 900)</td>
-		</tr>
-		<tr>
-			<td>Speakers</td>
-			<td>:</td>
-			<td class="table-specs-value">Bose Companion 50 2.1</td>
-		</tr>
-		<tr><td class="p-1" colspan="3"></td></tr>
-		<tr><td class="table-specs-border p-1" colspan="3"></td></tr>
-		<tr>
-			<td>Keyboard</td>
-			<td>:</td>
-			<td class="table-specs-value">Razer Blackwidow TE Chroma</td>
-		</tr>
-		<tr>
-			<td>Mouse</td>
-			<td>:</td>
-			<td class="table-specs-value">Razer Deathadder Chroma</td>
-		</tr>
-		<tr>
-			<td>Mousepad</td>
-			<td>:</td>
-			<td class="table-specs-value">Steelseries QCK XXL<br>900mm &times; 300mm Mat</td>
-		</tr>
-	</tbody>
-</table>
+<div class="d-sm-block d-none">
+	<table class="table table-sm table-specs">
+		<tbody>
+			<tr>
+				<td>CPU</td><td>:</td>
+				<td class="table-specs-value">{{ data.cpu }}</td>
+			</tr>
+			<tr>
+				<td>RAM</td><td>:</td>
+				<td class="table-specs-value">{{ data.ram }}<br>{{ data.ramSubtext }}</td>
+			</tr>
+			<tr>
+				<td>GPU</td><td>:</td>
+				<td class="table-specs-value">{{ data.gpu }}<br>{{ data.gpuSubtext }}</td>
+			</tr>
+			<tr><td class="p-1" colspan="3"></td></tr>
+			<tr><td class="table-specs-border p-1" colspan="3"></td></tr>
+			<tr>
+				<td>Motherboard</td><td>:</td>
+				<td class="table-specs-value">{{ data.motherboard }}</td>
+			</tr>
+			<tr>
+				<td>PSU</td><td>:</td>
+				<td class="table-specs-value">{{ data.psu }}<br>{{ data.psuSubtext }}</td>
+			</tr>
+			<tr>
+				<td>CPU Cooler</td><td>:</td>
+				<td class="table-specs-value">{{ data.cooler }}</td>
+			</tr>
+			<tr>
+				<td>SSD</td><td>:</td>
+				<td class="table-specs-value">{{ data.ssd }}</td>
+			</tr>
+			<tr>
+				<td>HDD</td><td>:</td>
+				<td class="table-specs-value">{{ data.hdd }}</td>
+			</tr>
+			<tr><td class="p-1" colspan="3"></td></tr>
+			<tr><td class="table-specs-border p-1" colspan="3"></td></tr>
+			<tr>
+				<td>Case</td><td>:</td>
+				<td class="table-specs-value">{{ data.case }}</td>
+			</tr>
+			<tr>
+				<td>Case Fans</td><td>:</td>
+				<td class="table-specs-value">{{ data.fans }}</td>
+			</tr>
+			<tr><td class="p-1" colspan="3"></td></tr>
+			<tr><td class="table-specs-border p-1" colspan="3"></td></tr>
+			<tr>
+				<td>Monitor</td><td>:</td>
+				<td class="table-specs-value">{{ data.monitor }}</td>
+			</tr>
+			<tr>
+				<td>Speakers</td><td>:</td>
+				<td class="table-specs-value">{{ data.speakers }}</td>
+			</tr>
+			<tr><td class="p-1" colspan="3"></td></tr>
+			<tr><td class="table-specs-border p-1" colspan="3"></td></tr>
+			<tr>
+				<td>Keyboard</td><td>:</td>
+				<td class="table-specs-value">{{ data.keyboard }}</td>
+			</tr>
+			<tr>
+				<td>Mouse</td><td>:</td>
+				<td class="table-specs-value">{{ data.mouse }}</td>
+			</tr>
+			<tr>
+				<td>Mat</td><td>:</td>
+				<td class="table-specs-value">{{ data.mat }}<br>{{ data.matSubtext }}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div class="d-block d-sm-none">
+	<table class="table table-sm table-specs">
+		<tbody>
+			<tr><th>CPU</th></tr>
+			<tr><td class="table-specs-value">{{ data.cpu }}</td></tr>
+			<tr><th>RAM</th></tr>
+			<tr><td class="table-specs-value">{{ data.ram }}</td></tr>
+			<tr><th>GPU</th></tr>
+			<tr><td class="table-specs-value">{{ data.gpu }}</td></tr>
+
+			<tr><td class="p-1" colspan="3"></td></tr>
+			<tr><td class="table-specs-border p-1" colspan="3"></td></tr>
+
+			<tr><th>Motherboard</th></tr>
+			<tr><td class="table-specs-value">{{ data.motherboard }}</td></tr>
+			<tr><th>PSU</th></tr>
+			<tr><td class="table-specs-value">{{ data.psu }}</td></tr>
+			<tr><td class="table-specs-value">{{ data.psuSubtext }}</td></tr>
+			<tr><th>CPU Cooler</th></tr>
+			<tr><td class="table-specs-value">{{ data.cooler }}</td></tr>
+			<tr><th>SSD</th></tr>
+			<tr><td class="table-specs-value">{{ data.ssd }}</td></tr>
+			<tr><th>HDD</th></tr>
+			<tr><td class="table-specs-value">{{ data.hdd }}</td></tr>
+
+			<tr><td class="p-1" colspan="3"></td></tr>
+			<tr><td class="table-specs-border p-1" colspan="3"></td></tr>
+
+			<tr><th>Case</th></tr>
+			<tr><td class="table-specs-value">{{ data.case }}</td></tr>
+			<tr><th>Case Fans</th></tr>
+			<tr><td class="table-specs-value">{{ data.fans }}</td></tr>
+
+			<tr><td class="p-1" colspan="3"></td></tr>
+			<tr><td class="table-specs-border p-1" colspan="3"></td></tr>
+
+			<tr><th>Monitor</th></tr>
+			<tr><td class="table-specs-value">{{ data.monitor }}</td></tr>
+			<tr><th>Speakers</th></tr>
+			<tr><td class="table-specs-value">{{ data.speakers }}</td></tr>
+
+			<tr><td class="p-1" colspan="3"></td></tr>
+			<tr><td class="table-specs-border p-1" colspan="3"></td></tr>
+
+			<tr><th>Keyboard</th></tr>
+			<tr><td class="table-specs-value">{{ data.keyboard }}</td></tr>
+			<tr><th>Mouse</th></tr>
+			<tr><td class="table-specs-value">{{ data.mouse }}</td></tr>
+			<tr><th>Mat</th></tr>
+			<tr><td class="table-specs-value">{{ data.mat }} {{ data.matSubtext }}</td></tr>
+		</tbody>
+	</table>
+</div>

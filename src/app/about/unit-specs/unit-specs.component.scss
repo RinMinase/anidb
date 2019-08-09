@@ -1,4 +1,21 @@
-table.table-specs td:not(.table-specs-border) {
-	border-top: 0;
-	&:not(.table-specs-value) { font-weight: bold; }
+.table-specs {
+	th, td {
+		&:not(.table-specs-border) {
+			border-top: 0;
+			&:not(.table-specs-value) { font-weight: bold; }
+		}
+	}
+
+	@media (max-width: 576px) {
+		th {
+			padding-top: 8px;
+			padding-bottom: 5px;
+		}
+
+		td {
+			padding-top: 0;
+			padding-bottom: 0;
+			padding-left: 1.25rem;
+		}
+	}
 }
