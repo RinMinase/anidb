@@ -69,17 +69,17 @@
             "styles": [
               "src/index.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "extractCss": true,
+            "extractLicenses": false
           },
           "configurations": {
             "production": {
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "aot": true,
-              "extractLicenses": false,
               "vendorChunk": false,
               "buildOptimizer": true,
               "serviceWorker": true,
@@ -101,8 +101,12 @@
             },
             "port": 3000,
             "browserTarget": "anidb:build",
-            "sourceMap": true,
-            "progress": false
+            "progress": false,
+            "sourceMap": {
+              "scripts": true,
+              "styles": false,
+              "vendor": false
+            }
           },
           "configurations": {
             "production": { "browserTarget": "anidb:build:production" }
