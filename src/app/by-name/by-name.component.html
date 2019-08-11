@@ -34,6 +34,19 @@
 		</div>
 
 		<div class="col-lg-9 col-12 mt-lg-0 mt-3 animate slideInUp">
+			<div class="row">
+				<div class="col-12 d-none d-sm-block mb-3">
+					<canvas baseChart
+						[datasets]="chart.data"
+						[colors]="chart.colors"
+						[labels]="chart.labels"
+						[options]="chart.options"
+						chartType="line"
+						class="mx-auto by-name-chart">
+					</canvas>
+				</div>
+			</div>
+
 			<ng-container *ngFor="let data of data">
 				<div class="card mb-2" *ngIf="data.filesize !== '-'">
 					<a class="link c-pointer" (click)="panelCollapse(data.panel)">

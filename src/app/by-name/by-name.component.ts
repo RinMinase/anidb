@@ -7,12 +7,70 @@ import { UtilityService } from "@services/utility.service";
 @Component({
 	selector: "app-byname",
 	templateUrl: "./by-name.component.html",
+	styleUrls: ["./by-name.component.scss"],
 })
 export class ByNameComponent implements OnInit {
 
 	data: Array<object> = [];
 	dataLoaded: boolean = false;
 	collapse: Array<boolean> = [];
+
+	chart = {
+		data: [{
+			data: [],
+			label: "Titles",
+			yAxisID: "Titles",
+		}, {
+			data: [],
+			label: "Filesize (GB)",
+			yAxisID: "Filesize",
+		}],
+		colors: [{
+			borderColor: "rgba(149, 206, 146, 1)",
+			pointBackgroundColor: "rgba(76, 175, 80, 1)",
+			pointBorderColor: "rgba(220, 220, 220, 0.3)",
+			borderWidth: 2.3,
+			fill: false,
+			tension: 0.5,
+		}, {
+			borderColor: "rgba(54, 162, 235, 1)",
+			pointBackgroundColor: "rgba(51, 127, 177, 1)",
+			pointBorderColor: "rgba(220, 220, 220, 0.3)",
+			borderWidth: 2.3,
+			fill: false,
+			tension: 0.5,
+		}],
+		labels: [],
+		options: {
+			responsive: true,
+			scales: {
+				yAxes: [{
+					id: "Titles",
+					type: "linear",
+					position: "left",
+					ticks: {
+						beginAtZero: true,
+						maxTicksLimit: 5,
+						precision: 0,
+					},
+				}, {
+					id: "Filesize",
+					type: "linear",
+					position: "right",
+					ticks: {
+						beginAtZero: true,
+						maxTicksLimit: 6,
+						precision: 0,
+					},
+				}],
+			},
+			tooltips: {
+				callbacks: {
+					label: (tip: any) => (tip.datasetIndex) ? `${tip.yLabel} GB` : `${tip.yLabel} Titles`,
+				},
+			},
+		},
+	};
 
 	constructor(
 		private router: Router,
@@ -76,8 +134,9 @@ export class ByNameComponent implements OnInit {
 			filesizes[index] = this.utility.convertFilesize(element, "-");
 		});
 
-		contents.forEach((_element, index) => {
+		contents.forEach((element, index) => {
 			this.collapse.push(false);
+			this.pushToChart(rawFilesizes[index], element.length, keys[index]);
 
 			Object.assign(this.data[index], {
 				content: contents[index].sort(this.utility.sortByTitle),
@@ -86,6 +145,15 @@ export class ByNameComponent implements OnInit {
 				panel: index,
 			});
 		});
+	}
+
+	private pushToChart(rawFilesize: number, titles: number, key: string) {
+		if (!!titles) {
+			const filesize = parseFloat(this.utility.convertFilesize(rawFilesize, "0"));
+			this.chart.labels.push(key);
+			this.chart.data[0].data.push(titles);
+			this.chart.data[1].data.push(filesize);
+		}
 	}
 
 }
