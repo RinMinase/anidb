@@ -14,6 +14,7 @@ export class ByNameComponent implements OnInit {
 	data: Array<object> = [];
 	dataLoaded: boolean = false;
 	collapse: Array<boolean> = [];
+	showChart: boolean = true;
 
 	chart = {
 		data: [{
