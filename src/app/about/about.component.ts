@@ -25,10 +25,19 @@ export class AboutComponent implements OnInit {
 	quality = { uhd: 0, fhd: 0, hd: 0, hq: 0, lq: 0 };
 
 	chart = {
-		data: [{ data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], label: "Series A" }],
-		colors: [],
-		labels: [],
-		options: {},
+		data: [{ data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], label: "Titles per Month" }],
+		colors: [{
+			borderColor: "rgba(149, 206, 146, 1)",
+			pointBackgroundColor: "rgba(76, 175, 80, 1)",
+			pointBorderColor: "rgba(220, 220, 220, 0.3)",
+			borderWidth: 2.3,
+			fill: false,
+			tension: 0,
+		}],
+		labels: ["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"],
+		options: {
+			responsive: true,
+		},
 	};
 
 	constructor(
@@ -47,7 +56,6 @@ export class AboutComponent implements OnInit {
 			}).catch(() => this.router.navigateByUrl("/login"));
 
 		this.getFirebaseImages();
-		this.generateChartData();
 	}
 
 	private formatData(data: Array<any>) {
@@ -140,23 +148,6 @@ export class AboutComponent implements OnInit {
 
 		this.firebase.retrieveImageUrl("/assets/user.jpg")
 			.then((url) => { this.userImage = url as string; });
-	}
-
-	private generateChartData() {
-		this.chart.labels = ["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"];
-
-		this.chart.colors = [{
-			borderColor: "rgba(149, 206, 146, 1)",
-			pointBackgroundColor: "rgba(76, 175, 80, 1)",
-			pointBorderColor: "rgba(220, 220, 220, 0.3)",
-			borderWidth: 2.3,
-			fill: false,
-			tension: 0.2,
-		}];
-
-		this.chart.options = {
-			responsive: true,
-		};
 	}
 
 	private element(querySelector: string) {
