@@ -22,7 +22,7 @@ jobs:
       - run:
           name: Uploading coverage to Codecov
           command: yarn codecov --token=$CODECOV_TOKEN
-          no_output_timeout: 5s
+          no_output_timeout: 15s
 
       - run:
           name: Building source code
