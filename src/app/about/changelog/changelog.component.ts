@@ -29,7 +29,7 @@ export class ChangelogComponent implements OnInit {
 			const formattedCommits = {};
 
 			response.body.forEach((data: any) => {
-				if (data.commit.message.indexOf("Merge branch") === -1) {
+				if (this.doesNotContainMerge(data.commit.message)) {
 					const { date } = data.commit.author;
 					const commitDate = `c${format(new Date(date), "YYYYMMDD")}`;
 					const title = format(new Date(date), "MMM DD, YYYY");
@@ -90,6 +90,11 @@ export class ChangelogComponent implements OnInit {
 
 	private parseCommitMessage(message: string, keywords: Array<string>): boolean {
 		return keywords.some((key) => message.indexOf(key) >= 0);
+	}
+
+	private doesNotContainMerge(message: string) {
+		return (message.indexOf("Merge branch") === -1
+			|| message.indexOf("Merge pull request") === -1);
 	}
 
 }
