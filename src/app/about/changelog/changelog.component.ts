@@ -78,18 +78,6 @@ export class ChangelogComponent implements OnInit {
 		const module = (rawModule === "anidb" || rawModule === "transition") ? "" : rawModule;
 		const message = rawMessage[1].trimStart();
 
-		console.log("commit", commit);
-		console.log("url", url);
-
-		console.log({
-			date: this.utility.convertDate(date),
-			email: commit.author.email,
-			name: commit.author.name,
-			message,
-			module,
-			url,
-		});
-
 		return {
 			date: this.utility.convertDate(date),
 			email: commit.author.email,
