@@ -76,7 +76,7 @@ export class IssuesComponent implements OnInit {
 			package: "zone.js",
 			reason: "Angular 8.0 only supports typescript versions below 0.10",
 			severity: "orange",
-			version: "0.10.1",
+			version: "0.10.2",
 		}, {
 			package: "marked",
 			reason: "Firebase Tools > Marked Terminal only supports marked package versions below 7",
