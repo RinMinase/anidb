@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
-import { parse, format } from "date-fns";
+import { format, fromUnixTime } from "date-fns";
 
 import { FirebaseService } from "@services/firebase.service";
 import { FirebaseQueryBuilder } from "@builders/firebase-query.service";
@@ -86,7 +86,7 @@ export class RewatchComponent implements OnInit {
 		this.dataRewatch = [];
 		if (this.rewatch.length > 0) {
 			this.rewatch.forEach((value, index) => {
-				this.dataRewatch[index] = format(parse(value * 1000), "MMM DD, YYYY");
+				this.dataRewatch[index] = format(fromUnixTime(value), "MMM dd, yyyy");
 			});
 		}
 	}

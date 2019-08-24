@@ -12,13 +12,11 @@ export class UtilityService {
 		if (date.split(" ").length === 2) {
 			const monthRaw: any = parseInt(date.split(" ")[0]) || date.split(" ")[0];
 			const day = date.split(" ")[1];
-			let month: any;
-
-			month = (isNaN(monthRaw)) ? this.getMonthByName(monthRaw) : format(parse(monthRaw), "MM");
+			const month = (isNaN(monthRaw)) ? this.getMonthByName(monthRaw) : monthRaw;
 
 			const yearToday = getYear(new Date());
 			const dateParsed = `${month}-${day}-${yearToday}`;
-			const dateParsedUnix = this.getUnix(parse(dateParsed));
+			const dateParsedUnix = this.getUnix(parse(dateParsed, "MM-dd-yyyy", new Date()));
 			const dateTodayUnix = this.getUnix();
 
 			if (dateParsedUnix > dateTodayUnix) {
@@ -51,9 +49,9 @@ export class UtilityService {
 		if (dateFormat) { return format(new Date(date), dateFormat); }
 
 		if (!omitSeconds) {
-			return format(new Date(date), "MMM DD, YYYY HH:mm:ss");
+			return format(new Date(date), "MMM dd, yyyy HH:mm:ss");
 		} else {
-			return format(new Date(date), "MMM DD, YYYY HH:mm");
+			return format(new Date(date), "MMM dd, yyyy HH:mm");
 		}
 	}
 

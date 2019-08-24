@@ -168,7 +168,7 @@ export class UpdateHomeComponent implements OnInit {
 	}
 
 	private initFormValues() {
-		const dateFinishedRaw = format(new Date(this.data.dateFinished), "MMM D YYYY");
+		const dateFinishedRaw = format(new Date(this.data.dateFinished), "MMM d yyyy");
 		const offquel = (this.data.offquel) ? this.data.offquel.join(",") : "";
 		const variants = (this.data.variants) ? this.data.variants.join(",") : "";
 

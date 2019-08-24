@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { getMonth, parse } from "date-fns";
+import { getMonth, fromUnixTime } from "date-fns";
 
 import { FirebaseService } from "@services/firebase.service";
 
@@ -68,7 +68,7 @@ export class AboutComponent implements OnInit {
 
 			if (value.watchStatus > 1) { return; }
 
-			const month = getMonth(parse(value.dateFinished * 1000));
+			const month = getMonth(fromUnixTime(value.dateFinished));
 			if (month > -1 && month < 12) { this.chart.data[0].data[month]++; }
 
 			totalDuration += parseInt(value.duration);

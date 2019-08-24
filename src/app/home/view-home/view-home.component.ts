@@ -119,7 +119,7 @@ export class ViewHomeComponent implements OnInit {
 
 		data.filesizeRaw = data.filesize;
 		data.filesize = this.utility.convertFilesize(data.filesize);
-		data.dateFinished = format(data.dateFinished * 1000, "MMMM DD, YYYY");
+		data.dateFinished = format(data.dateFinished * 1000, "MMMM dd, yyyy");
 
 		if (data.duration) {
 			data.duration = this.parseDuration(data.duration);
@@ -127,7 +127,7 @@ export class ViewHomeComponent implements OnInit {
 
 		if (data.rewatch) {
 			data.rewatchCount = data.rewatch.split(",").length;
-			data.lastRewatch = format(data.rewatchLast * 1000, "MMMM DD, YYYY");
+			data.lastRewatch = format(data.rewatchLast * 1000, "MMMM dd, yyyy");
 		} else {
 			data.rewatchCount = 0;
 		}

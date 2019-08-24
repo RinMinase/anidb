@@ -31,8 +31,8 @@ export class ChangelogComponent implements OnInit {
 			response.body.forEach((data: any) => {
 				if (this.doesNotContainMerge(data.commit.message)) {
 					const { date } = data.commit.author;
-					const commitDate = `c${format(new Date(date), "YYYYMMDD")}`;
-					const title = format(new Date(date), "MMM DD, YYYY");
+					const commitDate = `c${format(new Date(date), "yyyyMMdd")}`;
+					const title = format(new Date(date), "MMM dd, yyyy");
 					const commitData = this.formatCommit(data.commit, data.html_url);
 					const { message, module } = commitData;
 

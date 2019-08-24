@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { parse, format } from "date-fns";
+import { format, fromUnixTime } from "date-fns";
 
 import { FirebaseQueryBuilder } from "@builders/firebase-query.service";
 import { FirebaseService } from "@services/firebase.service";
@@ -18,7 +18,7 @@ export class LastwatchComponent implements OnInit {
 	stats: any = {};
 	totalEpisodes = 0;
 
-	dateFormat = "MMM DD, YYYY";
+	dateFormat = "MMM dd, yyyy";
 
 	constructor(
 		private router: Router,
@@ -62,15 +62,15 @@ export class LastwatchComponent implements OnInit {
 		let dateLast: Date;
 
 		if (sortedData[0].rewatchLast) {
-			dateFirst = parse(sortedData[0].rewatchLast * 1000);
+			dateFirst = fromUnixTime(sortedData[0].rewatchLast);
 		} else {
-			dateFirst = parse(sortedData[0].dateFinished * 1000);
+			dateFirst = fromUnixTime(sortedData[0].dateFinished);
 		}
 
 		if (sortedData[sortedData.length - 1].rewatchLast) {
-			dateLast = parse(sortedData[sortedData.length - 1].rewatchLast * 1000);
+			dateLast = fromUnixTime(sortedData[sortedData.length - 1].rewatchLast);
 		} else {
-			dateLast = parse(sortedData[sortedData.length - 1].dateFinished * 1000);
+			dateLast = fromUnixTime(sortedData[sortedData.length - 1].dateFinished);
 		}
 
 		const oneDay = 24 * 60 * 60 * 1000;
@@ -91,11 +91,11 @@ export class LastwatchComponent implements OnInit {
 			if (value.dateFinished === "") {
 				value.dateFinished = "-";
 			} else {
-				value.dateFinished = format(parse(value.dateFinished * 1000), this.dateFormat);
+				value.dateFinished = format(fromUnixTime(value.dateFinished), this.dateFormat);
 			}
 
 			if (value.rewatchLast) {
-				value.rewatchLast = format(parse(value.rewatchLast * 1000), this.dateFormat);
+				value.rewatchLast = format(fromUnixTime(value.rewatchLast), this.dateFormat);
 			}
 
 			this.data.push(value);

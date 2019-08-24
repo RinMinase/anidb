@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
-import { parse, format } from "date-fns";
+import { format, fromUnixTime } from "date-fns";
 
 import { FirebaseService } from "@services/firebase.service";
 import { FirebaseQueryBuilder } from "@builders/firebase-query.service";
@@ -24,7 +24,7 @@ export class ManageSummerComponent implements OnInit {
 	totalFilesize: number;
 	quality: any;
 
-	dateFormat = "MMM DD, YYYY";
+	dateFormat = "MMM dd, yyyy";
 
 	constructor(
 		private router: Router,
@@ -67,9 +67,9 @@ export class ManageSummerComponent implements OnInit {
 
 	private formatData(summerData: Array<any>, animeData: Array<any>) {
 		summerData.forEach((summer, index) => {
-			const timeStart = parse(summer.timeStart * 1000);
+			const timeStart = fromUnixTime(summer.timeStart);
 			const today = new Date();
-			let timeEnd = parse(summer.timeEnd * 1000);
+			let timeEnd = fromUnixTime(summer.timeEnd);
 
 			if (today < timeEnd) { timeEnd = today; }
 
@@ -176,7 +176,7 @@ export class ManageSummerComponent implements OnInit {
 			quality: anime.quality,
 			specials: anime.specials,
 			title: anime.title,
-			dateFinished: format(parse(rewatchDate * 1000 || anime.dateFinished * 1000), this.dateFormat),
+			dateFinished: format(fromUnixTime(rewatchDate || anime.dateFinished), this.dateFormat),
 			rewatchFlag,
 		});
 	}

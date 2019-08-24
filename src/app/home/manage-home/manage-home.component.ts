@@ -133,9 +133,9 @@ export class ManageHomeComponent implements OnInit {
 				let dateFinished: string;
 
 				if (!value.rewatchLast) {
-					dateFinished = format(value.dateFinished * 1000, "MMM DD, YYYY");
+					dateFinished = format(value.dateFinished * 1000, "MMM dd, yyyy");
 				} else {
-					dateFinished = format(value.rewatchLast * 1000, "MMM DD, YYYY");
+					dateFinished = format(value.rewatchLast * 1000, "MMM dd, yyyy");
 				}
 
 				this.titleList.push(value.title);
