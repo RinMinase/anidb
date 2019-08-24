@@ -29,7 +29,7 @@ export class UnitSpecsComponent implements OnInit {
 			case: "Tecware Edge (Mid-Tower)",
 			fans: "Thermaltake Riing Premium 120",
 
-			monitor: "Samsung S20D300 (1600 × 900)",
+			monitor: "Dell SE2717H (1920 × 1080)",
 			speakers: "Bose Companion 50 2.1",
 
 			keyboard: "Razer Blackwidow TE Chroma",
