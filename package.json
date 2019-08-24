@@ -29,7 +29,7 @@
     "@angular/core": "^8.2.3",
     "@angular/forms": "^8.2.3",
     "@angular/platform-browser": "^8.2.3",
-    "@angular/pwa": "^0.802.2",
+    "@angular/pwa": "^0.803.0",
     "@angular/router": "^8.2.3",
     "@angular/service-worker": "^8.2.3",
     "@ng-bootstrap/ng-bootstrap": "^5.1.0",
@@ -50,7 +50,7 @@
     "zone.js": "^0.9.1"
   },
   "devDependencies": {
-    "@angular/cli": "^8.2.2",
+    "@angular/cli": "^8.3.0",
     "@angular/compiler": "^8.2.3",
     "@angular/compiler-cli": "^8.2.3",
     "@angular/platform-browser-dynamic": "^8.2.3",
@@ -72,7 +72,7 @@
     "typescript": ">=3.4 <3.5"
   },
   "resolutions": {
-    "**/@angular-devkit/build-angular": "^0.802.2",
+    "**/@angular-devkit/build-angular": "^0.803.0",
     "**/@firebase/app-types": "^0.4.3",
     "**/@firebase/auth-types": "^0.7.2",
     "**/@firebase/firestore-types": "^1.4.4",
