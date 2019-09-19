@@ -67,7 +67,7 @@
     "karma-coverage-istanbul-reporter": "^2.1.0",
     "karma-jasmine": "^2.0.1",
     "stylelint": "^10.1.0",
-    "tslint": "^5.19.0",
+    "tslint": "^5.20.0",
     "tslint-sonarts": "^1.9.0",
     "typescript": ">=3.4 <3.5"
   },
