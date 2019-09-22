@@ -183,7 +183,7 @@ _Add info here_
 Task automation is based on [Yarn scripts](https://yarnpkg.com/lang/en/docs/cli/run/) or [NPM scripts](https://docs.npmjs.com/misc/scripts).
 
 | Task                | Description                                                                                          |
-| ------------------- | -------------------------------------------------------------------------------------                |
+| ------------------- | ---------------------------------------------------------------------------------------------------- |
 | `yarn start`        | Run **development server** on `http://localhost:3000/` with file watching on changes                 |
 | `yarn start --prod` | Run **production server** on `http://localhost:3000/` with file watching on changes                  |
 | `yarn build`        | Build production code and add service worker to built code                                           |
