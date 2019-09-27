@@ -883,10 +883,10 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@firebase/app-types@0.4.3", "@firebase/app-types@0.x", "@firebase/app-types@^0.4.3":
-  version "0.4.3"
-  resolved "https://registry.yarnpkg.com/@firebase/app-types/-/app-types-0.4.3.tgz#80d2b6e5ee43ac99892329ab02301ee7ed82da45"
-  integrity sha512-VU5c+ZjejvefLVH4cjiX3Hy1w9HYMv7TtZ1tF9ZmOqT4DSIU1a3VISWoo8///cGGffr5IirMO+Q/WZLI4p8VcA==
+"@firebase/app-types@0.4.3", "@firebase/app-types@0.x", "@firebase/app-types@^0.4.4":
+  version "0.4.4"
+  resolved "https://registry.yarnpkg.com/@firebase/app-types/-/app-types-0.4.4.tgz#6423e9b284018109d3658a6ecf7f82ca0e288bbb"
+  integrity sha512-s3rKk6aGnzNTx6bzdtOdJpg2XXMiadLk/hv/PjiFEI/m+8MEKz+wkl+eGwvzxFyOd6BD5GVy637boGFqRt20FQ==
 
 "@firebase/app@0.4.17":
   version "0.4.17"
@@ -4449,10 +4449,10 @@ find-up@^4.0.0:
     locate-path "^5.0.0"
     path-exists "^4.0.0"
 
-firebase-tools@^7.3.2:
-  version "7.3.2"
-  resolved "https://registry.yarnpkg.com/firebase-tools/-/firebase-tools-7.3.2.tgz#c7627af95ae42662e5b84bd07043e312647e6168"
-  integrity sha512-YCM51Cfxty0gB3soqhmA3v5ZscpWRSFX3G/cE46erXseUYg8k2is7JDljW9CelP7qYyACaTA9H36OSu89zVvEw==
+firebase-tools@^7.4.0:
+  version "7.4.0"
+  resolved "https://registry.yarnpkg.com/firebase-tools/-/firebase-tools-7.4.0.tgz#049ef11a4cae620b500e34fab3ffb9eb179fbcff"
+  integrity sha512-F3FCgSopTdxFQVNsGy4qmkDXuhJbK9LIuXL7PK1Q/3dwYzUX1w2AIOjIoWJz/vTnMpFYvDZvmfaS9Hz1LmHA6w==
   dependencies:
     JSONStream "^1.2.1"
     archiver "^3.0.0"
