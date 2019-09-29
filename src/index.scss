@@ -4,12 +4,12 @@ $fa-font-path: "/assets/fonts";
 $enable-transitions: false;
 @import "~bootstrap/scss/bootstrap";
 @import "~animatewithsass/animate.scss";
+@import "~scss-spinners/spinners.scss";
 
 @import "./assets/styles/animate-scss-extension";
 @import "./assets/styles/bootstrap-extension";
 @import "./assets/styles/bootstrap-switches";
 @import "./assets/styles/roboto-fonts";
-@import "./assets/styles/spinner-eclipse";
 
 $footer-height: 52px;
 
