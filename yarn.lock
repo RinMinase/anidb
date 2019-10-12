@@ -9145,10 +9145,10 @@ schema-utils@^2.0.0, schema-utils@^2.0.1:
     ajv "^6.10.2"
     ajv-keywords "^3.4.1"
 
-scss-spinners@^1.0.8:
-  version "1.0.8"
-  resolved "https://registry.yarnpkg.com/scss-spinners/-/scss-spinners-1.0.8.tgz#09dc864f12e9001da3c729be4208c1c6ae3e06c8"
-  integrity sha512-JuenAmrZTQaaBIBNgJZ4MJUDP3ixMZYt4OoTkXc6tYYccW0pWP0LlTjGt/jf9OavUGxpxdk2K3XSVw7x7KN+Hw==
+scss-spinners@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/scss-spinners/-/scss-spinners-1.1.0.tgz#4e28cef46d6651ea87b56d5c7927b0c0ade69086"
+  integrity sha512-FKLB8dsNAyADJNzTb0vd1r7DBz2Fkn6oXHaGoVUDlEKehoYxMYT4X7bNE0j1WrnkixQoVtYNQKYSMTpi+60mUQ==
 
 select-hose@^2.0.0:
   version "2.0.0"
