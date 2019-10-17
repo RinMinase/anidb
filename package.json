@@ -76,7 +76,7 @@
     "**/@angular-devkit/build-angular": "^0.803.10",
     "**/@firebase/app-types": "^0.4.6",
     "**/@firebase/auth-types": "^0.8.2",
-    "**/@firebase/firestore-types": "^1.6.1",
+    "**/@firebase/firestore-types": "^1.6.2",
     "**/@firebase/messaging-types": "^0.3.4",
     "**/@firebase/storage-types": "^0.3.5",
     "**/@firebase/util": "^0.2.30",
