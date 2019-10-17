@@ -4,6 +4,9 @@
     <a href="https://circleci.com/gh/RinMinase/anidb">
         <img alt="Circle-CI" src="https://img.shields.io/circleci/project/github/RinMinase/anidb/master.svg?logo=circleci&style=for-the-badge">
     </a>
+    <a href="https://app.netlify.com/sites/react-test-app/deploys">
+        <img alt="Netlify-Status" src="https://img.shields.io/netlify/635b50f7-7b22-4c87-9b6b-7da2c0fb2180?logo=netlify&style=for-the-badge">
+    </a>
     <a href="https://codecov.io/gh/RinMinase/anidb">
         <img alt="Codecov" src="https://img.shields.io/codecov/c/gh/RinMinase/anidb?logo=codecov&style=for-the-badge" />
     </a>
