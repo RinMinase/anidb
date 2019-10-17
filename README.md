@@ -2,18 +2,18 @@
 
 <p align="center">
     <a href="https://circleci.com/gh/RinMinase/anidb">
-        <img alt="Circle-CI" src="https://img.shields.io/circleci/project/github/RinMinase/anidb/master.svg?logo=circleci">
+        <img alt="Circle-CI" src="https://img.shields.io/circleci/project/github/RinMinase/anidb/master.svg?logo=circleci&style=for-the-badge">
     </a>
     <a href="https://codecov.io/gh/RinMinase/anidb">
-        <img alt="Codecov" src="https://codecov.io/gh/RinMinase/anidb/branch/master/graph/badge.svg" />
+        <img alt="Codecov" src="https://img.shields.io/codecov/c/gh/RinMinase/anidb?logo=codecov&style=for-the-badge" />
     </a>
 </p>
 <p align="center">
     <a href="https://david-dm.org/RinMinase/anidb">
-        <img alt="David-DM" src="https://david-dm.org/RinMinase/anidb.svg">
+        <img alt="David-DM" src="https://img.shields.io/david/RinMinase/anidb?style=for-the-badge">
     </a>
     <a href="https://david-dm.org/RinMinase/anidb">
-        <img alt="David-DM" src="https://david-dm.org/RinMinase/anidb/dev-status.svg">
+        <img alt="David-DM" src="https://img.shields.io/david/dev/RinMinase/anidb?label=dev%20dependencies&style=for-the-badge">
     </a>
 </p>
 <p align="center">
@@ -24,10 +24,10 @@
         <img alt="Open Issues" src="http://isitmaintained.com/badge/open/RinMinase/anidb.svg">
     </a>
     <a href="https://nodejs.org">
-        <img alt="Node" src="https://img.shields.io/badge/node-%5E10.12.0%20%7C%7C%20%3E%3D12.10.0-green.svg?logo=node.js&logoColor=white">
+        <img alt="Node" src="https://img.shields.io/badge/node-%5E10.12.0%20%7C%7C%20%3E%3D12.10.0-green.svg?logo=node.js&logoColor=white&style=for-the-badge">
     </a>
     <a href="https://yarnpkg.com/">
-        <img alt="Yarn" src="https://img.shields.io/badge/yarn-%5E1.10.0-blue.svg">
+        <img alt="Yarn" src="https://img.shields.io/badge/yarn-%5E1.10.0-blue.svg?style=for-the-badge">
     </a>
 </p>
 
