@@ -32,7 +32,7 @@
     "@angular/pwa": "^0.803.14",
     "@angular/router": "^8.2.12",
     "@angular/service-worker": "^8.2.12",
-    "@ng-bootstrap/ng-bootstrap": "^5.1.1",
+    "@ng-bootstrap/ng-bootstrap": "^5.1.2",
     "animatewithsass": "^3.2.1",
     "bootstrap": "^4.3.1",
     "chart.js": "^2.9.0",
