@@ -38,7 +38,7 @@
     "chart.js": "^2.9.0",
     "cordova-android": "^8.1.0",
     "date-fns": "^2.6.0",
-    "firebase": "^7.2.1",
+    "firebase": "^7.2.2",
     "font-awesome": "^4.7.0",
     "fuse.js": "^3.4.5",
     "ng2-charts": "^2.3.0",
@@ -80,7 +80,7 @@
     "**/@firebase/firestore-types": "^1.6.2",
     "**/@firebase/messaging-types": "^0.3.4",
     "**/@firebase/storage-types": "^0.3.5",
-    "**/@firebase/util": "^0.2.30",
+    "**/@firebase/util": "^0.2.31",
     "**/chart.js": "^2.9.0",
     "**/jquery": "^3.4.1",
     "**/popper.js": "^1.16.0"
