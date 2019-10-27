@@ -94,8 +94,8 @@ export class ChangelogComponent implements OnInit {
 
 	private doesNotContainMerge(message: string) {
 		return (message.indexOf("Merge branch") === -1
-			|| message.indexOf("Merge pull request") === -1
-			|| message.indexOf("renovate.json") === -1);
+			&& message.indexOf("Merge pull request") === -1
+			&& message.indexOf("renovate.json") === -1);
 	}
 
 }
