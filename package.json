@@ -29,7 +29,7 @@
     "@angular/core": "^8.2.13",
     "@angular/forms": "^8.2.13",
     "@angular/platform-browser": "^8.2.13",
-    "@angular/pwa": "^0.803.16",
+    "@angular/pwa": "^0.803.17",
     "@angular/router": "^8.2.13",
     "@angular/service-worker": "^8.2.13",
     "@ng-bootstrap/ng-bootstrap": "^5.1.2",
@@ -51,7 +51,7 @@
     "zone.js": "^0.9.1"
   },
   "devDependencies": {
-    "@angular/cli": "^8.3.16",
+    "@angular/cli": "^8.3.17",
     "@angular/compiler": "^8.2.13",
     "@angular/compiler-cli": "^8.2.13",
     "@angular/platform-browser-dynamic": "^8.2.13",
@@ -73,7 +73,7 @@
     "typescript": "~3.5.3"
   },
   "resolutions": {
-    "**/@angular-devkit/build-angular": "^0.803.16",
+    "**/@angular-devkit/build-angular": "^0.803.17",
     "**/chart.js": "^2.9.1",
     "**/jquery": "^3.4.1",
     "**/popper.js": "^1.16.0"
