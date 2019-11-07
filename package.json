@@ -37,7 +37,7 @@
     "bootstrap": "^4.3.1",
     "cordova-android": "^8.1.0",
     "date-fns": "^2.6.0",
-    "firebase": "^7.2.2",
+    "firebase": "^7.2.3",
     "font-awesome": "^4.7.0",
     "fuse.js": "^3.4.5",
     "ng2-charts": "^2.3.0",
