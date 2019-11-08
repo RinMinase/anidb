@@ -43,7 +43,7 @@ export class ViewHomeComponent implements OnInit {
 		Swal.fire({
 			title: "Are you sure?",
 			text: "Your will not be able to recover this entry!",
-			type: "warning",
+			icon: "warning",
 			showCancelButton: true,
 			confirmButtonColor: "#DD6B55",
 			confirmButtonText: "Yes, delete it!",

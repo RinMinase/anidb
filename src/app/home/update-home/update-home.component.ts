@@ -107,7 +107,7 @@ export class UpdateHomeComponent implements OnInit {
 		Swal.fire({
 			title: "Are you sure?",
 			text: "This will discard your edits",
-			type: "question",
+			icon: "question",
 			showCancelButton: true,
 		}).then((result) => {
 			if (result.value) { this.modal.dismiss(); }
@@ -219,7 +219,7 @@ export class UpdateHomeComponent implements OnInit {
 		Swal.fire({
 			title: "Are you sure?",
 			text: "Please confirm the details of your entry",
-			type: "question",
+			icon: "question",
 			showCancelButton: true,
 			confirmButtonColor: "#DD6B55",
 			confirmButtonText: "Yes, I'm sure",
@@ -230,7 +230,7 @@ export class UpdateHomeComponent implements OnInit {
 						Swal.fire({
 							title: "Success",
 							text: "Your edits has been saved",
-							type: "success",
+							icon: "success",
 						}).then((successResult) => {
 							if (successResult.value) { this.modal.close(); }
 						});

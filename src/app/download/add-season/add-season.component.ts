@@ -18,7 +18,7 @@ export class AddSeasonComponent implements OnInit {
 		Swal.fire({
 			title: "Are you sure?",
 			text: "This will discard your edits",
-			type: "question",
+			icon: "question",
 			showCancelButton: true,
 		}).then((result) => {
 			if (result.value) { this.modal.dismiss(); }
