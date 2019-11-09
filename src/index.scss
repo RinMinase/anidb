@@ -6,10 +6,10 @@ $enable-transitions: false;
 @import "~animatewithsass/animate.scss";
 @import "~scss-spinners/components/eclipse";
 
-@import "./assets/styles/animate-scss-extension";
-@import "./assets/styles/bootstrap-extension";
-@import "./assets/styles/bootstrap-switches";
-@import "./assets/styles/roboto-fonts";
+@import "../assets/styles/animate-scss-extension";
+@import "../assets/styles/bootstrap-extension";
+@import "../assets/styles/bootstrap-switches";
+@import "../assets/styles/roboto-fonts";
 
 $footer-height: 52px;
 
