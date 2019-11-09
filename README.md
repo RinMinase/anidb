@@ -30,7 +30,7 @@
         <img alt="Angular" src="https://img.shields.io/badge/angular-%5E8.2-red.svg?logo=angular&style=for-the-badge">
     </a>
     <a href="https://nodejs.org">
-        <img alt="Node" src="https://img.shields.io/badge/node-%5E12.0.0-brightgreen.svg?logo=node.js&logoColor=white&style=for-the-badge">
+        <img alt="Node" src="https://img.shields.io/badge/node-%5E12.0%20%7C%7C%20%5E13.0-brightgreen.svg?logo=node.js&logoColor=white&style=for-the-badge">
     </a>
     <!-- <a href="https://yarnpkg.com/">
         <img alt="Yarn" src="https://img.shields.io/badge/yarn-%5E1.13.0-blue.svg?logo=yarn&logoColor=white&style=for-the-badge">
