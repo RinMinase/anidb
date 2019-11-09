@@ -32,7 +32,7 @@
     "@angular/pwa": "^0.803.18",
     "@angular/router": "^8.2.13",
     "@angular/service-worker": "^8.2.13",
-    "@ng-bootstrap/ng-bootstrap": "^5.1.2",
+    "@ng-bootstrap/ng-bootstrap": "^5.1.4",
     "animatewithsass": "^3.2.1",
     "bootstrap": "^4.3.1",
     "cordova-android": "^8.1.0",
