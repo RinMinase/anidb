@@ -80,43 +80,40 @@ Schematics
 
 #### Directory Structure
     .
-    ├── .circleci/                     # Circle CI configuration folder
-    ├── assets/                        # Project assets
-    │   ├── config/                    # Project configurations
-    │   │   ├── testing/               # Testing configuration files
-    │   │   ├── manifest.json          # Web manifest file
-    │   │   ├── ngsw-config.json       # PWA Service Worker configuration file
-    │   │   ├── webpack.ts             # Extended webpack configuration file
-    │   │   └── ...                    # Other configuration files
-    │   ├── res/                       # Platform-specific resources folder
-    │   ├── styles/                    # Stylesheet folder
-    │   └── ...                        # Other assets
-    ├── dist/                          # Compiled production code
-    ├── src/                           # Project source code
-    │   ├── app/                       # Project modules and components
-    │   ├── core/                      # Project-wide reusable classes
-    │   │   ├── builders/              # Project builders
-    │   │   ├── components/            # Project components
-    │   │   └── services/              # Project services
-    │   ├── index.html                 # Main HTML file
-    │   ├── index.scss                 # Main Stylesheet (SCSS) file
-    │   └── index.ts                   # Main TypeScript file
-    ├── .editorconfig                  # IDE / Editor configuration
-    ├── .stylelintrc                   # SCSS linting configuration
-    ├── angular.json                   # Angular CLI configuration
-    ├── config.xml                     # Cordova build configuration
-    ├── firebase.json                  # Firebase hosting configuation
-    ├── tsconfig.json                  # Main TypeScript configuration file
-    ├── tslint.json                    # TypeScript linting file
-    └── ...                            # Other project files
-
-#### Module Structure
-    <module-name>/
-     ├── <name>.component.html         # Component template
-     ├── <name>.component.scss         # Component stylesheet
-     ├── <name>.component.spec.ts      # Component test script
-     ├── <name>.component.ts           # Module component
-     └── <name>.module.ts              # Module
+    ├── .circleci/                          # Circle CI configuration folder
+    ├── assets/                             # Project assets
+    │   ├── config/                         # Project configurations
+    │   │   ├── testing/                    # Testing configuration files
+    │   │   ├── manifest.json               # Web manifest file
+    │   │   ├── ngsw-config.json            # PWA Service Worker configuration file
+    │   │   ├── webpack.ts                  # Extended webpack configuration file
+    │   │   └── ...                         # Other configuration files
+    │   ├── res/                            # Platform-specific resources folder
+    │   ├── styles/                         # Stylesheet folder
+    │   └── ...                             # Other assets
+    ├── dist/                               # Compiled production code
+    ├── src/                                # Project source code
+    │   ├──<module-name>/                   # Project module
+    │   │   ├── <name>.component.html       # Component template
+    │   │   ├── <name>.component.scss       # Component stylesheet
+    │   │   ├── <name>.component.spec.ts    # Component test script
+    │   │   ├── <name>.component.ts         # Module component
+    │   │   └── <name>.module.ts            # Module
+    │   ├── core/                           # Project-wide reusable classes
+    │   │   ├── builders/                   # Project builders
+    │   │   ├── components/                 # Project components
+    │   │   └── services/                   # Project services
+    │   ├── index.html                      # Main HTML file
+    │   ├── index.scss                      # Main Stylesheet (SCSS) file
+    │   └── index.ts                        # Main TypeScript file
+    ├── .editorconfig                       # IDE / Editor configuration
+    ├── .stylelintrc                        # SCSS linting configuration
+    ├── angular.json                        # Angular CLI configuration
+    ├── config.xml                          # Cordova build configuration
+    ├── firebase.json                       # Firebase hosting configuation
+    ├── tsconfig.json                       # Main TypeScript configuration file
+    ├── tslint.json                         # TypeScript linting file
+    └── ...                                 # Other project files
 
 ### Building the project
 Installations Required:
