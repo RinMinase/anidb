@@ -113,8 +113,6 @@ Schematics
 
 #### Module Structure
     <module-name>/
-     ├── <sub-module name>             # Sub-module
-     │    └── ...                      # Sub-module files
      ├── <name>.component.html         # Component template
      ├── <name>.component.scss         # Component stylesheet
      ├── <name>.component.spec.ts      # Component test script
