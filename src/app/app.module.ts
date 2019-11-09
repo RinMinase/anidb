@@ -53,11 +53,9 @@ export class AppComponent {
 	constructor(public router: Router) {
 		const firebaseConfig = {
 			apiKey: "AIzaSyCVsm1c-nS9qS1fFfFo6JCAb908AfPU6Ag",
-			authDomain: "rin-anidb.firebaseapp.com",
 			databaseURL: "https://rin-anidb.firebaseio.com",
 			projectId: "rin-anidb",
 			storageBucket: "rin-anidb.appspot.com",
-			messagingSenderId: "669722574117",
 		};
 
 		initializeApp(firebaseConfig);
