@@ -26,6 +26,9 @@
     <a href="http://isitmaintained.com/project/RinMinase/anidb">
         <img alt="Open Issues" src="http://isitmaintained.com/badge/open/RinMinase/anidb.svg">
     </a> -->
+    <a href="https://angular.io/">
+        <img alt="Angular" src="https://img.shields.io/badge/angular-%5E8.2-red.svg?logo=angular&style=for-the-badge">
+    </a>
     <a href="https://nodejs.org">
         <img alt="Node" src="https://img.shields.io/badge/node-%5E10.12.0%20%7C%7C%20%3E%3D12.10.0-green.svg?logo=node.js&logoColor=white&style=for-the-badge">
     </a>
