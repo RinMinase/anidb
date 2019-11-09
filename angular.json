@@ -108,12 +108,12 @@
           "builder": "@angular-builders/custom-webpack:karma",
           "options": {
             "customWebpackConfig": {
-              "path": "src/assets/config/webpack.ts",
+              "path": "assets/config/webpack.ts",
               "mergeStrategies": { "externals": "replace" }
             },
-            "main": "src/assets/config/testing/test.ts",
+            "main": "assets/config/testing/test.ts",
             "tsConfig": "assets/config/tsconfig.spec.json",
-            "karmaConfig": "src/assets/config/testing/karma.conf.ts",
+            "karmaConfig": "assets/config/testing/karma.conf.ts",
             "codeCoverage": true,
             "styles": [ "src/index.scss" ],
             "assets": [{
