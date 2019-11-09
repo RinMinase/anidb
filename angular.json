@@ -21,7 +21,7 @@
           "builder": "@angular-builders/custom-webpack:browser",
           "options": {
             "customWebpackConfig": {
-              "path": "src/assets/config/webpack.ts",
+              "path": "assets/config/webpack.ts",
               "mergeStrategies": { "externals": "replace" }
             },
             "outputPath": "dist",
@@ -84,7 +84,7 @@
           "builder": "@angular-builders/custom-webpack:dev-server",
           "options": {
             "customWebpackConfig": {
-              "path": "src/assets/config/webpack.ts",
+              "path": "assets/config/webpack.ts",
               "mergeStrategies": { "externals": "replace" }
             },
             "port": 3000,
