@@ -2,7 +2,7 @@
 
 <p align="center">
     <a href="https://circleci.com/gh/RinMinase/anidb">
-        <img alt="Circle-CI" src="https://img.shields.io/circleci/project/github/RinMinase/anidb/master.svg?logo=circleci&style=for-the-badge">
+        <img alt="Circle-CI" src="https://img.shields.io/circleci/project/github/RinMinase/anidb/master.svg?logo=circleci&style=for-the-badge&label=Circle%20CI">
     </a>
     <a href="https://app.netlify.com/sites/anidb/deploys">
         <img alt="Netlify-Status" src="https://img.shields.io/netlify/635b50f7-7b22-4c87-9b6b-7da2c0fb2180?logo=netlify&style=for-the-badge">
@@ -32,9 +32,9 @@
     <a href="https://nodejs.org">
         <img alt="Node" src="https://img.shields.io/badge/node-%5E12.0.0-brightgreen.svg?logo=node.js&logoColor=white&style=for-the-badge">
     </a>
-    <a href="https://yarnpkg.com/">
+    <!-- <a href="https://yarnpkg.com/">
         <img alt="Yarn" src="https://img.shields.io/badge/yarn-%5E1.13.0-blue.svg?logo=yarn&logoColor=white&style=for-the-badge">
-    </a>
+    </a> -->
 </p>
 
 ## Introduction
