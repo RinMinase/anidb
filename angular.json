@@ -46,7 +46,7 @@
               "output": "/assets/fonts"
             }, {
               "glob": "manifest.json",
-              "input": "src/assets/config/",
+              "input": "assets/config/",
               "output": "/"
             }, {
               "glob": "**/*.png",
