@@ -5,7 +5,7 @@ import { NgbCollapseModule } from "@ng-bootstrap/ng-bootstrap";
 
 import { LegendModule } from "@components/legend/legend.module";
 import { ByNameComponent } from "./by-name.component";
-import { ChartsModule } from 'ng2-charts';
+import { ChartsModule } from "ng2-charts";
 
 const routes: Routes = [{ path: "", component: ByNameComponent }];
 
