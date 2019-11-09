@@ -27,7 +27,7 @@
             "outputPath": "dist",
             "index": "src/index.html",
             "main": "src/index.ts",
-            "tsConfig": "src/assets/config/tsconfig.app.json",
+            "tsConfig": "assets/config/tsconfig.app.json",
             "assets": [{
               "glob": "favicon.ico",
               "input": "assets/",
@@ -112,7 +112,7 @@
               "mergeStrategies": { "externals": "replace" }
             },
             "main": "src/assets/config/testing/test.ts",
-            "tsConfig": "src/assets/config/tsconfig.spec.json",
+            "tsConfig": "assets/config/tsconfig.spec.json",
             "karmaConfig": "src/assets/config/testing/karma.conf.ts",
             "codeCoverage": true,
             "styles": [ "src/index.scss" ],
@@ -151,8 +151,8 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "src/assets/config/tsconfig.app.json",
-              "src/assets/config/tsconfig.spec.json"
+              "assets/config/tsconfig.app.json",
+              "assets/config/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**",
