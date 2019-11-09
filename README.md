@@ -81,18 +81,18 @@ Schematics
 #### Directory Structure
     .
     ├── .circleci/                     # Circle CI configuration folder
+    ├── assets/                        # Project assets
+    │   ├── config/                    # Project configurations
+    │   │   ├── testing/               # Testing configuration files
+    │   │   ├── manifest.json          # Web manifest file
+    │   │   ├── ngsw-config.json       # PWA Service Worker configuration file
+    │   │   ├── webpack.ts             # Extended webpack configuration file
+    │   │   └── ...                    # Other configuration files
+    │   ├── res/                       # Platform-specific resources folder
+    │   ├── styles/                    # Stylesheet folder
+    │   ├── favicon.ico                # Web Application icon
+    │   └── robots.txt                 # Robots file
     ├── dist/                          # Compiled production code
-    ├── assets/                    # Project assets
-    │   ├── config/                # Project configurations
-    │   │   ├── testing/           # Testing configuration files
-    │   │   ├── manifest.json      # Web manifest file
-    │   │   ├── ngsw-config.json   # PWA Service Worker configuration file
-    │   │   ├── webpack.ts         # Extended webpack configuration file
-    │   │   └── ...                # Other configuration files
-    │   ├── res/                   # Platform-specific resources folder
-    │   ├── styles/                # Stylesheet folder
-    │   ├── favicon.ico            # Web Application icon
-    │   └── robots.txt             # Robots file
     ├── src/                           # Project source code
     │   ├── app/                       # Project modules and components
     │   ├── core/                      # Project-wide reusable classes
