@@ -5,7 +5,7 @@
   "projects": {
     "anidb": {
       "root": "",
-      "sourceRoot": "src",
+      "sourceRoot": ".",
       "projectType": "application",
       "prefix": "app",
       "schematics": {
@@ -28,47 +28,36 @@
             "index": "src/index.html",
             "main": "src/index.ts",
             "tsConfig": "src/assets/config/tsconfig.app.json",
-            "assets": [
-              {
-                "glob": "favicon.ico",
-                "input": "src/assets/",
-                "output": "/assets"
-              },
-              {
-                "glob": "robots.txt",
-                "input": "src/assets/",
-                "output": "/"
-              },
-              {
-                "glob": "**/*.woff2",
-                "input": "node_modules/font-awesome/fonts",
-                "output": "/assets/fonts"
-              },
-              {
-                "glob": "**/*.woff2",
-                "input": "node_modules/roboto-fontface/fonts/roboto",
-                "output": "/assets/fonts"
-              },
-              {
-                "glob": "manifest.json",
-                "input": "src/assets/config/",
-                "output": "/"
-              },
-              {
-                "glob": "**/*.png",
-                "input": "src/assets/res/web/",
-                "output": "/assets/icons"
-              },
-              {
-                "glob": "_redirects",
-                "input": "src/assets/config/",
-                "output": "/"
-              }
-            ],
-            "styles": [
-              "src/index.scss"
-            ],
-            "scripts": [],
+            "assets": [{
+              "glob": "favicon.ico",
+              "input": "assets/",
+              "output": "/assets"
+            }, {
+              "glob": "robots.txt",
+              "input": "assets/",
+              "output": "/"
+            }, {
+              "glob": "**/*.woff2",
+              "input": "node_modules/font-awesome/fonts",
+              "output": "/assets/fonts"
+            }, {
+              "glob": "**/*.woff2",
+              "input": "node_modules/roboto-fontface/fonts/roboto",
+              "output": "/assets/fonts"
+            }, {
+              "glob": "manifest.json",
+              "input": "src/assets/config/",
+              "output": "/"
+            }, {
+              "glob": "**/*.png",
+              "input": "src/assets/res/web/",
+              "output": "/assets/icons"
+            }, {
+              "glob": "_redirects",
+              "input": "src/assets/config/",
+              "output": "/"
+            }],
+            "styles": [ "src/index.scss" ],
             "extractCss": true,
             "extractLicenses": false
           },
