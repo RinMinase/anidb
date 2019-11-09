@@ -54,7 +54,7 @@
               "output": "/assets/icons"
             }, {
               "glob": "_redirects",
-              "input": "src/assets/config/",
+              "input": "assets/config/",
               "output": "/"
             }],
             "styles": [ "src/index.scss" ],
