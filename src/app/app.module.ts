@@ -1,10 +1,9 @@
+import { NgModule, Component } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
-import { NgModule } from "@angular/core";
-import { Routes, RouterModule } from "@angular/router";
+import { Router, Routes, RouterModule } from "@angular/router";
 import { HttpClientModule } from "@angular/common/http";
 import { ServiceWorkerModule } from "@angular/service-worker";
-
-import { AppComponent } from "./app.component";
+import { initializeApp } from "firebase/app";
 
 import { NavbarModule } from "@components/navbar/navbar.module";
 import { FooterModule } from "@components/footer/footer.module";
@@ -42,6 +41,28 @@ const routes: Routes = [{
 	pathMatch: "full",
 	redirectTo: "",
 }];
+
+@Component({
+	selector: "app-root",
+	template: `
+		<app-navbar *ngIf="router.url !== '/login'"></app-navbar>
+		<router-outlet></router-outlet>
+		<app-footer *ngIf="router.url !== '/login'"></app-footer>`,
+})
+export class AppComponent {
+	constructor(public router: Router) {
+		const firebaseConfig = {
+			apiKey: "AIzaSyCVsm1c-nS9qS1fFfFo6JCAb908AfPU6Ag",
+			authDomain: "rin-anidb.firebaseapp.com",
+			databaseURL: "https://rin-anidb.firebaseio.com",
+			projectId: "rin-anidb",
+			storageBucket: "rin-anidb.appspot.com",
+			messagingSenderId: "669722574117",
+		};
+
+		initializeApp(firebaseConfig);
+	}
+}
 
 @NgModule({
 	declarations: [AppComponent],
