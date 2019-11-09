@@ -90,8 +90,7 @@ Schematics
     │   │   └── ...                    # Other configuration files
     │   ├── res/                       # Platform-specific resources folder
     │   ├── styles/                    # Stylesheet folder
-    │   ├── favicon.ico                # Web Application icon
-    │   └── robots.txt                 # Robots file
+    │   └── ...                        # Other assets
     ├── dist/                          # Compiled production code
     ├── src/                           # Project source code
     │   ├── app/                       # Project modules and components
