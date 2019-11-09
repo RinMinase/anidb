@@ -95,7 +95,7 @@ Schematics
     │   │   ├── styles/                # Stylesheet folder
     │   │   ├── favicon.ico            # Web Application icon
     │   │   └── robots.txt             # Robots file
-    │   ├── core/                      # Environments folder
+    │   ├── core/                      # Project-wide reusable classes
     │   │   ├── builders/              # Project builders
     │   │   ├── components/            # Project components
     │   │   └── services/              # Project services
