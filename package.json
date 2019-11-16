@@ -74,7 +74,7 @@
   },
   "resolutions": {
     "**/@angular-devkit/build-angular": "^0.803.19",
-    "**/chart.js": "^2.9.2",
+    "**/chart.js": "^2.9.3",
     "**/jquery": "^3.4.1",
     "**/popper.js": "^1.16.0"
   },
