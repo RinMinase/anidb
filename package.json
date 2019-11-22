@@ -39,7 +39,7 @@
     "date-fns": "^2.8.1",
     "firebase": "^7.5.0",
     "font-awesome": "^4.7.0",
-    "fuse.js": "^3.4.5",
+    "fuse.js": "^3.4.6",
     "ng2-charts": "^2.3.0",
     "ng2-file-upload": "^1.4.0",
     "ngx-dropzone-wrapper": "^8.0.0",
