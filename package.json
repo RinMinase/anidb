@@ -46,7 +46,7 @@
     "roboto-fontface": "^0.10.0",
     "rxjs": "^6.5.3",
     "scss-spinners": "^1.1.15",
-    "sweetalert2": "^9.4.0",
+    "sweetalert2": "^9.4.1",
     "xlsx": "^0.15.3",
     "zone.js": "^0.9.1"
   },
