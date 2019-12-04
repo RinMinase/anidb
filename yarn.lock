@@ -10570,10 +10570,10 @@ svg-tags@^1.0.0:
   resolved "https://registry.yarnpkg.com/svg-tags/-/svg-tags-1.0.0.tgz#58f71cee3bd519b59d4b2a843b6c7de64ac04764"
   integrity sha1-WPcc7jvVGbWdSyqEO2x95krAR2Q=
 
-sweetalert2@^9.4.1:
-  version "9.4.1"
-  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-9.4.1.tgz#1f5ded0e8f0ea2c75d62e0ea680129983baa67e4"
-  integrity sha512-loOwVZUmuTR+BomvqkiEguwjVol8MmaTginqGkPzzYbzpCmhaFVwTDvCxP0fEBue4whhebepUnKKcwDTjb1IdQ==
+sweetalert2@^9.4.3:
+  version "9.4.3"
+  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-9.4.3.tgz#209e0561a5971deb20cc33dc45a77c1b6d6d79b2"
+  integrity sha512-edh+30p2tlE7CyNsTDVUb6SGO/c9wuCF4qiketagLvsK/xcesrSPvF8u9Ljk83HX26CfOicKWulmxz+Z+MAWVw==
 
 symbol-observable@1.2.0:
   version "1.2.0"
