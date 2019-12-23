@@ -7771,7 +7771,7 @@ node-libs-browser@^2.2.1:
     util "^0.11.0"
     vm-browserify "^1.0.1"
 
-node-pre-gyp@*, node-pre-gyp@^0.14.0:
+node-pre-gyp@^0.14.0:
   version "0.14.0"
   resolved "https://registry.yarnpkg.com/node-pre-gyp/-/node-pre-gyp-0.14.0.tgz#9a0596533b877289bcad4e143982ca3d904ddc83"
   integrity sha512-+CvDC7ZttU/sSt9rFjix/P05iS43qHCOOGzcr3Ry99bXG7VX953+vFyEuph/tfqoYu8dttBkE86JSKBO2OzcxA==
@@ -11715,10 +11715,10 @@ xdg-basedir@^3.0.0:
   resolved "https://registry.yarnpkg.com/xdg-basedir/-/xdg-basedir-3.0.0.tgz#496b2cc109eca8dbacfe2dc72b603c17c5870ad4"
   integrity sha1-SWsswQnsqNus/i3HK2A8F8WHCtQ=
 
-xlsx@^0.15.3:
-  version "0.15.3"
-  resolved "https://registry.yarnpkg.com/xlsx/-/xlsx-0.15.3.tgz#d8b4daabde7529b53aad88273f0776c5e9253692"
-  integrity sha512-ho5yLr2YLmUZXH/pTPxJ9XImnPQtha3CZeqyhSZ7gmNl8ERRt6JbH2gnYmC2nLc+zegQ2GjfD/K003+G3k1qKQ==
+xlsx@^0.15.4:
+  version "0.15.4"
+  resolved "https://registry.yarnpkg.com/xlsx/-/xlsx-0.15.4.tgz#42ef1807829c4f9e98e8fce2641d53df5b5bde3e"
+  integrity sha512-5NKT5f4uRlQO6R9dEzWH5rxXNeT5iDB3I/80EFsAaYejxgP7a09l2KVtPap0pZRUrt1F8MVy8CRsEOJ5tbjheg==
   dependencies:
     adler-32 "~1.2.0"
     cfb "^1.1.3"
