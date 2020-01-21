@@ -58,26 +58,30 @@
               "output": "/"
             }],
             "styles": [ "src/index.scss" ],
-            "extractCss": true,
-            "extractLicenses": false,
-            "optimization": true,
-            "outputHashing": "all",
-            "sourceMap": false,
-            "namedChunks": false,
-            "aot": true,
-            "vendorChunk": false,
-            "buildOptimizer": true,
-            "serviceWorker": true,
-            "ngswConfigPath": "assets/config/ngsw-config.json",
-            "budgets": [{
-              "type": "initial",
-              "maximumWarning": "2mb",
-              "maximumError": "5mb"
-            }, {
-              "type": "anyComponentStyle",
-              "maximumWarning": "6kb",
-              "maximumError": "10kb"
-            }]
+            "aot": true
+          },
+          "configurations": {
+            "production": {
+              "extractCss": true,
+              "extractLicenses": false,
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "serviceWorker": true,
+              "ngswConfigPath": "assets/config/ngsw-config.json",
+              "budgets": [{
+                "type": "initial",
+                "maximumWarning": "2mb",
+                "maximumError": "5mb"
+              }, {
+                "type": "anyComponentStyle",
+                "maximumWarning": "6kb",
+                "maximumError": "10kb"
+              }]
+            }
           }
         },
         "serve": {
@@ -89,7 +93,6 @@
             },
             "port": 3000,
             "browserTarget": "anidb:build",
-            "progress": false,
             "sourceMap": {
               "scripts": true,
               "styles": false,
