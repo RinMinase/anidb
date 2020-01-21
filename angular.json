@@ -58,7 +58,6 @@
               "output": "/"
             }],
             "styles": [ "src/index.scss" ],
-            "progress": false,
             "extractCss": true,
             "extractLicenses": false,
             "optimization": true,

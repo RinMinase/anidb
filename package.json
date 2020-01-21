@@ -14,6 +14,7 @@
   "scripts": {
     "start": "ng serve",
     "build": "ng build",
+    "deploy": "ng build --no-progress",
     "bundle": "npm run bundle-build && npm run bundle-app && npm run bundle-post",
     "bundle-build": "ng build --base-href ./ && mv dist www",
     "bundle-app": "tsc assets/res/android/hooks/after_build.ts && cordova build android",
