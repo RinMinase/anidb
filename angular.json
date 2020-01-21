@@ -58,30 +58,27 @@
               "output": "/"
             }],
             "styles": [ "src/index.scss" ],
+            "progress": false,
             "extractCss": true,
-            "extractLicenses": false
-          },
-          "configurations": {
-            "production": {
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "namedChunks": false,
-              "aot": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "serviceWorker": true,
-              "ngswConfigPath": "assets/config/ngsw-config.json",
-              "budgets": [{
-                "type": "initial",
-                "maximumWarning": "2mb",
-                "maximumError": "5mb"
-              }, {
-                "type": "anyComponentStyle",
-                "maximumWarning": "6kb",
-                "maximumError": "10kb"
-              }]
-            }
+            "extractLicenses": false,
+            "optimization": true,
+            "outputHashing": "all",
+            "sourceMap": false,
+            "namedChunks": false,
+            "aot": true,
+            "vendorChunk": false,
+            "buildOptimizer": true,
+            "serviceWorker": true,
+            "ngswConfigPath": "assets/config/ngsw-config.json",
+            "budgets": [{
+              "type": "initial",
+              "maximumWarning": "2mb",
+              "maximumError": "5mb"
+            }, {
+              "type": "anyComponentStyle",
+              "maximumWarning": "6kb",
+              "maximumError": "10kb"
+            }]
           }
         },
         "serve": {
