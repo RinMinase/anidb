@@ -1,6 +1,6 @@
 import { TestBed } from "@angular/core/testing";
 
-import { DarkModeService } from '@services/dark-mode.service';
+import { DarkModeService } from "@services/dark-mode.service";
 // import { FirebaseService } from "@services/firebase.service";
 // import { GithubService } from "@services/github.service";
 // import { UtilityService } from "@services/utility.service";
