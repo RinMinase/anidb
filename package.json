@@ -34,7 +34,7 @@
     "@angular/pwa": "^0.900.0-rc.9",
     "@angular/router": "^9.0.0-rc.9",
     "@angular/service-worker": "^9.0.0-rc.9",
-    "@ng-bootstrap/ng-bootstrap": "^5.1.5",
+    "@ng-bootstrap/ng-bootstrap": "^5.2.0",
     "animatewithsass": "^3.2.1",
     "bootstrap": "^4.4.1",
     "cordova-android": "^8.1.0",
