@@ -50,7 +50,7 @@
               "output": "/"
             }, {
               "glob": "**/*.png",
-              "input": "assets/res/web/",
+              "input": "assets/res/",
               "output": "/assets/icons"
             }, {
               "glob": "_redirects",
@@ -137,7 +137,7 @@
               "output": "/"
             }, {
               "glob": "**/*.png",
-              "input": "assets/res/web/",
+              "input": "assets/res/",
               "output": "/assets/icons"
             }, {
               "glob": "_redirects",
