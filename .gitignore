@@ -22,16 +22,6 @@ yarn-error.log*
 node_modules/
 package-lock.json
 
-# Android
-www/
-build/
-*.apk
-*.ap_
-*.dex
-.gradle
-platforms/
-plugins/
-
 # Firebase cache directory
 .firebase/
 

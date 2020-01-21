@@ -1,6 +1,6 @@
 {
   "name": "rin-anidb",
-  "description": "Rin Minase's Anime Database using Angular 9 compiled for Android with Cordova and deployed to both Firebase and Netlify using Circle CI",
+  "description": "Rin Minase's Anime Database using Angular 9 rendered with Ivy and deployed to both Firebase and Netlify using Circle CI",
   "homepage": "https://rin-anidb.firebaseapp.com/",
   "version": "0.2.0",
   "license": "MIT",
@@ -15,14 +15,9 @@
     "start": "ng serve",
     "build": "ng build --prod",
     "deploy": "ng build --prod --no-progress",
-    "bundle": "npm run bundle-build && npm run bundle-app && npm run bundle-post",
-    "bundle-build": "ng build --prod --base-href ./ && mv dist www",
-    "bundle-app": "tsc assets/res/android/hooks/after_build.ts && cordova build android",
-    "bundle-post": "rm -rf www && rm assets/res/android/hooks/after_build.js",
     "test": "ng test --no-progress",
     "codecov": "codecov",
-    "lint": "stylelint src/**/*.scss & ng lint",
-    "setup": "cordova platform add android && yarn"
+    "lint": "stylelint src/**/*.scss & ng lint"
   },
   "dependencies": {
     "@angular-builders/custom-webpack": "^9.0.0-beta.0",
@@ -37,7 +32,6 @@
     "@ng-bootstrap/ng-bootstrap": "^5.2.0",
     "animatewithsass": "^3.2.1",
     "bootstrap": "^4.4.1",
-    "cordova-android": "^8.1.0",
     "date-fns": "^2.9.0",
     "firebase": "^7.7.0",
     "font-awesome": "^4.7.0",
@@ -60,7 +54,6 @@
     "@types/jasmine": "^3.5.0",
     "codecov": "^3.6.1",
     "codelyzer": "^5.2.1",
-    "cordova-plugin-whitelist": "^1.3.4",
     "firebase-tools": "^7.12.1",
     "jasmine-core": "^3.5.0",
     "karma": "^4.4.1",
@@ -90,13 +83,5 @@
     "last 2 Safari versions",
     "last 2 Android versions",
     "last 2 iOS versions"
-  ],
-  "cordova": {
-    "plugins": {
-      "cordova-plugin-whitelist": {}
-    },
-    "platforms": [
-      "android"
-    ]
-  }
+  ]
 }
