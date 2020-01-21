@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer } from "@angular/core";
+import { Component, OnInit, Renderer2 } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 
@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
 	constructor(
 		private formBuilder: FormBuilder,
 		// private platform: PlatformLocation,
-		private renderer: Renderer,
+		private renderer: Renderer2,
 		private router: Router,
 		private firebase: FirebaseService,
 	) { }
@@ -66,15 +66,15 @@ export class LoginComponent implements OnInit {
 	}
 
 	rerenderInputFocus(event: any) {
-		this.renderer.setElementClass(event.target.parentNode, "focused", true);
+		this.renderer.addClass(event.target.parentNode, "focused");
 	}
 
 	rerenderInputBlur(event: any) {
 		if (!event.target.value) {
-			this.renderer.setElementClass(event.target, "filled", false);
-			this.renderer.setElementClass(event.target.parentNode, "focused", false);
+			this.renderer.removeClass(event.target, "filled");
+			this.renderer.removeClass(event.target.parentNode, "focused");
 		} else {
-			this.renderer.setElementClass(event.target, "focused", true);
+			this.renderer.addClass(event.target, "focused");
 		}
 	}
 }
