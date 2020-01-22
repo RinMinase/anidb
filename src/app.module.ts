@@ -7,20 +7,14 @@ import { initializeApp } from "firebase/app";
 
 import { NavbarModule } from "@components/navbar/navbar.module";
 import { FooterModule } from "@components/footer/footer.module";
-import { Page404Component } from "@components/page404/page404.component";
-import { Page500Component } from "@components/page500/page500.component";
+import { Page404Module } from '@components/page404/page404.module';
+import { Page500Module } from '@components/page500/page500.module';
 
 import { LoginModule } from "./login/login.module";
 import { HomeModule } from "./home/home.module";
 
 const isDev: boolean = window.location.origin.includes("local");
 const routes: Routes = [{
-	path: "404",
-	component: Page404Component,
-}, {
-	path: "500",
-	component: Page500Component,
-}, {
 	path: "about",
 	loadChildren: () => import("./about/about.module").then((m) => m.AboutModule),
 }, {
@@ -74,11 +68,7 @@ export class AppComponent {
 }
 
 @NgModule({
-	declarations: [
-		AppComponent,
-		Page404Component,
-		Page500Component,
-	],
+	declarations: [AppComponent],
 	imports: [
 		BrowserModule,
 		RouterModule.forRoot(routes, { anchorScrolling: "enabled" }),
@@ -87,6 +77,8 @@ export class AppComponent {
 
 		NavbarModule,
 		FooterModule,
+		Page404Module,
+		Page500Module,
 
 		LoginModule,
 		HomeModule,

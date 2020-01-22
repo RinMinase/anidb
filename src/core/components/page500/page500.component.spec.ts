@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { Page500Component } from "./page500.component";
+import { Page500Component } from "./page500.module";
 
 describe("Page500Component", () => {
 	let component: Page500Component;
