@@ -21,7 +21,7 @@ import { AddHomeComponent } from "../add-home/add-home.component";
 })
 export class ManageHomeComponent implements OnInit {
 
-	disableDevHomeQuery: boolean = true;
+	disableDevHomeQuery: boolean = !!process.env.DISABLE_HOME_QUERY;
 
 	dark: boolean;
 	data: Array<object> = [];
