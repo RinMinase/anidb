@@ -11,8 +11,17 @@ import { FooterModule } from "@components/footer/footer.module";
 import { LoginModule } from "./login/login.module";
 import { HomeModule } from "./home/home.module";
 
+import { NotFoundComponent } from "./core/pages/not-found/not-found.component";
+import { ServerErrorComponent } from "./core/pages/server-error/server-error.component";
+
 const isDev: boolean = window.location.origin.includes("local");
 const routes: Routes = [{
+	path: "404",
+	component: NotFoundComponent,
+}, {
+	path: "500",
+	component: ServerErrorComponent,
+}, {
 	path: "about",
 	loadChildren: () => import("./about/about.module").then((m) => m.AboutModule),
 }, {
@@ -40,6 +49,9 @@ const routes: Routes = [{
 	path: "",
 	pathMatch: "full",
 	redirectTo: "",
+}, {
+	path: "**",
+	redirectTo: "/404",
 }];
 
 @Component({
@@ -63,7 +75,11 @@ export class AppComponent {
 }
 
 @NgModule({
-	declarations: [AppComponent],
+	declarations: [
+		AppComponent,
+		NotFoundComponent,
+		ServerErrorComponent,
+	],
 	imports: [
 		BrowserModule,
 		RouterModule.forRoot(routes, { anchorScrolling: "enabled" }),
