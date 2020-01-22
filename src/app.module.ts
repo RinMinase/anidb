@@ -7,20 +7,19 @@ import { initializeApp } from "firebase/app";
 
 import { NavbarModule } from "@components/navbar/navbar.module";
 import { FooterModule } from "@components/footer/footer.module";
+import { Page404Component } from "@components/page404/page404.component";
+import { Page500Component } from "@components/page500/page500.component";
 
 import { LoginModule } from "./login/login.module";
 import { HomeModule } from "./home/home.module";
 
-import { NotFoundComponent } from "./core/pages/not-found/not-found.component";
-import { ServerErrorComponent } from "./core/pages/server-error/server-error.component";
-
 const isDev: boolean = window.location.origin.includes("local");
 const routes: Routes = [{
 	path: "404",
-	component: NotFoundComponent,
+	component: Page404Component,
 }, {
 	path: "500",
-	component: ServerErrorComponent,
+	component: Page500Component,
 }, {
 	path: "about",
 	loadChildren: () => import("./about/about.module").then((m) => m.AboutModule),
@@ -77,8 +76,8 @@ export class AppComponent {
 @NgModule({
 	declarations: [
 		AppComponent,
-		NotFoundComponent,
-		ServerErrorComponent,
+		Page404Component,
+		Page500Component,
 	],
 	imports: [
 		BrowserModule,
