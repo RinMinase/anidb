@@ -3,8 +3,8 @@ import { RouterTestingModule } from "@angular/router/testing";
 import { NgbCollapse } from "@ng-bootstrap/ng-bootstrap";
 
 import { AppComponent } from "../app.module";
-import { NavbarComponent } from "@components/navbar/navbar.component";
-import { FooterComponent } from "@components/footer/footer.component";
+import { NavbarComponent } from "@components/navbar/navbar.module";
+import { FooterComponent } from "@components/footer/footer.module";
 
 describe("AppComponent", () => {
 	beforeEach(async(() => {
