@@ -4,7 +4,9 @@ import { DarkModeService } from "@services/dark-mode.service";
 // import { FirebaseService } from "@services/firebase.service";
 // import { GithubService } from "@services/github.service";
 // import { UtilityService } from "@services/utility.service";
-// import { ApiService } from "@services/api.service";
+import { ApiService } from "@services/api.service";
+import { UserService } from "@services/user.service";
+import { HttpClientModule } from '@angular/common/http';
 
 describe("DarkModeService", () => {
 	beforeEach(() => TestBed.configureTestingModule({}));
@@ -52,16 +54,29 @@ describe("UtilityService", () => {
 	// });
 });
 
-// ng9 generated test case
+// ng9 generated test cases
 describe("ApiService", () => {
-	// let service: ApiService;
+	let service: ApiService;
 
-	// beforeEach(() => {
-	// 	TestBed.configureTestingModule({});
-	// 	service = TestBed.inject(ApiService);
-	// });
+	beforeEach(() => {
+		TestBed.configureTestingModule({ imports: [HttpClientModule] });
+		service = TestBed.inject(ApiService);
+	});
 
-	// it("should be created", () => {
-	// 	expect(service).toBeTruthy();
-	// });
+	it("should be created", () => {
+		expect(service).toBeTruthy();
+	});
+});
+
+describe("UserService", () => {
+	let service: UserService;
+
+	beforeEach(() => {
+		TestBed.configureTestingModule({ imports: [HttpClientModule] });
+		service = TestBed.inject(UserService);
+	});
+
+	it("should be created", () => {
+		expect(service).toBeTruthy();
+	});
 });
