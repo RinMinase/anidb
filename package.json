@@ -103,9 +103,15 @@
       "font-family-name-quotes": "always-where-recommended",
       "comment-whitespace-inside": "always",
       "comment-empty-line-before": "always",
-      "rule-empty-line-before": ["always-multi-line", {
-        "except": ["after-single-line-comment", "first-nested"]
-      }],
+      "rule-empty-line-before": [
+        "always-multi-line",
+        {
+          "except": [
+            "after-single-line-comment",
+            "first-nested"
+          ]
+        }
+      ],
       "selector-pseudo-element-colon-notation": "double",
       "selector-pseudo-class-parentheses-space-inside": "never",
       "media-feature-range-operator-space-before": "always",
