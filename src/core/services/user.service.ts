@@ -5,9 +5,8 @@ import { Observable } from 'rxjs';
 @Injectable({ providedIn: "root" })
 export class UserService {
 
-	apiKey: string = process.env.API_KEY || "";
-	apiURL: string = (process.env.API_URL || "").replace(/\/+$/, "");
-
+	private apiKey: string = process.env.API_KEY || "";
+	private apiURL: string = (process.env.API_URL || "").replace(/\/+$/, "");
 	private httpHeaders = new HttpHeaders({ "api-key": this.apiKey });
 
 	constructor(

@@ -5,9 +5,9 @@ import { BehaviorSubject, Observable } from 'rxjs';
 @Injectable({ providedIn: "root" })
 export class ApiService {
 
-	apiURL: string = (process.env.API_URL || "").replace(/\/+$/, "");
+	private apiURL: string = (process.env.API_URL || "").replace(/\/+$/, "");
+	private httpHeaders: HttpHeaders;
 
-	private httpHeaders;
 	private currentBearerKey = new BehaviorSubject("");
 	bearerKey = this.currentBearerKey.asObservable();
 
