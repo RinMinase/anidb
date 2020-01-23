@@ -81,14 +81,5 @@
     "last 2 Safari versions",
     "last 2 Android versions",
     "last 2 iOS versions"
-  ],
-  "__processed_by_ivy_ngcc__": {
-    "fesm2015": "9.0.0-rc.10",
-    "fesm5": "9.0.0-rc.10",
-    "es2015": "9.0.0-rc.10",
-    "esm2015": "9.0.0-rc.10",
-    "esm5": "9.0.0-rc.10",
-    "main": "9.0.0-rc.10",
-    "module": "9.0.0-rc.10"
-  }
+  ]
 }
