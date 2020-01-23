@@ -27,7 +27,7 @@
         <img alt="Open Issues" src="http://isitmaintained.com/badge/open/RinMinase/anidb.svg">
     </a> -->
     <a href="https://angular.io/">
-        <img alt="Angular" src="https://img.shields.io/badge/angular-%5E9.0.0--rc.8-red.svg?logo=angular&style=for-the-badge">
+        <img alt="Angular" src="https://img.shields.io/badge/angular-%5E9.0.0--rc.10-red.svg?logo=angular&style=for-the-badge">
     </a>
     <a href="https://nodejs.org">
         <img alt="Node" src="https://img.shields.io/badge/node-%5E12.0%20%7C%7C%20%5E13.0-brightgreen.svg?logo=node.js&logoColor=white&style=for-the-badge">
@@ -156,13 +156,14 @@ Other tasks included in `package.json` that should not be executed manually:
 
 | Task           | Description                                                                              |
 | -------------- | ---------------------------------------------------------------------------------------- |
+| `yarn deploy`  | Build production code without displaying progress and add service worker to built code   |
 | `codecov`      | Code coverarage uploader                                                                 |
 
 ### Testing the project
 _Add info here_
 
 ## Built with
-* <img width=20 height=20 src="https://angular.io/assets/images/favicons/favicon.ico"> [Angular 9 RC 8](https://angular.io/) - Web Framework
+* <img width=20 height=20 src="https://angular.io/assets/images/favicons/favicon.ico"> [Angular 9 RC 10](https://angular.io/) - Web Framework
 * <img width=20 height=20 src="https://www.typescriptlang.org/assets/images/icons/favicon-32x32.png"> [TypeScript](https://www.typescriptlang.org/) - Language syntax
 * <img width=20 height=20 src="https://sass-lang.com/favicon.ico"> [Sassy CSS (SCSS)](https://sass-lang.com/) - CSS pre-processor
 * <img width=20 height=20 src="https://getbootstrap.com/favicon.ico"> [Bootstrap 4](https://getbootstrap.com/) - HTML Framework (layout)
