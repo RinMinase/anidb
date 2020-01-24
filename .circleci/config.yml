@@ -5,6 +5,7 @@ jobs:
       - image: circleci/node:12.14.1-browsers
         environment:
           CHROME_BIN: "/usr/bin/google-chrome"
+          SHORT_GIT_HASH: $(echo $CIRCLE_SHA1 | cut -c -7)
     branches:
       only:
         - master
@@ -34,4 +35,4 @@ jobs:
 
       - run:
           name: Deploying to Netlify
-          command: ./node_modules/.bin/netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --prod --dir=dist
+          command: ./node_modules/.bin/netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --message "master@$SHORT_GIT_HASH" --prod --dir=dist
