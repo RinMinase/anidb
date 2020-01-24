@@ -28,6 +28,6 @@ jobs:
           name: Building source code
           command: yarn deploy
 
-      - run:
-          name: Deploying to Firebase
-          command: ./node_modules/.bin/firebase deploy --project "rin-anidb" --only hosting --token=$FIREBASE_DEPLOY_TOKEN --non-interactive
+      # - run:
+      #     name: Deploying to Firebase
+      #     command: ./node_modules/.bin/firebase deploy --project "rin-anidb" --only hosting --token=$FIREBASE_DEPLOY_TOKEN --non-interactive
