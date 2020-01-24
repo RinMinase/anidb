@@ -19,8 +19,7 @@
       "@builders/*": ["src/core/builders/*"],
       "@components/*": ["src/core/components/*"],
       "@services/*": ["src/core/services/*"],
-      "@app/*": ["src/app/*"],
-      "@env/*": ["src/environments/*"],
+      "@app/*": ["src/app/*"]
     }
   },
   "angularCompilerOptions": {
