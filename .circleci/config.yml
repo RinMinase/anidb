@@ -5,13 +5,16 @@ jobs:
       - image: circleci/node:12.14.1-browsers
         environment:
           CHROME_BIN: "/usr/bin/google-chrome"
-          COMMIT_MESSAGE: $(git log --format=%B -n 1 $CIRCLE_SHA1)
 
     branches:
       only:
         - master
     steps:
       - checkout
+
+      - run:
+          name: Setting up environmental variables
+          command: echo 'export COMMIT_MESSAGE=$(git log --format=%B -n 1 $CIRCLE_SHA1)' >> $BASH_ENV
 
       - run:
           name: Installing dependenices
