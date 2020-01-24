@@ -26,7 +26,7 @@ jobs:
 
       - run:
           name: Uploading coverage to Codecov
-          command: yarn codecov --token=$CODECOV_TOKEN
+          command: ./node_modules/.bin/codecov --token=$CODECOV_TOKEN
           no_output_timeout: 15s
 
       - run:
