@@ -111,7 +111,6 @@ Schematics
     ├── .editorconfig                       # IDE / Editor configuration
     ├── .stylelintrc                        # SCSS linting configuration
     ├── angular.json                        # Angular CLI configuration
-    ├── firebase.json                       # Firebase hosting configuation
     ├── tsconfig.json                       # Main TypeScript configuration file
     ├── tslint.json                         # TypeScript linting file
     └── ...                                 # Other project files

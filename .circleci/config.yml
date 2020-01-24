@@ -33,10 +33,6 @@ jobs:
           name: Building source code
           command: yarn deploy
 
-      # - run:
-      #     name: Deploying to Firebase
-      #     command: ./node_modules/.bin/firebase deploy --project "rin-anidb" --only hosting --token=$FIREBASE_DEPLOY_TOKEN --non-interactive
-
       - run:
           name: Deploying to Netlify
           command: ./node_modules/.bin/netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --message "$COMMIT_MESSAGE" --prod --dir=dist
