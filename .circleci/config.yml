@@ -12,6 +12,10 @@ jobs:
       - checkout
 
       - run:
+          name: Export latest commit message
+          command: echo "export COMMIT_MESSAGE=\"$(git log --format=oneline -n 1 $CIRCLE_SHA1)\"" >> ~/.bashrc
+
+      - run:
           name: Installing dependenices
           command: yarn install --frozen-lockfile
 
@@ -34,6 +38,4 @@ jobs:
 
       - run:
           name: Deploying to Netlify
-          command: ./node_modules/.bin/netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --message $SHORT_GIT_HASH --prod --dir=dist
-          environment:
-            SHORT_GIT_HASH: $(git log --format=oneline -n 1 $CIRCLE_SHA1)
+          command: ./node_modules/.bin/netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --message "$COMMIT_MESSAGE" --prod --dir=dist
