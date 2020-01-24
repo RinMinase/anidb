@@ -34,4 +34,4 @@ jobs:
 
       - run:
           name: Deploying to Netlify
-          command: yarn netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --prod --dir=dist
+          command: ./node_modules/.bin/netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --prod --dir=dist
