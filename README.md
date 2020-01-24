@@ -154,10 +154,9 @@ Task automation is based on [Yarn scripts](https://yarnpkg.com/lang/en/docs/cli/
 
 Other tasks included in `package.json` that should not be executed manually:
 
-| Task           | Description                                                                              |
-| -------------- | ---------------------------------------------------------------------------------------- |
-| `yarn deploy`  | Build production code without displaying progress and add service worker to built code   |
-| `codecov`      | Code coverarage uploader                                                                 |
+| Task                | Description                                                                                          |
+| ------------------- | ---------------------------------------------------------------------------------------------------- |
+| `yarn deploy`       | Build production code without displaying progress and add service worker to built code               |
 
 ### Testing the project
 _Add info here_
