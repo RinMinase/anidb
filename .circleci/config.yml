@@ -17,7 +17,7 @@ jobs:
 
       - run:
           name: Testing source code
-          command: yarn test
+          command: yarn remove netlify-cli && yarn test && yarn add --dev netlify-cli
 
       - run:
           name: Uploading coverage to Codecov
