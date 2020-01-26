@@ -20,21 +20,12 @@
     </a>
 </p>
 <p align="center">
-    <!-- <a href="http://isitmaintained.com/project/RinMinase/anidb">
-        <img alt="Issue Resolution" src="http://isitmaintained.com/badge/resolution/RinMinase/anidb.svg">
-    </a>
-    <a href="http://isitmaintained.com/project/RinMinase/anidb">
-        <img alt="Open Issues" src="http://isitmaintained.com/badge/open/RinMinase/anidb.svg">
-    </a> -->
     <a href="https://angular.io/">
         <img alt="Angular" src="https://img.shields.io/badge/angular-%5E9.0.0--rc.11-red.svg?logo=angular&style=for-the-badge">
     </a>
     <a href="https://nodejs.org">
         <img alt="Node" src="https://img.shields.io/badge/node-%5E12.0%20%7C%7C%20%5E13.0-brightgreen.svg?logo=node.js&logoColor=white&style=for-the-badge">
     </a>
-    <!-- <a href="https://yarnpkg.com/">
-        <img alt="Yarn" src="https://img.shields.io/badge/yarn-%5E1.13.0-blue.svg?logo=yarn&logoColor=white&style=for-the-badge">
-    </a> -->
 </p>
 
 ## Introduction
