@@ -38,7 +38,6 @@
     "ng2-charts": "^2.3.0",
     "ng2-file-upload": "^1.4.0",
     "ngx-dropzone-wrapper": "^9.0.0-2",
-    "roboto-fontface": "^0.10.0",
     "rxjs": "^6.5.4",
     "scss-spinners": "^1.1.19",
     "sweetalert2": "^9.7.0",
