@@ -9,7 +9,6 @@ $enable-transitions: false;
 @import "../assets/styles/animate-scss-extension";
 @import "../assets/styles/bootstrap-extension";
 @import "../assets/styles/bootstrap-switches";
-@import "../assets/styles/roboto-fonts";
 
 $footer-height: 52px;
 
@@ -18,7 +17,7 @@ html {
 	min-height: 100%;
 
 	body {
-		font-family: Roboto, Arial, Helvetica, sans-serif;
+		font-family: Arial, Helvetica, sans-serif;
 		font-size: 14px;
 		line-height: 1.428571429;
 

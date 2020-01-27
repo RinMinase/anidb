@@ -41,10 +41,6 @@
               "input": "node_modules/font-awesome/fonts",
               "output": "/assets/fonts"
             }, {
-              "glob": "**/*.woff2",
-              "input": "node_modules/roboto-fontface/fonts/roboto",
-              "output": "/assets/fonts"
-            }, {
               "glob": "manifest.json",
               "input": "assets/config/",
               "output": "/"
@@ -126,10 +122,6 @@
             }, {
               "glob": "**/*.woff2",
               "input": "node_modules/font-awesome/fonts",
-              "output": "/assets/fonts"
-            }, {
-              "glob": "**/*.woff2",
-              "input": "node_modules/roboto-fontface/fonts/roboto",
               "output": "/assets/fonts"
             }, {
               "glob": "manifest.json",
