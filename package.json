@@ -44,7 +44,7 @@
     "rxjs": "^6.5.4",
     "scss-spinners": "^1.1.19",
     "sweetalert2": "^9.7.1",
-    "xlsx": "^0.15.4",
+    "xlsx": "^0.15.5",
     "zone.js": "^0.10.2"
   },
   "devDependencies": {
