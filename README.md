@@ -36,7 +36,7 @@ _Add info here_
 ### Running the project
 1. [Download](https://nodejs.org/en/) the latest Node version. This is marked as `<version number> Current`. Install it on your machine.
 
-2. _(Optional)_ [Download](https://yarnpkg.com/latest.msi) Yarn. This is a faster package manager than the default `npm` one.
+2. This project uses Yarn instead of NPM. [Download](https://yarnpkg.com/latest.msi) Yarn. This is a faster package manager than the default `npm` one, likewise also manages your dependencies and handles its updates way better.
 
 3. Clone the project
 
@@ -46,13 +46,6 @@ _Add info here_
     ```
 
 4. Install the dependencies then run the project
-
-    ```
-    npm install
-    npm start
-    ```
-
-    **Note:** If you have installed Yarn, run these instead:
 
     ```
     yarn install
