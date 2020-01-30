@@ -82,7 +82,6 @@ Schematics
     │   │   ├── webpack.ts                  # Extended webpack configuration file
     │   │   └── ...                         # Other configuration files
     │   ├── res/                            # Platform-specific resources folder
-    │   ├── styles/                         # Stylesheet folder
     │   └── ...                             # Other assets
     ├── dist/                               # Compiled production code
     ├── src/                                # Project source code
