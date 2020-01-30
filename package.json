@@ -12,6 +12,7 @@
     "url": "https://github.com/RinMinase/anidb"
   },
   "scripts": {
+    "ng": "ng",
     "start": "ng serve",
     "build": "ng build --prod",
     "deploy": "ng build --prod --no-progress",
