@@ -7,7 +7,7 @@ import { debounceTime, distinctUntilChanged } from "rxjs/operators";
 import { format } from "date-fns";
 import * as Fuse from "fuse.js";
 
-import env from "env";
+import env from "@env";
 import { DarkModeService } from "@services/dark-mode.service";
 import { FirebaseService } from "@services/firebase.service";
 import { FuseOptionsBuilder } from "@builders/fuse-options.service";
