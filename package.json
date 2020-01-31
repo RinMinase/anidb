@@ -58,6 +58,7 @@
     "chart.js": "^2.9.3",
     "codecov": "^3.6.2",
     "codelyzer": "^5.2.1",
+    "dotenv-webpack": "^1.7.0",
     "jasmine-core": "^3.5.0",
     "karma": "^4.4.1",
     "karma-chrome-launcher": "^3.1.0",
