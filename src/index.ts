@@ -7,6 +7,8 @@ import { AppModule } from "./app.module";
 
 const { error } = console;
 
+console.log(process.env.VERSION);
+
 enableProdMode();
 platformBrowserDynamic()
 	.bootstrapModule(AppModule)
