@@ -23,10 +23,10 @@ export class UnitSpecsComponent implements OnInit {
 			psu: "CoolerMaster MasterWatt 650W",
 			psuSubtext: "80+ Bronze",
 			cooler: "FSP Windale 4 120mm HSF",
-			ssd: "Samsung 860 EVO 250GB",
+			ssd: "Samsung 860 EVO 1TB",
 			hdd: "Western Digital Black 2TB",
 
-			case: "Tecware Edge (Mid-Tower)",
+			case: "NZXT H700 Matte Black",
 			fans: "Thermaltake Riing Premium 120",
 
 			monitor: "Dell SE2717H (1920 × 1080)",
