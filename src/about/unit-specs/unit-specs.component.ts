@@ -27,7 +27,10 @@ export class UnitSpecsComponent implements OnInit {
 			hdd: "Western Digital Black 2TB",
 
 			case: "NZXT H700 Matte Black",
-			fans: "Thermaltake Riing Premium 120",
+			fans: "3x Thermaltake Riing Plus 120",
+			fansSubtext: "Thermaltake Riing Fan Controller",
+			fansSubtext2: "1x NZXT AER P 140mm",
+			fansSubtext3: "3x NZXT AER P 120mm",
 
 			monitor: "Dell SE2717H (1920 × 1080)",
 			speakers: "Bose Companion 50 2.1",
