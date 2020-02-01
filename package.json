@@ -55,7 +55,7 @@
     "@angular/platform-browser": "^9.0.0-rc.13",
     "@types/jasmine": "^3.5.2",
     "chart.js": "^2.9.3",
-    "codecov": "^3.6.2",
+    "codecov": "^3.6.4",
     "codelyzer": "^5.2.1",
     "jasmine-core": "^3.5.0",
     "karma": "^4.4.1",
