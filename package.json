@@ -1,6 +1,6 @@
 {
   "name": "rin-anidb",
-  "description": "Rin Minase's Anime Database using Angular 9 rendered with Ivy and deployed to both Firebase and Netlify using Circle CI",
+  "description": "Rin Minase's Anime Database using Angular 9 rendered with Ivy and deployed to Netlify using Circle CI",
   "homepage": "https://rin-anidb.firebaseapp.com/",
   "version": "0.2.0",
   "license": "MIT",
