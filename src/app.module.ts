@@ -60,10 +60,10 @@ export class AppComponent {
 
 	constructor(public router: Router) {
 		const firebaseConfig = {
-			apiKey: "AIzaSyCVsm1c-nS9qS1fFfFo6JCAb908AfPU6Ag",
-			databaseURL: "https://rin-anidb.firebaseio.com",
-			projectId: "rin-anidb",
-			storageBucket: "rin-anidb.appspot.com",
+			apiKey: process.env.FIRE_API_KEY || "",
+			databaseURL: process.env.FIRE_DB_URL || "",
+			projectId: process.env.FIRE_PROJECT_ID || "",
+			storageBucket: process.env.FIRE_STORAGE_BUCKET || "",
 		};
 
 		initializeApp(firebaseConfig);
