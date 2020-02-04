@@ -51,7 +51,7 @@ const routes: Routes = [{
 	selector: "app-root",
 	template: `
 		<app-navbar *ngIf="router.url !== '/login'"></app-navbar>
-		<div>{{testValue}}</div><router-outlet></router-outlet>
+		<router-outlet></router-outlet>
 		<app-footer *ngIf="router.url !== '/login'"></app-footer>`,
 })
 export class AppComponent {
@@ -67,8 +67,6 @@ export class AppComponent {
 		};
 
 		initializeApp(firebaseConfig);
-
-		this.testValue = process.env.VERSION;
 	}
 }
 
