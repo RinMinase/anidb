@@ -7,7 +7,6 @@ import { debounceTime, distinctUntilChanged } from "rxjs/operators";
 import { format } from "date-fns";
 import * as Fuse from "fuse.js";
 
-import env from "@env";
 import { DarkModeService } from "@services/dark-mode.service";
 import { FirebaseService } from "@services/firebase.service";
 import { FuseOptionsBuilder } from "@builders/fuse-options.service";
@@ -21,8 +20,8 @@ import { AddHomeComponent } from "../add-home/add-home.component";
 	styleUrls: ["./manage-home.component.scss"],
 })
 export class ManageHomeComponent implements OnInit {
-
-	disableDevHomeQuery: boolean = env.disableDevHomeQuery;
+	disableDevHomeQuery: boolean = (typeof process !== 'undefined') ?
+		(process.env.DISABLE_HOME_QUERY === 'true') : false;
 
 	dark: boolean;
 	data: Array<object> = [];
