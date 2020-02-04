@@ -18,7 +18,6 @@
       "@builders/*": ["src/core/builders/*"],
       "@components/*": ["src/core/components/*"],
       "@services/*": ["src/core/services/*"],
-      "@env": ["assets/config/env.ts"],
       "@src/*": ["src/*"]
     }
   },
