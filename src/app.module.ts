@@ -51,10 +51,13 @@ const routes: Routes = [{
 	selector: "app-root",
 	template: `
 		<app-navbar *ngIf="router.url !== '/login'"></app-navbar>
-		<router-outlet></router-outlet>
+		<div>{{testValue}}</div><router-outlet></router-outlet>
 		<app-footer *ngIf="router.url !== '/login'"></app-footer>`,
 })
 export class AppComponent {
+
+	testValue: string;
+
 	constructor(public router: Router) {
 		const firebaseConfig = {
 			apiKey: "AIzaSyCVsm1c-nS9qS1fFfFo6JCAb908AfPU6Ag",
@@ -64,6 +67,8 @@ export class AppComponent {
 		};
 
 		initializeApp(firebaseConfig);
+
+		this.testValue = process.env.VERSION;
 	}
 }
 
