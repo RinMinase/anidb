@@ -38,11 +38,12 @@ _Add info here_
 
 2. This project uses Yarn instead of NPM. [Download](https://yarnpkg.com/latest.msi) Yarn. This is a faster package manager than the default `npm` one, likewise also manages your dependencies and handles its updates way better.
 
-3. Clone the project
+3. Clone the project and modify the ENV file based on your Firebase configuration
 
     ```
     git clone https://github.com/RinMinase/anidb.git
     cd anidb
+    cp .env.example .env
     ```
 
 4. Install the dependencies then run the project
