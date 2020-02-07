@@ -143,7 +143,7 @@ nav .switch input:checked + label::before {
 	// &.jello { @include jello(); }
 
 	// &.bounceIn { @include bounceIn(); }
-	// &.bounceInDown { @include bounceInDown(); }
+	&.bounceInDown { @include bounceInDown(); }
 	// &.bounceInLeft { @include bounceInLeft(); }
 	// &.bounceInRight { @include bounceInRight(); }
 	// &.bounceInUp { @include bounceInUp(); }
