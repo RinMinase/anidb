@@ -21,7 +21,7 @@
 </p>
 <p align="center">
     <a href="https://angular.io/">
-        <img alt="Angular" src="https://img.shields.io/badge/angular-%5E9.0.0--rc.14-red.svg?logo=angular&style=for-the-badge">
+        <img alt="Angular" src="https://img.shields.io/badge/angular-%5E9.0.0-red.svg?logo=angular&style=for-the-badge">
     </a>
     <a href="https://nodejs.org">
         <img alt="Node" src="https://img.shields.io/badge/node-%5E12.0%20%7C%7C%20%5E13.0-brightgreen.svg?logo=node.js&logoColor=white&style=for-the-badge">
@@ -146,7 +146,7 @@ Other tasks included in `package.json` that should not be executed manually:
 _Add info here_
 
 ## Built with
-* <img width=20 height=20 src="https://angular.io/assets/images/favicons/favicon.ico"> [Angular 9 RC 14](https://angular.io/) - Web Framework
+* <img width=20 height=20 src="https://angular.io/assets/images/favicons/favicon.ico"> [Angular 9](https://angular.io/) - Web Framework
 * <img width=20 height=20 src="https://www.typescriptlang.org/assets/images/icons/favicon-32x32.png"> [TypeScript](https://www.typescriptlang.org/) - Language syntax
 * <img width=20 height=20 src="https://sass-lang.com/favicon.ico"> [Sassy CSS (SCSS)](https://sass-lang.com/) - CSS pre-processor
 * <img width=20 height=20 src="https://getbootstrap.com/favicon.ico"> [Bootstrap 4](https://getbootstrap.com/) - HTML Framework (layout)
