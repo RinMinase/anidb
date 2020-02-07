@@ -141,6 +141,7 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
+            "format": "stylish",
             "tsConfig": [
               "assets/config/tsconfig.app.json",
               "assets/config/tsconfig.spec.json"
