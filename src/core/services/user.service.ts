@@ -17,7 +17,7 @@ export class UserService {
 		return this.http.post(
 			`${this.apiURL}/api/login`,
 			{ username, password },
-			{ headers: this.httpHeaders }
+			{ headers: this.httpHeaders },
 		);
 	}
 
@@ -25,7 +25,7 @@ export class UserService {
 		return this.http.post(
 			`${this.apiURL}/api/logout`,
 			{ token },
-			{ headers: this.httpHeaders }
+			{ headers: this.httpHeaders },
 		)
 	}
 
@@ -33,7 +33,7 @@ export class UserService {
 		return this.http.post(
 			`${this.apiURL}/api/register`,
 			{ username, password },
-			{ headers: this.httpHeaders }
+			{ headers: this.httpHeaders },
 		);
 	}
 

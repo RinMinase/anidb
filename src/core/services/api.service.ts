@@ -49,7 +49,7 @@ export class ApiService {
 	 * Observable Subjects
 	 */
 	setBearerKey(state: string) {
-		this.httpHeaders = new HttpHeaders({ token: state, });
+		this.httpHeaders = new HttpHeaders({ token: state });
 		this.currentBearerKey.next(state);
 	}
 
