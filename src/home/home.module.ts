@@ -48,10 +48,5 @@ const routes: Routes = [{
 		LegendModule,
 		RatingModule,
 	],
-	entryComponents: [
-		AddHomeComponent,
-		UpdateHomeComponent,
-		RewatchComponent,
-	],
 })
 export class HomeModule { }

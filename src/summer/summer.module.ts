@@ -33,8 +33,5 @@ const routes: Routes = [{
 
 		LegendModule,
 	],
-	entryComponents: [
-		AddSummerComponent,
-	],
 })
 export class SummerModule { }

@@ -20,9 +20,5 @@ const routes: Routes = [{ path: "", component: DownloadComponent }];
 		RouterModule.forChild(routes),
 		NgbModalModule,
 	],
-	entryComponents: [
-		AddSeasonComponent,
-		AddTitleComponent,
-	],
 })
 export class DownloadModule { }
