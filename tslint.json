@@ -53,6 +53,10 @@
     "ordered-imports": false,
     "prefer-inline-decorator": true,
     "radix": false,
+    "trailing-comma": [true, {
+      "multiline": "always",
+      "singleline": "never"
+    }],
     "use-lifecycle-interface": true,
     "use-pipe-transform-interface": true,
     "variable-name": false
