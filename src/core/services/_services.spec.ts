@@ -12,12 +12,12 @@ describe("DarkModeService", () => {
 	beforeEach(() => TestBed.configureTestingModule({}));
 
 	it("should be created", () => {
-		const service: DarkModeService = TestBed.get(DarkModeService);
+		const service: DarkModeService = TestBed.inject(DarkModeService);
 		expect(service).toBeTruthy();
 	});
 
 	it("retrieve dark mode status", () => {
-		const service: DarkModeService = TestBed.get(DarkModeService);
+		const service: DarkModeService = TestBed.inject(DarkModeService);
 
 		service.enableDarkMode();
 		service.currentState.subscribe((result) => expect(result).toBeTruthy()).unsubscribe();
@@ -31,7 +31,7 @@ describe("GithubService", () => {
 	// beforeEach(() => TestBed.configureTestingModule({}));
 
 	// it("should be created", () => {
-	// 	const service: GithubService = TestBed.get(GithubService);
+	// 	const service: GithubService = TestBed.inject(GithubService);
 	// 	expect(service).toBeTruthy();
 	// });
 });
@@ -40,7 +40,7 @@ describe("FirebaseService", () => {
 	// beforeEach(() => TestBed.configureTestingModule({}));
 
 	// it("should be created", () => {
-	// 	const service: FirebaseService = TestBed.get(FirebaseService);
+	// 	const service: FirebaseService = TestBed.inject(FirebaseService);
 	// 	expect(service).toBeTruthy();
 	// });
 });
@@ -49,7 +49,7 @@ describe("UtilityService", () => {
 	// beforeEach(() => TestBed.configureTestingModule({}));
 
 	// it("should be created", () => {
-	// 	const service: UtilityService = TestBed.get(UtilityService);
+	// 	const service: UtilityService = TestBed.inject(UtilityService);
 	// 	expect(service).toBeTruthy();
 	// });
 });
