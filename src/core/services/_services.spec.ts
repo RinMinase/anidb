@@ -1,24 +1,26 @@
 import { TestBed } from "@angular/core/testing";
-
-import { DarkModeService } from "@services/dark-mode.service";
-// import { FirebaseService } from "@services/firebase.service";
-// import { GithubService } from "@services/github.service";
-// import { UtilityService } from "@services/utility.service";
-import { ApiService } from "@services/api.service";
-import { UserService } from "@services/user.service";
 import { HttpClientModule } from '@angular/common/http';
 
+import { DarkModeService } from "@services/dark-mode.service";
+import { FirebaseService } from "@services/firebase.service";
+import { GithubService } from "@services/github.service";
+import { UtilityService } from "@services/utility.service";
+import { ApiService } from "@services/api.service";
+import { UserService } from "@services/user.service";
+
 describe("DarkModeService", () => {
-	beforeEach(() => TestBed.configureTestingModule({}));
+	let service: DarkModeService;
+
+	beforeEach(() => {
+		TestBed.configureTestingModule({});
+		service = TestBed.inject(DarkModeService);
+	});
 
 	it("should be created", () => {
-		const service: DarkModeService = TestBed.inject(DarkModeService);
 		expect(service).toBeTruthy();
 	});
 
 	it("retrieve dark mode status", () => {
-		const service: DarkModeService = TestBed.inject(DarkModeService);
-
 		service.enableDarkMode();
 		service.currentState.subscribe((result) => expect(result).toBeTruthy()).unsubscribe();
 
@@ -28,33 +30,44 @@ describe("DarkModeService", () => {
 });
 
 describe("GithubService", () => {
-	// beforeEach(() => TestBed.configureTestingModule({}));
+	let service: GithubService;
 
-	// it("should be created", () => {
-	// 	const service: GithubService = TestBed.inject(GithubService);
-	// 	expect(service).toBeTruthy();
-	// });
+	beforeEach(() => {
+		TestBed.configureTestingModule({ imports: [HttpClientModule] });
+		service = TestBed.inject(GithubService);
+	});
+
+	it("should be created", () => {
+		expect(service).toBeTruthy();
+	});
 });
 
 describe("FirebaseService", () => {
-	// beforeEach(() => TestBed.configureTestingModule({}));
+	let service: FirebaseService;
 
-	// it("should be created", () => {
-	// 	const service: FirebaseService = TestBed.inject(FirebaseService);
-	// 	expect(service).toBeTruthy();
-	// });
+	beforeEach(() => {
+		TestBed.configureTestingModule({});
+		service = TestBed.inject(FirebaseService);
+	});
+
+	it("should be created", () => {
+		expect(service).toBeTruthy();
+	});
 });
 
 describe("UtilityService", () => {
-	// beforeEach(() => TestBed.configureTestingModule({}));
+	let service: UtilityService;
 
-	// it("should be created", () => {
-	// 	const service: UtilityService = TestBed.inject(UtilityService);
-	// 	expect(service).toBeTruthy();
-	// });
+	beforeEach(() => {
+		TestBed.configureTestingModule({});
+		service = TestBed.inject(UtilityService);
+	});
+
+	it("should be created", () => {
+		expect(service).toBeTruthy();
+	});
 });
 
-// ng9 generated test cases
 describe("ApiService", () => {
 	let service: ApiService;
 
