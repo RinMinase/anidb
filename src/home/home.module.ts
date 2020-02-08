@@ -3,6 +3,7 @@ import { CommonModule } from "@angular/common";
 import { RouterModule, Routes } from "@angular/router";
 import { ReactiveFormsModule } from "@angular/forms";
 import { NgbModalModule, NgbTypeaheadModule } from "@ng-bootstrap/ng-bootstrap";
+import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 
 import { LegendModule } from "@components/legend/legend.module";
 import { RatingModule } from "@components/rating/rating.module";
@@ -47,6 +48,7 @@ const routes: Routes = [
 		ReactiveFormsModule,
 		NgbModalModule,
 		NgbTypeaheadModule,
+		FontAwesomeModule,
 
 		LegendModule,
 		RatingModule,
