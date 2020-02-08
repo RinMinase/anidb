@@ -1,5 +1,11 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import {
+	faAngleDown,
+	faPencilAlt,
+	faSearch,
+	faTrash,
+} from "@fortawesome/free-solid-svg-icons";
 
 import { FirebaseService } from "@services/firebase.service";
 import { FirebaseQueryBuilder } from "@builders/firebase-query.service";
@@ -10,6 +16,11 @@ import { FirebaseQueryBuilder } from "@builders/firebase-query.service";
 	styleUrls: ["./by-year.component.scss"],
 })
 export class ByYearComponent implements OnInit {
+	faAngleDown = faAngleDown;
+	faPencil = faPencilAlt;
+	faSearch = faSearch;
+	faTrash = faTrash;
+
 	objKeys = Object.keys;
 	data = {};
 	dataLoaded: boolean = false;
