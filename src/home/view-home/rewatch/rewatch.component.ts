@@ -12,7 +12,6 @@ import { UtilityService } from "@services/utility.service";
 	templateUrl: "./rewatch.component.html",
 })
 export class RewatchComponent implements OnInit {
-
 	@Input() id: number;
 	@Input() rewatch: Array<any>;
 
@@ -26,7 +25,7 @@ export class RewatchComponent implements OnInit {
 		private firebase: FirebaseService,
 		private firebaseQueryBuilder: FirebaseQueryBuilder,
 		private utility: UtilityService,
-	) { }
+	) {}
 
 	ngOnInit() {
 		this.rewatchForm = this.formBuilder.group({
@@ -55,7 +54,13 @@ export class RewatchComponent implements OnInit {
 					rewatchLast: this.rewatch[0],
 				};
 
-				this.firebase.update(this.firebaseQueryBuilder.init().id(this.id).data(data).build());
+				this.firebase.update(
+					this.firebaseQueryBuilder
+						.init()
+						.id(this.id)
+						.data(data)
+						.build(),
+				);
 				this.initializeForm();
 				this.formatRewatch();
 			}
@@ -73,7 +78,13 @@ export class RewatchComponent implements OnInit {
 			rewatchLast: this.rewatch[0] || "",
 		};
 
-		this.firebase.update(this.firebaseQueryBuilder.init().id(this.id).data(data).build());
+		this.firebase.update(
+			this.firebaseQueryBuilder
+				.init()
+				.id(this.id)
+				.data(data)
+				.build(),
+		);
 		this.formatRewatch();
 	}
 
@@ -90,5 +101,4 @@ export class RewatchComponent implements OnInit {
 			});
 		}
 	}
-
 }
