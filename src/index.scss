@@ -8,11 +8,13 @@ $footer-height: 52px;
 html {
 	position: relative;
 	min-height: 100%;
+	overflow: unset !important;
 
 	body {
 		font-family: "Nunito Sans", Arial, Helvetica, sans-serif;
 		font-size: 14px;
 		line-height: 1.428571429;
+		overflow: unset !important;
 
 		div.container, div.container-fluid {
 			&:not(.no-footer) { margin-bottom: $footer-height; }
