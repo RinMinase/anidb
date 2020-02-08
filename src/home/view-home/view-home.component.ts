@@ -1,6 +1,15 @@
 import { Component, OnInit } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import {
+	faAngleLeft,
+	faLeaf,
+	faPencilAlt,
+	faSnowflake,
+	faSun,
+	faTrash,
+	faTree,
+} from "@fortawesome/free-solid-svg-icons";
 import Swal from "sweetalert2";
 import { format } from "date-fns";
 
@@ -17,6 +26,14 @@ import { HomeService } from "../home.service";
 	styleUrls: ["./view-home.component.scss"],
 })
 export class ViewHomeComponent implements OnInit {
+	faAngleLeft = faAngleLeft;
+	faLeaf = faLeaf;
+	faPencil = faPencilAlt;
+	faSnow = faSnowflake;
+	faSun = faSun;
+	faTrash = faTrash;
+	faTree = faTree;
+
 	data: any;
 	dataLoaded: boolean = false;
 	stateId: number;
