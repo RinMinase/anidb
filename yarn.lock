@@ -9054,10 +9054,10 @@ ng2-file-upload@^1.4.0:
   dependencies:
     tslib "^1.9.0"
 
-ngx-dropzone-wrapper@^9.0.0-2:
-  version "9.0.0-2"
-  resolved "https://registry.yarnpkg.com/ngx-dropzone-wrapper/-/ngx-dropzone-wrapper-9.0.0-2.tgz#ab07d92a0b8982381ef62edd67d47371d9e3a2cf"
-  integrity sha512-LTOy3PDU8pOOFW8ws+/8gnBODY3dqWSwb/DQwlUTXrlZ5TpBJaynJCC/DXz1REZdky/UGK2aeiHF6arDeBeSQQ==
+ngx-dropzone-wrapper@^9.0.0:
+  version "9.0.0"
+  resolved "https://registry.yarnpkg.com/ngx-dropzone-wrapper/-/ngx-dropzone-wrapper-9.0.0.tgz#9074420a84a67b597ebe05334daddb70328572e5"
+  integrity sha512-hi0zgbPrvUpPAEXvkD4FbKsBUAxGJ1DcYRAxlRrn8R03S7FBkKd/ptHnPSJyXuwDFa0BEEcqYukb3g7lJDm++A==
   dependencies:
     dropzone "^5.5.0"
 
