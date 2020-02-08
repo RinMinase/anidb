@@ -13,12 +13,9 @@ export class LoginComponent implements OnInit {
 	loading = false;
 	alert: string = null;
 	loginForm: FormGroup;
-	// isFireApp: boolean = false;
-	// isNowApp: boolean = false;
 
 	constructor(
 		private formBuilder: FormBuilder,
-		// private platform: PlatformLocation,
 		private renderer: Renderer2,
 		private router: Router,
 		private firebase: FirebaseService,
@@ -29,12 +26,6 @@ export class LoginComponent implements OnInit {
 			email: ["", Validators.required],
 			password: ["", Validators.required],
 		});
-
-		// if (this.platform.hostname.includes("firebase")) {
-		// 	this.isFireApp = true;
-		// } else if (this.platform.hostname.includes("now")) {
-		// 	this.isNowApp = true;
-		// }
 	}
 
 	authenticate() {
