@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
+import { faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
 import Swal from "sweetalert2";
 
 @Component({
@@ -8,6 +9,9 @@ import Swal from "sweetalert2";
 	styleUrls: ["./add-season.component.scss"],
 })
 export class AddSeasonComponent implements OnInit {
+	faCheck = faCheck;
+	faTimes = faTimes;
+
 	constructor(private modal: NgbActiveModal) {}
 
 	ngOnInit() {}
