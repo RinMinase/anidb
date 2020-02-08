@@ -37,10 +37,6 @@
               "input": "assets/",
               "output": "/"
             }, {
-              "glob": "**/*.woff2",
-              "input": "node_modules/font-awesome/fonts",
-              "output": "/assets/fonts"
-            }, {
               "glob": "manifest.json",
               "input": "assets/config/",
               "output": "/"
@@ -119,10 +115,6 @@
               "glob": "robots.txt",
               "input": "assets/",
               "output": "/"
-            }, {
-              "glob": "**/*.woff2",
-              "input": "node_modules/font-awesome/fonts",
-              "output": "/assets/fonts"
             }, {
               "glob": "manifest.json",
               "input": "assets/config/",
