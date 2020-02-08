@@ -125,19 +125,19 @@
 									*ngIf="data.releaseYear && data.releaseSeason">
 									<p class="big">
 										<fa-icon [icon]="faSnow"
-											class="pr-2"
+											class="pr-2 icon-winter"
 											*ngIf="data.releaseSeason === 'Winter'">
 										</fa-icon>
 										<fa-icon [icon]="faLeaf"
-											class="pr-2"
+											class="pr-2 icon-spring"
 											*ngIf="data.releaseSeason === 'Spring'">
 										</fa-icon>
 										<fa-icon [icon]="faSun"
-											class="pr-2"
+											class="pr-2 icon-summer"
 											*ngIf="data.releaseSeason === 'Summer'">
 										</fa-icon>
 										<fa-icon [icon]="faTree"
-											class="pr-2"
+											class="pr-2 icon-fall"
 											*ngIf="data.releaseSeason === 'Fall'">
 										</fa-icon>
 										<span>{{ data.releaseSeason }}&nbsp;</span>

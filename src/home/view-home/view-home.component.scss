@@ -19,12 +19,10 @@ div.image-container {
 	border-color: #FF9800;
 }
 
-i {
-	&.fa-snowflake-o { color: #87CEEB; }
-	&.fa-leaf { color: #008000; }
-	&.fa-sun-o { color: #FFA500; }
-	&.fa-tree { color: #FF4500; }
-}
+.icon-summer { color: #87CEEB; }
+.icon-spring { color: #008000; }
+.icon-summer { color: #FFA500; }
+.icon-fall { color: #FF4500; }
 
 .badge-uhd { background-color: #F9C; }
 .badge-fhd { background-color: #9F9; }
