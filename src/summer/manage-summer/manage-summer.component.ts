@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { faPlus, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { format, fromUnixTime } from "date-fns";
 
 import { FirebaseService } from "@services/firebase.service";
@@ -14,6 +15,9 @@ import { AddSummerComponent } from "../add-summer/add-summer.component";
 	styleUrls: ["./manage-summer.component.scss"],
 })
 export class ManageSummerComponent implements OnInit {
+	faPlus = faPlus;
+	faSearch = faSearch;
+
 	objKeys = Object.keys;
 	data: Array<any> = [];
 	dataLoaded: boolean = false;
