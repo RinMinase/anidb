@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { RouterModule, Routes } from "@angular/router";
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ChartsModule } from "ng2-charts";
 
 import {
@@ -38,6 +39,7 @@ const routes: Routes = [{ path: "", component: AboutComponent }];
 		NgbProgressbarModule,
 		NgbTooltipModule,
 		ChartsModule,
+		FontAwesomeModule,
 	],
 })
 export class AboutModule { }

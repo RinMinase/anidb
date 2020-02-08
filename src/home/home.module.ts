@@ -14,7 +14,6 @@ import { ViewHomeComponent } from "./view-home/view-home.component";
 import { AddHomeComponent } from "./add-home/add-home.component";
 import { UpdateHomeComponent } from "./update-home/update-home.component";
 import { RewatchComponent } from "./view-home/rewatch/rewatch.component";
-// import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 const routes: Routes = [{
 	path: "",
@@ -43,7 +42,6 @@ const routes: Routes = [{
 		ReactiveFormsModule,
 		NgbModalModule,
 		NgbTypeaheadModule,
-		// FontAwesomeModule,
 
 		LegendModule,
 		RatingModule,
