@@ -154,17 +154,15 @@ export class AboutComponent implements OnInit {
 	private getFirebaseImages() {
 		this.firebase
 			.retrieveImageUrl("/assets/acknowledgements.png")
-			.then((url) => {
-				this.element("div.acknowledgements").forEach((element) => {
-					element.style.backgroundImage = `url(${url})`;
-				});
+			.then((url: string) => {
+				this.modifyBackground("div.acknowledgements", url);
 			});
 
-		this.firebase.retrieveImageUrl("/assets/platforms.png").then((url) => {
-			this.element("a.platforms").forEach((element) => {
-				element.style.backgroundImage = `url(${url})`;
+		this.firebase
+			.retrieveImageUrl("/assets/platforms.png")
+			.then((url: string) => {
+				this.modifyBackground("a.platforms", url);
 			});
-		});
 
 		this.firebase.retrieveImageUrl("/assets/user.jpg").then((url) => {
 			this.userImage = url as string;
@@ -175,5 +173,11 @@ export class AboutComponent implements OnInit {
 		return (window.document.querySelectorAll(
 			querySelector,
 		) as unknown) as Array<HTMLElement>;
+	}
+
+	private modifyBackground(className: string, url: string) {
+		this.element(className).forEach((element) => {
+			element.style.backgroundImage = `url(${url})`;
+		});
 	}
 }
