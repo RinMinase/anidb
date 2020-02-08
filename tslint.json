@@ -40,6 +40,7 @@
         }
     ],
     "no-empty": false,
+    "no-commented-code": false,
     "no-host-metadata-property": true,
     "no-input-rename": true,
     "no-inputs-metadata-property": true,
