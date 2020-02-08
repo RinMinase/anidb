@@ -12,7 +12,7 @@
     "import-spacing": true,
     "indent": [ true, "tabs", 2 ],
     "max-classes-per-file": [ true, 3 ],
-    "max-line-length": [ true, 100 ],
+    "max-line-length": [ true, 80 ],
     "member-access": false,
     "member-ordering": [
         true, {
