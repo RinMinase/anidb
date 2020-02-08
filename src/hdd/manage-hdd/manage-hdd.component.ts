@@ -10,7 +10,6 @@ import { UtilityService } from "@services/utility.service";
 	templateUrl: "./manage-hdd.component.html",
 })
 export class ManageHddComponent implements OnInit {
-
 	data: Array<any> = [];
 	dataLoaded: boolean = false;
 	collapse: Array<boolean> = [];
@@ -20,26 +19,35 @@ export class ManageHddComponent implements OnInit {
 		private firebase: FirebaseService,
 		private firebaseQueryBuilder: FirebaseQueryBuilder,
 		private utility: UtilityService,
-	) { }
+	) {}
 
 	ngOnInit() {
 		let hddData: Array<object>;
 		let animeData: Array<object>;
 
-		this.firebase.auth()
+		this.firebase
+			.auth()
 			.then(() => {
-				this.firebase.retrieve()
-					.then((data: Array<object>) => {
-						animeData = data;
-					});
-			}).then(() => {
-				this.firebase.retrieve(this.firebaseQueryBuilder.init().db("hdd").inhdd(false).build())
+				this.firebase.retrieve().then((data: Array<object>) => {
+					animeData = data;
+				});
+			})
+			.then(() => {
+				this.firebase
+					.retrieve(
+						this.firebaseQueryBuilder
+							.init()
+							.db("hdd")
+							.inhdd(false)
+							.build(),
+					)
 					.then((data: Array<object>) => {
 						hddData = data;
 						this.formatData(hddData, animeData);
 						this.dataLoaded = true;
 					});
-			}).catch(() => this.router.navigateByUrl("/login"));
+			})
+			.catch(() => this.router.navigateByUrl("/login"));
 	}
 
 	formatData(hddData: Array<any>, animeData: Array<any>) {
@@ -63,9 +71,10 @@ export class ManageHddComponent implements OnInit {
 
 				const charCode0 = 48;
 				const charCode9 = 57;
-				const isTitleNumeric: boolean = firstLetter >= charCode0
-					&& firstLetter <= charCode9
-					&& String.fromCharCode(from) === "A";
+				const isTitleNumeric: boolean =
+					firstLetter >= charCode0 &&
+					firstLetter <= charCode9 &&
+					String.fromCharCode(from) === "A";
 
 				if (isTitleNumeric || (firstLetter >= from && firstLetter <= to)) {
 					this.data[index].entries.push({
@@ -109,5 +118,4 @@ export class ManageHddComponent implements OnInit {
 	panelCollapse(panel: number) {
 		this.collapse[panel - 1] = !this.collapse[panel - 1];
 	}
-
 }
