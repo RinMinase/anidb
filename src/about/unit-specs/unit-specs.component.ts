@@ -6,10 +6,9 @@ import { Component, OnInit } from "@angular/core";
 	styleUrls: ["./unit-specs.component.scss"],
 })
 export class UnitSpecsComponent implements OnInit {
-
 	data: any;
 
-	constructor() { }
+	constructor() {}
 
 	ngOnInit() {
 		this.data = {
@@ -41,5 +40,4 @@ export class UnitSpecsComponent implements OnInit {
 			matSubtext: "(900 × 400mm)",
 		};
 	}
-
 }

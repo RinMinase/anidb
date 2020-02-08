@@ -20,8 +20,10 @@ import { AddHomeComponent } from "../add-home/add-home.component";
 	styleUrls: ["./manage-home.component.scss"],
 })
 export class ManageHomeComponent implements OnInit {
-	disableDevHomeQuery: boolean = (typeof process !== 'undefined') ?
-		(process.env.DISABLE_HOME_QUERY === 'true') : false;
+	disableDevHomeQuery: boolean =
+		typeof process !== "undefined"
+			? process.env.DISABLE_HOME_QUERY === "true"
+			: false;
 
 	dark: boolean;
 	data: Array<object> = [];
@@ -44,7 +46,7 @@ export class ManageHomeComponent implements OnInit {
 		private fuseOptionsBuilder: FuseOptionsBuilder,
 		private utility: UtilityService,
 		private service: HomeService,
-	) { }
+	) {}
 
 	ngOnInit() {
 		this.fuseOptions = this.fuseOptionsBuilder
@@ -60,11 +62,12 @@ export class ManageHomeComponent implements OnInit {
 			.addKeys("remarks")
 			.build();
 
-		this.darkMode.currentState.subscribe((value) => this.dark = value);
-		this.service.currentState.subscribe((state) => this.homeState = state);
+		this.darkMode.currentState.subscribe((value) => (this.dark = value));
+		this.service.currentState.subscribe((state) => (this.homeState = state));
 		this.onChanges();
 
-		const isDev: boolean = (this.platformLocation as any).location.origin.includes("local");
+		const isDev: boolean = (this
+			.platformLocation as any).location.origin.includes("local");
 
 		if (isDev && this.disableDevHomeQuery) {
 			this.dataLoaded = true;
@@ -75,7 +78,8 @@ export class ManageHomeComponent implements OnInit {
 	}
 
 	addTitle() {
-		const isDev: boolean = (this.platformLocation as any).location.origin.includes("local");
+		const isDev: boolean = (this
+			.platformLocation as any).location.origin.includes("local");
 		const addModal = this.modalService.open(AddHomeComponent, {
 			size: "lg",
 			backdrop: "static",
@@ -84,12 +88,16 @@ export class ManageHomeComponent implements OnInit {
 		});
 
 		addModal.result
-			.then(() => (isDev && this.disableDevHomeQuery) ? this.dataLoaded = true : this.fetchData())
+			.then(() =>
+				isDev && this.disableDevHomeQuery
+					? (this.dataLoaded = true)
+					: this.fetchData(),
+			)
 			.catch(() => {});
 	}
 
 	getData() {
-		return (this.search.value) ? this.data : this.pristineData;
+		return this.search.value ? this.data : this.pristineData;
 	}
 
 	viewTitle(id: number) {
@@ -98,30 +106,33 @@ export class ManageHomeComponent implements OnInit {
 	}
 
 	private fetchData() {
-		this.firebase.auth()
+		this.firebase
+			.auth()
 			.then(() => {
-				this.firebase.retrieve()
-					.then((data) => {
-						this.formatData(data);
-						this.dataLoaded = true;
+				this.firebase.retrieve().then((data) => {
+					this.formatData(data);
+					this.dataLoaded = true;
 
-						if (this.homeState.id !== null) {
-							setTimeout(() => {
-								document.getElementById(`${this.homeState.id}`).scrollIntoView();
-								window.scrollBy(0, -2046);
-							});
+					if (this.homeState.id !== null) {
+						setTimeout(() => {
+							document.getElementById(`${this.homeState.id}`).scrollIntoView();
+							window.scrollBy(0, -2046);
+						});
+					}
+
+					if (this.homeState.search) {
+						this.searchQuery = this.homeState.search;
+						this.search.patchValue(this.searchQuery);
+
+						if (this.pristineData) {
+							this.data = new Fuse(this.pristineData, this.fuseOptions).search(
+								this.searchQuery,
+							);
 						}
-
-						if (this.homeState.search) {
-							this.searchQuery = this.homeState.search;
-							this.search.patchValue(this.searchQuery);
-
-							if (this.pristineData) {
-								this.data = new Fuse(this.pristineData, this.fuseOptions).search(this.searchQuery);
-							}
-						}
-					});
-			}).catch(() => this.router.navigateByUrl("/login"));
+					}
+				});
+			})
+			.catch(() => this.router.navigateByUrl("/login"));
 	}
 
 	private formatData(data: any) {
@@ -158,10 +169,12 @@ export class ManageHomeComponent implements OnInit {
 
 		this.service.changeTitleList(this.titleList);
 		this.data.sort(this.utility.sortByQualityThenTitle);
-		this.pristineData = [ ...this.data ];
+		this.pristineData = [...this.data];
 
 		if (this.search.value) {
-			this.data = new Fuse(this.pristineData, this.fuseOptions).search(this.search.value);
+			this.data = new Fuse(this.pristineData, this.fuseOptions).search(
+				this.search.value,
+			);
 		}
 	}
 
@@ -170,10 +183,11 @@ export class ManageHomeComponent implements OnInit {
 			.pipe(debounceTime(250), distinctUntilChanged())
 			.subscribe((value) => {
 				if (value && this.pristineData) {
-					this.data = new Fuse(this.pristineData, this.fuseOptions).search(value);
+					this.data = new Fuse(this.pristineData, this.fuseOptions).search(
+						value,
+					);
 					this.searchQuery = value;
 				}
 			});
 	}
-
 }

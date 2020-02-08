@@ -14,12 +14,9 @@ export class FirebaseQueryBuilder {
 		data: null,
 	};
 
-	validOrderKeys = [
-		"dateFinished",
-		"rewatchLast",
-	];
+	validOrderKeys = ["dateFinished", "rewatchLast"];
 
-	constructor() { }
+	constructor() {}
 
 	init() {
 		this.firebaseOptions = {
@@ -52,14 +49,15 @@ export class FirebaseQueryBuilder {
 
 	order(key: string, direction: string) {
 		if (this.validOrderKeys.includes(key)) {
-			this.firebaseOptions.orderDirection = (direction === "desc") ? direction : "asc";
+			this.firebaseOptions.orderDirection =
+				direction === "desc" ? direction : "asc";
 			this.firebaseOptions.orderKey = key;
 		}
 		return this;
 	}
 
 	inhdd(value: boolean) {
-		this.firebaseOptions.inhdd = (value) ? 1 : 0;
+		this.firebaseOptions.inhdd = value ? 1 : 0;
 		return this;
 	}
 

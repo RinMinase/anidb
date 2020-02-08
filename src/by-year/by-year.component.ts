@@ -10,7 +10,6 @@ import { FirebaseQueryBuilder } from "@builders/firebase-query.service";
 	styleUrls: ["./by-year.component.scss"],
 })
 export class ByYearComponent implements OnInit {
-
 	objKeys = Object.keys;
 	data = {};
 	dataLoaded: boolean = false;
@@ -26,17 +25,26 @@ export class ByYearComponent implements OnInit {
 		private router: Router,
 		private firebase: FirebaseService,
 		private firebaseQueryBuilder: FirebaseQueryBuilder,
-	) { }
+	) {}
 
 	ngOnInit() {
-		this.firebase.auth()
+		this.firebase
+			.auth()
 			.then(() => {
-				this.firebase.retrieve(this.firebaseQueryBuilder.init().db("anime").inhdd(false).build())
+				this.firebase
+					.retrieve(
+						this.firebaseQueryBuilder
+							.init()
+							.db("anime")
+							.inhdd(false)
+							.build(),
+					)
 					.then((data: Array<any>) => {
 						this.formatData(data);
 						this.dataLoaded = true;
 					});
-			}).catch(() => this.router.navigateByUrl("/login"));
+			})
+			.catch(() => this.router.navigateByUrl("/login"));
 	}
 
 	private formatData(rawData: Array<any>) {
@@ -45,7 +53,7 @@ export class ByYearComponent implements OnInit {
 
 			if (!releaseYear && !releaseSeason) {
 				if (!this.data[0]) {
-					this.data[0] = {0: {}};
+					this.data[0] = { 0: {} };
 				}
 
 				if (!this.data[0][0][watchStatus]) {
@@ -84,7 +92,11 @@ export class ByYearComponent implements OnInit {
 		delete this.keys[""];
 	}
 
-	private initializeObject(releaseYear: string, releaseSeason: number, watchStatus: string) {
+	private initializeObject(
+		releaseYear: string,
+		releaseSeason: number,
+		watchStatus: string,
+	) {
 		if (!this.data[releaseYear][releaseSeason]) {
 			this.data[releaseYear][releaseSeason] = {};
 
@@ -96,5 +108,4 @@ export class ByYearComponent implements OnInit {
 			this.data[releaseYear][releaseSeason][watchStatus] = [];
 		}
 	}
-
 }

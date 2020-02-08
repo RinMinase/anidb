@@ -5,11 +5,10 @@ import { BehaviorSubject } from "rxjs";
 	providedIn: "root",
 })
 export class DarkModeService {
-
 	private state = new BehaviorSubject(false);
 	currentState = this.state.asObservable();
 
-	constructor() { }
+	constructor() {}
 
 	enableDarkMode() {
 		this.state.next(true);
@@ -18,5 +17,4 @@ export class DarkModeService {
 	disableDarkMode() {
 		this.state.next(false);
 	}
-
 }

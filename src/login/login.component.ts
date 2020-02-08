@@ -10,7 +10,6 @@ import { FirebaseService } from "@services/firebase.service";
 	styleUrls: ["./login.component.scss"],
 })
 export class LoginComponent implements OnInit {
-
 	loading = false;
 	alert: string = null;
 	loginForm: FormGroup;
@@ -23,7 +22,7 @@ export class LoginComponent implements OnInit {
 		private renderer: Renderer2,
 		private router: Router,
 		private firebase: FirebaseService,
-	) { }
+	) {}
 
 	ngOnInit() {
 		this.loginForm = this.formBuilder.group({
@@ -47,7 +46,8 @@ export class LoginComponent implements OnInit {
 		}
 
 		const { email, password } = this.loginForm.controls;
-		this.firebase.login(email.value, password.value)
+		this.firebase
+			.login(email.value, password.value)
 			.then(() => this.router.navigateByUrl("/"))
 			.catch((error) => {
 				this.loading = false;

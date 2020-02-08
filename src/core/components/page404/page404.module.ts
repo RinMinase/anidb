@@ -1,6 +1,6 @@
 import { NgModule, Component, OnInit } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { RouterModule } from '@angular/router';
+import { RouterModule } from "@angular/router";
 
 @Component({
 	selector: "app-page404",
@@ -8,12 +8,9 @@ import { RouterModule } from '@angular/router';
 	styleUrls: ["./page404.component.scss"],
 })
 export class Page404Component implements OnInit {
+	constructor() {}
 
-	constructor() { }
-
-	ngOnInit() {
-	}
-
+	ngOnInit() {}
 }
 
 @NgModule({
@@ -24,4 +21,4 @@ export class Page404Component implements OnInit {
 	],
 	exports: [Page404Component],
 })
-export class Page404Module { }
+export class Page404Module {}

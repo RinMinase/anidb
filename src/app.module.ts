@@ -7,55 +7,73 @@ import { initializeApp } from "firebase/app";
 
 import { NavbarModule } from "@components/navbar/navbar.module";
 import { FooterModule } from "@components/footer/footer.module";
-import { Page404Module } from '@components/page404/page404.module';
-import { Page500Module } from '@components/page500/page500.module';
+import { Page404Module } from "@components/page404/page404.module";
+import { Page500Module } from "@components/page500/page500.module";
 
 import { LoginModule } from "./login/login.module";
 import { HomeModule } from "./home/home.module";
 
 const isDev: boolean = window.location.origin.includes("local");
-const routes: Routes = [{
-	path: "about",
-	loadChildren: () => import("./about/about.module").then((m) => m.AboutModule),
-}, {
-	path: "by-name",
-	loadChildren: () => import("./by-name/by-name.module").then((m) => m.ByNameModule),
-}, {
-	path: "by-year",
-	loadChildren: () => import("./by-year/by-year.module").then((m) => m.ByYearModule),
-}, {
-	path: "download",
-	loadChildren: () => import("./download/download.module").then((m) => m.DownloadModule),
-}, {
-	path: "export",
-	loadChildren: () => import("./export/export.module").then((m) => m.ExportModule),
-}, {
-	path: "hdd",
-	loadChildren: () => import("./hdd/hdd.module").then((m) => m.HddModule),
-}, {
-	path: "lastwatch",
-	loadChildren: () => import("./lastwatch/lastwatch.module").then((m) => m.LastwatchModule),
-}, {
-	path: "summer",
-	loadChildren: () => import("./summer/summer.module").then((m) => m.SummerModule),
-}, {
-	path: "",
-	pathMatch: "full",
-	redirectTo: "",
-}, {
-	path: "**",
-	redirectTo: "/404",
-}];
+const routes: Routes = [
+	{
+		path: "about",
+		loadChildren: () =>
+			import("./about/about.module").then((m) => m.AboutModule),
+	},
+	{
+		path: "by-name",
+		loadChildren: () =>
+			import("./by-name/by-name.module").then((m) => m.ByNameModule),
+	},
+	{
+		path: "by-year",
+		loadChildren: () =>
+			import("./by-year/by-year.module").then((m) => m.ByYearModule),
+	},
+	{
+		path: "download",
+		loadChildren: () =>
+			import("./download/download.module").then((m) => m.DownloadModule),
+	},
+	{
+		path: "export",
+		loadChildren: () =>
+			import("./export/export.module").then((m) => m.ExportModule),
+	},
+	{
+		path: "hdd",
+		loadChildren: () => import("./hdd/hdd.module").then((m) => m.HddModule),
+	},
+	{
+		path: "lastwatch",
+		loadChildren: () =>
+			import("./lastwatch/lastwatch.module").then((m) => m.LastwatchModule),
+	},
+	{
+		path: "summer",
+		loadChildren: () =>
+			import("./summer/summer.module").then((m) => m.SummerModule),
+	},
+	{
+		path: "",
+		pathMatch: "full",
+		redirectTo: "",
+	},
+	{
+		path: "**",
+		redirectTo: "/404",
+	},
+];
 
 @Component({
 	selector: "app-root",
 	template: `
 		<app-navbar *ngIf="router.url !== '/login'"></app-navbar>
 		<router-outlet></router-outlet>
-		<app-footer *ngIf="router.url !== '/login'"></app-footer>`,
+		<app-footer *ngIf="router.url !== '/login'"></app-footer>
+	`,
 })
 export class AppComponent {
-
 	testValue: string;
 
 	constructor(public router: Router) {
@@ -89,4 +107,4 @@ export class AppComponent {
 	providers: [],
 	bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

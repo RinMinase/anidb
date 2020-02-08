@@ -9,11 +9,6 @@ const routes: Routes = [{ path: "", component: LastwatchComponent }];
 
 @NgModule({
 	declarations: [LastwatchComponent],
-	imports: [
-		CommonModule,
-		RouterModule.forChild(routes),
-
-		LegendModule,
-	],
+	imports: [CommonModule, RouterModule.forChild(routes), LegendModule],
 })
-export class LastwatchModule { }
+export class LastwatchModule {}

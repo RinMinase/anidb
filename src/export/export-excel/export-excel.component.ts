@@ -6,11 +6,9 @@ import { utils, writeFile } from "xlsx";
 	templateUrl: "./export-excel.component.html",
 })
 export class ExportExcelComponent implements OnInit {
+	constructor() {}
 
-	constructor() { }
-
-	ngOnInit() {
-	}
+	ngOnInit() {}
 
 	exportExcel() {
 		const data = [
@@ -24,5 +22,4 @@ export class ExportExcelComponent implements OnInit {
 		utils.book_append_sheet(workbook, sheet, "Data");
 		writeFile(workbook, "sheet.xlsx");
 	}
-
 }

@@ -14,10 +14,12 @@ export class FuseOptionsBuilder {
 		keys: [],
 	};
 
-	constructor() { }
+	constructor() {}
 
 	addKeys(value: string) {
-		if (!this.fuseOptions.keys) { this.fuseOptions.keys = []; }
+		if (!this.fuseOptions.keys) {
+			this.fuseOptions.keys = [];
+		}
 		this.fuseOptions.keys.push(value);
 		return this;
 	}

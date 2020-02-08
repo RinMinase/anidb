@@ -10,14 +10,12 @@ import { AddTitleComponent } from "./add-title/add-title.component";
 	styleUrls: ["./download.component.scss"],
 })
 export class DownloadComponent implements OnInit {
-
 	data = {};
 	dataLoaded: boolean = true;
 
-	constructor(private modalService: NgbModal) { }
+	constructor(private modalService: NgbModal) {}
 
-	ngOnInit() {
-	}
+	ngOnInit() {}
 
 	addSeason() {
 		const addModal = this.modalService.open(AddSeasonComponent, {
@@ -25,9 +23,7 @@ export class DownloadComponent implements OnInit {
 			windowClass: "animate bounceInDown",
 		});
 
-		addModal.result
-			.then(() => {})
-			.catch(() => {});
+		addModal.result.then(() => {}).catch(() => {});
 	}
 
 	addTitle() {
@@ -36,9 +32,6 @@ export class DownloadComponent implements OnInit {
 			windowClass: "animate bounceInDown",
 		});
 
-		addModal.result
-			.then(() => {})
-			.catch(() => {});
+		addModal.result.then(() => {}).catch(() => {});
 	}
-
 }

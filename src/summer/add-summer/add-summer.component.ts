@@ -8,11 +8,9 @@ import Swal from "sweetalert2";
 	styleUrls: ["./add-summer.component.scss"],
 })
 export class AddSummerComponent implements OnInit {
+	constructor(private modal: NgbActiveModal) {}
 
-	constructor(private modal: NgbActiveModal) { }
-
-	ngOnInit() {
-	}
+	ngOnInit() {}
 
 	cancel() {
 		Swal.fire({
@@ -21,8 +19,9 @@ export class AddSummerComponent implements OnInit {
 			icon: "question",
 			showCancelButton: true,
 		}).then((result) => {
-			if (result.value) { this.modal.dismiss(); }
+			if (result.value) {
+				this.modal.dismiss();
+			}
 		});
 	}
-
 }

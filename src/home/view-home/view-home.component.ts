@@ -17,7 +17,6 @@ import { HomeService } from "../home.service";
 	styleUrls: ["./view-home.component.scss"],
 })
 export class ViewHomeComponent implements OnInit {
-
 	data: any;
 	dataLoaded: boolean = false;
 	stateId: number;
@@ -31,11 +30,11 @@ export class ViewHomeComponent implements OnInit {
 		private firebaseQueryBuilder: FirebaseQueryBuilder,
 		private utility: UtilityService,
 		private service: HomeService,
-	) { }
+	) {}
 
 	ngOnInit() {
-		this.route.params.subscribe((params) => this.stateId = params["id"]);
-		this.service.currentState.subscribe((state) => this.homeState = state);
+		this.route.params.subscribe((params) => (this.stateId = params["id"]));
+		this.service.currentState.subscribe((state) => (this.homeState = state));
 		this.fetchData();
 	}
 
@@ -50,10 +49,17 @@ export class ViewHomeComponent implements OnInit {
 		}).then((result) => {
 			if (result.value) {
 				this.service.changeState(this.homeState.search, null);
-				this.firebase.hardDelete(this.firebaseQueryBuilder.init().id(this.stateId).build())
+				this.firebase
+					.hardDelete(
+						this.firebaseQueryBuilder
+							.init()
+							.id(this.stateId)
+							.build(),
+					)
 					.then(() => {
-						Swal.fire("Deleted", "Entry has been deleted", "success")
-							.then(() => this.router.navigateByUrl("/"));
+						Swal.fire("Deleted", "Entry has been deleted", "success").then(() =>
+							this.router.navigateByUrl("/"),
+						);
 					});
 			}
 		});
@@ -71,12 +77,20 @@ export class ViewHomeComponent implements OnInit {
 		updateModal.componentInstance.id = this.stateId;
 
 		updateModal.result
-			.then(() => { this.fetchData(); })
+			.then(() => {
+				this.fetchData();
+			})
 			.catch(() => {});
 	}
 
 	updateRating(rating: any) {
-		this.firebase.update(this.firebaseQueryBuilder.init().id(this.stateId).data({ rating }).build());
+		this.firebase.update(
+			this.firebaseQueryBuilder
+				.init()
+				.id(this.stateId)
+				.data({ rating })
+				.build(),
+		);
 		this.data.rating = rating;
 	}
 
@@ -88,25 +102,36 @@ export class ViewHomeComponent implements OnInit {
 			centered: true,
 		});
 
-		const rewatch = (this.data.rewatch) ? this.data.rewatch.split(",") : [];
+		const rewatch = this.data.rewatch ? this.data.rewatch.split(",") : [];
 
 		rewatchModal.componentInstance.id = this.stateId;
 		rewatchModal.componentInstance.rewatch = rewatch;
 
 		rewatchModal.result
-			.then(() => { this.fetchData(); })
+			.then(() => {
+				this.fetchData();
+			})
 			.catch(() => {});
 	}
 
 	private fetchData() {
-		this.firebase.auth()
+		this.firebase
+			.auth()
 			.then(() => {
-				this.firebase.retrieve(this.firebaseQueryBuilder.init().id(this.stateId).build())
+				this.firebase
+					.retrieve(
+						this.firebaseQueryBuilder
+							.init()
+							.id(this.stateId)
+							.build(),
+					)
 					.then((data: any) => {
 						this.data = this.parseData(data);
 						this.dataLoaded = true;
-					}).catch(() => this.router.navigateByUrl("/"));
-			}).catch(() => this.router.navigateByUrl("/login"));
+					})
+					.catch(() => this.router.navigateByUrl("/"));
+			})
+			.catch(() => this.router.navigateByUrl("/login"));
 	}
 
 	private parseData(data: any) {
@@ -114,8 +139,12 @@ export class ViewHomeComponent implements OnInit {
 			data.shortTitle = this.parseVariants(data.variants);
 		}
 
-		if (data.variants) { data.variants = data.variants.split(","); }
-		if (data.offquel) { data.offquel = data.offquel.split(","); }
+		if (data.variants) {
+			data.variants = data.variants.split(",");
+		}
+		if (data.offquel) {
+			data.offquel = data.offquel.split(",");
+		}
 
 		data.filesizeRaw = data.filesize;
 		data.filesize = this.utility.convertFilesize(data.filesize);
@@ -153,9 +182,15 @@ export class ViewHomeComponent implements OnInit {
 	}
 
 	private parseDuration(duration: number) {
-		const hours = Math.trunc(duration / 3600).toString().padStart(2, "0");
-		const minutes = Math.trunc((duration % 3600) / 60).toString().padStart(2, "0");
-		const seconds = Math.trunc((duration % 3600) % 60).toString().padStart(2, "0");
+		const hours = Math.trunc(duration / 3600)
+			.toString()
+			.padStart(2, "0");
+		const minutes = Math.trunc((duration % 3600) / 60)
+			.toString()
+			.padStart(2, "0");
+		const seconds = Math.trunc((duration % 3600) % 60)
+			.toString()
+			.padStart(2, "0");
 
 		return { hours, minutes, seconds };
 	}

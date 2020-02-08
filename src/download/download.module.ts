@@ -10,15 +10,7 @@ import { AddTitleComponent } from "./add-title/add-title.component";
 const routes: Routes = [{ path: "", component: DownloadComponent }];
 
 @NgModule({
-	declarations: [
-		AddSeasonComponent,
-		AddTitleComponent,
-		DownloadComponent,
-	],
-	imports: [
-		CommonModule,
-		RouterModule.forChild(routes),
-		NgbModalModule,
-	],
+	declarations: [AddSeasonComponent, AddTitleComponent, DownloadComponent],
+	imports: [CommonModule, RouterModule.forChild(routes), NgbModalModule],
 })
-export class DownloadModule { }
+export class DownloadModule {}

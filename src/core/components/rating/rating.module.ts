@@ -6,11 +6,8 @@ import { RatingComponent } from "./rating.component";
 
 @NgModule({
 	declarations: [RatingComponent],
-	imports: [
-		CommonModule,
-		NgbRatingModule,
-	],
+	imports: [CommonModule, NgbRatingModule],
 	exports: [RatingComponent],
 	bootstrap: [RatingComponent],
 })
-export class RatingModule { }
+export class RatingModule {}

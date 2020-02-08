@@ -14,7 +14,6 @@ import { AddSummerComponent } from "../add-summer/add-summer.component";
 	styleUrls: ["./manage-summer.component.scss"],
 })
 export class ManageSummerComponent implements OnInit {
-
 	objKeys = Object.keys;
 	data: Array<any> = [];
 	dataLoaded: boolean = false;
@@ -32,26 +31,35 @@ export class ManageSummerComponent implements OnInit {
 		private firebase: FirebaseService,
 		private firebaseQueryBuilder: FirebaseQueryBuilder,
 		private utility: UtilityService,
-	) { }
+	) {}
 
 	ngOnInit() {
 		let summerData: Array<object>;
 		let animeData: Array<object>;
 
-		this.firebase.auth()
+		this.firebase
+			.auth()
 			.then(() => {
-				this.firebase.retrieve()
-					.then((data: Array<object>) => {
-						animeData = data;
-					});
-			}).then(() => {
-				this.firebase.retrieve(this.firebaseQueryBuilder.init().db("summer").inhdd(false).build())
+				this.firebase.retrieve().then((data: Array<object>) => {
+					animeData = data;
+				});
+			})
+			.then(() => {
+				this.firebase
+					.retrieve(
+						this.firebaseQueryBuilder
+							.init()
+							.db("summer")
+							.inhdd(false)
+							.build(),
+					)
 					.then((data: Array<object>) => {
 						summerData = data;
 						this.formatData(summerData, animeData);
 						this.dataLoaded = true;
 					});
-			}).catch(() => this.router.navigateByUrl("/login"));
+			})
+			.catch(() => this.router.navigateByUrl("/login"));
 	}
 
 	addSummerList() {
@@ -60,9 +68,7 @@ export class ManageSummerComponent implements OnInit {
 			windowClass: "animate bounceInDown",
 		});
 
-		addModal.result
-			.then(() => {})
-			.catch(() => {});
+		addModal.result.then(() => {}).catch(() => {});
 	}
 
 	private formatData(summerData: Array<any>, animeData: Array<any>) {
@@ -71,9 +77,12 @@ export class ManageSummerComponent implements OnInit {
 			const today = new Date();
 			let timeEnd = fromUnixTime(summer.timeEnd);
 
-			if (today < timeEnd) { timeEnd = today; }
+			if (today < timeEnd) {
+				timeEnd = today;
+			}
 
-			const days = parseInt(format((timeEnd.getTime() - timeStart.getTime()), "DDD")) - 1;
+			const days =
+				parseInt(format(timeEnd.getTime() - timeStart.getTime(), "DDD")) - 1;
 
 			this.data.push({
 				summer: {
@@ -88,7 +97,9 @@ export class ManageSummerComponent implements OnInit {
 			this.processData(animeData, summer, index);
 
 			const { entries } = this.data[index];
-			const sortedEntries = entries.sort(this.utility.sortByDateStringThenTitle);
+			const sortedEntries = entries.sort(
+				this.utility.sortByDateStringThenTitle,
+			);
 
 			this.data[index].entries = sortedEntries;
 
@@ -113,7 +124,9 @@ export class ManageSummerComponent implements OnInit {
 		const sortedData = [this.data.length];
 		let index = this.data.length - 1;
 
-		this.data.forEach((data) => { sortedData[index--] = data; });
+		this.data.forEach((data) => {
+			sortedData[index--] = data;
+		});
 		this.data = sortedData;
 	}
 
@@ -124,8 +137,9 @@ export class ManageSummerComponent implements OnInit {
 
 		animeData.forEach((anime: any) => {
 			if (anime.watchStatus <= 1) {
-				const isWithinTimeBoundary = anime.dateFinished >= summer.timeStart
-					&& anime.dateFinished <= summer.timeEnd;
+				const isWithinTimeBoundary =
+					anime.dateFinished >= summer.timeStart &&
+					anime.dateFinished <= summer.timeEnd;
 
 				if (anime.rewatch) {
 					this.processRewatch(summer, anime, index);
@@ -143,11 +157,21 @@ export class ManageSummerComponent implements OnInit {
 	}
 
 	private processQuality(quality: any) {
-		if (quality === "4K 2160p") { this.quality.uhd++; }
-		if (quality === "FHD 1080p") { this.quality.fhd++; }
-		if (quality === "HD 720p") { this.quality.hd++; }
-		if (quality === "HQ 480p") { this.quality.hq++; }
-		if (quality === "LQ 360p") { this.quality.lq++; }
+		if (quality === "4K 2160p") {
+			this.quality.uhd++;
+		}
+		if (quality === "FHD 1080p") {
+			this.quality.fhd++;
+		}
+		if (quality === "HD 720p") {
+			this.quality.hd++;
+		}
+		if (quality === "HQ 480p") {
+			this.quality.hq++;
+		}
+		if (quality === "LQ 360p") {
+			this.quality.lq++;
+		}
 	}
 
 	private processRewatch(summer: any, anime: any, index: any) {
@@ -168,7 +192,12 @@ export class ManageSummerComponent implements OnInit {
 		});
 	}
 
-	private pushToEntries(anime: any, index: number, rewatchFlag: boolean, rewatchDate?: any) {
+	private pushToEntries(
+		anime: any,
+		index: number,
+		rewatchFlag: boolean,
+		rewatchDate?: any,
+	) {
 		this.data[index].entries.push({
 			episodes: anime.episodes,
 			filesize: this.utility.convertFilesize(anime.filesize),
@@ -176,9 +205,11 @@ export class ManageSummerComponent implements OnInit {
 			quality: anime.quality,
 			specials: anime.specials,
 			title: anime.title,
-			dateFinished: format(fromUnixTime(rewatchDate || anime.dateFinished), this.dateFormat),
+			dateFinished: format(
+				fromUnixTime(rewatchDate || anime.dateFinished),
+				this.dateFormat,
+			),
 			rewatchFlag,
 		});
 	}
-
 }

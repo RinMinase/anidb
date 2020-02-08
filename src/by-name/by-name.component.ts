@@ -10,64 +10,73 @@ import { UtilityService } from "@services/utility.service";
 	styleUrls: ["./by-name.component.scss"],
 })
 export class ByNameComponent implements OnInit {
-
 	data: Array<object> = [];
 	dataLoaded: boolean = false;
 	collapse: Array<boolean> = [];
 	showChart: boolean = true;
 
 	chart = {
-		data: [{
-			data: [],
-			label: "Titles",
-			yAxisID: "Titles",
-		}, {
-			data: [],
-			label: "Filesize (GB)",
-			yAxisID: "Filesize",
-		}],
-		colors: [{
-			borderColor: "rgba(149, 206, 146, 1)",
-			pointBackgroundColor: "rgba(76, 175, 80, 1)",
-			pointBorderColor: "rgba(220, 220, 220, 0.3)",
-			borderWidth: 2.3,
-			fill: false,
-			tension: 0.5,
-		}, {
-			borderColor: "rgba(54, 162, 235, 1)",
-			pointBackgroundColor: "rgba(51, 127, 177, 1)",
-			pointBorderColor: "rgba(220, 220, 220, 0.3)",
-			borderWidth: 2.3,
-			fill: false,
-			tension: 0.5,
-		}],
+		data: [
+			{
+				data: [],
+				label: "Titles",
+				yAxisID: "Titles",
+			},
+			{
+				data: [],
+				label: "Filesize (GB)",
+				yAxisID: "Filesize",
+			},
+		],
+		colors: [
+			{
+				borderColor: "rgba(149, 206, 146, 1)",
+				pointBackgroundColor: "rgba(76, 175, 80, 1)",
+				pointBorderColor: "rgba(220, 220, 220, 0.3)",
+				borderWidth: 2.3,
+				fill: false,
+				tension: 0.5,
+			},
+			{
+				borderColor: "rgba(54, 162, 235, 1)",
+				pointBackgroundColor: "rgba(51, 127, 177, 1)",
+				pointBorderColor: "rgba(220, 220, 220, 0.3)",
+				borderWidth: 2.3,
+				fill: false,
+				tension: 0.5,
+			},
+		],
 		labels: [],
 		options: {
 			responsive: true,
 			scales: {
-				yAxes: [{
-					id: "Titles",
-					type: "linear",
-					position: "left",
-					ticks: {
-						beginAtZero: true,
-						maxTicksLimit: 5,
-						precision: 0,
+				yAxes: [
+					{
+						id: "Titles",
+						type: "linear",
+						position: "left",
+						ticks: {
+							beginAtZero: true,
+							maxTicksLimit: 5,
+							precision: 0,
+						},
 					},
-				}, {
-					id: "Filesize",
-					type: "linear",
-					position: "right",
-					ticks: {
-						beginAtZero: true,
-						maxTicksLimit: 6,
-						precision: 0,
+					{
+						id: "Filesize",
+						type: "linear",
+						position: "right",
+						ticks: {
+							beginAtZero: true,
+							maxTicksLimit: 6,
+							precision: 0,
+						},
 					},
-				}],
+				],
 			},
 			tooltips: {
 				callbacks: {
-					label: (tip: any) => (tip.datasetIndex) ? `${tip.yLabel} GB` : `${tip.yLabel} Titles`,
+					label: (tip: any) =>
+						tip.datasetIndex ? `${tip.yLabel} GB` : `${tip.yLabel} Titles`,
 				},
 			},
 		},
@@ -77,17 +86,18 @@ export class ByNameComponent implements OnInit {
 		private router: Router,
 		private firebase: FirebaseService,
 		private utility: UtilityService,
-	) { }
+	) {}
 
 	ngOnInit() {
-		this.firebase.auth()
+		this.firebase
+			.auth()
 			.then(() => {
-				this.firebase.retrieve()
-					.then((data) => {
-						this.formatData(data);
-						this.dataLoaded = true;
-					});
-			}).catch(() => this.router.navigateByUrl("/login"));
+				this.firebase.retrieve().then((data) => {
+					this.formatData(data);
+					this.dataLoaded = true;
+				});
+			})
+			.catch(() => this.router.navigateByUrl("/login"));
 	}
 
 	panelCollapse(panel: number) {
@@ -150,11 +160,12 @@ export class ByNameComponent implements OnInit {
 
 	private pushToChart(rawFilesize: number, titles: number, key: string) {
 		if (!!titles) {
-			const filesize = parseFloat(this.utility.convertFilesize(rawFilesize, "0"));
+			const filesize = parseFloat(
+				this.utility.convertFilesize(rawFilesize, "0"),
+			);
 			this.chart.labels.push(key);
 			this.chart.data[0].data.push(titles);
 			this.chart.data[1].data.push(filesize);
 		}
 	}
-
 }

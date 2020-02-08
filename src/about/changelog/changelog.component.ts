@@ -10,19 +10,15 @@ import { UtilityService } from "@services/utility.service";
 	styleUrls: ["./changelog.component.scss"],
 })
 export class ChangelogComponent implements OnInit {
-
 	githubCommits = [];
 
 	keywords = {
-		dep: [ "dependency", "dependencies" ],
-		fix: [ "fixed", "removed" ],
-		new: [ "added", "functional", "migrated" ],
+		dep: ["dependency", "dependencies"],
+		fix: ["fixed", "removed"],
+		new: ["added", "functional", "migrated"],
 	};
 
-	constructor(
-		private github: GithubService,
-		private utility: UtilityService,
-	) { }
+	constructor(private github: GithubService, private utility: UtilityService) {}
 
 	ngOnInit() {
 		this.github.getCommits().subscribe((response) => {
@@ -37,10 +33,18 @@ export class ChangelogComponent implements OnInit {
 					const { message, module } = commitData;
 
 					if (!formattedCommits[commitDate]) {
-						formattedCommits[commitDate] = { dep: [], fix: [], new: [], improve: [], title };
+						formattedCommits[commitDate] = {
+							dep: [],
+							fix: [],
+							new: [],
+							improve: [],
+							title,
+						};
 					}
 
-					const isDep = this.parseCommitMessage(message, this.keywords.dep) && module === "";
+					const isDep =
+						this.parseCommitMessage(message, this.keywords.dep) &&
+						module === "";
 					const isFix = this.parseCommitMessage(message, this.keywords.fix);
 					const isNew = this.parseCommitMessage(message, this.keywords.new);
 
@@ -71,11 +75,18 @@ export class ChangelogComponent implements OnInit {
 		}
 
 		if (rawMessage[1].indexOf(", resolved #") !== -1) {
-			rawMessage[1] = rawMessage[1].replace(new RegExp(", resolved #[0-9]+", "ig"), "");
+			rawMessage[1] = rawMessage[1].replace(
+				new RegExp(", resolved #[0-9]+", "ig"),
+				"",
+			);
 		}
 
-		const rawModule = rawMessage[0].trimStart().toLowerCase().replace(new RegExp("_", "g"), " ");
-		const module = (rawModule === "anidb" || rawModule === "transition") ? "" : rawModule;
+		const rawModule = rawMessage[0]
+			.trimStart()
+			.toLowerCase()
+			.replace(new RegExp("_", "g"), " ");
+		const module =
+			rawModule === "anidb" || rawModule === "transition" ? "" : rawModule;
 		const message = rawMessage[1].trimStart();
 
 		return {
@@ -88,14 +99,18 @@ export class ChangelogComponent implements OnInit {
 		};
 	}
 
-	private parseCommitMessage(message: string, keywords: Array<string>): boolean {
+	private parseCommitMessage(
+		message: string,
+		keywords: Array<string>,
+	): boolean {
 		return keywords.some((key) => message.indexOf(key) >= 0);
 	}
 
 	private doesNotContainMerge(message: string) {
-		return (message.indexOf("Merge branch") === -1
-			&& message.indexOf("Merge pull request") === -1
-			&& message.indexOf("renovate.json") === -1);
+		return (
+			message.indexOf("Merge branch") === -1 &&
+			message.indexOf("Merge pull request") === -1 &&
+			message.indexOf("renovate.json") === -1
+		);
 	}
-
 }

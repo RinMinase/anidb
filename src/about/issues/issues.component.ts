@@ -9,17 +9,13 @@ import { UtilityService } from "@services/utility.service";
 	styleUrls: ["./issues.component.scss"],
 })
 export class IssuesComponent implements OnInit {
-
 	pageSize = 10;
 	page = 1;
 
 	githubIssues = [];
 	packageIssues: Array<object>;
 
-	constructor(
-		private github: GithubService,
-		private utility: UtilityService,
-	) { }
+	constructor(private github: GithubService, private utility: UtilityService) {}
 
 	ngOnInit() {
 		this.getGithubIssues();
@@ -27,47 +23,48 @@ export class IssuesComponent implements OnInit {
 	}
 
 	private getGithubIssues() {
-		this.github.getIssues()
-			.subscribe((response) => {
-				response.body.map((data: any) => {
-					if (data.state === "open") {
-						const labels = [];
+		this.github.getIssues().subscribe((response) => {
+			response.body.map((data: any) => {
+				if (data.state === "open") {
+					const labels = [];
 
-						data.labels.map((label: any) => {
-							if (!(label.name === "to do" || label.name === "in progress")) {
-								const className = label.name.replace(":", "")
-									.replace(new RegExp(" ", "g"), "-")
-									.toLowerCase();
+					data.labels.map((label: any) => {
+						if (!(label.name === "to do" || label.name === "in progress")) {
+							const className = label.name
+								.replace(":", "")
+								.replace(new RegExp(" ", "g"), "-")
+								.toLowerCase();
 
-								labels.push({
-									class: className,
-									name: label.name.split(" ")[1].toUpperCase(),
-								});
-							}
-						});
+							labels.push({
+								class: className,
+								name: label.name.split(" ")[1].toUpperCase(),
+							});
+						}
+					});
 
-						labels.reverse();
+					labels.reverse();
 
-						this.githubIssues.push({
-							body: data.body,
-							date: this.utility.convertDate(data.created_at, true),
-							labels,
-							number: data.number,
-							title: data.title,
-							url: data.html_url,
-						});
-					}
-				});
+					this.githubIssues.push({
+						body: data.body,
+						date: this.utility.convertDate(data.created_at, true),
+						labels,
+						number: data.number,
+						title: data.title,
+						url: data.html_url,
+					});
+				}
 			});
+		});
 	}
 
 	private getPackageIssues() {
-		this.packageIssues = [{
-			package: "template",
-			reason: "-",
-			severity: "red",
-			version: "0.0.0",
-		}];
+		this.packageIssues = [
+			{
+				package: "template",
+				reason: "-",
+				severity: "red",
+				version: "0.0.0",
+			},
+		];
 	}
-
 }

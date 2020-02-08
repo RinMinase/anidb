@@ -7,14 +7,13 @@ import { DropzoneComponent } from "ngx-dropzone-wrapper";
 	styleUrls: ["./sample-dropzone.component.scss"],
 })
 export class SampleDropzoneComponent implements OnInit {
-
 	@ViewChild(DropzoneComponent, { static: false }) dz?: DropzoneComponent;
 
 	log: any;
 	config: any;
 	currentFile: any;
 
-	constructor() { }
+	constructor() {}
 
 	ngOnInit() {
 		const { log } = console;
@@ -41,5 +40,4 @@ export class SampleDropzoneComponent implements OnInit {
 	onUploadSuccess(event: any) {
 		this.log("Upload Success", event);
 	}
-
 }

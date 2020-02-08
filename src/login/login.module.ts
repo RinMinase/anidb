@@ -6,9 +6,12 @@ import { NgbAlertModule } from "@ng-bootstrap/ng-bootstrap";
 
 import { LoginComponent } from "./login.component";
 
-const routes: Routes = [{
-	path: "login", component: LoginComponent,
-}];
+const routes: Routes = [
+	{
+		path: "login",
+		component: LoginComponent,
+	},
+];
 
 @NgModule({
 	declarations: [LoginComponent],
@@ -19,4 +22,4 @@ const routes: Routes = [{
 		NgbAlertModule,
 	],
 })
-export class LoginModule { }
+export class LoginModule {}

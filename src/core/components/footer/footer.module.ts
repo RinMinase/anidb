@@ -6,12 +6,9 @@ import { CommonModule } from "@angular/common";
 	templateUrl: "./footer.component.html",
 })
 export class FooterComponent implements OnInit {
+	constructor() {}
 
-	constructor() { }
-
-	ngOnInit() {
-	}
-
+	ngOnInit() {}
 }
 
 @NgModule({
@@ -19,4 +16,4 @@ export class FooterComponent implements OnInit {
 	imports: [CommonModule],
 	exports: [FooterComponent],
 })
-export class FooterModule { }
+export class FooterModule {}

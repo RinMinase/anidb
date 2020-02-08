@@ -1,6 +1,6 @@
 import { NgModule, Component, OnInit } from "@angular/core";
-import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { CommonModule } from "@angular/common";
+import { RouterModule } from "@angular/router";
 
 @Component({
 	selector: "app-page500",
@@ -8,12 +8,9 @@ import { RouterModule } from '@angular/router';
 	styleUrls: ["./page500.component.scss"],
 })
 export class Page500Component implements OnInit {
+	constructor() {}
 
-	constructor() { }
-
-	ngOnInit() {
-	}
-
+	ngOnInit() {}
 }
 
 @NgModule({
@@ -24,5 +21,4 @@ export class Page500Component implements OnInit {
 	],
 	exports: [Page500Component],
 })
-export class Page500Module { }
-
+export class Page500Module {}

@@ -2,8 +2,11 @@ import { NgModule, Component, OnInit } from "@angular/core";
 import { RouterModule, Router } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { NgbCollapseModule, NgbDropdownModule } from "@ng-bootstrap/ng-bootstrap";
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import {
+	NgbCollapseModule,
+	NgbDropdownModule,
+} from "@ng-bootstrap/ng-bootstrap";
+import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 
 import {
 	faCalendarAlt,
@@ -26,7 +29,7 @@ import {
 	faQuestion,
 	faSortAlphaDown,
 	faTasks,
-} from "@fortawesome/free-solid-svg-icons"
+} from "@fortawesome/free-solid-svg-icons";
 
 import { DarkModeService } from "@services/dark-mode.service";
 import { FirebaseService } from "@services/firebase.service";
@@ -37,7 +40,6 @@ import { distinctUntilChanged } from "rxjs/operators";
 	templateUrl: "./navbar.component.html",
 })
 export class NavbarComponent implements OnInit {
-
 	faCalendarAlt = faCalendarAlt;
 	// faCalendarPlus = faCalendarPlus;
 	// faChartPie = faChartPie;
@@ -66,21 +68,21 @@ export class NavbarComponent implements OnInit {
 		private router: Router,
 		private darkMode: DarkModeService,
 		private firebase: FirebaseService,
-	) { }
+	) {}
 
 	ngOnInit() {
 		this.darkModeToggle.valueChanges
 			.pipe(distinctUntilChanged())
 			.subscribe((value) => {
-				(value) ? this.darkMode.enableDarkMode() : this.darkMode.disableDarkMode();
+				value
+					? this.darkMode.enableDarkMode()
+					: this.darkMode.disableDarkMode();
 			});
 	}
 
 	logout() {
-		this.firebase.logout()
-			.then(() => this.router.navigateByUrl("/login"));
+		this.firebase.logout().then(() => this.router.navigateByUrl("/login"));
 	}
-
 }
 
 @NgModule({
@@ -96,4 +98,4 @@ export class NavbarComponent implements OnInit {
 	],
 	exports: [NavbarComponent],
 })
-export class NavbarModule { }
+export class NavbarModule {}

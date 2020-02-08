@@ -6,14 +6,13 @@ import { getYear } from "date-fns";
 	providedIn: "root",
 })
 export class HomeService {
-
 	private state = new BehaviorSubject({ search: "", id: null });
 	private titleList = new BehaviorSubject([]);
 
 	currentState = this.state.asObservable();
 	currTitleList = this.titleList.asObservable();
 
-	constructor() { }
+	constructor() {}
 
 	changeState(search?: string, id?: number) {
 		this.state.next({ search, id });
@@ -27,12 +26,12 @@ export class HomeService {
 		const durationParts = duration.split(":");
 
 		if (durationParts.length === 3) {
-			const hours = (parseInt(durationParts[0]) * 3600);
-			const minutes = (parseInt(durationParts[1]) * 60);
+			const hours = parseInt(durationParts[0]) * 3600;
+			const minutes = parseInt(durationParts[1]) * 60;
 			const seconds = parseInt(durationParts[2]);
 			return hours + minutes + seconds;
 		} else if (durationParts.length === 2) {
-			const minutes = (parseInt(durationParts[0]) * 60);
+			const minutes = parseInt(durationParts[0]) * 60;
 			const seconds = parseInt(durationParts[1]);
 			return minutes + seconds;
 		} else {
@@ -54,5 +53,4 @@ export class HomeService {
 
 		return years;
 	}
-
 }

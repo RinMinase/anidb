@@ -8,15 +8,13 @@ import { FileUploader } from "ng2-file-upload";
 	styleUrls: ["./sample-upload.component.scss"],
 })
 export class SampleUploadComponent implements OnInit {
-
-	uploader: FileUploader = new FileUploader({url: ""});
+	uploader: FileUploader = new FileUploader({ url: "" });
 	hasBaseDropZoneOver: boolean = false;
 	hasAnotherDropZoneOver: boolean = false;
 
-	constructor() { }
+	constructor() {}
 
-	ngOnInit() {
-	}
+	ngOnInit() {}
 
 	displayUploadProps() {
 		const { log } = console;
@@ -33,5 +31,4 @@ export class SampleUploadComponent implements OnInit {
 	fileOverAnother(e: any): void {
 		this.hasAnotherDropZoneOver = e;
 	}
-
 }
