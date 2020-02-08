@@ -83,6 +83,13 @@
     "last 2 Android versions",
     "last 2 iOS versions"
   ],
+  "prettier": {
+    "printWidth": 80,
+    "bracketSpacing": true,
+    "trailingComma": "all",
+    "arrowParens": "always",
+    "endOfLine": "lf"
+  },
   "stylelint": {
     "rules": {
       "indentation": "tab",
