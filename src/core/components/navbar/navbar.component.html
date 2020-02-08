@@ -10,74 +10,76 @@
 		<ul class="navbar-nav mr-auto">
 			<li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
 				<a class="nav-link" routerLink="/">
-					<i class="fa fa-home"></i><span class="pl-2">Home</span>
+					<fa-icon [icon]="faHome"></fa-icon><span class="pl-2">Home</span>
 				</a>
 			</li>
 			<li class="nav-item" ngbDropdown>
 				<a class="nav-link" style="cursor: pointer;" ngbDropdownToggle>
-					<i class="fa fa-list"></i><span class="pl-2">Anime List</span>
+					<fa-icon [icon]="faList"></fa-icon><span class="pl-2">Anime List</span>
 				</a>
 				<div ngbDropdownMenu>
 					<a class="dropdown-item" routerLinkActive="active" routerLink="/lastwatch">
-						<i class="fa fa-play"></i><span class="pl-2">Last 20 Watched</span>
+						<fa-icon [icon]="faPlay"></fa-icon><span class="pl-2">Last 20 Watched</span>
 					</a>
 					<div class="dropdown-divider"></div>
 					<a class="dropdown-item" routerLinkActive="active" routerLink="/by-name">
-						<i class="fa fa-font"></i><span class="pl-2">Anime List by Name</span>
+						<fa-icon [icon]="faSortAlphaDown"></fa-icon><span class="pl-2">Anime List by Name</span>
 					</a>
 					<a class="dropdown-item" routerLinkActive="active" routerLink="/by-year">
-						<i class="fa fa-calendar-o"></i><span class="pl-2">Anime List by Year</span>
+						<fa-icon [icon]="faCalendarAlt"></fa-icon><span class="pl-2">Anime List by Year</span>
 					</a>
 					<div class="dropdown-divider"></div>
 					<a class="dropdown-item" routerLinkActive="active" routerLink="/download">
-						<i class="fa fa-download"></i><span class="pl-2">Download List</span>
+						<fa-icon [icon]="faCloudDownloadAlt"></fa-icon><span class="pl-2">Download List</span>
 					</a>
 					<a class="dropdown-item" routerLinkActive="active" routerLink="/summer">
-						<i class="fa fa-list"></i><span class="pl-2">Summer List</span>
+						<fa-icon [icon]="faTasks"></fa-icon><span class="pl-2">Summer List</span>
 					</a>
 					<a class="dropdown-item" routerLinkActive="active" routerLink="/hdd">
-						<i class="fa fa-hdd-o"></i><span class="pl-2">Hard Drive List</span>
+						<fa-icon [icon]="faHdd"></fa-icon><span class="pl-2">Hard Drive List</span>
 					</a>
 					<!-- <a class="dropdown-item">
-						<i class="fa fa-flask"></i><span class="pl-2">Hard Drive Simulator</span>
+						<fa-icon [icon]="faFlask"></fa-icon>
+						<span class="pl-2">Hard Drive Simulator</span>
 					</a>
 					<div class="dropdown-divider"></div>
 					<a class="dropdown-item">
-						<i class="fa fa-area-chart"></i><span class="pl-2">Chart Statistics</span>
+						<fa-icon [icon]="faChartPie"></fa-icon>
+						<span class="pl-2">Chart Statistics</span>
 					</a> -->
 				</div>
 			</li>
 			<li class="nav-item" ngbDropdown>
 				<a class="nav-link" style="cursor: pointer;" ngbDropdownToggle>
-					<i class="fa fa-pencil"></i><span class="pl-2">Manage</span>
+					<fa-icon [icon]="faPencilAlt"></fa-icon><span class="pl-2">Manage</span>
 				</a>
 				<div ngbDropdownMenu>
 					<!-- <a class="dropdown-item">
-						<i class="fa fa-plus"></i><span class="pl-2">Add an Entry</span>
+						<fa-icon [icon]="faPlus"></fa-icon><span class="pl-2">Add an Entry</span>
 					</a>
 					<div class="dropdown-divider"></div> -->
 					<a class="dropdown-item" routerLinkActive="active" routerLink="/export/csv">
-						<i class="fa fa-file-text-o"></i>
-						<span class="pl-2">Export List (.csv)</span>
+						<fa-icon [icon]="faFileCsv"></fa-icon><span class="pl-2">Export List (.csv)</span>
 					</a>
 					<a class="dropdown-item" routerLinkActive="active" routerLink="/export/excel">
-						<i class="fa fa-file-text-o"></i><span class="pl-2">Export List (.xlsx)</span>
+						<fa-icon [icon]="faFileExcel"></fa-icon><span class="pl-2">Export List (.xlsx)</span>
 					</a>
 					<!-- <div class="dropdown-divider"></div>
 					<a class="dropdown-item">
-						<i class="fa fa-plus"></i>
+						<fa-icon [icon]="faCalendarPlus"></fa-icon>
 						<span class="pl-2">Create a Season Download List</span>
 					</a>
 					<a class="dropdown-item">
-						<i class="fa fa-pencil"></i>
+						<fa-icon [icon]="faPencilAlt"></fa-icon>
 						<span class="pl-2">Edit a Season Download List</span>
 					</a>
 					<div class="dropdown-divider"></div>
 					<a class="dropdown-item">
-						<i class="fa fa-list"></i><span class="pl-2">Create a Summer List</span>
+						<fa-icon [icon]="faEdit"></fa-icon>
+						<span class="pl-2">Create a Summer List</span>
 					</a>
 					<a class="dropdown-item">
-						<i class="fa fa-code"></i>
+						<fa-icon [icon]="faCode"></fa-icon>
 						<span class="pl-2">Manage Package Issues and Future Changes List</span>
 					</a> -->
 				</div>
@@ -86,7 +88,7 @@
 		<ul class="navbar-nav">
 			<!-- <li class="nav-item">
 				<a class="nav-link">
-					<i class="fa fa-gear"></i>
+					<fa-icon [icon]="faCog"></fa-icon>
 					<span class="pl-2">Settings</span>
 				</a>
 			</li> -->
@@ -101,12 +103,12 @@
 			</li> -->
 			<li class="nav-item" routerLinkActive="active">
 				<a class="nav-link" routerLink="/about">
-					<i class="fa fa-question"></i><span class="pl-2">About</span>
+					<fa-icon [icon]="faQuestion"></fa-icon><span class="pl-2">About</span>
 				</a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" style="cursor: pointer;" (click)="logout()">
-					<i class="fa fa-power-off"></i><span class="pl-2">Logout</span>
+					<fa-icon [icon]="faPowerOff"></fa-icon><span class="pl-2">Logout</span>
 				</a>
 			</li>
 		</ul>

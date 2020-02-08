@@ -3,6 +3,30 @@ import { RouterModule, Router } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { NgbCollapseModule, NgbDropdownModule } from "@ng-bootstrap/ng-bootstrap";
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
+import {
+	faCalendarAlt,
+	// faCalendarPlus,
+	// faChartPie,
+	faCloudDownloadAlt,
+	// faCode,
+	// faCog,
+	// faEdit,
+	faFileCsv,
+	faFileExcel,
+	// faFlask,
+	faHdd,
+	faHome,
+	faList,
+	faPencilAlt,
+	faPlay,
+	// faPlus,
+	faPowerOff,
+	faQuestion,
+	faSortAlphaDown,
+	faTasks,
+} from "@fortawesome/free-solid-svg-icons"
 
 import { DarkModeService } from "@services/dark-mode.service";
 import { FirebaseService } from "@services/firebase.service";
@@ -13,6 +37,27 @@ import { distinctUntilChanged } from "rxjs/operators";
 	templateUrl: "./navbar.component.html",
 })
 export class NavbarComponent implements OnInit {
+
+	faCalendarAlt = faCalendarAlt;
+	// faCalendarPlus = faCalendarPlus;
+	// faChartPie = faChartPie;
+	faCloudDownloadAlt = faCloudDownloadAlt;
+	// faCode = faCode;
+	// faCog = faCog;
+	// faEdit = faEdit;
+	faFileCsv = faFileCsv;
+	faFileExcel = faFileExcel;
+	// faFlask = faFlask;
+	faHdd = faHdd;
+	faHome = faHome;
+	faList = faList;
+	faPencilAlt = faPencilAlt;
+	faPlay = faPlay;
+	// faPlus = faPlus;
+	faPowerOff = faPowerOff;
+	faQuestion = faQuestion;
+	faSortAlphaDown = faSortAlphaDown;
+	faTasks = faTasks;
 
 	darkModeToggle = new FormControl(false);
 	isNavCollapsed: boolean = false;
@@ -44,6 +89,7 @@ export class NavbarComponent implements OnInit {
 		CommonModule,
 		RouterModule,
 		ReactiveFormsModule,
+		FontAwesomeModule,
 
 		NgbCollapseModule,
 		NgbDropdownModule,
