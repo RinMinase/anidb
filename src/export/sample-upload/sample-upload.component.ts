@@ -1,4 +1,11 @@
 import { Component, OnInit } from "@angular/core";
+import {
+	faBan,
+	faCheck,
+	faTimes,
+	faTrash,
+	faUpload,
+} from "@fortawesome/free-solid-svg-icons";
 
 import { FileUploader } from "ng2-file-upload";
 
@@ -8,6 +15,12 @@ import { FileUploader } from "ng2-file-upload";
 	styleUrls: ["./sample-upload.component.scss"],
 })
 export class SampleUploadComponent implements OnInit {
+	faBan = faBan;
+	faCheck = faCheck;
+	faTimes = faTimes;
+	faTrash = faTrash;
+	faUpload = faUpload;
+
 	uploader: FileUploader = new FileUploader({ url: "" });
 	hasBaseDropZoneOver: boolean = false;
 	hasAnotherDropZoneOver: boolean = false;

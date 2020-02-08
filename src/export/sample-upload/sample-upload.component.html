@@ -34,9 +34,15 @@
 								</div>
 						</td>
 						<td class="text-center">
-								<span *ngIf="item.isSuccess"><i class="fa fa-check"></i></span>
-								<span *ngIf="item.isCancel"><i class="fa fa-ban"></i></span>
-								<span *ngIf="item.isError"><i class="fa fa-times"></i></span>
+								<span *ngIf="item.isSuccess">
+									<fa-icon [icon]="faCheck"></fa-icon>
+								</span>
+								<span *ngIf="item.isCancel">
+									<fa-icon [icon]="faBan"></fa-icon>
+								</span>
+								<span *ngIf="item.isError">
+									<fa-icon [icon]="faTimes"></fa-icon>
+								</span>
 						</td>
 						<td nowrap>
 								<button type="button"
@@ -54,7 +60,8 @@
 									<span class="fa fa-ban"></span> Cancel
 								</button>
 								<button type="button" class="btn btn-danger btn-sm mr-2" (click)="item.remove()">
-										<span class="fa fa-trash"></span> Remove
+									<fa-icon [icon]="faTrash" class="pr-2"></fa-icon>
+									<span>Remove</span>
 								</button>
 						</td>
 					</tr>
@@ -77,21 +84,24 @@
 						(click)="uploader.uploadAll()"
 						[disabled]="!uploader.getNotUploadedItems().length">
 
-						<span class="fa fa-upload"></span> Upload all
+						<fa-icon [icon]="faUpload" class="pr-2"></fa-icon>
+						<span>Upload all</span>
 					</button>
 					<button type="button"
 						class="btn btn-warning mr-2"
 						(click)="uploader.cancelAll()"
 						[disabled]="!uploader.isUploading">
 
-						<span class="fa fa-ban"></span> Cancel all
+						<fa-icon [icon]="faBan" class="pr-2"></fa-icon>
+						<span>Cancel all</span>
 					</button>
 					<button type="button"
 						class="btn btn-danger mr-2"
 						(click)="uploader.clearQueue()"
 						[disabled]="!uploader.queue.length">
 
-						<span class="fa fa-trash"></span> Remove all
+						<fa-icon [icon]="faTrash" class="pr-2"></fa-icon>
+						<span>Remove all</span>
 					</button>
 				</div>
 			</div>

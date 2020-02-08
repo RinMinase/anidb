@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { Routes, RouterModule } from "@angular/router";
+import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import {
 	DropzoneModule,
 	DROPZONE_CONFIG,
@@ -65,6 +66,7 @@ const OVERRIDE_DZ_CONFIG: DropzoneConfigInterface = {
 
 		DropzoneModule,
 		FileUploadModule,
+		FontAwesomeModule,
 	],
 	providers: [
 		{
