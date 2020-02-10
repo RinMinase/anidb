@@ -1390,10 +1390,10 @@
     util.promisify "^1.0.0"
     yargs "^14.2.0"
 
-"@ng-bootstrap/ng-bootstrap@^5.2.1":
-  version "5.2.1"
-  resolved "https://registry.yarnpkg.com/@ng-bootstrap/ng-bootstrap/-/ng-bootstrap-5.2.1.tgz#4fea4b561a8fa2422d31d492ffa3843b22669cfd"
-  integrity sha512-73/FX3wkDCQgdTBIa/pAOUB+DQLbag2vET3NIaqNz8Zno6cilkefY1zdlQ2zbwONcGzCyoTPFAUPivHgvoy9/w==
+"@ng-bootstrap/ng-bootstrap@^5.2.2":
+  version "5.2.2"
+  resolved "https://registry.yarnpkg.com/@ng-bootstrap/ng-bootstrap/-/ng-bootstrap-5.2.2.tgz#65d7d0ddfd686b534c65f7fc79bd75b17856b59a"
+  integrity sha512-8tPmS0e48uDCy1KEWS73LrDSPuAuAuAgkilIks13NcdIHcYY4Pd0aZC8spnnA/kxQ8/8du4aWFUw6XhNYIjMvQ==
   dependencies:
     tslib "^1.9.0"
 
@@ -9123,7 +9123,7 @@ node-libs-browser@^2.2.1:
     util "^0.11.0"
     vm-browserify "^1.0.1"
 
-node-pre-gyp@*, node-pre-gyp@^0.14.0:
+node-pre-gyp@^0.14.0:
   version "0.14.0"
   resolved "https://registry.yarnpkg.com/node-pre-gyp/-/node-pre-gyp-0.14.0.tgz#9a0596533b877289bcad4e143982ca3d904ddc83"
   integrity sha512-+CvDC7ZttU/sSt9rFjix/P05iS43qHCOOGzcr3Ry99bXG7VX953+vFyEuph/tfqoYu8dttBkE86JSKBO2OzcxA==
