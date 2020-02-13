@@ -31,7 +31,7 @@
     "@fortawesome/angular-fontawesome": "^0.6.0",
     "@ng-bootstrap/ng-bootstrap": "^5.2.2",
     "@rinminase/ng-charts": "^1.0.3",
-    "@rinminase/ng-fortawesome": "^0.1.1",
+    "@rinminase/ng-fortawesome": "^1.0.1",
     "animatewithsass": "^3.2.1",
     "bootstrap": "^4.4.1",
     "date-fns": "^2.9.0",
