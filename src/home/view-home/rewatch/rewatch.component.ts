@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
-import { faPlus, faTimes, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faTimes, faTrash } from "@rinminase/ng-fortawesome";
 import { format, fromUnixTime } from "date-fns";
 
 import { FirebaseService } from "@services/firebase.service";

@@ -9,7 +9,7 @@ import {
 	faSun,
 	faTrash,
 	faTree,
-} from "@fortawesome/free-solid-svg-icons";
+} from "@rinminase/ng-fortawesome";
 import Swal from "sweetalert2";
 import { format } from "date-fns";
 

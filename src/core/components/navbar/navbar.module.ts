@@ -29,7 +29,7 @@ import {
 	faQuestion,
 	faSortAlphaDown,
 	faTasks,
-} from "@fortawesome/free-solid-svg-icons";
+} from "@rinminase/ng-fortawesome";
 
 import { DarkModeService } from "@services/dark-mode.service";
 import { FirebaseService } from "@services/firebase.service";

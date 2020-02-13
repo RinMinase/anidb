@@ -1,10 +1,10 @@
 import { Component, OnInit } from "@angular/core";
-import { faEnvelope, faPhone } from "@fortawesome/free-solid-svg-icons";
+import { faEnvelope, faPhone } from "@rinminase/ng-fortawesome";
 import {
 	faBitbucket,
 	faFacebookF,
 	faGithubAlt,
-} from "@fortawesome/free-brands-svg-icons";
+} from "@rinminase/ng-fortawesome";
 
 @Component({
 	selector: "app-developer",

@@ -5,7 +5,7 @@ import {
 	faPencilAlt,
 	faSearch,
 	faTrash,
-} from "@fortawesome/free-solid-svg-icons";
+} from "@rinminase/ng-fortawesome";
 
 import { FirebaseService } from "@services/firebase.service";
 import { FirebaseQueryBuilder } from "@builders/firebase-query.service";

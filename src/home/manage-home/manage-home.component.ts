@@ -3,7 +3,7 @@ import { PlatformLocation } from "@angular/common";
 import { Router } from "@angular/router";
 import { FormControl } from "@angular/forms";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
-import { faPlus, faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faSearch } from "@rinminase/ng-fortawesome";
 import { debounceTime, distinctUntilChanged } from "rxjs/operators";
 import { format } from "date-fns";
 import * as Fuse from "fuse.js";

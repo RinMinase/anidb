@@ -6,7 +6,7 @@ import {
 	FormControl,
 } from "@angular/forms";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
-import { faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faCheck, faTimes } from "@rinminase/ng-fortawesome";
 import { Observable } from "rxjs";
 import { debounceTime, distinctUntilChanged, map } from "rxjs/operators";
 import { getMonth, getYear } from "date-fns";

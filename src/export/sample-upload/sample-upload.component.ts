@@ -5,7 +5,7 @@ import {
 	faTimes,
 	faTrash,
 	faUpload,
-} from "@fortawesome/free-solid-svg-icons";
+} from "@rinminase/ng-fortawesome";
 
 import { FileUploader } from "ng2-file-upload";
 

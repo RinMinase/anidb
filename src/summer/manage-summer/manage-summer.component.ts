@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
-import { faPlus, faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faSearch } from "@rinminase/ng-fortawesome";
 import { format, fromUnixTime } from "date-fns";
 
 import { FirebaseService } from "@services/firebase.service";

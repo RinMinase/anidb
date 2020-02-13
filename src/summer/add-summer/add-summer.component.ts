@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
-import { faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faCheck, faTimes } from "@rinminase/ng-fortawesome";
 import Swal from "sweetalert2";
 
 @Component({
