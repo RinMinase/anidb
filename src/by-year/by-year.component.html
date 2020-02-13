@@ -31,7 +31,7 @@
 							(click)="category.year = 0; category.season = 0;"
 							[ngClass]="{'list-group-item-info': !category.year}">
 							<span>Uncategorized</span>
-							<div class="pull-right">
+							<div class="float-right">
 								<span class="badge badge-success download-badge" ngbTooltip="Watched">
 									{{ data[0][0][0]?.length || 0 }}
 								</span>
@@ -62,7 +62,7 @@
 									<span *ngIf="value === 2">Summer</span>
 									<span *ngIf="value === 3">Fall</span>
 
-									<span class="pull-right">
+									<span class="float-right">
 										<span class="badge badge-success download-badge" ngbTooltip="Watched">
 											{{ data[key][value][0]?.length || 0 }}
 										</span>
@@ -99,7 +99,7 @@
 								(click)="collapse[3] = !collapse[3]"
 								*ngIf="key === '3'">In Queue</a>
 
-							<div class="pull-right">
+							<div class="float-right">
 								<div class="badge"
 									[ngClass]="{
 										'badge-success': key === '0',
@@ -130,7 +130,7 @@
 											<span>{{ data.remarks || "&mdash;" }}</span>
 										</td>
 										<td>
-											<a class="btn btn-sm btn-warning pull-right px-2 py-0 c-pointer" ngbTooltip="Edit Remarks">
+											<a class="btn btn-sm btn-warning float-right px-2 py-0 c-pointer" ngbTooltip="Edit Remarks">
 												<fa-icon [icon]="faPencil" class="text-white"></fa-icon>
 											</a>
 										</td>
