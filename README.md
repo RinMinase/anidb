@@ -21,10 +21,10 @@
 </p>
 <p align="center">
     <a href="https://angular.io/">
-        <img alt="Angular" src="https://img.shields.io/badge/angular-%5E9.0.0-red.svg?logo=angular&style=for-the-badge">
+        <img alt="Angular" src="https://img.shields.io/badge/angular-%5E9.0-red.svg?logo=angular&style=for-the-badge">
     </a>
     <a href="https://nodejs.org">
-        <img alt="Node" src="https://img.shields.io/badge/node-%5E12.0%20%7C%7C%20%5E13.0-brightgreen.svg?logo=node.js&logoColor=white&style=for-the-badge">
+        <img alt="Node" src="https://img.shields.io/badge/node-%5E10.13%20%7C%7C%5E12.0%20%7C%7C%20%5E13.0-brightgreen.svg?logo=node.js&logoColor=white&style=for-the-badge">
     </a>
 </p>
 
