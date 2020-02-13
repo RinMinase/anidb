@@ -1688,6 +1688,15 @@
     chart.js "^2.9.3"
     lodash-es "^4.17.15"
 
+"@rinminase/ng-fortawesome@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@rinminase/ng-fortawesome/-/ng-fortawesome-0.1.1.tgz#d933b0e6c528f08812fa241c97ceceed6682f869"
+  integrity sha512-4rHgQPlGpeomwMmXI/QiYrxZzbUnCiodV76nVk7eSFuPZbR27WwWQIIpT7/DEor42iaUBiGJv0ifd++lPqbL1Q==
+  dependencies:
+    "@fortawesome/fontawesome-svg-core" "^1.2.27"
+    "@fortawesome/free-brands-svg-icons" "^5.12.1"
+    "@fortawesome/free-solid-svg-icons" "^5.12.1"
+
 "@schematics/angular@9.0.2":
   version "9.0.2"
   resolved "https://registry.yarnpkg.com/@schematics/angular/-/angular-9.0.2.tgz#d06950506f2aff28a24066bb3a54d0651c2450cd"
@@ -9124,7 +9133,7 @@ node-libs-browser@^2.2.1:
     util "^0.11.0"
     vm-browserify "^1.0.1"
 
-node-pre-gyp@*, node-pre-gyp@^0.14.0:
+node-pre-gyp@^0.14.0:
   version "0.14.0"
   resolved "https://registry.yarnpkg.com/node-pre-gyp/-/node-pre-gyp-0.14.0.tgz#9a0596533b877289bcad4e143982ca3d904ddc83"
   integrity sha512-+CvDC7ZttU/sSt9rFjix/P05iS43qHCOOGzcr3Ry99bXG7VX953+vFyEuph/tfqoYu8dttBkE86JSKBO2OzcxA==
