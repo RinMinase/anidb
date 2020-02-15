@@ -28,7 +28,6 @@
     "@angular/pwa": "^0.900.2",
     "@angular/router": "^9.0.1",
     "@angular/service-worker": "^9.0.1",
-    "@fortawesome/angular-fontawesome": "^0.6.0",
     "@ng-bootstrap/ng-bootstrap": "^6.0.0-rc.0",
     "@rinminase/ng-charts": "^1.1.0",
     "@rinminase/ng-fortawesome": "^2.0.0",
