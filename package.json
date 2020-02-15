@@ -30,7 +30,7 @@
     "@angular/service-worker": "^9.0.1",
     "@fortawesome/angular-fontawesome": "^0.6.0",
     "@ng-bootstrap/ng-bootstrap": "^6.0.0-rc.0",
-    "@rinminase/ng-charts": "^1.0.3",
+    "@rinminase/ng-charts": "^1.1.0",
     "@rinminase/ng-fortawesome": "^1.0.1",
     "animatewithsass": "^3.2.1",
     "bootstrap": "^4.4.1",

@@ -2,7 +2,7 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { RouterModule, Routes } from "@angular/router";
 import { NgbModalModule } from "@ng-bootstrap/ng-bootstrap";
-import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
+import { FontAwesomeModule } from "@rinminase/ng-fortawesome";
 
 import { DownloadComponent } from "./download.component";
 import { AddSeasonComponent } from "./add-season/add-season.component";

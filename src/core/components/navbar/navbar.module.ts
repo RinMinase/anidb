@@ -6,7 +6,7 @@ import {
 	NgbCollapseModule,
 	NgbDropdownModule,
 } from "@ng-bootstrap/ng-bootstrap";
-import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
+import { FontAwesomeModule } from "@rinminase/ng-fortawesome";
 
 import {
 	faCalendarAlt,

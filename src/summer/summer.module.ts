@@ -2,7 +2,7 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { Routes, RouterModule } from "@angular/router";
 import { NgbModalModule } from "@ng-bootstrap/ng-bootstrap";
-import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
+import { FontAwesomeModule } from "@rinminase/ng-fortawesome";
 
 import { LegendModule } from "@components/legend/legend.module";
 import { SummerComponent } from "./summer.component";
