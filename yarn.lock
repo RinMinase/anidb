@@ -1686,10 +1686,10 @@
     chart.js "^2.9.3"
     lodash-es "^4.17.15"
 
-"@rinminase/ng-fortawesome@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@rinminase/ng-fortawesome/-/ng-fortawesome-1.0.1.tgz#5fe6a32572a769ae92da534ecc96bca7d8b23938"
-  integrity sha512-aoo4No3U4IEW0+b7k3Z+I7JrAnq0cZpwqST+j6/P7Nr+WF/N7AH56rzq++CtrJVGaZoEsbZtVRI6lY/3DmR3hg==
+"@rinminase/ng-fortawesome@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@rinminase/ng-fortawesome/-/ng-fortawesome-2.0.0.tgz#e4ddcc76b7529abd0889e05c9898b15c164d9e04"
+  integrity sha512-X3Ei8eiTaKci78JsSbL9FMbTSGK6aqZszmUVRnwQ6po17TCOxuR0RO+whrwwFbwWA3fNLqtd+a07YMo7RgrpoQ==
   dependencies:
     "@fortawesome/fontawesome-svg-core" "^1.2.27"
     "@fortawesome/free-brands-svg-icons" "^5.12.1"
