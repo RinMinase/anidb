@@ -1677,10 +1677,10 @@
   resolved "https://registry.yarnpkg.com/@protobufjs/utf8/-/utf8-1.1.0.tgz#a777360b5b39a1a2e5106f8e858f2fd2d060c570"
   integrity sha1-p3c2C1s5oaLlEG+OhY8v0tBgxXA=
 
-"@rinminase/ng-charts@^1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@rinminase/ng-charts/-/ng-charts-1.1.1.tgz#747831cb7a4dafe51f020c8c403d6e4abbc67083"
-  integrity sha512-VQulA8YzvPzJmMVLSr5XMzEnTGUXBEBc5prVgSbe1oWCn3NfHI7JZWlapskK2K7GJxOgqbMaidsnVdqvPQkhCg==
+"@rinminase/ng-charts@^1.2.1":
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@rinminase/ng-charts/-/ng-charts-1.2.1.tgz#72f04e531ead7d643e8e375be2fe593e24fd1b1b"
+  integrity sha512-Iz8Kv7Mnup2nxHfgZxlIXE9OYSNXTyqs47ha4om/VEfzV/JgFaEvgffEL+Vi6ITD4FH/BZEXpc1WmMIp15v2Wg==
   dependencies:
     "@types/chart.js" "^2.9.14"
     chart.js "^2.9.3"
