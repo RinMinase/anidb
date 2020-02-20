@@ -1677,10 +1677,10 @@
   resolved "https://registry.yarnpkg.com/@protobufjs/utf8/-/utf8-1.1.0.tgz#a777360b5b39a1a2e5106f8e858f2fd2d060c570"
   integrity sha1-p3c2C1s5oaLlEG+OhY8v0tBgxXA=
 
-"@rinminase/ng-charts@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@rinminase/ng-charts/-/ng-charts-1.1.0.tgz#4bb4325250e012644db73f74a3e5fa1d137f302c"
-  integrity sha512-0hcbQVl5IY+yRQkHyjkeBLlo5Tuct3KoCwtoWgbDLHJRT+PRB0b8coXRdwtKkd2zGTEh5IFzolAoGhymuS7ZBQ==
+"@rinminase/ng-charts@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@rinminase/ng-charts/-/ng-charts-1.1.1.tgz#747831cb7a4dafe51f020c8c403d6e4abbc67083"
+  integrity sha512-VQulA8YzvPzJmMVLSr5XMzEnTGUXBEBc5prVgSbe1oWCn3NfHI7JZWlapskK2K7GJxOgqbMaidsnVdqvPQkhCg==
   dependencies:
     "@types/chart.js" "^2.9.14"
     chart.js "^2.9.3"
@@ -9235,7 +9235,7 @@ node-libs-browser@^2.2.1:
     util "^0.11.0"
     vm-browserify "^1.0.1"
 
-node-pre-gyp@*, node-pre-gyp@^0.14.0:
+node-pre-gyp@^0.14.0:
   version "0.14.0"
   resolved "https://registry.yarnpkg.com/node-pre-gyp/-/node-pre-gyp-0.14.0.tgz#9a0596533b877289bcad4e143982ca3d904ddc83"
   integrity sha512-+CvDC7ZttU/sSt9rFjix/P05iS43qHCOOGzcr3Ry99bXG7VX953+vFyEuph/tfqoYu8dttBkE86JSKBO2OzcxA==
