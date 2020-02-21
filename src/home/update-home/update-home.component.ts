@@ -6,7 +6,7 @@ import {
 	FormControl,
 } from "@angular/forms";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
-import { faCheck, faTimes } from "@rinminase/ng-fortawesome";
+import { fasCheck, fasTimes } from "@rinminase/ng-fortawesome";
 import { Observable } from "rxjs";
 import { debounceTime, distinctUntilChanged, map } from "rxjs/operators";
 import { format } from "date-fns";
@@ -26,8 +26,8 @@ export class UpdateHomeComponent implements OnInit {
 	@Input() data: any;
 	@Input() id: number;
 
-	faCheck = faCheck;
-	faTimes = faTimes;
+	fasCheck = fasCheck;
+	fasTimes = fasTimes;
 
 	editTitleForm: FormGroup;
 	offquelSelection = new FormControl("");

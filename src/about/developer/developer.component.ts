@@ -1,9 +1,10 @@
 import { Component, OnInit } from "@angular/core";
-import { faEnvelope, faPhone } from "@rinminase/ng-fortawesome";
 import {
-	faBitbucket,
-	faFacebookF,
-	faGithubAlt,
+	fabBitbucket,
+	fasEnvelope,
+	fabFacebookF,
+	fabGithubAlt,
+	fasPhone,
 } from "@rinminase/ng-fortawesome";
 
 @Component({
@@ -11,11 +12,11 @@ import {
 	templateUrl: "./developer.component.html",
 })
 export class DeveloperComponent implements OnInit {
-	faBitbucket = faBitbucket;
-	faEnvelope = faEnvelope;
-	faFacebook = faFacebookF;
-	faGithub = faGithubAlt;
-	faPhone = faPhone;
+	fabBitbucket = fabBitbucket;
+	fasEnvelope = fasEnvelope;
+	fabFacebook = fabFacebookF;
+	fabGithub = fabGithubAlt;
+	fasPhone = fasPhone;
 
 	constructor() {}
 

@@ -2,13 +2,13 @@ import { Component, OnInit } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import {
-	faAngleLeft,
-	faLeaf,
-	faPencilAlt,
-	faSnowflake,
-	faSun,
-	faTrash,
-	faTree,
+	fasAngleLeft,
+	fasLeaf,
+	fasPencilAlt,
+	fasSnowflake,
+	fasSun,
+	fasTrash,
+	fasTree,
 } from "@rinminase/ng-fortawesome";
 import Swal from "sweetalert2";
 import { format } from "date-fns";
@@ -26,13 +26,13 @@ import { HomeService } from "../home.service";
 	styleUrls: ["./view-home.component.scss"],
 })
 export class ViewHomeComponent implements OnInit {
-	faAngleLeft = faAngleLeft;
-	faLeaf = faLeaf;
-	faPencil = faPencilAlt;
-	faSnow = faSnowflake;
-	faSun = faSun;
-	faTrash = faTrash;
-	faTree = faTree;
+	fasAngleLeft = fasAngleLeft;
+	fasLeaf = fasLeaf;
+	fasPencil = fasPencilAlt;
+	fasSnow = fasSnowflake;
+	fasSun = fasSun;
+	fasTrash = fasTrash;
+	fasTree = fasTree;
 
 	data: any;
 	dataLoaded: boolean = false;

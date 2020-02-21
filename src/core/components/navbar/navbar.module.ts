@@ -9,26 +9,26 @@ import {
 import { FontAwesomeModule } from "@rinminase/ng-fortawesome";
 
 import {
-	faCalendarAlt,
-	// faCalendarPlus,
-	// faChartPie,
-	faCloudDownloadAlt,
-	// faCode,
-	// faCog,
-	// faEdit,
-	faFileCsv,
-	faFileExcel,
-	// faFlask,
-	faHdd,
-	faHome,
-	faList,
-	faPencilAlt,
-	faPlay,
-	// faPlus,
-	faPowerOff,
-	faQuestion,
-	faSortAlphaDown,
-	faTasks,
+	fasCalendarAlt,
+	// fasCalendarPlus,
+	// fasChartPie,
+	fasCloudDownloadAlt,
+	// fasCode,
+	// fasCog,
+	// fasEdit,
+	fasFileCsv,
+	fasFileExcel,
+	// fasFlask,
+	fasHdd,
+	fasHome,
+	fasList,
+	fasPencilAlt,
+	fasPlay,
+	// fasPlus,
+	fasPowerOff,
+	fasQuestion,
+	fasSortAlphaDown,
+	fasTasks,
 } from "@rinminase/ng-fortawesome";
 
 import { DarkModeService } from "@services/dark-mode.service";
@@ -40,26 +40,26 @@ import { distinctUntilChanged } from "rxjs/operators";
 	templateUrl: "./navbar.component.html",
 })
 export class NavbarComponent implements OnInit {
-	faCalendarAlt = faCalendarAlt;
-	// faCalendarPlus = faCalendarPlus;
-	// faChartPie = faChartPie;
-	faCloudDownloadAlt = faCloudDownloadAlt;
-	// faCode = faCode;
-	// faCog = faCog;
-	// faEdit = faEdit;
-	faFileCsv = faFileCsv;
-	faFileExcel = faFileExcel;
-	// faFlask = faFlask;
-	faHdd = faHdd;
-	faHome = faHome;
-	faList = faList;
-	faPencilAlt = faPencilAlt;
-	faPlay = faPlay;
-	// faPlus = faPlus;
-	faPowerOff = faPowerOff;
-	faQuestion = faQuestion;
-	faSortAlphaDown = faSortAlphaDown;
-	faTasks = faTasks;
+	fasCalendarAlt = fasCalendarAlt;
+	// fasCalendarPlus = fasCalendarPlus;
+	// fasChartPie = fasChartPie;
+	fasCloudDownloadAlt = fasCloudDownloadAlt;
+	// fasCode = fasCode;
+	// fasCog = fasCog;
+	// fasEdit = fasEdit;
+	fasFileCsv = fasFileCsv;
+	fasFileExcel = fasFileExcel;
+	// fasFlask = fasFlask;
+	fasHdd = fasHdd;
+	fasHome = fasHome;
+	fasList = fasList;
+	fasPencilAlt = fasPencilAlt;
+	fasPlay = fasPlay;
+	// fasPlus = fasPlus;
+	fasPowerOff = fasPowerOff;
+	fasQuestion = fasQuestion;
+	fasSortAlphaDown = fasSortAlphaDown;
+	fasTasks = fasTasks;
 
 	darkModeToggle = new FormControl(false);
 	isNavCollapsed: boolean = false;

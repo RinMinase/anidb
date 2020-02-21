@@ -9,19 +9,19 @@
 			<div class="row mb-2">
 				<div class="col-sm-4 col-12 mb-sm-0 mb-2 px-sm-3">
 					<a class="btn btn-primary btn-block text-white c-pointer" routerLink="/">
-						<fa-icon [icon]="faAngleLeft" class="pr-2"></fa-icon>
+						<fa-icon [icon]="fasAngleLeft" class="pr-2"></fa-icon>
 						<span>Back</span>
 					</a>
 				</div>
 				<div class="col-sm-4 col-6 px-sm-3 pr-1">
 					<a class="btn btn-warning btn-block text-white c-pointer" (click)="editTitle()">
-						<fa-icon [icon]="faPencil" class="pr-2"></fa-icon>
+						<fa-icon [icon]="fasPencil" class="pr-2"></fa-icon>
 						<span>Edit</span>
 					</a>
 				</div>
 				<div class="col-sm-4 col-6 px-sm-3 pl-1">
 					<a class="btn btn-danger btn-block text-white c-pointer" (click)="deleteTitle()">
-						<fa-icon [icon]="faTrash" class="pr-2"></fa-icon>
+						<fa-icon [icon]="fasTrash" class="pr-2"></fa-icon>
 						<span>Delete</span>
 					</a>
 				</div>
@@ -32,19 +32,19 @@
 			<div class="row mb-2 d-lg-flex d-none">
 				<div class="col-lg-12 mb-2">
 					<a class="btn btn-primary btn-block text-white c-pointer" routerLink="/">
-						<fa-icon [icon]="faAngleLeft" class="pr-2"></fa-icon>
+						<fa-icon [icon]="fasAngleLeft" class="pr-2"></fa-icon>
 						<span>Back</span>
 					</a>
 				</div>
 				<div class="col-lg-6 pr-1">
 					<a class="btn btn-warning btn-block text-white c-pointer" (click)="editTitle()">
-						<fa-icon [icon]="faPencil" class="pr-2"></fa-icon>
+						<fa-icon [icon]="fasPencil" class="pr-2"></fa-icon>
 						<span>Edit</span>
 					</a>
 				</div>
 				<div class="col-lg-6 pl-1">
 					<a class="btn btn-danger btn-block text-white c-pointer" (click)="deleteTitle()">
-						<fa-icon [icon]="faTrash" class="pr-2"></fa-icon>
+						<fa-icon [icon]="fasTrash" class="pr-2"></fa-icon>
 						<span>Delete</span>
 					</a>
 				</div>
@@ -124,19 +124,19 @@
 								<div class="col-12"
 									*ngIf="data.releaseYear && data.releaseSeason">
 									<p class="big">
-										<fa-icon [icon]="faSnow"
+										<fa-icon [icon]="fasSnow"
 											class="pr-2 icon-winter"
 											*ngIf="data.releaseSeason === 'Winter'">
 										</fa-icon>
-										<fa-icon [icon]="faLeaf"
+										<fa-icon [icon]="fasLeaf"
 											class="pr-2 icon-spring"
 											*ngIf="data.releaseSeason === 'Spring'">
 										</fa-icon>
-										<fa-icon [icon]="faSun"
+										<fa-icon [icon]="fasSun"
 											class="pr-2 icon-summer"
 											*ngIf="data.releaseSeason === 'Summer'">
 										</fa-icon>
-										<fa-icon [icon]="faTree"
+										<fa-icon [icon]="fasTree"
 											class="pr-2 icon-fall"
 											*ngIf="data.releaseSeason === 'Fall'">
 										</fa-icon>

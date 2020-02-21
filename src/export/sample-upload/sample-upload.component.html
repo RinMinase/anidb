@@ -35,13 +35,13 @@
 						</td>
 						<td class="text-center">
 								<span *ngIf="item.isSuccess">
-									<fa-icon [icon]="faCheck"></fa-icon>
+									<fa-icon [icon]="fasCheck"></fa-icon>
 								</span>
 								<span *ngIf="item.isCancel">
-									<fa-icon [icon]="faBan"></fa-icon>
+									<fa-icon [icon]="fasBan"></fa-icon>
 								</span>
 								<span *ngIf="item.isError">
-									<fa-icon [icon]="faTimes"></fa-icon>
+									<fa-icon [icon]="fasTimes"></fa-icon>
 								</span>
 						</td>
 						<td nowrap>
@@ -50,7 +50,7 @@
 									(click)="item.upload()"
 									[disabled]="item.isReady || item.isUploading || item.isSuccess">
 
-									<fa-icon [icon]="faUpload" class="pr-2"></fa-icon>
+									<fa-icon [icon]="fasUpload" class="pr-2"></fa-icon>
 									<span>Upload</span>
 								</button>
 								<button type="button"
@@ -58,11 +58,11 @@
 									(click)="item.cancel()"
 									[disabled]="!item.isUploading">
 
-									<fa-icon [icon]="faBan" class="pr-2"></fa-icon>
+									<fa-icon [icon]="fasBan" class="pr-2"></fa-icon>
 									<span>Cancel</span>
 								</button>
 								<button type="button" class="btn btn-danger btn-sm mr-2" (click)="item.remove()">
-									<fa-icon [icon]="faTrash" class="pr-2"></fa-icon>
+									<fa-icon [icon]="fasTrash" class="pr-2"></fa-icon>
 									<span>Remove</span>
 								</button>
 						</td>
@@ -86,7 +86,7 @@
 						(click)="uploader.uploadAll()"
 						[disabled]="!uploader.getNotUploadedItems().length">
 
-						<fa-icon [icon]="faUpload" class="pr-2"></fa-icon>
+						<fa-icon [icon]="fasUpload" class="pr-2"></fa-icon>
 						<span>Upload all</span>
 					</button>
 					<button type="button"
@@ -94,7 +94,7 @@
 						(click)="uploader.cancelAll()"
 						[disabled]="!uploader.isUploading">
 
-						<fa-icon [icon]="faBan" class="pr-2"></fa-icon>
+						<fa-icon [icon]="fasBan" class="pr-2"></fa-icon>
 						<span>Cancel all</span>
 					</button>
 					<button type="button"
@@ -102,7 +102,7 @@
 						(click)="uploader.clearQueue()"
 						[disabled]="!uploader.queue.length">
 
-						<fa-icon [icon]="faTrash" class="pr-2"></fa-icon>
+						<fa-icon [icon]="fasTrash" class="pr-2"></fa-icon>
 						<span>Remove all</span>
 					</button>
 				</div>

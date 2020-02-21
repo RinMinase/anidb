@@ -1,10 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import {
-	faBan,
-	faCheck,
-	faTimes,
-	faTrash,
-	faUpload,
+	fasBan,
+	fasCheck,
+	fasTimes,
+	fasTrash,
+	fasUpload,
 } from "@rinminase/ng-fortawesome";
 
 import { FileUploader } from "ng2-file-upload";
@@ -15,11 +15,11 @@ import { FileUploader } from "ng2-file-upload";
 	styleUrls: ["./sample-upload.component.scss"],
 })
 export class SampleUploadComponent implements OnInit {
-	faBan = faBan;
-	faCheck = faCheck;
-	faTimes = faTimes;
-	faTrash = faTrash;
-	faUpload = faUpload;
+	fasBan = fasBan;
+	fasCheck = fasCheck;
+	fasTimes = fasTimes;
+	fasTrash = fasTrash;
+	fasUpload = fasUpload;
 
 	uploader: FileUploader = new FileUploader({ url: "" });
 	hasBaseDropZoneOver: boolean = false;

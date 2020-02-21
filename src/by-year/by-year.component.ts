@@ -1,10 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import {
-	faAngleDown,
-	faPencilAlt,
-	faSearch,
-	faTrash,
+	fasAngleDown,
+	fasPencilAlt,
+	fasSearch,
+	fasTrash,
 } from "@rinminase/ng-fortawesome";
 
 import { FirebaseService } from "@services/firebase.service";
@@ -16,10 +16,10 @@ import { FirebaseQueryBuilder } from "@builders/firebase-query.service";
 	styleUrls: ["./by-year.component.scss"],
 })
 export class ByYearComponent implements OnInit {
-	faAngleDown = faAngleDown;
-	faPencil = faPencilAlt;
-	faSearch = faSearch;
-	faTrash = faTrash;
+	fasAngleDown = fasAngleDown;
+	fasPencil = fasPencilAlt;
+	fasSearch = fasSearch;
+	fasTrash = fasTrash;
 
 	objKeys = Object.keys;
 	data = {};

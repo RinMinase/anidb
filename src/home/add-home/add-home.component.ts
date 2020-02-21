@@ -6,7 +6,7 @@ import {
 	FormControl,
 } from "@angular/forms";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
-import { faCheck, faTimes } from "@rinminase/ng-fortawesome";
+import { fasCheck, fasTimes } from "@rinminase/ng-fortawesome";
 import { Observable } from "rxjs";
 import { debounceTime, distinctUntilChanged, map } from "rxjs/operators";
 import { getMonth, getYear } from "date-fns";
@@ -22,8 +22,8 @@ import { HomeService } from "../home.service";
 	styleUrls: ["./add-home.component.scss"],
 })
 export class AddHomeComponent implements OnInit {
-	faCheck = faCheck;
-	faTimes = faTimes;
+	fasCheck = fasCheck;
+	fasTimes = fasTimes;
 
 	addTitleForm: FormGroup;
 	offquelSelection = new FormControl("");

@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
-import { faPlus, faTimes, faTrash } from "@rinminase/ng-fortawesome";
+import { fasPlus, fasTimes, fasTrash } from "@rinminase/ng-fortawesome";
 import { format, fromUnixTime } from "date-fns";
 
 import { FirebaseService } from "@services/firebase.service";
@@ -16,9 +16,9 @@ export class RewatchComponent implements OnInit {
 	@Input() id: number;
 	@Input() rewatch: Array<any>;
 
-	faPlus = faPlus;
-	faTimes = faTimes;
-	faTrash = faTrash;
+	fasPlus = fasPlus;
+	fasTimes = fasTimes;
+	fasTrash = fasTrash;
 
 	rewatchForm: FormGroup;
 	submitted: boolean = false;

@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
-import { faCheck, faTimes } from "@rinminase/ng-fortawesome";
+import { fasCheck, fasTimes } from "@rinminase/ng-fortawesome";
 import Swal from "sweetalert2";
 
 @Component({
@@ -9,8 +9,8 @@ import Swal from "sweetalert2";
 	styleUrls: ["./add-season.component.scss"],
 })
 export class AddSeasonComponent implements OnInit {
-	faCheck = faCheck;
-	faTimes = faTimes;
+	fasCheck = fasCheck;
+	fasTimes = fasTimes;
 
 	constructor(private modal: NgbActiveModal) {}
 
