@@ -62,10 +62,10 @@
     "karma-jasmine": "^3.1.1",
     "netlify-cli": "^2.35.0",
     "stylelint": "^13.2.0",
-    "tslib": "^1.10.0",
+    "tslib": "^1.11.0",
     "tslint": "^6.0.0",
     "tslint-sonarts": "^1.9.0",
-    "typescript": "^3.7.5"
+    "typescript": "^3.8.2"
   },
   "resolutions": {
     "**/dropzone": "5.7.0"
