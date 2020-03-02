@@ -12,7 +12,8 @@ export class UnitSpecsComponent implements OnInit {
 
 	ngOnInit() {
 		this.data = {
-			cpu: "Intel Core i7-9700K (12M, 4.9GHz)",
+			cpu: "Intel Core i7-9700K",
+			cpuSubtext: "(All Core Overclock) 4.80 GHz",
 			ram: "GSkill Trident Z RGB 16GB",
 			ramSubtext: "(2 × 8GB) 3000MHz DDR4",
 			gpu: "Asus ROG Strix GTX 1070 OC",
@@ -22,14 +23,14 @@ export class UnitSpecsComponent implements OnInit {
 			psu: "CoolerMaster MasterWatt 650W",
 			psuSubtext: "80+ Bronze",
 			cooler: "FSP Windale 4 120mm HSF",
+			coolerSubtext: "1x Noctua NF-F12 chromax",
 			ssd: "Samsung 860 EVO 1TB",
 			hdd: "Western Digital Black 2TB",
 
 			case: "NZXT H700 Matte Black",
 			fans: "3x Thermaltake Riing Plus 120",
 			fansSubtext: "Thermaltake Riing Fan Controller",
-			fansSubtext2: "1x NZXT AER P 140mm",
-			fansSubtext3: "3x NZXT AER P 120mm",
+			fansSubtext2: "3x NZXT AER P 120mm",
 
 			monitor: "Dell SE2717H (1920 × 1080)",
 			speakers: "Bose Companion 50 2.1",

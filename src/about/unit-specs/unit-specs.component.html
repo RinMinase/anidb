@@ -3,7 +3,7 @@
 		<tbody>
 			<tr>
 				<td>CPU</td><td>:</td>
-				<td class="table-specs-value">{{ data.cpu }}</td>
+				<td class="table-specs-value">{{ data.cpu }}<br>{{ data.cpuSubtext }}</td>
 			</tr>
 			<tr>
 				<td>RAM</td><td>:</td>
@@ -25,7 +25,7 @@
 			</tr>
 			<tr>
 				<td>CPU Cooler</td><td>:</td>
-				<td class="table-specs-value">{{ data.cooler }}</td>
+				<td class="table-specs-value">{{ data.cooler }}<br>{{ data.coolerSubtext }}</td>
 			</tr>
 			<tr>
 				<td>SSD</td><td>:</td>
@@ -46,8 +46,7 @@
 				<td class="table-specs-value">
 					<span>{{ data.fans }}<br></span>
 					<span>{{ data.fansSubtext }}<br></span>
-					<span>{{ data.fansSubtext2 }}<br></span>
-					<span>{{ data.fansSubtext3 }}</span>
+					<span>{{ data.fansSubtext2 }}</span>
 				</td>
 			</tr>
 			<tr><td class="p-1" colspan="3"></td></tr>
