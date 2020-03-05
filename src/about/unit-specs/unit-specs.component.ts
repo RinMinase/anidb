@@ -22,7 +22,7 @@ export class UnitSpecsComponent implements OnInit {
 			motherboard: "Asus ROG Strix Z390-E Gaming",
 			psu: "CoolerMaster MasterWatt 650W",
 			psuSubtext: "80+ Bronze",
-			cooler: "FSP Windale 4 120mm HSF",
+			cooler: "Noctua NH-U12S chromax",
 			coolerSubtext: "1x Noctua NF-F12 chromax",
 			ssd: "Samsung 860 EVO 1TB",
 			hdd: "Western Digital Black 2TB",
