@@ -23,7 +23,7 @@ export class UnitSpecsComponent implements OnInit {
 			psu: "CoolerMaster MasterWatt 650W",
 			psuSubtext: "80+ Bronze",
 			cooler: "Noctua NH-U12S chromax",
-			coolerSubtext: "1x Noctua NF-F12 chromax",
+			coolerSubtext: "2x Noctua NF-F12 chromax",
 			ssd: "Samsung 860 EVO 1TB",
 			hdd: "Western Digital Black 2TB",
 
