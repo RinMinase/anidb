@@ -1331,24 +1331,6 @@
     toml "^3.0.0"
     yargs "^15.3.0"
 
-"@netlify/config@^0.3.1":
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/@netlify/config/-/config-0.3.1.tgz#9cbcaf4da6c09d8d863c1c2f057e933709dfc14f"
-  integrity sha512-Bhay4DiDthCOIiJNqL6+omRuBa0z29/3ssu7mNDE9FeeYqJ4k2r5m7M0xccUbFIOfbk0/kB91J6MGcRKAGKu1A==
-  dependencies:
-    chalk "^3.0.0"
-    deepmerge "^4.2.2"
-    dot-prop "^5.2.0"
-    filter-obj "^2.0.1"
-    find-up "^4.1.0"
-    indent-string "^4.0.0"
-    is-plain-obj "^2.1.0"
-    js-yaml "^3.13.1"
-    map-obj "^4.1.0"
-    omit.js "^1.0.2"
-    path-exists "^4.0.0"
-    toml "^3.0.0"
-
 "@netlify/functions-utils@^0.2.0":
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/@netlify/functions-utils/-/functions-utils-0.2.0.tgz#2430b9b9197010ea9d0606a1b9749d303090d680"
