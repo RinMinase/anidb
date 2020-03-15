@@ -63,7 +63,7 @@
     "netlify-cli": "^2.39.0",
     "stylelint": "^13.2.1",
     "tslib": "^1.11.1",
-    "tslint": "^6.0.0",
+    "tslint": "^6.1.0",
     "tslint-sonarts": "^1.9.0",
     "typescript": "^3.8.3"
   },
