@@ -51,6 +51,12 @@ export class ManageHddComponent implements OnInit {
 	}
 
 	formatData(hddData: Array<any>, animeData: Array<any>) {
+		let finalSize = 0;
+		let finalUsed = 0;
+		let finalHddSize = 0;
+
+		this.data.push({ hdd: { from: "TOTAL" } });
+
 		hddData.forEach((hdd, index) => {
 			const size = (hdd.size / 1073741824).toFixed(2);
 			let totalSize = 0;
@@ -77,41 +83,89 @@ export class ManageHddComponent implements OnInit {
 					String.fromCharCode(from) === "A";
 
 				if (isTitleNumeric || (firstLetter >= from && firstLetter <= to)) {
-					this.data[index].entries.push({
+					this.data[index + 1].entries.push({
 						filesize: this.utility.convertFilesize(anime.filesize),
 						quality: anime.quality,
 						title: anime.title,
 					});
 					totalSize += anime.filesize;
 				}
+
+				if (index === 0) {
+					finalSize += anime.filesize;
+				}
 			});
 
-			this.data.forEach((data) => data.entries.sort(this.utility.sortByTitle));
+			this.data.forEach(
+				({ entries }) => entries && entries.sort(this.utility.sortByTitle),
+			);
 
-			const free = ((hdd.size - totalSize) / 1073741824).toFixed(2);
-			const used = (totalSize / 1073741824).toFixed(2);
-			const titles = this.data[index].entries.length;
-			const percent = parseInt(((totalSize / hdd.size) * 100).toFixed(0));
-			let percentType: string;
+			finalHddSize += hdd.size;
+			finalUsed += totalSize;
 
-			if (percent >= 0 && percent < 80) {
-				percentType = "success";
-			} else if (percent >= 80 && percent < 90) {
-				percentType = "warning";
-			} else {
-				percentType = "danger";
-			}
+			this.formatSingle(totalSize, hdd.size, index);
+		});
 
-			this.collapse.push(false);
+		this.formatTotal(finalSize, finalUsed, finalHddSize, animeData.length);
+	}
 
-			Object.assign(this.data[index].hdd, {
-				free: `${free} GB`,
-				panel: this.collapse.length,
-				percent,
-				percentType,
-				titles,
-				used: `${used} GB`,
-			});
+	formatSingle(totalSize: number, hddSize: number, index: number) {
+		const free = ((hddSize - totalSize) / 1073741824).toFixed(2);
+		const used = (totalSize / 1073741824).toFixed(2);
+		const titles = this.data[index + 1].entries.length;
+		const percent = parseInt(((totalSize / hddSize) * 100).toFixed(0));
+		let percentType: string;
+
+		if (percent >= 0 && percent < 80) {
+			percentType = "success";
+		} else if (percent >= 80 && percent < 90) {
+			percentType = "warning";
+		} else {
+			percentType = "danger";
+		}
+
+		this.collapse.push(false);
+
+		Object.assign(this.data[index + 1].hdd, {
+			free: `${free} GB`,
+			panel: this.collapse.length,
+			percent,
+			percentType,
+			titles,
+			used: `${used} GB`,
+		});
+	}
+
+	formatTotal(
+		finalSize: number,
+		finalUsed: number,
+		finalHddSize: number,
+		finalTitles: number,
+	) {
+		const finalFree = ((finalHddSize - finalUsed) / 1073741824).toFixed(2);
+		const finalFreeTB = ((finalHddSize - finalUsed) / 1099511627776).toFixed(2);
+		const finalUsedFmt = (finalUsed / 1099511627776).toFixed(2);
+		const finalHddSizeFmt = (finalHddSize / 1099511627776).toFixed(2);
+		const finalPercent = parseInt(
+			((finalSize / finalHddSize) * 100).toFixed(0),
+		);
+		let finalPercentType: string;
+
+		if (finalPercent >= 0 && finalPercent < 80) {
+			finalPercentType = "success";
+		} else if (finalPercent >= 80 && finalPercent < 90) {
+			finalPercentType = "warning";
+		} else {
+			finalPercentType = "danger";
+		}
+
+		Object.assign(this.data[0].hdd, {
+			free: `${finalFree} GB (${finalFreeTB} TB)`,
+			total: `${finalHddSizeFmt} TB`,
+			percent: finalPercent,
+			percentType: finalPercentType,
+			titles: finalTitles,
+			used: `${finalUsedFmt} TB`,
 		});
 	}
 

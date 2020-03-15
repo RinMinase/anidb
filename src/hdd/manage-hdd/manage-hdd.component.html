@@ -6,15 +6,20 @@
 
 		<div class="row" *ngIf="dataLoaded === true">
 			<div class="col-lg-3 col-12 animate slideInLeft">
-				<div class="card">
+				<div class="card mb-3">
 					<div class="card-header bg-success-light">
 						<h5 class="mb-0">Disks</h5>
 					</div>
 					<div class="card-body">
-						<div class="row mb-2" *ngFor="let data of data">
+						<div class="row mb-3" *ngFor="let data of data">
 							<div class="col-12">
-								<p class="mb-2">
-									<span><strong>{{ data.hdd.from }} - {{ data.hdd.to }}</strong></span>
+								<p class="mb-2 mt-1">
+									<span class="h6">
+										<strong>
+											<span>{{ data.hdd.from }}</span>
+											<span *ngIf="data.hdd.to"> - {{ data.hdd.to }}</span>
+										</strong>
+									</span>
 									<span class="d-md-none d-sm-inline d-none">&nbsp;(Titles: {{ data.hdd.titles }})</span>
 									<span class="float-right"><strong>{{ data.hdd.percent }}%</strong></span>
 								</p>
@@ -47,7 +52,7 @@
 			</div>
 
 			<div class="col-lg-9 col-12 mt-lg-0 mt-3 animate slideInUp">
-				<div class="card mb-2" *ngFor="let data of data">
+				<div class="card mb-3" *ngFor="let data of data | slice: 1">
 					<a class="link c-pointer" (click)="panelCollapse(data.hdd.panel)">
 						<div class="card-header p-3">
 							<h5 class="mb-0">
