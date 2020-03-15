@@ -9,6 +9,6 @@
     "../../src/**/*.spec.ts",
     "../../src/core/services/api.service.ts",
     "../../src/core/services/user.service.ts",
-    "../../src/core/components/sidebar.module.ts",
+    "../../src/core/components/sidebar/sidebar.module.ts",
   ]
 }
