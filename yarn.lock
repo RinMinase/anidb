@@ -34,6 +34,14 @@
     "@angular-devkit/core" "9.0.5"
     rxjs "6.5.3"
 
+"@angular-devkit/architect@0.900.6":
+  version "0.900.6"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/architect/-/architect-0.900.6.tgz#f82746975e1aa6593b66b3ceb742bcc0ff90b9a1"
+  integrity sha512-WK8e09DgNP1NHP1gqVQ9w+9rlRMVDJxAh4qZGJRjZBXd3LY7y84WWRmTpfuhOSu+82fR3/n76+urxraU3ZVphw==
+  dependencies:
+    "@angular-devkit/core" "9.0.6"
+    rxjs "6.5.3"
+
 "@angular-devkit/build-angular@^0.900.0":
   version "0.900.5"
   resolved "https://registry.yarnpkg.com/@angular-devkit/build-angular/-/build-angular-0.900.5.tgz#7285fb7ec0186b7813d4368988620715f07d0832"
@@ -132,25 +140,36 @@
     rxjs "6.5.3"
     source-map "0.7.3"
 
-"@angular-devkit/schematics@9.0.5":
-  version "9.0.5"
-  resolved "https://registry.yarnpkg.com/@angular-devkit/schematics/-/schematics-9.0.5.tgz#fd2b8d94de3e037e75c5221d4283fb57221d39db"
-  integrity sha512-PbOYoy4YyEbR6f1jO18Rt3fJuyaaTJ3bFmws5qWGGNK2yZiP/hnSaM3VffOwoL4sgyKkI2FNKSPiQZgTl8b0Tg==
+"@angular-devkit/core@9.0.6":
+  version "9.0.6"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/core/-/core-9.0.6.tgz#cd4862e54f4dad9b47f515abf24e4d440cf8ba13"
+  integrity sha512-hCZJbnqLEm1F5Bx+ILcdd3LPgQTn4WFWpfUqMEGGj7UirRInWcz+6UpYotKGTJw85/mV01LrIbtWIkAUXbkkhg==
   dependencies:
-    "@angular-devkit/core" "9.0.5"
+    ajv "6.10.2"
+    fast-json-stable-stringify "2.0.0"
+    magic-string "0.25.4"
+    rxjs "6.5.3"
+    source-map "0.7.3"
+
+"@angular-devkit/schematics@9.0.6":
+  version "9.0.6"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/schematics/-/schematics-9.0.6.tgz#5ad6e523919fee1314a12c9aa773612b4f5dbedb"
+  integrity sha512-X7qZDJVrFcPUn+jNUeOH7Bx1D7YTpTFr0d3DBIsQzseReSGu7ugWziQPS4gc5Xm5K0nb8vx6DYtyW0FaIvX0ZA==
+  dependencies:
+    "@angular-devkit/core" "9.0.6"
     ora "4.0.2"
     rxjs "6.5.3"
 
-"@angular/cli@^9.0.5":
-  version "9.0.5"
-  resolved "https://registry.yarnpkg.com/@angular/cli/-/cli-9.0.5.tgz#ba3dc3051f1aa8884f037c7246256439ee2fe814"
-  integrity sha512-hRGpmIwnm908eW5sA4zrVkCGaIUHYLSNu5koaLulK0jj5Iy+vkieDiBuAkD2uVvG7M59s4s4u+L0DMetIpvZQg==
+"@angular/cli@^9.0.6":
+  version "9.0.6"
+  resolved "https://registry.yarnpkg.com/@angular/cli/-/cli-9.0.6.tgz#c81254ea8931068ce7ed6f7acc1b514a3e888c9a"
+  integrity sha512-uDXhkPcHhE4G4FlY7+LJWhXErHnkn63V8lqkKD7juivs+Epmx8oXCOVObEQTbbtw7sF6s0dM8uTzHKgoefTlaA==
   dependencies:
-    "@angular-devkit/architect" "0.900.5"
-    "@angular-devkit/core" "9.0.5"
-    "@angular-devkit/schematics" "9.0.5"
-    "@schematics/angular" "9.0.5"
-    "@schematics/update" "0.900.5"
+    "@angular-devkit/architect" "0.900.6"
+    "@angular-devkit/core" "9.0.6"
+    "@angular-devkit/schematics" "9.0.6"
+    "@schematics/angular" "9.0.6"
+    "@schematics/update" "0.900.6"
     "@yarnpkg/lockfile" "1.1.0"
     ansi-colors "4.1.1"
     debug "^4.1.1"
@@ -224,14 +243,14 @@
   resolved "https://registry.yarnpkg.com/@angular/platform-browser/-/platform-browser-9.0.6.tgz#6545454f964f3cbcfc8d854d89c0f2d97f4cd7b7"
   integrity sha512-CA7dW+j1mVh3OUo3C2vIn05NxNgrDPK4vpfRIwBIn1gErpnIXCa2vgnRzn3H9zKizKt0iuwSIukEnWG280Q0xg==
 
-"@angular/pwa@^0.900.5":
-  version "0.900.5"
-  resolved "https://registry.yarnpkg.com/@angular/pwa/-/pwa-0.900.5.tgz#64ed8898de20ed53554cee89f02fe48bbf7424e4"
-  integrity sha512-9Z6ojldR4C6xkkf7fB0qZHPWR+gHzpZQ2GRDsnq8/WGbffv9ySO8wKibs2UVzrXASesNqSk5WoiyS+UTCmDNQw==
+"@angular/pwa@^0.900.6":
+  version "0.900.6"
+  resolved "https://registry.yarnpkg.com/@angular/pwa/-/pwa-0.900.6.tgz#070496a4cf96b663768303d89a5c531ea143bd7e"
+  integrity sha512-pEdQmoPU9ulKbqXDoApER+xv+JStlvs3ZDz3XxTM7gUkR+0TGABbkBYQVmSAIBLK2tvZ2Q73XqCJCCSfwB5ATg==
   dependencies:
-    "@angular-devkit/core" "9.0.5"
-    "@angular-devkit/schematics" "9.0.5"
-    "@schematics/angular" "9.0.5"
+    "@angular-devkit/core" "9.0.6"
+    "@angular-devkit/schematics" "9.0.6"
+    "@schematics/angular" "9.0.6"
     parse5-html-rewriting-stream "5.1.0"
 
 "@angular/router@^9.0.6":
@@ -1706,21 +1725,21 @@
     "@fortawesome/free-regular-svg-icons" "^5.12.1"
     "@fortawesome/free-solid-svg-icons" "^5.12.1"
 
-"@schematics/angular@9.0.5":
-  version "9.0.5"
-  resolved "https://registry.yarnpkg.com/@schematics/angular/-/angular-9.0.5.tgz#a40abc25e3da49dad539324e384a1b98ec6cf36b"
-  integrity sha512-OUCC5J5+9v2tc3O/GL+2E9LfIXeqYCo/gdOTgb+jSos0aQQ7wnXOmufuoOsgt0KrWpAt34MIBktLNUF1n+RgcQ==
+"@schematics/angular@9.0.6":
+  version "9.0.6"
+  resolved "https://registry.yarnpkg.com/@schematics/angular/-/angular-9.0.6.tgz#791f05f7a4ddaa77daece79377abebf0df6fb840"
+  integrity sha512-oYIfSJF9ISAJWJjIiUnj8Rp1m4t9T3oqKl1FzkMWXvUmR1BfkO2S2/Moi2RQ0aHG6D9Oz4CJjrsQRmjaqBpEZw==
   dependencies:
-    "@angular-devkit/core" "9.0.5"
-    "@angular-devkit/schematics" "9.0.5"
+    "@angular-devkit/core" "9.0.6"
+    "@angular-devkit/schematics" "9.0.6"
 
-"@schematics/update@0.900.5":
-  version "0.900.5"
-  resolved "https://registry.yarnpkg.com/@schematics/update/-/update-0.900.5.tgz#97c9a3813e708b42ec4d516378b9ff7c8d34d4b6"
-  integrity sha512-Nte+9DfQHQkrgqZPX1viccs6UXL+FDGHkTIB/KTisJAvC4s+o9hjKAoCldWBsPi9/p5rXPNZ+EWmXx7vSLGSNQ==
+"@schematics/update@0.900.6":
+  version "0.900.6"
+  resolved "https://registry.yarnpkg.com/@schematics/update/-/update-0.900.6.tgz#e4de5e945e0724a13f0b3190a1f2feba4666f331"
+  integrity sha512-54Xi3FIJQWFBM91vxD9ciKkTlNWaIV7wsjKSImg53h2m2/l2VPPHyIZWI4j79dWXlfJVTNeaqPNYGzJlRvaEmA==
   dependencies:
-    "@angular-devkit/core" "9.0.5"
-    "@angular-devkit/schematics" "9.0.5"
+    "@angular-devkit/core" "9.0.6"
+    "@angular-devkit/schematics" "9.0.6"
     "@yarnpkg/lockfile" "1.1.0"
     ini "1.3.5"
     npm-package-arg "^7.0.0"
@@ -9271,7 +9290,7 @@ node-libs-browser@^2.2.1:
     util "^0.11.0"
     vm-browserify "^1.0.1"
 
-node-pre-gyp@*, node-pre-gyp@^0.14.0:
+node-pre-gyp@^0.14.0:
   version "0.14.0"
   resolved "https://registry.yarnpkg.com/node-pre-gyp/-/node-pre-gyp-0.14.0.tgz#9a0596533b877289bcad4e143982ca3d904ddc83"
   integrity sha512-+CvDC7ZttU/sSt9rFjix/P05iS43qHCOOGzcr3Ry99bXG7VX953+vFyEuph/tfqoYu8dttBkE86JSKBO2OzcxA==
