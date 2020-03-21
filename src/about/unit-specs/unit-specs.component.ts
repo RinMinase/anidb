@@ -14,8 +14,8 @@ export class UnitSpecsComponent implements OnInit {
 		this.data = {
 			cpu: "Intel Core i7-9700K",
 			cpuSubtext: "(All Core Overclock) 4.80 GHz",
-			ram: "GSkill Trident Z RGB 16GB",
-			ramSubtext: "(2 × 8GB) 3000MHz DDR4",
+			ram: "GSkill Trident Z RGB 32GB",
+			ramSubtext: "(4 × 8GB) CL16 3000MHz DDR4",
 			gpu: "Asus ROG Strix GTX 1070 OC",
 			gpuSubtext: "(8GB DDR5)",
 
@@ -30,7 +30,7 @@ export class UnitSpecsComponent implements OnInit {
 			case: "NZXT H700 Matte Black",
 			fans: "3x Thermaltake Riing Plus 120",
 			fansSubtext: "Thermaltake Riing Fan Controller",
-			fansSubtext2: "3x NZXT AER P 120mm",
+			fansSubtext2: "3x Noctua NF-S12A chromax 120mm",
 
 			monitor: "Dell SE2717H (1920 × 1080)",
 			speakers: "Bose Companion 50 2.1",
