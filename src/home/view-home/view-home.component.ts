@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import {
 	fasAngleLeft,
+	fasAngleRight,
 	fasLeaf,
 	fasPencilAlt,
 	fasSnowflake,
@@ -27,6 +28,7 @@ import { HomeService } from "../home.service";
 })
 export class ViewHomeComponent implements OnInit {
 	fasAngleLeft = fasAngleLeft;
+	fasAngleRight = fasAngleRight;
 	fasLeaf = fasLeaf;
 	fasPencil = fasPencilAlt;
 	fasSnow = fasSnowflake;

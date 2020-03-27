@@ -88,7 +88,7 @@
 				<div class="col-12">
 					<p class="h3">
 						<span class="pr-2" *ngIf="data.encoder">[{{ data.encoder }}]</span>
-						<span>{{ data.title }}</span>
+						<span>{{ data.title }}&nbsp;</span>
 						<span class="h5">
 							<span class="badge badge-{{data.qualityClass}} ml-2">{{ data.quality }}</span>
 						</span>
@@ -179,8 +179,11 @@
 						<div class="col-lg-6 col-12">
 							<p class="big" *ngIf="data.prequel">Prequel: {{ data.prequel }}</p>
 							<p class="big" *ngIf="data.sequel">Sequel: {{ data.sequel }}</p>
-							<!-- <p class="big" *ngIf="data.offquel[0]">Offquel :</p>
-							<p class="big pl-4" *ngFor="let offquel of data.offquel">{{ ::offquel }}</p> -->
+							<p class="big mb-2" *ngIf="data.offquel[0]">Offquel :</p>
+							<p class="big pl-4" *ngFor="let offquel of data.offquel">
+								<fa-icon class="pr-2" [icon]="fasAngleRight"></fa-icon>
+								<span>{{ offquel }}</span>
+							</p>
 						</div>
 					</div>
 				</div>
