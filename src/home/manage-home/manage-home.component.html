@@ -83,7 +83,9 @@
 									max="5"
 									ngbTooltip="{{data.ratingOriginal}}">
 									<ng-template let-fill="fill" #heartTemplate>
-										<span class="heart" [class.bad]="data.rating < 3" [class.low]="data.rating === 3">
+										<span class="heart"
+											[class.bad]="data.rating < 3"
+											[class.low]="data.rating >= 3 && data.rating < 3.5">
 											<span class="half" [style.width.%]="fill">&hearts;</span>&hearts;
 										</span>
 									</ng-template>

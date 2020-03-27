@@ -2,7 +2,9 @@
 	<div class="col-12 text-center mb-2">
 		<ngb-rating [(rate)]="overall" [readonly]="true" max="5">
 			<ng-template let-fill="fill" #heartTemplate>
-				<span class="heart" [class.bad]="overall < 3" [class.low]="overall === 3">
+				<span class="heart"
+					[class.bad]="overall < 3"
+					[class.low]="overall >= 3 && overall < 3.5">
 					<span class="half" [style.width.%]="fill">&hearts;</span>&hearts;
 				</span>
 			</ng-template>
