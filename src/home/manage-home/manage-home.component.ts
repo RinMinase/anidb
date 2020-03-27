@@ -153,6 +153,15 @@ export class ManageHomeComponent implements OnInit {
 					dateFinished = format(value.rewatchLast * 1000, "MMM dd, yyyy");
 				}
 
+				let rating: number = 0;
+				let ratingOriginal: number = 0;
+
+				if (value.rating) {
+					const { audio, enjoyment, graphics, plot } = value.rating;
+					ratingOriginal = (audio + enjoyment + graphics + plot) / 4;
+					rating = ratingOriginal / 2;
+				}
+
 				this.titleList.push(value.title);
 				this.data.push({
 					dateFinished,
@@ -167,6 +176,8 @@ export class ManageHomeComponent implements OnInit {
 					rewatchCount: value.rewatchCount,
 					specials: value.specials,
 					title: value.title,
+					ratingOriginal,
+					rating,
 				});
 			}
 		});

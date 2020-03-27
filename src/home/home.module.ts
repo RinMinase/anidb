@@ -2,7 +2,12 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { RouterModule, Routes } from "@angular/router";
 import { ReactiveFormsModule } from "@angular/forms";
-import { NgbModalModule, NgbTypeaheadModule } from "@ng-bootstrap/ng-bootstrap";
+import {
+	NgbModalModule,
+	NgbRatingModule,
+	NgbTooltipModule,
+	NgbTypeaheadModule,
+} from "@ng-bootstrap/ng-bootstrap";
 import { FontAwesomeModule } from "@rinminase/ng-fortawesome";
 
 import { LegendModule } from "@components/legend/legend.module";
@@ -47,6 +52,8 @@ const routes: Routes = [
 		RouterModule.forChild(routes),
 		ReactiveFormsModule,
 		NgbModalModule,
+		NgbRatingModule,
+		NgbTooltipModule,
 		NgbTypeaheadModule,
 		FontAwesomeModule,
 

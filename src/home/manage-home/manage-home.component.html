@@ -54,6 +54,7 @@
 							<th class="text-center">Date Finished</th>
 							<th>Release</th>
 							<th>Encoder</th>
+							<th class="text-center">Rating</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -76,6 +77,19 @@
 							</td>
 							<td>{{ data.releaseSeason }} {{ data.releaseYear }}</td>
 							<td>{{ data.encoder }}</td>
+							<td class="text-center py-0" *ngIf="data.rating">
+								<ngb-rating [(rate)]="data.rating"
+									[readonly]="true"
+									max="5"
+									ngbTooltip="{{data.ratingOriginal}}">
+									<ng-template let-fill="fill" #heartTemplate>
+										<span class="heart" [class.bad]="data.rating < 3" [class.low]="data.rating === 3">
+											<span class="half" [style.width.%]="fill">&hearts;</span>&hearts;
+										</span>
+									</ng-template>
+								</ngb-rating>
+							</td>
+							<td *ngIf="!data.rating"></td>
 						</tr>
 					</tbody>
 				</table>
