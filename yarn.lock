@@ -9368,7 +9368,7 @@ node-libs-browser@^2.2.1:
     util "^0.11.0"
     vm-browserify "^1.0.1"
 
-node-pre-gyp@*, node-pre-gyp@^0.14.0:
+node-pre-gyp@^0.14.0:
   version "0.14.0"
   resolved "https://registry.yarnpkg.com/node-pre-gyp/-/node-pre-gyp-0.14.0.tgz#9a0596533b877289bcad4e143982ca3d904ddc83"
   integrity sha512-+CvDC7ZttU/sSt9rFjix/P05iS43qHCOOGzcr3Ry99bXG7VX953+vFyEuph/tfqoYu8dttBkE86JSKBO2OzcxA==
@@ -11761,10 +11761,10 @@ schema-utils@^2.0.0, schema-utils@^2.0.1, schema-utils@^2.1.0, schema-utils@^2.6
     ajv "^6.12.0"
     ajv-keywords "^3.4.1"
 
-scss-spinners@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/scss-spinners/-/scss-spinners-1.2.1.tgz#b26bc9fee0a177387f7f1f9213c336c944cbcc86"
-  integrity sha512-48JaC7F5atdRpkpAa6MCYWRRnA68xUUfI1GG09HczOvO42fYNdzs1101b1j+zbrCWyCl4+N7a7FHk+uzYoTZDw==
+scss-spinners@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/scss-spinners/-/scss-spinners-1.2.2.tgz#b95364fe7de2abaf68bf32ffed58def85967deb0"
+  integrity sha512-JnV1XGzdyBZsyJHtcClkRDqCNeyXH/1nrq2S2h2y+M3ZcFEaMuLmKa4Miiv8CfmQVn86cKdm7UeYvhWqRDQ8SA==
 
 seek-bzip@^1.0.5:
   version "1.0.5"
