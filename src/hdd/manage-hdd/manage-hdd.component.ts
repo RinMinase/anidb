@@ -58,14 +58,21 @@ export class ManageHddComponent implements OnInit {
 		this.data.push({ hdd: { from: "TOTAL" } });
 
 		hddData.forEach((hdd, index) => {
-			const size = (hdd.size / 1073741824).toFixed(2);
+			const sizeRaw = hdd.size / 1073741824;
+			let size: string;
 			let totalSize = 0;
+
+			if (sizeRaw >= 1024) {
+				size = `${(hdd.size / 1099511627776).toFixed(2)} TB`;
+			} else {
+				size = `${sizeRaw.toFixed(2)} GB`;
+			}
 
 			this.data.push({
 				hdd: {
 					from: hdd.from.toUpperCase(),
 					to: hdd.to.toUpperCase(),
-					total: `${size} GB`,
+					total: size,
 				},
 				entries: [],
 			});
@@ -110,11 +117,25 @@ export class ManageHddComponent implements OnInit {
 	}
 
 	formatSingle(totalSize: number, hddSize: number, index: number) {
-		const free = ((hddSize - totalSize) / 1073741824).toFixed(2);
-		const used = (totalSize / 1073741824).toFixed(2);
 		const titles = this.data[index + 1].entries.length;
 		const percent = parseInt(((totalSize / hddSize) * 100).toFixed(0));
+		const freeRaw = (hddSize - totalSize) / 1073741824;
+		const usedRaw = totalSize / 1073741824;
+		let free: string;
+		let used: string;
 		let percentType: string;
+
+		if (freeRaw >= 1024) {
+			free = `${((hddSize - totalSize) / 1099511627776).toFixed(2)} TB`;
+		} else {
+			free = `${freeRaw.toFixed(2)} GB`;
+		}
+
+		if (usedRaw >= 1024) {
+			used = `${(totalSize / 1099511627776).toFixed(2)} TB`;
+		} else {
+			used = `${usedRaw.toFixed(2)} GB`;
+		}
 
 		if (percent >= 0 && percent < 80) {
 			percentType = "success";
@@ -127,12 +148,12 @@ export class ManageHddComponent implements OnInit {
 		this.collapse.push(false);
 
 		Object.assign(this.data[index + 1].hdd, {
-			free: `${free} GB`,
+			free,
 			panel: this.collapse.length,
 			percent,
 			percentType,
 			titles,
-			used: `${used} GB`,
+			used,
 		});
 	}
 
