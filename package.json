@@ -60,7 +60,7 @@
     "karma-coverage": "^2.0.1",
     "karma-coverage-istanbul-reporter": "^2.1.1",
     "karma-jasmine": "^3.1.1",
-    "netlify-cli": "^2.40.0",
+    "netlify-cli": "^2.41.0",
     "stylelint": "^13.3.0",
     "tslib": "^1.11.1",
     "tslint": "^6.1.1",
