@@ -39,7 +39,7 @@
     "ng2-file-upload": "^1.4.0",
     "ngx-dropzone-wrapper": "^9.0.0",
     "rxjs": "^6.5.5",
-    "scss-spinners": "^1.2.3",
+    "scss-spinners": "^1.2.4",
     "sweetalert2": "^9.10.11",
     "xlsx": "^0.15.6",
     "zone.js": "^0.10.3"
