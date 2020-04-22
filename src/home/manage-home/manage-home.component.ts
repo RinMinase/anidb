@@ -6,7 +6,7 @@ import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { fasPlus, fasSearch } from "@rinminase/ng-fortawesome";
 import { debounceTime, distinctUntilChanged } from "rxjs/operators";
 import { format } from "date-fns";
-import * as Fuse from "fuse.js";
+import Fuse from "fuse.js";
 
 import { DarkModeService } from "@services/dark-mode.service";
 import { FirebaseService } from "@services/firebase.service";
