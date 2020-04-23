@@ -129,9 +129,9 @@ export class ManageHomeComponent implements OnInit {
 						this.search.patchValue(this.searchQuery);
 
 						if (this.pristineData) {
-							this.data = new Fuse(this.pristineData, this.fuseOptions).search(
-								this.searchQuery,
-							);
+							this.data = new Fuse(this.pristineData, this.fuseOptions)
+								.search(this.searchQuery)
+								.map(({ item }) => item);
 						}
 					}
 				});
@@ -187,9 +187,9 @@ export class ManageHomeComponent implements OnInit {
 		this.pristineData = [...this.data];
 
 		if (this.search.value) {
-			this.data = new Fuse(this.pristineData, this.fuseOptions).search(
-				this.search.value,
-			);
+			this.data = new Fuse(this.pristineData, this.fuseOptions)
+				.search(this.search.value)
+				.map(({ item }) => item);
 		}
 	}
 
@@ -198,9 +198,9 @@ export class ManageHomeComponent implements OnInit {
 			.pipe(debounceTime(250), distinctUntilChanged())
 			.subscribe((value) => {
 				if (value && this.pristineData) {
-					this.data = new Fuse(this.pristineData, this.fuseOptions).search(
-						value,
-					);
+					this.data = new Fuse(this.pristineData, this.fuseOptions)
+						.search(value)
+						.map(({ item }) => item);
 					this.searchQuery = value;
 				}
 			});
