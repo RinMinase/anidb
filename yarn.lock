@@ -1812,10 +1812,10 @@
     chart.js "^2.9.3"
     lodash-es "^4.17.15"
 
-"@rinminase/ng-fortawesome@^4.2.3":
-  version "4.2.3"
-  resolved "https://registry.yarnpkg.com/@rinminase/ng-fortawesome/-/ng-fortawesome-4.2.3.tgz#fd6bff288131eb366a54f8c37b2ca978214a5d9c"
-  integrity sha512-IEkrZJwntTejyBUFtW05vXW0FNZrtsEsz2111ndAWA32l/SJB0LT65N40dN7oVrRojOqhMIRSDwaIl5IVeR6Ng==
+"@rinminase/ng-fortawesome@^4.2.4":
+  version "4.2.4"
+  resolved "https://registry.yarnpkg.com/@rinminase/ng-fortawesome/-/ng-fortawesome-4.2.4.tgz#b8c1bc418b8f07378b7d19ee420d0a034af7ef1e"
+  integrity sha512-SN69aYQBtqAyJNM3BMc5kYt7xvCB3vc1w9SlwqRogDhuD4eEUmCQpGoc/26tGzpoBD0s1QT8J9qH7IiIYSpVEw==
   dependencies:
     "@fortawesome/angular-fontawesome" "^0.6.1"
     "@fortawesome/fontawesome-svg-core" "^1.2.28"
