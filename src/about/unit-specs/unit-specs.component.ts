@@ -13,7 +13,7 @@ export class UnitSpecsComponent implements OnInit {
 	ngOnInit() {
 		this.data = {
 			cpu: "Intel Core i7-9700K",
-			cpuSubtext: "(All Core Overclock) 4.80 GHz",
+			cpuSubtext: "(All Core OC) 5.00 GHz @ 1.36v",
 			ram: "GSkill Trident Z RGB 32GB",
 			ramSubtext: "(4 × 8GB) CL16 3000MHz DDR4",
 			gpu: "Asus ROG Strix GTX 1070 OC",
