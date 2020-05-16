@@ -65,7 +65,7 @@
     "tslib": "^1.11.2",
     "tslint": "^6.1.2",
     "tslint-sonarts": "^1.9.0",
-    "typescript": "^3.8.3"
+    "typescript": "~3.8.3"
   },
   "resolutions": {
     "**/dropzone": "5.7.0"
