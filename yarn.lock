@@ -11441,10 +11441,10 @@ schema-utils@^2.5.0, schema-utils@^2.6.1, schema-utils@^2.6.4, schema-utils@^2.6
     ajv "^6.12.0"
     ajv-keywords "^3.4.1"
 
-scss-spinners@^1.2.5:
-  version "1.2.5"
-  resolved "https://registry.yarnpkg.com/scss-spinners/-/scss-spinners-1.2.5.tgz#2ec9f0b76315e7d923b2e7d6ffc76bdd86bdf4de"
-  integrity sha512-iqxGteQoBV/G62V1+Rk6uTZwQGS0pA6MrGZJO0sbdhpi9r0yZVgESo3llIDGqEuomQh+y0xszeHS4NXVX4jE/A==
+scss-spinners@^1.2.7:
+  version "1.2.7"
+  resolved "https://registry.yarnpkg.com/scss-spinners/-/scss-spinners-1.2.7.tgz#dc691e8a7510d454e2bd27199065b2914a5c1d07"
+  integrity sha512-Jc4/dJAms1lnLe8iZCUTDn5XiTLVyvDy9UMkkseO2ChjjsT76v68KlK79IzeWHOqKjGbI0CzWQMImeSzq6FddQ==
 
 seek-bzip@^1.0.5:
   version "1.0.5"
