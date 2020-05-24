@@ -13,7 +13,7 @@ export class UnitSpecsComponent implements OnInit {
 	ngOnInit() {
 		this.data = {
 			cpu: "Intel Core i7-9700K",
-			cpuSubtext: "(All Core OC) 5.00 GHz @ 1.36v",
+			cpuSubtext: "(All Core OC) 5.0 GHz @ 1.34v",
 			ram: "GSkill Trident Z RGB 32GB",
 			ramSubtext: "(4 × 8GB) CL16 3000MHz DDR4",
 			gpu: "Asus ROG Strix GTX 1070 OC",
@@ -28,11 +28,11 @@ export class UnitSpecsComponent implements OnInit {
 			hdd: "Western Digital Black 2TB",
 
 			case: "NZXT H700 Matte Black",
-			fans: "3x Thermaltake Riing Plus 120",
-			fansSubtext: "Thermaltake Riing Fan Controller",
-			fansSubtext2: "3x Noctua NF-S12A chromax 120mm",
+			fans: "3x Noctua NF-S12A chromax",
+			fansSubtext: "3x Thermaltake Riing Plus 120",
+			fansSubtext2: "Thermaltake Riing Fan Controller",
 
-			monitor: "Dell SE2717H (1920 × 1080)",
+			monitor: "Dell SE2717H (1920 × 1080) 75Hz",
 			speakers: "Bose Companion 50 2.1",
 
 			keyboard: "Razer Blackwidow TE Chroma",
