@@ -6160,10 +6160,10 @@ function-bind@^1.1.1:
   resolved "https://registry.yarnpkg.com/function-bind/-/function-bind-1.1.1.tgz#a56899d3ea3c9bab874bb9773b7c5ede92f4895d"
   integrity sha512-yIovAzMX49sF8Yl58fSCWJ5svSLuaibPxXQJFLmBObTuCr0Mf1KiPopGM9NiFjiYBCbfaa2Fh6breQ6ANVTI0A==
 
-fuse.js@^6.0.0:
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/fuse.js/-/fuse.js-6.0.0.tgz#6fc16cd7555648deda392892402d4188553552b2"
-  integrity sha512-e5Ap6mhF/WQ9bKqsMFTTR5/DS9qbYab4VXHtMdxCanH+VZkdUV2LqcgMO31etSQv53NXsguQF1bdqkrrPAM2HQ==
+fuse.js@^6.0.3:
+  version "6.0.3"
+  resolved "https://registry.yarnpkg.com/fuse.js/-/fuse.js-6.0.3.tgz#6c19f86a08e86a0af8dab9412e5a389d6d4112f9"
+  integrity sha512-h2JtT7vXagF3nMMUslxH6GBbgoemvCfOfjIa9QraKHbzAtT1NyTiP0AHgCQgwSL6H3QrEbEAmQUowsqQeJgIgg==
 
 fuzzy@^0.1.3:
   version "0.1.3"
