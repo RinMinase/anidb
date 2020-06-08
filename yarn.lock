@@ -1895,12 +1895,12 @@
   resolved "https://registry.yarnpkg.com/@protobufjs/utf8/-/utf8-1.1.0.tgz#a777360b5b39a1a2e5106f8e858f2fd2d060c570"
   integrity sha1-p3c2C1s5oaLlEG+OhY8v0tBgxXA=
 
-"@rinminase/ng-charts@^1.6.2":
-  version "1.6.2"
-  resolved "https://registry.yarnpkg.com/@rinminase/ng-charts/-/ng-charts-1.6.2.tgz#f57b23c6b9176fb2839d2eee787f8137bd4ef319"
-  integrity sha512-se0kEGhzjRZtuStIdA/ZZPDJ+4oGyWyJN9RLFAv9yWnyUcol3WxtSn4uvlV7+05wiNuC8Mc2/uY4Gn1xywFMJA==
+"@rinminase/ng-charts@^1.7.0":
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/@rinminase/ng-charts/-/ng-charts-1.7.0.tgz#ac0c4b96f004cf90bb462c0431c7e840179d4778"
+  integrity sha512-HTZns4gNKAsrDFJCs5+XwDgIW3m3+YSkGY2uUIM6UBBcUlj0camdfBoqQmjAK7RaNM3VTtHMstRjesGORfsw8g==
   dependencies:
-    "@types/chart.js" "2.9.18"
+    "@types/chart.js" "2.9.21"
     chart.js "^2.9.3"
     lodash-es "^4.17.15"
     tslib "^1.10.0"
@@ -1977,10 +1977,10 @@
   resolved "https://registry.yarnpkg.com/@tootallnate/once/-/once-1.1.2.tgz#ccb91445360179a04e7fe6aff78c00ffc1eeaf82"
   integrity sha512-RbzJvlNzmRq5c3O09UipeuXno4tA1FE6ikOjxZK0tuxVv3412l64l5t1W5pj4+rJq9vpkm/kwiR07aZXnsKPxw==
 
-"@types/chart.js@2.9.18":
-  version "2.9.18"
-  resolved "https://registry.yarnpkg.com/@types/chart.js/-/chart.js-2.9.18.tgz#169e3c939facbfc7883223c2ebd5b0f88ab0a3f3"
-  integrity sha512-D7oaYQqYGdfoa1Wv9doxQJ9Sv/W7jfbiXMT/wVRiM0AsPJsHWLRn7U46xhDkPRGmLCpQGlN2oZYBIwEpMMleog==
+"@types/chart.js@2.9.21":
+  version "2.9.21"
+  resolved "https://registry.yarnpkg.com/@types/chart.js/-/chart.js-2.9.21.tgz#ecb85f1aac2d7b28310df8cc9c88b6b5db1b91bd"
+  integrity sha512-bjwdC+SvE/c3rHYYcX8UbRmTvjEUP9Dhuk/iWXygH6EFDYf4OcofnwxBpJx+A4qU3YBr54a7wtPdswfg9Yt3rg==
   dependencies:
     moment "^2.10.2"
 
