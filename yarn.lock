@@ -1905,10 +1905,10 @@
     lodash-es "^4.17.15"
     tslib "^1.10.0"
 
-"@rinminase/ng-fortawesome@^4.2.8":
-  version "4.2.8"
-  resolved "https://registry.yarnpkg.com/@rinminase/ng-fortawesome/-/ng-fortawesome-4.2.8.tgz#df0df460b81671fad727d3a5b2baff482f081736"
-  integrity sha512-sOcYWwmx5CUQe9hu/8DOeUlI358e+9KvKbDlrgU5xZer22BV7TUdfXlBQhzSJxu7GAKsJdodZyVDW/brspWV4g==
+"@rinminase/ng-fortawesome@^4.2.9":
+  version "4.2.9"
+  resolved "https://registry.yarnpkg.com/@rinminase/ng-fortawesome/-/ng-fortawesome-4.2.9.tgz#6d1963ad7c33dc35bfe85908818ab3bc071c7357"
+  integrity sha512-8h1wBhDLeNCfzqgdXgb/plEYpzqjfgjjAmFQpnVPDvWTP1Aqi0MBjpR9Emos1U9K+c5ANmVIpe75J5MaQDYSFQ==
   dependencies:
     "@fortawesome/angular-fontawesome" "^0.6.1"
     "@fortawesome/fontawesome-svg-core" "^1.2.28"
