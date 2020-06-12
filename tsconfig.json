@@ -13,6 +13,7 @@
     "noUnusedParameters": true,
     "target": "es2015",
     "typeRoots": [ "node_modules/@types" ],
+    "types": [ "node" ],
     "lib": [ "es2018", "dom" ],
     "paths": {
       "@builders/*": ["src/core/builders/*"],
@@ -26,5 +27,12 @@
     "fullTemplateTypeCheck": true,
     "strictInjectionParameters": true,
     "disableTypeScriptVersionCheck": true
-  }
+  },
+  "include": [ "../../src/**/*" ],
+  "exclude": [
+    "../../src/**/*.spec.ts",
+    "../../src/core/services/api.service.ts",
+    "../../src/core/services/user.service.ts",
+    "../../src/core/components/sidebar/sidebar.module.ts",
+  ]
 }

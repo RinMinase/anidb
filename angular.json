@@ -27,7 +27,7 @@
             "outputPath": "dist",
             "index": "src/index.html",
             "main": "src/index.ts",
-            "tsConfig": "assets/config/tsconfig.app.json",
+            "tsConfig": "tsconfig.json",
             "assets": [{
               "glob": "favicon.ico",
               "input": "assets/",
@@ -99,14 +99,8 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "format": "stylish",
-            "tsConfig": [
-              "assets/config/tsconfig.app.json",
-              "assets/config/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "**/*.spec.ts"
-            ]
+            "tsConfig": [ "tsconfig.json" ],
+            "exclude": [ "**/node_modules/**" ]
           }
         }
       }
