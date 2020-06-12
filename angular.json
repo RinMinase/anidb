@@ -95,41 +95,6 @@
             "production": { "browserTarget": "anidb:build:production" }
           }
         },
-        "test": {
-          "builder": "@angular-builders/custom-webpack:karma",
-          "options": {
-            "customWebpackConfig": {
-              "path": "assets/config/webpack.ts",
-              "mergeStrategies": { "externals": "replace" }
-            },
-            "main": "assets/config/testing/test.ts",
-            "tsConfig": "assets/config/tsconfig.spec.json",
-            "karmaConfig": "assets/config/testing/karma.conf.ts",
-            "codeCoverage": true,
-            "styles": [ "src/index.scss" ],
-            "assets": [{
-              "glob": "favicon.ico",
-              "input": "assets/",
-              "output": "/assets"
-            }, {
-              "glob": "robots.txt",
-              "input": "assets/",
-              "output": "/"
-            }, {
-              "glob": "manifest.json",
-              "input": "assets/config/",
-              "output": "/"
-            }, {
-              "glob": "**/*.png",
-              "input": "assets/res/",
-              "output": "/assets/icons"
-            }, {
-              "glob": "_redirects",
-              "input": "assets/config/",
-              "output": "/"
-            }]
-          }
-        },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
