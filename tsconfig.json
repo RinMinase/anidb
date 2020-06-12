@@ -28,11 +28,10 @@
     "strictInjectionParameters": true,
     "disableTypeScriptVersionCheck": true
   },
-  "include": [ "../../src/**/*" ],
+  "include": [ "src/**/*" ],
   "exclude": [
-    "../../src/**/*.spec.ts",
-    "../../src/core/services/api.service.ts",
-    "../../src/core/services/user.service.ts",
-    "../../src/core/components/sidebar/sidebar.module.ts",
+    "src/core/services/api.service.ts",
+    "src/core/services/user.service.ts",
+    "src/core/components/sidebar/sidebar.module.ts",
   ]
 }
