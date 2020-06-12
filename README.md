@@ -7,9 +7,6 @@
     <a href="https://app.netlify.com/sites/anidb/deploys">
         <img alt="Netlify-Status" src="https://img.shields.io/netlify/635b50f7-7b22-4c87-9b6b-7da2c0fb2180?logo=netlify&style=for-the-badge&label=Netlify%20(Domain)">
     </a>
-    <a href="https://codecov.io/gh/RinMinase/anidb">
-        <img alt="Codecov" src="https://img.shields.io/codecov/c/gh/RinMinase/anidb?logo=codecov&style=for-the-badge" />
-    </a>
 </p>
 <p align="center">
     <a href="https://david-dm.org/RinMinase/anidb">
@@ -133,7 +130,6 @@ Task automation is based on [Yarn scripts](https://yarnpkg.com/lang/en/docs/cli/
 | `yarn start`        | Run **development server** on `http://localhost:3000/` with file watching on changes                 |
 | `yarn start --prod` | Run **production server** on `http://localhost:3000/` with file watching on changes                  |
 | `yarn build`        | Build production code and add service worker to built code                                           |
-| `yarn test <args>`  | Run test scripts on using a Headless Chrome Browser                                                  |
 | `yarn lint`         | Lints all TypeScript and SCSS files, takes an optional `--fix` to automatically fix linting problems |
 
 Other tasks included in `package.json` that should not be executed manually:
@@ -152,8 +148,6 @@ _Add info here_
 * <img width=20 height=20 src="https://getbootstrap.com/favicon.ico"> [Bootstrap 4](https://getbootstrap.com/) - HTML Framework (layout)
 * <img width=20 height=20 src="https://firebase.google.com/favicon.ico"> [Firebase](https://firebase.google.com/) - Database
 * <img width=20 height=20 src="https://webpack.js.org/bc3effb418df77da9e04825c48a58a49.ico"> [Webpack 4](https://webpack.js.org/) - Project bundler
-* <img width=20 height=20 src="https://jasmine.github.io/favicon.ico"> [Jasmine](https://jasmine.github.io/) - Testing Framework
-* <img width=20 height=20 src="https://karma-runner.github.io/assets/img/favicon/favicon.ico"> [Karma](https://karma-runner.github.io) - Test Runner Framework
 * <img width=20 height=20 src="https://dmmj3mmt94rvw.cloudfront.net/favicon-undefined.ico"> [Circle CI](https://circleci.com/) - Continuous Integration (CI) service
 * <img width=20 height=20 src="https://www.netlify.com/img/global/favicon/favicon-32x32.png"> [Netlify](https://netlify.com) - Hosting Platform
 * <img width=20 height=20 src="https://codecov.io/static/favicons/favicon-32x32.png"> [Codecov](https://codecov.io/) - Code Coverage
