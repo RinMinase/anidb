@@ -18,8 +18,8 @@
 			<ng-template let-fill="fill">
 				<span class="star"
 					[class.full]="fill === 100"
-					[class.bad]="audio < 3"
-					[class.low]="audio === 3">&#9733;</span>
+					[class.bad]="audio < 5"
+					[class.low]="audio >= 5 && audio <= 7">&#9733;</span>
 			</ng-template>
 		</ngb-rating>
 	</div>
@@ -30,8 +30,8 @@
 			<ng-template let-fill="fill">
 				<span class="star"
 					[class.full]="fill === 100"
-					[class.bad]="enjoyment < 3"
-					[class.low]="enjoyment === 3">&#9733;</span>
+					[class.bad]="enjoyment < 5"
+					[class.low]="enjoyment >= 5 && enjoyment <= 7">&#9733;</span>
 			</ng-template>
 		</ngb-rating>
 	</div>
@@ -42,8 +42,8 @@
 			<ng-template let-fill="fill">
 				<span class="star"
 					[class.full]="fill === 100"
-					[class.bad]="graphics < 3"
-					[class.low]="graphics === 3">&#9733;</span>
+					[class.bad]="graphics < 5"
+					[class.low]="graphics >= 5 && graphics <= 7">&#9733;</span>
 			</ng-template>
 		</ngb-rating>
 	</div>
@@ -54,8 +54,8 @@
 			<ng-template let-fill="fill">
 				<span class="star"
 					[class.full]="fill === 100"
-					[class.bad]="plot < 3"
-					[class.low]="plot === 3">&#9733;</span>
+					[class.bad]="plot < 5"
+					[class.low]="plot >= 5 && plot <= 7">&#9733;</span>
 			</ng-template>
 		</ngb-rating>
 	</div>
