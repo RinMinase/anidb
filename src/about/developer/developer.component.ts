@@ -4,6 +4,7 @@ import {
 	fasEnvelope,
 	fabFacebookF,
 	fabGithubAlt,
+	fabLinkedinIn,
 } from "@rinminase/ng-fortawesome";
 
 @Component({
@@ -15,6 +16,7 @@ export class DeveloperComponent implements OnInit {
 	fasEnvelope = fasEnvelope;
 	fabFacebook = fabFacebookF;
 	fabGithub = fabGithubAlt;
+	fabLinkedin = fabLinkedinIn;
 
 	constructor() {}
 
