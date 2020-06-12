@@ -16,7 +16,6 @@
     "start": "ng serve",
     "build": "ng build --prod",
     "deploy": "ng build --prod --no-progress",
-    "test": "ng test --no-progress",
     "lint": "stylelint src/**/*.scss & ng lint"
   },
   "dependencies": {
