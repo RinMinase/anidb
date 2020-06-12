@@ -67,7 +67,6 @@ Schematics
     ├── .circleci/                          # Circle CI configuration folder
     ├── assets/                             # Project assets
     │   ├── config/                         # Project configurations
-    │   │   ├── testing/                    # Testing configuration files
     │   │   ├── manifest.json               # Web manifest file
     │   │   ├── ngsw-config.json            # PWA Service Worker configuration file
     │   │   ├── webpack.ts                  # Extended webpack configuration file
@@ -79,7 +78,6 @@ Schematics
     │   ├──<module-name>/                   # Project module
     │   │   ├── <name>.component.html       # Component template
     │   │   ├── <name>.component.scss       # Component stylesheet
-    │   │   ├── <name>.component.spec.ts    # Component test script
     │   │   ├── <name>.component.ts         # Module component
     │   │   └── <name>.module.ts            # Module
     │   ├── core/                           # Project-wide reusable classes
