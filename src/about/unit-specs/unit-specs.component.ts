@@ -17,9 +17,8 @@ export class UnitSpecsComponent implements OnInit {
 			cpuSubtext2: "x44 Cache Overclock",
 			ram: "GSkill Trident Z RGB 32GB",
 			ramSubtext: "(4 × 8GB) CL16 3000MHz DDR4",
-			ramSubtext2: "(OC) 3200MHz 16-18-38 1.38v",
 			gpu: "Asus ROG Strix GTX 1070 OC",
-			gpuSubtext: "(8GB DDR5) +30 Core, +1K Mem",
+			gpuSubtext: "(8GB DDR5) +30 Core, +450 Mem",
 
 			motherboard: "Asus ROG Strix Z390-E",
 			psu: "CoolerMaster MasterWatt 650W",
