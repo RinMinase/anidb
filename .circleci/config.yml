@@ -21,15 +21,6 @@ jobs:
           command: yarn install --frozen-lockfile
 
       - run:
-          name: Testing source code
-          command: yarn test
-
-      - run:
-          name: Uploading coverage to Codecov
-          command: ./node_modules/.bin/codecov --token=$CODECOV_TOKEN
-          no_output_timeout: 15s
-
-      - run:
           name: Building source code
           command: yarn deploy
 
