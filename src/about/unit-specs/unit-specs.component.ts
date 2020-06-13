@@ -18,7 +18,7 @@ export class UnitSpecsComponent implements OnInit {
 			ram: "GSkill Trident Z RGB 32GB",
 			ramSubtext: "(4 × 8GB) CL16 3000MHz DDR4",
 			gpu: "Asus ROG Strix GTX 1070 OC",
-			gpuSubtext: "(8GB DDR5) +30 Core, +450 Mem",
+			gpuSubtext: "(8GB DDR5) +20 Core, +490 Mem",
 
 			motherboard: "Asus ROG Strix Z390-E",
 			psu: "CoolerMaster MasterWatt 650W",
