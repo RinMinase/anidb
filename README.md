@@ -97,24 +97,18 @@ Schematics
 
 ### Building the project
 Installations Required:
-- Node
-- _(Optional)_ Yarn
+- [Node](https://nodejs.org/en/)
+- [Yarn](https://yarnpkg.com/latest.msi)
 
 1. Fire up your terminal inside the project folder.
 
 2. Build the project by running:
 
     ```
-    npm run build
-    ```
-
-    **Note:** If you have installed Yarn, run these instead:
-
-    ```
     yarn build
     ```
 
-3. This should generate a `/dist` folder inside the project folder.
+3. This should generate a `dist/` folder inside the project folder.
 
 ### Deploying the project to Firebase
 _Add info here_
@@ -141,7 +135,7 @@ _Add info here_
 
 ## Built with
 * <img width=20 height=20 src="https://angular.io/assets/images/favicons/favicon.ico"> [Angular 9](https://angular.io/) - Web Framework
-* <img width=20 height=20 src="https://www.typescriptlang.org/assets/images/icons/favicon.ico"> [TypeScript](https://www.typescriptlang.org/) - Language syntax
+* <img width=20 height=20 src="https://www.typescriptlang.org/assets/images/icons/favicon-32x32.png"> [TypeScript](https://www.typescriptlang.org/) - Language syntax
 * <img width=20 height=20 src="https://sass-lang.com/favicon.ico"> [Sassy CSS (SCSS)](https://sass-lang.com/) - CSS pre-processor
 * <img width=20 height=20 src="https://getbootstrap.com/favicon.ico"> [Bootstrap 4](https://getbootstrap.com/) - HTML Framework (layout)
 * <img width=20 height=20 src="https://firebase.google.com/favicon.ico"> [Firebase](https://firebase.google.com/) - Database
