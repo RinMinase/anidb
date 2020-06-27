@@ -189,6 +189,8 @@ export class LastwatchComponent implements OnInit {
 					title: value.title,
 				};
 			}
+
+			return null;
 		});
 	}
 }
