@@ -57,6 +57,14 @@
               "output": "/"
             }],
             "styles": [ "src/index.scss" ],
+            "allowedCommonJsDependencies": [
+              "chart.js",
+              "firebase/app",
+              "@firebase/app",
+              "@firebase/database",
+              "xlsx",
+              "zone.js/dist/zone"
+            ],
             "aot": true
           },
           "configurations": {
