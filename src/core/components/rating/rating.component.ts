@@ -6,12 +6,11 @@ import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 	styleUrls: ["./rating.component.scss"],
 })
 export class RatingComponent implements OnInit {
-
 	@Output() ratingChange = new EventEmitter<{
-		audio: number,
-		enjoyment: number,
-		graphics: number,
-		plot: number,
+		audio: number;
+		enjoyment: number;
+		graphics: number;
+		plot: number;
 	}>();
 
 	@Input() audio: number;
@@ -21,13 +20,21 @@ export class RatingComponent implements OnInit {
 
 	overall: number;
 
-	constructor() { }
+	constructor() {}
 
 	ngOnInit() {
-		if (!this.audio) { this.audio = 0; }
-		if (!this.enjoyment) { this.enjoyment = 0; }
-		if (!this.graphics) { this.graphics = 0; }
-		if (!this.plot) { this.plot = 0; }
+		if (!this.audio) {
+			this.audio = 0;
+		}
+		if (!this.enjoyment) {
+			this.enjoyment = 0;
+		}
+		if (!this.graphics) {
+			this.graphics = 0;
+		}
+		if (!this.plot) {
+			this.plot = 0;
+		}
 
 		this.calculateOverall();
 	}
@@ -43,7 +50,7 @@ export class RatingComponent implements OnInit {
 	}
 
 	private calculateOverall() {
-		this.overall = (this.audio + this.enjoyment + this.graphics + this.plot) / 8;
+		this.overall =
+			(this.audio + this.enjoyment + this.graphics + this.plot) / 8;
 	}
-
 }
