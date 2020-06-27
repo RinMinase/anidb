@@ -66,11 +66,13 @@
     "yarn": "^1.19.1"
   },
   "browserslist": [
-    "last 2 Chrome versions",
-    "last 2 Firefox versions",
-    "last 2 Safari versions",
-    "last 2 Android versions",
-    "last 2 iOS versions"
+    "last 1 Chrome versions",
+    "last 1 Firefox versions",
+    "last 2 Edge major versions",
+    "last 2 Safari major versions",
+    "last 2 iOS major versions",
+    "Firefox ESR",
+    "not IE 9-11"
   ],
   "prettier": {
     "printWidth": 80,
