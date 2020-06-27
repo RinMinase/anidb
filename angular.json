@@ -9,11 +9,18 @@
       "projectType": "application",
       "prefix": "app",
       "schematics": {
-        "@schematics/angular:module": { "lintFix": true },
-        "@schematics/angular:service": { "lintFix": true },
+        "@schematics/angular:module": {
+          "lintFix": true,
+          "skipTests": true
+        },
+        "@schematics/angular:service": {
+          "lintFix": true,
+          "skipTests": true
+        },
         "@schematics/angular:component": {
           "style": "scss",
-          "lintFix": true
+          "lintFix": true,
+          "skipTests": true
         }
       },
       "architect": {
