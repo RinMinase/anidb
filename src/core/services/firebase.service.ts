@@ -66,12 +66,7 @@ export class FirebaseService {
 	hardDelete(params: FirebaseQuery) {
 		const { db, id } = params;
 		if (db && id) {
-			return Promise.resolve(
-				firebase
-					.database()
-					.ref(`/${db}/${id}`)
-					.remove(),
-			);
+			return Promise.resolve(firebase.database().ref(`/${db}/${id}`).remove());
 		}
 
 		return Promise.reject();
@@ -130,10 +125,7 @@ export class FirebaseService {
 		const { db, id, data } = params;
 		if (db && id && data) {
 			return Promise.resolve(
-				firebase
-					.database()
-					.ref(`/${db}/${id}`)
-					.update(data),
+				firebase.database().ref(`/${db}/${id}`).update(data),
 			);
 		}
 
@@ -197,7 +189,7 @@ export class FirebaseService {
 		}
 
 		if (!isNaN(Object.keys(data)[0] as any)) {
-			const output = [];
+			const output: Array<any> = [];
 
 			Object.keys(data).forEach((key, index) => {
 				output[index] = data[key];
