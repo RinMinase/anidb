@@ -62,7 +62,7 @@
           "configurations": {
             "production": {
               "extractCss": true,
-              "extractLicenses": false,
+              "extractLicenses": true,
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
