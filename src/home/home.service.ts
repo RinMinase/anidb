@@ -6,15 +6,18 @@ import { getYear } from "date-fns";
 	providedIn: "root",
 })
 export class HomeService {
-	private state = new BehaviorSubject({ search: "", id: null });
-	private titleList = new BehaviorSubject([]);
+	private state = new BehaviorSubject<{ search?: string; id?: number | null }>({
+		search: "",
+		id: null,
+	});
+	private titleList = new BehaviorSubject<Array<string>>([]);
 
 	currentState = this.state.asObservable();
 	currTitleList = this.titleList.asObservable();
 
 	constructor() {}
 
-	changeState(search?: string, id?: number) {
+	changeState(search?: string, id?: number | null) {
 		this.state.next({ search, id });
 	}
 
