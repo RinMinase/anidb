@@ -4,7 +4,7 @@ import { Injectable } from "@angular/core";
 	providedIn: "root",
 })
 export class FirebaseQueryBuilder {
-	firebaseOptions = {
+	firebaseOptions: FirebaseQuery = {
 		db: "anime",
 		id: null,
 		limit: null,
@@ -73,10 +73,10 @@ export class FirebaseQueryBuilder {
 
 export class FirebaseQuery {
 	db?: string;
-	id?: number;
-	limit?: number;
-	orderKey?: string;
-	orderDirection?: string;
+	id?: number | null;
+	limit?: number | null;
+	orderKey?: string | null;
+	orderDirection?: string | null;
 	inhdd?: number;
 	data?: any;
 
