@@ -4,10 +4,7 @@
   "newProjectRoot": "projects",
   "projects": {
     "anidb": {
-      "root": "",
-      "sourceRoot": ".",
       "projectType": "application",
-      "prefix": "app",
       "schematics": {
         "@schematics/angular:module": {
           "lintFix": true,
@@ -23,6 +20,9 @@
           "skipTests": true
         }
       },
+      "root": "",
+      "sourceRoot": ".",
+      "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-builders/custom-webpack:browser",
@@ -73,12 +73,12 @@
               "ngswConfigPath": "assets/config/ngsw-config.json",
               "budgets": [{
                 "type": "initial",
-                "maximumWarning": "2mb",
-                "maximumError": "5mb"
+                "maximumWarning": "500kb",
+                "maximumError": "1mb"
               }, {
                 "type": "anyComponentStyle",
-                "maximumWarning": "6kb",
-                "maximumError": "10kb"
+                "maximumWarning": "2kb",
+                "maximumError": "4kb"
               }]
             }
           }
