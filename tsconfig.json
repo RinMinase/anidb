@@ -30,7 +30,7 @@
     "strictInjectionParameters": true,
     "disableTypeScriptVersionCheck": true
   },
-  "include": [ "src/**/*" ],
+  "files": [ "src/index.ts" ],
   "exclude": [
     "src/core/services/api.service.ts",
     "src/core/services/user.service.ts",
