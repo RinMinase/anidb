@@ -4,7 +4,7 @@ import { Injectable } from "@angular/core";
 	providedIn: "root",
 })
 export class FuseOptionsBuilder {
-	fuseOptions = {
+	fuseOptions: FuseOptions = {
 		shouldSort: true,
 		threshold: 0.6,
 		location: 0,
@@ -57,4 +57,14 @@ export class FuseOptionsBuilder {
 	build() {
 		return this.fuseOptions;
 	}
+}
+
+export class FuseOptions {
+	shouldSort?: boolean;
+	threshold?: number;
+	location?: number;
+	distance?: number;
+	maxPatternLength?: number;
+	minMatchCharLength?: number;
+	keys?: Array<string>;
 }
