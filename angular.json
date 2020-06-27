@@ -81,8 +81,8 @@
               "ngswConfigPath": "assets/config/ngsw-config.json",
               "budgets": [{
                 "type": "initial",
-                "maximumWarning": "1.5mb",
-                "maximumError": "2mb"
+                "maximumWarning": "1.25mb",
+                "maximumError": "1.5mb"
               }, {
                 "type": "anyComponentStyle",
                 "maximumWarning": "5kb",
