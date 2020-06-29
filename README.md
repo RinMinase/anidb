@@ -31,11 +31,11 @@ _Add info here_
 ## Getting Started
 
 ### Running the project
-1. [Download](https://nodejs.org/en/) the latest Node version. This is marked as `<version number> Current`. Install it on your machine.
+Installations Required:
+- [Node](https://nodejs.org/en/)
+- [Yarn](https://yarnpkg.com/latest.msi)
 
-2. This project uses Yarn instead of NPM. [Download](https://yarnpkg.com/latest.msi) Yarn. This is a faster package manager than the default `npm` one, likewise also manages your dependencies and handles its updates way better.
-
-3. Clone the project and modify the ENV file based on your Firebase configuration
+1. Clone the project and copy the ENV template file to a new ENV file.
 
     ```
     git clone https://github.com/RinMinase/anidb.git
@@ -43,14 +43,31 @@ _Add info here_
     cp .env.example .env
     ```
 
-4. Install the dependencies then run the project
+2. Modify the created ENV file based on your Firebase configuration
+
+3. Install the dependencies then run the project
 
     ```
     yarn install
     yarn start
     ```
 
-5. Fire up your browser and go to `localhost:3000`
+4. Fire up your browser and go to `localhost:3000`
+
+### Building the project
+Installations Required:
+- [Node](https://nodejs.org/en/)
+- [Yarn](https://yarnpkg.com/latest.msi)
+
+1. Fire up your terminal inside the project folder.
+
+2. Build the project by running:
+
+    ```
+    yarn build
+    ```
+
+3. This should generate a `dist/` folder inside the project folder.
 
 ### Code Scaffolding
 This is using `yarn ng generate <schematic> <name>` command. This can be shortened to `yarn ng g <schematic> <name>`.
@@ -61,8 +78,6 @@ Schematics
 - `service` or `s` - Creates a new [service](https://angular.io/guide/architecture-services)
 
 ### Project Structure
-
-#### Directory Structure
     .
     ├── .circleci/                          # Circle CI configuration folder
     ├── assets/                             # Project assets
@@ -94,24 +109,6 @@ Schematics
     ├── tsconfig.json                       # Main TypeScript configuration file
     ├── tslint.json                         # TypeScript linting file
     └── ...                                 # Other project files
-
-### Building the project
-Installations Required:
-- [Node](https://nodejs.org/en/)
-- [Yarn](https://yarnpkg.com/latest.msi)
-
-1. Fire up your terminal inside the project folder.
-
-2. Build the project by running:
-
-    ```
-    yarn build
-    ```
-
-3. This should generate a `dist/` folder inside the project folder.
-
-### Deploying the project to Firebase
-_Add info here_
 
 ### Project tasks
 
