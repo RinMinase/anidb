@@ -65,7 +65,9 @@ export class LastwatchComponent implements OnInit {
 		const formattedDataByDate = this.formatDataByDate(dataDateFinished);
 		const formattedDataByRewatch = this.formatDataByRewatch(dataRewatchLast);
 
-		const formattedData = formattedDataByDate.concat(formattedDataByRewatch);
+		const formattedData = formattedDataByDate
+			.concat(formattedDataByRewatch)
+			.filter((e: any) => e);
 		const sortedData = formattedData
 			.sort(this.utility.sortByDateThenTitle)
 			.slice(0, 20);
