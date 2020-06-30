@@ -61,7 +61,9 @@
               "chart.js",
               "firebase/app",
               "@firebase/app",
+              "@firebase/component",
               "@firebase/database",
+              "@firebase/util",
               "xlsx",
               "zone.js/dist/zone"
             ],
