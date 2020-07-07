@@ -37,7 +37,7 @@
     "fuse.js": "^6.4.0",
     "ng2-file-upload": "^1.4.0",
     "ngx-dropzone-wrapper": "^9.0.0",
-    "rxjs": "^6.5.5",
+    "rxjs": "^6.6.0",
     "scss-spinners": "^1.2.9",
     "sweetalert2": "^9.15.2",
     "xlsx": "^0.16.3",
