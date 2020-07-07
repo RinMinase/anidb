@@ -1977,10 +1977,10 @@
     lodash-es "^4.17.15"
     tslib "^2.0.0"
 
-"@rinminase/ng-fortawesome@^5.0.0":
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@rinminase/ng-fortawesome/-/ng-fortawesome-5.0.0.tgz#157b65e244abb61a8446022a8020accafced1be3"
-  integrity sha512-KjBX5ABSl/CgXTDdKS3TUVA+OPenPb0FBNav0Ywsquhi840IDC6ABHqV5NenSrjxpJj8riK7ENfbtzHt6inQpg==
+"@rinminase/ng-fortawesome@^5.0.2":
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/@rinminase/ng-fortawesome/-/ng-fortawesome-5.0.2.tgz#aad95f766ed4f315d98bbcb0af62f3427726d561"
+  integrity sha512-MYlVSd1RxT9z4z7QFJLw7JbH3yAMHsVf70VoMhZKu70WrgQoGB6a/4kbtmbSUUkTudIPas+iyQHfNp9T12M7TA==
   dependencies:
     "@fortawesome/angular-fontawesome" "^0.6.1"
     "@fortawesome/fontawesome-svg-core" "^1.2.29"
