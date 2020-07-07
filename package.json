@@ -49,7 +49,7 @@
     "@angular/compiler": "^10.0.2",
     "@angular/compiler-cli": "^10.0.2",
     "@angular/platform-browser": "^10.0.2",
-    "codelyzer": "^5.2.2",
+    "codelyzer": "^6.0.0",
     "dotenv-webpack": "^1.8.0",
     "netlify-cli": "^2.58.0",
     "stylelint": "^13.6.1",
