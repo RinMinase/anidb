@@ -1637,10 +1637,12 @@
     util.promisify "^1.0.1"
     yargs "^15.3.1"
 
-"@ng-bootstrap/ng-bootstrap@^6.1.0":
-  version "6.1.0"
-  resolved "https://registry.yarnpkg.com/@ng-bootstrap/ng-bootstrap/-/ng-bootstrap-6.1.0.tgz#fce7550a095aeac42108f76ac1ebd63caf8304e9"
-  integrity sha512-2GzkNJBKdeHkaUqaCAqSILPft0IzzHjMfAlAuGY6/ZLlVQ0glt5MTbIXtIhSbjR+OvlrljoXFLrvzs1LGdmE+A==
+"@ng-bootstrap/ng-bootstrap@^7.0.0":
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/@ng-bootstrap/ng-bootstrap/-/ng-bootstrap-7.0.0.tgz#3bfa62eb52fdb891b1ce693ea11c39127e2d1ab7"
+  integrity sha512-SxUaptGWJmCxM0d2Zy1mx7K7p/YBwGZ69NmmBQVY4BE6p5av0hWrVmv9rzzfBz0rhxU7RPZLor2Jpaoq8Xyl4w==
+  dependencies:
+    tslib "^2.0.0"
 
 "@ngtools/webpack@10.0.1":
   version "10.0.1"
