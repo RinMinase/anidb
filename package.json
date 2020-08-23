@@ -51,7 +51,7 @@
     "@angular/platform-browser": "^10.0.11",
     "codelyzer": "^6.0.0",
     "dotenv-webpack": "^2.0.0",
-    "netlify-cli": "^2.59.0",
+    "netlify-cli": "^2.59.1",
     "stylelint": "^13.6.1",
     "tslib": "^2.0.0",
     "tslint": "^6.1.3",
