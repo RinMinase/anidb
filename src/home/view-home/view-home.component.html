@@ -86,10 +86,10 @@
 		<div class="col-lg-9 col-md-8 col-sm-7 col-12 animate slideInUp">
 			<div class="row d-sm-flex d-none">
 				<div class="col-12">
-					<p class="h3">
-						<span class="pr-2" *ngIf="data.encoder">[{{ data.encoder }}]</span>
-						<span>{{ data.title }}&nbsp;</span>
-						<span class="h5">
+					<p class="h3 d-md-flex align-items-center">
+						<span class="pr-2 d-md-flex" *ngIf="data.encoder">[{{ data.encoder }}]</span>
+						<span class="d-md-flex">{{ data.title }}&nbsp;</span>
+						<span class="h5 d-md-flex mb-0">
 							<span class="badge badge-{{data.qualityClass}} ml-2">{{ data.quality }}</span>
 						</span>
 					</p>
