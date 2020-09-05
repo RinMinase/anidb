@@ -16,14 +16,12 @@ export class UnitSpecsComponent implements OnInit {
 			cpuSubtext: "(All Core OC) 5.0 GHz @ 1.34v",
 			cpuSubtext2: "x44 Cache Overclock",
 			ram: "GSkill Trident Z RGB 32GB",
-			ramSubtext: "(4 × 8GB) CL16 3000MHz DDR4",
-			ramSubtext2: "(OC) 3200MHz 15-16-32 1.5v",
+			ramSubtext: "(4 × 8GB) CL16 3000MHz",
 			gpu: "Asus ROG Strix GTX 1070 OC",
-			gpuSubtext: "(8GB DDR5) +20 Core, +490 Mem",
+			gpuSubtext: "(8GB DDR5) +50 Core, +490 Mem",
 
 			motherboard: "Asus ROG Strix Z390-E",
-			psu: "CoolerMaster MasterWatt 650W",
-			psuSubtext: "80+ Bronze",
+			psu: "CoolerMaster MWE Bronze 650W",
 			cooler: "Noctua NH-U12S chromax",
 			coolerSubtext: "2x Noctua NF-F12 chromax",
 			ssd: "Samsung 860 EVO 1TB",
@@ -39,7 +37,7 @@ export class UnitSpecsComponent implements OnInit {
 
 			keyboard: "Razer Blackwidow TE Chroma",
 			mouse: "Razer Deathadder Chroma",
-			mat: "Steelseries QCK XXL",
+			mat: "SteelSeries QCK XXL",
 			matSubtext: "(900 × 400mm)",
 		};
 	}
