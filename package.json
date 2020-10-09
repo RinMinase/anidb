@@ -28,7 +28,7 @@
     "@angular/router": "^10.1.5",
     "@angular/service-worker": "^10.1.5",
     "@ng-bootstrap/ng-bootstrap": "^7.0.0",
-    "@rinminase/ng-charts": "^3.1.4",
+    "@rinminase/ng-charts": "^3.2.1",
     "@rinminase/ng-fortawesome": "^5.1.2",
     "animatewithsass": "^3.2.1",
     "bootstrap": "^4.5.2",
