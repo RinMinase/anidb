@@ -5404,7 +5404,7 @@ download@^7.1.0:
     p-event "^2.1.0"
     pify "^3.0.0"
 
-dropzone@5.7.0, dropzone@^5.5.0:
+dropzone@5.7.0, dropzone@^5.7.0:
   version "5.7.0"
   resolved "https://registry.yarnpkg.com/dropzone/-/dropzone-5.7.0.tgz#8d1007f3ebcc6e6d64096823f854d898f7564ef2"
   integrity sha512-kOltiZXH5cO/72I22JjE+w6BoT6uaVLfWdFMsi1PMKFkU6BZWpqRwjnsRm0o6ANGTBuZar5Piu7m/CbKqRPiYg==
@@ -9400,12 +9400,13 @@ ng2-file-upload@^1.4.0:
   dependencies:
     tslib "^1.9.0"
 
-ngx-dropzone-wrapper@^9.0.0:
-  version "9.0.0"
-  resolved "https://registry.yarnpkg.com/ngx-dropzone-wrapper/-/ngx-dropzone-wrapper-9.0.0.tgz#9074420a84a67b597ebe05334daddb70328572e5"
-  integrity sha512-hi0zgbPrvUpPAEXvkD4FbKsBUAxGJ1DcYRAxlRrn8R03S7FBkKd/ptHnPSJyXuwDFa0BEEcqYukb3g7lJDm++A==
+ngx-dropzone-wrapper@^10.0.1:
+  version "10.0.1"
+  resolved "https://registry.yarnpkg.com/ngx-dropzone-wrapper/-/ngx-dropzone-wrapper-10.0.1.tgz#531bf73f701323bf317fe4f0a5d6485d5d10db13"
+  integrity sha512-O9jaj8GWIIRWhYS8ibzR1yN1voQ4UUGKhl0zH0X/DY9MTsWCGmFvuSfnuv8MuXKcEmukjyeMUQ1p9BerUshIug==
   dependencies:
-    dropzone "^5.5.0"
+    dropzone "^5.7.0"
+    tslib "^2.0.0"
 
 nice-try@^1.0.4:
   version "1.0.5"

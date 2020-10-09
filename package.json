@@ -36,7 +36,7 @@
     "firebase": "^7.23.0",
     "fuse.js": "^6.4.1",
     "ng2-file-upload": "^1.4.0",
-    "ngx-dropzone-wrapper": "^9.0.0",
+    "ngx-dropzone-wrapper": "^10.0.1",
     "rxjs": "^6.6.3",
     "scss-spinners": "^1.2.10",
     "sweetalert2": "^10.3.7",
