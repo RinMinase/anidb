@@ -1518,28 +1518,28 @@
   resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-common-types/-/fontawesome-common-types-0.2.32.tgz#3436795d5684f22742989bfa08f46f50f516f259"
   integrity sha512-ux2EDjKMpcdHBVLi/eWZynnPxs0BtFVXJkgHIxXRl+9ZFaHPvYamAfCzeeQFqHRjuJtX90wVnMRaMQAAlctz3w==
 
-"@fortawesome/fontawesome-svg-core@^1.2.30":
+"@fortawesome/fontawesome-svg-core@^1.2.32":
   version "1.2.32"
   resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-svg-core/-/fontawesome-svg-core-1.2.32.tgz#da092bfc7266aa274be8604de610d7115f9ba6cf"
   integrity sha512-XjqyeLCsR/c/usUpdWcOdVtWFVjPbDFBTQkn2fQRrWhhUoxriQohO2RWDxLyUM8XpD+Zzg5xwJ8gqTYGDLeGaQ==
   dependencies:
     "@fortawesome/fontawesome-common-types" "^0.2.32"
 
-"@fortawesome/free-brands-svg-icons@^5.14.0":
+"@fortawesome/free-brands-svg-icons@^5.15.1":
   version "5.15.1"
   resolved "https://registry.yarnpkg.com/@fortawesome/free-brands-svg-icons/-/free-brands-svg-icons-5.15.1.tgz#1dc0563f4036639e53d24b8e532ea78a53ca2250"
   integrity sha512-pkTZIWn7iuliCCgV+huDfZmZb2UjslalXGDA2PcqOVUYJmYL11y6ooFiMJkJvUZu+xgAc1gZgQe+Px12mZF0CA==
   dependencies:
     "@fortawesome/fontawesome-common-types" "^0.2.32"
 
-"@fortawesome/free-regular-svg-icons@^5.14.0":
+"@fortawesome/free-regular-svg-icons@^5.15.1":
   version "5.15.1"
   resolved "https://registry.yarnpkg.com/@fortawesome/free-regular-svg-icons/-/free-regular-svg-icons-5.15.1.tgz#a8897d0ce325352dbba0e943101323e0175ee2b2"
   integrity sha512-eD9NWFy89e7SVVtrLedJUxIpCBGhd4x7s7dhesokjyo1Tw62daqN5UcuAGu1NrepLLq1IeAYUVfWwnOjZ/j3HA==
   dependencies:
     "@fortawesome/fontawesome-common-types" "^0.2.32"
 
-"@fortawesome/free-solid-svg-icons@^5.14.0":
+"@fortawesome/free-solid-svg-icons@^5.15.1":
   version "5.15.1"
   resolved "https://registry.yarnpkg.com/@fortawesome/free-solid-svg-icons/-/free-solid-svg-icons-5.15.1.tgz#e1432676ddd43108b41197fee9f86d910ad458ef"
   integrity sha512-EFMuKtzRMNbvjab/SvJBaOOpaqJfdSap/Nl6hst7CgrJxwfORR1drdTV6q1Ib/JVzq4xObdTDcT6sqTaXMqfdg==
@@ -2149,16 +2149,16 @@
     lodash-es "^4.17.15"
     tslib "^2.0.0"
 
-"@rinminase/ng-fortawesome@^5.1.2":
-  version "5.1.2"
-  resolved "https://registry.yarnpkg.com/@rinminase/ng-fortawesome/-/ng-fortawesome-5.1.2.tgz#316125c44996b0cf0ec39900a0cdcb95c8efe851"
-  integrity sha512-oGkjNx/bNiyW7SOj0ZFNQRwqeOW4F9ifgV49gYWAzzLpdifPQeKNO8dWhDtreZOd27x6mQxq+Bwj8glvvhUUZA==
+"@rinminase/ng-fortawesome@^5.2.0":
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/@rinminase/ng-fortawesome/-/ng-fortawesome-5.2.0.tgz#cfc9cfacfd136c5a844607cc767ea22d043e6387"
+  integrity sha512-EhDeOJMWezpQW6H/IINLlu6Z0Wht2mYPRdaSdqrVhUbWiFGipCbOfRpVm5fw+OwC70hXqWAZGbPXBTrEBuG7ng==
   dependencies:
     "@fortawesome/angular-fontawesome" "^0.7.0"
-    "@fortawesome/fontawesome-svg-core" "^1.2.30"
-    "@fortawesome/free-brands-svg-icons" "^5.14.0"
-    "@fortawesome/free-regular-svg-icons" "^5.14.0"
-    "@fortawesome/free-solid-svg-icons" "^5.14.0"
+    "@fortawesome/fontawesome-svg-core" "^1.2.32"
+    "@fortawesome/free-brands-svg-icons" "^5.15.1"
+    "@fortawesome/free-regular-svg-icons" "^5.15.1"
+    "@fortawesome/free-solid-svg-icons" "^5.15.1"
     tslib "^2.0.0"
 
 "@rollup/plugin-babel@^5.2.0":
