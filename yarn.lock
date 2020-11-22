@@ -5397,7 +5397,7 @@ download@^7.1.0:
     p-event "^2.1.0"
     pify "^3.0.0"
 
-dropzone@5.7.0, dropzone@^5.7.0:
+dropzone@^5.7.0:
   version "5.7.0"
   resolved "https://registry.yarnpkg.com/dropzone/-/dropzone-5.7.0.tgz#8d1007f3ebcc6e6d64096823f854d898f7564ef2"
   integrity sha512-kOltiZXH5cO/72I22JjE+w6BoT6uaVLfWdFMsi1PMKFkU6BZWpqRwjnsRm0o6ANGTBuZar5Piu7m/CbKqRPiYg==
