@@ -3,7 +3,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { Router, Routes, RouterModule } from "@angular/router";
 import { HttpClientModule } from "@angular/common/http";
 import { ServiceWorkerModule } from "@angular/service-worker";
-import { initializeApp } from "firebase/app";
+import firebase from "firebase/app";
 
 import { NavbarModule } from "@components/navbar/navbar.module";
 import { FooterModule } from "@components/footer/footer.module";
@@ -84,7 +84,7 @@ export class AppComponent {
 			storageBucket: process.env.FIRE_STORAGE_BUCKET || "",
 		};
 
-		initializeApp(firebaseConfig);
+		firebase.initializeApp(firebaseConfig);
 	}
 }
 

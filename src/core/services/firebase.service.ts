@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 
-import * as firebase from "firebase/app";
+import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/database";
 import "firebase/storage";
@@ -28,7 +28,9 @@ export class FirebaseService {
 	auth() {
 		return new Promise((resolve, reject) => {
 			firebase.auth().onAuthStateChanged((isAuthenticated: any) => {
-				isAuthenticated ? resolve() : reject(new Error("Not authenticated"));
+				isAuthenticated
+					? resolve(true)
+					: reject(new Error("Not authenticated"));
 			});
 		});
 	}
@@ -45,7 +47,7 @@ export class FirebaseService {
 					.once("value")
 					.then((finalData: any) => {
 						lastIndex = parseInt(Object.keys(finalData.val())[0]);
-						resolve();
+						resolve(true);
 					});
 			});
 
@@ -56,7 +58,7 @@ export class FirebaseService {
 					.ref(`${db}/${lastIndex + 1}`)
 					.set(data)
 					.then(() => {
-						resolve();
+						resolve(true);
 					});
 			});
 
