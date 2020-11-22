@@ -50,7 +50,7 @@
     "@angular/compiler-cli": "^10.1.5",
     "@angular/platform-browser": "^10.1.5",
     "codelyzer": "^6.0.1",
-    "dotenv-webpack": "^3.0.0",
+    "dotenv-webpack": "^5.1.0",
     "netlify-cli": "^2.68.7",
     "stylelint": "^13.7.2",
     "tslib": "^2.0.3",
