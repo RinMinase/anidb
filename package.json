@@ -34,7 +34,7 @@
     "bootstrap": "^4.5.3",
     "date-fns": "^2.16.1",
     "firebase": "^8.1.1",
-    "fuse.js": "^6.4.3",
+    "fuse.js": "^6.4.6",
     "ng2-file-upload": "^1.4.0",
     "ngx-dropzone-wrapper": "^10.0.1",
     "rxjs": "^6.6.3",
