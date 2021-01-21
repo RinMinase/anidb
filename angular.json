@@ -61,7 +61,12 @@
               "chart.js",
               "xlsx"
             ],
-            "aot": true
+            "aot": true,
+            "sourceMap": {
+              "scripts": true,
+              "styles": false,
+              "vendor": false
+            }
           },
           "configurations": {
             "production": {
@@ -89,17 +94,8 @@
         "serve": {
           "builder": "@angular-builders/custom-webpack:dev-server",
           "options": {
-            "customWebpackConfig": {
-              "path": "assets/config/webpack.ts",
-              "mergeStrategies": { "externals": "replace" }
-            },
             "port": 3000,
-            "browserTarget": "anidb:build",
-            "sourceMap": {
-              "scripts": true,
-              "styles": false,
-              "vendor": false
-            }
+            "browserTarget": "anidb:build"
           },
           "configurations": {
             "production": { "browserTarget": "anidb:build:production" }
