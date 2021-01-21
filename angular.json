@@ -100,14 +100,6 @@
           "configurations": {
             "production": { "browserTarget": "anidb:build:production" }
           }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "format": "stylish",
-            "tsConfig": [ "tsconfig.json" ],
-            "exclude": [ "**/node_modules/**" ]
-          }
         }
       }
     }
