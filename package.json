@@ -22,7 +22,6 @@
     "@angular/common": "^11.1.0",
     "@angular/core": "^11.1.0",
     "@angular/forms": "^11.1.0",
-    "@angular/localize": "^11.1.0",
     "@angular/platform-browser-dynamic": "^11.1.0",
     "@angular/pwa": "^0.1101.0",
     "@angular/router": "^11.1.0",
