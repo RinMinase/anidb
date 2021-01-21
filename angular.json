@@ -59,19 +59,12 @@
             "styles": [ "src/index.scss" ],
             "allowedCommonJsDependencies": [
               "chart.js",
-              "firebase/app",
-              "@firebase/app",
-              "@firebase/component",
-              "@firebase/database",
-              "@firebase/util",
-              "xlsx",
-              "zone.js/dist/zone"
+              "xlsx"
             ],
             "aot": true
           },
           "configurations": {
             "production": {
-              "extractCss": true,
               "extractLicenses": true,
               "optimization": true,
               "outputHashing": "all",
