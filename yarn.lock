@@ -1896,10 +1896,10 @@
     util.promisify "^1.0.1"
     yargs "^15.4.1"
 
-"@ng-bootstrap/ng-bootstrap@^8.0.0":
-  version "8.0.0"
-  resolved "https://registry.yarnpkg.com/@ng-bootstrap/ng-bootstrap/-/ng-bootstrap-8.0.0.tgz#7e1b9dc8a147e61ec964af430d1941be377bbe1e"
-  integrity sha512-v77Gfd8xHH+exq0WqIqVRlxbUEHdA/2+RUJenUP2IDTQN9E1rWl7O461/kosr+0XPuxPArHQJxhh/WsCYckcNg==
+"@ng-bootstrap/ng-bootstrap@^9.0.1":
+  version "9.0.1"
+  resolved "https://registry.yarnpkg.com/@ng-bootstrap/ng-bootstrap/-/ng-bootstrap-9.0.1.tgz#3950cc00008822ce1d2296aa5afc2b38b63fcf5b"
+  integrity sha512-dJFoK2mRsj/zL87PNv9frBD+72MkrMeFshXE26FKPf8P8JNFoL6zrcNLxlBouQ1rWBItH50BmlEqQOwyXazF7w==
   dependencies:
     tslib "^2.0.0"
 
@@ -3491,10 +3491,10 @@ boolbase@^1.0.0, boolbase@~1.0.0:
   resolved "https://registry.yarnpkg.com/boolbase/-/boolbase-1.0.0.tgz#68dff5fbe60c51eb37725ea9e3ed310dcc1e776e"
   integrity sha1-aN/1++YMUes3cl6p4+0xDcwed24=
 
-bootstrap@^4.5.3:
-  version "4.5.3"
-  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.5.3.tgz#c6a72b355aaf323920be800246a6e4ef30997fe6"
-  integrity sha512-o9ppKQioXGqhw8Z7mah6KdTYpNQY//tipnkxppWhPbiSWdD+1raYsnhwEZjkTHYbGee4cVQ0Rx65EhOY/HNLcQ==
+bootstrap@^4.6.0:
+  version "4.6.0"
+  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.6.0.tgz#97b9f29ac98f98dfa43bf7468262d84392552fd7"
+  integrity sha512-Io55IuQY3kydzHtbGvQya3H+KorS/M9rSNyfCGCg9WZ4pyT/lCxIlpJgG1GXW/PswzC84Tr2fBYi+7+jFVQQBw==
 
 boxen@^4.1.0, boxen@^4.2.0:
   version "4.2.0"
