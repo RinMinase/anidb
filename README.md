@@ -104,10 +104,9 @@ Schematics
     │   ├── index.scss                      # Main Stylesheet (SCSS) file
     │   └── index.ts                        # Main TypeScript file
     ├── .editorconfig                       # IDE / Editor configuration
+    ├── .env                                # Environment file
     ├── angular.json                        # Angular CLI configuration
-    ├── env.ts                              # Angular Environment file
     ├── tsconfig.json                       # Main TypeScript configuration file
-    ├── tslint.json                         # TypeScript linting file
     └── ...                                 # Other project files
 
 ### Project tasks
@@ -119,7 +118,6 @@ Task automation is based on [Yarn scripts](https://yarnpkg.com/lang/en/docs/cli/
 | `yarn start`        | Run **development server** on `http://localhost:3000/` with file watching on changes                 |
 | `yarn start --prod` | Run **production server** on `http://localhost:3000/` with file watching on changes                  |
 | `yarn build`        | Build production code and add service worker to built code                                           |
-| `yarn lint`         | Lints all TypeScript and SCSS files, takes an optional `--fix` to automatically fix linting problems |
 
 Other tasks included in `package.json` that should not be executed manually:
 
@@ -131,15 +129,15 @@ Other tasks included in `package.json` that should not be executed manually:
 _Add info here_
 
 ## Built with
-* <img width=20 height=20 src="https://angular.io/assets/images/favicons/favicon.ico"> [Angular 10](https://angular.io/) - Web Framework
-* <img width=20 height=20 src="https://www.typescriptlang.org/assets/images/icons/favicon-32x32.png"> [TypeScript](https://www.typescriptlang.org/) - Language syntax
+* <img width=20 height=20 src="https://angular.io/assets/images/favicons/favicon.ico"> [Angular 11](https://angular.io/) - Web Framework
+* <img width=20 height=20 src="https://www.typescriptlang.org/favicon-32x32.png"> [TypeScript](https://www.typescriptlang.org/) - Language syntax
 * <img width=20 height=20 src="https://sass-lang.com/favicon.ico"> [Sassy CSS (SCSS)](https://sass-lang.com/) - CSS pre-processor
 * <img width=20 height=20 src="https://getbootstrap.com/favicon.ico"> [Bootstrap 4](https://getbootstrap.com/) - HTML Framework (layout)
 * <img width=20 height=20 src="https://firebase.google.com/favicon.ico"> [Firebase](https://firebase.google.com/) - Database
-* <img width=20 height=20 src="https://webpack.js.org/bc3effb418df77da9e04825c48a58a49.ico"> [Webpack 4](https://webpack.js.org/) - Project bundler
+* <img width=20 height=20 src="https://webpack.js.org/icon_192x192.png"> [Webpack 4](https://webpack.js.org/) - Project bundler
 * <img width=20 height=20 src="https://dmmj3mmt94rvw.cloudfront.net/favicon-undefined.ico"> [Circle CI](https://circleci.com/) - Continuous Integration (CI) service
 * <img width=20 height=20 src="https://www.netlify.com/img/global/favicon/favicon-32x32.png"> [Netlify](https://netlify.com) - Hosting Platform
-* <img width=20 height=20 src="https://codecov.io/static/favicons/favicon-32x32.png"> [Codecov](https://codecov.io/) - Code Coverage
+* <img width=20 height=20 src="https://about.codecov.io/wp-content/themes/codecov/assets/brand/icons/favicons/favicon-32x32.png"> [Codecov](https://codecov.io/) - Code Coverage
 * <img width=20 height=20 src="https://yarnpkg.com/icons/icon-48x48.png"> [Yarn](https://yarnpkg.com/) - Package Manager
 
 ## Deployed to
