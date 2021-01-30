@@ -24,7 +24,8 @@ export class UnitSpecsComponent implements OnInit {
 			psu: "CoolerMaster MWE Bronze 650W",
 			cooler: "Noctua NH-U12S chromax",
 			coolerSubtext: "2x Noctua NF-F12 chromax",
-			ssd: "Samsung 860 EVO 1TB",
+			ssd: "Gigabyte AORUS Gen4 NVME 2TB",
+			ssdSubtext: "Samsung 860 EVO 1TB",
 			hdd: "Western Digital Black 2TB",
 
 			case: "NZXT H700 Matte Black",
@@ -35,8 +36,8 @@ export class UnitSpecsComponent implements OnInit {
 			monitor: "Dell SE2717H (1920 × 1080) 75Hz",
 			speakers: "Bose Companion 50 2.1",
 
-			keyboard: "Razer Blackwidow TE Chroma",
-			mouse: "Razer Deathadder Chroma",
+			keyboard: "Logitech G913 Wireless",
+			mouse: "Logitech G Pro Wireless",
 			mat: "SteelSeries QCK XXL",
 			matSubtext: "(900 × 400mm)",
 		};
