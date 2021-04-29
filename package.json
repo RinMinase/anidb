@@ -33,7 +33,7 @@
     "animatewithsass": "^3.2.1",
     "bootstrap": "^4.6.0",
     "date-fns": "^2.21.1",
-    "firebase": "^8.2.9",
+    "firebase": "^8.4.2",
     "fuse.js": "^6.4.6",
     "ng2-file-upload": "^1.4.0",
     "ngx-dropzone-wrapper": "^10.0.1",
