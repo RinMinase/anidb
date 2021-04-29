@@ -1544,7 +1544,7 @@
   resolved "https://registry.yarnpkg.com/@firebase/webchannel-wrapper/-/webchannel-wrapper-0.4.1.tgz#600f2275ff54739ad5ac0102f1467b8963cd5f71"
   integrity sha512-0yPjzuzGMkW1GkrC8yWsiN7vt1OzkMIi9HgxRmKREZl2wnNPOKo/yScTjXf/O57HM8dltqxPF6jlNLFVtc2qdw==
 
-"@fortawesome/angular-fontawesome@^0.8.1":
+"@fortawesome/angular-fontawesome@^0.8.2":
   version "0.8.2"
   resolved "https://registry.yarnpkg.com/@fortawesome/angular-fontawesome/-/angular-fontawesome-0.8.2.tgz#fe0401c66dd237fd78d3f29d540ef7302bb40e5a"
   integrity sha512-K/AiykA4YbHKE6XKEtZ0ZvVRQocUHyk+79HYWIfhGy3teHpzxsUqB/UjDaxivgBd6dF6ihlzgEbgrDMHlGNwGg==
@@ -2262,12 +2262,12 @@
     lodash-es "^4.17.21"
     tslib "^2.0.0"
 
-"@rinminase/ng-fortawesome@^5.3.0":
-  version "5.3.0"
-  resolved "https://registry.yarnpkg.com/@rinminase/ng-fortawesome/-/ng-fortawesome-5.3.0.tgz#8d2179d97d4c7049a63a3b02f22078ae39351abe"
-  integrity sha512-bgrlD/tYi/fYd4jmOEszyGOwHSHJkz2BsoLlK80o530cd3e/dONvoRJnhBW7YNEbo/hmOLdbU1CpA5CNtnlBqw==
+"@rinminase/ng-fortawesome@^5.4.0":
+  version "5.4.0"
+  resolved "https://registry.yarnpkg.com/@rinminase/ng-fortawesome/-/ng-fortawesome-5.4.0.tgz#dfd6bf21a2921067ce5992cbab73d46611aadcce"
+  integrity sha512-0E4BdaO5HN/Ghx5a6OaZ0hyZGEyS6PCW50RbPsN0WZyZZm4f8iAPaoFplDx+937RMWxJJidmCbTp1xT+ePsxzw==
   dependencies:
-    "@fortawesome/angular-fontawesome" "^0.8.1"
+    "@fortawesome/angular-fontawesome" "^0.8.2"
     "@fortawesome/fontawesome-svg-core" "^1.2.34"
     "@fortawesome/free-brands-svg-icons" "^5.15.2"
     "@fortawesome/free-regular-svg-icons" "^5.15.2"
