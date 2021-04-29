@@ -2252,14 +2252,14 @@
   resolved "https://registry.yarnpkg.com/@protobufjs/utf8/-/utf8-1.1.0.tgz#a777360b5b39a1a2e5106f8e858f2fd2d060c570"
   integrity sha1-p3c2C1s5oaLlEG+OhY8v0tBgxXA=
 
-"@rinminase/ng-charts@^3.3.0":
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/@rinminase/ng-charts/-/ng-charts-3.3.0.tgz#fad803f1496c523d15a9698e4eac3b10f58caddb"
-  integrity sha512-Bdrn9fW1CaK500d1s/X3fZ69zug/q2gJGEMeoqJWVpfMMD2YtmHXvXAD2BH1DiMc1LyO5MOprcTW+jzHey/2fA==
+"@rinminase/ng-charts@^3.4.0":
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/@rinminase/ng-charts/-/ng-charts-3.4.0.tgz#3014392f9f69d8b88fdf7e936170a9189c9e20c6"
+  integrity sha512-V5V2ZlobMtKJD/lxS7tMCv+1SZ0He487KbOs7pDAFC/WHKe/mOA8c1V7hnoCtpA1XF749DFowGE2GqAXCI0lng==
   dependencies:
     "@types/chart.js" "2.9.22"
     chart.js "^2.9.3"
-    lodash-es "^4.17.20"
+    lodash-es "^4.17.21"
     tslib "^2.0.0"
 
 "@rinminase/ng-fortawesome@^5.3.0":
@@ -8591,7 +8591,7 @@ locate-path@^6.0.0:
   dependencies:
     p-locate "^5.0.0"
 
-lodash-es@^4.17.20:
+lodash-es@^4.17.21:
   version "4.17.21"
   resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.21.tgz#43e626c46e6591b7750beb2b50117390c609e3ee"
   integrity sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==
