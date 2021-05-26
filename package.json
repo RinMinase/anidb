@@ -13,7 +13,7 @@
   },
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --configuration development",
     "build": "ng build --prod",
     "deploy": "ng build --prod --no-progress",
     "lint": "stylelint src/**/*.scss"

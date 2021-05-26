@@ -88,6 +88,13 @@
                 "maximumWarning": "5kb",
                 "maximumError": "6kb"
               }]
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true
             }
           }
         },
@@ -98,7 +105,12 @@
             "browserTarget": "anidb:build"
           },
           "configurations": {
-            "production": { "browserTarget": "anidb:build:production" }
+            "production": {
+              "browserTarget": "anidb:build:production"
+            },
+            "development": {
+              "browserTarget": "anidb:build:development"
+            }
           }
         }
       }
