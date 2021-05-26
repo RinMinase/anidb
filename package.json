@@ -14,8 +14,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --configuration development",
-    "build": "ng build --prod",
-    "deploy": "ng build --prod --no-progress",
+    "build": "ng build --configuration production",
+    "deploy": "ng build --configuration production --no-progress",
     "lint": "stylelint src/**/*.scss"
   },
   "dependencies": {
