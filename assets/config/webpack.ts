@@ -1,5 +1,5 @@
 /* tslint:disable:no-var-requires */
-const Dotenv = require('dotenv-webpack');
+const Dotenv = require("dotenv-webpack");
 const IgnorePlugin = require("webpack").IgnorePlugin;
 /* tslint:enable */
 
@@ -12,6 +12,6 @@ module.exports = {
 		new IgnorePlugin(/^\.\/locale$/, /moment$/),
 	],
 	resolve: {
-		alias: { "./dist/cpexcel.js": "" },
+		alias: { "./dist/cpexcel.js": false },
 	},
 };
