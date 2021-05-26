@@ -1466,40 +1466,40 @@
   resolved "https://registry.yarnpkg.com/@firebase/webchannel-wrapper/-/webchannel-wrapper-0.4.1.tgz#600f2275ff54739ad5ac0102f1467b8963cd5f71"
   integrity sha512-0yPjzuzGMkW1GkrC8yWsiN7vt1OzkMIi9HgxRmKREZl2wnNPOKo/yScTjXf/O57HM8dltqxPF6jlNLFVtc2qdw==
 
-"@fortawesome/angular-fontawesome@^0.8.2":
-  version "0.8.2"
-  resolved "https://registry.yarnpkg.com/@fortawesome/angular-fontawesome/-/angular-fontawesome-0.8.2.tgz#fe0401c66dd237fd78d3f29d540ef7302bb40e5a"
-  integrity sha512-K/AiykA4YbHKE6XKEtZ0ZvVRQocUHyk+79HYWIfhGy3teHpzxsUqB/UjDaxivgBd6dF6ihlzgEbgrDMHlGNwGg==
+"@fortawesome/angular-fontawesome@^0.9.0":
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/@fortawesome/angular-fontawesome/-/angular-fontawesome-0.9.0.tgz#0fe6219450aae46b3237b8172c281b420d95a6c0"
+  integrity sha512-pJNJqxRTJChkUtywbqRuJRpmK/WNwqFqeN/GMmJmy3gHeCnWQ4SG0BwPJqaWqhi4gqII5dADijGts6wqeusxeQ==
   dependencies:
-    tslib "^2.1.0"
+    tslib "^2.2.0"
 
 "@fortawesome/fontawesome-common-types@^0.2.35":
   version "0.2.35"
   resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-common-types/-/fontawesome-common-types-0.2.35.tgz#01dd3d054da07a00b764d78748df20daf2b317e9"
   integrity sha512-IHUfxSEDS9dDGqYwIW7wTN6tn/O8E0n5PcAHz9cAaBoZw6UpG20IG/YM3NNLaGPwPqgjBAFjIURzqoQs3rrtuw==
 
-"@fortawesome/fontawesome-svg-core@^1.2.34":
+"@fortawesome/fontawesome-svg-core@^1.2.35":
   version "1.2.35"
   resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-svg-core/-/fontawesome-svg-core-1.2.35.tgz#85aea8c25645fcec88d35f2eb1045c38d3e65cff"
   integrity sha512-uLEXifXIL7hnh2sNZQrIJWNol7cTVIzwI+4qcBIq9QWaZqUblm0IDrtSqbNg+3SQf8SMGHkiSigD++rHmCHjBg==
   dependencies:
     "@fortawesome/fontawesome-common-types" "^0.2.35"
 
-"@fortawesome/free-brands-svg-icons@^5.15.2":
+"@fortawesome/free-brands-svg-icons@^5.15.3":
   version "5.15.3"
   resolved "https://registry.yarnpkg.com/@fortawesome/free-brands-svg-icons/-/free-brands-svg-icons-5.15.3.tgz#bec2821d23b9c667be1d192a6c5bfb2667e588eb"
   integrity sha512-1hirPcbjj72ZJtFvdnXGPbAbpn3Ox6mH3g5STbANFp3vGSiE5u5ingAKV06mK6ZVqNYxUPlh4DlTnaIvLtF2kw==
   dependencies:
     "@fortawesome/fontawesome-common-types" "^0.2.35"
 
-"@fortawesome/free-regular-svg-icons@^5.15.2":
+"@fortawesome/free-regular-svg-icons@^5.15.3":
   version "5.15.3"
   resolved "https://registry.yarnpkg.com/@fortawesome/free-regular-svg-icons/-/free-regular-svg-icons-5.15.3.tgz#1ec4f2410ff638db549c5c5484fc60b66407dbe6"
   integrity sha512-q4/p8Xehy9qiVTdDWHL4Z+o5PCLRChePGZRTXkl+/Z7erDVL8VcZUuqzJjs6gUz6czss4VIPBRdCz6wP37/zMQ==
   dependencies:
     "@fortawesome/fontawesome-common-types" "^0.2.35"
 
-"@fortawesome/free-solid-svg-icons@^5.15.2":
+"@fortawesome/free-solid-svg-icons@^5.15.3":
   version "5.15.3"
   resolved "https://registry.yarnpkg.com/@fortawesome/free-solid-svg-icons/-/free-solid-svg-icons-5.15.3.tgz#52eebe354f60dc77e0bde934ffc5c75ffd04f9d8"
   integrity sha512-XPeeu1IlGYqz4VWGRAT5ukNMd4VHUEEJ7ysZ7pSSgaEtNvSo+FLurybGJVmiqkQdK50OkSja2bfZXOeyMGRD8Q==
@@ -2198,17 +2198,17 @@
     lodash-es "^4.17.21"
     tslib "^2.1.0"
 
-"@rinminase/ng-fortawesome@^5.4.0":
-  version "5.4.0"
-  resolved "https://registry.yarnpkg.com/@rinminase/ng-fortawesome/-/ng-fortawesome-5.4.0.tgz#dfd6bf21a2921067ce5992cbab73d46611aadcce"
-  integrity sha512-0E4BdaO5HN/Ghx5a6OaZ0hyZGEyS6PCW50RbPsN0WZyZZm4f8iAPaoFplDx+937RMWxJJidmCbTp1xT+ePsxzw==
+"@rinminase/ng-fortawesome@^6.0.0":
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/@rinminase/ng-fortawesome/-/ng-fortawesome-6.0.0.tgz#467ac97cc7a953cca34e19161ce157bcf3d6d88b"
+  integrity sha512-y0OrZ5c85x/IjxdygwU0y9k6fuRvumc5x1zg1s63KLCZG8S40zniozOyDXBdHaSarf6j6tVKtMEFAUUszKvvLA==
   dependencies:
-    "@fortawesome/angular-fontawesome" "^0.8.2"
-    "@fortawesome/fontawesome-svg-core" "^1.2.34"
-    "@fortawesome/free-brands-svg-icons" "^5.15.2"
-    "@fortawesome/free-regular-svg-icons" "^5.15.2"
-    "@fortawesome/free-solid-svg-icons" "^5.15.2"
-    tslib "^2.0.0"
+    "@fortawesome/angular-fontawesome" "^0.9.0"
+    "@fortawesome/fontawesome-svg-core" "^1.2.35"
+    "@fortawesome/free-brands-svg-icons" "^5.15.3"
+    "@fortawesome/free-regular-svg-icons" "^5.15.3"
+    "@fortawesome/free-solid-svg-icons" "^5.15.3"
+    tslib "^2.1.0"
 
 "@rollup/plugin-babel@^5.2.0":
   version "5.3.0"
