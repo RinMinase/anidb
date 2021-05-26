@@ -39,7 +39,7 @@
     "ngx-dropzone-wrapper": "^10.0.1",
     "rxjs": "^7.1.0",
     "scss-spinners": "^2.0.3",
-    "sweetalert2": "^10.16.6",
+    "sweetalert2": "^11.0.11",
     "xlsx": "^0.17.0",
     "zone.js": "^0.11.4"
   },
