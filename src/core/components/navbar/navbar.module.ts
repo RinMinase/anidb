@@ -1,4 +1,4 @@
-import { NgModule, Component, OnInit } from "@angular/core";
+import { NgModule, Component, Input, OnInit } from "@angular/core";
 import { RouterModule, Router } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
@@ -40,6 +40,8 @@ import { distinctUntilChanged } from "rxjs/operators";
 	templateUrl: "./navbar.component.html",
 })
 export class NavbarComponent implements OnInit {
+	@Input() isHomeScreen: boolean;
+
 	fasCalendarAlt = fasCalendarAlt;
 	// fasCalendarPlus = fasCalendarPlus;
 	// fasChartPie = fasChartPie;
@@ -63,6 +65,7 @@ export class NavbarComponent implements OnInit {
 
 	darkModeToggle = new FormControl(false);
 	isNavCollapsed: boolean = false;
+	isHome: boolean = false;
 
 	constructor(
 		private router: Router,

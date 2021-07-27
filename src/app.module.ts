@@ -68,7 +68,10 @@ const routes: Routes = [
 @Component({
 	selector: "app-root",
 	template: `
-		<app-navbar *ngIf="router.url !== '/login'"></app-navbar>
+		<app-navbar
+			*ngIf="router.url !== '/login'"
+			[isHomeScreen]="router.url === '/'"
+		></app-navbar>
 		<router-outlet></router-outlet>
 		<app-footer *ngIf="router.url !== '/login'"></app-footer>
 	`,

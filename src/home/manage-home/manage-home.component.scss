@@ -7,6 +7,15 @@
 	box-shadow: none;
 }
 
+.search-container {
+	padding-top: 24px;
+	padding-bottom: 8px;
+	position: sticky;
+	top: 46px;
+	background-color: #eee;
+	z-index: 1019;
+}
+
 .search-append {
 	> .input-group-text {
 		border-top-left-radius: 0;

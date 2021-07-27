@@ -1,4 +1,7 @@
-<nav class="navbar navbar-expand-md navbar-light sticky-top bg-success py-1 mb-4">
+<nav
+	class="navbar navbar-expand-md navbar-light sticky-top bg-success py-1"
+	[ngClass]="{'mb-0': isHomeScreen, 'mb-4': !isHomeScreen}"
+>
 	<a class="navbar-brand ps-2" routerLink="/">Rin's Anime Database</a>
 
 	<button type="button"
