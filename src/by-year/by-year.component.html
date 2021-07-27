@@ -7,7 +7,7 @@
 	<div class="row" *ngIf="dataLoaded === true">
 		<div class="col-lg-3 animate slideInLeft">
 			<div class="row">
-				<div class="col form-group">
+				<div class="col mb-3">
 					<div class="input-group">
 						<input type="search"
 							class="form-control border-right-0 border"
@@ -31,14 +31,14 @@
 							(click)="category.year = 0; category.season = 0;"
 							[ngClass]="{'list-group-item-info': !category.year}">
 							<span>Uncategorized</span>
-							<div class="float-right">
-								<span class="badge badge-success download-badge" ngbTooltip="Watched">
+							<div class="float-end">
+								<span class="badge bg-success download-badge" ngbTooltip="Watched">
 									{{ data[0][0][0]?.length || 0 }}
 								</span>
-								<span class="badge badge-primary download-badge" ngbTooltip="Downloaded">
+								<span class="badge bg-primary download-badge" ngbTooltip="Downloaded">
 									{{ data[0][0][2]?.length || 0 }}
 								</span>
-								<span class="badge badge-secondary download-badge" ngbTooltip="Queued" placement="left">
+								<span class="badge bg-secondary download-badge" ngbTooltip="Queued" placement="left">
 									{{ data[0][0][3]?.length || 0 }}
 								</span>
 							</div>
@@ -48,9 +48,9 @@
 							<a class="list-group-item link px-3 py-2 c-pointer"
 								(click)="collapse[key] = !collapse[key]">
 								<span>{{ key }}</span>
-								<span class="float-right"><fa-icon [icon]="fasAngleDown"></fa-icon></span>
+								<span class="float-end"><fa-icon [icon]="fasAngleDown"></fa-icon></span>
 							</a>
-							<a class="list-group-item link pl-4 pr-3 py-0 season-list c-pointer"
+							<a class="list-group-item link ps-4 pe-3 py-0 season-list c-pointer"
 								*ngFor="let value of keys[key]"
 								(click)="category.year = key; category.season = value;"
 								[ngClass]="{'list-group-item-info': category.year === key && category.season === value}"
@@ -62,14 +62,14 @@
 									<span *ngIf="value === 2">Summer</span>
 									<span *ngIf="value === 3">Fall</span>
 
-									<span class="float-right">
-										<span class="badge badge-success download-badge" ngbTooltip="Watched">
+									<span class="float-end">
+										<span class="badge bg-success download-badge" ngbTooltip="Watched">
 											{{ data[key][value][0]?.length || 0 }}
 										</span>
-										<span class="badge badge-primary download-badge" ngbTooltip="Downloaded">
+										<span class="badge bg-primary download-badge" ngbTooltip="Downloaded">
 											{{ data[key][value][2]?.length || 0 }}
 										</span>
-										<span class="badge badge-secondary download-badge" ngbTooltip="Queued" placement="left">
+										<span class="badge bg-secondary download-badge" ngbTooltip="Queued" placement="left">
 											{{ data[key][value][3]?.length || 0 }}
 										</span>
 									</span>
@@ -99,12 +99,12 @@
 								(click)="collapse[3] = !collapse[3]"
 								*ngIf="key === '3'">In Queue</a>
 
-							<div class="float-right">
+							<div class="float-end">
 								<div class="badge"
 									[ngClass]="{
-										'badge-success': key === '0',
-										'badge-primary': key === '2',
-										'badge-secondary': key === '3'
+										'bg-success': key === '0',
+										'bg-primary': key === '2',
+										'bg-secondary': key === '3'
 									}">
 
 									{{ data[category.year][category.season][key].length }}
@@ -120,7 +120,7 @@
 									<tr>
 										<th>Title</th>
 										<th class="text-center">Remarks</th>
-										<th></th>
+										<th colspan="2"></th>
 									</tr>
 								</thead>
 								<tbody>
@@ -130,7 +130,7 @@
 											<span>{{ data.remarks || "&mdash;" }}</span>
 										</td>
 										<td>
-											<a class="btn btn-sm btn-warning float-right px-2 py-0 c-pointer" ngbTooltip="Edit Remarks">
+											<a class="btn btn-sm btn-warning float-end px-2 py-0 c-pointer" ngbTooltip="Edit Remarks">
 												<fa-icon [icon]="fasPencil" class="text-white"></fa-icon>
 											</a>
 										</td>
