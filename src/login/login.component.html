@@ -11,7 +11,7 @@
 			<form [formGroup]="loginForm" (ngSubmit)="authenticate()">
 				<div *ngIf="loading === false">
 					<ngb-alert type="danger" *ngIf="!!alert" (close)="alert = null">{{ alert }}</ngb-alert>
-					<div class="form-group animated-input-container">
+					<div class="mb-3 animated-input-container">
 						<label for="email" class="text-center animated-label">Email Address</label>
 						<input type="email"
 							id="email"
@@ -21,7 +21,7 @@
 							formControlName="email"
 							required>
 					</div>
-					<div class="form-group animated-input-container">
+					<div class="mb-3 animated-input-container">
 						<label for="password" class="text-center animated-label">Password</label>
 						<input type="password"
 							id="password"
@@ -32,10 +32,10 @@
 							required>
 					</div>
 				</div>
-				<div class="form-group">
-					<button type="submit" class="btn btn-block btn-login">LOGIN</button>
+				<div class="mb-3 text-center">
+					<button type="submit" class="btn w-100 btn-login">LOGIN</button>
 				</div>
-				<div class="form-group text-center">
+				<div class="text-center d-none">
 					<span class="text-dark-white">Forgot password?</span>
 				</div>
 			</form>
