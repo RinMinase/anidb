@@ -1,7 +1,7 @@
 .table-specs {
 	th, td {
 		&:not(.table-specs-border) {
-			border-top: 0;
+			border-bottom: 0;
 			&:not(.table-specs-value) { font-weight: bold; }
 		}
 	}
