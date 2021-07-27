@@ -1,28 +1,28 @@
 <div class="container-fluid" [ngClass]="{'bg-dark' : dark}">
 	<div class="row">
 		<div class="col-md-2 col-sm-3 d-none d-sm-block">
-			<div class="form-group">
-				<a class="btn btn-success btn-block c-pointer" (click)="addTitle()">
+			<div class="mb-3">
+				<a class="btn btn-success w-100 c-pointer" (click)="addTitle()">
 					<fa-icon [icon]="fasPlus"></fa-icon>
-					<span class="pl-2">Add</span>
+					<span class="ps-2">Add</span>
 				</a>
 			</div>
 		</div>
 		<div class="col-3 d-sm-none">
-			<div class="form-group">
-				<a class="btn btn-success btn-block c-pointer" (click)="addTitle()">
+			<div class="mb-3">
+				<a class="btn btn-success w-100 c-pointer" (click)="addTitle()">
 					<fa-icon [icon]="fasPlus"></fa-icon>
 				</a>
 			</div>
 		</div>
-		<div class="col-md-10 col-sm-9 col-9 pl-0">
+		<div class="col-md-10 col-sm-9 col-9 ps-0">
 			<div class="input-group">
 				<input type="search"
-					class="form-control border-right-0 border"
+					class="form-control border-right-0 border border-end-0"
 					placeholder="Search by Title, Quality, Release, Encoder, Remarks"
 					[formControl]="search"
 					autofocus>
-				<span class="input-group-append">
+				<span class="input-group-append search-append">
 					<div class="input-group-text bg-transparent border-left-0 border py-1">
 						<fa-icon [icon]="fasSearch"></fa-icon>
 					</div>

@@ -1,26 +1,26 @@
 <form [formGroup]="editTitleForm" (ngSubmit)="edit()">
 	<div class="modal-header">
 		<h4 class="modal-title">Edit Title</h4>
-		<button type="button" class="close" (click)="cancel()"><i>&times;</i></button>
+		<button type="button" class="btn-close" (click)="cancel()"></button>
 	</div>
 
 	<div class="modal-body">
 		<div class="row">
-			<div class="form-group col-lg-3 col-6 d-lg-block d-sm-none d-block pr-0">
+			<div class="mb-3 col-lg-3 col-6 d-lg-block d-sm-none d-block pe-0">
 				<label>Status</label>
-				<select class="form-control" formControlName="watchStatus">
+				<select class="form-select" formControlName="watchStatus">
 					<option *ngFor="let data of options.watchStatus"
 						[value]="data.id">{{ data.label }}</option>
 				</select>
 			</div>
-			<div class="form-group col-lg-3 col-sm-5 col-6 pr-sm-0 d-sm-block d-block">
+			<div class="mb-3 col-lg-3 col-sm-5 col-6 pe-sm-0 d-sm-block d-block">
 				<label>Quality</label>
-				<select class="form-control" formControlName="quality">
+				<select class="form-select" formControlName="quality">
 					<option *ngFor="let data of options.quality"
 						[value]="data.id">{{ data.label }}</option>
 				</select>
 			</div>
-			<div class="form-group col-lg-6 col-sm-7 col-12">
+			<div class="mb-3 col-lg-6 col-sm-7 col-12">
 				<label>Title</label>
 				<input type="text"
 					class="form-control"
@@ -33,36 +33,36 @@
 		</div>
 
 		<div class="row">
-			<div class="form-group col-sm-6 d-lg-none d-sm-block d-none pr-0">
+			<div class="mb-3 col-sm-6 d-lg-none d-sm-block d-none pe-0">
 				<label>Status</label>
-				<select class="form-control" formControlName="quality">
+				<select class="form-select" formControlName="quality">
 						<option *ngFor="let data of options.quality"
 							[value]="data.id">{{ data.label }}</option>
 					</select>
 			</div>
-			<div class="form-group col-2 pr-0">
+			<div class="mb-3 col-2 pe-0">
 				<label class="d-sm-inline-block d-none">Episodes</label>
 				<label class="d-sm-none">EPs</label>
 				<input type="text" class="form-control" formControlName="episodes">
 			</div>
-			<div class="form-group col-2 pr-0">
+			<div class="mb-3 col-2 pe-0">
 				<label>OVAs</label>
 				<input type="text" class="form-control" formControlName="ovas">
 			</div>
-			<div class="form-group col-2 pr-lg-0 pr-md-def pr-sm-def pr-0">
+			<div class="mb-3 col-2 pe-lg-0 pe-md-def pe-sm-def pe-0">
 				<label class="d-lg-inline-block d-none">Specials</label>
 				<label class="d-lg-none">SPs</label>
 				<input type="text" class="form-control" formControlName="specials">
 			</div>
-			<div class="form-group col-lg-3 col-sm-6 d-sm-block d-none pr-0">
+			<div class="mb-3 col-lg-3 col-sm-6 d-sm-block d-none pe-0">
 				<label>Date Finished</label>
 				<input type="text" class="form-control" formControlName="dateFinishedRaw">
 			</div>
-			<div class="form-group col-lg-3 col-sm-4 col-6 pr-xl-def pr-lg-def pr-sm-0">
+			<div class="mb-3 col-lg-3 col-sm-4 col-6 pe-xl-def pe-lg-def pe-sm-0">
 				<label>Filesize</label>
 				<input type="text" class="form-control" formControlName="filesize">
 			</div>
-			<div class="form-group col-sm-2 text-center d-lg-none d-sm-block d-none pl-0">
+			<div class="mb-3 col-sm-2 text-center d-lg-none d-sm-block d-none ps-0">
 				<label>HDD</label>
 				<div>
 					<span class="switch switch-sm">
@@ -78,36 +78,36 @@
 		</div>
 
 		<div class="row">
-			<div class="form-group col-sm-2 col-3 pr-0">
+			<div class="mb-3 col-sm-2 col-3 pe-0">
 				<label>Season #</label>
 				<input type="text" class="form-control" formControlName="seasonNumber">
 			</div>
-			<div class="form-group col-lg-4 col-sm-7 col-9 pr-sm-0 pr-md-0 pr-lg-0">
+			<div class="mb-3 col-lg-4 col-sm-7 col-9 pe-sm-0 pe-md-0 pe-lg-0">
 				<label>First Season Title</label>
 				<input type="text" class="form-control" formControlName="firstSeasonTitle">
 			</div>
-			<div class="form-group col-sm-3 d-lg-none d-sm-block d-none">
+			<div class="mb-3 col-sm-3 d-lg-none d-sm-block d-none">
 				<label>Duration</label>
 				<input type="text" class="form-control" formControlName="durationRaw">
 			</div>
-			<div class="form-group col-lg-4 col-10 d-lg-block d-sm-none d-block pr-lg-0">
+			<div class="mb-3 col-lg-4 col-10 d-lg-block d-sm-none d-block pe-lg-0">
 				<label>Release</label>
-				<div class="input-group">
-					<div class="input-group-prepend col-6 px-0">
-						<select class="form-control" formControlName="releaseSeason">
+				<div class="row gx-0">
+					<div class="col-6">
+						<select class="form-select" formControlName="releaseSeason">
 							<option *ngFor="let data of options.releaseSeason"
 								[value]="data.id">{{ data.label }}</option>
 						</select>
 					</div>
-					<div class="input-group-append col-6 pl-1 pr-0">
-						<select class="form-control" formControlName="releaseYear">
+					<div class="col-6 ps-1 pe-0">
+						<select class="form-select" formControlName="releaseYear">
 							<option *ngFor="let data of options.releaseYear"
 								[value]="data.id">{{ data.label }}</option>
 						</select>
 					</div>
 				</div>
 			</div>
-			<div class="form-group col-2 text-center d-lg-block d-sm-none d-block pl-0">
+			<div class="mb-3 col-2 text-center d-lg-block d-sm-none d-block ps-0">
 				<label>HDD</label>
 				<div>
 					<span class="switch switch-sm">
@@ -123,36 +123,36 @@
 		</div>
 
 		<div class="row">
-			<div class="form-group col-lg-3 col-5 d-lg-block d-sm-none d-block pr-0">
+			<div class="mb-3 col-lg-3 col-5 d-lg-block d-sm-none d-block pe-0">
 				<label>Duration</label>
 				<input type="text" class="form-control" formControlName="durationRaw">
 			</div>
-			<div class="form-group col-7 d-sm-none d-block">
+			<div class="mb-3 col-7 d-sm-none d-block">
 				<label>Date Finished</label>
 				<input type="text" class="form-control" formControlName="dateFinishedRaw">
 			</div>
-			<div class="form-group col-sm-5 d-lg-none d-sm-block d-none pr-0">
+			<div class="mb-3 col-sm-5 d-lg-none d-sm-block d-none pe-0">
 				<label>Release</label>
-				<div class="input-group">
-					<div class="input-group-prepend col-6 px-0">
-						<select class="form-control" formControlName="releaseSeason">
+				<div class="row gx-0 mb-3">
+					<div class="col-6">
+						<select class="form-select" formControlName="releaseSeason">
 							<option *ngFor="let data of options.releaseSeason"
 								[value]="data.id">{{ data.label }}</option>
 						</select>
 					</div>
-					<div class="input-group-append col-6 pl-1 pr-0">
-						<select class="form-control" formControlName="releaseYear">
+					<div class="col-6 ps-1 pe-0">
+						<select class="form-select" formControlName="releaseYear">
 							<option *ngFor="let data of options.releaseYear"
 								[value]="data.id">{{ data.label }}</option>
 						</select>
 					</div>
 				</div>
 			</div>
-			<div class="form-group col-lg-5 col-sm-3 col-6 pr-0">
+			<div class="mb-3 col-lg-5 col-sm-3 col-6 pe-0">
 				<label>Encoder</label>
 				<input type="text" class="form-control" formControlName="encoder">
 			</div>
-			<div class="form-group col-sm-4 col-6">
+			<div class="mb-3 col-sm-4 col-6">
 				<label>Remarks</label>
 				<input type="text" class="form-control" formControlName="remarks">
 			</div>
@@ -161,7 +161,7 @@
 		<div class="row">
 			<div class="col-sm-5 col-12">
 				<div class="row">
-					<div class="form-group col-12 pr-sm-0">
+					<div class="mb-3 col-12 pe-sm-0">
 						<label>Variants</label>
 						<textarea class="form-control" formControlName="variants"></textarea>
 					</div>
@@ -169,14 +169,14 @@
 			</div>
 			<div class="col-sm-7 col-12">
 				<div class="row">
-					<div class="form-group col-12">
+					<div class="mb-3 col-12">
 						<label>Prequel</label>
 						<input type="text"
 							class="form-control"
 							formControlName="prequel"
 							[ngbTypeahead]="titleSearch">
 					</div>
-					<div class="form-group col-12">
+					<div class="mb-3 col-12">
 						<label>Sequel</label>
 						<input type="text"
 							class="form-control"
@@ -191,7 +191,7 @@
 					<div class="input-group-prepend col-sm-5 col-12 px-0 mb-sm-0 mb-2">
 						<input type="text" class="form-control" formControlName="offquel">
 					</div>
-					<div class="input-group-append col-sm-7 col-12 pl-0 pr-0 pl-xl-def pl-lg-def pl-md-def pl-sm-def">
+					<div class="input-group-append col-sm-7 col-12 ps-0 pe-0 ps-xl-def ps-lg-def ps-md-def ps-sm-def">
 						<div class="input-group">
 							<input type="text"
 								class="form-control"
@@ -208,12 +208,12 @@
 	</div>
 
 	<div class="modal-footer">
-		<button type="button" (click)="cancel()" class="btn btn-warning text-body mr-auto">
-			<fa-icon [icon]="fasTimes" class="pr-2"></fa-icon>
+		<button type="button" (click)="cancel()" class="btn btn-warning text-body me-auto">
+			<fa-icon [icon]="fasTimes" class="pe-2"></fa-icon>
 			<span>Cancel</span>
 		</button>
 		<button type="submit" class="btn btn-success text-body">
-			<fa-icon [icon]="fasCheck" class="pr-2"></fa-icon>
+			<fa-icon [icon]="fasCheck" class="pe-2"></fa-icon>
 			<span>Save</span>
 		</button>
 	</div>

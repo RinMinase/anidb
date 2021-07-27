@@ -6,7 +6,7 @@
 
 	<div class="modal-body">
 		<form class="row" [formGroup]="rewatchForm" (ngSubmit)="add()">
-			<div class="form-group col-8">
+			<div class="mb-3 col-8">
 				<label class="font-weight-bold">Date</label>
 				<input type="text"
 					class="form-control"
@@ -16,9 +16,9 @@
 					<span *ngIf="form.date.errors.required">Date is required</span>
 				</div>
 			</div>
-			<div class="form-group col-4 pt-4">
-				<button type="submit" class="btn btn-success btn-block mt-1">
-					<fa-icon [icon]="fasPlus" class="pr-2"></fa-icon>
+			<div class="mb-3 col-4 pt-4">
+				<button type="submit" class="btn btn-success w-100 mt-1">
+					<fa-icon [icon]="fasPlus" class="pe-2"></fa-icon>
 					<span>Add</span>
 				</button>
 			</div>
@@ -35,9 +35,9 @@
 						<tr *ngFor="let rewatch of dataRewatch; index as i">
 							<td class="text-center">{{ rewatch }}</td>
 							<td>
-								<button class="btn btn-danger btn-block" (click)="delete(i)">
+								<button class="btn btn-danger w-100" (click)="delete(i)">
 									<fa-icon [icon]="fasTrash"></fa-icon>
-									<span class="d-md-inline d-none pl-2">Delete</span>
+									<span class="d-md-inline d-none ps-2">Delete</span>
 								</button>
 							</td>
 						</tr>
@@ -52,7 +52,7 @@
 
 	<div class="modal-footer">
 		<button type="button" (click)="cancel()" class="btn btn-secondary">
-			<fa-icon [icon]="fasTimes" class="pr-2"></fa-icon>
+			<fa-icon [icon]="fasTimes" class="pe-2"></fa-icon>
 			<span>Close</span>
 		</button>
 	</div>
