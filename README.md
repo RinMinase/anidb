@@ -18,10 +18,10 @@
 </p>
 <p align="center">
     <a href="https://angular.io/">
-        <img alt="Angular" src="https://img.shields.io/badge/angular-%5E10.0-red.svg?logo=angular&style=for-the-badge">
+        <img alt="Angular" src="https://img.shields.io/badge/angular-%5E12.1-red.svg?logo=angular&style=for-the-badge">
     </a>
     <a href="https://nodejs.org">
-        <img alt="Node" src="https://img.shields.io/badge/node-%5E10.13%20%7C%7C%5E12.0%20%7C%7C%20%5E14.0-brightgreen.svg?logo=node.js&logoColor=white&style=for-the-badge">
+        <img alt="Node" src="https://img.shields.io/badge/node-%5E14.17%20%7C%7C%5E12.0%20%7C%7C%20%5E14.0-brightgreen.svg?logo=node.js&logoColor=white&style=for-the-badge">
     </a>
 </p>
 
@@ -132,9 +132,9 @@ _Add info here_
 * <img width=20 height=20 src="https://angular.io/assets/images/favicons/favicon.ico"> [Angular 11](https://angular.io/) - Web Framework
 * <img width=20 height=20 src="https://www.typescriptlang.org/favicon-32x32.png"> [TypeScript](https://www.typescriptlang.org/) - Language syntax
 * <img width=20 height=20 src="https://sass-lang.com/favicon.ico"> [Sassy CSS (SCSS)](https://sass-lang.com/) - CSS pre-processor
-* <img width=20 height=20 src="https://getbootstrap.com/favicon.ico"> [Bootstrap 4](https://getbootstrap.com/) - HTML Framework (layout)
+* <img width=20 height=20 src="https://getbootstrap.com/favicon.ico"> [Bootstrap 5](https://getbootstrap.com/) - HTML Framework (layout)
 * <img width=20 height=20 src="https://firebase.google.com/favicon.ico"> [Firebase](https://firebase.google.com/) - Database
-* <img width=20 height=20 src="https://webpack.js.org/icon_192x192.png"> [Webpack 4](https://webpack.js.org/) - Project bundler
+* <img width=20 height=20 src="https://webpack.js.org/icon_192x192.png"> [Webpack 5](https://webpack.js.org/) - Project bundler
 * <img width=20 height=20 src="https://dmmj3mmt94rvw.cloudfront.net/favicon-undefined.ico"> [Circle CI](https://circleci.com/) - Continuous Integration (CI) service
 * <img width=20 height=20 src="https://www.netlify.com/img/global/favicon/favicon-32x32.png"> [Netlify](https://netlify.com) - Hosting Platform
 * <img width=20 height=20 src="https://about.codecov.io/wp-content/themes/codecov/assets/brand/icons/favicons/favicon-32x32.png"> [Codecov](https://codecov.io/) - Code Coverage
