@@ -17,7 +17,10 @@ html {
 		overflow: unset !important;
 
 		div.container, div.container-fluid {
-			&:not(.no-footer) { margin-bottom: $footer-height; }
+			&:not(.no-footer) {
+				margin-bottom: $footer-height;
+				padding-bottom: 24px;
+			}
 		}
 	}
 
