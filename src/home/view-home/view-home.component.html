@@ -51,7 +51,7 @@
 			</div>
 			<div class="row d-sm-none mb-3 text-center">
 				<div class="col-12">
-					<h5><span class="badge badge-{{data.qualityClass}}">{{ data.quality }}</span></h5>
+					<h5><span class="badge bg-{{data.qualityClass}}">{{ data.quality }}</span></h5>
 					<h2>{{ data.title }}</h2>
 					<h4 class="text-muted" *ngIf="data.shortTitle">
 						<em>&#10077;&nbsp;{{ data.shortTitle }}&#10078;</em>
@@ -90,7 +90,7 @@
 						<span class="pe-2 d-md-flex" *ngIf="data.encoder">[{{ data.encoder }}]</span>
 						<span class="d-md-flex">{{ data.title }}&nbsp;</span>
 						<span class="h5 d-md-flex mb-0">
-							<span class="badge badge-{{data.qualityClass}} ms-2">{{ data.quality }}</span>
+							<span class="badge bg-{{data.qualityClass}} ms-2">{{ data.quality }}</span>
 						</span>
 					</p>
 					<h5 class="text-muted" *ngIf="data.shortTitle">
