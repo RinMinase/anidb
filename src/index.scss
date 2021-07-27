@@ -35,7 +35,7 @@ thead th { border-top: 0 !important; }
 td, th { white-space: nowrap; }
 td.wrap, th.wrap { white-space: normal; }
 .table-sm th, .table-sm td { padding: .5rem; }
-.table-unbordered td, .table-unbordered th { border-top: 0; }
+.table-unbordered td, .table-unbordered th { border-bottom: 0; }
 
 .form-control, .dropdown-menu { font-size: 14px; }
 .btn { font-size: 15px; }
@@ -101,28 +101,28 @@ nav .switch input:checked + label::before {
 @mixin rpad-d() { padding-right: 15px !important; }
 
 @media (max-width: 575px) {
-	.pl-def { @include lpad-d(); }
-	.pr-def { @include rpad-d(); }
+	.ps-def { @include lpad-d(); }
+	.pe-def { @include rpad-d(); }
 }
 
 @media (min-width: 576px) and (max-width: 767px) {
-	.pl-sm-def { @include lpad-d(); }
-	.pr-sm-def { @include rpad-d(); }
+	.ps-sm-def { @include lpad-d(); }
+	.pe-sm-def { @include rpad-d(); }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
-	.pl-md-def { @include lpad-d(); }
-	.pr-md-def { @include rpad-d(); }
+	.ps-md-def { @include lpad-d(); }
+	.pe-md-def { @include rpad-d(); }
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
-	.pl-lg-def { @include lpad-d(); }
-	.pr-lg-def { @include rpad-d(); }
+	.ps-lg-def { @include lpad-d(); }
+	.pe-lg-def { @include rpad-d(); }
 }
 
 @media (min-width: 1200px) {
-	.pl-xl-def { @include lpad-d(); }
-	.pr-xl-def { @include rpad-d(); }
+	.ps-xl-def { @include lpad-d(); }
+	.pe-xl-def { @include rpad-d(); }
 }
 
 
@@ -243,7 +243,7 @@ $switch-height-sm: calc(#{$input-height-sm} * .8) !default;
 $switch-height-lg: calc(#{$input-height-lg} * .8) !default;
 $switch-border-radius: $switch-height !default;
 $switch-bg: $custom-control-indicator-bg !default;
-$switch-checked-bg: #28A745 !default;
+$switch-checked-bg: #198754 !default;
 $switch-disabled-bg: $custom-control-indicator-disabled-bg !default;
 $switch-disabled-color: $custom-control-description-disabled-color !default;
 $switch-thumb-bg: $white !default;
