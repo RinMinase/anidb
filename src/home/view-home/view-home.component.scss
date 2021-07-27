@@ -14,6 +14,10 @@ div.image-container {
 	padding-bottom: 5px;
 }
 
+.navigation-container {
+	max-width: 285px;
+}
+
 .btn-warning {
 	background-color: #FF9800;
 	border-color: #FF9800;
@@ -24,8 +28,26 @@ div.image-container {
 .icon-summer { color: #FFA500; }
 .icon-fall { color: #FF4500; }
 
-.badge-uhd { background-color: #F9C; }
-.badge-fhd { background-color: #9F9; }
-.badge-hd { background-color: #9CF; }
-.badge-hq { background-color: #FC6; }
-.badge-lq { border: 1px solid #777; }
+.bg-uhd { background-color: #F9C; }
+.bg-fhd { background-color: #9F9; }
+.bg-hd { background-color: #9CF; }
+.bg-hq { background-color: #FC6; }
+.bg-lq { border: 1px solid #777; }
+
+@media (max-width: 992px) {
+	.item-title-container {
+		flex-direction: column;
+
+		span {
+			margin-top: 8px;
+		}
+
+		.item-quality { order: 0 }
+		.item-encoder { order: 1 }
+		.item-title { order: 2 }
+	}
+}
+
+.image-container {
+	max-width: 230px;
+}
