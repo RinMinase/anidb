@@ -29,7 +29,7 @@
     "@angular/service-worker": "^12.2.1",
     "@ng-bootstrap/ng-bootstrap": "^10.0.0",
     "@rinminase/ng-charts": "^4.1.0",
-    "@rinminase/ng-fortawesome": "^6.0.0",
+    "@rinminase/ng-fortawesome": "^6.0.1",
     "animatewithsass": "^3.2.1",
     "bootstrap": "^5.1.0",
     "date-fns": "^2.23.0",
