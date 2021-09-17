@@ -32,7 +32,7 @@
     "@rinminase/ng-fortawesome": "^6.0.1",
     "animatewithsass": "^3.2.1",
     "bootstrap": "^5.1.1",
-    "date-fns": "^2.23.0",
+    "date-fns": "^2.24.0",
     "firebase": "^8.9.1",
     "fuse.js": "^6.4.6",
     "ng2-file-upload": "^1.4.0",
