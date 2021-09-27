@@ -12509,10 +12509,10 @@ svgo@^2.3.0:
     csso "^4.2.0"
     stable "^0.1.8"
 
-sweetalert2@^11.1.5:
-  version "11.1.5"
-  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-11.1.5.tgz#6bc0d681e8f83c744a9284a84aefbfdcc7d92bec"
-  integrity sha512-5cfqUK9lLbvxtjzsvORKWj+d3tcgYlzsL60FoJFXE/+mtMa5EJ3tDax9p9MBjVnZ60gQd+WGrqDIrxoNenhUjA==
+sweetalert2@^11.1.7:
+  version "11.1.7"
+  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-11.1.7.tgz#0ff2851eae77a76a3fe0ab289d3c32493e811b6d"
+  integrity sha512-7MHQVtKCTORfA9e58g9ZOfT3X58DkSBtvoCQJnqSHobXXb5C7aB8Yg/tAccTFnefCUBU41PoStjXMkzG3bNeig==
 
 symbol-observable@4.0.0:
   version "4.0.0"
