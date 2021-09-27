@@ -3,7 +3,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { Router, Routes, RouterModule } from "@angular/router";
 import { HttpClientModule } from "@angular/common/http";
 import { ServiceWorkerModule } from "@angular/service-worker";
-import firebase from "firebase/app";
+import firebase from "firebase/compat/app";
 
 import { NavbarModule } from "@components/navbar/navbar.module";
 import { FooterModule } from "@components/footer/footer.module";

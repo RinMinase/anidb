@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
 
-import firebase from "firebase/app";
-import "firebase/auth";
-import "firebase/database";
-import "firebase/storage";
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
+import "firebase/compat/database";
+import "firebase/compat/storage";
 
 import { FirebaseQuery } from "@builders/firebase-query.service";
 
