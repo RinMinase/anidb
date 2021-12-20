@@ -9,7 +9,10 @@ module.exports = {
 			systemvars: true,
 			silent: true,
 		}),
-		new IgnorePlugin(/^\.\/locale$/, /moment$/),
+    new IgnorePlugin({
+      resourceRegExp: /^\.\/locale$/,
+      contextRegExp: /moment$/,
+    }),
 	],
 	resolve: {
 		alias: { "./dist/cpexcel.js": false },
