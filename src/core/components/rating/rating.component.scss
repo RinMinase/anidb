@@ -1,13 +1,13 @@
 .star {
 	font-size: 1.5rem;
-	color: #DEDEDE;
+	color: #dedede;
 	font-family: -apple-system, "Segoe UI", Roboto;
 
 	&.full {
-		color: #28A745;
+		color: #28a745;
 
-		&.low { color: #1E90FF; }
-		&.bad { color: #E57373; }
+		&.low { color: #1e90ff; }
+		&.bad { color: #e57373; }
 	}
 }
 
@@ -15,16 +15,16 @@
 	position: relative;
 	display: inline-block;
 	font-size: 2.5rem;
-	color: #DEDEDE;
+	color: #dedede;
 	font-family: -apple-system, "Segoe UI", Roboto;
 
 	.half {
 		position: absolute;
 		display: inline-block;
 		overflow: hidden;
-		color: #28A745;
+		color: #28a745;
 	}
 
-	&.low .half { color: #1E90FF; }
-	&.bad .half { color: #E57373; }
+	&.low .half { color: #1e90ff; }
+	&.bad .half { color: #e57373; }
 }
