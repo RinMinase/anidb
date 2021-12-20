@@ -80,11 +80,12 @@
   "stylelint": {
     "extends": "stylelint-config-standard-scss",
     "rules": {
-      "number-max-precision": 6,
+      "color-named": "never",
+      "declaration-colon-space-after": "always",
       "indentation": "tab",
       "no-duplicate-selectors": true,
-      "color-named": "never",
-      "declaration-colon-space-after": "always"
+      "no-empty-source": false,
+      "number-max-precision": 6
     }
   }
 }
