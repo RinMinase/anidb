@@ -85,7 +85,11 @@
       "indentation": "tab",
       "no-duplicate-selectors": true,
       "no-empty-source": false,
-      "number-max-precision": 6
+      "number-max-precision": 6,
+      "selector-pseudo-element-no-unknown": [
+        true,
+        ["ng-deep", "dropzone"]
+      ]
     }
   }
 }
