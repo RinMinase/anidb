@@ -1,5 +1,5 @@
 .form-container { width: 320px; }
-.text-dark-white { color: #DEDEDE; }
+.text-dark-white { color: #dedede; }
 .flex-form-container-loading { height: 108px; }
 
 .container-fluid {
@@ -45,9 +45,9 @@
 }
 
 .btn-login {
-	color: #FFF;
-	background-color: #495A5F;
-	letter-spacing: .75px;
+	color: #fff;
+	background-color: #495a5f;
+	letter-spacing: 0.75px;
 }
 
 .animated-input-container {
@@ -67,7 +67,7 @@
 
 	&.focused .animated-label {
 		transform: translateY(-110%);
-		font-size: .8em;
+		font-size: 0.8em;
 	}
 
 	.animated-input {
@@ -80,13 +80,14 @@
 		background: transparent;
 		transition: box-shadow 150ms ease-out;
 
-		&:focus, &.filled { box-shadow: 0 2px 0 0 #28A745; }
+		&:focus,
+		&.filled { box-shadow: 0 2px 0 0 #28a745; }
 
 		&:-webkit-autofill {
-			-webkit-animation: autofill 0s forwards;
+			animation: autofill 0s forwards;
 			-webkit-text-fill-color: #000;
 			animation: autofill 0s forwards;
-			box-shadow: 0 2px 0 0 #FF8A65;
+			box-shadow: 0 2px 0 0 #ff8a65;
 		}
 
 		@keyframes autofill {
@@ -96,7 +97,7 @@
 			}
 		}
 
-		@-webkit-keyframes autofill {
+		@keyframes autofill {
 			100% {
 				background: transparent;
 				color: inherit;
