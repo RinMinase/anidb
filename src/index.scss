@@ -1,6 +1,7 @@
 $enable-transitions: false;
+
 @import "~bootstrap/scss/bootstrap";
-@import "~animatewithsass/animate.scss";
+@import "~animatewithsass/animate";
 @import "~scss-spinners/components/eclipse";
 
 $footer-height: 52px;
@@ -13,10 +14,11 @@ html {
 	body {
 		font-family: "Nunito Sans", Arial, Helvetica, sans-serif;
 		font-size: 14px;
-		line-height: 1.428571429;
+		line-height: 1.428571;
 		overflow: unset !important;
 
-		div.container, div.container-fluid {
+		div.container,
+		div.container-fluid {
 			&:not(.no-footer) {
 				margin-bottom: $footer-height;
 				padding-bottom: 24px;
@@ -29,24 +31,35 @@ html {
 		bottom: 0;
 		height: $footer-height;
 		width: 100%;
-		background-color: #F3F3F3;
+		background-color: #f3f3f3;
 	}
 }
 
-hr { border-color: #E4E6E8; }
+hr { border-color: #e4e6e8; }
 thead th { border-top: 0 !important; }
-td, th { white-space: nowrap; }
-td.wrap, th.wrap { white-space: normal; }
-.table-sm th, .table-sm td { padding: .5rem; }
-.table-unbordered td, .table-unbordered th { border-bottom: 0; }
 
-.form-control, .dropdown-menu { font-size: 14px; }
+td,
+th { white-space: nowrap; }
+
+td.wrap,
+th.wrap { white-space: normal; }
+
+.table-sm th,
+.table-sm td { padding: 0.5rem; }
+
+.table-unbordered td,
+.table-unbordered th { border-bottom: 0; }
+
+.form-control,
+.dropdown-menu { font-size: 14px; }
 .btn { font-size: 15px; }
 .checkbox label { cursor: default; }
-.bg-success-light { background-color: #95CE92 !important; }
+.bg-success-light { background-color: #95ce92 !important; }
 .pagination { justify-content: center; }
 .big { font-size: 120%; }
-.dropdown-item.active, .dropdown-item:active { cursor: default; }
+
+.dropdown-item.active,
+.dropdown-item:active { cursor: default; }
 
 .flex-form-container {
 	height: calc(100vh - 70px - 50px);
@@ -66,13 +79,12 @@ a.link {
 }
 
 nav .switch input:checked + label::before {
-	background-color: #343A40;
+	background-color: #343a40;
 }
 
 // .g-signin2 .abcRioButton {
 // 	margin: 0 auto;
 // }
-
 
 /**
  * Bootstrap Extensions
@@ -101,38 +113,39 @@ nav .switch input:checked + label::before {
 }
 
 @mixin lpad-d() { padding-left: 15px !important; }
+
 @mixin rpad-d() { padding-right: 15px !important; }
 
 @media (max-width: 575px) {
-	.ps-def { @include lpad-d(); }
-	.pe-def { @include rpad-d(); }
+	.ps-def { @include lpad-d; }
+	.pe-def { @include rpad-d; }
 }
 
 @media (min-width: 576px) and (max-width: 767px) {
-	.ps-sm-def { @include lpad-d(); }
-	.pe-sm-def { @include rpad-d(); }
+	.ps-sm-def { @include lpad-d; }
+	.pe-sm-def { @include rpad-d; }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
-	.ps-md-def { @include lpad-d(); }
-	.pe-md-def { @include rpad-d(); }
+	.ps-md-def { @include lpad-d; }
+	.pe-md-def { @include rpad-d; }
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
-	.ps-lg-def { @include lpad-d(); }
-	.pe-lg-def { @include rpad-d(); }
+	.ps-lg-def { @include lpad-d; }
+	.pe-lg-def { @include rpad-d; }
 }
 
 @media (min-width: 1200px) {
-	.ps-xl-def { @include lpad-d(); }
-	.pe-xl-def { @include rpad-d(); }
+	.ps-xl-def { @include lpad-d; }
+	.pe-xl-def { @include rpad-d; }
 }
-
 
 /**
  * ANIMATE.CSS extension imports
  */
 
+/* stylelint-disable selector-class-pattern */
 .animate {
 	// &.bounce { @include bounce(); }
 	// &.flash { @include flash(); }
@@ -145,7 +158,8 @@ nav .switch input:checked + label::before {
 	// &.jello { @include jello(); }
 
 	// &.bounceIn { @include bounceIn(); }
-	&.bounceInDown { @include bounceInDown(); }
+	&.bounceInDown { @include bounceInDown; }
+
 	// &.bounceInLeft { @include bounceInLeft(); }
 	// &.bounceInRight { @include bounceInRight(); }
 	// &.bounceInUp { @include bounceInUp(); }
@@ -157,7 +171,8 @@ nav .switch input:checked + label::before {
 	// &.bounceOutUp { @include bounceOutUp(); }
 
 	// &.fadeIn { @include fadeIn(); }
-	&.fadeInDown { @include fadeInDown(); }
+	&.fadeInDown { @include fadeInDown; }
+
 	// &.fadeInDownBig { @include fadeInDownBig(); }
 	// &.fadeInLeft { @include fadeInLeft(); }
 	// &.fadeInLeftBig { @include fadeInLeftBig(); }
@@ -214,16 +229,17 @@ nav .switch input:checked + label::before {
 	// &.zoomOutUp { @include zoomOutUp(); }
 
 	// &.slideInDown { @include slideInDown(); }
-	&.slideInLeft { @include slideInLeft(); }
+	&.slideInLeft { @include slideInLeft; }
+
 	// &.slideInRight { @include slideInRight(); }
-	&.slideInUp { @include slideInUp(); }
+	&.slideInUp { @include slideInUp; }
 
 	// &.slideOutDown { @include slideOutDown(); }
 	// &.slideOutLeft { @include slideOutLeft(); }
 	// &.slideOutRight { @include slideOutRight(); }
 	// &.slideOutUp { @include slideOutUp(); }
 }
-
+/* stylelint-enable */
 
 /**
  *  Switches for Bootstrap 4
@@ -231,19 +247,18 @@ nav .switch input:checked + label::before {
 
 $font-size-base: 1rem;
 $font-size-lg: ($font-size-base * 1.25);
-$font-size-sm: ($font-size-base * .875);
+$font-size-sm: ($font-size-base * 0.875);
 $input-height: 2.375rem;
 $input-height-sm: 1.9375rem;
 $input-height-lg: 3rem;
-$input-btn-focus-width: .2rem;
-$custom-control-indicator-bg: #DEE2E6;
-$custom-control-indicator-disabled-bg: #E9ECEF;
-$custom-control-description-disabled-color: #868E96;
-$white: #FFF;
-
-$switch-height: calc(#{$input-height} * .8) !default;
-$switch-height-sm: calc(#{$input-height-sm} * .8) !default;
-$switch-height-lg: calc(#{$input-height-lg} * .8) !default;
+$input-btn-focus-width: 0.2rem;
+$custom-control-indicator-bg: #dee2e6;
+$custom-control-indicator-disabled-bg: #e9ecef;
+$custom-control-description-disabled-color: #868e96;
+$white: #fff;
+$switch-height: calc(#{$input-height} * 0.8) !default;
+$switch-height-sm: calc(#{$input-height-sm} * 0.8) !default;
+$switch-height-lg: calc(#{$input-height-lg} * 0.8) !default;
 $switch-border-radius: $switch-height !default;
 $switch-bg: $custom-control-indicator-bg !default;
 $switch-checked-bg: #198754 !default;
@@ -252,8 +267,8 @@ $switch-disabled-color: $custom-control-description-disabled-color !default;
 $switch-thumb-bg: $white !default;
 $switch-thumb-border-radius: 50% !default;
 $switch-thumb-padding: 2px !default;
-$switch-focus-box-shadow: 0 0 0 $input-btn-focus-width rgba(map-get($theme-colors, "dark"), .25);
-$switch-transition: .2s all !default;
+$switch-focus-box-shadow: 0 0 0 $input-btn-focus-width rgb(map-get($theme-colors, "dark") 0.25);
+$switch-transition: 0.2s all !default;
 
 .switch {
 	font-size: $font-size-base;
@@ -281,7 +296,7 @@ $switch-transition: .2s all !default;
 			outline: none;
 			user-select: none;
 			vertical-align: middle;
-			text-indent: calc(calc(#{$switch-height} * 2) + .5rem);
+			text-indent: calc(calc(#{$switch-height} * 2) + 0.5rem);
 		}
 
 		+ label::before,
@@ -312,7 +327,6 @@ $switch-transition: .2s all !default;
 			transition: $switch-transition;
 		}
 
-
 		&:focus + label::before {
 			outline: none;
 			box-shadow: $switch-focus-box-shadow;
@@ -336,7 +350,7 @@ $switch-transition: .2s all !default;
 				min-width: calc(#{$switch-height-sm} * 2);
 				height: $switch-height-sm;
 				line-height: $switch-height-sm;
-				text-indent: calc(calc(#{$switch-height-sm} * 2) + .5rem);
+				text-indent: calc(calc(#{$switch-height-sm} * 2) + 0.5rem);
 			}
 
 			+ label::after {
@@ -357,9 +371,8 @@ $switch-transition: .2s all !default;
 				min-width: calc(#{$switch-height-lg} * 2);
 				height: $switch-height-lg;
 				line-height: $switch-height-lg;
-				text-indent: calc(calc(#{$switch-height-lg} * 2) + .5rem);
+				text-indent: calc(calc(#{$switch-height-lg} * 2) + 0.5rem);
 			}
-
 
 			+ label::after {
 				width: calc(#{$switch-height-lg} - calc(#{$switch-thumb-padding} * 2));
