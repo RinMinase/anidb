@@ -1,26 +1,29 @@
 .jumbotron {
 	padding: 3.5rem 2rem;
+
 	@media (max-width: 767px) { padding: 1.75rem 2rem; }
 }
 
 .display-4 {
 	font-size: 2.75rem;
+
 	@media (max-width: 767px) { font-size: 2.25rem; }
 }
 
 .lead {
 	font-size: 1.85rem;
+
 	@media (max-width: 767px) { font-size: 1.5rem; }
 }
 
 .btn-success-light {
-	background-color: #66BB6A;
-	border-color: #66BB6A;
-	color: #FFF;
+	background-color: #66bb6a;
+	border-color: #66bb6a;
+	color: #fff;
 }
 
 .btn-outline-success {
-	color: #FFF;
+	color: #fff;
 }
 
 .flex-form-container { height: 940px; }
@@ -28,7 +31,7 @@
 .user-data-heading {
 	margin-top: 20px;
 	margin-bottom: 20px;
-	border-bottom: 2px solid #95CE92;
+	border-bottom: 2px solid #95ce92;
 	padding-bottom: 5px;
 }
 
@@ -52,7 +55,7 @@ div.acknowledgements {
 		width: 120px;
 		height: 120px;
 		border-radius: 60px;
-		border: 1px solid #CECECE;
+		border: 1px solid #cecece;
 	}
 
 	&.maid {
@@ -60,7 +63,7 @@ div.acknowledgements {
 		width: 120px;
 		height: 120px;
 		border-radius: 60px;
-		border: 1px solid #CECECE;
+		border: 1px solid #cecece;
 	}
 
 	&.ruka {
@@ -68,7 +71,7 @@ div.acknowledgements {
 		width: 120px;
 		height: 120px;
 		border-radius: 60px;
-		border: 1px solid #CECECE;
+		border: 1px solid #cecece;
 	}
 }
 

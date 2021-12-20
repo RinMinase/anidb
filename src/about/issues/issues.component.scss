@@ -1,26 +1,25 @@
 .issues-badge {
 	color: #333;
 	.badge.badge-pill { width: 130px; }
-	.platform-android { background-color: #AED581; }
-	.platform-chrome { background-color: #00ACC1; }
-	.platform-documentation { background-color: #64B5F6; }
-	.platform-firefox { background-color: #FFB300; }
-	.platform-mobile { background-color: #B39DDB; }
-	.priority-critical { background-color: #FF8A65; }
-	.priority-high { background-color: #FFD54F; }
-	.priority-normal { background-color: #81C784; }
+	.platform-android { background-color: #aed581; }
+	.platform-chrome { background-color: #00acc1; }
+	.platform-documentation { background-color: #64b5f6; }
+	.platform-firefox { background-color: #ffb300; }
+	.platform-mobile { background-color: #b39ddb; }
+	.priority-critical { background-color: #ff8a65; }
+	.priority-high { background-color: #ffd54f; }
+	.priority-normal { background-color: #81c784; }
 	.resolution-abandoned { background-color: #424242; }
-	.resolution-duplicate { background-color: #BDBDBD; }
-	.resolution-invalid { background-color: #E0E0E0; }
-	.type-bug { background-color: #EF5350; }
-	.type-enhancement { background-color: #1E88E5; }
-	.type-feature-request { background-color: #BA68C8; }
+	.resolution-duplicate { background-color: #bdbdbd; }
+	.resolution-invalid { background-color: #e0e0e0; }
+	.type-bug { background-color: #ef5350; }
+	.type-enhancement { background-color: #1e88e5; }
+	.type-feature-request { background-color: #ba68c8; }
 }
 
 .package-issues {
-	code.blue { color: #1565C0; }
-	code.green { color: #388E3C; }
-	code.orange { color: #EF6C00; }
-	code.red { color: #D32F2F; }
+	code.blue { color: #1565c0; }
+	code.green { color: #388e3c; }
+	code.orange { color: #ef6c00; }
+	code.red { color: #d32f2f; }
 }
-

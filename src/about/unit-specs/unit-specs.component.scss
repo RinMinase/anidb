@@ -1,5 +1,6 @@
 .table-specs {
-	th, td {
+	th,
+	td {
 		&:not(.table-specs-border) {
 			border-bottom: 0;
 			&:not(.table-specs-value) { font-weight: bold; }
