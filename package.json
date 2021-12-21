@@ -84,15 +84,26 @@
       "declaration-colon-space-after": "always",
       "indentation": "tab",
       "no-duplicate-selectors": true,
-      "no-empty-source": false,
+      "no-empty-source": null,
       "number-max-precision": 6,
+      "selector-id-pattern": "^[a-z][a-zA-Z0-9]+$",
       "selector-pseudo-element-no-unknown": [
         true,
-        [
-          "ng-deep",
-          "dropzone"
-        ]
-      ]
+        {
+          "ignorePseudoElements": [
+            "ng-deep"
+          ]
+        }
+      ],
+      "selector-type-no-unknown": [
+        true,
+        {
+          "ignoreTypes": [
+            "dropzone"
+          ]
+        }
+      ],
+      "scss/no-global-function-names": null
     }
   }
 }
