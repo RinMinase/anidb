@@ -104,6 +104,7 @@
           ]
         }
       ],
+      "scss/at-import-partial-extension": null,
       "scss/no-global-function-names": null
     }
   }
