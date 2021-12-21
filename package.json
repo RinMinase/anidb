@@ -50,6 +50,7 @@
     "@angular/compiler": "^13.1.1",
     "@angular/compiler-cli": "^13.1.1",
     "@angular/platform-browser": "^13.1.1",
+    "@types/uuid": "^8.3.3",
     "dotenv-webpack": "^7.0.3",
     "netlify-cli": "^8.2.4",
     "postcss": "^8.4.5",
