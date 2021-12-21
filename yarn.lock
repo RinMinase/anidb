@@ -2780,14 +2780,14 @@
     form-data "^3.0.0"
 
 "@types/node@*", "@types/node@>=12.12.47", "@types/node@>=13.7.0":
-  version "17.0.1"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-17.0.1.tgz#88d501e84b6185f6489ecee4ba9e8fcec7f29bb2"
-  integrity sha512-NXKvBVUzIbs6ylBwmOwHFkZS2EXCcjnqr8ZCRNaXBkHAf+3mn/rPcJxwrzuc6movh8fxQAsUUfYklJ/EG+hZqQ==
+  version "17.0.2"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-17.0.2.tgz#a4c07d47ff737e8ee7e586fe636ff0e1ddff070a"
+  integrity sha512-JepeIUPFDARgIs0zD/SKPgFsJEAF0X5/qO80llx59gOxFTboS9Amv3S+QfB7lqBId5sFXJ99BN0J6zFRvL9dDA==
 
 "@types/node@^16.0.0":
-  version "16.11.14"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.11.14.tgz#4939fb42e5b0ffb3ea7e193c28244fe7414977a6"
-  integrity sha512-mK6BKLpL0bG6v2CxHbm0ed6RcZrAtTHBTd/ZpnlVPVa3HkumsqLE4BC4u6TQ8D7pnrRbOU0am6epuALs+Ncnzw==
+  version "16.11.15"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.11.15.tgz#724da13bc1ba99fe8190d0f5cd35cb53c67db942"
+  integrity sha512-LMGR7iUjwZRxoYnfc9+YELxwqkaLmkJlo4/HUvOMyGvw9DaHO0gtAbH2FUdoFE6PXBTYZIT7x610r7kdo8o1fQ==
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.1"
@@ -5157,9 +5157,9 @@ ee-first@1.1.1:
   integrity sha1-WQxhFWsK4vTwJVcyoViyZrxWsh0=
 
 electron-to-chromium@^1.4.17:
-  version "1.4.24"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.24.tgz#9cf8a92d5729c480ee47ff0aa5555f57467ae2fa"
-  integrity sha512-erwx5r69B/WFfFuF2jcNN0817BfDBdC4765kQ6WltOMuwsimlQo3JTEq0Cle+wpHralwdeX3OfAtw/mHxPK0Wg==
+  version "1.4.25"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.25.tgz#ce95e6678f8c6893ae892c7e95a5000e83f1957f"
+  integrity sha512-bTwub9Y/76EiNmfaiJih+hAy6xn7Ns95S4KvI2NuKNOz8TEEKKQUu44xuy0PYMudjM9zdjKRS1bitsUvHTfuUg==
 
 elegant-spinner@^1.0.1:
   version "1.0.1"
@@ -12265,9 +12265,9 @@ write-file-atomic@^3.0.0, write-file-atomic@^3.0.3:
     typedarray-to-buffer "^3.1.5"
 
 ws@>=7.4.6, ws@^8.1.0:
-  version "8.3.0"
-  resolved "https://registry.yarnpkg.com/ws/-/ws-8.3.0.tgz#7185e252c8973a60d57170175ff55fdbd116070d"
-  integrity sha512-Gs5EZtpqZzLvmIM59w4igITU57lrtYVFneaa434VROv4thzJyV6UjIL3D42lslWlI+D4KzLYnxSwtfuiO79sNw==
+  version "8.4.0"
+  resolved "https://registry.yarnpkg.com/ws/-/ws-8.4.0.tgz#f05e982a0a88c604080e8581576e2a063802bed6"
+  integrity sha512-IHVsKe2pjajSUIl4KYMQOdlyliovpEPquKkqbwswulszzI7r0SfQrxnXdWAEqOlDCLrVSJzo+O1hAwdog2sKSQ==
 
 xdg-basedir@^4.0.0:
   version "4.0.0"
