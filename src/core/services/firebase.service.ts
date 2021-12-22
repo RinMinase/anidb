@@ -6,6 +6,7 @@ import "firebase/compat/database";
 import "firebase/compat/storage";
 
 import { FirebaseQuery } from "@builders/firebase-query.service";
+import { v4 as uuid } from "uuid";
 
 @Injectable({
 	providedIn: "root",
@@ -57,7 +58,12 @@ export class FirebaseService {
 					.database()
 					.ref(`${db}/${lastIndex + 1}`)
 					.set(data)
-					.then(() => {
+					.then(async () => {
+						await firebase
+							.database()
+							.ref("/config/uuid")
+							.set(uuid());
+
 						resolve(true);
 					});
 			});
@@ -95,6 +101,15 @@ export class FirebaseService {
 		return Promise.reject();
 	}
 
+	retrieveUUID() {
+		return new Promise((resolve) => {
+			firebase
+				.database()
+				.ref("/config/uuid")
+				.on("value", (data) => resolve(data));
+		});
+	}
+
 	retrieveImageUrl(ref: string) {
 		return new Promise((resolve, reject) => {
 			firebase
@@ -127,7 +142,16 @@ export class FirebaseService {
 		const { db, id, data } = params;
 		if (db && id && data) {
 			return Promise.resolve(
-				firebase.database().ref(`/${db}/${id}`).update(data),
+				firebase
+					.database()
+					.ref(`/${db}/${id}`)
+					.update(data)
+					.then(async () => {
+						await firebase
+							.database()
+							.ref("/config/uuid")
+							.set(uuid())
+					})
 			);
 		}
 
@@ -185,7 +209,7 @@ export class FirebaseService {
 		});
 	}
 
-	private objectToArray(data: any) {
+	private objectToArray(data: any): Array<any> {
 		if (!data) {
 			return null;
 		}
