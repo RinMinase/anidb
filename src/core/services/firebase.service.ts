@@ -95,6 +95,7 @@ export class FirebaseService {
 			if (query.orderDirection === "asc") {
 				return this.retrieveWithAscQuery(query);
 			}
+
 			return this.retrieveWithDescQuery(query);
 		}
 
@@ -158,24 +159,63 @@ export class FirebaseService {
 		return Promise.reject();
 	}
 
-	private retrieveAll(query: FirebaseQuery) {
-		return new Promise((resolve) => {
-			firebase
-				.database()
-				.ref(`/${query.db}`)
-				.on("value", (data) => resolve(this.objectToArray(data.val())));
-		});
+	private async retrieveAll(query: FirebaseQuery) {
+		const currID = localStorage.getItem("uuid");
+		const currData = localStorage.getItem("data");
+
+		if (currID && currData) {
+			const snapshot = await firebase.database().ref("/config/uuid").once("value");
+			const storageID = snapshot.val();
+
+			if (currID === storageID) {
+				return Promise.resolve(JSON.parse(currData));
+			}
+		} else {
+			const snapshot = await firebase.database().ref("/config/uuid").once("value");
+			const storageID = snapshot.val()
+
+			return new Promise((resolve) => {
+				firebase
+					.database()
+					.ref(`/${query.db}`)
+					.on("value", (data) => {
+						const parsed = this.objectToArray(data.val());
+
+						localStorage.setItem("uuid", storageID);
+						localStorage.setItem("data", JSON.stringify(parsed));
+
+						resolve(parsed);
+					});
+			});
+		}
 	}
 
-	private retrieveAllInHDD(query: FirebaseQuery) {
-		return new Promise((resolve) => {
-			firebase
-				.database()
-				.ref(`/${query.db}`)
-				.orderByChild("inhdd")
-				.equalTo(1)
-				.on("value", (data) => resolve(this.objectToArray(data.val())));
-		});
+	private async retrieveAllInHDD(query: FirebaseQuery) {
+		const currID = localStorage.getItem("uuid");
+		const currData = localStorage.getItem("data");
+
+		const snapshot = await firebase.database().ref("/config/uuid").once("value");
+		const storageID = snapshot.val();
+
+		if (currID && currData && currID === storageID) {
+			return Promise.resolve(JSON.parse(currData));
+		} else {
+			return new Promise((resolve) => {
+				firebase
+					.database()
+					.ref(`/${query.db}`)
+					.orderByChild("inhdd")
+					.equalTo(1)
+					.on("value", (data) => {
+						const parsed = this.objectToArray(data.val());
+
+						localStorage.setItem("uuid", storageID);
+						localStorage.setItem("data", JSON.stringify(parsed));
+
+						resolve(parsed);
+					});
+			});
+		}
 	}
 
 	private retrieveSpecific(query: FirebaseQuery, idQuery: string) {
