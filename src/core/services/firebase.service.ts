@@ -163,17 +163,12 @@ export class FirebaseService {
 		const currID = localStorage.getItem("uuid");
 		const currData = localStorage.getItem("data");
 
-		if (currID && currData) {
-			const snapshot = await firebase.database().ref("/config/uuid").once("value");
-			const storageID = snapshot.val();
+		const snapshot = await firebase.database().ref("/config/uuid").once("value")
+		const storageID = snapshot.val();
 
-			if (currID === storageID) {
-				return Promise.resolve(JSON.parse(currData));
-			}
+		if (currID && currData && currID === storageID) {
+			return Promise.resolve(JSON.parse(currData));
 		} else {
-			const snapshot = await firebase.database().ref("/config/uuid").once("value");
-			const storageID = snapshot.val()
-
 			return new Promise((resolve) => {
 				firebase
 					.database()
