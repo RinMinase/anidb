@@ -4,9 +4,13 @@ import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/database";
 import "firebase/compat/storage";
+import "firebase/compat/firestore";
 
 import { FirebaseQuery } from "@builders/firebase-query.service";
 import { v4 as uuid } from "uuid";
+
+// const fb = firebase.database;
+const fs = firebase.firestore;
 
 @Injectable({
 	providedIn: "root",
@@ -103,11 +107,23 @@ export class FirebaseService {
 	}
 
 	retrieveUUID() {
-		return new Promise((resolve) => {
-			firebase
-				.database()
-				.ref("/config/uuid")
-				.on("value", (data) => resolve(data));
+		return new Promise(async (resolve) => {
+			// firebase
+			// 	.database()
+			// 	.ref("/config/uuid")
+			// 	.on("value", (data) => resolve(data));
+
+			const storeID = await firebase
+				.firestore()
+				.collection("config")
+				.doc("uuid")
+				.get();
+
+			if (storeID.exists) {
+				resolve(storeID.data());
+			} else {
+				resolve("");
+			}
 		});
 	}
 
@@ -189,10 +205,14 @@ export class FirebaseService {
 		const currID = localStorage.getItem("uuid");
 		const currData = localStorage.getItem("data");
 
-		const snapshot = await firebase.database().ref("/config/uuid").once("value");
-		const storageID = snapshot.val();
+		const storeIDdoc = await fs().collection("config").doc("uuid").get();
+		let storeID = "";
 
-		if (currID && currData && currID === storageID) {
+		if (storeIDdoc.exists) {
+			storeID = `${storeIDdoc.data().value}`;
+		}
+
+		if (currID && currData && storeID && currID === storeID) {
 			return Promise.resolve(JSON.parse(currData));
 		} else {
 			return new Promise((resolve) => {
@@ -204,7 +224,7 @@ export class FirebaseService {
 					.on("value", (data) => {
 						const parsed = this.objectToArray(data.val());
 
-						localStorage.setItem("uuid", storageID);
+						localStorage.setItem("uuid", storeID);
 						localStorage.setItem("data", JSON.stringify(parsed));
 
 						resolve(parsed);
