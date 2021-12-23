@@ -78,6 +78,10 @@ a.link {
 	h5 { font-size: 17px; }
 }
 
+nav.navbar.sticky-top {
+	z-index: 1050;
+}
+
 nav .switch input:checked + label::before {
 	background-color: #343a40;
 }
