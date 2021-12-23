@@ -84,7 +84,13 @@ export class NavbarComponent implements OnInit {
 	}
 
 	logout() {
-		this.firebase.logout().then(() => this.router.navigateByUrl("/login"));
+		this.firebase.logout()
+			.then(() => {
+				localStorage.removeItem("data");
+				localStorage.removeItem("uuid");
+
+				this.router.navigateByUrl("/login")
+			});
 	}
 }
 
