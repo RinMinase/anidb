@@ -9,7 +9,7 @@ import "firebase/compat/firestore";
 import { FirebaseQuery } from "@builders/firebase-query.service";
 import { v4 as uuid } from "uuid";
 
-// const fb = firebase.database;
+const fb = firebase.database;
 const fs = firebase.firestore;
 
 @Injectable({
@@ -44,8 +44,7 @@ export class FirebaseService {
 		let lastIndex: number;
 		const retrieveLast = () =>
 			new Promise((resolve) => {
-				firebase
-					.database()
+				fb()
 					.ref(db)
 					.orderByKey()
 					.limitToLast(1)
@@ -58,15 +57,13 @@ export class FirebaseService {
 
 		const dataInsert = () =>
 			new Promise((resolve) => {
-				firebase
-					.database()
+				fb()
 					.ref(`${db}/${lastIndex + 1}`)
 					.set(data)
 					.then(async () => {
-						await firebase
-							.database()
-							.ref("/config/uuid")
-							.set(uuid());
+						await fs().collection("config").doc("uuid").update({
+							value: uuid(),
+						});
 
 						resolve(true);
 					});
@@ -78,7 +75,7 @@ export class FirebaseService {
 	hardDelete(params: FirebaseQuery) {
 		const { db, id } = params;
 		if (db && id) {
-			return Promise.resolve(firebase.database().ref(`/${db}/${id}`).remove());
+			return Promise.resolve(fb().ref(`/${db}/${id}`).remove());
 		}
 
 		return Promise.reject();
@@ -104,27 +101,6 @@ export class FirebaseService {
 		}
 
 		return Promise.reject();
-	}
-
-	retrieveUUID() {
-		return new Promise(async (resolve) => {
-			// firebase
-			// 	.database()
-			// 	.ref("/config/uuid")
-			// 	.on("value", (data) => resolve(data));
-
-			const storeID = await firebase
-				.firestore()
-				.collection("config")
-				.doc("uuid")
-				.get();
-
-			if (storeID.exists) {
-				resolve(storeID.data());
-			} else {
-				resolve("");
-			}
-		});
 	}
 
 	retrieveImageUrl(ref: string) {
@@ -159,15 +135,13 @@ export class FirebaseService {
 		const { db, id, data } = params;
 		if (db && id && data) {
 			return Promise.resolve(
-				firebase
-					.database()
+				fb()
 					.ref(`/${db}/${id}`)
 					.update(data)
 					.then(async () => {
-						await firebase
-							.database()
-							.ref("/config/uuid")
-							.set(uuid())
+						await fs().collection("config").doc("uuid").update({
+							value: uuid(),
+						});
 					})
 			);
 		}
@@ -216,8 +190,7 @@ export class FirebaseService {
 			return Promise.resolve(JSON.parse(currData));
 		} else {
 			return new Promise((resolve) => {
-				firebase
-					.database()
+				fb()
 					.ref(`/${query.db}`)
 					.orderByChild("inhdd")
 					.equalTo(1)
@@ -235,8 +208,7 @@ export class FirebaseService {
 
 	private retrieveSpecific(query: FirebaseQuery, idQuery: string) {
 		return new Promise((resolve) => {
-			firebase
-				.database()
+			fb()
 				.ref(`/${query.db}${idQuery}`)
 				.on("value", (data) => resolve(this.objectToArray(data.val())));
 		});
@@ -244,8 +216,7 @@ export class FirebaseService {
 
 	private retrieveWithAscQuery(query: FirebaseQuery) {
 		return new Promise((resolve) => {
-			firebase
-				.database()
+			fb()
 				.ref(`/${query.db}`)
 				.orderByChild(query.orderKey)
 				.limitToFirst(query.limit)
@@ -255,8 +226,7 @@ export class FirebaseService {
 
 	private retrieveWithDescQuery(query: FirebaseQuery) {
 		return new Promise((resolve) => {
-			firebase
-				.database()
+			fb()
 				.ref(`/${query.db}`)
 				.orderByChild(query.orderKey)
 				.limitToLast(query.limit)
