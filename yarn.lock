@@ -2906,15 +2906,12 @@
     eslint-visitor-keys "^2.0.0"
 
 "@vercel/nft@^0.17.0":
-  version "0.17.0"
-  resolved "https://registry.yarnpkg.com/@vercel/nft/-/nft-0.17.0.tgz#28851fefe42fae7a116dc5e23a0a9da29929a18b"
-  integrity sha512-dXz4RAODHpEPl1Yfzk1UfVpZfqhY9O80FdI9sF/Hw2bXWj5022U9Z46VpdNYe8pDluSuQv/JUo/ZP4/OcsfDRw==
+  version "0.17.1"
+  resolved "https://registry.yarnpkg.com/@vercel/nft/-/nft-0.17.1.tgz#d1a22f9d25594b549d237d25d10595d62e60dd05"
+  integrity sha512-z3zknfI7JaE0PPmmYDQVtf/TCEnAYT5Y2XrCO/BfAD1sP2Wdmg1PO0L1VRIyt0zjpr6PpBYitC0Nmy0rh+qEDA==
   dependencies:
     "@mapbox/node-pre-gyp" "^1.0.5"
-    acorn "^8.3.0"
-    acorn-class-fields "^1.0.0"
-    acorn-private-class-elements "^1.0.0"
-    acorn-static-class-features "^1.0.0"
+    acorn "^8.6.0"
     bindings "^1.4.0"
     estree-walker "2.0.2"
     glob "^7.1.3"
@@ -3080,36 +3077,17 @@ accepts@~1.3.4, accepts@~1.3.5, accepts@~1.3.7:
     mime-types "~2.1.24"
     negotiator "0.6.2"
 
-acorn-class-fields@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/acorn-class-fields/-/acorn-class-fields-1.0.0.tgz#b413793e6b3ddfcd17a02f9c7a850f4bbfdc1c7a"
-  integrity sha512-l+1FokF34AeCXGBHkrXFmml9nOIRI+2yBnBpO5MaVAaTIJ96irWLtcCxX+7hAp6USHFCe+iyyBB4ZhxV807wmA==
-  dependencies:
-    acorn-private-class-elements "^1.0.0"
-
 acorn-import-assertions@^1.7.6:
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/acorn-import-assertions/-/acorn-import-assertions-1.8.0.tgz#ba2b5939ce62c238db6d93d81c9b111b29b855e9"
   integrity sha512-m7VZ3jwz4eK6A4Vtt8Ew1/mNbP24u0FhdyfA7fSvnJR6LMdfOYnmuIrrJAgrYfYJ10F/otaHTtrtrtmHdMNzEw==
-
-acorn-private-class-elements@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/acorn-private-class-elements/-/acorn-private-class-elements-1.0.0.tgz#c5805bf8a46cd065dc9b3513bfebb504c88cd706"
-  integrity sha512-zYNcZtxKgVCg1brS39BEou86mIao1EV7eeREG+6WMwKbuYTeivRRs6S2XdWnboRde6G9wKh2w+WBydEyJsJ6mg==
-
-acorn-static-class-features@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/acorn-static-class-features/-/acorn-static-class-features-1.0.0.tgz#ab9d862d5b184007ed509f5a8d031b837694ace2"
-  integrity sha512-XZJECjbmMOKvMHiNzbiPXuXpLAJfN3dAKtfIYbk1eHiWdsutlek+gS7ND4B8yJ3oqvHo1NxfafnezVmq7NXK0A==
-  dependencies:
-    acorn-private-class-elements "^1.0.0"
 
 acorn-walk@^8.1.1:
   version "8.2.0"
   resolved "https://registry.yarnpkg.com/acorn-walk/-/acorn-walk-8.2.0.tgz#741210f2e2426454508853a2f44d0ab83b7f69c1"
   integrity sha512-k+iyHEuPgSw6SbuDpGQM+06HQUa04DZ3o+F6CSzXMvvI5KMvnaEqXe+YVe555R9nn6GPt404fos4wcgpw12SDA==
 
-acorn@^8.3.0, acorn@^8.4.1:
+acorn@^8.4.1, acorn@^8.6.0:
   version "8.6.0"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-8.6.0.tgz#e3692ba0eb1a0c83eaa4f37f5fa7368dd7142895"
   integrity sha512-U1riIR+lBSNi3IbxtaHOIKdH8sLFv3NYfNv8sg7ZsNhcfl4HF2++BfqqrNAxoCLQW1iiylOj76ecnaUxz+z9yw==
@@ -4331,11 +4309,6 @@ commander@^3.0.2:
   resolved "https://registry.yarnpkg.com/commander/-/commander-3.0.2.tgz#6837c3fb677ad9933d1cfba42dd14d5117d6b39e"
   integrity sha512-Gar0ASD4BDyKC4hl4DwHqDrmvjoxWKZigVnAbn5H1owvm4CxCPdb0HQDehwNYMJpla5+M2tPmPARzhtYuwpHow==
 
-commander@^7.2.0:
-  version "7.2.0"
-  resolved "https://registry.yarnpkg.com/commander/-/commander-7.2.0.tgz#a36cb57d0b501ce108e4d20559a150a391d97ab7"
-  integrity sha512-QrWXB+ZQSVPmIWIhtEO9H+gwHaMGYiF5ChvoJ+K9ZGHG/sVsa6yiesAD1GC/x46sET00Xlwo1u49RVVVzvcSkw==
-
 commander@^8.3.0:
   version "8.3.0"
   resolved "https://registry.yarnpkg.com/commander/-/commander-8.3.0.tgz#4837ea1b2da67b9c616a67afbb0fafee567bca66"
@@ -4598,9 +4571,9 @@ critters@0.0.15:
     pretty-bytes "^5.3.0"
 
 cron-parser@^4.1.0:
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/cron-parser/-/cron-parser-4.2.0.tgz#cee7d9b5a04f3f64c6c9d815097df2e98b7c5427"
-  integrity sha512-pHDdek1iV87R9iG1edv5P2aImDOO1+y2VqCm0V3t0g3JtT/o0V0wAnX/6J2bsF8XEDvR7iqL3Co/3RBj2AhPFQ==
+  version "4.2.1"
+  resolved "https://registry.yarnpkg.com/cron-parser/-/cron-parser-4.2.1.tgz#b43205d05ccd5c93b097dae64f3bd811f5993af3"
+  integrity sha512-5sJBwDYyCp+0vU5b7POl8zLWfgV5fOHxlc45FWoWdHecGC7MQHCjx0CHivCMRnGFovghKhhyYM+Zm9DcY5qcHg==
   dependencies:
     luxon "^1.28.0"
 
@@ -5206,9 +5179,9 @@ ee-first@1.1.1:
   integrity sha1-WQxhFWsK4vTwJVcyoViyZrxWsh0=
 
 electron-to-chromium@^1.4.17:
-  version "1.4.26"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.26.tgz#d71b9da220543cf10614a576c3d5ebbe43d96efb"
-  integrity sha512-cA1YwlRzO6TGp7yd3+KAqh9Tt6Z4CuuKqsAJP6uF/H5MQryjAGDhMhnY5cEXo8MaRCczpzSBhMPdqRIodkbZYw==
+  version "1.4.27"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.27.tgz#bfc6e798d8a56a17d658312f4b7ae1a7ca87724f"
+  integrity sha512-uZ95szi3zUbzRDx1zx/xnsCG+2xgZyy57pDOeaeO4r8zx5Dqe8Jv1ti8cunvBwJHVI5LzPuw8umKwZb3WKYxSQ==
 
 elegant-spinner@^1.0.1:
   version "1.0.1"
@@ -7583,11 +7556,11 @@ kuler@^2.0.0:
   integrity sha512-Xq9nH7KlWZmXAtodXDDRE7vs6DU1gTU8zYDHDiWLSip45Egwq3plLHzPn27NgvzL2r1LMPC1vdqh98sQxtqj4A==
 
 lambda-local@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/lambda-local/-/lambda-local-2.0.0.tgz#91714d612e6fa7c614e1373578f8a670315c4f33"
-  integrity sha512-5Z7ZEhqVYJSm3djoq7QLDkEk7Ao+jNYbARo3nk3wtjKpgCnEbzOuraxDPDWg7OlZ4JKcsRDP+wNLeORMdbF2ow==
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/lambda-local/-/lambda-local-2.0.1.tgz#61001df575454f8938a1813824eacdfe4547dcb4"
+  integrity sha512-21AoIJYuGRPNMCEtxAOa/BP2j0fNY10IVYMQ1pRqDyhSJi5xt4r4IZUqWF40+aYU6TJ1SdB7t5s1BmSq391ILQ==
   dependencies:
-    commander "^7.2.0"
+    commander "^8.3.0"
     dotenv "^10.0.0"
     winston "^3.3.3"
 
@@ -9805,9 +9778,9 @@ postcss-selector-parser@^5.0.0-rc.3, postcss-selector-parser@^5.0.0-rc.4:
     uniq "^1.0.1"
 
 postcss-selector-parser@^6.0.2, postcss-selector-parser@^6.0.4, postcss-selector-parser@^6.0.6, postcss-selector-parser@^6.0.7:
-  version "6.0.7"
-  resolved "https://registry.yarnpkg.com/postcss-selector-parser/-/postcss-selector-parser-6.0.7.tgz#48404830a635113a71fd79397de8209ed05a66fc"
-  integrity sha512-U+b/Deoi4I/UmE6KOVPpnhS7I7AYdKbhGcat+qTQ27gycvaACvNEw11ba6RrkwVmDVRW7sigWgLj4/KbbJjeDA==
+  version "6.0.8"
+  resolved "https://registry.yarnpkg.com/postcss-selector-parser/-/postcss-selector-parser-6.0.8.tgz#f023ed7a9ea736cd7ef70342996e8e78645a7914"
+  integrity sha512-D5PG53d209Z1Uhcc0qAZ5U3t5HagH3cxu+WLZ22jt3gLUpXM4eXXfiO14jiDWST3NNooX/E8wISfOhZ9eIjGTQ==
   dependencies:
     cssesc "^3.0.0"
     util-deprecate "^1.0.2"
