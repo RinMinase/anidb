@@ -105,7 +105,7 @@ export class ManageHomeComponent implements OnInit {
 	}
 
 	viewTitle(id: number) {
-		this.service.changeState(this.searchQuery, id);
+		this.service.changeState(this.search.value, id);
 		this.router.navigateByUrl(`/view/${id}`);
 	}
 
