@@ -75,7 +75,16 @@ export class FirebaseService {
 	hardDelete(params: FirebaseQuery) {
 		const { db, id } = params;
 		if (db && id) {
-			return Promise.resolve(fb().ref(`/${db}/${id}`).remove());
+			return Promise.resolve(
+				fb()
+					.ref(`/${db}/${id}`)
+					.remove()
+					.then(async () => {
+						await fs().collection("config").doc("uuid").update({
+							value: uuid(),
+						});
+					}),
+			);
 		}
 
 		return Promise.reject();
