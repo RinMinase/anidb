@@ -113,28 +113,55 @@ export class ManageHomeComponent implements OnInit {
 		this.firebase
 			.auth()
 			.then(() => {
-				this.firebase.retrieve().then((data) => {
-					this.formatData(data);
-					this.dataLoaded = true;
+				this.firebase.retrieve()
+					.then((data) => {
+						this.formatData(data);
+						this.dataLoaded = true;
 
-					if (this.homeState.id !== null) {
-						setTimeout(() => {
-							document.getElementById(`${this.homeState.id}`).scrollIntoView();
-							window.scrollBy(0, -2046);
-						});
-					}
-
-					if (this.homeState.search) {
-						this.searchQuery = this.homeState.search;
-						this.search.patchValue(this.searchQuery);
-
-						if (this.pristineData) {
-							this.data = new Fuse(this.pristineData, this.fuseOptions)
-								.search(this.searchQuery)
-								.map(({ item }) => item);
+						if (this.homeState.id !== null) {
+							setTimeout(() => {
+								document.getElementById(`${this.homeState.id}`).scrollIntoView();
+								window.scrollBy(0, -2046);
+							});
 						}
-					}
-				});
+
+						if (this.homeState.search) {
+							this.searchQuery = this.homeState.search;
+							this.search.patchValue(this.searchQuery);
+
+							if (this.pristineData) {
+								this.data = new Fuse(this.pristineData, this.fuseOptions)
+									.search(this.searchQuery)
+									.map(({ item }) => item);
+							}
+						}
+					})
+					.catch(() => {
+						const data = localStorage.getItem("data");
+
+						if (data) {
+							this.formatData(JSON.parse(data));
+							this.dataLoaded = true;
+
+							if (this.homeState.id !== null) {
+								setTimeout(() => {
+									document.getElementById(`${this.homeState.id}`).scrollIntoView();
+									window.scrollBy(0, -2046);
+								});
+							}
+
+							if (this.homeState.search) {
+								this.searchQuery = this.homeState.search;
+								this.search.patchValue(this.searchQuery);
+
+								if (this.pristineData) {
+									this.data = new Fuse(this.pristineData, this.fuseOptions)
+										.search(this.searchQuery)
+										.map(({ item }) => item);
+								}
+							}
+						}
+					});
 			})
 			.catch(() => this.router.navigateByUrl("/login"));
 	}
