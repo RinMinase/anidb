@@ -45,6 +45,10 @@ const routes: Routes = [
 		loadChildren: () => import("./hdd/hdd.module").then((m) => m.HddModule),
 	},
 	{
+		path: "hdd-sim",
+		loadChildren: () => import("./hdd-sim/hdd-sim.module").then((m) => m.HddSimModule),
+	},
+	{
 		path: "lastwatch",
 		loadChildren: () =>
 			import("./lastwatch/lastwatch.module").then((m) => m.LastwatchModule),
