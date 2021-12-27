@@ -6,16 +6,8 @@
     "anidb": {
       "projectType": "application",
       "schematics": {
-        "@schematics/angular:module": {
-          "lintFix": true,
-          "skipTests": true
-        },
-        "@schematics/angular:service": {
-          "skipTests": true
-        },
         "@schematics/angular:component": {
-          "style": "scss",
-          "skipTests": true
+          "style": "scss"
         }
       },
       "root": "",
