@@ -91,6 +91,20 @@ nav .switch input:checked + label::before {
 // }
 
 /**
+ * Removes arrows in input["number"]
+ */
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+}
+
+input[type=number] {
+	-moz-appearance:textfield;
+}
+
+/**
  * Bootstrap Extensions
  */
 
