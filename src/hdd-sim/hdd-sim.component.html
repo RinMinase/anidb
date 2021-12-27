@@ -9,20 +9,22 @@
 				<div class="card-body px-3 py-2">
 					<div class="row">
 						<div class="col-12">
-							<button type="button" class="btn btn-success w-100">
+							<button type="button" class="btn btn-success w-100 mt-2">
 								<span>Reset to default</span>
 							</button>
 
 							<hr />
 
-							<p>Add new</p>
+							<p class="fw-bold">Add new</p>
 							<form [formGroup]="addDriveForm" (ngSubmit)="addDrive()">
 								<div class="row">
 									<div class="col-3">
 										<select
 											class="form-select"
 											formControlName="from"
-											[ngClass]="{ 'is-invalid': submitted && form.from.errors }"
+											[ngClass]="{
+												'is-invalid': submitted && form.from.errors
+											}"
 										>
 											<option value="" selected disabled></option>
 											<option [value]="letter" *ngFor="let letter of letters">
@@ -47,7 +49,9 @@
 											type="number"
 											class="w-full form-control"
 											formControlName="size"
-											[ngClass]="{ 'is-invalid': submitted && form.size.errors }"
+											[ngClass]="{
+												'is-invalid': submitted && form.size.errors
+											}"
 										/>
 									</div>
 									<div class="col-1 d-flex align-items-end ps-0">
@@ -71,15 +75,21 @@
 									class="invalid-feedback d-block"
 									*ngIf="submitted && form.from.errors"
 								>
-									<span *ngIf="form.from.errors.required">From is required</span>
+									<span *ngIf="form.from.errors.required"
+										>From is required</span
+									>
 								</div>
 
 								<div
 									class="invalid-feedback d-block"
 									*ngIf="submitted && form.size.errors"
 								>
-									<span *ngIf="form.size.errors.required">Size is required</span>
-									<span *ngIf="form.size.errors.incorrect">Invalid drive size</span>
+									<span *ngIf="form.size.errors.required"
+										>Size is required</span
+									>
+									<span *ngIf="form.size.errors.incorrect"
+										>Invalid drive size</span
+									>
 								</div>
 							</form>
 
@@ -89,6 +99,23 @@
 								<span>Save current configuration</span>
 							</button>
 							<input type="text" class="form-control w-100 my-2" />
+
+							<hr />
+
+							<p class="ps-2 fw-bold">Saved Configurations</p>
+							<div class="row config-item" *ngFor="let config of configs">
+								<div
+									class="col-9 py-3 c-pointer"
+									(click)="setConfig(config.id)"
+								>
+									{{ config.name }}
+								</div>
+								<div class="col-3 pt-2 pe-3">
+									<button class="btn btn-danger btn-sm" type="submit">
+										<fa-icon [icon]="fasTrashAlt" class="px-2"></fa-icon>
+									</button>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>

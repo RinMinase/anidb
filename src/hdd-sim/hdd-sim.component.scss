@@ -1,0 +1,9 @@
+.config-item {
+	border-radius: 6px;
+	margin-left: 4px;
+	margin-right: 4px;
+
+	&:hover {
+		background-color: #dededede;
+	}
+}
