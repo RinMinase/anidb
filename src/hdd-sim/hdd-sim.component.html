@@ -1,1 +1,104 @@
-<p>hdd-sim works!</p>
+<div class="container-fluid">
+	<div class="flex-form-container" *ngIf="dataLoaded === false">
+		<div class="spinner eclipse"></div>
+	</div>
+
+	<div class="row" *ngIf="dataLoaded === true">
+		<div class="col-lg-3 col-12 animate slideInLeft">
+			<div class="card">
+				<div class="card-body px-3 py-2">
+					<div class="row">
+						<div class="col-12">
+							<button type="button" class="btn btn-success w-100">
+								<span>Reset to default</span>
+							</button>
+
+							<hr />
+
+							<p>Add new</p>
+							<form [formGroup]="addDriveForm" (ngSubmit)="addDrive()">
+								<div class="row">
+									<div class="col-3">
+										<select
+											class="form-select"
+											formControlName="from"
+											[ngClass]="{ 'is-invalid': submitted && form.from.errors }"
+										>
+											<option value="" selected disabled></option>
+											<option [value]="letter" *ngFor="let letter of letters">
+												{{ letter }}
+											</option>
+										</select>
+									</div>
+									<div class="col-3">
+										<select
+											class="form-select"
+											formControlName="to"
+											[ngClass]="{ 'is-invalid': submitted && form.to.errors }"
+										>
+											<option value="" selected disabled></option>
+											<option [value]="letter" *ngFor="let letter of letters">
+												{{ letter }}
+											</option>
+										</select>
+									</div>
+									<div class="col-3 form-group">
+										<input
+											type="number"
+											class="w-full form-control"
+											formControlName="size"
+											[ngClass]="{ 'is-invalid': submitted && form.size.errors }"
+										/>
+									</div>
+									<div class="col-1 d-flex align-items-end ps-0">
+										<span class="font-weight-bold">TB</span>
+									</div>
+									<div class="col-2">
+										<button class="btn btn-secondary btn-sm" type="submit">
+											<fa-icon [icon]="fasPlus" class="px-2"></fa-icon>
+										</button>
+									</div>
+								</div>
+
+								<div
+									class="invalid-feedback d-block"
+									*ngIf="submitted && form.to.errors"
+								>
+									<span *ngIf="form.to.errors.required">To is required</span>
+								</div>
+
+								<div
+									class="invalid-feedback d-block"
+									*ngIf="submitted && form.from.errors"
+								>
+									<span *ngIf="form.from.errors.required">From is required</span>
+								</div>
+
+								<div
+									class="invalid-feedback d-block"
+									*ngIf="submitted && form.size.errors"
+								>
+									<span *ngIf="form.size.errors.required">Size is required</span>
+									<span *ngIf="form.size.errors.incorrect">Invalid drive size</span>
+								</div>
+							</form>
+
+							<hr />
+
+							<button type="button" class="btn btn-success w-100">
+								<span>Save current configuration</span>
+							</button>
+							<input type="text" class="form-control w-100 my-2" />
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-lg-9 col-12 mt-lg-0 mt-3 animate slideInUp">
+			<div class="row">
+				<div class="col-12"></div>
+			</div>
+		</div>
+	</div>
+</div>
