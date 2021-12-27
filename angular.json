@@ -11,12 +11,10 @@
           "skipTests": true
         },
         "@schematics/angular:service": {
-          "lintFix": true,
           "skipTests": true
         },
         "@schematics/angular:component": {
           "style": "scss",
-          "lintFix": true,
           "skipTests": true
         }
       },
