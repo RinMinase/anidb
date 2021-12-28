@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { fasGripLinesVertical, fasPlus, fasTrashAlt } from "@rinminase/ng-fortawesome";
 
+// import { FirebaseQueryBuilder } from '@builders/firebase-query.service';
+// import { FirebaseService } from '@services/firebase.service';
+
 @Component({
 	selector: 'app-hdd-sim',
 	templateUrl: './hdd-sim.component.html',
@@ -72,6 +75,8 @@ export class HddSimComponent implements OnInit {
 
 	constructor(
 		private formBuilder: FormBuilder,
+		// private firebase: FirebaseService,
+		// private firebaseQueryBuilder: FirebaseQueryBuilder,
 	) { }
 
 	ngOnInit() {
@@ -80,6 +85,25 @@ export class HddSimComponent implements OnInit {
 			from: ["", Validators.required],
 			size: ["", Validators.required],
 		});
+
+
+		// this.firebase
+		// 	.auth()
+		// 	.then(() => {
+		// 		this.firebase.retrieve(
+		// 			this.firebaseQueryBuilder
+		// 				.init()
+		// 				.db("config")
+		// 				.inhdd(false)
+		// 				.build(),
+		// 		).then(() => {})
+
+		// 		this.firebase.retrieve()
+		// 			.then((data: Array<object>) => {
+		// 				this.formatData(data);
+		// 				this.dataLoaded = true;
+		// 			});
+		// 	});
 	}
 
 	get form() {
@@ -109,5 +133,9 @@ export class HddSimComponent implements OnInit {
 
 	deleteConfig(_id: number) {
 		// delete config
+	}
+
+	formatData(_data: Array<object>) {
+		// handle data
 	}
 }
