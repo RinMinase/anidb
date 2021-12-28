@@ -58,7 +58,15 @@
 										<span class="font-weight-bold">TB</span>
 									</div>
 									<div class="col-2 ps-1">
-										<button class="btn btn-secondary btn-sm px-0 rounded-circle btn-add-drive" type="submit">
+										<button
+											class="
+												btn btn-secondary btn-sm
+												px-0
+												rounded-circle
+												btn-add-drive
+											"
+											type="submit"
+										>
 											<fa-icon [icon]="fasPlus" class="px-2"></fa-icon>
 										</button>
 									</div>
@@ -104,13 +112,10 @@
 
 							<p class="ps-2 fw-bold">Saved Configurations</p>
 							<div class="row config-item" *ngFor="let config of configs">
-								<div
-									class="col-9 py-3 c-pointer"
-									(click)="setConfig(config.id)"
-								>
+								<div class="col py-3 c-pointer" (click)="setConfig(config.id)">
 									{{ config.name }}
 								</div>
-								<div class="col-3 pt-2 pe-3">
+								<div class="col-auto pt-2 pe-3">
 									<button class="btn btn-danger btn-sm" type="submit">
 										<fa-icon [icon]="fasTrashAlt" class="px-2"></fa-icon>
 									</button>
@@ -124,7 +129,98 @@
 
 		<div class="col-lg-9 col-12 mt-lg-0 mt-3 animate slideInUp">
 			<div class="row">
-				<div class="col-12"></div>
+				<div class="col-12">
+					<div class="card">
+						<div class="card-body px-3 py-2">
+							<div class="row">
+								<div
+									class="
+										col-1
+										d-flex
+										align-items-center
+										justify-content-center
+										c-pointer
+									"
+								>
+									<fa-icon [icon]="fasGripLinesVertical" class="px-2"></fa-icon>
+								</div>
+
+								<div class="col-11">
+									<div class="row">
+										<div class="col-12 col-md-5">
+											<div class="row">
+												<div class="col-5">
+													<p class="mb-1 text-center">From</p>
+													<select class="form-select">
+														<option value=""></option>
+														<option value="">A</option>
+													</select>
+												</div>
+												<div class="col-2 text-center">
+													<span>&mdash;</span>
+												</div>
+												<div class="col-5">
+													<p class="mb-1 text-center">To</p>
+													<select class="form-select">
+														<option value=""></option>
+														<option value="">A</option>
+													</select>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-12 form-group">
+													<p class="mb-1 mt-2">Size:</p>
+													<input type="text" class="form-control" />
+												</div>
+											</div>
+										</div>
+
+										<div
+											class="
+												col-12 col-md-5
+												d-flex
+												align-items-center align-content-center
+												flex-wrap
+												drive-statistics
+											"
+										>
+											<p>
+												<span>Total: </span>
+												<span>250GB</span>
+											</p>
+											<p>
+												<span>Used: </span>
+												<span>250GB&nbsp;</span>
+												<span>(25%)</span>
+											</p>
+											<p>
+												<span>Free: </span>
+												<span>250GB&nbsp;</span>
+												<span>(25%)</span>
+											</p>
+										</div>
+
+										<div
+											class="
+												col-12 col-md-2
+												d-flex
+												align-items-center
+												justify-content-end
+											"
+										>
+											<button
+												class="btn btn-danger btn-sm delete-drive-button"
+												type="submit"
+											>
+												<fa-icon [icon]="fasTrashAlt" class="px-2"></fa-icon>
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

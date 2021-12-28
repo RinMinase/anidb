@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { fasPlus, fasTrashAlt } from "@rinminase/ng-fortawesome";
+import { fasGripLinesVertical, fasPlus, fasTrashAlt } from "@rinminase/ng-fortawesome";
 
 @Component({
 	selector: 'app-hdd-sim',
@@ -10,7 +10,9 @@ import { fasPlus, fasTrashAlt } from "@rinminase/ng-fortawesome";
 export class HddSimComponent implements OnInit {
 
 	fasPlus = fasPlus;
-	fasTrashAlt = fasTrashAlt
+	fasTrashAlt = fasTrashAlt;
+	fasGripLinesVertical = fasGripLinesVertical;
+
 	addDriveForm: FormGroup;
 
 	letters = [..."ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
