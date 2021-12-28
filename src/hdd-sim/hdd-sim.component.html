@@ -152,8 +152,10 @@
 												<div class="col-5">
 													<p class="mb-1 text-center">From</p>
 													<select class="form-select">
-														<option value=""></option>
-														<option value="">A</option>
+														<option value="" selected disabled></option>
+														<option [value]="letter" *ngFor="let letter of letters">
+															{{ letter }}
+														</option>
 													</select>
 												</div>
 												<div class="col-2 text-center">
@@ -162,8 +164,10 @@
 												<div class="col-5">
 													<p class="mb-1 text-center">To</p>
 													<select class="form-select">
-														<option value=""></option>
-														<option value="">A</option>
+														<option value="" selected disabled></option>
+														<option [value]="letter" *ngFor="let letter of letters">
+															{{ letter }}
+														</option>
 													</select>
 												</div>
 											</div>
