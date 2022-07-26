@@ -26,7 +26,7 @@
 </p>
 
 ## Introduction
-_Add info here_
+This project uses Preact (Faster & Leaner React) with Vite and deployed to Netlify using Circle CI
 
 ## Getting Started
 
@@ -113,11 +113,11 @@ Schematics
 
 Task automation is based on [Yarn scripts](https://yarnpkg.com/lang/en/docs/cli/run/) or [NPM scripts](https://docs.npmjs.com/misc/scripts).
 
-| Task                | Description                                                                                          |
-| ------------------- | ---------------------------------------------------------------------------------------------------- |
-| `yarn start`        | Run **development server** on `http://localhost:3000/` with file watching on changes                 |
-| `yarn start --prod` | Run **production server** on `http://localhost:3000/` with file watching on changes                  |
-| `yarn build`        | Build production code and add service worker to built code                                           |
+| Task                       | Description                                                                           |
+| -------------------------- | ------------------------------------------------------------------------------------- |
+| `yarn dev` or `yarn start` | Run **development server** on `http://localhost:3000/` with file watching on changes  |
+| `yarn preview`             | Run **production server** on `http://localhost:3000/`                                 |
+| `yarn build`               | Build production code to `dist` folder                                                |
 
 Other tasks included in `package.json` that should not be executed manually:
 
@@ -125,16 +125,13 @@ Other tasks included in `package.json` that should not be executed manually:
 | ------------------- | ---------------------------------------------------------------------------------------------------- |
 | `yarn deploy`       | Build production code without displaying progress and add service worker to built code               |
 
-### Testing the project
-_Add info here_
 
 ## Built with
-* <img width=20 height=20 src="https://angular.io/assets/images/favicons/favicon.ico"> [Angular](https://angular.io/) - Web Framework
+* <img width=20 height=20 src="https://preactjs.com/favicon.ico"> [Preact](https://preactjs.com/) - Web Framework
 * <img width=20 height=20 src="https://www.typescriptlang.org/favicon-32x32.png"> [TypeScript](https://www.typescriptlang.org/) - Language syntax
-* <img width=20 height=20 src="https://sass-lang.com/favicon.ico"> [Sassy CSS (SCSS)](https://sass-lang.com/) - CSS pre-processor
-* <img width=20 height=20 src="https://getbootstrap.com/favicon.ico"> [Bootstrap 5](https://getbootstrap.com/) - HTML Framework (layout)
-* <img width=20 height=20 src="https://firebase.google.com/favicon.ico"> [Firebase](https://firebase.google.com/) - Database
-* <img width=20 height=20 src="https://webpack.js.org/icon_192x192.png"> [Webpack](https://webpack.js.org/) - Project bundler
+* <img width=20 height=20 src="https://vitejs.dev/logo.svg"> [Vite](https://vitejs.dev/) - Source Code Bundler
+* <img width=20 height=20 src="https://emotion.sh/logo-32x32.png"> [Emotion CSS](https://emotion.sh/) - CSS pre-processor
+* <img width=20 height=20 src="https://mui.com/static/favicon.ico"> [Material UI](https://mui.com/) - Layouting Framework
 * <img width=20 height=20 src="https://dmmj3mmt94rvw.cloudfront.net/favicon-undefined.ico"> [Circle CI](https://circleci.com/) - Continuous Integration (CI) service
 * <img width=20 height=20 src="https://www.netlify.com/img/global/favicon/favicon-32x32.png"> [Netlify](https://netlify.com) - Hosting Platform
 
