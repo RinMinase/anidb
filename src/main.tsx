@@ -12,7 +12,7 @@ import {
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#58bd3c",
+      main: "#198754",
     },
   },
 });
