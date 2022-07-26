@@ -38,7 +38,8 @@
 				<td>SSD</td><td>:</td>
 				<td class="table-specs-value">
 					<span>{{ data.ssd }}<br></span>
-					<span>{{ data.ssdSubtext }}</span>
+					<span>{{ data.ssdSubtext }}<br/></span>
+					<span>{{ data.ssdSubtext2 }}</span>
 				</td>
 			</tr>
 			<tr>
@@ -56,8 +57,7 @@
 				<td class="table-specs-value">
 					<span>{{ data.fans }}<br></span>
 					<span>{{ data.fansSubtext }}<br></span>
-					<span>{{ data.fansSubtext2 }}<br></span>
-					<span>{{ data.fansSubtext3 }}</span>
+					<span>{{ data.fansSubtext2 }}</span>
 				</td>
 			</tr>
 			<tr><td class="p-1" colspan="3"></td></tr>
@@ -67,26 +67,39 @@
 				<td class="table-specs-value">{{ data.monitor }}</td>
 			</tr>
 			<tr>
-				<td>Speakers</td><td>:</td>
-				<td class="table-specs-value">{{ data.speakers }}</td>
+				<td>Keyboard</td><td>:</td>
+				<td class="table-specs-value">
+					<span>{{ data.keyboard }}<br></span>
+					<span>{{ data.keyboardSubtext }}</span>
+				</td>
+			</tr>
+			<tr>
+				<td>Mouse</td><td>:</td>
+				<td class="table-specs-value">
+					<span>{{ data.mouse }}<br></span>
+					<span>{{ data.mouseSubtext }}</span>
+				</td>
 			</tr>
 			<tr><td class="p-1" colspan="3"></td></tr>
 			<tr><td class="table-specs-border p-1" colspan="3"></td></tr>
 			<tr>
-				<td>Keyboard</td><td>:</td>
-				<td class="table-specs-value">{{ data.keyboard }}</td>
-			</tr>
-			<tr>
-				<td>Mouse</td><td>:</td>
-				<td class="table-specs-value">{{ data.mouse }}</td>
+				<td>Speakers</td><td>:</td>
+				<td class="table-specs-value">{{ data.speakers }}</td>
 			</tr>
 			<tr>
 				<td>Headset</td><td>:</td>
-				<td class="table-specs-value">{{ data.headset }}</td>
+				<td class="table-specs-value">
+					<span>{{ data.headset }}<br></span>
+					<span>{{ data.headsetSubtext }}</span>
+				</td>
 			</tr>
 			<tr>
-				<td>Mat</td><td>:</td>
-				<td class="table-specs-value">{{ data.mat }}<br>{{ data.matSubtext }}</td>
+				<td>Microphone</td><td>:</td>
+				<td class="table-specs-value">{{ data.microphone }}</td>
+			</tr>
+			<tr>
+				<td>Audio Interface</td><td>:</td>
+				<td class="table-specs-value">{{ data.audioInterface }}</td>
 			</tr>
 		</tbody>
 	</table>
@@ -96,9 +109,16 @@
 	<table class="table table-sm table-specs">
 		<tbody>
 			<tr><th>CPU</th></tr>
-			<tr><td class="table-specs-value">{{ data.cpu }}</td></tr>
+			<tr><td class="table-specs-value">
+				<span>{{ data.cpu }}<br></span>
+				<span>{{ data.cpuSubtext }}<br></span>
+				<span>{{ data.cpuSubtext2 }}</span>
+			</td></tr>
 			<tr><th>RAM</th></tr>
-			<tr><td class="table-specs-value">{{ data.ram }}</td></tr>
+			<tr><td class="table-specs-value">
+				<span>{{ data.ram }}<br></span>
+				<span>{{ data.ramSubtext }}<br></span>
+			</td></tr>
 			<tr><th>GPU</th></tr>
 			<tr><td class="table-specs-value">{{ data.gpu }}</td></tr>
 
@@ -113,7 +133,11 @@
 			<tr><th>CPU Cooler</th></tr>
 			<tr><td class="table-specs-value">{{ data.cooler }}</td></tr>
 			<tr><th>SSD</th></tr>
-			<tr><td class="table-specs-value">{{ data.ssd }}</td></tr>
+			<tr><td class="table-specs-value">
+				<span>{{ data.ssd }}<br></span>
+				<span>{{ data.ssdSubtext }}<br/></span>
+				<span>{{ data.ssdSubtext2 }}</span>
+			</td></tr>
 			<tr><th>HDD</th></tr>
 			<tr><td class="table-specs-value">{{ data.hdd }}</td></tr>
 
@@ -123,25 +147,42 @@
 			<tr><th>Case</th></tr>
 			<tr><td class="table-specs-value">{{ data.case }}</td></tr>
 			<tr><th>Case Fans</th></tr>
-			<tr><td class="table-specs-value">{{ data.fans }}</td></tr>
+			<tr><td class="table-specs-value">
+				<span>{{ data.fans }}<br></span>
+				<span>{{ data.fansSubtext }}<br></span>
+				<span>{{ data.fansSubtext2 }}</span>
+			</td></tr>
 
 			<tr><td class="p-1" colspan="3"></td></tr>
 			<tr><td class="table-specs-border p-1" colspan="3"></td></tr>
 
 			<tr><th>Monitor</th></tr>
 			<tr><td class="table-specs-value">{{ data.monitor }}</td></tr>
-			<tr><th>Speakers</th></tr>
-			<tr><td class="table-specs-value">{{ data.speakers }}</td></tr>
+			<tr><th>Keyboard</th></tr>
+			<tr><td class="table-specs-value">
+				<span>{{ data.keyboard }}<br></span>
+				<span>{{ data.keyboardSubtext }}</span>
+			</td></tr>
+			<tr><th>Mouse</th></tr>
+			<tr><td class="table-specs-value">
+				<span>{{ data.mouse }}<br></span>
+				<span>{{ data.mouseSubtext }}</span>
+			</td></tr>
 
 			<tr><td class="p-1" colspan="3"></td></tr>
 			<tr><td class="table-specs-border p-1" colspan="3"></td></tr>
 
-			<tr><th>Keyboard</th></tr>
-			<tr><td class="table-specs-value">{{ data.keyboard }}</td></tr>
-			<tr><th>Mouse</th></tr>
-			<tr><td class="table-specs-value">{{ data.mouse }}</td></tr>
-			<tr><th>Mat</th></tr>
-			<tr><td class="table-specs-value">{{ data.mat }} {{ data.matSubtext }}</td></tr>
+			<tr><th>Speakers</th></tr>
+			<tr><td class="table-specs-value">{{ data.speakers }}</td></tr>
+			<tr><th>Headset</th></tr>
+			<tr><td class="table-specs-value">
+				<span>{{ data.headset }}<br></span>
+				<span>{{ data.headsetSubtext }}</span>
+			</td></tr>
+			<tr><th>Microphone</th></tr>
+			<tr><td class="table-specs-value">{{ data.microphone }}</td></tr>
+			<tr><th>Audio Interface</th></tr>
+			<tr><td class="table-specs-value">{{ data.audioInterface }}</td></tr>
 		</tbody>
 	</table>
 </div>

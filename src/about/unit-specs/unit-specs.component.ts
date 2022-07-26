@@ -26,22 +26,25 @@ export class UnitSpecsComponent implements OnInit {
 			coolerSubtext: "2x Noctua NF-F12 chromax",
 			ssd: "Gigabyte AORUS Gen4 NVME 2TB",
 			ssdSubtext: "Samsung 860 EVO 1TB",
+			ssdSubtext2: "Samsung SSD 980 250GB",
 			hdd: "Seagate Ironwolf 8TB",
 
 			case: "NZXT H700 Matte Black",
 			fans: "3x Noctua NF-S12A chromax",
 			fansSubtext: "3x Noctua NF-F12 chromax",
 			fansSubtext2: "3x Noctua NF-A14 chromax",
-			fansSubtext3: "2x Deepcool FH-04 Fan Splitter",
 
 			monitor: 'Dell SE2717H 27" 1080p 75Hz',
 			speakers: "Bose Companion 50 2.1",
 
-			keyboard: "Logitech G913 Wireless",
+			keyboard: "Keychron K3",
+			keyboardSubtext: "Gateron Low-Profile Browns",
 			mouse: "Logitech G Pro Wireless",
-			headset: "Corsair Virtuoso Wireless SE",
-			mat: "SteelSeries QCK XXL",
-			matSubtext: "(900 × 400mm)",
+			mouseSubtext: "Kailh GM8.0 Switches",
+			microphone: "Audio-Technica AT2020",
+			headset: "Sennheiser HD 560S",
+			headsetSubtext: "Bose QuietComfort 35 II",
+			audioInterface: "Scarlett Solo (3rd Gen)",
 		};
 	}
 }
