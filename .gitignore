@@ -1,9 +1,11 @@
 # General
+*.local
 .env
 coverage/
 
 # compiled output
 dist/
+dist-ssr/
 out-tsc/
 src/assets/res/android/hooks/after_build.js
 src/assets/config/sw-precache-config.js
@@ -17,6 +19,8 @@ logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
 
 # Node/NPM/Yarn cache/storage/lock files
 node_modules/
@@ -30,3 +34,17 @@ package-lock.json
 
 # Sonar Linting
 .sonarlint/
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.editorconfig
+.env.example
+.gitignore
