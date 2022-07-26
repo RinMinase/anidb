@@ -3323,15 +3323,15 @@
   resolved "https://registry.yarnpkg.com/@protobufjs/utf8/-/utf8-1.1.0.tgz#a777360b5b39a1a2e5106f8e858f2fd2d060c570"
   integrity sha1-p3c2C1s5oaLlEG+OhY8v0tBgxXA=
 
-"@rinminase/ng-charts@^4.1.0":
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/@rinminase/ng-charts/-/ng-charts-4.1.1.tgz#e84cb541b0d391852085aa3f66389385c1348083"
-  integrity sha512-qxqCcFAO/ErP6GQV+11/Z2R2bwpYKBGTZFwdT1rysrbnaky1R3/xpGxfxW8WD5w2SBIg8FVWrf9OQP7VAHWYWw==
+"@rinminase/ng-charts@^4.2.1":
+  version "4.2.1"
+  resolved "https://registry.yarnpkg.com/@rinminase/ng-charts/-/ng-charts-4.2.1.tgz#7bff11f01eab0d4e03063818620c93afc47af424"
+  integrity sha512-KGJb0qufgRAY1gB4i5xBfE7zEzQcLj6HYjkZhn61KOKhensgTp6FPKhgMTnYmffMEwXUqeNNkTNm+QcKoDbUZg==
   dependencies:
     "@types/chart.js" "2.9.22"
     chart.js "^2.9.3"
     lodash-es "^4.17.21"
-    tslib "^2.2.0"
+    tslib "^2.3.0"
 
 "@rinminase/ng-fortawesome@^6.0.1":
   version "6.0.1"
