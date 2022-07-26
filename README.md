@@ -90,6 +90,10 @@ Installations Required:
     ├── tsconfig.node.json      # Vite TypeScript configuration file
     └── ...                     # Other project files
 
+> Notes: 
+>
+> As to why the `index.html` file is located on the root of the project, refer to: https://vitejs.dev/guide/#index-html-and-project-root
+
 
 ### Project tasks
 
