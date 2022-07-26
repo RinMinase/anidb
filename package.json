@@ -1,114 +1,45 @@
 {
   "name": "rin-anidb",
-  "description": "Rin Minase's Anime Database using Angular rendered with Ivy and deployed to Netlify using Circle CI",
+  "description": "Rin Minase's AniDB using Preact with Vite and deployed to Netlify using Circle CI",
   "homepage": "https://anidb.netlify.com/",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "license": "MIT",
   "author": "Rin Minase",
   "private": true,
-  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/RinMinase/anidb"
   },
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build --configuration production",
-    "deploy": "ng build --configuration production --no-progress",
-    "lint": "stylelint src/**/*.scss"
+    "dev": "npm start",
+    "start": "vite --port 3000 --host",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
-    "@angular/common": "^14.1.0",
-    "@angular/core": "^14.1.0",
-    "@angular/forms": "^14.1.0",
-    "@angular/localize": "^14.1.0",
-    "@angular/platform-browser-dynamic": "^14.1.0",
-    "@angular/pwa": "^14.1.0",
-    "@angular/router": "^14.1.0",
-    "@angular/service-worker": "^14.1.0",
-    "@ng-bootstrap/ng-bootstrap": "^13.0.0",
-    "@popperjs/core": "^2.11.5",
-    "@rinminase/ng-charts": "^4.3.0",
-    "@rinminase/ng-fortawesome": "^6.1.2",
-    "animatewithsass": "^3.2.1",
-    "bootstrap": "^5.2.0",
-    "date-fns": "^2.29.1",
-    "firebase": "^9.9.1",
-    "fuse.js": "^6.6.2",
-    "ng2-file-upload": "^1.4.0",
-    "ngx-dropzone-wrapper": "^11.0.0",
-    "rxjs": "7.5.6",
-    "scss-spinners": "^2.1.3",
-    "sweetalert2": "^11.4.24",
-    "uuid": "^8.3.2",
-    "xlsx": "^0.18.5",
-    "zone.js": "^0.11.7"
+    "@emotion/react": "^11.9.3",
+    "@emotion/styled": "^11.9.3",
+    "@mui/icons-material": "^5.8.4",
+    "@mui/material": "^5.9.2",
+    "axios": "^0.27.2",
+    "preact": "^10.9.0",
+    "preact-async-route": "^2.2.1",
+    "preact-router": "^4.1.0"
   },
   "devDependencies": {
-    "@angular-builders/custom-webpack": "^14.0.0",
-    "@angular/cli": "^14.1.0",
-    "@angular/compiler": "^14.1.0",
-    "@angular/compiler-cli": "^14.1.0",
-    "@angular/platform-browser": "^14.1.0",
-    "@types/node": "^18.6.3",
-    "@types/uuid": "^8.3.4",
-    "dotenv-webpack": "^8.0.0",
-    "netlify-cli": "^8.19.3",
-    "postcss": "^8.4.14",
-    "stylelint": "^14.9.1",
-    "stylelint-config-standard-scss": "^5.0.0",
-    "tslib": "^2.4.0",
-    "typescript": "~4.7.4"
+    "@preact/preset-vite": "^2.3.0",
+    "typescript": "^4.6.4",
+    "vite": "^3.0.0"
   },
   "engines": {
     "node": "^12.0.0 || ^14.0.0 || ^16.0.0 || ^17.0.0",
     "yarn": "^1.19.1"
   },
-  "browserslist": [
-    "last 1 Chrome versions",
-    "last 1 Firefox versions",
-    "last 2 Edge major versions",
-    "last 2 Safari major versions",
-    "last 2 iOS major versions",
-    "Firefox ESR",
-    "not IE 9-11"
-  ],
   "prettier": {
     "printWidth": 80,
     "bracketSpacing": true,
     "trailingComma": "all",
     "arrowParens": "always",
     "endOfLine": "lf"
-  },
-  "stylelint": {
-    "extends": "stylelint-config-standard-scss",
-    "rules": {
-      "color-named": "never",
-      "declaration-colon-space-after": "always",
-      "indentation": "tab",
-      "no-duplicate-selectors": true,
-      "no-empty-source": null,
-      "number-max-precision": 6,
-      "selector-id-pattern": "^[a-z][a-zA-Z0-9]+$",
-      "selector-pseudo-element-no-unknown": [
-        true,
-        {
-          "ignorePseudoElements": [
-            "ng-deep"
-          ]
-        }
-      ],
-      "selector-type-no-unknown": [
-        true,
-        {
-          "ignoreTypes": [
-            "dropzone"
-          ]
-        }
-      ],
-      "scss/at-import-partial-extension": null,
-      "scss/no-global-function-names": null
-    }
   }
 }
