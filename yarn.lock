@@ -3030,10 +3030,10 @@
     unixify "^1.0.0"
     yargs "^16.0.0"
 
-"@ng-bootstrap/ng-bootstrap@^11.0.0":
-  version "11.0.0"
-  resolved "https://registry.yarnpkg.com/@ng-bootstrap/ng-bootstrap/-/ng-bootstrap-11.0.0.tgz#16855620bff7ab7b965d4f49907c44b0f5bd5020"
-  integrity sha512-qDnB0+jbpQ4wjXpM4NPRAtwmgTDUCjGavoeRDZHOvFfYvx/MBf1RTjZEqTJ1Yqq1pKP4BWpzxCgVTunfnpmsjA==
+"@ng-bootstrap/ng-bootstrap@^12.1.2":
+  version "12.1.2"
+  resolved "https://registry.yarnpkg.com/@ng-bootstrap/ng-bootstrap/-/ng-bootstrap-12.1.2.tgz#19f21313234fe21090ba50a7721046ed5d9928e1"
+  integrity sha512-p27c+mYVdHiJMYrj5hwClVJxLdiZxafAqlbw1sdJh2xJ1rGOe+H/kCf5YDRbhlHqRN+34Gr0RQqIUeD1I2V8hg==
   dependencies:
     tslib "^2.3.0"
 
@@ -3230,6 +3230,11 @@
   integrity sha512-s1zLBjWhdEI2zwaoSgyOFoKSl109CUcVBCc7biPJ3aAf6LGLU6szDvi31JPU7bxfla2lqfhjbbg/5DdFNxOwHw==
   dependencies:
     "@octokit/openapi-types" "^11.2.0"
+
+"@popperjs/core@^2.11.5":
+  version "2.11.5"
+  resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.11.5.tgz#db5a11bf66bdab39569719555b0f76e138d7bd64"
+  integrity sha512-9X2obfABZuDVLCgPK9aX0a/x4jaOEweTTWE2+9sr0Qqqevj2Uv5XorvusThmc9XGYpS9yI+fhh8RTafBtGposw==
 
 "@protobufjs/aspromise@^1.1.1", "@protobufjs/aspromise@^1.1.2":
   version "1.1.2"
