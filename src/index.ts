@@ -1,4 +1,4 @@
-import "zone.js/dist/zone";
+import "zone.js";
 import "@angular/localize/init";
 
 import { enableProdMode } from "@angular/core";

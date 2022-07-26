@@ -49,6 +49,8 @@
             "styles": [ "src/index.scss" ],
             "allowedCommonJsDependencies": [
               "chart.js",
+              "dropzone",
+              "sweetalert2",
               "xlsx"
             ],
             "aot": true,
@@ -84,9 +86,11 @@
               "optimization": false,
               "vendorChunk": true,
               "extractLicenses": false,
-              "sourceMap": true
+              "sourceMap": true,
+              "namedChunks": true
             }
-          }
+          },
+          "defaultConfiguration": "production"
         },
         "serve": {
           "builder": "@angular-builders/custom-webpack:dev-server",
@@ -101,10 +105,13 @@
             "development": {
               "browserTarget": "anidb:build:development"
             }
-          }
+          },
+          "defaultConfiguration": "development"
         }
       }
     }
   },
-  "defaultProject": "anidb"
+  "cli": {
+    "analytics": false
+  }
 }

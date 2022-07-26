@@ -5,19 +5,21 @@
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
+    "downlevelIteration": true,
     "experimentalDecorators": true,
     "importHelpers": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
     "noImplicitReturns": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "moduleResolution": "node",
     "module": "es2020",
-    "target": "es2015",
-    "typeRoots": [ "node_modules/@types" ],
-    "types": [ "node" ],
-    "lib": [ "es2018", "dom" ],
+    "target": "es2020",
+    "typeRoots": ["node_modules/@types"],
+    "types": ["node"],
+    "lib": ["es2018", "dom"],
     "paths": {
       "@builders/*": ["src/core/builders/*"],
       "@components/*": ["src/core/components/*"],
@@ -28,12 +30,14 @@
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
     "strictInjectionParameters": true,
-    "disableTypeScriptVersionCheck": true
+    "disableTypeScriptVersionCheck": true,
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInputAccessModifiers": true
   },
-  "files": [ "src/index.ts" ],
+  "files": ["src/index.ts"],
   "exclude": [
     "src/core/services/api.service.ts",
     "src/core/services/user.service.ts",
-    "src/core/components/sidebar/sidebar.module.ts",
+    "src/core/components/sidebar/sidebar.module.ts"
   ]
 }
