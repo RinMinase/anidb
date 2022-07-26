@@ -26,14 +26,8 @@ lerna-debug.log*
 node_modules/
 package-lock.json
 
-# Angular cache directory
-.angular/
-
 # Firebase cache directory
 .firebase/
-
-# Sonar Linting
-.sonarlint/
 
 # Editor directories and files
 .vscode/*
