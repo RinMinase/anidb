@@ -20,12 +20,15 @@
   "dependencies": {
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
+    "@hookform/resolvers": "^2.9.7",
     "@mui/icons-material": "^5.8.4",
     "@mui/material": "^5.9.2",
     "axios": "^0.27.2",
     "preact": "^10.9.0",
     "preact-async-route": "^2.2.1",
-    "preact-router": "^4.1.0"
+    "preact-router": "^4.1.0",
+    "react-hook-form": "^7.34.0",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@preact/preset-vite": "^2.3.0",
