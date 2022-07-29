@@ -1,12 +1,8 @@
 import { useState } from "preact/hooks";
 
-import { Box, Button, Stack, Typography } from "@mui/material";
+import { Button, Stack, Typography } from "@mui/material";
 
-type Props = {
-  path: string;
-};
-
-const Home = (props: Props) => {
+const Home = () => {
   const [value, setValue] = useState(0);
 
   const handleClick = () => {
