@@ -27,7 +27,7 @@
     "@angular/pwa": "^14.1.0",
     "@angular/router": "^14.1.0",
     "@angular/service-worker": "^14.1.0",
-    "@ng-bootstrap/ng-bootstrap": "^12.1.2",
+    "@ng-bootstrap/ng-bootstrap": "^13.0.0",
     "@popperjs/core": "^2.11.5",
     "@rinminase/ng-charts": "^4.2.1",
     "@rinminase/ng-fortawesome": "^6.0.1",
