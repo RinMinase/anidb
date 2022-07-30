@@ -6,6 +6,7 @@ import AsyncRoute from "preact-async-route";
 
 import Test from "./test";
 import Login from "./login";
+import Page404 from "@components/Page404";
 
 const Lazy = () => import("./lazy").then((c) => c.default);
 
@@ -15,6 +16,8 @@ const Routes = () => (
 
     <Route path="/test" component={Test} />
     <AsyncRoute path="/lazy" getComponent={Lazy} />
+
+    <Route default component={Page404} />
   </Router>
 );
 
