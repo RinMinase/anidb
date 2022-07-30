@@ -2,7 +2,7 @@ import { useState } from "preact/hooks";
 
 import { Button, Stack, Typography } from "@mui/material";
 
-const Home = () => {
+const Test = () => {
   const [value, setValue] = useState(0);
 
   const handleClick = () => {
@@ -22,4 +22,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Test;
