@@ -10,9 +10,13 @@ import {
   ThemeProvider,
 } from "@mui/material";
 
+import { Nav, NavCommon } from "@components";
+
 export const ColorModeContext = createContext({ toggleColorMode: () => {} });
 
 const Layout = () => {
+  const isAuth = window.location.pathname !== '/';
+
   const [mode, setMode] = useState<"light" | "dark">("light");
 
   const colorMode = useMemo(
@@ -39,13 +43,16 @@ const Layout = () => {
 
   return (
     <ColorModeContext.Provider value={colorMode}>
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
 
-      <Container>
-        <Routes />
-      </Container>
-    </ThemeProvider>
+        {isAuth && <Nav />}
+        {!isAuth && <NavCommon />}
+
+        <Container>
+          <Routes />
+        </Container>
+      </ThemeProvider>
     </ColorModeContext.Provider>
   );
 };

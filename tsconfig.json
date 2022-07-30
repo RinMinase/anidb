@@ -19,6 +19,7 @@
     "jsxFragmentFactory": "Fragment",
     "baseUrl": "./",
     "paths": {
+      "@components": ["src/common/index.ts"],
       "@components/*": ["src/common/*"]
     }
   },

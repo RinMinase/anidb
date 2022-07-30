@@ -25,7 +25,7 @@ const DarkModeContainer = styled(Box)({
 });
 
 const LoginContainer = styled(Grid)({
-  height: "100vh",
+  height: "calc(100vh - 48px)",
   alignItems: "center",
 });
 
@@ -80,11 +80,11 @@ const Login = () => {
         </Grid>
       </LoginContainer>
 
-      <DarkModeContainer>
+      {/* <DarkModeContainer>
         <IconButton onClick={colorMode.toggleColorMode} color="inherit">
           {theme.palette.mode === "dark" ? <Brightness7 /> : <Brightness4 />}
         </IconButton>
-      </DarkModeContainer>
+      </DarkModeContainer> */}
     </>
   );
 };
