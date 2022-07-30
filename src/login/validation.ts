@@ -7,8 +7,8 @@ export type Form = {
 }
 
 const schema = yup.object({
-  email: yup.string().required("Required"),
-  password: yup.string().required("Required")
+  email: yup.string().required("Email is required"),
+  password: yup.string().required("Password is required")
 });
 
 const resolver = yupResolver(schema);
