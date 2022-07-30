@@ -37,6 +37,7 @@
     "devmoji": "^2.3.0",
     "typescript": "^4.6.4",
     "vite": "^3.0.4",
+    "vite-plugin-compression": "^0.5.1",
     "vite-plugin-pwa": "^0.12.3",
     "vite-tsconfig-paths": "^3.5.0",
     "yorkie": "^2.0.0"
