@@ -15,12 +15,10 @@ import {
   useTheme,
 } from "@mui/material";
 
-import {
-  Brightness4 as B4Icon,
-  Brightness7 as B7Icon,
-  Menu as MenuIcon,
-  Person as PersonIcon,
-} from "@mui/icons-material";
+import B4Icon from "@mui/icons-material/Brightness4"
+import B7Icon from "@mui/icons-material/Brightness7"
+import MenuIcon from "@mui/icons-material/Menu"
+import PersonIcon from "@mui/icons-material/Person"
 
 import { ColorModeContext } from "src/main";
 

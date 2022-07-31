@@ -16,23 +16,21 @@ import {
   useTheme,
 } from "@mui/material";
 
-import {
-  Brightness4 as B4Icon,
-  Brightness7 as B7Icon,
-  CalendarMonth as CalendarIcon,
-  CloudDownload as DownloadIcon,
-  FormatListBulleted as ListMenuIcon,
-  FileUpload as ImportIcon,
-  FileDownload as ExportIcon,
-  ImportExport as ImportMenuIcon,
-  Logout as LogoutIcon,
-  Menu as MenuIcon,
-  Person as PersonIcon,
-  PlayArrow as PlayIcon,
-  SortByAlpha as SortIcon,
-  Storage as StorageIcon,
-  Tv as TvIcon,
-} from "@mui/icons-material";
+import B4Icon from "@mui/icons-material/Brightness4"
+import B7Icon from "@mui/icons-material/Brightness7"
+import CalendarIcon from "@mui/icons-material/CalendarMonth"
+import DownloadIcon from "@mui/icons-material/CloudDownload"
+import ListMenuIcon from "@mui/icons-material/FormatListBulleted"
+import ImportIcon from "@mui/icons-material/FileUpload"
+import ExportIcon from "@mui/icons-material/FileDownload"
+import ImportMenuIcon from "@mui/icons-material/ImportExport"
+import LogoutIcon from "@mui/icons-material/Logout"
+import MenuIcon from "@mui/icons-material/Menu"
+import PersonIcon from "@mui/icons-material/Person"
+import PlayIcon from "@mui/icons-material/PlayArrow"
+import SortIcon from "@mui/icons-material/SortByAlpha"
+import StorageIcon from "@mui/icons-material/Storage"
+import TvIcon from "@mui/icons-material/Tv"
 
 import { ColorModeContext } from "src/main";
 
