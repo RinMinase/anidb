@@ -1,6 +1,4 @@
 import { h } from "preact";
-/** @jsxImportSource preact */
-
 import { Router, Route } from "preact-router";
 import AsyncRoute from "preact-async-route";
 
