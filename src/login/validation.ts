@@ -1,14 +1,14 @@
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { object, string } from "yup";
 
 export type Form = {
   email: string;
   password: string;
-}
+};
 
-const schema = yup.object({
-  email: yup.string().required("Email is required"),
-  password: yup.string().required("Password is required")
+const schema = object({
+  email: string().required("Email is required"),
+  password: string().required("Password is required"),
 });
 
 const resolver = yupResolver(schema);
