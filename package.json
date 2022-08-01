@@ -29,8 +29,8 @@
     "@angular/service-worker": "^14.1.0",
     "@ng-bootstrap/ng-bootstrap": "^13.0.0",
     "@popperjs/core": "^2.11.5",
-    "@rinminase/ng-charts": "^4.2.1",
-    "@rinminase/ng-fortawesome": "^6.0.1",
+    "@rinminase/ng-charts": "^4.3.0",
+    "@rinminase/ng-fortawesome": "^6.1.2",
     "animatewithsass": "^3.2.1",
     "bootstrap": "^5.2.0",
     "date-fns": "^2.29.1",
@@ -51,6 +51,7 @@
     "@angular/compiler": "^14.1.0",
     "@angular/compiler-cli": "^14.1.0",
     "@angular/platform-browser": "^14.1.0",
+    "@types/node": "^18.6.3",
     "@types/uuid": "^8.3.4",
     "dotenv-webpack": "^8.0.0",
     "netlify-cli": "^8.19.3",
@@ -59,9 +60,6 @@
     "stylelint-config-standard-scss": "^5.0.0",
     "tslib": "^2.4.0",
     "typescript": "~4.7.4"
-  },
-  "resolutions": {
-    "autoprefixer": "10.4.5"
   },
   "engines": {
     "node": "^12.0.0 || ^14.0.0 || ^16.0.0 || ^17.0.0",
