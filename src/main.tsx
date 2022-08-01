@@ -14,10 +14,13 @@ import { Nav, NavCommon } from "@components";
 
 export const ColorModeContext = createContext({ toggleColorMode: () => {} });
 
+const preferDark = window?.matchMedia('(prefers-color-scheme: dark)').matches;
+const defaultMode = preferDark ? "dark" : "light"
+
 const Layout = () => {
   const isAuth = window.location.pathname !== '/';
 
-  const [mode, setMode] = useState<"light" | "dark">("light");
+  const [mode, setMode] = useState<"light" | "dark">(defaultMode);
 
   const colorMode = useMemo(
     () => ({
