@@ -42,10 +42,6 @@ const Registration = () => {
     severity: "success",
   });
 
-  const handleDialogClose = () => {
-    setDialog((prev) => ({ ...prev, open: false }));
-  };
-
   const handleSubmitForm = (formdata: Form) => {
     loader.toggleLoader(true);
 
@@ -113,7 +109,7 @@ const Registration = () => {
               {...register("password_confirmation")}
             />
 
-            <Alert onClose={handleDialogClose} {...dialog} />
+            <Alert onClose={() => setDialog({ open: false })} {...dialog} />
 
             <Button
               variant="contained"
