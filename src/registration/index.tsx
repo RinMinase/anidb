@@ -45,24 +45,21 @@ const Registration = () => {
   const handleSubmitForm = (formdata: Form) => {
     axios
       .post("/auth/register", formdata)
-      .then(({ data }) => {
-        if (data.status === 200) {
-          setDialog(() => ({
-            open: true,
-            message: "Success",
-          }));
-        }
-
-        if (data.status === 401) {
-          for (let field in data.data) {
+      .then(() => {
+        setDialog(() => ({ open: true, message: "Success" }));
+      })
+      .catch(({ response: { data: err } }) => {
+        if (err.status === 401) {
+          for (let field in err.data) {
             setError(field as any, {
               type: "server",
-              message: data.data[field][0],
+              message: err.data[field][0],
             });
           }
+        } else {
+          console.error(err.message);
         }
-      })
-      .catch((err) => console.error(err));
+      });
   };
 
   return (
@@ -105,11 +102,7 @@ const Registration = () => {
         </Grid>
       </RegistrationContainer>
 
-      <Snackbar
-        onClose={handleDialogClose}
-        severity="success"
-        {...dialog}
-      />
+      <Snackbar onClose={handleDialogClose} severity="success" {...dialog} />
     </>
   );
 };
