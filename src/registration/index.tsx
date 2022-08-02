@@ -1,9 +1,10 @@
-import { useState } from "preact/hooks";
+import { useContext, useState } from "preact/hooks";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 
 import {
   Button,
+  CircularProgress,
   Grid,
   Stack,
   styled,
@@ -11,9 +12,10 @@ import {
   Typography,
 } from "@mui/material";
 
-import { Form, resolver } from "./validation";
-
 import { Snackbar } from "@components";
+import { GlobalLoaderContext } from "src/main";
+
+import { Form, resolver } from "./validation";
 
 const RegistrationContainer = styled(Grid)({
   height: "calc(100vh - 48px)",
@@ -26,6 +28,8 @@ const LoginStack = styled(Stack)({
 });
 
 const Registration = () => {
+  const loader = useContext(GlobalLoaderContext);
+
   const {
     register,
     handleSubmit,
@@ -43,6 +47,8 @@ const Registration = () => {
   };
 
   const handleSubmitForm = (formdata: Form) => {
+    loader.toggleLoader(true);
+
     axios
       .post("/auth/register", formdata)
       .then(() => {
@@ -59,7 +65,8 @@ const Registration = () => {
         } else {
           console.error(err.message);
         }
-      });
+      })
+      .finally(() => { loader.toggleLoader(false) });
   };
 
   return (
@@ -75,6 +82,7 @@ const Registration = () => {
                 label="Email Address"
                 error={!!errors.email}
                 helperText={errors.email?.message}
+                disabled={loader.isLoading}
                 {...register("email")}
               />
               <TextField
@@ -83,6 +91,7 @@ const Registration = () => {
                 label="Password"
                 error={!!errors.password}
                 helperText={errors.password?.message}
+                disabled={loader.isLoading}
                 {...register("password")}
               />
               <TextField
@@ -91,11 +100,17 @@ const Registration = () => {
                 label="Confirm Password"
                 error={!!errors.password_confirmation}
                 helperText={errors.password_confirmation?.message}
+                disabled={loader.isLoading}
                 {...register("password_confirmation")}
               />
 
-              <Button variant="contained" size="large" type="submit">
-                Register
+              <Button variant="contained" size="large" type="submit"
+              disabled={loader.isLoading}>
+                {!loader.isLoading ? (
+                "Register"
+              ) : (
+                <CircularProgress color="inherit" />
+              )}
               </Button>
             </LoginStack>
           </form>
