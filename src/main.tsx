@@ -12,6 +12,8 @@ import {
 
 import { Nav, NavCommon } from "@components";
 
+import "./service";
+
 export const ColorModeContext = createContext({ toggleColorMode: () => {} });
 
 const preferDark = window?.matchMedia('(prefers-color-scheme: dark)').matches;
