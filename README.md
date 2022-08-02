@@ -102,20 +102,23 @@ Installations Required:
 
 Task automation is based on [Yarn scripts](https://yarnpkg.com/lang/en/docs/cli/run/) or [NPM scripts](https://docs.npmjs.com/misc/scripts).
 
-| Task                       | Description                                     |
-| -------------------------- | ----------------------------------------------- |
-| `yarn dev` or `yarn start` | Run **dev server** on `http://localhost:3000/`  |
-| `yarn preview`             | Run **prod server** on `http://localhost:3000/` |
-| `yarn build`               | Build production code to `dist` folder          |
-| `yarn cz`                  | Commitizen commit formatter                     |
+| Task                       | Description                                                                  |
+| -------------------------- | ---------------------------------------------------------------------------- |
+| `yarn dev` or `yarn start` | Run **dev server** on `http://localhost:3000/`, also runs linter in parallel |
+| `yarn preview`             | Run **prod server** on `http://localhost:3000/`                              |
+| `yarn build`               | Build production code to `dist` folder                                       |
+| `yarn cz`                  | Commitizen commit formatter                                                  |
 
 Other tasks included in `package.json` that should not be executed manually:
 
-| Task              | Description                                         |
-| ----------------- | --------------------------------------------------- |
-| `yarn develop`    | Runs in **dev server** and code linter in parallel  |
-| `yarn lint`       | Runs code linter                                    |
-| `yarn lint:watch` | Runs nodemon (file changes watcher) for code linter |
+| Task              | Description                                                               |
+| ----------------- | ------------------------------------------------------------------------- |
+| `yarn develop`    | Runs in **dev server** and code linter in parallel (aliased by dev/start) |
+| `yarn lint`       | Runs code linter process marked by `lint:**` in tasks                     |
+| `yarn lint:begin` | Echo out start of linting process                                         |
+| `yarn lint:exec`  | Runs code linter                                                          |
+| `yarn lint:post`  | Echo out if no lint issues are found                                      |
+| `yarn lint:watch` | Runs nodemon (file changes watcher) for code linter                       |
 
 
 ## Built with
