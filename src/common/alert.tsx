@@ -3,7 +3,7 @@ import { Alert as MuiAlert, AlertColor } from "@mui/material";
 export type AlertProps = {
   onClose?: () => void;
   open: boolean;
-  message: string;
+  message?: string;
   severity?: AlertColor;
 };
 
