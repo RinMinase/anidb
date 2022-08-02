@@ -1,4 +1,6 @@
 import { useForm } from "react-hook-form";
+import { useEffect } from "preact/hooks";
+import axios from "axios";
 
 import {
   Button,
@@ -28,8 +30,24 @@ const Login = () => {
     formState: { errors },
   } = useForm<Form>({ resolver });
 
+  useEffect(() => {
+    if (localStorage.getItem("authToken")) {
+      // TODO: Validate token on page load
+
+      axios.defaults.headers.common = {
+        Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+      };
+    }
+  }, []);
+
   const handleSubmitForm = (formdata: Form) => {
-    console.log(formdata);
+    axios.post("/auth/login", formdata).then(({ data: { data } }) => {
+      localStorage.setItem("authToken", data.token);
+
+      axios.defaults.headers.common = {
+        Authorization: `Bearer ${data.token}`,
+      };
+    });
   };
 
   return (
