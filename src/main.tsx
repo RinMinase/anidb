@@ -7,6 +7,7 @@ import {
   Container,
   createTheme,
   CssBaseline,
+  LinearProgress,
   ThemeProvider,
 } from "@mui/material";
 
@@ -15,18 +16,24 @@ import { Nav, NavCommon } from "@components";
 import "./service";
 
 export const ColorModeContext = createContext({ toggleColorMode: () => {} });
+export const GlobalLoaderContext = createContext({
+  isLoading: false,
+  toggleLoader: (value: boolean) => {},
+});
 
-const preferDark = window?.matchMedia('(prefers-color-scheme: dark)').matches;
-const defaultMode = preferDark ? "dark" : "light"
+const preferDark = window?.matchMedia("(prefers-color-scheme: dark)").matches;
+const defaultMode = preferDark ? "dark" : "light";
 
 const Layout = () => {
-  const isAuth = window.location.pathname !== '/';
+  const isAuth = window.location.pathname !== "/";
 
+  const [loader, setLoader] = useState(false);
   const [mode, setMode] = useState<"light" | "dark">(defaultMode);
 
   const colorMode = useMemo(
     () => ({
       toggleColorMode: () => {
+        console.log("set mode");
         setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
       },
     }),
@@ -41,9 +48,19 @@ const Layout = () => {
           primary: {
             main: mode === "light" ? "#198754" : "#105434",
           },
+          secondary: {
+            main: mode === "light" ? "#00b0ff" : "#1c54b2",
+          },
         },
       }),
     [mode],
+  );
+
+  const globalLoader = useMemo(
+    () => (value: boolean) => {
+      setLoader(() => value);
+    },
+    [],
   );
 
   return (
@@ -54,9 +71,18 @@ const Layout = () => {
         {isAuth && <Nav />}
         {!isAuth && <NavCommon />}
 
-        <Container>
-          <Routes />
-        </Container>
+        <GlobalLoaderContext.Provider
+          value={{
+            isLoading: loader,
+            toggleLoader: globalLoader,
+          }}
+        >
+          {loader && <LinearProgress color="secondary" />}
+
+          <Container>
+            <Routes />
+          </Container>
+        </GlobalLoaderContext.Provider>
       </ThemeProvider>
     </ColorModeContext.Provider>
   );

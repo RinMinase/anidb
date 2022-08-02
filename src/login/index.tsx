@@ -1,9 +1,11 @@
 import { useForm } from "react-hook-form";
-import { useEffect } from "preact/hooks";
+import { useContext, useEffect, useState } from "preact/hooks";
 import axios from "axios";
 
 import {
   Button,
+  CircularProgress,
+  FormHelperText,
   Grid,
   Stack,
   styled,
@@ -12,6 +14,7 @@ import {
 } from "@mui/material";
 
 import { Form, resolver } from "./validation";
+import { GlobalLoaderContext } from "src/main";
 
 const LoginContainer = styled(Grid)({
   height: "calc(100vh - 48px)",
@@ -23,10 +26,19 @@ const LoginStack = styled(Stack)({
   textAlign: "center",
 });
 
+const LoginErrorMessage = styled(FormHelperText)({
+  textAlign: "center",
+});
+
 const Login = () => {
+  const loader = useContext(GlobalLoaderContext);
+
+  const [loginError, setLoginError] = useState("");
+
   const {
     register,
     handleSubmit,
+    setError,
     formState: { errors },
   } = useForm<Form>({ resolver });
 
@@ -41,14 +53,37 @@ const Login = () => {
   }, []);
 
   const handleSubmitForm = (formdata: Form) => {
-    axios.post("/auth/login", formdata).then(({ data: { data } }) => {
-      localStorage.setItem("authToken", data.token);
+    loader.toggleLoader(true);
 
-      axios.defaults.headers.common = {
-        Authorization: `Bearer ${data.token}`,
-      };
-    });
+    axios
+      .post("/auth/login", formdata)
+      .then(({ data: { data } }) => {
+        localStorage.setItem("authToken", data.token);
+
+        axios.defaults.headers.common = {
+          Authorization: `Bearer ${data.token}`,
+        };
+      })
+      .catch(({ response: { data: err } }) => {
+        if (err.status === 401) {
+          for (let field in err.data) {
+            setError(field as any, {
+              type: "server",
+              message: err.data[field][0],
+            });
+          }
+        } else if (err.message) {
+          setLoginError(err.message);
+        } else {
+          console.log(err);
+        }
+      })
+      .finally(() => { loader.toggleLoader(false) });
   };
+
+  useEffect(() => {
+    console.log("test-ag", loader.isLoading);
+  }, [loader.isLoading]);
 
   return (
     <LoginContainer container justifyContent="center">
@@ -62,6 +97,7 @@ const Login = () => {
               label="Email Address"
               error={!!errors.email}
               helperText={errors.email?.message}
+              disabled={loader.isLoading}
               {...register("email")}
             />
             <TextField
@@ -70,11 +106,23 @@ const Login = () => {
               label="Password"
               error={!!errors.password}
               helperText={errors.password?.message}
+              disabled={loader.isLoading}
               {...register("password")}
             />
 
-            <Button variant="contained" size="large" type="submit">
-              Login
+            {loginError && <LoginErrorMessage error children={loginError} />}
+
+            <Button
+              variant="contained"
+              size="large"
+              type="submit"
+              disabled={loader.isLoading}
+            >
+              {!loader.isLoading ? (
+                "Login"
+              ) : (
+                <CircularProgress color="inherit" />
+              )}
             </Button>
           </LoginStack>
         </form>
