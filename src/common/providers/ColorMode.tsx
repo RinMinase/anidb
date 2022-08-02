@@ -3,16 +3,13 @@ import { useMemo, useState } from "preact/hooks";
 
 import { createTheme, ThemeProvider } from "@mui/material";
 
+// eslint-disable-next-line @typescript-eslint/no-empty-function
 export const ColorModeContext = createContext({ toggleColorMode: () => {} });
-
-type Props = {
-  children: (JSX.Element | false)[];
-};
 
 const preferDark = window?.matchMedia("(prefers-color-scheme: dark)").matches;
 const defaultMode = preferDark ? "dark" : "light";
 
-const ColorMode = (props: Props) => {
+const ColorMode = (props: any) => {
   const [mode, setMode] = useState<"light" | "dark">(defaultMode);
 
   const theme = useMemo(

@@ -5,12 +5,9 @@ import { Box, LinearProgress, styled } from "@mui/material";
 
 export const GlobalLoaderContext = createContext({
   isLoading: false,
+  // eslint-disable-next-line
   toggleLoader: (value: boolean) => {},
 });
-
-type Props = {
-  children: JSX.Element;
-};
 
 const Container = styled(Box)({
   position: "relative",
@@ -21,7 +18,7 @@ const Progress = styled(LinearProgress)({
   width: "100%",
 });
 
-const GlobalLoader = (props: Props) => {
+const GlobalLoader = (props: any) => {
   const [loader, setLoader] = useState(false);
 
   const globalLoader = useMemo(

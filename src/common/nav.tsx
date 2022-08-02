@@ -231,14 +231,14 @@ const Nav = () => {
             <Button
               color="inherit"
               startIcon={<PersonIcon />}
-              onClick={() => {}}
+              onClick={() => null}
             >
               About
             </Button>
             <Button
               color="inherit"
               startIcon={<LogoutIcon />}
-              onClick={() => {}}
+              onClick={() => null}
             >
               Logout
             </Button>

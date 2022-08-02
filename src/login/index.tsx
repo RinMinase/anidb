@@ -64,7 +64,7 @@ const Login = () => {
       })
       .catch(({ response: { data: err } }) => {
         if (err.status === 401) {
-          for (let field in err.data) {
+          for (const field in err.data) {
             setError(field as any, {
               type: "server",
               message: err.data[field][0],

@@ -115,7 +115,7 @@ const NavCommon = () => {
             <Button
               color="inherit"
               startIcon={<PersonIcon />}
-              onClick={() => {}}
+              onClick={() => null}
             >
               About
             </Button>
