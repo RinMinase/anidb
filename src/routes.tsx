@@ -5,7 +5,7 @@ import AsyncRoute from "preact-async-route";
 import Home from "./home";
 import Login from "./login";
 
-import Page404 from "@components/Page404";
+import Page404 from "@components/pages/Page404";
 
 import Test from "./test";
 
