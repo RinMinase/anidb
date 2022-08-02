@@ -12,12 +12,15 @@
   },
   "scripts": {
     "dev": "npm start",
-    "start": "run-p start lint:watch",
+    "start": "run-p develop lint-watch",
     "develop": "vite --port 3000 --host",
     "build": "npm run lint && tsc && vite build",
     "preview": "vite preview",
-    "lint": "eslint --ext .ts,tsx --ignore-path .gitignore .",
-    "lint:watch": "nodemon -q --watch src -e ts,tsx --exec npm run lint",
+    "lint": "run-s -s lint:**",
+    "lint:begin": "echo. && chalk blue \"Scanning code for lint issues\"",
+    "lint:exec": "eslint --ext .ts,tsx --ignore-path .gitignore .",
+    "lint:post": "echo. && chalk green \"No lint issues found\"",
+    "lint-watch": "nodemon -q --watch src -e ts,tsx --exec \"npm run -s lint\"",
     "cz": "cz"
   },
   "dependencies": {
@@ -37,6 +40,7 @@
     "@preact/preset-vite": "^2.3.0",
     "@typescript-eslint/eslint-plugin": "^5.32.0",
     "@typescript-eslint/parser": "^5.32.0",
+    "chalk-cli": "^5.0.0",
     "commitizen": "^4.2.5",
     "cz-emoji-conventional": "^1.0.1",
     "devmoji": "^2.3.0",
