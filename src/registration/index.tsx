@@ -12,7 +12,7 @@ import {
   Typography,
 } from "@mui/material";
 
-import { Snackbar } from "@components";
+import { Alert, AlertProps } from "@components";
 import { GlobalLoaderContext } from "src/main";
 
 import { Form, resolver } from "./validation";
@@ -37,9 +37,10 @@ const Registration = () => {
     formState: { errors },
   } = useForm<Form>({ resolver });
 
-  const [dialog, setDialog] = useState({
+  const [dialog, setDialog] = useState<AlertProps>({
     open: false,
     message: "",
+    severity: "success",
   });
 
   const handleDialogClose = () => {
@@ -52,7 +53,11 @@ const Registration = () => {
     axios
       .post("/auth/register", formdata)
       .then(() => {
-        setDialog(() => ({ open: true, message: "Success" }));
+        setDialog(() => ({
+          open: true,
+          message: "Success",
+          severity: "success",
+        }));
       })
       .catch(({ response: { data: err } }) => {
         if (err.status === 401) {
@@ -63,62 +68,70 @@ const Registration = () => {
             });
           }
         } else {
-          console.error(err.message);
+          setDialog(() => ({
+            open: true,
+            message: err.message,
+            severity: "error",
+          }));
         }
       })
-      .finally(() => { loader.toggleLoader(false) });
+      .finally(() => {
+        loader.toggleLoader(false);
+      });
   };
 
   return (
-    <>
-      <RegistrationContainer container justifyContent="center">
-        <Grid item xs={12} sm={6} md={4}>
-          <form onSubmit={handleSubmit(handleSubmitForm)}>
-            <LoginStack spacing={3}>
-              <Typography variant="h4">Register</Typography>
+    <RegistrationContainer container justifyContent="center">
+      <Grid item xs={12} sm={6} md={4}>
+        <form onSubmit={handleSubmit(handleSubmitForm)}>
+          <LoginStack spacing={3}>
+            <Typography variant="h4">Register</Typography>
 
-              <TextField
-                variant="outlined"
-                label="Email Address"
-                error={!!errors.email}
-                helperText={errors.email?.message}
-                disabled={loader.isLoading}
-                {...register("email")}
-              />
-              <TextField
-                type="password"
-                variant="outlined"
-                label="Password"
-                error={!!errors.password}
-                helperText={errors.password?.message}
-                disabled={loader.isLoading}
-                {...register("password")}
-              />
-              <TextField
-                type="password"
-                variant="outlined"
-                label="Confirm Password"
-                error={!!errors.password_confirmation}
-                helperText={errors.password_confirmation?.message}
-                disabled={loader.isLoading}
-                {...register("password_confirmation")}
-              />
+            <TextField
+              variant="outlined"
+              label="Email Address"
+              error={!!errors.email}
+              helperText={errors.email?.message}
+              disabled={loader.isLoading}
+              {...register("email")}
+            />
+            <TextField
+              type="password"
+              variant="outlined"
+              label="Password"
+              error={!!errors.password}
+              helperText={errors.password?.message}
+              disabled={loader.isLoading}
+              {...register("password")}
+            />
+            <TextField
+              type="password"
+              variant="outlined"
+              label="Confirm Password"
+              error={!!errors.password_confirmation}
+              helperText={errors.password_confirmation?.message}
+              disabled={loader.isLoading}
+              {...register("password_confirmation")}
+            />
 
-              <Button variant="contained" size="large" type="submit"
-              disabled={loader.isLoading}>
-                {!loader.isLoading ? (
+            <Alert onClose={handleDialogClose} {...dialog} />
+
+            <Button
+              variant="contained"
+              size="large"
+              type="submit"
+              disabled={loader.isLoading}
+            >
+              {!loader.isLoading ? (
                 "Register"
               ) : (
                 <CircularProgress color="inherit" />
               )}
-              </Button>
-            </LoginStack>
-          </form>
-        </Grid>
-      </RegistrationContainer>
-
-      <Snackbar onClose={handleDialogClose} severity="success" {...dialog} />
-    </>
+            </Button>
+          </LoginStack>
+        </form>
+      </Grid>
+    </RegistrationContainer>
   );
 };
 
