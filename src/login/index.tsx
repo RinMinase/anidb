@@ -5,7 +5,6 @@ import axios from "axios";
 import {
   Button,
   CircularProgress,
-  FormHelperText,
   Grid,
   Stack,
   styled,
@@ -13,7 +12,7 @@ import {
   Typography,
 } from "@mui/material";
 
-import { GlobalLoaderContext } from "@components";
+import { Alert, AlertProps, GlobalLoaderContext } from "@components";
 import { Form, resolver } from "./validation";
 
 const LoginContainer = styled(Grid)({
@@ -26,14 +25,13 @@ const LoginStack = styled(Stack)({
   textAlign: "center",
 });
 
-const LoginErrorMessage = styled(FormHelperText)({
-  textAlign: "center",
-});
-
 const Login = () => {
   const loader = useContext(GlobalLoaderContext);
 
-  const [loginError, setLoginError] = useState("");
+  const [dialog, setDialog] = useState<AlertProps>({
+    open: false,
+    message: "",
+  });
 
   const {
     register,
@@ -72,13 +70,19 @@ const Login = () => {
               message: err.data[field][0],
             });
           }
-        } else if (err.message) {
-          setLoginError(err.message);
-        } else {
-          console.log(err);
+        }
+
+        if (err.message) {
+          setDialog(() => ({
+            open: true,
+            message: err.message,
+            severity: "error",
+          }));
         }
       })
-      .finally(() => { loader.toggleLoader(false) });
+      .finally(() => {
+        loader.toggleLoader(false);
+      });
   };
 
   return (
@@ -106,7 +110,7 @@ const Login = () => {
               {...register("password")}
             />
 
-            {loginError && <LoginErrorMessage error children={loginError} />}
+            <Alert onClose={() => setDialog({ open: false })} {...dialog} />
 
             <Button
               variant="contained"
