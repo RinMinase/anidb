@@ -7,10 +7,7 @@ import Login from "./login";
 
 import Page404 from "@components/pages/Page404";
 
-import Test from "./test";
-
 const Registration = () => import("./registration").then((c) => c.default);
-const Lazy = () => import("./lazy").then((c) => c.default);
 
 const Routes = () => (
   <Router>
@@ -18,9 +15,6 @@ const Routes = () => (
     <Route path="/home" component={Home} />
 
     <AsyncRoute path="/register" getComponent={Registration} />
-
-    <Route path="/test" component={Test} />
-    <AsyncRoute path="/lazy" getComponent={Lazy} />
 
     <Route default component={Page404} />
   </Router>
