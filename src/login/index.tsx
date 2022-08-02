@@ -121,7 +121,7 @@ const Login = () => {
               {!loader.isLoading ? (
                 "Login"
               ) : (
-                <CircularProgress color="inherit" />
+                <CircularProgress color="inherit" size="1.75em" />
               )}
             </Button>
           </LoginStack>
