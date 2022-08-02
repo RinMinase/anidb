@@ -15,5 +15,6 @@ if (API_URL) {
 
   axios.defaults.baseURL = `${API_URL}/api`;
   axios.defaults.headers.post["Content-Type"] = "application/json";
+  axios.defaults.withCredentials = true;
 }
 
