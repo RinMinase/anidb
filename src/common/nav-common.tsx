@@ -20,7 +20,7 @@ import B7Icon from "@mui/icons-material/Brightness7"
 import MenuIcon from "@mui/icons-material/Menu"
 import PersonIcon from "@mui/icons-material/Person"
 
-import { ColorModeContext } from "src/main";
+import { ColorModeContext } from "./providers/ColorMode";
 
 const RightMenuContainer = styled(Box)({
   marginLeft: 8,

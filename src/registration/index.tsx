@@ -12,8 +12,7 @@ import {
   Typography,
 } from "@mui/material";
 
-import { Alert, AlertProps } from "@components";
-import { GlobalLoaderContext } from "src/main";
+import { Alert, AlertProps, GlobalLoaderContext } from "@components";
 
 import { Form, resolver } from "./validation";
 

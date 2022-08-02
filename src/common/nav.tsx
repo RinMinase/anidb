@@ -32,7 +32,7 @@ import SortIcon from "@mui/icons-material/SortByAlpha"
 import StorageIcon from "@mui/icons-material/Storage"
 import TvIcon from "@mui/icons-material/Tv"
 
-import { ColorModeContext } from "src/main";
+import { ColorModeContext } from "./providers/ColorMode";
 
 const RightMenuContainer = styled(Box)({
   marginLeft: 8,

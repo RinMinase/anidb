@@ -13,8 +13,8 @@ import {
   Typography,
 } from "@mui/material";
 
+import { GlobalLoaderContext } from "@components";
 import { Form, resolver } from "./validation";
-import { GlobalLoaderContext } from "src/main";
 
 const LoginContainer = styled(Grid)({
   height: "calc(100vh - 48px)",
