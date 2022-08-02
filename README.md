@@ -13,7 +13,7 @@
         <img alt="Preact" src="https://img.shields.io/badge/Preact-%5E10.9-673AB8.svg?logo=preact&style=for-the-badge">
     </a>
     <a href="https://angular.io/">
-        <img alt="Preact" src="https://img.shields.io/badge/Vite-%5E3.0-646CFF.svg?logo=vite&style=for-the-badge">
+        <img alt="Vite" src="https://img.shields.io/badge/Vite-%5E3.0-646CFF.svg?logo=vite&style=for-the-badge">
     </a>
     <a href="https://nodejs.org">
         <img alt="Node" src="https://img.shields.io/badge/node-%5E16.0%20%7C%7C%20%5E17.0-brightgreen.svg?logo=node.js&logoColor=white&style=for-the-badge">
@@ -75,13 +75,16 @@ Installations Required:
     ├── dist/                   # Compiled production code
     ├── src/                    # Project source code
     │   ├──<module-name>/
-    │   │   ├──components/      # Module sub-components
+    │   │   ├── <component>     # Module sub-components
     │   │   └── index.tsx       # Module entry point
     │   ├── common/             # Project-wide reusable code
-    │   │   ├── components/
-    │   │   └── services/
+    │   │   ├── pages/          # Common pages (404 / 500 pages)
+    │   │   ├── providers/      # Context provider components
+    │   │   ├── index.ts        # Entry point for common imports
+    │   │   └── <components>    # Common components
     │   ├── main.tsx            # Main module
-    │   ├── routes.tx           # Routes file
+    │   ├── routes.tsx          # Routes file
+    │   ├── service.ts          # Axios pre-setup
     │   └── ...                 # Other source code files
     ├── .editorconfig           # IDE / Editor configuration
     ├── .env                    # Environment file
