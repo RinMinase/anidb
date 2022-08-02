@@ -81,10 +81,6 @@ const Login = () => {
       .finally(() => { loader.toggleLoader(false) });
   };
 
-  useEffect(() => {
-    console.log("test-ag", loader.isLoading);
-  }, [loader.isLoading]);
-
   return (
     <LoginContainer container justifyContent="center">
       <Grid item xs={12} sm={6} md={4}>
