@@ -87,7 +87,9 @@
       "@typescript-eslint/no-explicit-any": "off"
     },
     "settings": {
-      "jest": { "version": 27 }
+      "jest": {
+        "version": 27
+      }
     }
   }
 }
