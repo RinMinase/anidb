@@ -104,6 +104,15 @@ Task automation is based on [Yarn scripts](https://yarnpkg.com/lang/en/docs/cli/
 | `yarn dev` or `yarn start` | Run **dev server** on `http://localhost:3000/`  |
 | `yarn preview`             | Run **prod server** on `http://localhost:3000/` |
 | `yarn build`               | Build production code to `dist` folder          |
+| `yarn cz`                  | Commitizen commit formatter                     |
+
+Other tasks included in `package.json` that should not be executed manually:
+
+| Task              | Description                                         |
+| ----------------- | --------------------------------------------------- |
+| `yarn develop`    | Runs in **dev server** and code linter in parallel  |
+| `yarn lint`       | Runs code linter                                    |
+| `yarn lint:watch` | Runs nodemon (file changes watcher) for code linter |
 
 
 ## Built with
