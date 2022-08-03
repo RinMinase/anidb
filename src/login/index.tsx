@@ -14,6 +14,7 @@ import {
 
 import { Alert, AlertProps, GlobalLoaderContext } from "@components";
 import { Form, resolver } from "./validation";
+import { route } from "preact-router";
 
 const LoginContainer = styled(Grid)({
   height: "calc(100vh - 48px)",
@@ -42,11 +43,7 @@ const Login = () => {
 
   useEffect(() => {
     if (localStorage.getItem("authToken")) {
-      // TODO: Validate token on page load
-
-      axios.defaults.headers.common = {
-        Authorization: `Bearer ${localStorage.getItem("authToken")}`,
-      };
+      route('/home');
     }
   }, []);
 

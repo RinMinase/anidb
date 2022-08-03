@@ -16,5 +16,11 @@ if (API_URL) {
   axios.defaults.baseURL = `${API_URL}/api`;
   axios.defaults.headers.post["Content-Type"] = "application/json";
   axios.defaults.withCredentials = true;
+
+  if (localStorage.getItem("authToken")) {
+    axios.defaults.headers.common = {
+      Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+    };
+  }
 }
 
