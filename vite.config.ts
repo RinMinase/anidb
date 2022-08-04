@@ -18,7 +18,7 @@ export default defineConfig({
     createHtmlPlugin({ inject: { data: parsed } }),
     tsconfigPaths(),
     VitePWA(),
-    viteCompression(),
+    viteCompression({ ext: ".jgz" }),
   ],
   esbuild: {
     logOverride: { "this-is-undefined-in-esm": "silent" },
