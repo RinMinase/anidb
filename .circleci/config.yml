@@ -1,0 +1,28 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: cimg/node:16.16.0
+
+    branches:
+      only:
+        - staging
+
+    steps:
+      - checkout
+
+      - run:
+          name: Retrieve latest commit message for title
+          command: echo 'export COMMIT_MESSAGE=$(git log --format=%B -n 1 $CIRCLE_SHA1)' >> $BASH_ENV
+
+      - run:
+          name: Installing dependenices
+          command: yarn install --frozen-lockfile
+
+      - run:
+          name: Building source code
+          command: yarn build
+
+      - run:
+          name: Deploying to Netlify
+          command: ./node_modules/.bin/netlify deploy --site $NETLIFY_SITE_ID_STG --auth $NETLIFY_ACCESS_TOKEN --message "$COMMIT_MESSAGE" --prod --dir=dist --skip-functions-cache
