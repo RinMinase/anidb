@@ -18,9 +18,9 @@
     "deploy": "npm run build",
     "preview": "vite preview",
     "lint": "run-s -s lint:**",
-    "lint:begin": "echo. && chalk blue \"Scanning code for lint issues\"",
+    "lint:begin": "echo && chalk blue \"Scanning code for lint issues\"",
     "lint:exec": "eslint --ext .ts,tsx --ignore-path .gitignore .",
-    "lint:post": "echo. && chalk green \"No lint issues found\"",
+    "lint:post": "echo && chalk green \"No lint issues found\"",
     "lint-watch": "nodemon -q --watch src -e ts,tsx --exec \"npm run -s lint\"",
     "cz": "cz"
   },
