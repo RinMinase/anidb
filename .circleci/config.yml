@@ -15,9 +15,19 @@ jobs:
           name: Retrieve latest commit message for title
           command: echo 'export COMMIT_MESSAGE=$(git log --format=%B -n 1 $CIRCLE_SHA1)' >> $BASH_ENV
 
+      - restore_cache:
+          name: Restoring dependencies cache if present
+          key: app-deps-{{ checksum "yarn.lock" }}
+
       - run:
           name: Installing dependenices
           command: yarn install --frozen-lockfile
+
+      - save_cache:
+          name: Saving dependencies cache
+          key: app-deps-{{ checksum "yarn.lock" }}
+          paths:
+            - node_modules
 
       - run:
           name: Building source code
