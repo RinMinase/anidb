@@ -9,6 +9,10 @@
 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
+    <%if (VITE_API_URL) { %>
+      <link rel="preconnect" href="<%= VITE_API_URL %>" crossorigin />
+    <% } %>
+
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
