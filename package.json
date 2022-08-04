@@ -14,7 +14,7 @@
     "dev": "npm start",
     "start": "run-p develop lint-watch",
     "develop": "vite --port 3000 --host",
-    "build": "npm run lint && tsc && vite build",
+    "build": "npm run -s lint && tsc && vite build",
     "deploy": "npm run build",
     "preview": "vite preview",
     "lint": "run-s -s lint:**",
