@@ -15,6 +15,7 @@
     "start": "run-p develop lint-watch",
     "develop": "vite --port 3000 --host",
     "build": "npm run lint && tsc && vite build",
+    "deploy": "npm run lint && vite build",
     "preview": "vite preview",
     "lint": "run-s -s lint:**",
     "lint:begin": "echo&& chalk blue \"Scanning code for lint issues\"",
