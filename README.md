@@ -12,7 +12,7 @@
     <a href="https://preactjs.com/">
         <img alt="Preact" src="https://img.shields.io/badge/Preact-%5E10.9-673AB8.svg?logo=preact&style=for-the-badge">
     </a>
-    <a href="https://angular.io/">
+    <a href="https://vitejs.dev/">
         <img alt="Vite" src="https://img.shields.io/badge/Vite-%5E3.0-646CFF.svg?logo=vite&style=for-the-badge">
     </a>
     <a href="https://nodejs.org">
