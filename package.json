@@ -30,7 +30,7 @@
     "@mui/icons-material": "^5.8.4",
     "@mui/material": "^5.9.3",
     "axios": "^0.27.2",
-    "preact": "^10.9.0",
+    "preact": "^10.10.1",
     "preact-async-route": "^2.2.1",
     "preact-router": "^4.1.0",
     "react-hook-form": "^7.34.0",
