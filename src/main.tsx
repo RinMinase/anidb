@@ -31,3 +31,17 @@ const Layout = () => {
 };
 
 render(<Layout />, document.getElementById("app") as HTMLElement);
+
+/**
+ * Preconnection to API
+ */
+
+if (import.meta.env.VITE_API_URL) {
+  const link = document.createElement("link");
+
+  link.rel = "preconnect";
+  link.href = import.meta.env.VITE_API_URL
+  link.crossOrigin = "true";
+
+  document.getElementsByTagName('head')[0].appendChild(link);
+}
