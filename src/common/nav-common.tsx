@@ -57,7 +57,7 @@ const NavCommon = () => {
               textDecoration: "none",
             }}
           >
-            Rin's AniDB
+            Rin's Anime Database
           </Typography>
 
           <Box flexGrow={1} sx={{ display: { xs: "flex", md: "none" } }}>

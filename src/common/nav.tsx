@@ -16,21 +16,21 @@ import {
   useTheme,
 } from "@mui/material";
 
-import B4Icon from "@mui/icons-material/Brightness4"
-import B7Icon from "@mui/icons-material/Brightness7"
-import CalendarIcon from "@mui/icons-material/CalendarMonth"
-import DownloadIcon from "@mui/icons-material/CloudDownload"
-import ListMenuIcon from "@mui/icons-material/FormatListBulleted"
-import ImportIcon from "@mui/icons-material/FileUpload"
-import ExportIcon from "@mui/icons-material/FileDownload"
-import ImportMenuIcon from "@mui/icons-material/ImportExport"
-import LogoutIcon from "@mui/icons-material/Logout"
-import MenuIcon from "@mui/icons-material/Menu"
-import PersonIcon from "@mui/icons-material/Person"
-import PlayIcon from "@mui/icons-material/PlayArrow"
-import SortIcon from "@mui/icons-material/SortByAlpha"
-import StorageIcon from "@mui/icons-material/Storage"
-import TvIcon from "@mui/icons-material/Tv"
+import B4Icon from "@mui/icons-material/Brightness4";
+import B7Icon from "@mui/icons-material/Brightness7";
+import CalendarIcon from "@mui/icons-material/CalendarMonth";
+import DownloadIcon from "@mui/icons-material/CloudDownload";
+import ListMenuIcon from "@mui/icons-material/FormatListBulleted";
+import ImportIcon from "@mui/icons-material/FileUpload";
+import ExportIcon from "@mui/icons-material/FileDownload";
+import ImportMenuIcon from "@mui/icons-material/ImportExport";
+import LogoutIcon from "@mui/icons-material/Logout";
+import MenuIcon from "@mui/icons-material/Menu";
+import PersonIcon from "@mui/icons-material/Person";
+import PlayIcon from "@mui/icons-material/PlayArrow";
+import SortIcon from "@mui/icons-material/SortByAlpha";
+import StorageIcon from "@mui/icons-material/Storage";
+import TvIcon from "@mui/icons-material/Tv";
 
 import { ColorModeContext } from "./providers/ColorMode";
 
@@ -58,6 +58,8 @@ const Nav = () => {
     if (menu === "import") setAnchorImport(null);
   };
 
+  const handleLogout = () => {};
+
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
@@ -74,7 +76,7 @@ const Nav = () => {
               textDecoration: "none",
             }}
           >
-            Rin's AniDB
+            Rin's Anime Database
           </Typography>
 
           <Box flexGrow={1} sx={{ display: { xs: "flex", md: "none" } }}>
@@ -238,7 +240,7 @@ const Nav = () => {
             <Button
               color="inherit"
               startIcon={<LogoutIcon />}
-              onClick={() => null}
+              onClick={handleLogout}
             >
               Logout
             </Button>
