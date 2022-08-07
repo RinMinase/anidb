@@ -10,20 +10,25 @@ import "./service";
 
 import ColorMode from "@components/providers/ColorMode";
 import GlobalLoader from "@components/providers/GlobalLoader";
+import { useState } from "preact/hooks";
 
 const Layout = () => {
-  const isAuth = window.location.pathname !== "/";
+  const [navCommon, setNavCommon] = useState<boolean>(true);
+
+  const handleRouteChange = async ({ url }: { url: string }) => {
+    const commonURLs = ["/","/register"];
+    setNavCommon(commonURLs.includes(url));
+  };
 
   return (
     <ColorMode>
       <CssBaseline />
 
-      {isAuth && <Nav />}
-      {!isAuth && <NavCommon />}
+      {navCommon ? <NavCommon /> : <Nav />}
 
       <GlobalLoader>
         <Container>
-          <Routes />
+          <Routes onChange={handleRouteChange as any} />
         </Container>
       </GlobalLoader>
     </ColorMode>
@@ -40,8 +45,8 @@ if (import.meta.env.VITE_API_URL) {
   const link = document.createElement("link");
 
   link.rel = "preconnect";
-  link.href = import.meta.env.VITE_API_URL
+  link.href = import.meta.env.VITE_API_URL;
   link.crossOrigin = "true";
 
-  document.getElementsByTagName('head')[0].appendChild(link);
+  document.getElementsByTagName("head")[0].appendChild(link);
 }
