@@ -36,7 +36,7 @@ const GlobalLoader = (props: any) => {
       }}
     >
       <Container>
-        {loader && <Progress color="secondary" />}
+        {loader && <Progress />}
         {props.children}
       </Container>
     </GlobalLoaderContext.Provider>
