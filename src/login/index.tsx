@@ -54,10 +54,7 @@ const Login = () => {
       .post("/auth/login", formdata)
       .then(({ data: { data } }) => {
         localStorage.setItem("authToken", data.token);
-
-        axios.defaults.headers.common = {
-          Authorization: `Bearer ${data.token}`,
-        };
+        axios.defaults.headers.common['Authorization'] = `Bearer ${data.token}`;
 
         route("/home");
       })

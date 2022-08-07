@@ -1,4 +1,6 @@
 import { useContext, useState } from "preact/hooks";
+import { route } from "preact-router";
+import axios from "axios";
 
 import {
   AppBar,
@@ -58,7 +60,12 @@ const Nav = () => {
     if (menu === "import") setAnchorImport(null);
   };
 
-  const handleLogout = () => {};
+  const handleLogout = () => {
+    axios.post("/auth/logout").then(() => {
+      localStorage.clear();
+      route("/");
+    });
+  };
 
   return (
     <AppBar position="static">
