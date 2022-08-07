@@ -58,6 +58,8 @@ const Login = () => {
         axios.defaults.headers.common = {
           Authorization: `Bearer ${data.token}`,
         };
+
+        route("/home");
       })
       .catch(({ response: { data: err } }) => {
         if (err.status === 401) {
