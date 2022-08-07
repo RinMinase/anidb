@@ -1,4 +1,4 @@
-import { useEffect, useState } from "preact/hooks";
+import { useContext, useEffect, useState } from "preact/hooks";
 import axios from "axios";
 
 import {
@@ -20,15 +20,16 @@ import {
 import Search from "@mui/icons-material/Search";
 
 import { Data } from "./types";
+import { GlobalLoaderContext, TableLoader } from "@components";
 
 const HomeContainer = styled(Box)({
+  paddingTop: 24,
   paddingBottom: 24,
-})
+});
 
 const SearchContainer = styled(Paper)({
-  marginTop: 8,
-  marginBottom: 24,
   padding: 8,
+  marginBottom: 24,
 });
 
 const SearchBox = styled(OutlinedInput)({
@@ -40,16 +41,22 @@ const CustomTable = styled(Table)({
 });
 
 const Home = () => {
+  const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
   const [data, setData] = useState<Data>([]);
 
-  const retrieveData = () => {
-    axios
-      .get("/entries")
-      .then(({ data }) => { setData(() => data.data) })
-      .catch((err) => console.error(err));
-  };
-
   useEffect(() => {
+    const retrieveData = async () => {
+      toggleLoader(true);
+
+      return axios
+        .get("/entries")
+        .then(({ data }) => {
+          setData(() => data.data);
+          toggleLoader(false);
+        })
+        .catch((err) => console.error(err));
+    };
+
     retrieveData();
   }, []);
 
@@ -90,18 +97,22 @@ const Home = () => {
           </TableHead>
 
           <TableBody>
-            {data.map((item) => (
-              <TableRow hover key={item.id}>
-                <TableCell>{item.title}</TableCell>
-                <TableCell>
-                  {item.episodes} / {item.ovas} / {item.specials}
-                </TableCell>
-                <TableCell>{item.filesize}</TableCell>
-                <TableCell>{item.dateFinished}</TableCell>
-                <TableCell>{item.release}</TableCell>
-                <TableCell>{item.encoder}</TableCell>
-              </TableRow>
-            ))}
+            {!isLoading ? (
+              data.map((item) => (
+                <TableRow hover key={item.id}>
+                  <TableCell>{item.title}</TableCell>
+                  <TableCell>
+                    {item.episodes} / {item.ovas} / {item.specials}
+                  </TableCell>
+                  <TableCell>{item.filesize}</TableCell>
+                  <TableCell>{item.dateFinished}</TableCell>
+                  <TableCell>{item.release}</TableCell>
+                  <TableCell>{item.encoder}</TableCell>
+                </TableRow>
+              ))
+            ) : (
+              <TableLoader />
+            )}
           </TableBody>
         </CustomTable>
       </TableContainer>
