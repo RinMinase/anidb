@@ -22,8 +22,9 @@ if (API_URL) {
     (res) => res,
     (err) => {
       if (
-        err.response.status === 401 &&
-        err.response.message == "Unauthorized"
+        err.response.data &&
+        err.response.data.status === 401 &&
+        err.response.data.message == "Unauthorized"
       ) {
         localStorage.clear();
         route("/");
