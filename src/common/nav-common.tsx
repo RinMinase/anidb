@@ -6,6 +6,7 @@ import {
   Button,
   Container,
   IconButton,
+  Link,
   ListItemIcon,
   Menu,
   MenuItem,
@@ -15,10 +16,10 @@ import {
   useTheme,
 } from "@mui/material";
 
-import B4Icon from "@mui/icons-material/Brightness4"
-import B7Icon from "@mui/icons-material/Brightness7"
-import MenuIcon from "@mui/icons-material/Menu"
-import PersonIcon from "@mui/icons-material/Person"
+import B4Icon from "@mui/icons-material/Brightness4";
+import B7Icon from "@mui/icons-material/Brightness7";
+import CodeIcon from "@mui/icons-material/Code";
+import MenuIcon from "@mui/icons-material/Menu";
 
 import { ColorModeContext } from "./providers/ColorMode";
 
@@ -84,9 +85,14 @@ const NavCommon = () => {
                 display: { xs: "block", md: "none" },
               }}
             >
-              <MenuItem onClick={() => handleCloseList("nav")}>
-                <ListItemIcon children={<PersonIcon fontSize="small" />} />
-                About
+              <MenuItem
+                component={Link}
+                onClick={() => handleCloseList("nav")}
+                href="https://rin.anidb.moe"
+                target="_blank"
+              >
+                <ListItemIcon children={<CodeIcon fontSize="small" />} />
+                Developer
               </MenuItem>
             </Menu>
           </Box>
@@ -114,10 +120,10 @@ const NavCommon = () => {
           <RightMenuContainer sx={{ display: { xs: "none", md: "flex" } }}>
             <Button
               color="inherit"
-              startIcon={<PersonIcon />}
-              onClick={() => null}
+              startIcon={<CodeIcon />}
+              href="https://rin.anidb.moe"
             >
-              About
+              Developer
             </Button>
           </RightMenuContainer>
         </Toolbar>
