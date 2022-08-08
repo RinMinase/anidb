@@ -35,6 +35,7 @@ import StorageIcon from "@mui/icons-material/Storage";
 import TvIcon from "@mui/icons-material/Tv";
 
 import { ColorModeContext } from "./providers/ColorMode";
+import { GlobalLoaderContext } from "./providers/GlobalLoader";
 
 const RightMenuContainer = styled(Box)({
   marginLeft: 8,
@@ -43,6 +44,7 @@ const RightMenuContainer = styled(Box)({
 const Nav = () => {
   const theme = useTheme();
   const colorMode = useContext(ColorModeContext);
+  const { toggleLoader } = useContext(GlobalLoaderContext);
 
   const [anchorNav, setAnchorNav] = useState<null | HTMLElement>(null);
   const [anchorList, setAnchorList] = useState<null | HTMLElement>(null);
@@ -61,7 +63,9 @@ const Nav = () => {
   };
 
   const handleLogout = () => {
+    toggleLoader(true);
     axios.post("/auth/logout").then(() => {
+      toggleLoader(false);
       localStorage.clear();
       route("/");
     });
@@ -112,40 +116,69 @@ const Nav = () => {
             >
               <MenuItem
                 component="a"
+                href="/last-watch"
                 onClick={() => handleCloseList("nav")}
-                href="/"
               >
                 <ListItemIcon children={<PlayIcon fontSize="small" />} />
                 Last Watched
               </MenuItem>
               <Divider />
-              <MenuItem onClick={() => handleCloseList("nav")}>
+              <MenuItem
+                component="a"
+                href="/by-name"
+                onClick={() => handleCloseList("nav")}
+              >
                 <ListItemIcon children={<SortIcon fontSize="small" />} />
                 By Name
               </MenuItem>
-              <MenuItem onClick={() => handleCloseList("nav")}>
+              <MenuItem
+                component="a"
+                href="/by-year"
+                onClick={() => handleCloseList("nav")}
+              >
                 <ListItemIcon children={<CalendarIcon fontSize="small" />} />
                 By Year
               </MenuItem>
               <Divider />
-              <MenuItem onClick={() => handleCloseList("nav")}>
+              <MenuItem
+                component="a"
+                href="/catalogs"
+                onClick={() => handleCloseList("nav")}
+              >
                 <ListItemIcon children={<DownloadIcon fontSize="small" />} />
-                Download Lists
+                Catalog Lists
               </MenuItem>
-              <MenuItem onClick={() => handleCloseList("nav")}>
+              <MenuItem
+                component="a"
+                href="/marathons"
+                onClick={() => handleCloseList("nav")}
+              >
                 <ListItemIcon children={<TvIcon fontSize="small" />} />
                 Marathon Lists
               </MenuItem>
-              <MenuItem onClick={() => handleCloseList("nav")}>
+              <MenuItem
+                component="a"
+                href="/buckets"
+                onClick={() => handleCloseList("nav")}
+              >
                 <ListItemIcon children={<StorageIcon fontSize="small" />} />
                 Bucket Lists
               </MenuItem>
               <Divider />
-              <MenuItem onClick={() => handleCloseList("nav")}>
+              <MenuItem
+                component="a"
+                href="/about"
+                onClick={() => handleCloseList("nav")}
+              >
                 <ListItemIcon children={<PersonIcon fontSize="small" />} />
                 About
               </MenuItem>
-              <MenuItem onClick={() => handleCloseList("nav")}>
+              <MenuItem
+                onClick={() => {
+                  handleCloseList("nav");
+                  handleLogout();
+                }}
+              >
                 <ListItemIcon children={<LogoutIcon fontSize="small" />} />
                 Logout
               </MenuItem>
