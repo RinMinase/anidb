@@ -13,12 +13,32 @@ type Props = {
 const Registration = () => import("./registration").then((c) => c.default);
 const Home = () => import("./home").then((c) => c.default);
 
+const LastWatch = () => import("./lastwatch").then((c) => c.default);
+const ByName = () => import("./by-name").then((c) => c.default);
+const ByYear = () => import("./by-year").then((c) => c.default);
+
+const Catalog = () => import("./catalog").then((c) => c.default);
+const Marathon = () => import("./marathon").then((c) => c.default);
+const Bucket = () => import("./bucket").then((c) => c.default);
+
+const About = () => import("./about").then((c) => c.default);
+
 const Routes = (props: Props) => (
   <Router onChange={props.onChange}>
     <Route path="/" component={Login} />
 
     <AsyncRoute path="/register" getComponent={Registration} />
     <AsyncRoute path="/home" getComponent={Home} />
+
+    <AsyncRoute path="/last-watch" getComponent={LastWatch} />
+    <AsyncRoute path="/by-name" getComponent={ByName} />
+    <AsyncRoute path="/by-year" getComponent={ByYear} />
+
+    <AsyncRoute path="/catalogs" getComponent={Catalog} />
+    <AsyncRoute path="/marathons" getComponent={Marathon} />
+    <AsyncRoute path="/buckets" getComponent={Bucket} />
+
+    <AsyncRoute path="/about" getComponent={About} />
 
     <Route default component={Page404} />
   </Router>
