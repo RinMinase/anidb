@@ -11,7 +11,9 @@ type Props = {
 }
 
 const Registration = () => import("./registration").then((c) => c.default);
+
 const Home = () => import("./home").then((c) => c.default);
+const HomeAdd = () => import("./home/add").then((c) => c.default);
 
 const LastWatch = () => import("./lastwatch").then((c) => c.default);
 const ByName = () => import("./by-name").then((c) => c.default);
@@ -28,7 +30,9 @@ const Routes = (props: Props) => (
     <Route path="/" component={Login} />
 
     <AsyncRoute path="/register" getComponent={Registration} />
+
     <AsyncRoute path="/home" getComponent={Home} />
+    <AsyncRoute path="/home/add" getComponent={HomeAdd} />
 
     <AsyncRoute path="/last-watch" getComponent={LastWatch} />
     <AsyncRoute path="/by-name" getComponent={ByName} />
