@@ -94,7 +94,7 @@ const Nav = () => {
               textDecoration: "none",
             }}
           >
-            Rin's Anime Database
+            {import.meta.env.VITE_CUSTOM_TITLE || "Rin's Anime Database"}
           </Typography>
 
           <Box flexGrow={1} sx={{ display: { xs: "flex", md: "none" } }}>
@@ -221,7 +221,7 @@ const Nav = () => {
               textDecoration: "none",
             }}
           >
-            Rin's AniDB
+            {import.meta.env.VITE_CUSTOM_TITLE || "Rin's AniDB"}
           </Typography>
 
           <Box flexGrow={1} sx={{ display: { xs: "none", md: "flex" } }}>

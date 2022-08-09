@@ -65,7 +65,7 @@ const NavCommon = () => {
               textDecoration: "none",
             }}
           >
-            Rin's Anime Database
+            {import.meta.env.VITE_CUSTOM_TITLE || "Rin's Anime Database"}
           </Typography>
 
           <Box flexGrow={1} sx={{ display: { xs: "flex", md: "none" } }}>
@@ -119,7 +119,7 @@ const NavCommon = () => {
               textDecoration: "none",
             }}
           >
-            Rin's AniDB
+            {import.meta.env.VITE_CUSTOM_TITLE || "Rin's AniDB"}
           </Typography>
 
           <IconButton onClick={colorMode.toggleColorMode} color="inherit">
