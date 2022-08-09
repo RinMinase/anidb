@@ -1356,14 +1356,14 @@
   dependencies:
     "@babel/runtime" "^7.17.2"
 
-"@mui/material@^5.9.3":
-  version "5.9.3"
-  resolved "https://registry.yarnpkg.com/@mui/material/-/material-5.9.3.tgz#23aa8a6f651f3f139a38e0eea39468ced7f509d0"
-  integrity sha512-idDJajnfnDr+2pI6h2tzWtWoZJmVHNk6aSjISirMuVOGy0ugWpsCE+KW4++GS7aTCujXm9+cl5bWAyXvGjiPIQ==
+"@mui/material@^5.10.0":
+  version "5.10.0"
+  resolved "https://registry.yarnpkg.com/@mui/material/-/material-5.10.0.tgz#35f6484b7dec40a38874fa948a44a073f4d3a4c7"
+  integrity sha512-MSEzkE2vhpM37m8Gh3+TcZCWL70p+MxzNvS8FHugBB6YZpafhBFmFKX7/pYJ2kVD87PpUhNR4szWub7/ohE02Q==
   dependencies:
     "@babel/runtime" "^7.17.2"
     "@mui/base" "5.0.0-alpha.92"
-    "@mui/system" "^5.9.3"
+    "@mui/system" "^5.10.0"
     "@mui/types" "^7.1.5"
     "@mui/utils" "^5.9.3"
     "@types/react-transition-group" "^4.4.5"
@@ -1382,24 +1382,24 @@
     "@mui/utils" "^5.9.3"
     prop-types "^15.8.1"
 
-"@mui/styled-engine@^5.8.7":
-  version "5.8.7"
-  resolved "https://registry.yarnpkg.com/@mui/styled-engine/-/styled-engine-5.8.7.tgz#63d0779c07677fe76d4705a02c7ae99f89b50780"
-  integrity sha512-tVqtowjbYmiRq+qcqXK731L9eWoL9H8xTRhuTgaDGKdch1zlt4I2UwInUe1w2N9N/u3/jHsFbLcl1Un3uOwpQg==
+"@mui/styled-engine@^5.10.0":
+  version "5.10.0"
+  resolved "https://registry.yarnpkg.com/@mui/styled-engine/-/styled-engine-5.10.0.tgz#5c904c1f021a8ee1b3e3b8a3d05c9f4ea68c43a0"
+  integrity sha512-V0MmOx7KBDomDYg2/dRItVsvrpHpd51uZZiNqeuXiZruUJ1vPwtxztpvtSjX/xKvIxN7C0mxf8jmuwVUn6uaEA==
   dependencies:
     "@babel/runtime" "^7.17.2"
     "@emotion/cache" "^11.9.3"
     csstype "^3.1.0"
     prop-types "^15.8.1"
 
-"@mui/system@^5.9.3":
-  version "5.9.3"
-  resolved "https://registry.yarnpkg.com/@mui/system/-/system-5.9.3.tgz#5d2d06db2b2454573639de394f81b6be3608a1ce"
-  integrity sha512-EXQV2POwncstHLYII+G4VSYdEFun1TjBbQSBDK76DbIkug8nPjtjAZ+3Kgk3/NoFIigW+vQ9cDVUZtlbRH6YMQ==
+"@mui/system@^5.10.0":
+  version "5.10.0"
+  resolved "https://registry.yarnpkg.com/@mui/system/-/system-5.10.0.tgz#48daf4aa8e61424c232378acb27a735abfb1fcc1"
+  integrity sha512-HNu3LdA+37cWqgJBEhOF4F5LX4WVmvg6SoHRfajRO0neKXLdooibMP3W1bhSd27QcPxyMUmvY9/Dlp9znDeCRw==
   dependencies:
     "@babel/runtime" "^7.17.2"
     "@mui/private-theming" "^5.9.3"
-    "@mui/styled-engine" "^5.8.7"
+    "@mui/styled-engine" "^5.10.0"
     "@mui/types" "^7.1.5"
     "@mui/utils" "^5.9.3"
     clsx "^1.2.1"
@@ -8699,10 +8699,19 @@ postcss-values-parser@^6.0.2:
     is-url-superb "^4.0.0"
     quote-unquote "^1.0.0"
 
-postcss@^8.4.12, postcss@^8.4.14:
+postcss@^8.4.12:
   version "8.4.14"
   resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.14.tgz#ee9274d5622b4858c1007a74d76e42e56fd21caf"
   integrity sha512-E398TUmfAYFPBSdzgeieK2Y1+1cpdxJx8yXbK/m57nRhKSmk1GB2tO4lbLBtlkfPQTDKfe4Xqv1ASWPpayPEig==
+  dependencies:
+    nanoid "^3.3.4"
+    picocolors "^1.0.0"
+    source-map-js "^1.0.2"
+
+postcss@^8.4.16:
+  version "8.4.16"
+  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.16.tgz#33a1d675fac39941f5f445db0de4db2b6e01d43c"
+  integrity sha512-ipHE1XBvKzm5xI7hiHCZJCSugxvsdq2mPnsq5+UF+VHCjiBvtDrlxJfMBToWaP9D5XlgNmcFGqoHmUn0EYEaRQ==
   dependencies:
     nanoid "^3.3.4"
     picocolors "^1.0.0"
@@ -10741,13 +10750,13 @@ vite-tsconfig-paths@^3.5.0:
     recrawl-sync "^2.0.3"
     tsconfig-paths "^4.0.0"
 
-vite@^3.0.4:
-  version "3.0.4"
-  resolved "https://registry.yarnpkg.com/vite/-/vite-3.0.4.tgz#c61688d6b97573e96cf5ac25f2d68597b5ce68e8"
-  integrity sha512-NU304nqnBeOx2MkQnskBQxVsa0pRAH5FphokTGmyy8M3oxbvw7qAXts2GORxs+h/2vKsD+osMhZ7An6yK6F1dA==
+vite@^3.0.5:
+  version "3.0.5"
+  resolved "https://registry.yarnpkg.com/vite/-/vite-3.0.5.tgz#56b8d52e00bbbd5f21d02f0868dc613b3246ecc6"
+  integrity sha512-bRvrt9Tw8EGW4jj64aYFTnVg134E8hgDxyl/eEHnxiGqYk7/pTPss6CWlurqPOUzqvEoZkZ58Ws+Iu8MB87iMA==
   dependencies:
     esbuild "^0.14.47"
-    postcss "^8.4.14"
+    postcss "^8.4.16"
     resolve "^1.22.1"
     rollup "^2.75.6"
   optionalDependencies:
