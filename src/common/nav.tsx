@@ -214,29 +214,53 @@ const Nav = () => {
               open={!!anchorList}
               onClose={() => handleCloseList("list")}
             >
-              <MenuItem onClick={() => handleCloseList("list")}>
+              <MenuItem
+                component="a"
+                href="/last-watch"
+                onClick={() => handleCloseList("list")}
+              >
                 <ListItemIcon children={<PlayIcon fontSize="small" />} />
                 Last Watched
               </MenuItem>
               <Divider />
-              <MenuItem onClick={() => handleCloseList("list")}>
+              <MenuItem
+                component="a"
+                href="/by-name"
+                onClick={() => handleCloseList("list")}
+              >
                 <ListItemIcon children={<SortIcon fontSize="small" />} />
                 By Name
               </MenuItem>
-              <MenuItem onClick={() => handleCloseList("list")}>
+              <MenuItem
+                component="a"
+                href="/by-year"
+                onClick={() => handleCloseList("list")}
+              >
                 <ListItemIcon children={<CalendarIcon fontSize="small" />} />
                 By Year
               </MenuItem>
               <Divider />
-              <MenuItem onClick={() => handleCloseList("list")}>
+              <MenuItem
+                component="a"
+                href="/catalogs"
+                onClick={() => handleCloseList("list")}
+              >
                 <ListItemIcon children={<DownloadIcon fontSize="small" />} />
                 Download Lists
               </MenuItem>
-              <MenuItem onClick={() => handleCloseList("list")}>
+              <MenuItem
+                component="a"
+                href="/marathons"
+                onClick={() => handleCloseList("list")}
+              >
                 <ListItemIcon children={<TvIcon fontSize="small" />} />
                 Marathon Lists
               </MenuItem>
-              <MenuItem onClick={() => handleCloseList("list")}>
+              <MenuItem
+                component="a"
+                href="/buckets"
+                onClick={() => handleCloseList("list")}
+              >
                 <ListItemIcon children={<StorageIcon fontSize="small" />} />
                 Bucket Lists
               </MenuItem>
