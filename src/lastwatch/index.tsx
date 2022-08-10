@@ -22,7 +22,7 @@ import SubscriptionsIcon from "@mui/icons-material/SubscriptionsOutlined";
 import { DashboardTile, GlobalLoaderContext, TableLoader } from "@components";
 import { Data, Stats } from "./types";
 
-const HomeContainer = styled(Box)({
+const ModuleContainer = styled(Box)({
   paddingTop: 24,
   paddingBottom: 24,
 });
@@ -65,7 +65,7 @@ const LastWatch = () => {
   }, []);
 
   return (
-    <HomeContainer>
+    <ModuleContainer>
       <Dashboard>
         <Grid container spacing={4}>
           <Grid item xs={12} sm={6} md={3}>
@@ -140,7 +140,7 @@ const LastWatch = () => {
           </TableBody>
         </CustomTable>
       </TableContainer>
-    </HomeContainer>
+    </ModuleContainer>
   );
 };
 

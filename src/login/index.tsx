@@ -16,7 +16,7 @@ import { Alert, AlertProps, GlobalLoaderContext } from "@components";
 import { Form, resolver } from "./validation";
 import { route } from "preact-router";
 
-const LoginContainer = styled(Grid)({
+const ModuleContainer = styled(Grid)({
   height: "calc(100vh - 48px)",
   alignItems: "center",
 });
@@ -82,7 +82,7 @@ const Login = () => {
   };
 
   return (
-    <LoginContainer container justifyContent="center">
+    <ModuleContainer container justifyContent="center">
       <Grid item xs={12} sm={6} md={4}>
         <form onSubmit={handleSubmit(handleSubmitForm)}>
           <LoginStack spacing={3}>
@@ -123,7 +123,7 @@ const Login = () => {
           </LoginStack>
         </form>
       </Grid>
-    </LoginContainer>
+    </ModuleContainer>
   );
 };
 

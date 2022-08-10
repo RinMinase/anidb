@@ -22,7 +22,7 @@ import Search from "@mui/icons-material/Search";
 import { Data } from "./types";
 import { GlobalLoaderContext, TableLoader } from "@components";
 
-const HomeContainer = styled(Box)({
+const ModuleContainer = styled(Box)({
   paddingTop: 24,
   paddingBottom: 24,
 });
@@ -57,7 +57,7 @@ const Home = () => {
   }, []);
 
   return (
-    <HomeContainer>
+    <ModuleContainer>
       <SearchContainer>
         <Grid container spacing={2}>
           <Grid item xs={12} md={2}>
@@ -112,7 +112,7 @@ const Home = () => {
           </TableBody>
         </CustomTable>
       </TableContainer>
-    </HomeContainer>
+    </ModuleContainer>
   );
 };
 
