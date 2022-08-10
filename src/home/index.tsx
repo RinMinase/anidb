@@ -45,19 +45,15 @@ const Home = () => {
   const [data, setData] = useState<Data>([]);
 
   useEffect(() => {
-    const retrieveData = async () => {
-      toggleLoader(true);
+    toggleLoader(true);
 
-      return axios
-        .get("/entries")
-        .then(({ data }) => {
-          setData(() => data.data);
-          toggleLoader(false);
-        })
-        .catch((err) => console.error(err));
-    };
-
-    retrieveData();
+    axios
+      .get("/entries")
+      .then(({ data }) => {
+        setData(() => data.data);
+        toggleLoader(false);
+      })
+      .catch((err) => console.error(err));
   }, []);
 
   return (

@@ -51,7 +51,7 @@ const DashboardIcon = styled(Box)<DashboardIconProps>(({ iconColor }) => ({
   justifyContent: "center",
   alignItems: "center",
   backgroundColor: iconColor || "#cecece",
-  color: '#fff',
+  color: "#fff",
 
   position: "absolute",
   top: -15,
@@ -86,21 +86,16 @@ const LastWatch = () => {
   });
 
   useEffect(() => {
-    const retrieveData = async () => {
-      toggleLoader(true);
+    toggleLoader(true);
 
-      return axios
-        .get("/entries/last")
-        .then(({ data: { data } }) => {
-          setData(() => data.data);
-          setStats(() => data.stats);
-          toggleLoader(false);
-
-          console.log(data);
-        })
-        .catch((err) => console.error(err));
-    };
-    retrieveData();
+    axios
+      .get("/entries/last")
+      .then(({ data: { data } }) => {
+        setData(() => data.data);
+        setStats(() => data.stats);
+        toggleLoader(false);
+      })
+      .catch((err) => console.error(err));
   }, []);
 
   return (
