@@ -1,11 +1,11 @@
-export type { AlertProps } from "./alert";
+export type { AlertProps } from "./Alert";
 
-export { default as Alert } from "./alert";
+export { default as Alert } from "./Alert";
 export { default as DashboardTile } from "./DashboardTile";
-export { default as Nav } from "./nav";
-export { default as NavCommon } from "./nav-common";
-export { default as Snackbar } from "./snackbar";
-export { default as TableLoader } from "./table-loader";
+export { default as Nav } from "./Nav";
+export { default as NavCommon } from "./NavCommon";
+export { default as Snackbar } from "./Snackbar";
+export { default as TableLoader } from "./TableLoader";
 
 export { GlobalLoaderContext } from "./providers/GlobalLoader";
 export { ColorModeContext } from "./providers/ColorMode";
