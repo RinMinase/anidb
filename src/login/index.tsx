@@ -59,7 +59,7 @@ const Login = () => {
         route("/home");
       })
       .catch(({ response: { data: err } }) => {
-        if (err.status === 401) {
+        if (err?.status === 401) {
           for (const field in err.data) {
             setError(field as any, {
               type: "server",
@@ -68,13 +68,19 @@ const Login = () => {
           }
         }
 
-        if (err.message) {
+        if (err?.message) {
           setDialog(() => ({
             open: true,
             message: err.message,
             severity: "error",
           }));
         }
+
+        setDialog(() => ({
+          open: true,
+          message: "An unknown error has ocurred",
+          severity: "error",
+        }));
       })
       .finally(() => {
         loader.toggleLoader(false);
