@@ -19,7 +19,8 @@ import StorageIcon from "@mui/icons-material/Storage";
 import FolderIcon from "@mui/icons-material/FolderOpenOutlined";
 
 import { DashboardTile, GlobalLoaderContext, TableLoader } from "@components";
-import { Buckets, Data, Stats } from "./types";
+import { Bucket as SingleBucket, Buckets, Data, Stats } from "./types";
+import { green, orange, red } from "@mui/material/colors";
 
 const ModuleContainer = styled(Box)({
   paddingTop: 24,
@@ -49,8 +50,19 @@ const Bucket = () => {
     axios
       .get("/entries/by-bucket")
       .then(({ data: { data } }) => {
-        console.log("data", data);
-        setBuckets(() => data);
+        const bucketList: Buckets = data.map((item: SingleBucket) => {
+          const { percent } = item;
+
+          let bucketColor;
+
+          if (percent > 90) bucketColor = red[700];
+          else if (percent > 80) bucketColor = orange[700];
+          else bucketColor = green[700];
+
+          return { ...item, bucketColor };
+        });
+
+        setBuckets(() => bucketList);
 
         axios
           .get("/entries/by-bucket/1")
@@ -88,7 +100,7 @@ const Bucket = () => {
                   <Grid item xs={12} sm={6} md={3} key={`bucket${index}`}>
                     <DashboardTile
                       icon={<StorageIcon fontSize="large" />}
-                      iconColor={"#ff9800"}
+                      iconColor={bucket.bucketColor}
                       heading={"Total"}
                       subHeading={`${bucket.used} / ${bucket.total}`}
                       value={`${bucket.percent}%`}
@@ -103,7 +115,7 @@ const Bucket = () => {
                 <Grid item xs={12} sm={6} md={3} key={`bucket${index}`}>
                   <DashboardTile
                     icon={<FolderIcon fontSize="large" />}
-                    iconColor={"#2196f3"}
+                    iconColor={bucket.bucketColor}
                     heading={`${bucket.from.toUpperCase()} - ${bucket.to.toUpperCase()}`}
                     subHeading={`${bucket.used} / ${bucket.total}`}
                     value={`${bucket.percent}%`}

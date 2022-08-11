@@ -5,17 +5,20 @@ export type Data = Array<{
   filesize?: string;
 }>
 
-export type Buckets = Array<{
+export type Buckets = Bucket[];
+
+export type Bucket = {
   id: number;
   from: string;
   to: string;
   free?: string;
   freeTB?: string | null;
   used?: string;
-  percent?: number;
+  percent: number;
   total?: string;
   titles?: number;
-}>;
+  bucketColor?: string;
+};
 
 export type Stats = {
   from: string;
