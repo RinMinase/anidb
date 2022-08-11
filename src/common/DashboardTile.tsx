@@ -24,14 +24,21 @@ type DashboardIconProps = {
 
 const DashboardItem = styled(Paper)<DashboardItemProps>(({ hasOnclick }) => ({
   cursor: hasOnclick ? "pointer" : "",
+
   marginTop: 24,
+  minHeight: 145,
+  height: "calc(100% - 24px)",
+
+  display: "flex",
+  flexDirection: "column",
+
   textAlign: "right",
   position: "relative",
-  minHeight: 145,
 }));
 
 const DashboardContainer = styled(Box)({
   padding: 16,
+  flexGrow: 1,
 });
 
 const DashboardIcon = styled(Box)<DashboardIconProps>(({ iconColor }) => ({
