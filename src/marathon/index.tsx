@@ -16,9 +16,8 @@ import {
   TableRow,
 } from "@mui/material";
 
-import NumbersIcon from "@mui/icons-material/Numbers";
-import MovieIcon from "@mui/icons-material/MovieOutlined";
-import ScheduleIcon from "@mui/icons-material/Schedule";
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonthOutlined';
+import DateRangeIcon from '@mui/icons-material/DateRangeOutlined';
 import SubscriptionsIcon from "@mui/icons-material/SubscriptionsOutlined";
 
 import { DashboardTile, GlobalLoaderContext, TableLoader } from "@components";
@@ -41,7 +40,21 @@ const Marathon = () => {
   const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
   const [data, setData] = useState<Data>([]);
   const [sequences, setSequences] = useState<Sequences>([]);
-  const [stats, setStats] = useState<Stats>({});
+  const [stats, setStats] = useState<Stats>({
+    titles_per_day: 0,
+    eps_per_day: 0,
+    quality_2160: 0,
+    quality_1080: 0,
+    quality_720: 0,
+    quality_480: 0,
+    quality_360: 0,
+    total_titles: 0,
+    total_eps: 0,
+    total_size: "",
+    total_days: 0,
+    start_date: "-",
+    end_date: "-",
+  });
 
   useEffect(() => {
     toggleLoader(true);
@@ -81,9 +94,47 @@ const Marathon = () => {
 
   return (
     <ModuleContainer>
+      <Dashboard>
+        <Grid container spacing={4}>
+          <Grid item xs={12} sm={6} md={3}>
+            <DashboardTile
+              icon={<DateRangeIcon fontSize="large" />}
+              iconColor="#ff9800"
+              heading="Titles per day"
+              value={stats.titles_per_day}
+              footer={`Episodes per day: ${stats.eps_per_day}`}
+            />
+          </Grid>
+          <Grid item xs={12} sm={6} md={3}>
+            <DashboardTile
+              icon={<SubscriptionsIcon fontSize="large" />}
+              iconColor="#2196f3"
+              heading="Total titles"
+              value={stats.total_titles}
+              footers={[
+                `Total titles: ${stats.total_eps}`,
+                `Total size: ${stats.total_size}`,
+              ]}
+            />
+          </Grid>
+          <Grid item xs={12} sm={6} md={3}>
+            <DashboardTile
+              icon={<CalendarMonthIcon fontSize="large" />}
+              iconColor="#009688"
+              heading="Days"
+              value={stats.total_days}
+              footers={[
+                `Starts at: ${stats.start_date}`,
+                `Ends at: ${stats.end_date}`,
+              ]}
+            />
+          </Grid>
+        </Grid>
+      </Dashboard>
+
       <Grid container spacing={2}>
         <Grid item xs={12} sm={5} md={3}>
-          <MenuList>
+          <MenuList component={Paper}>
             {sequences.map((item, index) => (
               <MenuItem
                 key={`mara-${index}`}
@@ -111,11 +162,11 @@ const Marathon = () => {
                   data.map((item) => (
                     <TableRow hover key={item.id}>
                       <TableCell>{item.title}</TableCell>
-                  <TableCell>
-                    {item.episodes} / {item.ovas} / {item.specials}
-                  </TableCell>
-                  <TableCell>{item.filesize}</TableCell>
-                  <TableCell>{item.dateFinished}</TableCell>
+                      <TableCell>
+                        {item.episodes} / {item.ovas} / {item.specials}
+                      </TableCell>
+                      <TableCell>{item.filesize}</TableCell>
+                      <TableCell>{item.dateFinished}</TableCell>
                     </TableRow>
                   ))
                 ) : (

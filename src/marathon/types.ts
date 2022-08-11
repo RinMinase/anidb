@@ -1,5 +1,3 @@
-import { string } from "yup";
-
 export type Data = Array<{
   id: string;
   quality: string;
