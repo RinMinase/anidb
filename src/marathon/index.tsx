@@ -1,5 +1,8 @@
 import { useContext, useEffect, useState } from "preact/hooks";
 import axios from "axios";
+// import { Pie } from 'react-chartjs-2';
+import { Chart, ChartOptions, registerables } from "chart.js";
+import ChartDataLabels from "chartjs-plugin-datalabels";
 
 import {
   Box,
@@ -16,12 +19,15 @@ import {
   TableRow,
 } from "@mui/material";
 
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonthOutlined';
-import DateRangeIcon from '@mui/icons-material/DateRangeOutlined';
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonthOutlined";
+import DateRangeIcon from "@mui/icons-material/DateRangeOutlined";
 import SubscriptionsIcon from "@mui/icons-material/SubscriptionsOutlined";
 
 import { DashboardTile, GlobalLoaderContext, TableLoader } from "@components";
 import { Data, Sequences, Stats } from "./types";
+
+let chartElement: Chart;
+Chart.register(...registerables, ChartDataLabels);
 
 const ModuleContainer = styled(Box)({
   paddingTop: 24,
@@ -32,12 +38,20 @@ const Dashboard = styled(Box)({
   marginBottom: 32,
 });
 
+const ChartContainer = styled(Box)({
+  width: 250,
+  position: "relative",
+  boxSizing: "content-box",
+});
+
 const CustomTable = styled(Table)({
   minWidth: 650,
 });
 
 const Marathon = () => {
   const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
+
+  const [chartData, setChartData] = useState([-1, -1, -1, -1, -1]);
   const [data, setData] = useState<Data>([]);
   const [sequences, setSequences] = useState<Sequences>([]);
   const [stats, setStats] = useState<Stats>({
@@ -56,7 +70,52 @@ const Marathon = () => {
     end_date: "-",
   });
 
+  const chartInitialData = {
+    labels: ["LQ", "HQ", "HD", "FHD", "UHD"],
+    datasets: [
+      {
+        data: [],
+        backgroundColor: ["#777", "#fc6", "#9cf", "#9f9", "#f9c"],
+      },
+    ],
+  };
+
+  const chartOptions: ChartOptions = {
+    aspectRatio: 1.25,
+    plugins: {
+      datalabels: {
+        formatter: (val) => {
+          return (val < 0) ? "None" : (val < 1) ? "" : val;
+        },
+        color: "#000",
+      },
+      legend: {
+        position: "left",
+        reverse: true,
+        labels: {
+          boxWidth: 12,
+          padding: 16,
+        },
+      },
+      tooltip: {
+        enabled: false,
+      },
+    },
+  };
+
   useEffect(() => {
+    if (document.getElementById("graph")) {
+      const canvas = document.getElementById("graph") as HTMLCanvasElement;
+      const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
+
+      chartElement = new Chart(ctx, {
+        type: "pie",
+        plugins: [ChartDataLabels],
+        options: chartOptions,
+        data: chartInitialData,
+      });
+    }
+
     toggleLoader(true);
 
     axios
@@ -69,6 +128,13 @@ const Marathon = () => {
           .then(({ data: { data } }) => {
             setData(() => data.data);
             setStats(() => data.stats);
+            setChartData(() => [
+              data.stats.quality_2160,
+              data.stats.quality_1080,
+              data.stats.quality_720,
+              data.stats.quality_480,
+              data.stats.quality_360,
+            ]);
           })
           .catch((err) => console.error(err))
           .finally(() => toggleLoader(false));
@@ -79,6 +145,24 @@ const Marathon = () => {
       });
   }, []);
 
+  useEffect(() => {
+    if (chartData.length) {
+      let hasAnyValue = false;
+
+      chartData.forEach((item) => {
+        if (item > 0) hasAnyValue = true;
+      });
+
+      if (hasAnyValue) {
+        chartElement.data.datasets[0].data = chartData;
+      } else {
+        chartElement.data.datasets[0].data = [-1, -1, -1, -1, -1];
+      }
+
+      chartElement.update();
+    }
+  }, [chartData]);
+
   const handleClickSequence = (id: number) => {
     toggleLoader(true);
 
@@ -87,6 +171,13 @@ const Marathon = () => {
       .then(({ data: { data } }) => {
         setData(() => data.data);
         setStats(() => data.stats);
+        setChartData(() => [
+          data.stats.quality_2160,
+          data.stats.quality_1080,
+          data.stats.quality_720,
+          data.stats.quality_480,
+          data.stats.quality_360,
+        ]);
       })
       .catch((err) => console.error(err))
       .finally(() => toggleLoader(false));
@@ -128,6 +219,11 @@ const Marathon = () => {
                 `Ends at: ${stats.end_date}`,
               ]}
             />
+          </Grid>
+          <Grid item xs={12} sm={6} md={3}>
+            <ChartContainer>
+              <canvas id="graph" />
+            </ChartContainer>
           </Grid>
         </Grid>
       </Dashboard>
