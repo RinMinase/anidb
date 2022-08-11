@@ -54,33 +54,33 @@ const Login = () => {
       .post("/auth/login", formdata)
       .then(({ data: { data } }) => {
         localStorage.setItem("authToken", data.token);
-        axios.defaults.headers.common['Authorization'] = `Bearer ${data.token}`;
+        axios.defaults.headers.common["Authorization"] = `Bearer ${data.token}`;
 
         route("/home");
       })
       .catch(({ response: { data: err } }) => {
         if (err?.status === 401) {
-          for (const field in err.data) {
-            setError(field as any, {
-              type: "server",
-              message: err.data[field][0],
-            });
+          if (err?.message) {
+            setDialog(() => ({
+              open: true,
+              message: err.message,
+              severity: "error",
+            }));
+          } else {
+            for (const field in err.data) {
+              setError(field as any, {
+                type: "server",
+                message: err.data[field][0],
+              });
+            }
           }
-        }
-
-        if (err?.message) {
+        } else {
           setDialog(() => ({
             open: true,
-            message: err.message,
+            message: "An unknown error has ocurred",
             severity: "error",
           }));
         }
-
-        setDialog(() => ({
-          open: true,
-          message: "An unknown error has ocurred",
-          severity: "error",
-        }));
       })
       .finally(() => {
         loader.toggleLoader(false);
