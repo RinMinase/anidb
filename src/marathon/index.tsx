@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from "preact/hooks";
 import axios from "axios";
-// import { Pie } from 'react-chartjs-2';
 import { Chart, ChartOptions, registerables } from "chart.js";
 import ChartDataLabels from "chartjs-plugin-datalabels";
 
