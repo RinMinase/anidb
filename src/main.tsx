@@ -1,3 +1,5 @@
+import '@fortawesome/fontawesome-svg-core/styles.css';
+
 import { render } from "preact";
 
 import Routes from "./routes";

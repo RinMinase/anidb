@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "preact/hooks";
 import axios from "axios";
+import { FontAwesomeSvgIcon } from "react-fontawesome-svg-icon";
 
 import {
   Box,
@@ -17,7 +18,6 @@ import {
   Typography,
 } from "@mui/material";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBan as UncategorizedIcon,
   faLeaf as FallIcon,
@@ -39,7 +39,7 @@ const CustomTable = styled(Table)({
   minWidth: 650,
 });
 
-const Icon = styled(FontAwesomeIcon)({
+const Icon = styled(FontAwesomeSvgIcon)({
   marginRight: 8,
 });
 
