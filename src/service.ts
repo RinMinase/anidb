@@ -27,7 +27,7 @@ if (API_URL) {
         err.response.data.message == "Unauthorized"
       ) {
         localStorage.clear();
-        route("/");
+        window.location.href = "/";
       }
 
       return Promise.reject(err);
