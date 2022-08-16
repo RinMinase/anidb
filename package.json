@@ -28,7 +28,6 @@
     "@emotion/styled": "^11.10.0",
     "@fortawesome/fontawesome-svg-core": "^6.1.2",
     "@fortawesome/free-solid-svg-icons": "^6.1.2",
-    "@fortawesome/react-fontawesome": "^0.2.0",
     "@hookform/resolvers": "^2.9.7",
     "@mui/icons-material": "^5.8.4",
     "@mui/material": "^5.10.0",
@@ -70,6 +69,7 @@
     "@babel/core": "^7.12.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
+    "react-fontawesome-svg-icon/react": "^17.0.0",
     "workbox-build": "^6.4.0",
     "workbox-window": "^6.4.0"
   },
