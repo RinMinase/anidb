@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "preact/hooks";
 import axios from "axios";
+import { FontAwesomeSvgIcon } from "react-fontawesome-svg-icon";
 
 import {
   Box,
@@ -14,10 +15,13 @@ import {
   TableRow,
 } from "@mui/material";
 
-import NumbersIcon from "@mui/icons-material/Numbers";
-import MovieIcon from "@mui/icons-material/MovieOutlined";
-import ScheduleIcon from "@mui/icons-material/Schedule";
-import SubscriptionsIcon from "@mui/icons-material/SubscriptionsOutlined";
+import { faClock as LastCountIcon } from "@fortawesome/free-regular-svg-icons";
+
+import {
+  faClapperboard as WeeklyCountIcon,
+  faHashtag as TotalCountIcon,
+  faTv as DailyCountIcon,
+} from "@fortawesome/free-solid-svg-icons";
 
 import { DashboardTile, GlobalLoaderContext, TableLoader } from "@components";
 import { Data, Stats } from "./types";
@@ -70,7 +74,7 @@ const LastWatch = () => {
         <Grid container spacing={4}>
           <Grid item xs={12} sm={6} md={3}>
             <DashboardTile
-              icon={<NumbersIcon fontSize="large" />}
+              icon={<FontAwesomeSvgIcon size="2x" icon={TotalCountIcon} />}
               iconColor="#ff9800"
               heading="Total Episodes"
               value={stats.totalEps}
@@ -79,7 +83,7 @@ const LastWatch = () => {
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
             <DashboardTile
-              icon={<ScheduleIcon fontSize="large" />}
+              icon={<FontAwesomeSvgIcon size="2x" icon={LastCountIcon} />}
               iconColor="#2196f3"
               heading="Days since last entry"
               value={stats.daysLastEntry}
@@ -88,7 +92,7 @@ const LastWatch = () => {
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
             <DashboardTile
-              icon={<SubscriptionsIcon fontSize="large" />}
+              icon={<FontAwesomeSvgIcon size="2x" icon={WeeklyCountIcon} />}
               iconColor="#009688"
               heading="Titles per week"
               value={stats.titlesPerWeek}
@@ -97,7 +101,7 @@ const LastWatch = () => {
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
             <DashboardTile
-              icon={<MovieIcon fontSize="large" />}
+              icon={<FontAwesomeSvgIcon size="2x" icon={DailyCountIcon} />}
               iconColor="#00bcd4"
               heading="Episodes per day"
               value={stats.epsPerDay}

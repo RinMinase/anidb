@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "preact/hooks";
 import axios from "axios";
+import { FontAwesomeSvgIcon } from "react-fontawesome-svg-icon";
 
 import {
   Box,
@@ -17,7 +18,7 @@ import {
   TableRow,
 } from "@mui/material";
 
-import Search from "@mui/icons-material/Search";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 import { Data } from "./types";
 import { GlobalLoaderContext, TableLoader } from "@components";
@@ -34,6 +35,10 @@ const SearchContainer = styled(Paper)({
 
 const SearchBox = styled(OutlinedInput)({
   paddingRight: 8,
+});
+
+const SearchIconContainer = styled(FontAwesomeSvgIcon)({
+  marginRight: 4,
 });
 
 const CustomTable = styled(Table)({
@@ -71,7 +76,7 @@ const Home = () => {
               fullWidth
               endAdornment={
                 <InputAdornment position="end">
-                  <Search />
+                  <SearchIconContainer icon={faMagnifyingGlass} />
                 </InputAdornment>
               }
             />

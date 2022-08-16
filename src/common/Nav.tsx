@@ -1,6 +1,7 @@
 import { useContext, useState } from "preact/hooks";
 import { route } from "preact-router";
 import axios from "axios";
+import { FontAwesomeSvgIcon } from "react-fontawesome-svg-icon";
 
 import {
   AppBar,
@@ -18,26 +19,32 @@ import {
   useTheme,
 } from "@mui/material";
 
-import B4Icon from "@mui/icons-material/Brightness4";
-import B7Icon from "@mui/icons-material/Brightness7";
-import CalendarIcon from "@mui/icons-material/CalendarMonth";
-import DownloadIcon from "@mui/icons-material/CloudDownload";
-import ListMenuIcon from "@mui/icons-material/FormatListBulleted";
-import ImportIcon from "@mui/icons-material/FileUpload";
-import ExportIcon from "@mui/icons-material/FileDownload";
-import ImportMenuIcon from "@mui/icons-material/ImportExport";
-import LogoutIcon from "@mui/icons-material/Logout";
-import MenuIcon from "@mui/icons-material/Menu";
-import PersonIcon from "@mui/icons-material/Person";
-import PlayIcon from "@mui/icons-material/PlayArrow";
-import SortIcon from "@mui/icons-material/SortByAlpha";
-import StorageIcon from "@mui/icons-material/Storage";
-import TvIcon from "@mui/icons-material/Tv";
+import {
+  faArrowDownAZ as ByNameIcon,
+  faArrowRightFromBracket as LogoutIcon,
+  faBars as MenuIcon,
+  faBook as CatalogsIcon,
+  faCalendarDays as ByYearIcon,
+  faClockRotateLeft as LastWatchIcon,
+  faDatabase as ImportMenuIcon,
+  faDownload as ExportIcon,
+  faHardDrive as BucketsIcon,
+  faListUl as ListIcon,
+  faMoon as DarkModeIcon,
+  faSun as LightModeIcon,
+  faTv as MarathonsIcon,
+  faUpload as ImportIcon,
+  faUser as AboutIcon,
+} from "@fortawesome/free-solid-svg-icons";
 
 import { ColorModeContext } from "./providers/ColorMode";
 import { GlobalLoaderContext } from "./providers/GlobalLoader";
 
 const RightMenuContainer = styled(Box)({
+  marginLeft: 8,
+});
+
+const NavIcon = styled(FontAwesomeSvgIcon)({
   marginLeft: 8,
 });
 
@@ -95,7 +102,7 @@ const Nav = () => {
               size="large"
               onClick={(e) => handleOpenList(e, "nav")}
               color="inherit"
-              children={<MenuIcon />}
+              children={<FontAwesomeSvgIcon icon={MenuIcon} />}
             />
             <Menu
               anchorEl={anchorNav}
@@ -119,7 +126,9 @@ const Nav = () => {
                 href="/last-watch"
                 onClick={() => handleCloseList("nav")}
               >
-                <ListItemIcon children={<PlayIcon fontSize="small" />} />
+                <ListItemIcon
+                  children={<FontAwesomeSvgIcon icon={LastWatchIcon} />}
+                />
                 Last Watched
               </MenuItem>
               <Divider />
@@ -128,7 +137,9 @@ const Nav = () => {
                 href="/by-name"
                 onClick={() => handleCloseList("nav")}
               >
-                <ListItemIcon children={<SortIcon fontSize="small" />} />
+                <ListItemIcon
+                  children={<FontAwesomeSvgIcon icon={ByNameIcon} />}
+                />
                 By Name
               </MenuItem>
               <MenuItem
@@ -136,7 +147,9 @@ const Nav = () => {
                 href="/by-year"
                 onClick={() => handleCloseList("nav")}
               >
-                <ListItemIcon children={<CalendarIcon fontSize="small" />} />
+                <ListItemIcon
+                  children={<FontAwesomeSvgIcon icon={ByYearIcon} />}
+                />
                 By Year
               </MenuItem>
               <Divider />
@@ -145,7 +158,9 @@ const Nav = () => {
                 href="/catalogs"
                 onClick={() => handleCloseList("nav")}
               >
-                <ListItemIcon children={<DownloadIcon fontSize="small" />} />
+                <ListItemIcon
+                  children={<FontAwesomeSvgIcon icon={CatalogsIcon} />}
+                />
                 Catalog Lists
               </MenuItem>
               <MenuItem
@@ -153,7 +168,9 @@ const Nav = () => {
                 href="/marathons"
                 onClick={() => handleCloseList("nav")}
               >
-                <ListItemIcon children={<TvIcon fontSize="small" />} />
+                <ListItemIcon
+                  children={<FontAwesomeSvgIcon icon={MarathonsIcon} />}
+                />
                 Marathon Lists
               </MenuItem>
               <MenuItem
@@ -161,7 +178,9 @@ const Nav = () => {
                 href="/buckets"
                 onClick={() => handleCloseList("nav")}
               >
-                <ListItemIcon children={<StorageIcon fontSize="small" />} />
+                <ListItemIcon
+                  children={<FontAwesomeSvgIcon icon={BucketsIcon} />}
+                />
                 Bucket Lists
               </MenuItem>
               <Divider />
@@ -170,7 +189,9 @@ const Nav = () => {
                 href="/about"
                 onClick={() => handleCloseList("nav")}
               >
-                <ListItemIcon children={<PersonIcon fontSize="small" />} />
+                <ListItemIcon
+                  children={<FontAwesomeSvgIcon icon={AboutIcon} />}
+                />
                 About
               </MenuItem>
               <MenuItem
@@ -179,7 +200,9 @@ const Nav = () => {
                   handleLogout();
                 }}
               >
-                <ListItemIcon children={<LogoutIcon fontSize="small" />} />
+                <ListItemIcon
+                  children={<FontAwesomeSvgIcon icon={LogoutIcon} />}
+                />
                 Logout
               </MenuItem>
             </Menu>
@@ -205,7 +228,7 @@ const Nav = () => {
             <Button
               color="inherit"
               onClick={(e) => handleOpenList(e, "list")}
-              startIcon={<ListMenuIcon />}
+              startIcon={<NavIcon icon={ListIcon} />}
             >
               Special Lists
             </Button>
@@ -219,7 +242,9 @@ const Nav = () => {
                 href="/last-watch"
                 onClick={() => handleCloseList("list")}
               >
-                <ListItemIcon children={<PlayIcon fontSize="small" />} />
+                <ListItemIcon
+                  children={<FontAwesomeSvgIcon icon={LastWatchIcon} />}
+                />
                 Last Watched
               </MenuItem>
               <Divider />
@@ -228,7 +253,9 @@ const Nav = () => {
                 href="/by-name"
                 onClick={() => handleCloseList("list")}
               >
-                <ListItemIcon children={<SortIcon fontSize="small" />} />
+                <ListItemIcon
+                  children={<FontAwesomeSvgIcon icon={ByNameIcon} />}
+                />
                 By Name
               </MenuItem>
               <MenuItem
@@ -236,7 +263,9 @@ const Nav = () => {
                 href="/by-year"
                 onClick={() => handleCloseList("list")}
               >
-                <ListItemIcon children={<CalendarIcon fontSize="small" />} />
+                <ListItemIcon
+                  children={<FontAwesomeSvgIcon icon={ByYearIcon} />}
+                />
                 By Year
               </MenuItem>
               <Divider />
@@ -245,7 +274,9 @@ const Nav = () => {
                 href="/catalogs"
                 onClick={() => handleCloseList("list")}
               >
-                <ListItemIcon children={<DownloadIcon fontSize="small" />} />
+                <ListItemIcon
+                  children={<FontAwesomeSvgIcon icon={CatalogsIcon} />}
+                />
                 Download Lists
               </MenuItem>
               <MenuItem
@@ -253,7 +284,9 @@ const Nav = () => {
                 href="/marathons"
                 onClick={() => handleCloseList("list")}
               >
-                <ListItemIcon children={<TvIcon fontSize="small" />} />
+                <ListItemIcon
+                  children={<FontAwesomeSvgIcon icon={MarathonsIcon} />}
+                />
                 Marathon Lists
               </MenuItem>
               <MenuItem
@@ -261,7 +294,9 @@ const Nav = () => {
                 href="/buckets"
                 onClick={() => handleCloseList("list")}
               >
-                <ListItemIcon children={<StorageIcon fontSize="small" />} />
+                <ListItemIcon
+                  children={<FontAwesomeSvgIcon icon={BucketsIcon} />}
+                />
                 Bucket Lists
               </MenuItem>
             </Menu>
@@ -269,7 +304,7 @@ const Nav = () => {
             <Button
               color="inherit"
               onClick={(e) => handleOpenList(e, "import")}
-              startIcon={<ImportMenuIcon />}
+              startIcon={<NavIcon icon={ImportMenuIcon} />}
             >
               Import / Export
             </Button>
@@ -279,31 +314,39 @@ const Nav = () => {
               onClose={() => handleCloseList("import")}
             >
               <MenuItem onClick={() => handleCloseList("import")}>
-                <ListItemIcon children={<ImportIcon fontSize="small" />} />
+                <ListItemIcon
+                  children={<FontAwesomeSvgIcon icon={ImportIcon} />}
+                />
                 Import Data
               </MenuItem>
               <MenuItem onClick={() => handleCloseList("import")}>
-                <ListItemIcon children={<ExportIcon fontSize="small" />} />
+                <ListItemIcon
+                  children={<FontAwesomeSvgIcon icon={ExportIcon} />}
+                />
                 Export Data
               </MenuItem>
             </Menu>
           </Box>
 
           <IconButton onClick={colorMode.toggleColorMode} color="inherit">
-            {theme.palette.mode === "dark" ? <B7Icon /> : <B4Icon />}
+            {theme.palette.mode === "dark" ? (
+              <FontAwesomeSvgIcon icon={LightModeIcon} />
+            ) : (
+              <FontAwesomeSvgIcon icon={DarkModeIcon} />
+            )}
           </IconButton>
 
           <RightMenuContainer sx={{ display: { xs: "none", md: "flex" } }}>
             <Button
               color="inherit"
-              startIcon={<PersonIcon />}
+              startIcon={<NavIcon icon={AboutIcon} />}
               onClick={() => null}
             >
               About
             </Button>
             <Button
               color="inherit"
-              startIcon={<LogoutIcon />}
+              startIcon={<NavIcon icon={LogoutIcon} />}
               onClick={handleLogout}
             >
               Logout

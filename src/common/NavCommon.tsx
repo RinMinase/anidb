@@ -1,4 +1,5 @@
 import { useContext, useState } from "preact/hooks";
+import { FontAwesomeSvgIcon } from "react-fontawesome-svg-icon";
 
 import {
   AppBar,
@@ -16,15 +17,21 @@ import {
   useTheme,
 } from "@mui/material";
 
-import B4Icon from "@mui/icons-material/Brightness4";
-import B7Icon from "@mui/icons-material/Brightness7";
-import CodeIcon from "@mui/icons-material/Code";
-import MenuIcon from "@mui/icons-material/Menu";
+import {
+  faBars as MenuIcon,
+  faCode as DeveloperIcon,
+  faMoon as DarkModeIcon,
+  faSun as LightModeIcon,
+} from "@fortawesome/free-solid-svg-icons";
 
 import { ColorModeContext } from "./providers/ColorMode";
 
 const RightMenuContainer = styled(Box)({
   marginLeft: 8,
+});
+
+const NavIcon = styled(FontAwesomeSvgIcon)({
+  marginLeft: 8
 });
 
 const NavCommon = () => {
@@ -66,7 +73,7 @@ const NavCommon = () => {
               size="large"
               onClick={(e) => handleOpenList(e, "nav")}
               color="inherit"
-              children={<MenuIcon />}
+              children={<FontAwesomeSvgIcon icon={MenuIcon} />}
             />
             <Menu
               anchorEl={anchorNav}
@@ -91,7 +98,9 @@ const NavCommon = () => {
                 href="https://rin.anidb.moe"
                 target="_blank"
               >
-                <ListItemIcon children={<CodeIcon fontSize="small" />} />
+                <ListItemIcon
+                  children={<FontAwesomeSvgIcon icon={DeveloperIcon} />}
+                />
                 Developer
               </MenuItem>
             </Menu>
@@ -114,13 +123,17 @@ const NavCommon = () => {
           </Typography>
 
           <IconButton onClick={colorMode.toggleColorMode} color="inherit">
-            {theme.palette.mode === "dark" ? <B7Icon /> : <B4Icon />}
+            {theme.palette.mode === "dark" ? (
+              <FontAwesomeSvgIcon icon={LightModeIcon} />
+            ) : (
+              <FontAwesomeSvgIcon icon={DarkModeIcon} />
+            )}
           </IconButton>
 
           <RightMenuContainer sx={{ display: { xs: "none", md: "flex" } }}>
             <Button
               color="inherit"
-              startIcon={<CodeIcon />}
+              startIcon={<NavIcon icon={DeveloperIcon} />}
               href="https://rin.anidb.moe"
             >
               Developer

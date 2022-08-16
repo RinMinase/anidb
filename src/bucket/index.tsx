@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "preact/hooks";
 import axios from "axios";
+import { FontAwesomeSvgIcon } from "react-fontawesome-svg-icon";
 
 import {
   Box,
@@ -15,8 +16,10 @@ import {
   Typography,
 } from "@mui/material";
 
-import StorageIcon from "@mui/icons-material/Storage";
-import FolderIcon from "@mui/icons-material/FolderOpenOutlined";
+import {
+  faDatabase as StorageIcon,
+  faHardDrive as DriveIcon,
+} from "@fortawesome/free-solid-svg-icons";
 
 import { DashboardTile, GlobalLoaderContext, TableLoader } from "@components";
 import { Bucket as SingleBucket, Buckets, Data, Stats } from "./types";
@@ -99,7 +102,7 @@ const Bucket = () => {
                 return (
                   <Grid item xs={12} sm={6} md={3} key={`bucket${index}`}>
                     <DashboardTile
-                      icon={<StorageIcon fontSize="large" />}
+                      icon={<FontAwesomeSvgIcon size="2x" icon={StorageIcon} />}
                       iconColor={bucket.bucketColor}
                       heading={"Total"}
                       subHeading={`${bucket.used} / ${bucket.total}`}
@@ -114,7 +117,7 @@ const Bucket = () => {
               return (
                 <Grid item xs={12} sm={6} md={3} key={`bucket${index}`}>
                   <DashboardTile
-                    icon={<FolderIcon fontSize="large" />}
+                    icon={<FontAwesomeSvgIcon size="2x" icon={DriveIcon} />}
                     iconColor={bucket.bucketColor}
                     heading={`${bucket.from.toUpperCase()} - ${bucket.to.toUpperCase()}`}
                     subHeading={`${bucket.used} / ${bucket.total}`}

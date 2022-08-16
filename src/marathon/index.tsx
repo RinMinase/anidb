@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "preact/hooks";
 import axios from "axios";
 import { Chart, ChartOptions, registerables } from "chart.js";
 import ChartDataLabels from "chartjs-plugin-datalabels";
+import { FontAwesomeSvgIcon } from "react-fontawesome-svg-icon";
 
 import {
   Box,
@@ -18,9 +19,11 @@ import {
   TableRow,
 } from "@mui/material";
 
-import CalendarMonthIcon from "@mui/icons-material/CalendarMonthOutlined";
-import DateRangeIcon from "@mui/icons-material/DateRangeOutlined";
-import SubscriptionsIcon from "@mui/icons-material/SubscriptionsOutlined";
+import {
+  faCalendarDays as DayCountIcon,
+  faClapperboard as TotalCountIcon,
+  faTv as TitleCountIcon,
+} from "@fortawesome/free-solid-svg-icons";
 
 import { DashboardTile, GlobalLoaderContext, TableLoader } from "@components";
 import { Data, Sequences, Stats } from "./types";
@@ -188,7 +191,7 @@ const Marathon = () => {
         <Grid container spacing={4}>
           <Grid item xs={12} sm={6} md={3}>
             <DashboardTile
-              icon={<DateRangeIcon fontSize="large" />}
+              icon={<FontAwesomeSvgIcon size="2x" icon={TitleCountIcon} />}
               iconColor="#ff9800"
               heading="Titles per day"
               value={stats.titles_per_day}
@@ -197,7 +200,7 @@ const Marathon = () => {
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
             <DashboardTile
-              icon={<SubscriptionsIcon fontSize="large" />}
+              icon={<FontAwesomeSvgIcon size="2x" icon={TotalCountIcon} />}
               iconColor="#2196f3"
               heading="Total titles"
               value={stats.total_titles}
@@ -209,7 +212,7 @@ const Marathon = () => {
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
             <DashboardTile
-              icon={<CalendarMonthIcon fontSize="large" />}
+              icon={<FontAwesomeSvgIcon size="2x" icon={DayCountIcon} />}
               iconColor="#009688"
               heading="Days"
               value={stats.total_days}
