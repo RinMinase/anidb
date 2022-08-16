@@ -38,6 +38,7 @@
     "preact": "^10.10.1",
     "preact-async-route": "^2.2.1",
     "preact-router": "^4.1.0",
+    "react-fontawesome-svg-icon": "^1.1.1",
     "react-hook-form": "^7.34.0",
     "yup": "^0.32.11"
   },

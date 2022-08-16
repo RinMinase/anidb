@@ -8936,6 +8936,11 @@ react-dom@^18.0.0:
     loose-envify "^1.1.0"
     scheduler "^0.23.0"
 
+react-fontawesome-svg-icon@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/react-fontawesome-svg-icon/-/react-fontawesome-svg-icon-1.1.1.tgz#a3c3e14ba7cdfeceefdee60e8a7bb06af33ef8de"
+  integrity sha512-obshOFTdNaQUDakEcrY1M7frqc4tW1oZ8KKjhcTG4Iz5dS/9/wn7qqVSY4M3lkMiCTbf9Vfq3QWX2DqohD6O3A==
+
 react-hook-form@^7.34.0:
   version "7.34.0"
   resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.34.0.tgz#22883b5e014e5c5e35f3061d0e3862153b0df2ec"
