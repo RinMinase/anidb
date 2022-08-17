@@ -36,6 +36,11 @@ const ModuleContainer = styled(Box)({
   paddingBottom: 24,
 });
 
+const CustomMenuList = styled(MenuList)<{component: any}>({
+  padding: 0,
+  overflow: "hidden",
+});
+
 const Icon = styled(FontAwesomeSvgIcon)({
   marginRight: 8,
 });
@@ -145,7 +150,7 @@ const ByYear = () => {
     <ModuleContainer>
       <Grid container spacing={2}>
         <Grid item xs={12} sm={5} md={3}>
-          <MenuList component={Paper}>
+          <CustomMenuList component={Paper}>
             {yearData.map((item, index) => (
               <MenuItem
                 key={`mara-${index}`}
@@ -153,7 +158,7 @@ const ByYear = () => {
                 selected={selectedYear === item.year}
               >
                 {item.year ? (
-                  <Box width="100%">
+                  <Box width="100%" pb={0.5}>
                     <Typography>{item.year}</Typography>
                     {renderSubmenu("None", item.seasons?.None)}
                     {renderSubmenu("Winter", item.seasons?.Winter)}
@@ -173,7 +178,7 @@ const ByYear = () => {
                 )}
               </MenuItem>
             ))}
-          </MenuList>
+          </CustomMenuList>
         </Grid>
 
         <Grid item xs={12} sm={7} md={9}>
