@@ -46,6 +46,11 @@ const ChartContainer = styled(Box)({
   boxSizing: "content-box",
 });
 
+const CustomMenuList = styled(MenuList)<{component: any}>({
+  padding: 0,
+  overflow: "hidden",
+});
+
 const CustomTable = styled(Table)({
   minWidth: 650,
 });
@@ -232,7 +237,7 @@ const Marathon = () => {
 
       <Grid container spacing={2}>
         <Grid item xs={12} sm={5} md={3}>
-          <MenuList component={Paper}>
+          <CustomMenuList component={Paper}>
             {sequences.map((item, index) => (
               <MenuItem
                 key={`mara-${index}`}
@@ -241,7 +246,7 @@ const Marathon = () => {
                 {item.title}
               </MenuItem>
             ))}
-          </MenuList>
+          </CustomMenuList>
         </Grid>
         <Grid item xs={12} sm={7} md={9}>
           <TableContainer component={Paper}>
