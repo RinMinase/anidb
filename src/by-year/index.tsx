@@ -4,6 +4,8 @@ import { FontAwesomeSvgIcon } from "react-fontawesome-svg-icon";
 
 import {
   Box,
+  Chip,
+  Divider,
   Grid,
   MenuItem,
   MenuList,
@@ -43,12 +45,20 @@ const Icon = styled(FontAwesomeSvgIcon)({
   marginRight: 8,
 });
 
+const DividingSpacer = styled(Box)({})
+
+const DividingBox = styled(Box)({
+  borderBottom: `1px solid #ccc`,
+  display: "flex",
+  flexGrow: 1,
+});
+
 const ByYear = () => {
   const { toggleLoader } = useContext(GlobalLoaderContext);
 
   const [data, setData] = useState<Data>({});
   const [yearData, setYearData] = useState<YearData>([]);
-  const [selectedYear, setSelectedYear] = useState<number|null>(null);
+  const [selectedYear, setSelectedYear] = useState<number | null>(null);
 
   useEffect(() => {
     toggleLoader(true);
@@ -88,6 +98,19 @@ const ByYear = () => {
       .finally(() => toggleLoader(false));
   };
 
+  const renderSubmenu = (label: string, value?: number) => (
+    <>
+      {value ? (
+        <Stack spacing={2} direction="row" alignItems="center">
+          <DividingSpacer />
+          <Typography component="span" variant="body2" children={label} />
+          <DividingBox />
+          <Typography component="span" variant="body2" children={value} />
+        </Stack>
+      ) : null}
+    </>
+  );
+
   return (
     <ModuleContainer>
       <Grid container spacing={2}>
@@ -99,7 +122,25 @@ const ByYear = () => {
                 onClick={() => handleClickYear(item.year)}
                 selected={selectedYear === item.year}
               >
-                {item.year ?? "Uncategorized"}
+                {item.year ? (
+                  <Box width="100%">
+                    <Typography>{item.year}</Typography>
+                    {renderSubmenu("None", item.seasons?.None)}
+                    {renderSubmenu("Winter", item.seasons?.Winter)}
+                    {renderSubmenu("Spring", item.seasons?.Spring)}
+                    {renderSubmenu("Summer", item.seasons?.Summer)}
+                    {renderSubmenu("Fall", item.seasons?.Fall)}
+                  </Box>
+                ) : (
+                  <Box
+                    display="flex"
+                    justifyContent="space-between"
+                    width="100%"
+                  >
+                    Uncategorized
+                    <Chip label={item.count} size="small" />
+                  </Box>
+                )}
               </MenuItem>
             ))}
           </MenuList>
