@@ -5,7 +5,6 @@ import { FontAwesomeSvgIcon } from "react-fontawesome-svg-icon";
 import {
   Box,
   Chip,
-  Divider,
   Grid,
   MenuItem,
   MenuList,
@@ -37,15 +36,11 @@ const ModuleContainer = styled(Box)({
   paddingBottom: 24,
 });
 
-const CustomTable = styled(Table)({
-  minWidth: 650,
-});
-
 const Icon = styled(FontAwesomeSvgIcon)({
   marginRight: 8,
 });
 
-const DividingSpacer = styled(Box)({})
+const DividingSpacer = styled(Box)({});
 
 const DividingBox = styled(Box)({
   borderBottom: `1px solid #ccc`,
@@ -111,6 +106,41 @@ const ByYear = () => {
     </>
   );
 
+  const renderTable = (
+    heading: string,
+    icon: any,
+    color: string,
+    values?: Data["Uncategorized"],
+  ) => (
+    <>
+      {values?.length ? (
+        <Box>
+          <Typography variant="h5" gutterBottom>
+            <Icon icon={icon} color={color} />
+            {heading}
+          </Typography>
+          <TableContainer component={Paper}>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell>Title</TableCell>
+                </TableRow>
+              </TableHead>
+
+              <TableBody>
+                {values.map((item) => (
+                  <TableRow hover key={item.uuid}>
+                    <TableCell>{item.title}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </Box>
+      ) : null}
+    </>
+  );
+
   return (
     <ModuleContainer>
       <Grid container spacing={2}>
@@ -148,135 +178,11 @@ const ByYear = () => {
 
         <Grid item xs={12} sm={7} md={9}>
           <Stack spacing={3}>
-            {data.Uncategorized?.length ? (
-              <Box>
-                <Typography variant="h5" gutterBottom>
-                  <Icon icon={UncategorizedIcon} color="#d32f2f" />
-                  Uncategorized
-                </Typography>
-                <TableContainer component={Paper}>
-                  <CustomTable>
-                    <TableHead>
-                      <TableRow>
-                        <TableCell>Title</TableCell>
-                      </TableRow>
-                    </TableHead>
-
-                    <TableBody>
-                      {data.Uncategorized.map((item) => (
-                        <TableRow hover key={item.uuid}>
-                          <TableCell>{item.title}</TableCell>
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                  </CustomTable>
-                </TableContainer>
-              </Box>
-            ) : null}
-
-            {data.Winter?.length ? (
-              <Box>
-                <Typography variant="h5" gutterBottom>
-                  <Icon icon={WinterIcon} color="#87ceeb" />
-                  Winter
-                </Typography>
-                <TableContainer component={Paper}>
-                  <CustomTable>
-                    <TableHead>
-                      <TableRow>
-                        <TableCell>Title</TableCell>
-                      </TableRow>
-                    </TableHead>
-
-                    <TableBody>
-                      {data.Winter.map((item) => (
-                        <TableRow hover key={item.uuid}>
-                          <TableCell>{item.title}</TableCell>
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                  </CustomTable>
-                </TableContainer>
-              </Box>
-            ) : null}
-
-            {data.Spring?.length ? (
-              <Box>
-                <Typography variant="h5" gutterBottom>
-                  <Icon icon={SpringIcon} color="#008000" />
-                  Spring
-                </Typography>
-                <TableContainer component={Paper}>
-                  <CustomTable>
-                    <TableHead>
-                      <TableRow>
-                        <TableCell>Title</TableCell>
-                      </TableRow>
-                    </TableHead>
-
-                    <TableBody>
-                      {data.Spring.map((item) => (
-                        <TableRow hover key={item.uuid}>
-                          <TableCell>{item.title}</TableCell>
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                  </CustomTable>
-                </TableContainer>
-              </Box>
-            ) : null}
-
-            {data.Summer?.length ? (
-              <Box>
-                <Typography variant="h5" gutterBottom>
-                  <Icon icon={SummerIcon} color="#ffa726" />
-                  Summer
-                </Typography>
-                <TableContainer component={Paper}>
-                  <CustomTable>
-                    <TableHead>
-                      <TableRow>
-                        <TableCell>Title</TableCell>
-                      </TableRow>
-                    </TableHead>
-
-                    <TableBody>
-                      {data.Summer.map((item) => (
-                        <TableRow hover key={item.uuid}>
-                          <TableCell>{item.title}</TableCell>
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                  </CustomTable>
-                </TableContainer>
-              </Box>
-            ) : null}
-
-            {data.Fall?.length ? (
-              <Box>
-                <Typography variant="h5" gutterBottom>
-                  <Icon icon={FallIcon} color="#ff5722" />
-                  Fall
-                </Typography>
-                <TableContainer component={Paper}>
-                  <CustomTable>
-                    <TableHead>
-                      <TableRow>
-                        <TableCell>Title</TableCell>
-                      </TableRow>
-                    </TableHead>
-
-                    <TableBody>
-                      {data.Fall.map((item) => (
-                        <TableRow hover key={item.uuid}>
-                          <TableCell>{item.title}</TableCell>
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                  </CustomTable>
-                </TableContainer>
-              </Box>
-            ) : null}
+            {renderTable("Uncategorized", UncategorizedIcon, "#d32f2f", data.Uncategorized)}
+            {renderTable("Winter", WinterIcon, "#87ceeb", data.Winter)}
+            {renderTable("Spring", SpringIcon, "#008000", data.Spring)}
+            {renderTable("Summer", SummerIcon, "#ffa726", data.Summer)}
+            {renderTable("Fall", FallIcon, "#ff5722", data.Fall)}
           </Stack>
         </Grid>
       </Grid>
