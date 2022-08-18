@@ -27,13 +27,11 @@ import {
   faCalendarDays as ByYearIcon,
   faClockRotateLeft as LastWatchIcon,
   faDatabase as ImportMenuIcon,
-  faDownload as ExportIcon,
   faHardDrive as BucketsIcon,
   faListUl as ListIcon,
   faMoon as DarkModeIcon,
   faSun as LightModeIcon,
   faTv as MarathonsIcon,
-  faUpload as ImportIcon,
   faUser as AboutIcon,
 } from "@fortawesome/free-solid-svg-icons";
 
@@ -55,18 +53,15 @@ const Nav = () => {
 
   const [anchorNav, setAnchorNav] = useState<null | HTMLElement>(null);
   const [anchorList, setAnchorList] = useState<null | HTMLElement>(null);
-  const [anchorImport, setAnchorImport] = useState<null | HTMLElement>(null);
 
   const handleOpenList = (event: any, menu: "nav" | "import" | "list") => {
     if (menu === "nav") setAnchorNav(event.currentTarget);
     if (menu === "list") setAnchorList(event.currentTarget);
-    if (menu === "import") setAnchorImport(event.currentTarget);
   };
 
   const handleCloseList = (menu: "nav" | "import" | "list") => {
     if (menu === "nav") setAnchorNav(null);
     if (menu === "list") setAnchorList(null);
-    if (menu === "import") setAnchorImport(null);
   };
 
   const handleLogout = () => {
@@ -303,29 +298,11 @@ const Nav = () => {
 
             <Button
               color="inherit"
-              onClick={(e) => handleOpenList(e, "import")}
+              href="/data-management"
               startIcon={<NavIcon icon={ImportMenuIcon} />}
             >
-              Import / Export
+              Data Management
             </Button>
-            <Menu
-              anchorEl={anchorImport}
-              open={!!anchorImport}
-              onClose={() => handleCloseList("import")}
-            >
-              <MenuItem onClick={() => handleCloseList("import")}>
-                <ListItemIcon
-                  children={<FontAwesomeSvgIcon icon={ImportIcon} />}
-                />
-                Import Data
-              </MenuItem>
-              <MenuItem onClick={() => handleCloseList("import")}>
-                <ListItemIcon
-                  children={<FontAwesomeSvgIcon icon={ExportIcon} />}
-                />
-                Export Data
-              </MenuItem>
-            </Menu>
           </Box>
 
           <IconButton onClick={colorMode.toggleColorMode} color="inherit">
