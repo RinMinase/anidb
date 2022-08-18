@@ -73,6 +73,37 @@ const Nav = () => {
     });
   };
 
+  const MenuItemList = (props: { onClick: () => void }) => (
+    <>
+      <MenuItem component="a" href="/last-watch" onClick={props.onClick}>
+        <ListItemIcon children={<FontAwesomeSvgIcon icon={LastWatchIcon} />} />
+        Last Watched
+      </MenuItem>
+      <Divider />
+      <MenuItem component="a" href="/by-name" onClick={props.onClick}>
+        <ListItemIcon children={<FontAwesomeSvgIcon icon={ByNameIcon} />} />
+        By Name
+      </MenuItem>
+      <MenuItem component="a" href="/by-year" onClick={props.onClick}>
+        <ListItemIcon children={<FontAwesomeSvgIcon icon={ByYearIcon} />} />
+        By Year
+      </MenuItem>
+      <Divider />
+      <MenuItem component="a" href="/catalogs" onClick={props.onClick}>
+        <ListItemIcon children={<FontAwesomeSvgIcon icon={CatalogsIcon} />} />
+        Download Lists
+      </MenuItem>
+      <MenuItem component="a" href="/marathons" onClick={props.onClick}>
+        <ListItemIcon children={<FontAwesomeSvgIcon icon={MarathonsIcon} />} />
+        Marathon Lists
+      </MenuItem>
+      <MenuItem component="a" href="/buckets" onClick={props.onClick}>
+        <ListItemIcon children={<FontAwesomeSvgIcon icon={BucketsIcon} />} />
+        Bucket Lists
+      </MenuItem>
+    </>
+  );
+
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
@@ -116,68 +147,7 @@ const Nav = () => {
                 display: { xs: "block", md: "none" },
               }}
             >
-              <MenuItem
-                component="a"
-                href="/last-watch"
-                onClick={() => handleCloseList("nav")}
-              >
-                <ListItemIcon
-                  children={<FontAwesomeSvgIcon icon={LastWatchIcon} />}
-                />
-                Last Watched
-              </MenuItem>
-              <Divider />
-              <MenuItem
-                component="a"
-                href="/by-name"
-                onClick={() => handleCloseList("nav")}
-              >
-                <ListItemIcon
-                  children={<FontAwesomeSvgIcon icon={ByNameIcon} />}
-                />
-                By Name
-              </MenuItem>
-              <MenuItem
-                component="a"
-                href="/by-year"
-                onClick={() => handleCloseList("nav")}
-              >
-                <ListItemIcon
-                  children={<FontAwesomeSvgIcon icon={ByYearIcon} />}
-                />
-                By Year
-              </MenuItem>
-              <Divider />
-              <MenuItem
-                component="a"
-                href="/catalogs"
-                onClick={() => handleCloseList("nav")}
-              >
-                <ListItemIcon
-                  children={<FontAwesomeSvgIcon icon={CatalogsIcon} />}
-                />
-                Catalog Lists
-              </MenuItem>
-              <MenuItem
-                component="a"
-                href="/marathons"
-                onClick={() => handleCloseList("nav")}
-              >
-                <ListItemIcon
-                  children={<FontAwesomeSvgIcon icon={MarathonsIcon} />}
-                />
-                Marathon Lists
-              </MenuItem>
-              <MenuItem
-                component="a"
-                href="/buckets"
-                onClick={() => handleCloseList("nav")}
-              >
-                <ListItemIcon
-                  children={<FontAwesomeSvgIcon icon={BucketsIcon} />}
-                />
-                Bucket Lists
-              </MenuItem>
+              <MenuItemList onClick={() => handleCloseList("nav")} />
               <Divider />
               <MenuItem
                 component="a"
@@ -232,68 +202,7 @@ const Nav = () => {
               open={!!anchorList}
               onClose={() => handleCloseList("list")}
             >
-              <MenuItem
-                component="a"
-                href="/last-watch"
-                onClick={() => handleCloseList("list")}
-              >
-                <ListItemIcon
-                  children={<FontAwesomeSvgIcon icon={LastWatchIcon} />}
-                />
-                Last Watched
-              </MenuItem>
-              <Divider />
-              <MenuItem
-                component="a"
-                href="/by-name"
-                onClick={() => handleCloseList("list")}
-              >
-                <ListItemIcon
-                  children={<FontAwesomeSvgIcon icon={ByNameIcon} />}
-                />
-                By Name
-              </MenuItem>
-              <MenuItem
-                component="a"
-                href="/by-year"
-                onClick={() => handleCloseList("list")}
-              >
-                <ListItemIcon
-                  children={<FontAwesomeSvgIcon icon={ByYearIcon} />}
-                />
-                By Year
-              </MenuItem>
-              <Divider />
-              <MenuItem
-                component="a"
-                href="/catalogs"
-                onClick={() => handleCloseList("list")}
-              >
-                <ListItemIcon
-                  children={<FontAwesomeSvgIcon icon={CatalogsIcon} />}
-                />
-                Download Lists
-              </MenuItem>
-              <MenuItem
-                component="a"
-                href="/marathons"
-                onClick={() => handleCloseList("list")}
-              >
-                <ListItemIcon
-                  children={<FontAwesomeSvgIcon icon={MarathonsIcon} />}
-                />
-                Marathon Lists
-              </MenuItem>
-              <MenuItem
-                component="a"
-                href="/buckets"
-                onClick={() => handleCloseList("list")}
-              >
-                <ListItemIcon
-                  children={<FontAwesomeSvgIcon icon={BucketsIcon} />}
-                />
-                Bucket Lists
-              </MenuItem>
+              <MenuItemList onClick={() => handleCloseList("list")} />
             </Menu>
 
             <Button
