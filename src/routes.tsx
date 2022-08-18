@@ -24,7 +24,6 @@ const Marathon = () => import("./marathon").then((c) => c.default);
 const Bucket = () => import("./bucket").then((c) => c.default);
 
 const DataManagement = () => import("./data-management").then((c) => c.default);
-const About = () => import("./about").then((c) => c.default);
 
 const Routes = (props: Props) => (
   <Router onChange={props.onChange}>
@@ -44,7 +43,6 @@ const Routes = (props: Props) => (
     <AsyncRoute path="/buckets" getComponent={Bucket} />
 
     <AsyncRoute path="/data-management" getComponent={DataManagement} />
-    <AsyncRoute path="/about" getComponent={About} />
 
     <Route default component={Page404} />
   </Router>

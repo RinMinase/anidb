@@ -225,13 +225,6 @@ const Nav = () => {
           <RightMenuContainer sx={{ display: { xs: "none", md: "flex" } }}>
             <Button
               color="inherit"
-              startIcon={<NavIcon icon={AboutIcon} />}
-              onClick={() => null}
-            >
-              About
-            </Button>
-            <Button
-              color="inherit"
               startIcon={<NavIcon icon={LogoutIcon} />}
               onClick={handleLogout}
             >
