@@ -36,7 +36,7 @@ const ModuleContainer = styled(Box)({
   paddingBottom: 24,
 });
 
-const CustomMenuList = styled(MenuList)<{component: any}>({
+const CustomMenuList = styled(MenuList)<{ component: any }>({
   padding: 0,
   overflow: "hidden",
 });
@@ -54,7 +54,7 @@ const DividingBox = styled(Box)({
 });
 
 const ByYear = () => {
-  const { toggleLoader } = useContext(GlobalLoaderContext);
+  const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
 
   const [data, setData] = useState<Data>({});
   const [yearData, setYearData] = useState<YearData>([]);
@@ -98,12 +98,26 @@ const ByYear = () => {
       .finally(() => toggleLoader(false));
   };
 
+  const IconWinter = () => <Icon icon={WinterIcon} color="#87ceeb" />;
+  const IconSpring = () => <Icon icon={SpringIcon} color="#008000" />;
+  const IconSummer = () => <Icon icon={SummerIcon} color="#ffa726" />;
+  const IconFall = () => <Icon icon={FallIcon} color="#ff5722" />;
+  const IconUncategorized = () => (
+    <Icon icon={UncategorizedIcon} color="#d32f2f" />
+  );
+
   const renderSubmenu = (label: string, value?: number) => (
     <>
       {value ? (
         <Stack spacing={2} direction="row" alignItems="center">
           <DividingSpacer />
-          <Typography component="span" variant="body2" children={label} />
+          <Typography component="span" variant="body2">
+            {label === "Winter" ? <IconWinter /> : null}
+            {label === "Spring" ? <IconSpring /> : null}
+            {label === "Summer" ? <IconSummer /> : null}
+            {label === "Fall" ? <IconFall /> : null}
+            {label}
+          </Typography>
           <DividingBox />
           <Typography component="span" variant="body2" children={value} />
         </Stack>
@@ -114,14 +128,13 @@ const ByYear = () => {
   const renderTable = (
     heading: string,
     icon: any,
-    color: string,
     values?: Data["Uncategorized"],
   ) => (
     <>
       {values?.length ? (
         <Box>
           <Typography variant="h5" gutterBottom>
-            <Icon icon={icon} color={color} />
+            {icon}
             {heading}
           </Typography>
           <TableContainer component={Paper}>
@@ -183,11 +196,19 @@ const ByYear = () => {
 
         <Grid item xs={12} sm={7} md={9}>
           <Stack spacing={3}>
-            {renderTable("Uncategorized", UncategorizedIcon, "#d32f2f", data.Uncategorized)}
-            {renderTable("Winter", WinterIcon, "#87ceeb", data.Winter)}
-            {renderTable("Spring", SpringIcon, "#008000", data.Spring)}
-            {renderTable("Summer", SummerIcon, "#ffa726", data.Summer)}
-            {renderTable("Fall", FallIcon, "#ff5722", data.Fall)}
+            {!isLoading && (
+              <>
+                {renderTable(
+                  "Uncategorized",
+                  <IconUncategorized />,
+                  data.Uncategorized,
+                )}
+                {renderTable("Winter", <IconWinter />, data.Winter)}
+                {renderTable("Spring", <IconSpring />, data.Spring)}
+                {renderTable("Summer", <IconSummer />, data.Summer)}
+                {renderTable("Fall", <IconFall />, data.Fall)}
+              </>
+            )}
           </Stack>
         </Grid>
       </Grid>
