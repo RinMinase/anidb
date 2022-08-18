@@ -26,13 +26,12 @@ import {
   faBook as CatalogsIcon,
   faCalendarDays as ByYearIcon,
   faClockRotateLeft as LastWatchIcon,
-  faDatabase as ImportMenuIcon,
+  faDatabase as DataManagementIcon,
   faHardDrive as BucketsIcon,
   faListUl as ListIcon,
   faMoon as DarkModeIcon,
   faSun as LightModeIcon,
   faTv as MarathonsIcon,
-  faUser as AboutIcon,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { ColorModeContext } from "./providers/ColorMode";
@@ -151,13 +150,13 @@ const Nav = () => {
               <Divider />
               <MenuItem
                 component="a"
-                href="/about"
+                href="/data-management"
                 onClick={() => handleCloseList("nav")}
               >
                 <ListItemIcon
-                  children={<FontAwesomeSvgIcon icon={AboutIcon} />}
+                  children={<FontAwesomeSvgIcon icon={DataManagementIcon} />}
                 />
-                About
+                Data Management
               </MenuItem>
               <MenuItem
                 onClick={() => {
@@ -208,7 +207,7 @@ const Nav = () => {
             <Button
               color="inherit"
               href="/data-management"
-              startIcon={<NavIcon icon={ImportMenuIcon} />}
+              startIcon={<NavIcon icon={DataManagementIcon} />}
             >
               Data Management
             </Button>
