@@ -1558,7 +1558,7 @@
     validate-npm-package-name "^4.0.0"
     yargs "^17.3.1"
 
-"@netlify/edge-bundler@^1.12.1":
+"@netlify/edge-bundler@^1.12.1", "@netlify/edge-bundler@^1.13.0":
   version "1.13.0"
   resolved "https://registry.yarnpkg.com/@netlify/edge-bundler/-/edge-bundler-1.13.0.tgz#0b68bc7034d5d0c71959c789cdf0961050fcab75"
   integrity sha512-5LDNouZP2tUt3m6NyKkEgor9PycIEq7wxUgrRSpiUcZVV7CNU/CUxxpXJb11/wEFq2bWZp3/xqzxqbR7vpqFNg==
@@ -7704,14 +7704,14 @@ nested-error-stacks@^2.0.0, nested-error-stacks@^2.1.0:
   resolved "https://registry.yarnpkg.com/nested-error-stacks/-/nested-error-stacks-2.1.1.tgz#26c8a3cee6cc05fbcf1e333cd2fc3e003326c0b5"
   integrity sha512-9iN1ka/9zmX1ZvLV9ewJYEk9h7RyRRtqdK0woXcqohu8EWIerfPUjYJPg0ULy0UqP7cslmdGc8xKDJcojlKiaw==
 
-netlify-cli@^11.0.0:
-  version "11.0.0"
-  resolved "https://registry.yarnpkg.com/netlify-cli/-/netlify-cli-11.0.0.tgz#26171730837f180ffaca83f9a733b3a720618db5"
-  integrity sha512-nQnG6TmRoBYhisgVpG6HL9alJijCxKzLkjBFiZVPqd5YXR0fvDZptR5l3PCMWOehm6qYihP/5R/qaq+hhGEgsA==
+netlify-cli@^11.1.0:
+  version "11.1.0"
+  resolved "https://registry.yarnpkg.com/netlify-cli/-/netlify-cli-11.1.0.tgz#28fa11be731fbb5081e4ff617122fa3396c9f496"
+  integrity sha512-oru5f0tOH1eFcz9TiUdC1QrtG8alPBrR0lfCKvHmwykQ/8d9WVqelPWzKp99+gGguC3me7UxWPG3tGZooSdWsA==
   dependencies:
     "@netlify/build" "^27.14.0"
     "@netlify/config" "^18.2.0"
-    "@netlify/edge-bundler" "^1.12.1"
+    "@netlify/edge-bundler" "^1.13.0"
     "@netlify/framework-info" "^9.2.0"
     "@netlify/local-functions-proxy" "^1.1.1"
     "@netlify/plugins-list" "^6.39.0"
