@@ -66,8 +66,10 @@ const ByYear = () => {
     axios
       .get("/entries/by-year")
       .then(({ data: { data } }) => {
-        setYearData(() => data);
         const firstYear = data[0].year;
+
+        setYearData(() => data);
+        setSelectedYear(firstYear);
 
         axios
           .get(`entries/by-year/${firstYear}`)
