@@ -21,7 +21,12 @@ import {
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 import { Data } from "./types";
-import { GlobalLoaderContext, Quality, TableLoader } from "@components";
+import {
+  GlobalLoaderContext,
+  Quality,
+  RewatchIndicator,
+  TableLoader,
+} from "@components";
 
 const ModuleContainer = styled(Box)({
   paddingTop: 24,
@@ -109,7 +114,10 @@ const Home = () => {
                     {item.episodes} / {item.ovas} / {item.specials}
                   </TableCell>
                   <TableCell>{item.filesize}</TableCell>
-                  <TableCell>{item.dateFinished}</TableCell>
+                  <TableCell>
+                    {item.dateFinished}
+                    <RewatchIndicator show={item.rewatched} />
+                  </TableCell>
                   <TableCell>{item.release}</TableCell>
                   <TableCell>{item.encoder}</TableCell>
                 </TableRow>
