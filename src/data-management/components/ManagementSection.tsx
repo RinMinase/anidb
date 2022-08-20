@@ -1,11 +1,12 @@
 import { useDropzone } from "react-dropzone";
 import { FontAwesomeSvgIcon } from "react-fontawesome-svg-icon";
+import Swal from 'sweetalert2'
 
 import { Box, Button, Grid, styled, Typography } from "@mui/material";
 
 import { faCloudArrowUp as ImportIcon } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
-import { useContext } from "preact/hooks";
+import { useContext, useState } from "preact/hooks";
 import { GlobalLoaderContext } from "@components";
 
 type Props = {
@@ -34,6 +35,8 @@ const ImportButton = styled(Button)({
 const ManagementSection = (props: Props) => {
   const { toggleLoader } = useContext(GlobalLoaderContext);
 
+  const [uploading, setUploading] = useState(false);
+
   const dzConfig = {
     accept: {
       "application/json": [".json"],
@@ -44,10 +47,9 @@ const ManagementSection = (props: Props) => {
     useDropzone(dzConfig);
 
   const handleImport = async () => {
-    toggleLoader(true);
+    setUploading(true);
 
     const file = acceptedFiles[0];
-
     const body = new FormData();
     body.append("file", file);
 
@@ -55,7 +57,18 @@ const ManagementSection = (props: Props) => {
       .post("/entries/import", body, {
         headers: { "Content-Type": "multipart/form-data" },
       })
-      .then(() => props.reloadPageData())
+      .then(({data: {data}}) => {
+        setUploading(false);
+
+        Swal.fire({
+          title: 'Success!',
+          html: `
+            Accepted: ${data.acceptedImports}<br />
+            JSON Entries: ${data.totalJsonEntries}
+          `,
+          icon: 'success',
+        }).then(() => props.reloadPageData());
+      })
       .catch((err) => console.error(err))
       .finally(() => toggleLoader(false));
   };
@@ -88,7 +101,7 @@ const ManagementSection = (props: Props) => {
         <ImportButton
           variant="contained"
           endIcon={<FontAwesomeSvgIcon icon={ImportIcon} />}
-          disabled={!acceptedFiles.length}
+          disabled={!acceptedFiles.length || uploading}
           onClick={handleImport}
         >
           Import
