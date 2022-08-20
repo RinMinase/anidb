@@ -27,7 +27,7 @@ import {
   faTree as SpringIcon,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { GlobalLoaderContext } from "@components";
+import { GlobalLoaderContext, Quality } from "@components";
 import { Data, YearData } from "./types";
 import { Stack } from "@mui/system";
 
@@ -150,7 +150,9 @@ const ByYear = () => {
               <TableBody>
                 {values.map((item) => (
                   <TableRow hover key={item.uuid}>
-                    <TableCell>{item.title}</TableCell>
+                    <TableCell>
+                        <Quality quality={item.quality} />
+                        {item.title}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>
