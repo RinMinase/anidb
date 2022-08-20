@@ -6,6 +6,7 @@ export { default as DashboardTile } from "./DashboardTile";
 export { default as Nav } from "./Nav";
 export { default as NavCommon } from "./NavCommon";
 export { default as Quality } from "./Quality";
+export { default as RewatchIndicator } from "./RewatchIndicator";
 export { default as Snackbar } from "./Snackbar";
 export { default as TableLoader } from "./TableLoader";
 
