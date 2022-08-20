@@ -35,8 +35,10 @@ const ByName = () => {
   const handleChangeData = (letter: string) => {
     toggleLoader(true);
 
+    const id = letter === "#" ? 0 : letter;
+
     axios
-      .get(`/entries/by-name/${letter}`)
+      .get(`/entries/by-name/${id}`)
       .then(({ data: { data } }) => {
         setData(() => data);
       })
