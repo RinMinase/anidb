@@ -1453,14 +1453,14 @@
   integrity sha512-4wMPu9iN3/HL97QblBsBay3E1etIciR84izI3U+4iALY+JHCrI+a2jO0qbAZ/nxKoegypYEaiiqWXylm+/zfrw==
 
 "@netlify/build@^27.14.0":
-  version "27.15.0"
-  resolved "https://registry.yarnpkg.com/@netlify/build/-/build-27.15.0.tgz#2624cfa4c300d96a0bbe65422ca770326a2fd23f"
-  integrity sha512-4ceLx8eWbYI5T4QrDTEERkJqz9hVCb0CTNPLDB+P2J1aotFsVnwxGoGHncfbAWQLxc2czl4OsWQHUJY0R++C7A==
+  version "27.15.4"
+  resolved "https://registry.yarnpkg.com/@netlify/build/-/build-27.15.4.tgz#bbe77a2b4bc8bb65ef3a70023c4c3d7bb68c50c6"
+  integrity sha512-4fNEB3V4DF1HQEQrRfFFRWWRNNlkZEdcyWXz1ekzAwQ6rJYmhUxHV5tJg98AhHTrovXBmlWK1gLF3qLaGGoMFA==
   dependencies:
     "@bugsnag/js" "^7.0.0"
     "@netlify/cache-utils" "^4.0.0"
-    "@netlify/config" "^18.2.0"
-    "@netlify/edge-bundler" "^1.12.1"
+    "@netlify/config" "^18.2.2"
+    "@netlify/edge-bundler" "^1.13.0"
     "@netlify/functions-utils" "^4.2.4"
     "@netlify/git-utils" "^4.0.0"
     "@netlify/plugins-list" "^6.36.0"
@@ -1528,10 +1528,10 @@
     path-exists "^5.0.0"
     readdirp "^3.4.0"
 
-"@netlify/config@^18.2.0":
-  version "18.2.0"
-  resolved "https://registry.yarnpkg.com/@netlify/config/-/config-18.2.0.tgz#d70b698d2652a9cd8a6e28b3c18a4d1d72316779"
-  integrity sha512-UxJ2bg9KQVNzzPhuTRVybtXLuVo/XBw8CCVJkWHkVSJlomYvtnA0epTreRHjtGSvy++10Rhu37WwzRbFNG5rBQ==
+"@netlify/config@^18.2.0", "@netlify/config@^18.2.2":
+  version "18.2.2"
+  resolved "https://registry.yarnpkg.com/@netlify/config/-/config-18.2.2.tgz#da2c3510c2b469ea955ee09602d24a6e43ec743d"
+  integrity sha512-VgtbLwjjkh6vRIejAuXY8DIvNvXia8ta1Bphkb33Dr3VbGITvZ0avRcnC0BANpKZCBb6jsaubyMwg7V6IzDkPw==
   dependencies:
     chalk "^5.0.0"
     cron-parser "^4.1.0"
@@ -1558,7 +1558,7 @@
     validate-npm-package-name "^4.0.0"
     yargs "^17.3.1"
 
-"@netlify/edge-bundler@^1.12.1", "@netlify/edge-bundler@^1.13.0":
+"@netlify/edge-bundler@^1.13.0":
   version "1.13.0"
   resolved "https://registry.yarnpkg.com/@netlify/edge-bundler/-/edge-bundler-1.13.0.tgz#0b68bc7034d5d0c71959c789cdf0961050fcab75"
   integrity sha512-5LDNouZP2tUt3m6NyKkEgor9PycIEq7wxUgrRSpiUcZVV7CNU/CUxxpXJb11/wEFq2bWZp3/xqzxqbR7vpqFNg==
@@ -1821,9 +1821,9 @@
   integrity sha512-1n9VvO/9qM7cRB5f7NgSNqeUrovM7j9WVAY7ZQ4LtQuXSquFmO9Fku7WrV3zAUC6v2Y62fxGyJ0fRllYz5uXLw==
 
 "@netlify/plugins-list@^6.36.0", "@netlify/plugins-list@^6.39.0":
-  version "6.39.0"
-  resolved "https://registry.yarnpkg.com/@netlify/plugins-list/-/plugins-list-6.39.0.tgz#e62105ea8d0a683bd56a70fd48bc1c76e4dc4b75"
-  integrity sha512-f8sMN7XFlQQ63km5vhg5y5+E3DXoWEoAe94YOMGlmzifZCCzPS/bEUVaQ07n+iDspy3dOIN97FHAAu0B2Jpe2Q==
+  version "6.40.0"
+  resolved "https://registry.yarnpkg.com/@netlify/plugins-list/-/plugins-list-6.40.0.tgz#37663f3effeae08f3d9ed1dc07463c4bbd377634"
+  integrity sha512-VDYHEVS/r3eEylUNVwwF0scyV8ISMfxbz6MMl7TEpgArXOS+lYhObNAukrWcUR7aa0zf9C3jwy67zROh0M+ZdQ==
 
 "@netlify/run-utils@^4.0.0":
   version "4.0.1"
@@ -2287,9 +2287,9 @@
     "@types/node" "*"
 
 "@types/lodash@^4.14.175":
-  version "4.14.183"
-  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.183.tgz#1173e843e858cff5b997c234df2789a4a54c2374"
-  integrity sha512-UXavyuxzXKMqJPEpFPri6Ku5F9af6ZJXUneHhvQJxavrEjuHkFp2YnDWHcxJiG7hk8ZkWqjcyNeW1s/smZv5cw==
+  version "4.14.184"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.184.tgz#23f96cd2a21a28e106dc24d825d4aa966de7a9fe"
+  integrity sha512-RoZphVtHbxPZizt4IcILciSWiC6dcn+eZ8oX9IWEYfDMcocdd42f7NPI6fQj+6zI8y4E0L7gu2pcZKLGTRaV9Q==
 
 "@types/minimatch@*":
   version "3.0.5"
@@ -4391,9 +4391,9 @@ ejs@^3.1.6:
     jake "^10.8.5"
 
 electron-to-chromium@^1.4.202:
-  version "1.4.224"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.224.tgz#ecf2eed395cfedcbbe634658ccc4b457f7b254c3"
-  integrity sha512-dOujC5Yzj0nOVE23iD5HKqrRSDj2SD7RazpZS/b/WX85MtO6/LzKDF4TlYZTBteB+7fvSg5JpWh0sN7fImNF8w==
+  version "1.4.225"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.225.tgz#3e27bdd157cbaf19768141f2e0f0f45071e52338"
+  integrity sha512-ICHvGaCIQR3P88uK8aRtx8gmejbVJyC6bB4LEC3anzBrIzdzC7aiZHY4iFfXhN4st6I7lMO0x4sgBHf/7kBvRw==
 
 elegant-spinner@^1.0.1:
   version "1.0.1"
@@ -9394,9 +9394,9 @@ rollup-pluginutils@^2.8.2:
     fsevents "~2.3.2"
 
 rollup@^2.43.1, rollup@^2.75.7:
-  version "2.78.0"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.78.0.tgz#00995deae70c0f712ea79ad904d5f6b033209d9e"
-  integrity sha512-4+YfbQC9QEVvKTanHhIAFVUFSRsezvQF8vFOJwtGfb9Bb+r014S+qryr9PSmw8x6sMnPkmFBGAvIFVQxvJxjtg==
+  version "2.78.1"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.78.1.tgz#52fe3934d9c83cb4f7c4cb5fb75d88591be8648f"
+  integrity sha512-VeeCgtGi4P+o9hIg+xz4qQpRl6R401LWEXBmxYKOV4zlF82lyhgh2hTZnheFUbANE8l2A41F458iwj2vEYaXJg==
   optionalDependencies:
     fsevents "~2.3.2"
 
@@ -10491,9 +10491,9 @@ type-fest@^1.0.1, type-fest@^1.0.2, type-fest@^1.2.1, type-fest@^1.2.2:
   integrity sha512-yGSza74xk0UG8k+pLh5oeoYirvIiWo5t0/o3zHHAO2tRDiZcxWP7fywNlXhqb6/r6sWvwi+RsyQMWhVLe4BVuA==
 
 type-fest@^2.0.0, type-fest@^2.11.2, type-fest@^2.5.0:
-  version "2.18.0"
-  resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-2.18.0.tgz#fdef3a74e0a9e68ebe46054836650fb91ac3881e"
-  integrity sha512-pRS+/yrW5TjPPHNOvxhbNZexr2bS63WjrMU8a+VzEBhUi9Tz1pZeD+vQz3ut0svZ46P+SRqMEPnJmk2XnvNzTw==
+  version "2.18.1"
+  resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-2.18.1.tgz#a94f068c60b5a2d6beccccffa711210d7dd99b38"
+  integrity sha512-UKCINsd4qiATXD6OIlnQw9t1ux/n2ld+Nl0kzPbCONhCaUIS/BhJbNw14w6584HCQWf3frBK8vmWnGZq/sbPHQ==
 
 type-is@~1.6.18:
   version "1.6.18"
