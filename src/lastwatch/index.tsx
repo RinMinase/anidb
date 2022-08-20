@@ -41,6 +41,7 @@ const CustomTable = styled(Table)({
 
 const LastWatch = () => {
   const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
+
   const [data, setData] = useState<Data>([]);
   const [stats, setStats] = useState<Stats>({
     totalEps: 0,
@@ -63,9 +64,9 @@ const LastWatch = () => {
       .then(({ data: { data } }) => {
         setData(() => data.data);
         setStats(() => data.stats);
-        toggleLoader(false);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => console.error(err))
+      .finally(() => toggleLoader(false));
   }, []);
 
   return (
