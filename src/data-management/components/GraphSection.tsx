@@ -135,11 +135,11 @@ const GraphSection = (props: Props) => {
 
     if (hasAnyValue) {
       chartQuality.data.datasets[0].data = [
-        props.graph.quality.quality_2160 || 0,
-        props.graph.quality.quality_1080 || 0,
-        props.graph.quality.quality_720 || 0,
-        props.graph.quality.quality_480 || 0,
         props.graph.quality.quality_360 || 0,
+        props.graph.quality.quality_480 || 0,
+        props.graph.quality.quality_720 || 0,
+        props.graph.quality.quality_1080 || 0,
+        props.graph.quality.quality_2160 || 0,
       ];
     } else {
       chartQuality.data.datasets[0].data = [-1, -1, -1, -1, -1];
