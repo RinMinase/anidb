@@ -1,5 +1,6 @@
 import { createContext } from "preact";
-import { useMemo, useState } from "preact/hooks";
+import { useEffect, useMemo, useState } from "preact/hooks";
+import Cookies from "js-cookie";
 
 import { createTheme, ThemeProvider } from "@mui/material";
 
@@ -7,7 +8,8 @@ import { createTheme, ThemeProvider } from "@mui/material";
 export const ColorModeContext = createContext({ toggleColorMode: () => {} });
 
 const preferDark = window?.matchMedia("(prefers-color-scheme: dark)").matches;
-const defaultMode = preferDark ? "dark" : "light";
+const modeFromCookies = Cookies.get('color-mode') as "light" | "dark" | undefined;
+const defaultMode = modeFromCookies ?? (preferDark ? "dark" : "light");
 
 const ColorMode = (props: any) => {
   const [mode, setMode] = useState<"light" | "dark">(defaultMode);
@@ -36,6 +38,10 @@ const ColorMode = (props: any) => {
     }),
     [],
   );
+
+  useEffect(() => {
+    Cookies.set('color-mode', mode);
+  }, [mode])
 
   return (
     <ColorModeContext.Provider value={colorMode}>
