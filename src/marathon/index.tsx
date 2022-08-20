@@ -25,7 +25,7 @@ import {
   faTv as TitleCountIcon,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { DashboardTile, GlobalLoaderContext, TableLoader } from "@components";
+import { DashboardTile, GlobalLoaderContext, Quality, TableLoader } from "@components";
 import { Data, Sequences, Stats } from "./types";
 
 let chartElement: Chart;
@@ -264,7 +264,10 @@ const Marathon = () => {
                 {!isLoading ? (
                   data.map((item) => (
                     <TableRow hover key={item.id}>
-                      <TableCell>{item.title}</TableCell>
+                    <TableCell>
+                      <Quality quality={item.quality} />
+                      {item.title}
+                    </TableCell>
                       <TableCell>
                         {item.episodes} / {item.ovas} / {item.specials}
                       </TableCell>
