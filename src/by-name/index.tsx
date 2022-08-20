@@ -1,5 +1,10 @@
 import { useContext, useEffect, useState } from "preact/hooks";
 import axios from "axios";
+import {
+  animateScroll,
+  Element as ScrollToElement,
+  scroller,
+} from "react-scroll";
 
 import {
   Box,
@@ -12,6 +17,8 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
 
 import { GlobalLoaderContext, TableLoader } from "@components";
@@ -29,11 +36,18 @@ const CustomTableRow = styled(TableRow)({
 const ByName = () => {
   const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
 
+  const theme = useTheme();
+  const nonMobile = useMediaQuery(theme.breakpoints.up("md"));
+
   const [data, setData] = useState<Data>([]);
   const [stats, setStats] = useState<Stats>([]);
 
   const handleChangeData = (letter: string) => {
     toggleLoader(true);
+
+    if (nonMobile) {
+      animateScroll.scrollToTop({ smooth: true, duration: 500 });
+    }
 
     const id = letter === "#" ? 0 : letter;
 
@@ -41,6 +55,10 @@ const ByName = () => {
       .get(`/entries/by-name/${id}`)
       .then(({ data: { data } }) => {
         setData(() => data);
+
+        if (!nonMobile) {
+          scroller.scrollTo("table", { smooth: true, duration: 500 });
+        }
       })
       .catch((err) => console.error(err))
       .finally(() => toggleLoader(false));
@@ -99,6 +117,7 @@ const ByName = () => {
           </TableContainer>
         </Grid>
         <Grid item xs={12} sm={5} md={8}>
+          <ScrollToElement name="table" />
           <TableContainer component={Paper}>
             <Table>
               <TableHead>
