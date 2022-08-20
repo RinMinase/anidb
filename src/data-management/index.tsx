@@ -1,12 +1,7 @@
 import { useContext, useEffect, useState } from "preact/hooks";
 import axios from "axios";
 
-import {
-  Box,
-  LinearProgress,
-  styled,
-  Typography,
-} from "@mui/material";
+import { Box, LinearProgress, styled, Typography } from "@mui/material";
 
 import { GlobalLoaderContext } from "@components";
 
@@ -35,7 +30,7 @@ const DataManagement = () => {
     months: {},
   });
 
-  useEffect(() => {
+  const reloadPageData = () => {
     toggleLoader(true);
 
     axios
@@ -47,6 +42,10 @@ const DataManagement = () => {
       })
       .catch((err) => console.error(err))
       .finally(() => toggleLoader(false));
+  };
+
+  useEffect(() => {
+    reloadPageData();
   }, []);
 
   return (
@@ -72,8 +71,10 @@ const DataManagement = () => {
         </Box>
       )}
 
-      <Label variant="h5">Import / Export</Label>
-      <ManagementSection />
+      <Box sx={{ display: { sm: "none", md: "block" } }}>
+        <Label variant="h5">Import / Export</Label>
+        <ManagementSection reloadPageData={reloadPageData} />
+      </Box>
     </ModuleContainer>
   );
 };

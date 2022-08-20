@@ -1,8 +1,104 @@
+import { useDropzone } from "react-dropzone";
+import { FontAwesomeSvgIcon } from "react-fontawesome-svg-icon";
 
-const ManagementSection = () => {
+import { Box, Button, Grid, styled, Typography } from "@mui/material";
+
+import { faCloudArrowUp as ImportIcon } from "@fortawesome/free-solid-svg-icons";
+import axios from "axios";
+import { useContext } from "preact/hooks";
+import { GlobalLoaderContext } from "@components";
+
+type Props = {
+  reloadPageData: () => void;
+};
+
+const CustomGrid = styled(Grid)({
+  borderLeft: "1px solid #ccc",
+  paddingLeft: 24,
+});
+
+const DropzoneContainer = styled(Box)({
+  border: "8px dashed #b3e5fc",
+  margin: 12,
+  padding: "24px 12px",
+  textAlign: "center",
+  userSelect: "none",
+  cursor: "pointer",
+});
+
+const ImportButton = styled(Button)({
+  width: 175,
+  marginTop: 12,
+});
+
+const ManagementSection = (props: Props) => {
+  const { toggleLoader } = useContext(GlobalLoaderContext);
+
+  const dzConfig = {
+    accept: {
+      "application/json": [".json"],
+    },
+    maxFiles: 1,
+  };
+  const { acceptedFiles, fileRejections, getRootProps, getInputProps } =
+    useDropzone(dzConfig);
+
+  const handleImport = async () => {
+    toggleLoader(true);
+
+    const file = acceptedFiles[0];
+
+    const body = new FormData();
+    body.append("file", file);
+
+    axios
+      .post("/entries/import", body, {
+        headers: { "Content-Type": "multipart/form-data" },
+      })
+      .then(() => props.reloadPageData())
+      .catch((err) => console.error(err))
+      .finally(() => toggleLoader(false));
+  };
+
   return (
-    <div>management section</div>
-  )
-}
+    <Grid container>
+      <Grid item md={6} textAlign="center">
+        <DropzoneContainer {...getRootProps({ className: "dropzone" })}>
+          <input {...getInputProps()} />
+          {acceptedFiles.length ? (
+            <Typography>File Selected: {acceptedFiles[0].name}</Typography>
+          ) : (
+            <Typography>
+              Drop some files here, or click to select files
+            </Typography>
+          )}
+        </DropzoneContainer>
+
+        {fileRejections.length ? (
+          <Typography
+            component="p"
+            variant="caption"
+            color="error"
+            gutterBottom
+          >
+            File is invalid
+          </Typography>
+        ) : null}
+
+        <ImportButton
+          variant="contained"
+          endIcon={<FontAwesomeSvgIcon icon={ImportIcon} />}
+          disabled={!acceptedFiles.length}
+          onClick={handleImport}
+        >
+          Import
+        </ImportButton>
+      </Grid>
+      <CustomGrid item md={6}>
+        test
+      </CustomGrid>
+    </Grid>
+  );
+};
 
 export default ManagementSection;
