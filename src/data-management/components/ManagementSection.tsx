@@ -1,12 +1,16 @@
+import { useContext, useState } from "preact/hooks";
 import { useDropzone } from "react-dropzone";
+import axios from "axios";
 import { FontAwesomeSvgIcon } from "react-fontawesome-svg-icon";
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 
 import { Box, Button, Grid, styled, Typography } from "@mui/material";
 
-import { faCloudArrowUp as ImportIcon } from "@fortawesome/free-solid-svg-icons";
-import axios from "axios";
-import { useContext, useState } from "preact/hooks";
+import {
+  faCloudArrowDown as ExportIcon,
+  faCloudArrowUp as ImportIcon,
+} from "@fortawesome/free-solid-svg-icons";
+
 import { GlobalLoaderContext } from "@components";
 
 type Props = {
@@ -28,7 +32,7 @@ const DropzoneContainer = styled(Box)({
 });
 
 const ImportButton = styled(Button)({
-  width: 175,
+  width: 200,
   marginTop: 12,
 });
 
@@ -57,16 +61,16 @@ const ManagementSection = (props: Props) => {
       .post("/entries/import", body, {
         headers: { "Content-Type": "multipart/form-data" },
       })
-      .then(({data: {data}}) => {
+      .then(({ data: { data } }) => {
         setUploading(false);
 
         Swal.fire({
-          title: 'Success!',
+          title: "Success!",
           html: `
             Accepted: ${data.acceptedImports}<br />
             JSON Entries: ${data.totalJsonEntries}
           `,
-          icon: 'success',
+          icon: "success",
         }).then(() => props.reloadPageData());
       })
       .catch((err) => console.error(err))
@@ -75,7 +79,7 @@ const ManagementSection = (props: Props) => {
 
   return (
     <Grid container>
-      <Grid item md={6} textAlign="center">
+      <Grid item md={8} textAlign="center">
         <DropzoneContainer {...getRootProps({ className: "dropzone" })}>
           <input {...getInputProps()} />
           {acceptedFiles.length ? (
@@ -107,8 +111,15 @@ const ManagementSection = (props: Props) => {
           Import
         </ImportButton>
       </Grid>
-      <CustomGrid item md={6}>
-        test
+      <CustomGrid item md={4}>
+        <Button
+          variant="contained"
+          endIcon={<FontAwesomeSvgIcon icon={ExportIcon} />}
+          disabled
+          fullWidth
+        >
+          Export All Data
+        </Button>
       </CustomGrid>
     </Grid>
   );
