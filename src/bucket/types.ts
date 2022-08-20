@@ -1,6 +1,8 @@
+import type { Qualities } from "@components";
+
 export type Data = Array<{
   id?: string;
-  quality?: string;
+  quality?: Qualities;
   title?: string;
   filesize?: string;
 }>

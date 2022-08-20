@@ -21,7 +21,7 @@ import {
   faHardDrive as DriveIcon,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { DashboardTile, GlobalLoaderContext, TableLoader } from "@components";
+import { DashboardTile, GlobalLoaderContext, Quality, TableLoader } from "@components";
 import { Bucket as SingleBucket, Buckets, Data, Stats } from "./types";
 import { green, orange, red } from "@mui/material/colors";
 
@@ -161,7 +161,10 @@ const Bucket = () => {
             {!isLoading ? (
               data.map((item) => (
                 <TableRow hover key={item.id}>
-                  <TableCell>{item.title}</TableCell>
+                <TableCell>
+                  <Quality quality={item.quality} />
+                  {item.title}
+                </TableCell>
                   <TableCell>{item.filesize}</TableCell>
                 </TableRow>
               ))
