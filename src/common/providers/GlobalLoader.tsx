@@ -9,13 +9,18 @@ export const GlobalLoaderContext = createContext({
   toggleLoader: (value: boolean) => {},
 });
 
+const Progress = styled(LinearProgress)(({ theme }) => ({
+  position: "sticky",
+  width: "100%",
+  zIndex: 99999,
+  top: 52,
+  [theme.breakpoints.up("md")]: {
+    top: 48,
+  },
+}));
+
 const Container = styled(Box)({
   position: "relative",
-});
-
-const Progress = styled(LinearProgress)({
-  position: "absolute",
-  width: "100%",
 });
 
 const GlobalLoader = (props: any) => {
@@ -35,10 +40,8 @@ const GlobalLoader = (props: any) => {
         toggleLoader: globalLoader,
       }}
     >
-      <Container>
-        {loader && <Progress />}
-        {props.children}
-      </Container>
+      {loader && <Progress />}
+      <Container>{props.children}</Container>
     </GlobalLoaderContext.Provider>
   );
 };

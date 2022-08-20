@@ -49,7 +49,7 @@ const NavCommon = () => {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="sticky">
       <Container maxWidth="xl">
         <Toolbar variant="dense" disableGutters>
           <Typography
