@@ -1,4 +1,4 @@
-import { Alert as MuiAlert, AlertColor } from "@mui/material";
+import { Alert as MuiAlert, AlertColor, styled } from "@mui/material";
 
 export type AlertProps = {
   onClose?: () => void;
@@ -7,13 +7,20 @@ export type AlertProps = {
   severity?: AlertColor;
 };
 
+const CustomAlert = styled(MuiAlert)({
+  alignItems: "center",
+});
+
 const Alert = (props: AlertProps) => {
   return (
     <>
       {props.open && (
-        <MuiAlert onClose={props.onClose} severity={props.severity || "success"}>
+        <CustomAlert
+          onClose={props.onClose}
+          severity={props.severity || "success"}
+        >
           {props.message || "Success!"}
-        </MuiAlert>
+        </CustomAlert>
       )}
     </>
   );
