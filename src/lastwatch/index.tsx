@@ -23,7 +23,7 @@ import {
   faTv as DailyCountIcon,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { DashboardTile, GlobalLoaderContext, TableLoader } from "@components";
+import { DashboardTile, GlobalLoaderContext, Quality, TableLoader } from "@components";
 import { Data, Stats } from "./types";
 
 const ModuleContainer = styled(Box)({
@@ -129,7 +129,10 @@ const LastWatch = () => {
             {!isLoading ? (
               data.map((item) => (
                 <TableRow hover key={item.id}>
-                  <TableCell>{item.title}</TableCell>
+                  <TableCell>
+                    <Quality quality={item.quality} />
+                    {item.title}
+                  </TableCell>
                   <TableCell>
                     {item.episodes} / {item.ovas} / {item.specials}
                   </TableCell>
