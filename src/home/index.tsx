@@ -21,7 +21,7 @@ import {
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 import { Data } from "./types";
-import { GlobalLoaderContext, TableLoader } from "@components";
+import { GlobalLoaderContext, Quality, TableLoader } from "@components";
 
 const ModuleContainer = styled(Box)({
   paddingTop: 24,
@@ -101,7 +101,10 @@ const Home = () => {
             {!isLoading ? (
               data.map((item) => (
                 <TableRow hover key={item.id}>
-                  <TableCell>{item.title}</TableCell>
+                  <TableCell>
+                    <Quality quality={item.quality} />
+                    {item.title}
+                  </TableCell>
                   <TableCell>
                     {item.episodes} / {item.ovas} / {item.specials}
                   </TableCell>
