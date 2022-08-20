@@ -40,6 +40,7 @@
     "react-dropzone": "^14.2.2",
     "react-fontawesome-svg-icon": "^1.1.1",
     "react-hook-form": "^7.34.2",
+    "sweetalert2": "^11.4.28",
     "yup": "^0.32.11"
   },
   "devDependencies": {
