@@ -126,39 +126,35 @@ const GraphSection = (props: Props) => {
   }, []);
 
   useEffect(() => {
-    if (props.graph.quality.hasOwnProperty("quality_2160")) {
-      let hasAnyValue = false;
+    let hasAnyValue = false;
 
-      // eslint-disable-next-line
-      for (const [key, value] of Object.entries(props.graph.quality)) {
-        if (value > 0) hasAnyValue = true;
-      }
-
-      if (hasAnyValue) {
-        chartQuality.data.datasets[0].data = [
-          props.graph.quality.quality_2160 || 0,
-          props.graph.quality.quality_1080 || 0,
-          props.graph.quality.quality_720 || 0,
-          props.graph.quality.quality_480 || 0,
-          props.graph.quality.quality_360 || 0,
-        ];
-      } else {
-        chartQuality.data.datasets[0].data = [-1, -1, -1, -1, -1];
-      }
-
-      chartQuality.update();
+    // eslint-disable-next-line
+    for (const [key, value] of Object.entries(props.graph.quality)) {
+      if (value > 0) hasAnyValue = true;
     }
+
+    if (hasAnyValue) {
+      chartQuality.data.datasets[0].data = [
+        props.graph.quality.quality_2160 || 0,
+        props.graph.quality.quality_1080 || 0,
+        props.graph.quality.quality_720 || 0,
+        props.graph.quality.quality_480 || 0,
+        props.graph.quality.quality_360 || 0,
+      ];
+    } else {
+      chartQuality.data.datasets[0].data = [-1, -1, -1, -1, -1];
+    }
+
+    chartQuality.update();
   }, [props.graph.quality]);
 
   useEffect(() => {
-    if (props.graph.months.hasOwnProperty("jan")) {
-      // eslint-disable-next-line
-      for (const [key, value] of Object.entries(props.graph.months)) {
-        chartMonth.data.datasets[0].data.push(value);
-      }
-
-      chartMonth.update();
+    // eslint-disable-next-line
+    for (const [key, value] of Object.entries(props.graph.months)) {
+      chartMonth.data.datasets[0].data.push(value);
     }
+
+    chartMonth.update();
   }, [props.graph.months]);
 
   return (
