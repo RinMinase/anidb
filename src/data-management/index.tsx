@@ -1,7 +1,12 @@
 import { useContext, useEffect, useState } from "preact/hooks";
 import axios from "axios";
 
-import { Box, styled, Typography } from "@mui/material";
+import {
+  Box,
+  LinearProgress,
+  styled,
+  Typography,
+} from "@mui/material";
 
 import { GlobalLoaderContext } from "@components";
 
@@ -18,10 +23,10 @@ const ModuleContainer = styled(Box)({
 
 const Label = styled(Typography)({
   paddingTop: 24,
-})
+});
 
 const DataManagement = () => {
-  const { toggleLoader } = useContext(GlobalLoaderContext);
+  const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
 
   const [data, setData] = useState<Data>({});
   const [stats, setStats] = useState<Stats>({});
@@ -47,11 +52,25 @@ const DataManagement = () => {
   return (
     <ModuleContainer>
       <Typography variant="h5">Data</Typography>
-      <DataSection data={data} />
+      {!isLoading ? (
+        <DataSection data={data} />
+      ) : (
+        <Box width="100%" height={170}>
+          <LinearProgress />
+        </Box>
+      )}
 
       <Label variant="h5">Statistics</Label>
-      <StatsSection stats={stats} />
-      <GraphSection graph={graph} />
+      {!isLoading ? (
+        <>
+          <StatsSection stats={stats} />
+          <GraphSection graph={graph} />
+        </>
+      ) : (
+        <Box width="100%" height={400}>
+          <LinearProgress />
+        </Box>
+      )}
 
       <Label variant="h5">Import / Export</Label>
       <ManagementSection />
