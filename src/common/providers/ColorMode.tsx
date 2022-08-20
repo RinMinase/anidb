@@ -8,8 +8,8 @@ import { createTheme, ThemeProvider } from "@mui/material";
 export const ColorModeContext = createContext({ toggleColorMode: () => {} });
 
 const preferDark = window?.matchMedia("(prefers-color-scheme: dark)").matches;
-const modeFromCookies = Cookies.get('color-mode') as "light" | "dark" | undefined;
-const defaultMode = modeFromCookies ?? (preferDark ? "dark" : "light");
+const savedMode = Cookies.get("color-mode") as "light" | "dark" | undefined;
+const defaultMode = savedMode ?? (preferDark ? "dark" : "light");
 
 const ColorMode = (props: any) => {
   const [mode, setMode] = useState<"light" | "dark">(defaultMode);
@@ -40,8 +40,8 @@ const ColorMode = (props: any) => {
   );
 
   useEffect(() => {
-    Cookies.set('color-mode', mode);
-  }, [mode])
+    Cookies.set("color-mode", mode, { expires: 30 });
+  }, [mode]);
 
   return (
     <ColorModeContext.Provider value={colorMode}>
