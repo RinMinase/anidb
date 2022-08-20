@@ -1,3 +1,5 @@
+import type { Qualities } from "@components";
+
 export type Stats = Array<{
   letter: string;
   titles: number;
@@ -6,7 +8,7 @@ export type Stats = Array<{
 
 export type Data = Array<{
   id: string;
-  quality: string;
+  quality: Qualities;
   title: string;
   filesize: string;
 }>;

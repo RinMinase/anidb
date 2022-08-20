@@ -21,7 +21,7 @@ import {
   useTheme,
 } from "@mui/material";
 
-import { GlobalLoaderContext, TableLoader } from "@components";
+import { GlobalLoaderContext, Quality, TableLoader } from "@components";
 import { Data, Stats } from "./types";
 
 const ModuleContainer = styled(Box)({
@@ -131,7 +131,10 @@ const ByName = () => {
                 {!isLoading ? (
                   data.map((item) => (
                     <TableRow hover key={item.id}>
-                      <TableCell>{item.title}</TableCell>
+                      <TableCell>
+                        <Quality quality={item.quality} />
+                        {item.title}
+                      </TableCell>
                       <TableCell>{item.filesize}</TableCell>
                     </TableRow>
                   ))
