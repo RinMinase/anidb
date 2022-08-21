@@ -40,7 +40,7 @@ const ColorMode = (props: any) => {
   );
 
   useEffect(() => {
-    Cookies.set("color-mode", mode, { expires: 30 });
+    Cookies.set("color-mode", mode, { expires: 30, sameSite: "Lax" });
   }, [mode]);
 
   return (
