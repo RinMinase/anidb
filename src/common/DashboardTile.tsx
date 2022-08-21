@@ -1,4 +1,3 @@
-import { Fragment } from "preact";
 import { Box, Divider, Grid, Paper, styled, Typography } from "@mui/material";
 
 type Props = {
@@ -9,6 +8,7 @@ type Props = {
   largeText?: boolean;
   subHeading?: string;
   value: string | number | null | undefined;
+  CustomDivider?: any;
   footer?: string;
   footers?: string[];
   footerLeft?: string;
@@ -87,34 +87,26 @@ const DashboardTile = (props: Props) => {
           <Typography variant="caption">{props.subHeading}</Typography>
         )}
       </DashboardContainer>
+      {props.CustomDivider ? props.CustomDivider : <Divider />}
       {(props.footerLeft || props.footerRight) && (
-        <>
-          <Divider />
-          <DashboardFooter>
-            <Grid container justifyContent="space-between">
-              <Grid item>{props.footerLeft}</Grid>
-              <FooterRight item>{props.footerRight}</FooterRight>
-            </Grid>
-            <Typography variant="caption">{props.footer}</Typography>
-          </DashboardFooter>
-        </>
+        <DashboardFooter>
+          <Grid container justifyContent="space-between">
+            <Grid item>{props.footerLeft}</Grid>
+            <FooterRight item>{props.footerRight}</FooterRight>
+          </Grid>
+          <Typography variant="caption">{props.footer}</Typography>
+        </DashboardFooter>
       )}
       {props.footer && (
-        <>
-          <Divider />
-          <DashboardFooter>
-            <Typography variant="caption">{props.footer}</Typography>
-          </DashboardFooter>
-        </>
+        <DashboardFooter>
+          <Typography variant="caption">{props.footer}</Typography>
+        </DashboardFooter>
       )}
       {props.footers &&
         props.footers.map((item, index) => (
-          <Fragment key={`dash-${index}`}>
-            <Divider />
-            <DashboardFooter>
-              <Typography variant="caption">{item}</Typography>
-            </DashboardFooter>
-          </Fragment>
+          <DashboardFooter key={`dash-${index}`}>
+            <Typography variant="caption">{item}</Typography>
+          </DashboardFooter>
         ))}
     </DashboardItem>
   );
