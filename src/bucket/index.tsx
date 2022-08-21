@@ -5,6 +5,7 @@ import { FontAwesomeSvgIcon } from "react-fontawesome-svg-icon";
 import {
   Box,
   Grid,
+  LinearProgress,
   Paper,
   styled,
   Table,
@@ -21,7 +22,13 @@ import {
   faHardDrive as DriveIcon,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { DashboardTile, GlobalLoaderContext, Quality, TableLoader } from "@components";
+import {
+  DashboardTile,
+  GlobalLoaderContext,
+  Quality,
+  TableLoader,
+} from "@components";
+
 import { Bucket as SingleBucket, Buckets, Data, Stats } from "./types";
 import { green, orange, red } from "@mui/material/colors";
 
@@ -56,13 +63,18 @@ const Bucket = () => {
         const bucketList: Buckets = data.map((item: SingleBucket) => {
           const { percent } = item;
 
-          let bucketColor;
+          let bucketColor: string = green[700];
+          let progressColor = "success";
 
-          if (percent > 90) bucketColor = red[700];
-          else if (percent > 80) bucketColor = orange[700];
-          else bucketColor = green[700];
+          if (percent > 90) {
+            bucketColor = red[700];
+            progressColor = "error";
+          } else if (percent > 80) {
+            bucketColor = orange[700];
+            progressColor = "warning";
+          }
 
-          return { ...item, bucketColor };
+          return { ...item, bucketColor, progressColor };
         });
 
         setBuckets(() => bucketList);
@@ -109,6 +121,13 @@ const Bucket = () => {
                       value={`${bucket.percent}%`}
                       footerLeft={`Free: ${bucket.free}`}
                       footerRight={`${bucket.titles} Titles`}
+                      CustomDivider={
+                        <LinearProgress
+                          variant="determinate"
+                          value={bucket.percent}
+                          color={bucket.progressColor}
+                        />
+                      }
                     />
                   </Grid>
                 );
@@ -125,6 +144,13 @@ const Bucket = () => {
                     footerLeft={`Free: ${bucket.free}`}
                     footerRight={`${bucket.titles} Titles`}
                     onClick={() => handleClickBucket(bucket.id)}
+                    CustomDivider={
+                      <LinearProgress
+                        variant="determinate"
+                        value={bucket.percent}
+                        color={bucket.progressColor}
+                      />
+                    }
                   />
                 </Grid>
               );
@@ -161,10 +187,10 @@ const Bucket = () => {
             {!isLoading ? (
               data.map((item) => (
                 <TableRow hover key={item.id}>
-                <TableCell>
-                  <Quality quality={item.quality} />
-                  {item.title}
-                </TableCell>
+                  <TableCell>
+                    <Quality quality={item.quality} />
+                    {item.title}
+                  </TableCell>
                   <TableCell>{item.filesize}</TableCell>
                 </TableRow>
               ))

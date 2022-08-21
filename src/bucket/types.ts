@@ -20,6 +20,7 @@ export type Bucket = {
   total?: string;
   titles?: number;
   bucketColor?: string;
+  progressColor?: "success" | "error" | "warning";
 };
 
 export type Stats = {
