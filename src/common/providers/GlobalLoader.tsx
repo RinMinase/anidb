@@ -10,18 +10,25 @@ export const GlobalLoaderContext = createContext({
 });
 
 const Progress = styled(LinearProgress)(({ theme }) => ({
-  position: "sticky",
+  position: "fixed",
   width: "100%",
   zIndex: 99999,
   top: 52,
+
   [theme.breakpoints.up("md")]: {
     top: 48,
   },
 }));
 
-const Container = styled(Box)({
+const Container = styled(Box)(({ theme }) => ({
   position: "relative",
-});
+  overflowY: "scroll",
+  height: "calc(100vh - 52px)",
+
+  [theme.breakpoints.up("md")]: {
+    height: "calc(100vh - 48px)",
+  },
+}));
 
 const GlobalLoader = (props: any) => {
   const [loader, setLoader] = useState(false);
