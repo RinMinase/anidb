@@ -132,10 +132,10 @@ const Home = () => {
           <TableHead>
             <TableRow>
               <TableCell>Title</TableCell>
-              <TableCell>E / O / S</TableCell>
-              <TableCell>Filesize</TableCell>
-              <TableCell>Date Finished</TableCell>
-              <TableCell>Release</TableCell>
+              <TableCell sx={{ minWidth: 110 }}>E / O / S</TableCell>
+              <TableCell sx={{ minWidth: 115 }}>Filesize</TableCell>
+              <TableCell sx={{ minWidth: 180 }}>Date Finished</TableCell>
+              <TableCell sx={{ minWidth: 130 }}>Release</TableCell>
               <TableCell>Encoder</TableCell>
               <TableCell>Rating</TableCell>
             </TableRow>
