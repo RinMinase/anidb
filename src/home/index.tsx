@@ -56,7 +56,13 @@ const CustomTable = styled(Table)({
 
 const StyledRating = styled(Rating)(({ value }) => ({
   "& .MuiRating-iconFilled": {
-    color: value ? (value > 3.75 ? "#28a745" : value > 3 ? "#1e90ff" : "#e57373") : "",
+    color: value
+      ? value > 3.75
+        ? "#28a745"
+        : value > 3
+        ? "#1e90ff"
+        : "#e57373"
+      : "",
   },
 }));
 
@@ -146,7 +152,11 @@ const Home = () => {
               data.map((item) => (
                 <TableRow hover key={item.id}>
                   <TableCell>
-                    <Quality quality={item.quality} />
+                    <Tooltip title={item.quality ?? ""} placement="top">
+                      <Box display="inline-block">
+                        <Quality quality={item.quality} />
+                      </Box>
+                    </Tooltip>
                     {item.title}
                   </TableCell>
                   <TableCell>
