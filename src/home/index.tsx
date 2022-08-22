@@ -10,6 +10,7 @@ import {
   InputAdornment,
   OutlinedInput,
   Paper,
+  Rating,
   styled,
   Table,
   TableBody,
@@ -17,9 +18,11 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  Tooltip,
 } from "@mui/material";
 
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { faHeart, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { faHeart as faHeartEmpty } from "@fortawesome/free-regular-svg-icons";
 
 import { Data } from "./types";
 import {
@@ -49,6 +52,17 @@ const SearchIconContainer = styled(FontAwesomeSvgIcon)({
 
 const CustomTable = styled(Table)({
   minWidth: 650,
+});
+
+const StyledRating = styled(Rating)(({ value }) => ({
+  "& .MuiRating-iconFilled": {
+    color: value ? (value > 3.75 ? "#28a745" : value > 3 ? "#1e90ff" : "#e57373") : "",
+  },
+}));
+
+const RatingIcon = styled(FontAwesomeSvgIcon)({
+  marginRight: 2,
+  fontSize: 14,
 });
 
 const searchAPI = (needle: string) =>
@@ -123,6 +137,7 @@ const Home = () => {
               <TableCell>Date Finished</TableCell>
               <TableCell>Release</TableCell>
               <TableCell>Encoder</TableCell>
+              <TableCell>Rating</TableCell>
             </TableRow>
           </TableHead>
 
@@ -144,6 +159,19 @@ const Home = () => {
                   </TableCell>
                   <TableCell>{item.release}</TableCell>
                   <TableCell>{item.encoder}</TableCell>
+                  <TableCell>
+                    <Tooltip title={item.rating ?? "0"} placement="top">
+                      <Box>
+                        <StyledRating
+                          value={item.rating ? item.rating / 2 : 0}
+                          precision={0.25}
+                          icon={<RatingIcon icon={faHeart} />}
+                          emptyIcon={<RatingIcon icon={faHeartEmpty} />}
+                          readOnly
+                        />
+                      </Box>
+                    </Tooltip>
+                  </TableCell>
                 </TableRow>
               ))
             ) : (
