@@ -9,6 +9,10 @@ export const GlobalLoaderContext = createContext({
   toggleLoader: (value: boolean) => {},
 });
 
+type ContainerProps = {
+  disableScroll?: boolean;
+};
+
 const Progress = styled(LinearProgress)(({ theme }) => ({
   position: "fixed",
   width: "100%",
@@ -20,9 +24,9 @@ const Progress = styled(LinearProgress)(({ theme }) => ({
   },
 }));
 
-const Container = styled(Box)(({ theme }) => ({
+const Container = styled(Box)<ContainerProps>(({ theme, disableScroll }) => ({
   position: "relative",
-  overflowY: "scroll",
+  overflowY: disableScroll ? "unset" : "scroll",
   height: "calc(100vh - 52px)",
 
   [theme.breakpoints.up("md")]: {
@@ -48,7 +52,9 @@ const GlobalLoader = (props: any) => {
       }}
     >
       {loader && <Progress />}
-      <Container>{props.children}</Container>
+      <Container disableScroll={props.disableScroll}>
+        {props.children}
+      </Container>
     </GlobalLoaderContext.Provider>
   );
 };
