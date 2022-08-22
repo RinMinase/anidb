@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "preact/hooks";
 import axios from "axios";
 import { FontAwesomeSvgIcon } from "react-fontawesome-svg-icon";
+import DebouncePromise from "awesome-debounce-promise";
 
 import {
   Box,
@@ -50,17 +51,39 @@ const CustomTable = styled(Table)({
   minWidth: 650,
 });
 
+const searchAPI = (needle: string) =>
+  axios.get("/entries", {
+    params: {
+      haystack: "title",
+      needle,
+    },
+  });
+
+const searchAPIDebounced = DebouncePromise(searchAPI, 250);
+
 const Home = () => {
   const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
   const [data, setData] = useState<Data>([]);
+
+  const handleChange = (e: any) => {
+    const element = e.target as HTMLInputElement;
+    const val = element.value;
+
+    toggleLoader(true);
+
+    searchAPIDebounced(val).then(({ data: { data } }) => {
+      toggleLoader(false);
+      setData(data);
+    });
+  };
 
   useEffect(() => {
     toggleLoader(true);
 
     axios
       .get("/entries")
-      .then(({ data }) => {
-        setData(() => data.data);
+      .then(({ data: { data } }) => {
+        setData(() => data);
         toggleLoader(false);
       })
       .catch((err) => console.error(err));
@@ -84,6 +107,7 @@ const Home = () => {
                   <SearchIconContainer icon={faMagnifyingGlass} />
                 </InputAdornment>
               }
+              onChange={handleChange}
             />
           </Grid>
         </Grid>
