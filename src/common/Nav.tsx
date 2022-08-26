@@ -27,6 +27,7 @@ import {
   faCalendarDays as ByYearIcon,
   faClockRotateLeft as LastWatchIcon,
   faDatabase as DataManagementIcon,
+  faFlaskVial as BucketSimIcon,
   faHardDrive as BucketsIcon,
   faListUl as ListIcon,
   faMoon as DarkModeIcon,
@@ -99,6 +100,10 @@ const Nav = () => {
       <MenuItem component="a" href="/buckets" onClick={props.onClick}>
         <ListItemIcon children={<FontAwesomeSvgIcon icon={BucketsIcon} />} />
         Bucket Lists
+      </MenuItem>
+      <MenuItem component="a" href="/bucket-sim" onClick={props.onClick}>
+        <ListItemIcon children={<FontAwesomeSvgIcon icon={BucketSimIcon} />} />
+        Bucket Simulator
       </MenuItem>
     </>
   );
