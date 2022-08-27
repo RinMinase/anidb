@@ -4,8 +4,11 @@ import { FontAwesomeSvgIcon } from "react-fontawesome-svg-icon";
 
 import {
   Box,
+  Button,
   Grid,
+  IconButton,
   LinearProgress,
+  ListItemText,
   MenuItem,
   MenuList,
   Paper,
@@ -15,12 +18,15 @@ import {
 import {
   faDatabase as StorageIcon,
   faHardDrive as DriveIcon,
+  faPenToSquare as EditIcon,
+  faTrash as DeleteIcon,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { DashboardTile, GlobalLoaderContext } from "@components";
 
 import { Data, Item, Sims } from "./types";
 import { green, orange, red } from "@mui/material/colors";
+import { route } from "preact-router";
 
 const ModuleContainer = styled(Box)({
   paddingTop: 24,
@@ -32,12 +38,13 @@ const Dashboard = styled(Box)({
 });
 
 const CustomMenuList = styled(MenuList)<{ component: any }>({
+  marginTop: 12,
   padding: 0,
   overflow: "hidden",
 });
 
 const BucketSim = () => {
-  const { toggleLoader } = useContext(GlobalLoaderContext);
+  const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
 
   const [sims, setSims] = useState<Sims>([]);
   const [data, setData] = useState<Data>([]);
@@ -71,6 +78,14 @@ const BucketSim = () => {
       .finally(() => toggleLoader(false));
   };
 
+  const handleEditClick = (e: any, uuid: string) => {
+    e.stopPropagation();
+  };
+
+  const handleDeleteClick = (e: any, uuid: string) => {
+    e.stopPropagation();
+  };
+
   useEffect(() => {
     toggleLoader(true);
 
@@ -89,33 +104,80 @@ const BucketSim = () => {
 
   return (
     <ModuleContainer>
-      <Grid container spacing={4}>
-        <Grid item xs={12} sm={4}>
-          <CustomMenuList component={Paper}>
-            {sims.map((item) => (
-              <MenuItem
-                key={item.uuid}
-                onClick={() => handleSelectSim(item.uuid)}
-              >
-                {item.description}
-              </MenuItem>
-            ))}
-          </CustomMenuList>
-        </Grid>
-        <Grid item xs={12} sm={8}>
-          <Dashboard>
-            <Grid container spacing={4}>
-              {data &&
-                data.map((item, index) => {
-                  if (index === 0) {
+      {!isLoading && (
+        <Grid container spacing={4}>
+          <Grid item xs={12} sm={4}>
+            <Button
+              variant="contained"
+              fullWidth
+              onClick={() => route("/bucket-sim/add")}
+            >
+              Add
+            </Button>
+            <CustomMenuList component={Paper}>
+              {sims.map((item) => (
+                <MenuItem
+                  key={item.uuid}
+                  onClick={() => handleSelectSim(item.uuid)}
+                >
+                  <ListItemText>{item.description}</ListItemText>
+                  <IconButton
+                    size="small"
+                    onClick={(e) => handleEditClick(e, item.uuid)}
+                  >
+                    <FontAwesomeSvgIcon icon={EditIcon} />
+                  </IconButton>
+                  <IconButton
+                    size="small"
+                    onClick={(e) => handleDeleteClick(e, item.uuid)}
+                  >
+                    <FontAwesomeSvgIcon icon={DeleteIcon} />
+                  </IconButton>
+                </MenuItem>
+              ))}
+            </CustomMenuList>
+          </Grid>
+          <Grid item xs={12} sm={8}>
+            <Dashboard>
+              <Grid container spacing={4}>
+                {data &&
+                  data.map((item, index) => {
+                    if (index === 0) {
+                      return (
+                        <Grid item xs={12} sm={6} md={4} key={`bucket${index}`}>
+                          <DashboardTile
+                            icon={
+                              <FontAwesomeSvgIcon
+                                size="2x"
+                                icon={StorageIcon}
+                              />
+                            }
+                            iconColor={item.bucketColor}
+                            heading={"Total"}
+                            subHeading={`${item.used} / ${item.total}`}
+                            value={`${item.percent}%`}
+                            footerLeft={`Free: ${item.free}`}
+                            footerRight={`${item.titles} Titles`}
+                            CustomDivider={
+                              <LinearProgress
+                                variant="determinate"
+                                value={item.percent}
+                                color={item.progressColor}
+                              />
+                            }
+                          />
+                        </Grid>
+                      );
+                    }
+
                     return (
                       <Grid item xs={12} sm={6} md={4} key={`bucket${index}`}>
                         <DashboardTile
                           icon={
-                            <FontAwesomeSvgIcon size="2x" icon={StorageIcon} />
+                            <FontAwesomeSvgIcon size="2x" icon={DriveIcon} />
                           }
                           iconColor={item.bucketColor}
-                          heading={"Total"}
+                          heading={`${item.from.toUpperCase()} - ${item.to.toUpperCase()}`}
                           subHeading={`${item.used} / ${item.total}`}
                           value={`${item.percent}%`}
                           footerLeft={`Free: ${item.free}`}
@@ -130,33 +192,12 @@ const BucketSim = () => {
                         />
                       </Grid>
                     );
-                  }
-
-                  return (
-                    <Grid item xs={12} sm={6} md={4} key={`bucket${index}`}>
-                      <DashboardTile
-                        icon={<FontAwesomeSvgIcon size="2x" icon={DriveIcon} />}
-                        iconColor={item.bucketColor}
-                        heading={`${item.from.toUpperCase()} - ${item.to.toUpperCase()}`}
-                        subHeading={`${item.used} / ${item.total}`}
-                        value={`${item.percent}%`}
-                        footerLeft={`Free: ${item.free}`}
-                        footerRight={`${item.titles} Titles`}
-                        CustomDivider={
-                          <LinearProgress
-                            variant="determinate"
-                            value={item.percent}
-                            color={item.progressColor}
-                          />
-                        }
-                      />
-                    </Grid>
-                  );
-                })}
-            </Grid>
-          </Dashboard>
+                  })}
+              </Grid>
+            </Dashboard>
+          </Grid>
         </Grid>
-      </Grid>
+      )}
     </ModuleContainer>
   );
 };
