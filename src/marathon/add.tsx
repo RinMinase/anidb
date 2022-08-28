@@ -1,5 +1,5 @@
 import { route } from "preact-router";
-import { useContext } from "preact/hooks";
+import { useContext, useEffect } from "preact/hooks";
 import { Controller, useForm } from "react-hook-form";
 import { FontAwesomeSvgIcon } from "react-fontawesome-svg-icon";
 import Swal from "sweetalert2";
@@ -26,6 +26,12 @@ import {
 
 import { GlobalLoaderContext } from "@components";
 import { defaultValues, Form, resolver } from "./validation";
+
+type Props = {
+  matches?: {
+    id: string;
+  };
+};
 
 const ModuleContainer = styled(Box)({
   paddingTop: 24,
@@ -60,15 +66,35 @@ const SaveButton = styled(Button)(({ theme }) => ({
   },
 }));
 
-const MarathonAdd = () => {
+const MarathonAdd = (props: Props) => {
   const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
 
   const {
     control,
-    register,
+    setValue,
     handleSubmit,
     formState: { errors },
   } = useForm<Form>({ defaultValues, resolver, mode: "onChange" });
+
+  const CustomTextField = (props: any) => {
+    return (
+      <Controller
+        name={props.name}
+        control={props.control}
+        render={({ field: { onChange, value } }) => (
+          <TextField
+            variant="outlined"
+            onChange={onChange}
+            label={props.label}
+            helperText={props.helperText}
+            error={props.error}
+            disabled={props.disabled}
+            value={value}
+          />
+        )}
+      />
+    );
+  };
 
   const DatePicker = (props: any) => {
     return (
@@ -105,7 +131,7 @@ const MarathonAdd = () => {
     });
   };
 
-  const handleSubmitForm = (formdata: Form) => {
+  const handleSubmitForm = async (formdata: Form) => {
     toggleLoader(true);
 
     const body = {
@@ -114,21 +140,43 @@ const MarathonAdd = () => {
       date_to: format(formdata.dateTo, "yyyy-MM-dd"),
     };
 
-    axios.post("/sequences", body).then(() => {
-      Swal.fire({
+    try {
+      if (props.matches?.id) {
+        await axios.put(`/sequences/${props.matches.id}`, body);
+      } else {
+        await axios.post("/sequences", body);
+      }
+
+      await Swal.fire({
         title: "Success!",
         icon: "success",
-      })
-        .then(() => {
-          toggleLoader(false);
-          route("/marathons");
-        })
-        .catch((err) => {
-          toggleLoader(false);
-          console.error(err);
-        });
-    });
+      });
+
+      toggleLoader(false);
+      route("/marathons");
+    } catch (err) {
+      toggleLoader(false);
+      console.error(err);
+    }
   };
+
+  useEffect(() => {
+    if (props.matches?.id) {
+      toggleLoader(true);
+
+      const { id } = props.matches;
+
+      axios
+        .get(`/sequences/${id}`)
+        .then(({ data: { data } }) => {
+          setValue("title", data.title);
+          setValue("dateFrom", new Date(data.date_from));
+          setValue("dateTo", new Date(data.date_to));
+        })
+        .catch((err) => console.error(err))
+        .finally(() => toggleLoader(false));
+    }
+  }, []);
 
   return (
     <ModuleContainer>
@@ -139,7 +187,7 @@ const MarathonAdd = () => {
           display="flex"
           flexGrow={1}
         >
-          Add Marathon
+          {props.matches?.id ? "Edit marathon" : "Add Marathon"}
         </Typography>
         <ControlButtonsContainer>
           <ControlButtions
@@ -155,13 +203,14 @@ const MarathonAdd = () => {
 
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <Stack spacing={3} maxWidth={450}>
-          <TextField
+          <CustomTextField
+            name="title"
             variant="outlined"
             label="Title / Description"
+            control={control}
             error={!!errors.title}
             helperText={errors.title?.message}
             disabled={isLoading}
-            {...register("title")}
           />
 
           <DatePicker

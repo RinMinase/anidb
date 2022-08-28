@@ -4,11 +4,14 @@ import axios from "axios";
 import { Chart, ChartOptions, registerables } from "chart.js";
 import ChartDataLabels from "chartjs-plugin-datalabels";
 import { FontAwesomeSvgIcon } from "react-fontawesome-svg-icon";
+import Swal from "sweetalert2";
 
 import {
   Box,
   Button,
   Grid,
+  IconButton,
+  ListItemText,
   MenuItem,
   MenuList,
   Paper,
@@ -24,6 +27,8 @@ import {
 import {
   faCalendarDays as DayCountIcon,
   faClapperboard as TotalCountIcon,
+  faPenToSquare as EditIcon,
+  faTrash as DeleteIcon,
   faTv as TitleCountIcon,
 } from "@fortawesome/free-solid-svg-icons";
 
@@ -143,6 +148,42 @@ const Marathon = () => {
     }
   };
 
+  const handleEditClick = (e: any, id: number) => {
+    e.stopPropagation();
+    route(`/marathons/edit/${id}`);
+  };
+
+  const handleDeleteClick = async (e: any, id: number) => {
+    e.stopPropagation();
+
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: "This item will be deleted",
+      icon: "error",
+      showCancelButton: true,
+    });
+
+    if (result.isConfirmed) {
+      toggleLoader(true);
+
+      await axios.delete(`/sequences/${id}`);
+      await Swal.fire({
+        title: "Success!",
+        icon: "success",
+      });
+
+      const {
+        data: { data },
+      } = await axios.get("/sequences");
+
+      setSequences(() => data);
+
+      if (data.length) handleClickSequence(data[0].id);
+
+      toggleLoader(false);
+    }
+  };
+
   useEffect(() => {
     if (document.getElementById("graph")) {
       const canvas = document.getElementById("graph") as HTMLCanvasElement;
@@ -163,7 +204,7 @@ const Marathon = () => {
       .then(({ data: { data } }) => {
         setSequences(() => data);
 
-        if (data.length) handleClickSequence(1);
+        if (data.length) handleClickSequence(data[0].id);
       })
       .catch((err) => {
         console.error(err);
@@ -250,7 +291,20 @@ const Marathon = () => {
                 selected={selected === item.id}
                 onClick={() => handleClickSequence(item.id)}
               >
-                {item.title}
+              <ListItemText>{item.title}</ListItemText>
+              <IconButton
+                size="small"
+                onClick={(e) => handleEditClick(e, item.id)}
+              >
+                <FontAwesomeSvgIcon icon={EditIcon} />
+              </IconButton>
+              <IconButton
+                size="small"
+                onClick={(e) => handleDeleteClick(e, item.id)}
+              >
+                <FontAwesomeSvgIcon icon={DeleteIcon} />
+              </IconButton>
+                {}
               </MenuItem>
             ))}
           </CustomMenuList>

@@ -49,6 +49,7 @@ const Routes = (props: Props) => (
 
     <AsyncRoute path="/marathons" getComponent={Marathon} />
     <AsyncRoute path="/marathons/add" getComponent={MarathonAdd} />
+    <AsyncRoute path="/marathons/edit/:id" getComponent={MarathonAdd} />
 
     <AsyncRoute path="/bucket-sims" getComponent={BucketSim} />
     <AsyncRoute path="/bucket-sims/add" getComponent={BucketSimAdd} />
