@@ -101,7 +101,7 @@ const Nav = () => {
         <ListItemIcon children={<FontAwesomeSvgIcon icon={BucketsIcon} />} />
         Bucket Lists
       </MenuItem>
-      <MenuItem component="a" href="/bucket-sim" onClick={props.onClick}>
+      <MenuItem component="a" href="/bucket-sims" onClick={props.onClick}>
         <ListItemIcon children={<FontAwesomeSvgIcon icon={BucketSimIcon} />} />
         Bucket Simulator
       </MenuItem>
