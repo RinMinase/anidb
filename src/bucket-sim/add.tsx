@@ -171,12 +171,9 @@ const BucketSimAdd = () => {
           Swal.fire({
             title: "Success!",
             icon: "success",
-          }).then((result) => {
-            console.log('cnf')
-            if (result.isConfirmed) {
-              toggleLoader(false);
-              route("/bucket-sim");
-            }
+          }).then(() => {
+            toggleLoader(false);
+            route("/bucket-sim");
           });
         })
         .catch((err) => {
