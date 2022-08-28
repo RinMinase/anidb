@@ -1,7 +1,7 @@
 export type Sims = Array<{
   uuid: string;
   description?: string;
-}>
+}>;
 
 export type Data = Item[];
 
@@ -16,4 +16,12 @@ export type Item = {
   titles?: number;
   bucketColor?: string;
   progressColor?: "success" | "error" | "warning";
+};
+
+export type Buckets = {
+  buckets?: Array<{
+    from?: string;
+    to?: string;
+    size?: number;
+  }>;
 };
