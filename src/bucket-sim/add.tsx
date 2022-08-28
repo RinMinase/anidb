@@ -36,6 +36,8 @@ import {
 import { GlobalLoaderContext } from "@components";
 import { defaultValues, Form, resolver } from "./validation";
 
+const TB = 1000169533440;
+
 const ModuleContainer = styled(Box)({
   paddingTop: 24,
   paddingBottom: 24,
@@ -67,7 +69,7 @@ const ControlButtions = styled(Button)(({ theme }) => ({
 
 const DescriptionContainer = styled(Paper)({
   marginBottom: 16,
-})
+});
 
 const CustomIconButton = styled(IconButton)({
   width: 32,
@@ -153,26 +155,34 @@ const BucketSimAdd = () => {
     toggleLoader(true);
 
     if (formdata.buckets) {
-      const TB = 1024 * 1024 * 1024 * 1024;
       const buckets = formdata.buckets.map((item) => ({
         ...item,
         size: item.size ? item.size * TB : 0,
-      }))
+      }));
 
       const data = JSON.stringify(buckets);
 
-      axios.post("/bucket-sims", {
-        description: formdata.description,
-        buckets: data,
-      })
-      .then(() => {
-        Swal.fire({
-          title: "Success!",
-          icon: "success",
-        }).then(() => route("/bucket-sim"));
-      })
-      .catch((err) => console.error(err))
-      .finally(() => toggleLoader(false));
+      axios
+        .post("/bucket-sims", {
+          description: formdata.description,
+          buckets: data,
+        })
+        .then(() => {
+          Swal.fire({
+            title: "Success!",
+            icon: "success",
+          }).then((result) => {
+            console.log('cnf')
+            if (result.isConfirmed) {
+              toggleLoader(false);
+              route("/bucket-sim");
+            }
+          });
+        })
+        .catch((err) => {
+          toggleLoader(false);
+          console.error(err);
+        });
     }
   };
 
@@ -239,7 +249,7 @@ const BucketSimAdd = () => {
 
       <DescriptionContainer>
         <TextField
-        fullWidth
+          fullWidth
           variant="outlined"
           label="Description"
           error={!!errors.description}
