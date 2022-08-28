@@ -13,6 +13,7 @@ export type Item = {
   used?: string;
   percent: number;
   total?: string;
+  rawTotal?: number;
   titles?: number;
   bucketColor?: string;
   progressColor?: "success" | "error" | "warning";

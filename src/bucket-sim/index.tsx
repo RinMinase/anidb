@@ -57,7 +57,7 @@ const BucketSim = () => {
     axios
       .get(`/bucket-sims/${uuid}`)
       .then(({ data: { data } }) => {
-        const buckets: Data = data.map((item: Item) => {
+        const buckets: Data = data.data.map((item: Item) => {
           const { percent } = item;
 
           let bucketColor: string = green[700];
@@ -82,6 +82,7 @@ const BucketSim = () => {
 
   const handleEditClick = (e: any, uuid: string) => {
     e.stopPropagation();
+    route(`/bucket-sim/edit/${uuid}`);
   };
 
   const handleDeleteClick = async (e: any, uuid: string) => {
@@ -135,39 +136,39 @@ const BucketSim = () => {
 
   return (
     <ModuleContainer>
-      {!isLoading && (
-        <Grid container spacing={4}>
-          <Grid item xs={12} sm={4}>
-            <Button
-              variant="contained"
-              fullWidth
-              onClick={() => route("/bucket-sim/add")}
-            >
-              Add
-            </Button>
-            <CustomMenuList component={Paper}>
-              {sims.map((item) => (
-                <MenuItem
-                  key={item.uuid}
-                  onClick={() => handleSelectSim(item.uuid)}
+      <Grid container spacing={4}>
+        <Grid item xs={12} sm={4}>
+          <Button
+            variant="contained"
+            fullWidth
+            onClick={() => route("/bucket-sim/add")}
+          >
+            Add
+          </Button>
+          <CustomMenuList component={Paper}>
+            {sims.map((item) => (
+              <MenuItem
+                key={item.uuid}
+                onClick={() => handleSelectSim(item.uuid)}
+              >
+                <ListItemText>{item.description}</ListItemText>
+                <IconButton
+                  size="small"
+                  onClick={(e) => handleEditClick(e, item.uuid)}
                 >
-                  <ListItemText>{item.description}</ListItemText>
-                  <IconButton
-                    size="small"
-                    onClick={(e) => handleEditClick(e, item.uuid)}
-                  >
-                    <FontAwesomeSvgIcon icon={EditIcon} />
-                  </IconButton>
-                  <IconButton
-                    size="small"
-                    onClick={(e) => handleDeleteClick(e, item.uuid)}
-                  >
-                    <FontAwesomeSvgIcon icon={DeleteIcon} />
-                  </IconButton>
-                </MenuItem>
-              ))}
-            </CustomMenuList>
-          </Grid>
+                  <FontAwesomeSvgIcon icon={EditIcon} />
+                </IconButton>
+                <IconButton
+                  size="small"
+                  onClick={(e) => handleDeleteClick(e, item.uuid)}
+                >
+                  <FontAwesomeSvgIcon icon={DeleteIcon} />
+                </IconButton>
+              </MenuItem>
+            ))}
+          </CustomMenuList>
+        </Grid>
+        {!isLoading && (
           <Grid item xs={12} sm={8}>
             <Dashboard>
               <Grid container spacing={4}>
@@ -227,8 +228,8 @@ const BucketSim = () => {
               </Grid>
             </Dashboard>
           </Grid>
-        </Grid>
-      )}
+        )}
+      </Grid>
     </ModuleContainer>
   );
 };
