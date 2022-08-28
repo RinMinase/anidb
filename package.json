@@ -74,9 +74,11 @@
   },
   "resolutions": {
     "@babel/core": "^7.18.0",
+    "@types/node": "^18.7.13",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-fontawesome-svg-icon/react": "^17.0.0",
+    "ts-node": "^10.9.1",
     "workbox-build": "^6.4.0",
     "workbox-window": "^6.4.0"
   },
