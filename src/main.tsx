@@ -1,4 +1,4 @@
-import '@fortawesome/fontawesome-svg-core/styles.css';
+import "@fortawesome/fontawesome-svg-core/styles.css";
 
 import { render } from "preact";
 
@@ -18,7 +18,7 @@ const Layout = () => {
   const [navCommon, setNavCommon] = useState<boolean>(true);
 
   const handleRouteChange = async ({ url }: { url: string }) => {
-    const commonURLs = ["/","/register"];
+    const commonURLs = ["/", "/register"];
     setNavCommon(commonURLs.includes(url));
   };
 
