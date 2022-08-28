@@ -1,30 +1,23 @@
 import { route } from "preact-router";
 import { useContext, useEffect } from "preact/hooks";
-import { Controller, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { FontAwesomeSvgIcon } from "react-fontawesome-svg-icon";
 import Swal from "sweetalert2";
 import { format } from "date-fns";
 import axios from "axios";
 
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
-
-import {
-  Box,
-  Button,
-  Stack,
-  styled,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Stack, styled, Typography } from "@mui/material";
 
 import {
   faArrowLeftLong as BackIcon,
   faFloppyDisk as SaveIcon,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { GlobalLoaderContext } from "@components";
+import {
+  ControlledField,
+  ControlledDatepicker,
+  GlobalLoaderContext,
+} from "@components";
 import { defaultValues, Form, resolver } from "./validation";
 
 type Props = {
@@ -75,50 +68,6 @@ const MarathonAdd = (props: Props) => {
     handleSubmit,
     formState: { errors },
   } = useForm<Form>({ defaultValues, resolver, mode: "onChange" });
-
-  const CustomTextField = (props: any) => {
-    return (
-      <Controller
-        name={props.name}
-        control={props.control}
-        render={({ field: { onChange, value } }) => (
-          <TextField
-            variant="outlined"
-            onChange={onChange}
-            label={props.label}
-            helperText={props.helperText}
-            error={props.error}
-            disabled={props.disabled}
-            value={value}
-          />
-        )}
-      />
-    );
-  };
-
-  const DatePicker = (props: any) => {
-    return (
-      <Controller
-        name={props.name}
-        control={props.control}
-        render={({ field: { onChange, value } }) => (
-          <DesktopDatePicker
-            inputFormat="MM/dd/yyyy"
-            label={props.label}
-            onChange={onChange}
-            value={value}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                helperText={props.helperText}
-                error={props.error}
-              />
-            )}
-          />
-        )}
-      />
-    );
-  };
 
   const handleBack = () => {
     Swal.fire({
@@ -201,45 +150,42 @@ const MarathonAdd = (props: Props) => {
         </ControlButtonsContainer>
       </Header>
 
-      <LocalizationProvider dateAdapter={AdapterDateFns}>
-        <Stack spacing={3} maxWidth={450}>
-          <CustomTextField
-            name="title"
-            variant="outlined"
-            label="Title / Description"
-            control={control}
-            error={!!errors.title}
-            helperText={errors.title?.message}
-            disabled={isLoading}
-          />
+      <Stack spacing={3} maxWidth={450}>
+        <ControlledField
+          name="title"
+          label="Title / Description"
+          control={control}
+          error={!!errors.title}
+          helperText={errors.title?.message}
+          disabled={isLoading}
+        />
 
-          <DatePicker
-            name="dateFrom"
-            label="Date From"
-            control={control}
-            error={!!errors.dateFrom}
-            helperText={errors.dateFrom?.message}
-            disabled={isLoading}
-          />
+        <ControlledDatepicker
+          name="dateFrom"
+          label="Date From"
+          control={control}
+          error={!!errors.dateFrom}
+          helperText={errors.dateFrom?.message}
+          disabled={isLoading}
+        />
 
-          <DatePicker
-            name="dateTo"
-            label="Date To"
-            control={control}
-            error={!!errors.dateTo}
-            helperText={errors.dateTo?.message}
-            disabled={isLoading}
-          />
+        <ControlledDatepicker
+          name="dateTo"
+          label="Date To"
+          control={control}
+          error={!!errors.dateTo}
+          helperText={errors.dateTo?.message}
+          disabled={isLoading}
+        />
 
-          <SaveButton
-            variant="contained"
-            startIcon={<FontAwesomeSvgIcon icon={SaveIcon} />}
-            onClick={handleSubmit(handleSubmitForm)}
-          >
-            Save
-          </SaveButton>
-        </Stack>
-      </LocalizationProvider>
+        <SaveButton
+          variant="contained"
+          startIcon={<FontAwesomeSvgIcon icon={SaveIcon} />}
+          onClick={handleSubmit(handleSubmitForm)}
+        >
+          Save
+        </SaveButton>
+      </Stack>
     </ModuleContainer>
   );
 };
