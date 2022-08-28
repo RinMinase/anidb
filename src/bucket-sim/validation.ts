@@ -28,13 +28,17 @@ const schema = object().shape({
       from: string()
         .required("Required")
         .min(1, "Single letter only")
-        .max(1, "Single letter only"),
+        .max(1, "Single letter only")
+        .matches(/^[A-z]$/, 'Letters only'),
       to: string()
         .required("Required")
         .min(1, "Single letter only")
-        .max(1, "Single letter only"),
+        .max(1, "Single letter only")
+        .matches(/^[A-z]$/, 'Letters only'),
       size: number()
         .typeError("Invalid")
+        .nullable()
+        .required("Required")
         .min(1, "Too low")
         .max(30, "Too high"),
     }),
