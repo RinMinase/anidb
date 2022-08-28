@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "preact/hooks";
+import { route } from "preact-router";
 import axios from "axios";
 import { FontAwesomeSvgIcon } from "react-fontawesome-svg-icon";
 
@@ -15,6 +16,8 @@ import {
   styled,
 } from "@mui/material";
 
+import { green, orange, red } from "@mui/material/colors";
+
 import {
   faDatabase as StorageIcon,
   faHardDrive as DriveIcon,
@@ -25,8 +28,6 @@ import {
 import { DashboardTile, GlobalLoaderContext } from "@components";
 
 import { Data, Item, Sims } from "./types";
-import { green, orange, red } from "@mui/material/colors";
-import { route } from "preact-router";
 
 const ModuleContainer = styled(Box)({
   paddingTop: 24,
