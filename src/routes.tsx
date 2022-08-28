@@ -25,6 +25,7 @@ const Bucket = () => import("./bucket").then((c) => c.default);
 
 const BucketSim = () => import("./bucket-sim").then((c) => c.default);
 const BucketSimAdd = () => import("./bucket-sim/add").then((c) => c.default);
+const BucketSimEdit = () => import("./bucket-sim/edit").then((c) => c.default);
 
 const DataManagement = () => import("./data-management").then((c) => c.default);
 
@@ -47,6 +48,7 @@ const Routes = (props: Props) => (
 
     <AsyncRoute path="/bucket-sim" getComponent={BucketSim} />
     <AsyncRoute path="/bucket-sim/add" getComponent={BucketSimAdd} />
+    <AsyncRoute path="/bucket-sim/edit/:id" getComponent={BucketSimEdit} />
 
     <AsyncRoute path="/data-management" getComponent={DataManagement} />
 
