@@ -1,9 +1,15 @@
-import { useEffect } from "preact/hooks";
+import { useContext } from "preact/hooks";
+import { route } from "preact-router";
 import { FontAwesomeSvgIcon } from "react-fontawesome-svg-icon";
+import Swal from "sweetalert2";
+import { useFieldArray, useForm } from "react-hook-form";
+import axios from "axios";
 
 import {
   Box,
   Button,
+  FormControl,
+  FormHelperText,
   IconButton,
   InputAdornment,
   OutlinedInput,
@@ -27,8 +33,8 @@ import {
   faTrash as RemoveIcon,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { Buckets } from "./types";
-import { useFieldArray, useForm } from "react-hook-form";
+import { GlobalLoaderContext } from "@components";
+import { defaultValues, Form, resolver } from "./validation";
 
 const ModuleContainer = styled(Box)({
   paddingTop: 24,
@@ -44,6 +50,7 @@ const ControlButtonsContainer = styled(Box)(({ theme }) => ({
   display: "flex",
   flexDirection: "row",
   alignItems: "center",
+
   [theme.breakpoints.down("sm")]: {
     flexDirection: "column-reverse",
     alignItems: "unset",
@@ -58,12 +65,26 @@ const ControlButtions = styled(Button)(({ theme }) => ({
   },
 }));
 
+const DescriptionContainer = styled(Paper)({
+  marginBottom: 16,
+})
+
 const CustomIconButton = styled(IconButton)({
   width: 32,
   height: 32,
 });
 
 const CustomCell = styled(TableCell)(({ theme }) => ({
+  verticalAlign: "top",
+
+  [theme.breakpoints.down("sm")]: {
+    padding: 4,
+  },
+}));
+
+const CustomCellButton = styled(TableCell)(({ theme }) => ({
+  verticalAlign: "center",
+
   [theme.breakpoints.down("sm")]: {
     padding: 4,
   },
@@ -72,16 +93,17 @@ const CustomCell = styled(TableCell)(({ theme }) => ({
 const CellContainer = styled(Box)(({ theme }) => ({
   display: "flex",
   flexDirection: "row",
-  alignItems: "center",
+
   [theme.breakpoints.down("sm")]: {
     flexDirection: "column",
-    alignItems: "unset",
   },
 }));
 
 const CellLabel = styled(Typography)(({ theme }) => ({
+  paddingTop: 8,
   display: "inline-block",
   marginRight: 8,
+
   [theme.breakpoints.down("sm")]: {
     textAlign: "center",
     marginRight: 0,
@@ -97,22 +119,73 @@ const CellField = styled(TextField)(({ theme }) => ({
 
 const CellField2 = styled(OutlinedInput)({
   minWidth: 40,
+  "& input::-webkit-outer-spin-button": {
+    display: "none",
+  },
+  "& input::-webkit-inner-spin-button": {
+    display: "none",
+  },
+  "& input[type=number]": {
+    MozAppearance: "textfield",
+  },
 });
 
 const BucketSimAdd = () => {
-  const { control, register, handleSubmit } = useForm<Buckets>();
+  const { toggleLoader } = useContext(GlobalLoaderContext);
+
+  const {
+    control,
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Form>({
+    resolver,
+    defaultValues,
+    mode: "onChange",
+  });
+
   const { fields, append, remove, swap } = useFieldArray({
     control,
     name: "buckets",
   });
 
-  const handleSubmitForm = (formdata: Buckets) => {
-    console.log("form", formdata.buckets);
+  const handleSubmitForm = (formdata: Form) => {
+    toggleLoader(true);
+
+    if (formdata.buckets) {
+      const TB = 1024 * 1024 * 1024 * 1024;
+      const buckets = formdata.buckets.map((item) => ({
+        ...item,
+        size: item.size ? item.size * TB : 0,
+      }))
+
+      const data = JSON.stringify(buckets);
+
+      axios.post("/bucket-sims", {
+        description: formdata.description,
+        buckets: data,
+      })
+      .then(() => {
+        Swal.fire({
+          title: "Success!",
+          icon: "success",
+        }).then(() => route("/bucket-sim"));
+      })
+      .catch((err) => console.error(err))
+      .finally(() => toggleLoader(false));
+    }
   };
 
-  useEffect(() => {
-    append({});
-  }, []);
+  const handleBack = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "Any changes will not be saved",
+      icon: "warning",
+      showCancelButton: true,
+    }).then((result) => {
+      if (result.isConfirmed) route("/bucket-sim");
+    });
+  };
 
   return (
     <ModuleContainer>
@@ -127,6 +200,7 @@ const BucketSimAdd = () => {
               width: 120,
               marginBottom: 2,
             }}
+            onClick={handleBack}
           >
             Back
           </Button>
@@ -140,6 +214,7 @@ const BucketSimAdd = () => {
             color="error"
             startIcon={<FontAwesomeSvgIcon icon={BackIcon} />}
             sx={{ display: { xs: "none", sm: "inline-flex" } }}
+            onClick={handleBack}
           >
             Back
           </ControlButtions>
@@ -147,7 +222,7 @@ const BucketSimAdd = () => {
             variant="contained"
             startIcon={<FontAwesomeSvgIcon icon={AddIcon} />}
             onClick={() => {
-              append({});
+              append({ from: "", to: "", size: null });
             }}
           >
             Add
@@ -162,6 +237,17 @@ const BucketSimAdd = () => {
         </ControlButtonsContainer>
       </Header>
 
+      <DescriptionContainer>
+        <TextField
+        fullWidth
+          variant="outlined"
+          label="Description"
+          error={!!errors.description}
+          helperText={errors.description?.message}
+          {...register("description")}
+        />
+      </DescriptionContainer>
+
       <TableContainer component={Paper}>
         <Table>
           <TableBody>
@@ -173,6 +259,10 @@ const BucketSimAdd = () => {
                     <CellField
                       variant="outlined"
                       size="small"
+                      error={errors.buckets && !!errors.buckets[index]?.from}
+                      helperText={
+                        errors.buckets && errors.buckets[index]?.from?.message
+                      }
                       {...register(`buckets.${index}.from`)}
                     />
                   </CellContainer>
@@ -183,6 +273,10 @@ const BucketSimAdd = () => {
                     <CellField
                       variant="outlined"
                       size="small"
+                      error={errors.buckets && !!errors.buckets[index]?.to}
+                      helperText={
+                        errors.buckets && errors.buckets[index]?.to?.message
+                      }
                       {...register(`buckets.${index}.to`)}
                     />
                   </CellContainer>
@@ -190,43 +284,50 @@ const BucketSimAdd = () => {
                 <CustomCell>
                   <CellContainer>
                     <CellLabel>Size:</CellLabel>
-                    <CellField2
-                      size="small"
-                      endAdornment={
-                        <InputAdornment position="end">TB</InputAdornment>
-                      }
-                      {...register(`buckets.${index}.size`)}
-                    />
+                    <FormControl>
+                      <CellField2
+                        type="number"
+                        size="small"
+                        endAdornment={
+                          <InputAdornment position="end">TB</InputAdornment>
+                        }
+                        error={errors.buckets && !!errors.buckets[index]?.size}
+                        {...register(`buckets.${index}.size`)}
+                      />
+                      <FormHelperText error>
+                        {errors.buckets && errors.buckets[index]?.size?.message}
+                      </FormHelperText>
+                    </FormControl>
                   </CellContainer>
                 </CustomCell>
 
                 {index !== 0 ? (
-                  <CustomCell>
+                  <CustomCellButton>
                     <CustomIconButton
                       size="small"
                       onClick={() => swap(index, index - 1)}
                     >
                       <FontAwesomeSvgIcon icon={UpIcon} />
                     </CustomIconButton>
-                  </CustomCell>
+                  </CustomCellButton>
                 ) : (
-                  <CustomCell />
+                  <CustomCellButton />
                 )}
 
                 {index !== fields.length - 1 ? (
-                  <CustomCell>
+                  <CustomCellButton>
                     <CustomIconButton
                       size="small"
                       onClick={() => swap(index, index + 1)}
                     >
                       <FontAwesomeSvgIcon icon={DownIcon} />
                     </CustomIconButton>
-                  </CustomCell>
+                  </CustomCellButton>
                 ) : (
-                  <CustomCell />
+                  <CustomCellButton />
                 )}
 
-                <CustomCell>
+                <CustomCellButton>
                   <CustomIconButton
                     size="small"
                     color="error"
@@ -234,7 +335,7 @@ const BucketSimAdd = () => {
                   >
                     <FontAwesomeSvgIcon icon={RemoveIcon} />
                   </CustomIconButton>
-                </CustomCell>
+                </CustomCellButton>
               </TableRow>
             ))}
           </TableBody>

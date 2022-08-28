@@ -17,11 +17,3 @@ export type Item = {
   bucketColor?: string;
   progressColor?: "success" | "error" | "warning";
 };
-
-export type Buckets = {
-  buckets?: Array<{
-    from?: string;
-    to?: string;
-    size?: number;
-  }>;
-};
