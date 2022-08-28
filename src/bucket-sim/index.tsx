@@ -84,41 +84,37 @@ const BucketSim = () => {
     e.stopPropagation();
   };
 
-  const handleDeleteClick = (e: any, uuid: string) => {
+  const handleDeleteClick = async (e: any, uuid: string) => {
     e.stopPropagation();
 
-    Swal.fire({
+    const result = await Swal.fire({
       title: "Are you sure?",
       text: "This item will be deleted",
       icon: "error",
       showCancelButton: true,
-    }).then((result) => {
-      if (result.isConfirmed) {
-        toggleLoader(true);
-
-        axios
-          .delete(`/bucket-sims/${uuid}`)
-          .then(() => {
-            Swal.fire({
-              title: "Success!",
-              icon: "success",
-            }).then(() => {
-              axios
-                .get("/bucket-sims")
-                .then(({ data: { data } }) => {
-                  setSims(() => data);
-
-                  if (data.length) {
-                    handleSelectSim(data[0].uuid);
-                  }
-                })
-                .catch((err) => console.error(err))
-                .finally(() => toggleLoader(false));
-            });
-          })
-          .catch((err) => console.error(err));
-      }
     });
+
+    if (result.isConfirmed) {
+      toggleLoader(true);
+
+      await axios.delete(`/bucket-sims/${uuid}`);
+      await Swal.fire({
+        title: "Success!",
+        icon: "success",
+      });
+
+      const {
+        data: { data },
+      } = await axios.get("/bucket-sims");
+
+      setSims(() => data);
+
+      if (data.length) {
+        handleSelectSim(data[0].uuid);
+      }
+
+      toggleLoader(false);
+    }
   };
 
   useEffect(() => {
