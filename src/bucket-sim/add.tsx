@@ -74,7 +74,8 @@ const BucketSimAdd = () => {
 
     if (formdata.buckets) {
       const buckets = formdata.buckets.map((item) => ({
-        ...item,
+        from: item.from.toLowerCase(),
+        to: item.to.toLowerCase(),
         size: item.size ? item.size * TB : 0,
       }));
 
