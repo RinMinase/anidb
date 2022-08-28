@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "preact/hooks";
+import { route } from "preact-router";
 import axios from "axios";
 import { Chart, ChartOptions, registerables } from "chart.js";
 import ChartDataLabels from "chartjs-plugin-datalabels";
@@ -6,6 +7,7 @@ import { FontAwesomeSvgIcon } from "react-fontawesome-svg-icon";
 
 import {
   Box,
+  Button,
   Grid,
   MenuItem,
   MenuList,
@@ -31,6 +33,7 @@ import {
   Quality,
   TableLoader,
 } from "@components";
+
 import { Data, Sequences, Stats } from "./types";
 
 let chartElement: Chart;
@@ -52,6 +55,7 @@ const ChartContainer = styled(Box)({
 });
 
 const CustomMenuList = styled(MenuList)<{ component: any }>({
+  marginTop: 12,
   padding: 0,
   overflow: "hidden",
 });
@@ -232,6 +236,13 @@ const Marathon = () => {
 
       <Grid container spacing={2}>
         <Grid item xs={12} sm={5} md={3}>
+          <Button
+            variant="contained"
+            fullWidth
+            onClick={() => route("/marathons/add")}
+          >
+            Add
+          </Button>
           <CustomMenuList component={Paper}>
             {sequences.map((item, index) => (
               <MenuItem

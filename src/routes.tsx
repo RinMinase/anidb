@@ -20,8 +20,10 @@ const ByName = () => import("./by-name").then((c) => c.default);
 const ByYear = () => import("./by-year").then((c) => c.default);
 
 const Catalog = () => import("./catalog").then((c) => c.default);
-const Marathon = () => import("./marathon").then((c) => c.default);
 const Bucket = () => import("./bucket").then((c) => c.default);
+
+const Marathon = () => import("./marathon").then((c) => c.default);
+const MarathonAdd = () => import("./marathon/add").then((c) => c.default);
 
 const BucketSim = () => import("./bucket-sim").then((c) => c.default);
 const BucketSimAdd = () => import("./bucket-sim/add").then((c) => c.default);
@@ -43,8 +45,10 @@ const Routes = (props: Props) => (
     <AsyncRoute path="/by-year" getComponent={ByYear} />
 
     <AsyncRoute path="/catalogs" getComponent={Catalog} />
-    <AsyncRoute path="/marathons" getComponent={Marathon} />
     <AsyncRoute path="/buckets" getComponent={Bucket} />
+
+    <AsyncRoute path="/marathons" getComponent={Marathon} />
+    <AsyncRoute path="/marathons/add" getComponent={MarathonAdd} />
 
     <AsyncRoute path="/bucket-sims" getComponent={BucketSim} />
     <AsyncRoute path="/bucket-sims/add" getComponent={BucketSimAdd} />
