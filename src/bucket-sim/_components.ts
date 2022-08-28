@@ -1,4 +1,14 @@
-import { Box, Button, IconButton, OutlinedInput, Paper, styled, TableCell, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  IconButton,
+  OutlinedInput,
+  Paper,
+  styled,
+  TableCell,
+  TextField,
+  Typography,
+} from "@mui/material";
 
 const ModuleContainer = styled(Box)({
   paddingTop: 24,
@@ -24,6 +34,7 @@ const ControlButtonsContainer = styled(Box)(({ theme }) => ({
 const ControlButtions = styled(Button)(({ theme }) => ({
   minWidth: 120,
   marginLeft: 16,
+
   [theme.breakpoints.down("sm")]: {
     marginTop: 8,
   },
@@ -76,6 +87,7 @@ const CellLabel = styled(Typography)(({ theme }) => ({
 
 const CellField = styled(TextField)(({ theme }) => ({
   minWidth: 40,
+
   [theme.breakpoints.down("sm")]: {
     maxWidth: 70,
   },
@@ -83,12 +95,15 @@ const CellField = styled(TextField)(({ theme }) => ({
 
 const CellField2 = styled(OutlinedInput)({
   minWidth: 40,
+
   "& input::-webkit-outer-spin-button": {
     display: "none",
   },
+
   "& input::-webkit-inner-spin-button": {
     display: "none",
   },
+
   "& input[type=number]": {
     MozAppearance: "textfield",
   },
@@ -107,4 +122,4 @@ export {
   CellLabel,
   CellField,
   CellField2,
-}
+};
