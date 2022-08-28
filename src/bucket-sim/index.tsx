@@ -28,6 +28,7 @@ import {
 import { DashboardTile, GlobalLoaderContext } from "@components";
 
 import { Data, Item, Sims } from "./types";
+import Swal from "sweetalert2";
 
 const ModuleContainer = styled(Box)({
   paddingTop: 24,
@@ -85,6 +86,39 @@ const BucketSim = () => {
 
   const handleDeleteClick = (e: any, uuid: string) => {
     e.stopPropagation();
+
+    Swal.fire({
+      title: "Are you sure?",
+      text: "This item will be deleted",
+      icon: "error",
+      showCancelButton: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        toggleLoader(true);
+
+        axios
+          .delete(`/bucket-sims/${uuid}`)
+          .then(() => {
+            Swal.fire({
+              title: "Success!",
+              icon: "success",
+            }).then(() => {
+              axios
+                .get("/bucket-sims")
+                .then(({ data: { data } }) => {
+                  setSims(() => data);
+
+                  if (data.length) {
+                    handleSelectSim(data[0].uuid);
+                  }
+                })
+                .catch((err) => console.error(err))
+                .finally(() => toggleLoader(false));
+            });
+          })
+          .catch((err) => console.error(err));
+      }
+    });
   };
 
   useEffect(() => {
