@@ -50,34 +50,38 @@ const BucketSim = () => {
 
   const [sims, setSims] = useState<Sims>([]);
   const [data, setData] = useState<Data>([]);
+  const [selected, setSelected] = useState("");
 
   const handleSelectSim = (uuid: string) => {
-    toggleLoader(true);
+    if (uuid !== selected) {
+      toggleLoader(true);
 
-    axios
-      .get(`/bucket-sims/${uuid}`)
-      .then(({ data: { data } }) => {
-        const buckets: Data = data.data.map((item: Item) => {
-          const { percent } = item;
+      axios
+        .get(`/bucket-sims/${uuid}`)
+        .then(({ data: { data } }) => {
+          const buckets: Data = data.data.map((item: Item) => {
+            const { percent } = item;
 
-          let bucketColor: string = green[700];
-          let progressColor = "success";
+            let bucketColor: string = green[700];
+            let progressColor = "success";
 
-          if (percent > 90) {
-            bucketColor = red[700];
-            progressColor = "error";
-          } else if (percent > 80) {
-            bucketColor = orange[700];
-            progressColor = "warning";
-          }
+            if (percent > 90) {
+              bucketColor = red[700];
+              progressColor = "error";
+            } else if (percent > 80) {
+              bucketColor = orange[700];
+              progressColor = "warning";
+            }
 
-          return { ...item, bucketColor, progressColor };
-        });
+            return { ...item, bucketColor, progressColor };
+          });
 
-        setData(() => buckets);
-      })
-      .catch((err) => console.error(err))
-      .finally(() => toggleLoader(false));
+          setData(() => buckets);
+          setSelected(uuid);
+        })
+        .catch((err) => console.error(err))
+        .finally(() => toggleLoader(false));
+    }
   };
 
   const handleEditClick = (e: any, uuid: string) => {
@@ -149,6 +153,7 @@ const BucketSim = () => {
             {sims.map((item) => (
               <MenuItem
                 key={item.uuid}
+                selected={selected === item.uuid}
                 onClick={() => handleSelectSim(item.uuid)}
               >
                 <ListItemText>{item.description}</ListItemText>
