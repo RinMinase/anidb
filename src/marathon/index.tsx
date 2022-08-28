@@ -25,7 +25,12 @@ import {
   faTv as TitleCountIcon,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { DashboardTile, GlobalLoaderContext, Quality, TableLoader } from "@components";
+import {
+  DashboardTile,
+  GlobalLoaderContext,
+  Quality,
+  TableLoader,
+} from "@components";
 import { Data, Sequences, Stats } from "./types";
 
 let chartElement: Chart;
@@ -46,7 +51,7 @@ const ChartContainer = styled(Box)({
   boxSizing: "content-box",
 });
 
-const CustomMenuList = styled(MenuList)<{component: any}>({
+const CustomMenuList = styled(MenuList)<{ component: any }>({
   padding: 0,
   overflow: "hidden",
 });
@@ -61,6 +66,7 @@ const Marathon = () => {
   const [chartData, setChartData] = useState([-1, -1, -1, -1, -1]);
   const [data, setData] = useState<Data>([]);
   const [sequences, setSequences] = useState<Sequences>([]);
+  const [selected, setSelected] = useState(0);
   const [stats, setStats] = useState<Stats>({
     titles_per_day: 0,
     eps_per_day: 0,
@@ -92,7 +98,7 @@ const Marathon = () => {
     plugins: {
       datalabels: {
         formatter: (val) => {
-          return (val < 0) ? "None" : (val < 1) ? "" : val;
+          return val < 0 ? "None" : val < 1 ? "" : val;
         },
         color: "#000",
       },
@@ -108,6 +114,29 @@ const Marathon = () => {
         enabled: false,
       },
     },
+  };
+
+  const handleClickSequence = (id: number) => {
+    if (id !== selected) {
+      toggleLoader(true);
+
+      axios
+        .get(`/entries/by-sequence/${id}`)
+        .then(({ data: { data } }) => {
+          setData(() => data.data);
+          setStats(() => data.stats);
+          setSelected(id);
+          setChartData(() => [
+            data.stats.quality_2160,
+            data.stats.quality_1080,
+            data.stats.quality_720,
+            data.stats.quality_480,
+            data.stats.quality_360,
+          ]);
+        })
+        .catch((err) => console.error(err))
+        .finally(() => toggleLoader(false));
+    }
   };
 
   useEffect(() => {
@@ -130,21 +159,7 @@ const Marathon = () => {
       .then(({ data: { data } }) => {
         setSequences(() => data);
 
-        axios
-          .get("/entries/by-sequence/1")
-          .then(({ data: { data } }) => {
-            setData(() => data.data);
-            setStats(() => data.stats);
-            setChartData(() => [
-              data.stats.quality_2160,
-              data.stats.quality_1080,
-              data.stats.quality_720,
-              data.stats.quality_480,
-              data.stats.quality_360,
-            ]);
-          })
-          .catch((err) => console.error(err))
-          .finally(() => toggleLoader(false));
+        if (data.length) handleClickSequence(1);
       })
       .catch((err) => {
         console.error(err);
@@ -169,26 +184,6 @@ const Marathon = () => {
       chartElement.update();
     }
   }, [chartData]);
-
-  const handleClickSequence = (id: number) => {
-    toggleLoader(true);
-
-    axios
-      .get(`/entries/by-sequence/${id}`)
-      .then(({ data: { data } }) => {
-        setData(() => data.data);
-        setStats(() => data.stats);
-        setChartData(() => [
-          data.stats.quality_2160,
-          data.stats.quality_1080,
-          data.stats.quality_720,
-          data.stats.quality_480,
-          data.stats.quality_360,
-        ]);
-      })
-      .catch((err) => console.error(err))
-      .finally(() => toggleLoader(false));
-  };
 
   return (
     <ModuleContainer>
@@ -241,6 +236,7 @@ const Marathon = () => {
             {sequences.map((item, index) => (
               <MenuItem
                 key={`mara-${index}`}
+                selected={selected === item.id}
                 onClick={() => handleClickSequence(item.id)}
               >
                 {item.title}
@@ -264,10 +260,10 @@ const Marathon = () => {
                 {!isLoading ? (
                   data.map((item) => (
                     <TableRow hover key={item.id}>
-                    <TableCell>
-                      <Quality quality={item.quality} />
-                      {item.title}
-                    </TableCell>
+                      <TableCell>
+                        <Quality quality={item.quality} />
+                        {item.title}
+                      </TableCell>
                       <TableCell>
                         {item.episodes} / {item.ovas} / {item.specials}
                       </TableCell>
