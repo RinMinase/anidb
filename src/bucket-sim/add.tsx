@@ -92,7 +92,7 @@ const BucketSimAdd = () => {
             icon: "success",
           }).then(() => {
             toggleLoader(false);
-            route("/bucket-sim");
+            route("/bucket-sims");
           });
         })
         .catch((err) => {
@@ -109,7 +109,7 @@ const BucketSimAdd = () => {
       icon: "warning",
       showCancelButton: true,
     }).then((result) => {
-      if (result.isConfirmed) route("/bucket-sim");
+      if (result.isConfirmed) route("/bucket-sims");
     });
   };
 

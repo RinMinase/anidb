@@ -145,7 +145,7 @@ const BucketSim = () => {
           <Button
             variant="contained"
             fullWidth
-            onClick={() => route("/bucket-sim/add")}
+            onClick={() => route("/bucket-sims/add")}
           >
             Add
           </Button>
