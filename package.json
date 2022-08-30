@@ -77,8 +77,8 @@
   },
   "resolutions": {
     "@babel/core": "^7.18.0",
-    "@mui/system": "^5.10.2",
-    "@types/node": "^18.7.13",
+    "@mui/system": "^5.10.3",
+    "@types/node": "^18.7.14",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-fontawesome-svg-icon/react": "^17.0.0",
