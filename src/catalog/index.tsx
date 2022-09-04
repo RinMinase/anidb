@@ -62,7 +62,7 @@ const Catalog = () => {
       toggleLoader(true);
 
       axios
-        .get(`/partials/${id}`)
+        .get(`/catalogs/${id}`)
         .then(({ data: { data } }) => {
           setData(() => data);
           setSelected(id);
