@@ -80,7 +80,27 @@ const Catalog = () => {
     e.stopPropagation();
   };
 
-  const handleDeleteClick = async (id: string) => {};
+  const handleDeleteClick = async (id: string) => {
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: "This item will be deleted",
+      icon: "error",
+      showCancelButton: true,
+    });
+
+    if (result.isConfirmed) {
+      toggleLoader(true);
+
+      await axios.delete(`/partials/${id}`);
+      await Swal.fire({
+        title: "Success!",
+        icon: "success",
+      });
+
+      handleClickCatalog(selected);
+      toggleLoader(false);
+    }
+  };
 
   const handleDeleteMultiClick = async (e: any, id: string) => {
     e.stopPropagation();
@@ -182,7 +202,7 @@ const Catalog = () => {
                 <TableRow>
                   <TableCell>Title</TableCell>
                   <TableCell>Priority</TableCell>
-                  <TableCell></TableCell>
+                  <TableCell />
                 </TableRow>
               </TableHead>
 
