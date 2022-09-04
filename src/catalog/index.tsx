@@ -78,6 +78,8 @@ const Catalog = () => {
 
   const handleEditMultiClick = (e: any, id: string) => {
     e.stopPropagation();
+
+    route(`/catalogs/edit-multi/${id}`);
   };
 
   const handleDeleteClick = async (id: string) => {
