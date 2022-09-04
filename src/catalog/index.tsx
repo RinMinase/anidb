@@ -97,7 +97,11 @@ const Catalog = () => {
         icon: "success",
       });
 
-      handleClickCatalog(selected);
+      const {
+        data: { data },
+      } = await axios.get(`/catalogs/${selected}`);
+
+      setData(() => data);
       toggleLoader(false);
     }
   };
