@@ -100,11 +100,11 @@ const CatalogAdd = (props: Props) => {
         icon: "success",
       });
 
-      toggleLoader(false);
       route("/catalogs");
     } catch (err) {
-      toggleLoader(false);
       console.error(err);
+    } finally {
+      toggleLoader(false);
     }
   };
 
