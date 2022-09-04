@@ -20,6 +20,9 @@ const ByName = () => import("./by-name").then((c) => c.default);
 const ByYear = () => import("./by-year").then((c) => c.default);
 
 const Catalog = () => import("./catalog").then((c) => c.default);
+const CatalogAdd = () => import("./catalog/add").then((c) => c.default);
+const CatalogAddMulti = () => import("./catalog/add-multi").then((c) => c.default);
+
 const Bucket = () => import("./bucket").then((c) => c.default);
 
 const Marathon = () => import("./marathon").then((c) => c.default);
@@ -45,6 +48,9 @@ const Routes = (props: Props) => (
     <AsyncRoute path="/by-year" getComponent={ByYear} />
 
     <AsyncRoute path="/catalogs" getComponent={Catalog} />
+    <AsyncRoute path="/catalogs/add" getComponent={CatalogAdd} />
+    <AsyncRoute path="/catalogs/add-multi" getComponent={CatalogAddMulti} />
+
     <AsyncRoute path="/buckets" getComponent={Bucket} />
 
     <AsyncRoute path="/marathons" getComponent={Marathon} />
