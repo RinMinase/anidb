@@ -111,7 +111,7 @@ const CatalogAdd = (props: Props) => {
   const handleOnLoad = async () => {
     toggleLoader(true);
 
-    const priorityAPI = await axios.get("/priorities")
+    const priorityAPI = await axios.get("/priorities");
     const rawPriorities: Priorities = priorityAPI.data.data;
     const priorityOptions: OptionsProps = rawPriorities.map((item) => ({
       key: item.id,
@@ -142,7 +142,7 @@ const CatalogAdd = (props: Props) => {
       const { id } = props.matches;
 
       const partialsData = await axios.get(`/partials/${id}`);
-      const {title, id_catalogs, id_priority} = partialsData.data;
+      const { title, id_catalogs, id_priority } = partialsData.data.data;
 
       setValue("title", title);
       setValue("id_catalogs", id_catalogs);
@@ -150,7 +150,7 @@ const CatalogAdd = (props: Props) => {
     }
 
     toggleLoader(false);
-  }
+  };
 
   useEffect(() => {
     handleOnLoad();
