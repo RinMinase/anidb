@@ -49,7 +49,9 @@ const Routes = (props: Props) => (
 
     <AsyncRoute path="/catalogs" getComponent={Catalog} />
     <AsyncRoute path="/catalogs/add" getComponent={CatalogAdd} />
+    <AsyncRoute path="/catalogs/edit/:id" getComponent={CatalogAdd} />
     <AsyncRoute path="/catalogs/add-multi" getComponent={CatalogAddMulti} />
+    <AsyncRoute path="/catalogs/edit-multi/:id" getComponent={CatalogAddMulti} />
 
     <AsyncRoute path="/buckets" getComponent={Bucket} />
 
