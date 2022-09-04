@@ -46,6 +46,10 @@ const CustomTable = styled(Table)({
   minWidth: 650,
 });
 
+const ActionTableCell = styled(TableCell)({
+  textAlign: "right",
+});
+
 const Catalog = () => {
   const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
 
@@ -68,11 +72,17 @@ const Catalog = () => {
     }
   };
 
-  const handleEditClick = (e: any, id: string) => {
+  const handleEditClick = (id: string) => {
+    route(`/catalogs/edit/${id}`);
+  };
+
+  const handleEditMultiClick = (e: any, id: string) => {
     e.stopPropagation();
   };
 
-  const handleDeleteClick = async (e: any, id: string) => {
+  const handleDeleteClick = async (id: string) => {};
+
+  const handleDeleteMultiClick = async (e: any, id: string) => {
     e.stopPropagation();
 
     const result = await Swal.fire({
@@ -150,13 +160,13 @@ const Catalog = () => {
                 </ListItemText>
                 <IconButton
                   size="small"
-                  onClick={(e) => handleEditClick(e, item.id)}
+                  onClick={(e) => handleEditMultiClick(e, item.id)}
                 >
                   <FontAwesomeSvgIcon icon={EditIcon} />
                 </IconButton>
                 <IconButton
                   size="small"
-                  onClick={(e) => handleDeleteClick(e, item.id)}
+                  onClick={(e) => handleDeleteMultiClick(e, item.id)}
                 >
                   <FontAwesomeSvgIcon icon={DeleteIcon} />
                 </IconButton>
@@ -172,6 +182,7 @@ const Catalog = () => {
                 <TableRow>
                   <TableCell>Title</TableCell>
                   <TableCell>Priority</TableCell>
+                  <TableCell></TableCell>
                 </TableRow>
               </TableHead>
 
@@ -181,6 +192,21 @@ const Catalog = () => {
                     <TableRow hover key={item.id}>
                       <TableCell>{item.title}</TableCell>
                       <TableCell>{item.priority}</TableCell>
+                      <ActionTableCell>
+                        <IconButton
+                          size="small"
+                          onClick={() => handleEditClick(item.id)}
+                        >
+                          <FontAwesomeSvgIcon icon={EditIcon} />
+                        </IconButton>
+                        <IconButton
+                          size="small"
+                          onClick={() => handleDeleteClick(item.id)}
+                          sx={{ ml: 1 }}
+                        >
+                          <FontAwesomeSvgIcon icon={DeleteIcon} />
+                        </IconButton>
+                      </ActionTableCell>
                     </TableRow>
                   ))
                 ) : (

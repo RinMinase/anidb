@@ -9,3 +9,8 @@ export type Catalogs = Array<{
   year: number;
   season: "Winter" | "Spring" | "Summer" | "Fall";
 }>;
+
+export type Priorities = Array<{
+  id: string;
+  priority: "Low" | "Normal" | "High";
+}>;
