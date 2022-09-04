@@ -10,6 +10,10 @@ type Props = {
   helperText?: string;
   error?: boolean;
   disabled?: boolean;
+  multiline?: boolean;
+  minRows?: number;
+  maxRows?: number;
+  fullWidth?: boolean;
 };
 
 const ControlledField = (props: Props) => {
@@ -25,6 +29,10 @@ const ControlledField = (props: Props) => {
           helperText={props.helperText}
           error={props.error}
           disabled={props.disabled}
+          multiline={props.multiline}
+          minRows={props.minRows}
+          maxRows={props.maxRows}
+          fullWidth={props.fullWidth}
           value={value}
         />
       )}
