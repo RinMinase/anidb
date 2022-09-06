@@ -15,3 +15,45 @@ export type Data = Array<{
   remarks?: string | null;
   rating?: number;
 }>;
+
+export type FullData = {
+  id?: string;
+  quality?: string;
+  id_quality?: number;
+  quality_color?: string;
+  title?: string;
+  dateInitFinished?: string;
+  dateLastFinished?: string;
+  duration?: string;
+  filesize?: string;
+  episodes?: number;
+  ovas?: number;
+  specials?: number;
+  seasonNumber?: number;
+  seasonFirstTitle?: string;
+  prequel?: string;
+  sequel?: string;
+  encoder?: string;
+  encoderVideo?: string | null;
+  encoderAudio?: string | null;
+  encoderSubs?: string | null;
+  releaseSeason?: string;
+  release?: string;
+  variants?: string | null;
+  remarks?: string | null;
+  codecHDR?: number;
+  codecVideo?: string;
+  codecAudio?: string;
+  offquels?: Array<{
+    id: string;
+    title: string;
+  }>
+  rewatches?: Array<string>;
+  ratingAverage?: number;
+  rating?: {
+    audio: number;
+    enjoyment: number;
+    graphics: number;
+    plot: number;
+  };
+};
