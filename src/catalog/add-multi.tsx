@@ -1,5 +1,5 @@
 import { route } from "preact-router";
-import { useContext } from "preact/hooks";
+import { useContext, useEffect } from "preact/hooks";
 import { useForm } from "react-hook-form";
 import { FontAwesomeSvgIcon } from "react-fontawesome-slim";
 import Swal from "sweetalert2";
@@ -28,6 +28,7 @@ import {
 } from "@components";
 
 import { defaultValues, Form, resolver } from "./validation-multi";
+import { Data, Stats } from "./types";
 
 type Props = {
   matches?: {
@@ -84,6 +85,7 @@ const CatalogMulti = (props: Props) => {
 
   const {
     control,
+    setValue,
     handleSubmit,
     formState: { errors },
   } = useForm<Form>({ defaultValues, resolver, mode: "onChange" });
@@ -115,7 +117,9 @@ const CatalogMulti = (props: Props) => {
       formBody.append("year", formdata.year);
 
       if (props.matches?.id) {
-        response = await axios.put(
+        formBody.append("_method", "PUT");
+
+        response = await axios.post(
           `/partials/multi/${props.matches.id}`,
           formBody,
         );
@@ -143,6 +147,42 @@ const CatalogMulti = (props: Props) => {
       toggleLoader(false);
     }
   };
+
+  const handleEditLoad = (data: Data, stats: Stats) => {
+    const formatted: { low: string[]; normal: string[]; high: string[] } = {
+      low: [],
+      normal: [],
+      high: [],
+    };
+
+    data.forEach((item) => {
+      if (item.priority === "Low") formatted.low?.push(item.title);
+      if (item.priority === "Normal") formatted.normal?.push(item.title);
+      if (item.priority === "High") formatted.high?.push(item.title);
+    });
+
+    setValue("year", `${stats.year}` || "");
+    setValue("season", stats.season || "");
+    setValue("low", formatted.low.join("\\n"));
+    setValue("normal", formatted.normal.join("\\n"));
+    setValue("high", formatted.high.join("\\n"));
+  };
+
+  useEffect(() => {
+    if (props.matches?.id) {
+      toggleLoader(true);
+
+      const { id } = props.matches;
+
+      axios
+        .get(`/catalogs/${id}`)
+        .then(({ data }) => {
+          handleEditLoad(data.data, data.stats);
+        })
+        .catch((err) => console.error(err))
+        .finally(() => toggleLoader(false));
+    }
+  }, [])
 
   return (
     <ModuleContainer>

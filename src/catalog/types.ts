@@ -4,6 +4,11 @@ export type Data = Array<{
   priority?: "Low" | "Normal" | "High";
 }>;
 
+export type Stats = {
+  year?: number;
+  season?: "Winter" | "Spring" | "Summer" | "Fall";
+}
+
 export type Catalogs = Array<{
   id: string;
   year: number;
