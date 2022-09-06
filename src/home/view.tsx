@@ -35,6 +35,7 @@ import { faHeart as TotalRatingEmptyIcon } from "@fortawesome/free-regular-svg-i
 
 import { GlobalLoaderContext } from "@components";
 import { FullData } from "./types";
+import { route } from "preact-router";
 
 type Props = {
   matches?: {
@@ -249,6 +250,7 @@ const HomeView = (props: Props) => {
                   color="info"
                   startIcon={<FontAwesomeSvgIcon icon={BackIcon} />}
                   fullWidth
+                  onClick={() => route("/home")}
                 >
                   Back
                 </Button>
