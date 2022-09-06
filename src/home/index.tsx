@@ -31,6 +31,7 @@ import {
   RewatchIndicator,
   TableLoader,
 } from "@components";
+import { route } from "preact-router";
 
 const ModuleContainer = styled(Box)({
   paddingTop: 24,
@@ -52,6 +53,10 @@ const SearchIconContainer = styled(FontAwesomeSvgIcon)({
 
 const CustomTable = styled(Table)({
   minWidth: 650,
+});
+
+const CustomTableRow = styled(TableRow)({
+  cursor: "pointer",
 });
 
 const StyledRating = styled(Rating)(({ value }) => ({
@@ -150,7 +155,11 @@ const Home = () => {
           <TableBody>
             {!isLoading ? (
               data.map((item) => (
-                <TableRow hover key={item.id}>
+                <CustomTableRow
+                  hover
+                  key={item.id}
+                  onClick={() => route(`/home/view/${item.id}`)}
+                >
                   <TableCell>
                     <Tooltip title={item.quality ?? ""} placement="top">
                       <Box display="inline-block">
@@ -182,7 +191,7 @@ const Home = () => {
                       </Box>
                     </Tooltip>
                   </TableCell>
-                </TableRow>
+                </CustomTableRow>
               ))
             ) : (
               <TableLoader />
