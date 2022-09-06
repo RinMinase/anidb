@@ -1,7 +1,7 @@
 import { useContext, useState } from "preact/hooks";
 import { useDropzone } from "react-dropzone";
 import axios from "axios";
-import { FontAwesomeSvgIcon } from "react-fontawesome-svg-icon";
+import { FontAwesomeSvgIcon } from "react-fontawesome-slim";
 import Swal from "sweetalert2";
 
 import { Box, Button, Grid, styled, Typography } from "@mui/material";

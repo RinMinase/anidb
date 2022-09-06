@@ -3,7 +3,7 @@ import { route } from "preact-router";
 import axios from "axios";
 import { Chart, ChartOptions, registerables } from "chart.js";
 import ChartDataLabels from "chartjs-plugin-datalabels";
-import { FontAwesomeSvgIcon } from "react-fontawesome-svg-icon";
+import { FontAwesomeSvgIcon } from "react-fontawesome-slim";
 import Swal from "sweetalert2";
 
 import {

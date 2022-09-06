@@ -1,7 +1,7 @@
 import { useContext, useState } from "preact/hooks";
 import { route } from "preact-router";
 import axios from "axios";
-import { FontAwesomeSvgIcon } from "react-fontawesome-svg-icon";
+import { FontAwesomeSvgIcon } from "react-fontawesome-slim";
 
 import {
   AppBar,

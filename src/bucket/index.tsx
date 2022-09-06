@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "preact/hooks";
 import axios from "axios";
-import { FontAwesomeSvgIcon } from "react-fontawesome-svg-icon";
+import { FontAwesomeSvgIcon } from "react-fontawesome-slim";
 
 import {
   Box,

@@ -1,6 +1,6 @@
 import { useContext } from "preact/hooks";
 import { route } from "preact-router";
-import { FontAwesomeSvgIcon } from "react-fontawesome-svg-icon";
+import { FontAwesomeSvgIcon } from "react-fontawesome-slim";
 import Swal from "sweetalert2";
 import { useFieldArray, useForm } from "react-hook-form";
 import axios from "axios";
