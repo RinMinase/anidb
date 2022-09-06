@@ -42,7 +42,7 @@
     "preact-router": "^4.1.0",
     "qs": "^6.11.0",
     "react-dropzone": "^14.2.2",
-    "react-fontawesome-svg-icon": "^1.1.1",
+    "react-fontawesome-slim": "^1.0.0",
     "react-hook-form": "^7.34.2",
     "react-scroll": "^1.8.7",
     "sweetalert2": "^11.4.30",
@@ -88,8 +88,7 @@
   },
   "resolutions": {
     "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    "react-fontawesome-svg-icon/react": "^17.0.0"
+    "react-dom": "^18.0.0"
   },
   "gitHooks": {
     "prepare-commit-msg": "devmoji -e"

@@ -9100,10 +9100,10 @@ react-dropzone@^14.2.2:
     file-selector "^0.6.0"
     prop-types "^15.8.1"
 
-react-fontawesome-svg-icon@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/react-fontawesome-svg-icon/-/react-fontawesome-svg-icon-1.1.1.tgz#a3c3e14ba7cdfeceefdee60e8a7bb06af33ef8de"
-  integrity sha512-obshOFTdNaQUDakEcrY1M7frqc4tW1oZ8KKjhcTG4Iz5dS/9/wn7qqVSY4M3lkMiCTbf9Vfq3QWX2DqohD6O3A==
+react-fontawesome-slim@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/react-fontawesome-slim/-/react-fontawesome-slim-1.0.0.tgz#bd19a292d2d33608ab50f61468b971d96206900d"
+  integrity sha512-3qWGFE9GEpcxDyeORSxTGVkI0zMpie2E/UdVfAiiBGSzAdrNsd6lAAODGWmH8g6ff7uWKvHyw83Sn523igVmRw==
 
 react-hook-form@^7.34.2:
   version "7.34.2"
@@ -9142,14 +9142,6 @@ react-transition-group@^4.4.5:
     dom-helpers "^5.0.1"
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
-
-react@^17.0.0:
-  version "17.0.2"
-  resolved "https://registry.yarnpkg.com/react/-/react-17.0.2.tgz#d0b5cc516d29eb3eee383f75b62864cfb6800037"
-  integrity sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA==
-  dependencies:
-    loose-envify "^1.1.0"
-    object-assign "^4.1.1"
 
 react@^18.0.0:
   version "18.2.0"
