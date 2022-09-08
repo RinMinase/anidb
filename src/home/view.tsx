@@ -241,7 +241,7 @@ const HomeView = (props: Props) => {
   return (
     <ModuleContainer>
       {!isLoading && data.title && (
-        <Grid container spacing={3}>
+        <Grid container spacing={2.5}>
           <Grid item xs={12} sm={3}>
             <Grid container spacing={1.25}>
               <Grid item xs={4} sm={12}>
@@ -290,7 +290,7 @@ const HomeView = (props: Props) => {
                 />
               </Box>
               <Typography variant="h5">{data.title}</Typography>
-              {data.variants && (
+              {data.variants && isMobile && (
                 <Typography variant="body1" sx={{ fontStyle: "italic" }}>
                   &#10077; {data.variants} &#10078;
                 </Typography>
@@ -332,6 +332,11 @@ const HomeView = (props: Props) => {
                 spacing={1.5}
                 sx={{ textAlign: { xs: "center", sm: "unset" } }}
               >
+                {data.variants && !isMobile && (
+                  <Typography variant="body1" sx={{ fontStyle: "italic" }}>
+                    &#10077; {data.variants} &#10078;
+                  </Typography>
+                )}
                 {data.encoder && (
                   <Typography variant="h6">
                     &#12300;{data.encoder}&#12301;
