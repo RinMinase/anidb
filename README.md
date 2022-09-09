@@ -78,10 +78,10 @@ Installations Required:
     │   │   ├── <component>     # Module sub-components
     │   │   └── index.tsx       # Module entry point
     │   ├── common/             # Project-wide reusable code
+    │   │   ├── components/     # Common components
     │   │   ├── pages/          # Common pages (404 / 500 pages)
     │   │   ├── providers/      # Context provider components
-    │   │   ├── index.ts        # Entry point for common imports
-    │   │   └── <components>    # Common components
+    │   │   └── index.ts        # Entry point for common imports
     │   ├── main.tsx            # Main module
     │   ├── routes.tsx          # Routes file
     │   ├── service.ts          # Axios pre-setup
