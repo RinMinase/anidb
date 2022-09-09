@@ -6,10 +6,8 @@ import { FontAwesomeSvgIcon } from "react-fontawesome-slim";
 import {
   AppBar,
   Box,
-  Button,
   Container,
   Divider,
-  IconButton,
   ListItemIcon,
   Menu,
   MenuItem,
@@ -37,6 +35,7 @@ import {
 
 import { ColorModeContext } from "./providers/ColorMode";
 import { GlobalLoaderContext } from "./providers/GlobalLoader";
+import { Button, IconButton } from "@components";
 
 const RightMenuContainer = styled(Box)({
   marginLeft: 8,
@@ -129,7 +128,6 @@ const Nav = () => {
 
           <Box flexGrow={1} sx={{ display: { xs: "flex", md: "none" } }}>
             <IconButton
-              size="large"
               onClick={(e) => handleOpenList(e, "nav")}
               color="inherit"
               children={<FontAwesomeSvgIcon icon={MenuIcon} />}
@@ -195,8 +193,9 @@ const Nav = () => {
 
           <Box flexGrow={1} sx={{ display: { xs: "none", md: "flex" } }}>
             <Button
+              iconSize={18}
               color="inherit"
-              onClick={(e) => handleOpenList(e, "list")}
+              onClick={(e: any) => handleOpenList(e, "list")}
               startIcon={<NavIcon icon={ListIcon} />}
             >
               Special Lists
@@ -210,6 +209,7 @@ const Nav = () => {
             </Menu>
 
             <Button
+              iconSize={18}
               color="inherit"
               href="/data-management"
               startIcon={<NavIcon icon={DataManagementIcon} />}
@@ -228,6 +228,7 @@ const Nav = () => {
 
           <RightMenuContainer sx={{ display: { xs: "none", md: "flex" } }}>
             <Button
+              iconSize={18}
               color="inherit"
               startIcon={<NavIcon icon={LogoutIcon} />}
               onClick={handleLogout}
