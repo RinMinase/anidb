@@ -89,7 +89,7 @@ const BucketSim = () => {
 
   const handleEditClick = (e: any, uuid: string) => {
     e.stopPropagation();
-    route(`/bucket-sim/edit/${uuid}`);
+    route(`/bucket-sims/edit/${uuid}`);
   };
 
   const handleDeleteClick = async (e: any, uuid: string) => {
