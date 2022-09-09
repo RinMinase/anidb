@@ -22,7 +22,7 @@ import {
   faSun as LightModeIcon,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { ColorModeContext } from "./providers/ColorMode";
+import { ColorModeContext } from "../providers/ColorMode";
 import { Button, IconButton } from "@components";
 
 const RightMenuContainer = styled(Box)({

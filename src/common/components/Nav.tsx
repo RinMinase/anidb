@@ -33,8 +33,8 @@ import {
   faTv as MarathonsIcon,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { ColorModeContext } from "./providers/ColorMode";
-import { GlobalLoaderContext } from "./providers/GlobalLoader";
+import { ColorModeContext } from "../providers/ColorMode";
+import { GlobalLoaderContext } from "../providers/GlobalLoader";
 import { Button, IconButton } from "@components";
 
 const RightMenuContainer = styled(Box)({
