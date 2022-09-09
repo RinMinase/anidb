@@ -7,7 +7,6 @@ import axios from "axios";
 
 import {
   Box,
-  Button,
   FormControl,
   FormHelperText,
   InputAdornment,
@@ -29,7 +28,7 @@ import {
   faTrash as RemoveIcon,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { GlobalLoaderContext } from "@components";
+import { Button, GlobalLoaderContext } from "@components";
 
 import { defaultValues, Form, resolver } from "./validation";
 
@@ -37,7 +36,7 @@ import {
   ModuleContainer,
   Header,
   ControlButtonsContainer,
-  ControlButtions,
+  ControlButtons,
   DescriptionContainer,
   CustomIconButton,
   CustomCell,
@@ -135,7 +134,7 @@ const BucketSimAdd = () => {
           </Typography>
         </Box>
         <ControlButtonsContainer>
-          <ControlButtions
+          <ControlButtons
             variant="contained"
             color="error"
             startIcon={<FontAwesomeSvgIcon icon={BackIcon} />}
@@ -143,8 +142,8 @@ const BucketSimAdd = () => {
             onClick={handleBack}
           >
             Back
-          </ControlButtions>
-          <ControlButtions
+          </ControlButtons>
+          <ControlButtons
             variant="contained"
             startIcon={<FontAwesomeSvgIcon icon={AddIcon} />}
             onClick={() => {
@@ -152,14 +151,14 @@ const BucketSimAdd = () => {
             }}
           >
             Add
-          </ControlButtions>
-          <ControlButtions
+          </ControlButtons>
+          <ControlButtons
             variant="contained"
             startIcon={<FontAwesomeSvgIcon icon={SaveIcon} />}
             onClick={handleSubmit(handleSubmitForm)}
           >
             Save
-          </ControlButtions>
+          </ControlButtons>
         </ControlButtonsContainer>
       </Header>
 

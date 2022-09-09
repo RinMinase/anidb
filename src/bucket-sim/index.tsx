@@ -5,9 +5,7 @@ import { FontAwesomeSvgIcon } from "react-fontawesome-slim";
 
 import {
   Box,
-  Button,
   Grid,
-  IconButton,
   LinearProgress,
   ListItemText,
   MenuItem,
@@ -25,7 +23,12 @@ import {
   faTrash as DeleteIcon,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { DashboardTile, GlobalLoaderContext } from "@components";
+import {
+  Button,
+  DashboardTile,
+  GlobalLoaderContext,
+  IconButton,
+} from "@components";
 
 import { Data, Item, Sims } from "./types";
 import Swal from "sweetalert2";

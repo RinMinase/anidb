@@ -1,6 +1,5 @@
 import {
   Box,
-  Button,
   IconButton,
   OutlinedInput,
   Paper,
@@ -9,6 +8,8 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+
+import { Button } from "@components";
 
 const ModuleContainer = styled(Box)({
   paddingTop: 24,
@@ -31,7 +32,7 @@ const ControlButtonsContainer = styled(Box)(({ theme }) => ({
   },
 }));
 
-const ControlButtions = styled(Button)(({ theme }) => ({
+const ControlButtons = styled(Button)(({ theme }) => ({
   minWidth: 120,
   marginLeft: 16,
 
@@ -113,7 +114,7 @@ export {
   ModuleContainer,
   Header,
   ControlButtonsContainer,
-  ControlButtions,
+  ControlButtons,
   DescriptionContainer,
   CustomIconButton,
   CustomCell,
