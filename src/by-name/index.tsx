@@ -46,7 +46,11 @@ const ByName = () => {
     toggleLoader(true);
 
     if (nonMobile) {
-      animateScroll.scrollToTop({ smooth: true, duration: 500 });
+      animateScroll.scrollToTop({
+        smooth: true,
+        duration: 500,
+        containerId: "main",
+      });
     }
 
     const id = letter === "#" ? 0 : letter;
@@ -57,7 +61,11 @@ const ByName = () => {
         setData(() => data);
 
         if (!nonMobile) {
-          scroller.scrollTo("table", { smooth: true, duration: 500 });
+          scroller.scrollTo("table", {
+            smooth: true,
+            duration: 500,
+            containerId: "main",
+          });
         }
       })
       .catch((err) => console.error(err))
