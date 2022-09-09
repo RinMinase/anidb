@@ -3,10 +3,12 @@ export type { OptionsProps } from "./ControlledSelect";
 export type { Qualities } from "./Quality";
 
 export { default as Alert } from "./Alert";
+export { default as Button } from "./Button";
 export { default as ControlledField } from "./ControlledField";
 export { default as ControlledDatepicker } from "./ControlledDatepicker";
 export { default as ControlledSelect } from "./ControlledSelect";
 export { default as DashboardTile } from "./DashboardTile";
+export { default as IconButton } from "./IconButton";
 export { default as Nav } from "./Nav";
 export { default as NavCommon } from "./NavCommon";
 export { default as Quality } from "./Quality";
