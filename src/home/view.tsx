@@ -8,6 +8,7 @@ import {
   Chip,
   Grid,
   IconContainerProps,
+  Link,
   Rating,
   Stack,
   styled,
@@ -235,7 +236,7 @@ const HomeView = (props: Props) => {
         .catch((err) => console.error(err))
         .finally(() => toggleLoader(false));
     }
-  }, []);
+  }, [props.matches]);
 
   return (
     <ModuleContainer>
@@ -407,14 +408,20 @@ const HomeView = (props: Props) => {
                   </Box>
 
                   <Stack spacing={1}>
-                    {data.prequel && (
+                    {data.prequel?.id && (
                       <Typography variant="body1">
-                        Prequel: {data.prequel}
+                        <Typography component="span">Prequel: </Typography>
+                        <Link href={`/home/view/${data.prequel.id}`}>
+                          {data.prequel.title}
+                        </Link>
                       </Typography>
                     )}
-                    {data.sequel && (
+                    {data.sequel?.id && (
                       <Typography variant="body1">
-                        Sequel: {data.sequel}
+                        <Typography component="span">Sequel: </Typography>
+                        <Link href={`/home/view/${data.sequel.id}`}>
+                          {data.sequel.title}
+                        </Link>
                       </Typography>
                     )}
                     {data.offquels?.length ? (
@@ -424,7 +431,9 @@ const HomeView = (props: Props) => {
                           {data.offquels.map((item) => (
                             <Typography variant="body1" key={item.id}>
                               <Icon icon={BulletIcon} />
-                              {item.title}
+                              <Link href={`/home/view/${item.id}`}>
+                                {item.title}
+                              </Link>
                             </Typography>
                           ))}
                         </Box>
