@@ -1,13 +1,12 @@
 import { useContext, useEffect, useState } from "preact/hooks";
 import axios from "axios";
 import { FontAwesomeSvgIcon } from "react-fontawesome-slim";
+import contrast from "font-color-contrast";
 
 import {
   Box,
-  Button,
   Chip,
   Grid,
-  IconButton,
   IconContainerProps,
   Rating,
   Stack,
@@ -33,7 +32,7 @@ import {
 
 import { faHeart as TotalRatingEmptyIcon } from "@fortawesome/free-regular-svg-icons";
 
-import { GlobalLoaderContext } from "@components";
+import { Button, GlobalLoaderContext, IconButton } from "@components";
 import { FullData } from "./types";
 import { route } from "preact-router";
 
@@ -286,7 +285,10 @@ const HomeView = (props: Props) => {
               <Box>
                 <Chip
                   label={data.quality}
-                  sx={{ backgroundColor: data.quality_color }}
+                  sx={{
+                    backgroundColor: data.quality_color,
+                    color: contrast(data.quality_color || "#fff"),
+                  }}
                 />
               </Box>
               <Typography variant="h5">{data.title}</Typography>
@@ -352,7 +354,11 @@ const HomeView = (props: Props) => {
                     <Chip
                       label="HDR"
                       size="small"
-                      sx={{ backgroundColor: "#fce257", px: 1 }}
+                      sx={{
+                        backgroundColor: "#fce257",
+                        px: 1,
+                        color: contrast("#fce257"),
+                      }}
                     />
                   ) : null}
                   {data.codecVideo && (

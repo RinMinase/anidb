@@ -4,14 +4,14 @@ import axios from "axios";
 import { FontAwesomeSvgIcon } from "react-fontawesome-slim";
 import Swal from "sweetalert2";
 
-import { Box, Button, Grid, styled, Typography } from "@mui/material";
+import { Box, Grid, styled, Typography } from "@mui/material";
 
 import {
   faCloudArrowDown as ExportIcon,
   faCloudArrowUp as ImportIcon,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { GlobalLoaderContext } from "@components";
+import { Button, GlobalLoaderContext } from "@components";
 
 type Props = {
   reloadPageData: () => void;

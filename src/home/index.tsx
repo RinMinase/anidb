@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from "preact/hooks";
+import { route } from "preact-router";
 import axios from "axios";
 import { FontAwesomeSvgIcon } from "react-fontawesome-slim";
 import DebouncePromise from "awesome-debounce-promise";
 
 import {
   Box,
-  Button,
   Grid,
   InputAdornment,
   OutlinedInput,
@@ -25,13 +25,14 @@ import { faHeart, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as faHeartEmpty } from "@fortawesome/free-regular-svg-icons";
 
 import { Data } from "./types";
+
 import {
+  Button,
   GlobalLoaderContext,
   Quality,
   RewatchIndicator,
   TableLoader,
 } from "@components";
-import { route } from "preact-router";
 
 const ModuleContainer = styled(Box)({
   paddingTop: 24,

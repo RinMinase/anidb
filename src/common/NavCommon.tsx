@@ -4,9 +4,7 @@ import { FontAwesomeSvgIcon } from "react-fontawesome-slim";
 import {
   AppBar,
   Box,
-  Button,
   Container,
-  IconButton,
   Link,
   ListItemIcon,
   Menu,
@@ -25,6 +23,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import { ColorModeContext } from "./providers/ColorMode";
+import { Button, IconButton } from "@components";
 
 const RightMenuContainer = styled(Box)({
   marginLeft: 8,

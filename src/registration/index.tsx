@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 
 import {
-  Button,
   CircularProgress,
   Grid,
   Stack,
@@ -12,7 +11,7 @@ import {
   Typography,
 } from "@mui/material";
 
-import { Alert, AlertProps, GlobalLoaderContext } from "@components";
+import { Alert, AlertProps, Button, GlobalLoaderContext } from "@components";
 
 import { Form, resolver } from "./validation";
 

@@ -3,7 +3,6 @@ import { useContext, useEffect, useState } from "preact/hooks";
 import axios from "axios";
 
 import {
-  Button,
   CircularProgress,
   Grid,
   Stack,
@@ -12,7 +11,7 @@ import {
   Typography,
 } from "@mui/material";
 
-import { Alert, AlertProps, GlobalLoaderContext } from "@components";
+import { Alert, AlertProps, Button, GlobalLoaderContext } from "@components";
 import { Form, resolver } from "./validation";
 import { route } from "preact-router";
 

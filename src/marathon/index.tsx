@@ -8,9 +8,7 @@ import Swal from "sweetalert2";
 
 import {
   Box,
-  Button,
   Grid,
-  IconButton,
   ListItemText,
   MenuItem,
   MenuList,
@@ -33,8 +31,10 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import {
+  Button,
   DashboardTile,
   GlobalLoaderContext,
+  IconButton,
   Quality,
   TableLoader,
 } from "@components";

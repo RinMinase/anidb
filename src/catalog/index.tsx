@@ -6,9 +6,7 @@ import Swal from "sweetalert2";
 
 import {
   Box,
-  Button,
   Grid,
-  IconButton,
   ListItemText,
   MenuItem,
   MenuList,
@@ -27,7 +25,12 @@ import {
   faTrash as DeleteIcon,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { GlobalLoaderContext, TableLoader } from "@components";
+import {
+  Button,
+  GlobalLoaderContext,
+  IconButton,
+  TableLoader,
+} from "@components";
 
 import { Catalogs, Data } from "./types";
 
