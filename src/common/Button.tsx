@@ -5,8 +5,14 @@ type Props = ButtonProps & {
 };
 
 const CustomButton = styled(MuiButton)<Props>(({ iconSize }) => ({
+  "& .MuiButton-iconSizeMedium svg:first-of-type": {
+    fontSize: 16,
+  },
+  "& .MuiButton-iconSizeSmall svg:first-of-type": {
+    fontSize: 12,
+  },
   "& svg:first-of-type": {
-    fontSize: iconSize || 16,
+    fontSize: iconSize,
   },
 }));
 
