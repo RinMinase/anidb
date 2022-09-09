@@ -36,6 +36,7 @@
     "chart.js": "^3.9.1",
     "chartjs-plugin-datalabels": "^2.1.0",
     "date-fns": "^2.29.2",
+    "font-color-contrast": "^11.1.0",
     "js-cookie": "^3.0.1",
     "preact": "^10.10.6",
     "preact-async-route": "^2.2.1",
