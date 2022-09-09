@@ -36,6 +36,7 @@ import {
   GlobalLoaderContext,
   IconButton,
   Quality,
+  RewatchIndicator,
   TableLoader,
 } from "@components";
 
@@ -291,20 +292,19 @@ const Marathon = () => {
                 selected={selected === item.id}
                 onClick={() => handleClickSequence(item.id)}
               >
-              <ListItemText>{item.title}</ListItemText>
-              <IconButton
-                size="small"
-                onClick={(e) => handleEditClick(e, item.id)}
-              >
-                <FontAwesomeSvgIcon icon={EditIcon} />
-              </IconButton>
-              <IconButton
-                size="small"
-                onClick={(e) => handleDeleteClick(e, item.id)}
-              >
-                <FontAwesomeSvgIcon icon={DeleteIcon} />
-              </IconButton>
-                {}
+                <ListItemText>{item.title}</ListItemText>
+                <IconButton
+                  size="small"
+                  onClick={(e) => handleEditClick(e, item.id)}
+                >
+                  <FontAwesomeSvgIcon icon={EditIcon} />
+                </IconButton>
+                <IconButton
+                  size="small"
+                  onClick={(e) => handleDeleteClick(e, item.id)}
+                >
+                  <FontAwesomeSvgIcon icon={DeleteIcon} />
+                </IconButton>
               </MenuItem>
             ))}
           </CustomMenuList>
@@ -315,9 +315,9 @@ const Marathon = () => {
               <TableHead>
                 <TableRow>
                   <TableCell>Title</TableCell>
-                  <TableCell>E / O / S</TableCell>
-                  <TableCell>Filesize</TableCell>
-                  <TableCell>Date Finished</TableCell>
+                  <TableCell sx={{ minWidth: 110 }}>E / O / S</TableCell>
+                  <TableCell sx={{ minWidth: 115 }}>Filesize</TableCell>
+                  <TableCell sx={{ minWidth: 190 }}>Date Finished</TableCell>
                 </TableRow>
               </TableHead>
 
@@ -333,7 +333,10 @@ const Marathon = () => {
                         {item.episodes} / {item.ovas} / {item.specials}
                       </TableCell>
                       <TableCell>{item.filesize}</TableCell>
-                      <TableCell>{item.dateFinished}</TableCell>
+                      <TableCell>
+                        {item.dateFinished}
+                        <RewatchIndicator show={item.rewatched} />
+                      </TableCell>
                     </TableRow>
                   ))
                 ) : (
