@@ -23,7 +23,13 @@ import {
   faTv as DailyCountIcon,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { DashboardTile, GlobalLoaderContext, Quality, TableLoader } from "@components";
+import {
+  DashboardTile,
+  GlobalLoaderContext,
+  Quality,
+  RewatchIndicator,
+  TableLoader,
+} from "@components";
 import { Data, Stats } from "./types";
 
 const ModuleContainer = styled(Box)({
@@ -117,10 +123,10 @@ const LastWatch = () => {
           <TableHead>
             <TableRow>
               <TableCell>Title</TableCell>
-              <TableCell>E / O / S</TableCell>
-              <TableCell>Filesize</TableCell>
-              <TableCell>Date Finished</TableCell>
-              <TableCell>Release</TableCell>
+              <TableCell sx={{ minWidth: 110 }}>E / O / S</TableCell>
+              <TableCell sx={{ minWidth: 115 }}>Filesize</TableCell>
+              <TableCell sx={{ minWidth: 190 }}>Date Finished</TableCell>
+              <TableCell sx={{ minWidth: 130 }}>Release</TableCell>
               <TableCell>Encoder</TableCell>
             </TableRow>
           </TableHead>
@@ -137,7 +143,10 @@ const LastWatch = () => {
                     {item.episodes} / {item.ovas} / {item.specials}
                   </TableCell>
                   <TableCell>{item.filesize}</TableCell>
-                  <TableCell>{item.dateFinished}</TableCell>
+                  <TableCell>
+                    {item.dateFinished}
+                    <RewatchIndicator show={item.rewatched} />
+                  </TableCell>
                   <TableCell>{item.release}</TableCell>
                   <TableCell>{item.encoder}</TableCell>
                 </TableRow>
