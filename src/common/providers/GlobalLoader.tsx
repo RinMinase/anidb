@@ -11,6 +11,7 @@ export const GlobalLoaderContext = createContext({
 
 type ContainerProps = {
   disableScroll?: boolean;
+  id?: string;
 };
 
 const Progress = styled(LinearProgress)(({ theme }) => ({
@@ -52,7 +53,7 @@ const GlobalLoader = (props: any) => {
       }}
     >
       {loader && <Progress />}
-      <Container disableScroll={props.disableScroll}>
+      <Container disableScroll={props.disableScroll} id={props.id}>
         {props.children}
       </Container>
     </GlobalLoaderContext.Provider>

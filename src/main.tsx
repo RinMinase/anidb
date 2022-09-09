@@ -28,7 +28,7 @@ const Layout = () => {
 
       {navCommon ? <NavCommon /> : <Nav />}
 
-      <GlobalLoader disableScroll={navCommon}>
+      <GlobalLoader disableScroll={navCommon} id="main">
         <Container>
           <Routes onChange={handleRouteChange as any} />
         </Container>
