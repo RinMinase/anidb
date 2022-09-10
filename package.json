@@ -13,14 +13,14 @@
   "scripts": {
     "dev": "npm start",
     "start": "run-p -s develop lint-watch",
-    "develop": "vite --port 3000 --host",
+    "develop": "vite",
     "build": "npm run -s lint && tsc && vite build",
     "preview": "vite preview",
     "lint": "run-s -s lint:**",
+    "lint-watch": "nodemon -q --watch src -e ts,tsx --exec \"npm run -s lint\"",
     "lint:begin": "chalk blue \"\"&& chalk blue \"Scanning code for lint issues\"",
     "lint:exec": "eslint --ext .ts,tsx --ignore-path .gitignore .",
     "lint:post": "chalk green \"\"&& chalk green \"Finished\"",
-    "lint-watch": "nodemon -q --watch src -e ts,tsx --exec \"npm run -s lint\"",
     "cz": "cz"
   },
   "dependencies": {
