@@ -29,7 +29,7 @@ import {
 
 import { faHeart as TotalRatingEmptyIcon } from "@fortawesome/free-regular-svg-icons";
 
-import { Button, GlobalLoaderContext } from "@components";
+import { Alert, AlertProps, Button, GlobalLoaderContext } from "@components";
 import { FullData } from "./types";
 
 import {
@@ -70,6 +70,8 @@ const HomeView = (props: Props) => {
   const [image, setImage] = useState<File | null>(null);
   const [tempImage, setTempImage] = useState<string>("");
   const [imageUploading, setImageUploading] = useState<boolean>(false);
+
+  const [dialog, setDialog] = useState<AlertProps>({ open: false });
 
   const renderTotalRating = () => (
     <Box textAlign="center">
@@ -150,26 +152,42 @@ const HomeView = (props: Props) => {
 
   const handleUploadFile = async () => {
     if (image) {
-      setImageUploading(true);
+      try {
+        setImageUploading(true);
 
-      const body = new FormData();
-      body.append("_method", "PUT");
-      body.append("image", image);
+        const body = new FormData();
+        body.append("_method", "PUT");
+        body.append("image", image);
 
-      await axios.post(`/entries/img-upload/${props.matches?.id}`, body);
+        await axios.post(`/entries/img-upload/${props.matches?.id}`, body);
 
-      setImageUploading(false);
+        setImageUploading(false);
 
-      const {
-        data: { data },
-      } = await axios.get(`/entries/${props.matches?.id}`);
+        const {
+          data: { data },
+        } = await axios.get(`/entries/${props.matches?.id}`);
 
-      handleRemoveFile();
+        handleRemoveFile();
 
-      setData((prev) => ({
-        ...prev,
-        image: data.image,
-      }));
+        setData((prev) => ({
+          ...prev,
+          image: data.image,
+        }));
+
+        setDialog({
+          open: true,
+          message: "Success!",
+          severity: "success",
+        });
+      } catch (err) {
+        console.error(err);
+
+        setDialog({
+          open: true,
+          message: "Failed",
+          severity: "error",
+        });
+      }
     }
   };
 
@@ -267,6 +285,10 @@ const HomeView = (props: Props) => {
               spacing={3}
               sx={{ textAlign: { xs: "center", sm: "unset" } }}
             >
+              <Alert
+                open={dialog.open}
+                onClose={() => setDialog({ open: false })}
+              />
               <ImageBox>
                 {imageUploading && (
                   <ImageLoader>
