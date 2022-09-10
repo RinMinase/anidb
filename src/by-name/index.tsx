@@ -24,14 +24,23 @@ import {
 import { GlobalLoaderContext, Quality, TableLoader } from "@components";
 import { Data, Stats } from "./types";
 
+type TableRowProps = {
+  active: boolean;
+};
+
 const ModuleContainer = styled(Box)({
   paddingTop: 24,
   paddingBottom: 24,
 });
 
-const CustomTableRow = styled(TableRow)({
+const CustomTableRow = styled(TableRow)<TableRowProps>(({ active, theme }) => ({
   cursor: "pointer",
-});
+  backgroundColor: active
+    ? theme.palette.mode === "light"
+      ? "rgba(25, 135, 84, 0.08)"
+      : "rgba(16, 84, 52, 0.16)"
+    : "",
+}));
 
 const ByName = () => {
   const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
@@ -41,6 +50,7 @@ const ByName = () => {
 
   const [data, setData] = useState<Data>([]);
   const [stats, setStats] = useState<Stats>([]);
+  const [selected, setSelected] = useState<string | null>(null);
 
   const handleChangeData = (letter: string) => {
     toggleLoader(true);
@@ -59,6 +69,7 @@ const ByName = () => {
       .get(`/entries/by-name/${id}`)
       .then(({ data: { data } }) => {
         setData(() => data);
+        setSelected(letter);
 
         if (!nonMobile) {
           scroller.scrollTo("table", {
@@ -84,6 +95,7 @@ const ByName = () => {
           .get("/entries/by-name/0")
           .then(({ data: { data } }) => {
             setData(() => data);
+            setSelected("#");
           })
           .catch((err) => console.error(err))
           .finally(() => toggleLoader(false));
@@ -114,6 +126,7 @@ const ByName = () => {
                     hover
                     key={`byname-${item.letter}`}
                     onClick={() => handleChangeData(item.letter)}
+                    active={`${item.letter}` === selected}
                   >
                     <TableCell>{item.letter}</TableCell>
                     <TableCell align="center">{item.titles}</TableCell>
