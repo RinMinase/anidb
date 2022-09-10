@@ -44,7 +44,7 @@
     "qs": "^6.11.0",
     "react-dropzone": "^14.2.2",
     "react-fontawesome-slim": "^1.0.0",
-    "react-hook-form": "^7.34.2",
+    "react-hook-form": "^7.35.0",
     "react-scroll": "^1.8.7",
     "sweetalert2": "^11.4.32",
     "uuid": "^9.0.0",
