@@ -63,6 +63,7 @@ const HomeView = (props: Props) => {
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
 
   const [data, setData] = useState<FullData>({});
 
@@ -281,15 +282,17 @@ const HomeView = (props: Props) => {
                   />
                 )}
 
-                <ImageBoxEdit component="label" disabled={!!image}>
-                  <input
-                    type="file"
-                    accept="image/*"
-                    hidden
-                    onChange={handleChangeFile}
-                  />
-                  <FontAwesomeSvgIcon icon={UploadImageIcon} color="#fff" />
-                </ImageBoxEdit>
+                {isDesktop && (
+                  <ImageBoxEdit component="label" disabled={!!image}>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      hidden
+                      onChange={handleChangeFile}
+                    />
+                    <FontAwesomeSvgIcon icon={UploadImageIcon} color="#fff" />
+                  </ImageBoxEdit>
+                )}
 
                 {image && (
                   <>
