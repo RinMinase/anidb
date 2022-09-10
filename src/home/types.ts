@@ -72,4 +72,6 @@ export type FullData = {
     graphics: number;
     plot: number;
   };
+
+  image?: string;
 };

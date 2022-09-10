@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "preact/hooks";
+import { route } from "preact-router";
 import axios from "axios";
 import { FontAwesomeSvgIcon } from "react-fontawesome-slim";
 import contrast from "font-color-contrast";
@@ -6,6 +7,7 @@ import contrast from "font-color-contrast";
 import {
   Box,
   Chip,
+  CircularProgress,
   Grid,
   IconContainerProps,
   Link,
@@ -20,6 +22,7 @@ import {
 import {
   faAngleRight as BulletIcon,
   faArrowLeftLong as BackIcon,
+  faCheck as UploadSaveIcon,
   faCloudArrowUp as UploadImageIcon,
   faHeart as TotalRatingFilledIcon,
   faLeaf as FallIcon,
@@ -29,18 +32,28 @@ import {
   faSun as SummerIcon,
   faTrash as DeleteIcon,
   faTree as SpringIcon,
+  faXmark as UploadCancelIcon,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { faHeart as TotalRatingEmptyIcon } from "@fortawesome/free-regular-svg-icons";
 
 import { Button, GlobalLoaderContext, IconButton } from "@components";
 import { FullData } from "./types";
-import { route } from "preact-router";
 
 type Props = {
   matches?: {
     id: string;
   };
+};
+
+type IconButtonProps = {
+  component?: any;
+};
+
+type ImageProps = {
+  src?: string;
+  alt: string;
+  component?: string;
 };
 
 const ModuleContainer = styled(Box)({
@@ -63,9 +76,22 @@ const ImageBox = styled(Box)({
   height: 300,
   width: "100%",
   background: "#ccc",
+  overflow: "hidden",
 });
 
-const ImageBoxEdit = styled(IconButton)(({ theme }) => ({
+const Image = styled(Box)<ImageProps>({
+  width: "100%",
+  height: "100%",
+  objectFit: "cover",
+});
+
+const ImageLoader = styled(Box)({
+  position: "absolute",
+  top: 12,
+  left: 12,
+});
+
+const ImageBoxEdit = styled(IconButton)<IconButtonProps>(({ theme }) => ({
   position: "absolute",
   top: 12,
   right: 12,
@@ -75,6 +101,34 @@ const ImageBoxEdit = styled(IconButton)(({ theme }) => ({
 
   "&:hover": {
     backgroundColor: theme.palette.warning.main,
+  },
+}));
+
+const ImageBoxSave = styled(IconButton)(({ theme }) => ({
+  backgroundColor: theme.palette.success.main,
+  position: "absolute",
+  top: 12,
+  right: 12,
+
+  height: 46,
+  width: 46,
+
+  "&:hover": {
+    backgroundColor: theme.palette.success.main,
+  },
+}));
+
+const ImageBoxRemove = styled(IconButton)(({ theme }) => ({
+  backgroundColor: theme.palette.error.main,
+  position: "absolute",
+  top: 64,
+  right: 12,
+
+  height: 46,
+  width: 46,
+
+  "&:hover": {
+    backgroundColor: theme.palette.error.main,
   },
 }));
 
@@ -154,6 +208,10 @@ const HomeView = (props: Props) => {
 
   const [data, setData] = useState<FullData>({});
 
+  const [image, setImage] = useState<File | null>(null);
+  const [tempImage, setTempImage] = useState<string>("");
+  const [imageUploading, setImageUploading] = useState<boolean>(false);
+
   const renderTotalRating = () => (
     <Box textAlign="center">
       <TotalStyledRating
@@ -211,6 +269,48 @@ const HomeView = (props: Props) => {
       </Box>
     </Stack>
   );
+
+  const handleChangeFile = (e: any) => {
+    const element = e.target as HTMLInputElement;
+    const { files } = element;
+
+    if (files) {
+      setImage(() => files[0]);
+
+      const url = URL.createObjectURL(files[0]);
+      setTempImage(url);
+    }
+  };
+
+  const handleRemoveFile = () => {
+    setImage(() => null);
+
+    URL.revokeObjectURL(tempImage);
+    setTempImage("");
+  };
+
+  const handleUploadFile = async () => {
+    if (image) {
+      setImageUploading(true);
+
+      const body = new FormData();
+      body.append("_method", "PUT");
+      body.append("image", image);
+
+      await axios.post(`/entries/img-upload/${props.matches?.id}`, body);
+
+      setImageUploading(false);
+
+      const { data: { data } } = await axios.get(`/entries/${props.matches?.id}`);
+
+      handleRemoveFile();
+
+      setData((prev) => ({
+        ...prev,
+        image: data.image,
+      }));
+    }
+  };
 
   useEffect(() => {
     if (props.matches?.id) {
@@ -307,9 +407,43 @@ const HomeView = (props: Props) => {
               sx={{ textAlign: { xs: "center", sm: "unset" } }}
             >
               <ImageBox>
-                <ImageBoxEdit>
+                {imageUploading && (
+                  <ImageLoader>
+                    <CircularProgress />
+                  </ImageLoader>
+                )}
+
+                {(tempImage || data.image) && (
+                  <Image
+                    component="img"
+                    alt="entry image"
+                    src={tempImage || data.image}
+                  />
+                )}
+
+                <ImageBoxEdit component="label" disabled={!!image}>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    hidden
+                    onChange={handleChangeFile}
+                  />
                   <FontAwesomeSvgIcon icon={UploadImageIcon} color="#fff" />
                 </ImageBoxEdit>
+
+                {image && (
+                  <>
+                    <ImageBoxSave onClick={handleUploadFile}>
+                      <FontAwesomeSvgIcon icon={UploadSaveIcon} color="#fff" />
+                    </ImageBoxSave>
+                    <ImageBoxRemove onClick={handleRemoveFile}>
+                      <FontAwesomeSvgIcon
+                        icon={UploadCancelIcon}
+                        color="#fff"
+                      />
+                    </ImageBoxRemove>
+                  </>
+                )}
               </ImageBox>
               <Box sx={{ display: { xs: "none", sm: "flex" } }}>
                 <Button variant="contained" fullWidth>
