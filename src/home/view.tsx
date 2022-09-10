@@ -9,11 +9,8 @@ import {
   Chip,
   CircularProgress,
   Grid,
-  IconContainerProps,
   Link,
-  Rating,
   Stack,
-  styled,
   Typography,
   useMediaQuery,
   useTheme,
@@ -25,179 +22,40 @@ import {
   faCheck as UploadSaveIcon,
   faCloudArrowUp as UploadImageIcon,
   faHeart as TotalRatingFilledIcon,
-  faLeaf as FallIcon,
   faPen as EditIcon,
-  faSnowflake as WinterIcon,
-  faStar as RatingFilledIcon,
-  faSun as SummerIcon,
   faTrash as DeleteIcon,
-  faTree as SpringIcon,
   faXmark as UploadCancelIcon,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { faHeart as TotalRatingEmptyIcon } from "@fortawesome/free-regular-svg-icons";
 
-import { Button, GlobalLoaderContext, IconButton } from "@components";
+import { Button, GlobalLoaderContext } from "@components";
 import { FullData } from "./types";
+
+import {
+  ModuleContainer,
+  Header,
+  Icon,
+  ImageBox,
+  Image,
+  ImageLoader,
+  ImageBoxEdit,
+  ImageBoxSave,
+  ImageBoxRemove,
+  TotalStyledRating,
+  StyledRating,
+  TotalRatingIcon,
+  IconWinter,
+  IconSpring,
+  IconSummer,
+  IconFall,
+  RatingIconContainer,
+} from "./components/ViewComponents";
 
 type Props = {
   matches?: {
     id: string;
   };
-};
-
-type IconButtonProps = {
-  component?: any;
-};
-
-type ImageProps = {
-  src?: string;
-  alt: string;
-  component?: string;
-};
-
-const ModuleContainer = styled(Box)({
-  paddingTop: 24,
-  paddingBottom: 24,
-});
-
-const Header = styled(Typography)(({ theme }) => ({
-  fontSize: 22,
-  borderBottom: `2px solid ${theme.palette.primary.light}`,
-  marginBottom: 8,
-}));
-
-const Icon = styled(FontAwesomeSvgIcon)({
-  marginRight: 8,
-});
-
-const ImageBox = styled(Box)({
-  position: "relative",
-  height: 300,
-  width: "100%",
-  background: "#ccc",
-  overflow: "hidden",
-});
-
-const Image = styled(Box)<ImageProps>({
-  width: "100%",
-  height: "100%",
-  objectFit: "cover",
-});
-
-const ImageLoader = styled(Box)({
-  position: "absolute",
-  top: 12,
-  left: 12,
-});
-
-const ImageBoxEdit = styled(IconButton)<IconButtonProps>(({ theme }) => ({
-  position: "absolute",
-  top: 12,
-  right: 12,
-
-  height: 46,
-  width: 46,
-
-  "&:hover": {
-    backgroundColor: theme.palette.warning.main,
-  },
-}));
-
-const ImageBoxSave = styled(IconButton)(({ theme }) => ({
-  backgroundColor: theme.palette.success.main,
-  position: "absolute",
-  top: 12,
-  right: 12,
-
-  height: 46,
-  width: 46,
-
-  "&:hover": {
-    backgroundColor: theme.palette.success.main,
-  },
-}));
-
-const ImageBoxRemove = styled(IconButton)(({ theme }) => ({
-  backgroundColor: theme.palette.error.main,
-  position: "absolute",
-  top: 64,
-  right: 12,
-
-  height: 46,
-  width: 46,
-
-  "&:hover": {
-    backgroundColor: theme.palette.error.main,
-  },
-}));
-
-const TotalStyledRating = styled(Rating)(({ value }) => ({
-  "& .MuiRating-iconFilled": {
-    color: value
-      ? value > 3.75
-        ? "#28a745"
-        : value > 3
-        ? "#1e90ff"
-        : "#e57373"
-      : "",
-  },
-}));
-
-const StyledRating = styled(Rating)(({ theme, value }) => ({
-  "& .MuiRating-iconFilled:not(.MuiRating-iconHover) svg": {
-    color: value
-      ? value >= 8
-        ? "#28a745 !important"
-        : value >= 6
-        ? "#1e90ff !important"
-        : "#e57373 !important"
-      : "",
-  },
-  "& .MuiRating-iconEmpty svg": {
-    color: theme.palette.action.disabled,
-  },
-}));
-
-const TotalRatingIcon = styled(FontAwesomeSvgIcon)({
-  marginRight: 2,
-  fontSize: 28,
-});
-
-const RatingIcon = styled(FontAwesomeSvgIcon)({
-  marginRight: 2,
-  fontSize: 18,
-});
-
-const IconWinter = () => <Icon icon={WinterIcon} color="#87ceeb" />;
-const IconSpring = () => <Icon icon={SpringIcon} color="#008000" />;
-const IconSummer = () => <Icon icon={SummerIcon} color="#ffa726" />;
-const IconFall = () => <Icon icon={FallIcon} color="#ff5722" />;
-
-const IconRateLow = () => (
-  <RatingIcon icon={RatingFilledIcon} color="#e57373" />
-);
-const IconRateNormal = () => (
-  <RatingIcon icon={RatingFilledIcon} color="#1e90ff" />
-);
-const IconRateHigh = () => (
-  <RatingIcon icon={RatingFilledIcon} color="#28a745" />
-);
-
-const RatingIconContainer = (props: IconContainerProps) => {
-  const { value, ...other } = props;
-
-  return (
-    <span {...other}>
-      {value >= 8 ? (
-        <IconRateHigh />
-      ) : value >= 6 ? (
-        <IconRateNormal />
-      ) : (
-        <IconRateLow />
-      )}
-    </span>
-  );
 };
 
 const HomeView = (props: Props) => {
@@ -301,7 +159,9 @@ const HomeView = (props: Props) => {
 
       setImageUploading(false);
 
-      const { data: { data } } = await axios.get(`/entries/${props.matches?.id}`);
+      const {
+        data: { data },
+      } = await axios.get(`/entries/${props.matches?.id}`);
 
       handleRemoveFile();
 
