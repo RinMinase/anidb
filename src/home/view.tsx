@@ -212,7 +212,13 @@ const HomeView = (props: Props) => {
             quality_color: getColor(data.id_quality),
           });
         })
-        .catch((err) => console.error(err))
+        .catch((err) => {
+          console.error(err);
+
+          if (err.response?.data?.message?.includes("ID is invalid")) {
+            route("/home");
+          }
+        })
         .finally(() => toggleLoader(false));
     }
   }, [props.matches]);
