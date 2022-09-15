@@ -13,7 +13,10 @@ export default defineConfig({
     preact(),
     tsconfigPaths(),
     VitePWA(),
-    viteCompression({ ext: ".jgz" }),
+    viteCompression({
+      ext: ".jgz",
+      verbose: false,
+    }),
   ],
   esbuild: {
     logOverride: { "this-is-undefined-in-esm": "silent" },
