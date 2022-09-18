@@ -107,17 +107,8 @@ const BucketSim = () => {
         icon: "success",
       });
 
-      const {
-        data: { data },
-      } = await axios.get("/bucket-sims");
-
-      setSims(() => data);
-
-      if (data.length) {
-        handleSelectSim(data[0].uuid);
-      }
-
       toggleLoader(false);
+      route(`/buckets`);
     }
   };
 
