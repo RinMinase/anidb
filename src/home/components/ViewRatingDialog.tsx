@@ -1,8 +1,8 @@
 
-const ViewRatingDialogue = () => {
+const ViewRewatchDialogue = () => {
   return (
-    <div>rating dialog</div>
+    <div>rewatch dialog</div>
   );
 }
 
-export default ViewRatingDialogue;
+export default ViewRewatchDialogue;
