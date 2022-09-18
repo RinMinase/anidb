@@ -57,17 +57,51 @@ const HomeView = (props: Props) => {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   const [data, setData] = useState<FullData>({});
+  const [ratings, setRatings] = useState({
+    average: 0,
+    audio: 0,
+    enjoyment: 0,
+    graphics: 0,
+    plot: 0,
+  });
+
+  const handleChangeRating = async (type: string, value: number | null) => {
+    const { audio, enjoyment, graphics, plot } = ratings;
+    let total = 0;
+
+    if (type === "audio") {
+      total = (value || 0) + enjoyment + graphics + plot;
+    } else if (type === "enjoyment") {
+      total = (value || 0) + audio + graphics + plot;
+    } else if (type === "graphics") {
+      total = (value || 0) + audio + enjoyment + plot;
+    } else if (type === "plot") {
+      total = (value || 0) + audio + enjoyment + graphics;
+    }
+
+    const average = total / 4;
+
+    setRatings((prev) => ({
+      ...prev,
+      average,
+      [type]: value,
+    }));
+
+    await axios.put(`/entries/ratings/${props.matches?.id}`, {
+      [type]: value,
+    });
+  };
 
   const renderTotalRating = () => (
     <Box textAlign="center">
       <TotalStyledRating
-        value={data.ratingAverage ? data.ratingAverage / 2 : 0}
+        value={ratings.average ? ratings.average / 2 : 0}
         precision={0.25}
         icon={<TotalRatingIcon icon={TotalRatingFilledIcon} />}
         emptyIcon={<TotalRatingIcon icon={TotalRatingEmptyIcon} />}
         readOnly
       />
-      <Typography>Rating: {data.ratingAverage}</Typography>
+      <Typography>Rating: {ratings.average}</Typography>
     </Box>
   );
 
@@ -78,9 +112,12 @@ const HomeView = (props: Props) => {
           Audio
         </Typography>
         <StyledRating
-          value={data.rating?.audio ?? 0}
+          value={ratings.audio}
           IconContainerComponent={RatingIconContainer}
           max={10}
+          onChange={(e: any, value: number | null) => {
+            handleChangeRating("audio", value);
+          }}
         />
       </Box>
       <Box textAlign="center">
@@ -88,9 +125,12 @@ const HomeView = (props: Props) => {
           Enjoyment
         </Typography>
         <StyledRating
-          value={data.rating?.enjoyment ?? 0}
+          value={ratings.enjoyment}
           IconContainerComponent={RatingIconContainer}
           max={10}
+          onChange={(e: any, value: number | null) => {
+            handleChangeRating("enjoyment", value);
+          }}
         />
       </Box>
       <Box textAlign="center">
@@ -98,9 +138,12 @@ const HomeView = (props: Props) => {
           Graphics
         </Typography>
         <StyledRating
-          value={data.rating?.graphics ?? 0}
+          value={ratings.graphics}
           IconContainerComponent={RatingIconContainer}
           max={10}
+          onChange={(e: any, value: number | null) => {
+            handleChangeRating("graphics", value);
+          }}
         />
       </Box>
       <Box textAlign="center">
@@ -108,9 +151,12 @@ const HomeView = (props: Props) => {
           Plot
         </Typography>
         <StyledRating
-          value={data.rating?.plot ?? 0}
+          value={ratings.plot}
           IconContainerComponent={RatingIconContainer}
           max={10}
+          onChange={(e: any, value: number | null) => {
+            handleChangeRating("plot", value);
+          }}
         />
       </Box>
     </Stack>
@@ -135,6 +181,14 @@ const HomeView = (props: Props) => {
           setData({
             ...data,
             quality_color: getColor(data.id_quality),
+          });
+
+          setRatings({
+            average: data.ratingAverage || 0,
+            audio: data.rating ? data.rating?.audio : 0,
+            enjoyment: data.rating ? data.rating?.enjoyment : 0,
+            graphics: data.rating ? data.rating?.graphics : 0,
+            plot: data.rating ? data.rating?.plot : 0,
           });
         })
         .catch((err) => {
