@@ -371,39 +371,43 @@ const HomeView = (props: Props) => {
                     </Typography>
                   </Box>
 
-                  <Stack spacing={1}>
-                    {data.prequel?.id && (
-                      <Typography variant="body1">
-                        <Typography component="span">Prequel: </Typography>
-                        <Link href={`/home/view/${data.prequel.id}`}>
-                          {data.prequel.title}
-                        </Link>
-                      </Typography>
-                    )}
-                    {data.sequel?.id && (
-                      <Typography variant="body1">
-                        <Typography component="span">Sequel: </Typography>
-                        <Link href={`/home/view/${data.sequel.id}`}>
-                          {data.sequel.title}
-                        </Link>
-                      </Typography>
-                    )}
-                    {data.offquels?.length ? (
-                      <>
-                        <Typography variant="body1">Offquels:</Typography>
-                        <Box sx={{ pl: 2 }}>
-                          {data.offquels.map((item) => (
-                            <Typography variant="body1" key={item.id}>
-                              <Icon icon={BulletIcon} />
-                              <Link href={`/home/view/${item.id}`}>
-                                {item.title}
-                              </Link>
-                            </Typography>
-                          ))}
-                        </Box>
-                      </>
-                    ) : null}
-                  </Stack>
+                  {data.prequel?.id ||
+                  data.sequel?.id ||
+                  data.offquels?.length ? (
+                    <Stack spacing={1}>
+                      {data.prequel?.id && (
+                        <Typography variant="body1">
+                          <Typography component="span">Prequel: </Typography>
+                          <Link href={`/home/view/${data.prequel.id}`}>
+                            {data.prequel.title}
+                          </Link>
+                        </Typography>
+                      )}
+                      {data.sequel?.id && (
+                        <Typography variant="body1">
+                          <Typography component="span">Sequel: </Typography>
+                          <Link href={`/home/view/${data.sequel.id}`}>
+                            {data.sequel.title}
+                          </Link>
+                        </Typography>
+                      )}
+                      {data.offquels?.length ? (
+                        <>
+                          <Typography variant="body1">Offquels:</Typography>
+                          <Box sx={{ pl: 2 }}>
+                            {data.offquels.map((item) => (
+                              <Typography variant="body1" key={item.id}>
+                                <Icon icon={BulletIcon} />
+                                <Link href={`/home/view/${item.id}`}>
+                                  {item.title}
+                                </Link>
+                              </Typography>
+                            ))}
+                          </Box>
+                        </>
+                      ) : null}
+                    </Stack>
+                  ) : null}
 
                   <Stack spacing={1}>
                     {data.rewatches?.length ? (
