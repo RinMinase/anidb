@@ -18,6 +18,7 @@ import { green, orange, red } from "@mui/material/colors";
 
 import {
   faDatabase as StorageIcon,
+  faFloppyDisk as SaveIcon,
   faHardDrive as DriveIcon,
   faPenToSquare as EditIcon,
   faTrash as DeleteIcon,
@@ -84,6 +85,39 @@ const BucketSim = () => {
         })
         .catch((err) => console.error(err))
         .finally(() => toggleLoader(false));
+    }
+  };
+
+  const handleSaveClick = async (e: any, uuid: string) => {
+    e.stopPropagation();
+
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: "This will replace the current bucket list",
+      icon: "warning",
+      showCancelButton: true,
+    });
+
+    if (result.isConfirmed) {
+      toggleLoader(true);
+
+      await axios.post(`/bucket-sims/${uuid}`);
+      await Swal.fire({
+        title: "Success!",
+        icon: "success",
+      });
+
+      const {
+        data: { data },
+      } = await axios.get("/bucket-sims");
+
+      setSims(() => data);
+
+      if (data.length) {
+        handleSelectSim(data[0].uuid);
+      }
+
+      toggleLoader(false);
     }
   };
 
@@ -160,6 +194,12 @@ const BucketSim = () => {
                 onClick={() => handleSelectSim(item.uuid)}
               >
                 <ListItemText>{item.description}</ListItemText>
+                <IconButton
+                  size="small"
+                  onClick={(e) => handleSaveClick(e, item.uuid)}
+                >
+                  <FontAwesomeSvgIcon icon={SaveIcon} />
+                </IconButton>
                 <IconButton
                   size="small"
                   onClick={(e) => handleEditClick(e, item.uuid)}
