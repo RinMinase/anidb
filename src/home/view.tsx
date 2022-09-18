@@ -7,7 +7,6 @@ import contrast from "font-color-contrast";
 import {
   Box,
   Chip,
-  CircularProgress,
   Grid,
   Link,
   Stack,
@@ -19,29 +18,20 @@ import {
 import {
   faAngleRight as BulletIcon,
   faArrowLeftLong as BackIcon,
-  faCheck as UploadSaveIcon,
-  faCloudArrowUp as UploadImageIcon,
   faHeart as TotalRatingFilledIcon,
   faPen as EditIcon,
   faTrash as DeleteIcon,
-  faXmark as UploadCancelIcon,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { faHeart as TotalRatingEmptyIcon } from "@fortawesome/free-regular-svg-icons";
 
-import { Alert, AlertProps, Button, GlobalLoaderContext } from "@components";
+import { Button, GlobalLoaderContext } from "@components";
 import { FullData } from "./types";
 
 import {
   ModuleContainer,
   Header,
   Icon,
-  ImageBox,
-  Image,
-  ImageLoader,
-  ImageBoxEdit,
-  ImageBoxSave,
-  ImageBoxRemove,
   TotalStyledRating,
   StyledRating,
   TotalRatingIcon,
@@ -51,6 +41,8 @@ import {
   IconFall,
   RatingIconContainer,
 } from "./components/ViewComponents";
+
+import ViewEntryImage from "./components/ViewEntryImage";
 
 type Props = {
   matches?: {
@@ -63,15 +55,8 @@ const HomeView = (props: Props) => {
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-  const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
 
   const [data, setData] = useState<FullData>({});
-
-  const [image, setImage] = useState<File | null>(null);
-  const [tempImage, setTempImage] = useState<string>("");
-  const [imageUploading, setImageUploading] = useState<boolean>(false);
-
-  const [dialog, setDialog] = useState<AlertProps>({ open: false });
 
   const renderTotalRating = () => (
     <Box textAlign="center">
@@ -130,66 +115,6 @@ const HomeView = (props: Props) => {
       </Box>
     </Stack>
   );
-
-  const handleChangeFile = (e: any) => {
-    const element = e.target as HTMLInputElement;
-    const { files } = element;
-
-    if (files) {
-      setImage(() => files[0]);
-
-      const url = URL.createObjectURL(files[0]);
-      setTempImage(url);
-    }
-  };
-
-  const handleRemoveFile = () => {
-    setImage(() => null);
-
-    URL.revokeObjectURL(tempImage);
-    setTempImage("");
-  };
-
-  const handleUploadFile = async () => {
-    if (image) {
-      try {
-        setImageUploading(true);
-
-        const body = new FormData();
-        body.append("_method", "PUT");
-        body.append("image", image);
-
-        await axios.post(`/entries/img-upload/${props.matches?.id}`, body);
-
-        setImageUploading(false);
-
-        const {
-          data: { data },
-        } = await axios.get(`/entries/${props.matches?.id}`);
-
-        handleRemoveFile();
-
-        setData((prev) => ({
-          ...prev,
-          image: data.image,
-        }));
-
-        setDialog({
-          open: true,
-          message: "Success!",
-          severity: "success",
-        });
-      } catch (err) {
-        console.error(err);
-
-        setDialog({
-          open: true,
-          message: "Failed",
-          severity: "error",
-        });
-      }
-    }
-  };
 
   useEffect(() => {
     if (props.matches?.id) {
@@ -291,51 +216,11 @@ const HomeView = (props: Props) => {
               spacing={3}
               sx={{ textAlign: { xs: "center", sm: "unset" } }}
             >
-              <Alert
-                open={dialog.open}
-                onClose={() => setDialog({ open: false })}
+              <ViewEntryImage
+                data={data}
+                setData={setData}
+                id={props.matches?.id}
               />
-              <ImageBox>
-                {imageUploading && (
-                  <ImageLoader>
-                    <CircularProgress />
-                  </ImageLoader>
-                )}
-
-                {(tempImage || data.image) && (
-                  <Image
-                    component="img"
-                    alt="entry image"
-                    src={tempImage || data.image}
-                  />
-                )}
-
-                {isDesktop && (
-                  <ImageBoxEdit component="label" disabled={!!image}>
-                    <input
-                      type="file"
-                      accept="image/*"
-                      hidden
-                      onChange={handleChangeFile}
-                    />
-                    <FontAwesomeSvgIcon icon={UploadImageIcon} color="#fff" />
-                  </ImageBoxEdit>
-                )}
-
-                {image && (
-                  <>
-                    <ImageBoxSave onClick={handleUploadFile}>
-                      <FontAwesomeSvgIcon icon={UploadSaveIcon} color="#fff" />
-                    </ImageBoxSave>
-                    <ImageBoxRemove onClick={handleRemoveFile}>
-                      <FontAwesomeSvgIcon
-                        icon={UploadCancelIcon}
-                        color="#fff"
-                      />
-                    </ImageBoxRemove>
-                  </>
-                )}
-              </ImageBox>
               <Box sx={{ display: { xs: "none", sm: "flex" } }}>
                 <Button variant="contained" fullWidth>
                   Rewatches
