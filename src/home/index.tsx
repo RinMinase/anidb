@@ -120,7 +120,7 @@ const Home = () => {
       <SearchContainer>
         <Grid container spacing={2}>
           <Grid item xs={12} md={2}>
-            <Button variant="contained" fullWidth>
+            <Button variant="contained" href="/home/add" fullWidth>
               Add
             </Button>
           </Grid>
