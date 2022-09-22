@@ -33,7 +33,7 @@ export type Form = {
 const defaultValues = {
   id_quality: 2,
   title: "",
-  date_finished: format(new Date(), "MM-DD-yyyy"),
+  date_finished: format(new Date(), "MM-dd-yyyy"),
 };
 
 const schema = object().shape({
