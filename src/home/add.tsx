@@ -1,6 +1,7 @@
 import { useContext } from "preact/hooks";
 import { route } from "preact-router";
 import { FontAwesomeSvgIcon } from "react-fontawesome-slim";
+import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 
 import { Box, styled, Typography } from "@mui/material";
@@ -11,8 +12,9 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import { Button, GlobalLoaderContext } from "@components";
-import { useForm } from "react-hook-form";
 import { defaultValues, Form, resolver } from "./validation";
+
+import AddForm from "./components/AddForm";
 
 const ModuleContainer = styled(Box)({
   paddingTop: 24,
@@ -49,7 +51,6 @@ const HomeAdd = () => {
 
   const {
     control,
-    register,
     handleSubmit,
     formState: { errors },
   } = useForm<Form>({
@@ -70,51 +71,55 @@ const HomeAdd = () => {
   };
 
   const handleSubmitForm = (formdata: Form) => {
+    toggleLoader(true);
     console.log(formdata);
-  }
+    toggleLoader(false);
+  };
 
   return (
     <ModuleContainer>
-    <Header>
-      <Box display="flex" flexDirection="column" flexGrow={1}>
-        <Button
-          variant="contained"
-          color="error"
-          startIcon={<FontAwesomeSvgIcon icon={BackIcon} />}
-          sx={{
-            display: { xs: "inline-flex", sm: "none" },
-            width: 120,
-            marginBottom: 2,
-          }}
-          onClick={handleBack}
-        >
-          Back
-        </Button>
-        <Typography variant="h5" alignItems="center">
-          Add Bucket Simulation
-        </Typography>
-      </Box>
-      <ControlButtonsContainer>
-        <ControlButtons
-          variant="contained"
-          color="error"
-          startIcon={<FontAwesomeSvgIcon icon={BackIcon} />}
-          sx={{ display: { xs: "none", sm: "inline-flex" } }}
-          onClick={handleBack}
-        >
-          Back
-        </ControlButtons>
-        <ControlButtons
-          variant="contained"
-          startIcon={<FontAwesomeSvgIcon icon={SaveIcon} />}
-          onClick={handleSubmit(handleSubmitForm)}
-        >
-          Save
-        </ControlButtons>
-      </ControlButtonsContainer>
-    </Header>
+      <Header>
+        <Box display="flex" flexDirection="column" flexGrow={1}>
+          <Button
+            variant="contained"
+            color="error"
+            startIcon={<FontAwesomeSvgIcon icon={BackIcon} />}
+            sx={{
+              display: { xs: "inline-flex", sm: "none" },
+              width: 120,
+              marginBottom: 2,
+            }}
+            onClick={handleBack}
+          >
+            Back
+          </Button>
+          <Typography variant="h5" alignItems="center">
+            Add Bucket Simulation
+          </Typography>
+        </Box>
+        <ControlButtonsContainer>
+          <ControlButtons
+            variant="contained"
+            color="error"
+            startIcon={<FontAwesomeSvgIcon icon={BackIcon} />}
+            sx={{ display: { xs: "none", sm: "inline-flex" } }}
+            onClick={handleBack}
+          >
+            Back
+          </ControlButtons>
+          <ControlButtons
+            variant="contained"
+            startIcon={<FontAwesomeSvgIcon icon={SaveIcon} />}
+            onClick={handleSubmit(handleSubmitForm)}
+          >
+            Save
+          </ControlButtons>
+        </ControlButtonsContainer>
+      </Header>
+
+      <AddForm control={control} errors={errors} />
     </ModuleContainer>
-  )
-}
+  );
+};
 
 export default HomeAdd;
