@@ -13,7 +13,7 @@ export type Form = {
   ovas?: number;
   specials?: number;
 
-  season_number?: number
+  season_number?: number;
   season_first_title_id?: string;
 
   prequel_id?: string;
@@ -30,10 +30,18 @@ export type Form = {
   remarks?: string;
 };
 
+export type RewatchForm = {
+  dateRewatch: Date;
+};
+
 const defaultValues = {
   id_quality: 2,
   title: "",
   date_finished: format(new Date(), "MM-dd-yyyy"),
+};
+
+const rewatchDefaultValues = {
+  dateRewatch: new Date(),
 };
 
 const schema = object().shape({
@@ -64,6 +72,13 @@ const schema = object().shape({
   remarks: string().nullable(),
 });
 
-const resolver = yupResolver(schema);
+const rewatchSchema = object({
+  dateRewatch: date()
+    .max(new Date(), "Invalid date")
+    .required("Date is required"),
+});
 
-export { defaultValues, resolver };
+const resolver = yupResolver(schema);
+const rewatchResolver = yupResolver(rewatchSchema);
+
+export { defaultValues, resolver, rewatchDefaultValues, rewatchResolver };

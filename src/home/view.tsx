@@ -43,6 +43,7 @@ import {
 } from "./components/ViewComponents";
 
 import ViewEntryImage from "./components/ViewEntryImage";
+import ViewRewatchDialogue from "./components/ViewRewatchDialog";
 
 type Props = {
   matches?: {
@@ -56,6 +57,7 @@ const HomeView = (props: Props) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
+  const [rewatchDialog, setRewatchDialog] = useState(false);
   const [data, setData] = useState<FullData>({});
   const [ratings, setRatings] = useState({
     average: 0,
@@ -276,7 +278,11 @@ const HomeView = (props: Props) => {
                 id={props.matches?.id}
               />
               <Box sx={{ display: { xs: "none", sm: "flex" } }}>
-                <Button variant="contained" fullWidth>
+                <Button
+                  variant="contained"
+                  fullWidth
+                  onClick={() => setRewatchDialog(true)}
+                >
                   Rewatches
                   <Chip
                     label={data.rewatches?.length || 0}
@@ -451,7 +457,12 @@ const HomeView = (props: Props) => {
                       </Box>
                     ) : null}
                     <Box sx={{ display: { xs: "inline-block", sm: "none" } }}>
-                      <Button variant="contained">Edit Rewatches</Button>
+                      <Button
+                        variant="contained"
+                        onClick={() => setRewatchDialog(true)}
+                      >
+                        Edit Rewatches
+                      </Button>
                     </Box>
                   </Stack>
                 </Stack>
@@ -470,6 +481,11 @@ const HomeView = (props: Props) => {
           </Grid>
         </Grid>
       )}
+      <ViewRewatchDialogue
+        open={rewatchDialog}
+        onClose={() => setRewatchDialog(false)}
+        rewatches={data.rewatches}
+      />
     </ModuleContainer>
   );
 };

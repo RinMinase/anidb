@@ -23,7 +23,7 @@ const ControlledDatepicker = (props: Props) => {
       name={props.name}
       control={props.control}
       render={({ field: { onChange, value } }) => (
-        <LocalizationProvider dateAdapter={AdapterDateFns as any}>
+        <LocalizationProvider dateAdapter={AdapterDateFns}>
           <DesktopDatePicker
             inputFormat="MM/dd/yyyy"
             onChange={onChange}
