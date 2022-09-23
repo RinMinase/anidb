@@ -13,6 +13,8 @@ type Props = {
   error?: boolean;
   disabled?: boolean;
   disableFuture?: boolean;
+  size?: "medium" | "small";
+  fullWidth?: boolean;
 };
 
 const ControlledDatepicker = (props: Props) => {
@@ -21,7 +23,7 @@ const ControlledDatepicker = (props: Props) => {
       name={props.name}
       control={props.control}
       render={({ field: { onChange, value } }) => (
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
+        <LocalizationProvider dateAdapter={AdapterDateFns as any}>
           <DesktopDatePicker
             inputFormat="MM/dd/yyyy"
             onChange={onChange}
@@ -32,6 +34,8 @@ const ControlledDatepicker = (props: Props) => {
             renderInput={(params) => (
               <TextField
                 {...params}
+                fullWidth={props.fullWidth}
+                size={props.size || "medium"}
                 helperText={props.helperText}
                 error={props.error}
               />
