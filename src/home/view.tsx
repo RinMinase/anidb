@@ -208,7 +208,7 @@ const HomeView = (props: Props) => {
     <ModuleContainer>
       {!isLoading && data.title && (
         <Grid container spacing={2.5}>
-          <Grid item xs={12} sm={3}>
+          <Grid item xs={12} sm={4} md={3}>
             <Grid container spacing={1.25}>
               <Grid item xs={4} sm={12}>
                 <Button
@@ -244,7 +244,7 @@ const HomeView = (props: Props) => {
             </Grid>
           </Grid>
 
-          <Grid item xs={12} sm={9}>
+          <Grid item xs={12} sm={8} md={9}>
             <Stack
               spacing={1.5}
               sx={{ textAlign: { xs: "center", sm: "unset" } }}
@@ -267,7 +267,7 @@ const HomeView = (props: Props) => {
             </Stack>
           </Grid>
 
-          <Grid item xs={12} sm={3}>
+          <Grid item xs={12} sm={4} md={3}>
             <Stack
               spacing={3}
               sx={{ textAlign: { xs: "center", sm: "unset" } }}
@@ -299,7 +299,7 @@ const HomeView = (props: Props) => {
             </Stack>
           </Grid>
 
-          <Grid item xs={12} sm={9}>
+          <Grid item xs={12} sm={8} md={9}>
             <Stack spacing={3}>
               <Stack
                 spacing={1.5}
