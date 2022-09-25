@@ -94,7 +94,7 @@ const HomeAdd = () => {
             Back
           </Button>
           <Typography variant="h5" alignItems="center">
-            Add Bucket Simulation
+            Add Entry
           </Typography>
         </Box>
         <ControlButtonsContainer>
