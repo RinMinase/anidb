@@ -1,6 +1,9 @@
 import { useState } from "preact/hooks";
 import { useForm } from "react-hook-form";
 import { FontAwesomeSvgIcon } from "react-fontawesome-slim";
+import axios from "axios";
+import { format } from "date-fns";
+import Swal from "sweetalert2";
 
 import {
   Backdrop,
@@ -27,7 +30,6 @@ import {
   RewatchForm,
   rewatchResolver,
 } from "../validation";
-import axios from "axios";
 
 type Props = {
   entry: string;
@@ -56,7 +58,7 @@ const RewatchList = styled(List)({
   overflowY: "auto",
   paddingLeft: 24,
   paddingRight: 24,
-})
+});
 
 const ViewRewatchDialogue = (props: Props) => {
   const [isLoading, setLoading] = useState(false);
@@ -72,19 +74,28 @@ const ViewRewatchDialogue = (props: Props) => {
   });
 
   const handleDeleteClick = async (e: any, id: string) => {
-    setLoading(true);
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: "This item will be deleted",
+      icon: "error",
+      showCancelButton: true,
+    });
 
-    await axios.delete(`/entries/rewatch/${id}`);
-    await props.onChangeData();
+    if (result.isConfirmed) {
+      setLoading(true);
 
-    setLoading(false);
+      await axios.delete(`/entries/rewatch/${id}`);
+      await props.onChangeData();
+
+      setLoading(false);
+    }
   };
 
   const handleSubmitForm = async (formdata: RewatchForm) => {
     setLoading(true);
 
     await axios.post(`/entries/rewatch/${props.entry}`, {
-      date_rewatched: formdata.dateRewatch,
+      date_rewatched: format(formdata.dateRewatch, "yyyy-MM-dd"),
     });
 
     await props.onChangeData();
