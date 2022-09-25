@@ -27,10 +27,13 @@ import {
   RewatchForm,
   rewatchResolver,
 } from "../validation";
+import axios from "axios";
 
 type Props = {
+  entry: string;
   open: boolean;
   onClose: () => void;
+  onChangeData: () => Promise<void>;
   rewatches?: Array<{
     id: string;
     dateIso: string;
@@ -45,7 +48,15 @@ const CustomDialog = styled(Paper)({
   transform: "translate(-50%, -50%)",
   width: "100%",
   maxWidth: 400,
+  maxHeight: "80vh",
 });
+
+const RewatchList = styled(List)({
+  maxHeight: "calc(80vh - 70px - 64px)",
+  overflowY: "auto",
+  paddingLeft: 24,
+  paddingRight: 24,
+})
 
 const ViewRewatchDialogue = (props: Props) => {
   const [isLoading, setLoading] = useState(false);
@@ -60,15 +71,24 @@ const ViewRewatchDialogue = (props: Props) => {
     mode: "onChange",
   });
 
-  const handleDeleteClick = (e: any, id: string) => {
+  const handleDeleteClick = async (e: any, id: string) => {
     setLoading(true);
-    console.log(id);
+
+    await axios.delete(`/entries/rewatch/${id}`);
+    await props.onChangeData();
+
     setLoading(false);
   };
 
-  const handleSubmitForm = (formdata: RewatchForm) => {
+  const handleSubmitForm = async (formdata: RewatchForm) => {
     setLoading(true);
-    console.log(formdata);
+
+    await axios.post(`/entries/rewatch/${props.entry}`, {
+      date_rewatched: formdata.dateRewatch,
+    });
+
+    await props.onChangeData();
+
     setLoading(false);
   };
 
@@ -86,8 +106,8 @@ const ViewRewatchDialogue = (props: Props) => {
             <FontAwesomeSvgIcon width={22} icon={CloseIcon} />
           </IconButton>
         </DialogTitle>
-        <DialogContent>
-          <Grid container spacing={2} sx={{ pt: 1 }}>
+        <DialogContent sx={{ px: 0 }}>
+          <Grid container spacing={2} sx={{ pt: 1, px: 3 }}>
             <Grid item xs={12} sm={7} md={8}>
               <ControlledDatepicker
                 name="dateRewatch"
@@ -111,7 +131,7 @@ const ViewRewatchDialogue = (props: Props) => {
             </Grid>
           </Grid>
 
-          <List>
+          <RewatchList>
             {props.rewatches?.map((item) => (
               <ListItem key={item.id}>
                 <ListItemText primary={item.date} />
@@ -123,7 +143,7 @@ const ViewRewatchDialogue = (props: Props) => {
                 </IconButton>
               </ListItem>
             ))}
-          </List>
+          </RewatchList>
         </DialogContent>
       </CustomDialog>
     </Backdrop>

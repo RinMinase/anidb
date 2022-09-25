@@ -46,7 +46,7 @@ import ViewEntryImage from "./components/ViewEntryImage";
 import ViewRewatchDialogue from "./components/ViewRewatchDialog";
 
 type Props = {
-  matches?: {
+  matches: {
     id: string;
   };
 };
@@ -164,44 +164,45 @@ const HomeView = (props: Props) => {
     </Stack>
   );
 
+  const handleChangeData = () => {
+    const { id } = props.matches;
+    const getColor = (id?: number) => {
+      if (id === 1) return "#f9c";
+      if (id === 2) return "#9f9";
+      if (id === 3) return "#9cf";
+      if (id === 4) return "#fc6";
+      return "#777";
+    };
+
+    return axios
+      .get(`/entries/${id}`)
+      .then(({ data: { data } }) => {
+        setData({
+          ...data,
+          quality_color: getColor(data.id_quality),
+        });
+
+        setRatings({
+          average: data.ratingAverage || 0,
+          audio: data.rating ? data.rating?.audio : 0,
+          enjoyment: data.rating ? data.rating?.enjoyment : 0,
+          graphics: data.rating ? data.rating?.graphics : 0,
+          plot: data.rating ? data.rating?.plot : 0,
+        });
+      })
+      .catch((err) => {
+        console.error(err);
+
+        if (err.response?.data?.message?.includes("ID is invalid")) {
+          route("/home");
+        }
+      })
+      .finally(() => toggleLoader(false));
+  };
+
   useEffect(() => {
-    if (props.matches?.id) {
-      toggleLoader(true);
-
-      const { id } = props.matches;
-      const getColor = (id?: number) => {
-        if (id === 1) return "#f9c";
-        if (id === 2) return "#9f9";
-        if (id === 3) return "#9cf";
-        if (id === 4) return "#fc6";
-        return "#777";
-      };
-
-      axios
-        .get(`/entries/${id}`)
-        .then(({ data: { data } }) => {
-          setData({
-            ...data,
-            quality_color: getColor(data.id_quality),
-          });
-
-          setRatings({
-            average: data.ratingAverage || 0,
-            audio: data.rating ? data.rating?.audio : 0,
-            enjoyment: data.rating ? data.rating?.enjoyment : 0,
-            graphics: data.rating ? data.rating?.graphics : 0,
-            plot: data.rating ? data.rating?.plot : 0,
-          });
-        })
-        .catch((err) => {
-          console.error(err);
-
-          if (err.response?.data?.message?.includes("ID is invalid")) {
-            route("/home");
-          }
-        })
-        .finally(() => toggleLoader(false));
-    }
+    toggleLoader(true);
+    handleChangeData();
   }, [props.matches]);
 
   return (
@@ -482,7 +483,9 @@ const HomeView = (props: Props) => {
         </Grid>
       )}
       <ViewRewatchDialogue
+        entry={props.matches?.id || ""}
         open={rewatchDialog}
+        onChangeData={handleChangeData}
         onClose={() => setRewatchDialog(false)}
         rewatches={data.rewatches}
       />
