@@ -57,7 +57,7 @@
     "@mui/system": "^5.10.6",
     "@preact/preset-vite": "^2.4.0",
     "@types/js-cookie": "^3.0.2",
-    "@types/node": "^18.7.20",
+    "@types/node": "^18.7.21",
     "@types/qs": "^6.9.7",
     "@types/react-scroll": "^1.8.4",
     "@types/uuid": "^8.3.4",
