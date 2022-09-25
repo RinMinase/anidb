@@ -1281,7 +1281,7 @@
   resolved "https://registry.yarnpkg.com/@hookform/resolvers/-/resolvers-2.9.8.tgz#9af51d15602f3c6e3249714712d8275564e65b72"
   integrity sha512-iVVjH0USq+1TqDdGkWe2M1x7Wn5OFPgVRo7CbWFsXTqqXqCaZtZcnzJu+UhljCWbthFWxWGXKLGYUDPZ04oVvQ==
 
-"@humanwhocodes/config-array@^0.10.4":
+"@humanwhocodes/config-array@^0.10.5":
   version "0.10.5"
   resolved "https://registry.yarnpkg.com/@humanwhocodes/config-array/-/config-array-0.10.5.tgz#bb679745224745fff1e9a41961c1d45a49f81c04"
   integrity sha512-XVVDtp+dVvRxMoxSiSfasYaG02VEe1qH5cKgMQJWhol6HwzbcqoCMJi8dAGoYAO57jhUyhI6cWuRiTcRaDaYug==
@@ -1529,10 +1529,10 @@
   resolved "https://registry.yarnpkg.com/@netlify/binary-info/-/binary-info-1.0.0.tgz#cd0d86fb783fb03e52067f0cd284865e57be86c8"
   integrity sha512-4wMPu9iN3/HL97QblBsBay3E1etIciR84izI3U+4iALY+JHCrI+a2jO0qbAZ/nxKoegypYEaiiqWXylm+/zfrw==
 
-"@netlify/build@^27.18.4":
-  version "27.18.4"
-  resolved "https://registry.yarnpkg.com/@netlify/build/-/build-27.18.4.tgz#c8f1fb73ead26618b106986d52de4f66947a7bea"
-  integrity sha512-3DXTuv5X9FWI+6G7uI29GlxkatMqgNyPX9Ey2BiYIi2CSUjILuCealVW+Qo3SV0+afty3teptaUfMQSKa1OLHg==
+"@netlify/build@^27.18.5":
+  version "27.18.5"
+  resolved "https://registry.yarnpkg.com/@netlify/build/-/build-27.18.5.tgz#bf8d73b71721ad7ffe2a84de1130306cfcadaa77"
+  integrity sha512-SmLOcgp/VJiCe9ft/8oUmCdPBOvQ/k7G4Y0fUb1BXusRePdultUDzC0pHFybNa/YyIsA4HDTAtGsTAk8GJpu7g==
   dependencies:
     "@bugsnag/js" "^7.0.0"
     "@netlify/cache-utils" "^4.0.0"
@@ -1540,7 +1540,7 @@
     "@netlify/edge-bundler" "^2.2.0"
     "@netlify/functions-utils" "^4.2.9"
     "@netlify/git-utils" "^4.0.0"
-    "@netlify/plugins-list" "^6.45.0"
+    "@netlify/plugins-list" "^6.46.0"
     "@netlify/run-utils" "^4.0.0"
     "@netlify/zip-it-and-ship-it" "^7.1.2"
     "@sindresorhus/slugify" "^2.0.0"
@@ -1900,7 +1900,7 @@
   resolved "https://registry.yarnpkg.com/@netlify/open-api/-/open-api-2.12.0.tgz#62e467c0c6be7bcae9349dc681e71eb393c21b2a"
   integrity sha512-1n9VvO/9qM7cRB5f7NgSNqeUrovM7j9WVAY7ZQ4LtQuXSquFmO9Fku7WrV3zAUC6v2Y62fxGyJ0fRllYz5uXLw==
 
-"@netlify/plugins-list@^6.45.0":
+"@netlify/plugins-list@^6.46.0":
   version "6.46.0"
   resolved "https://registry.yarnpkg.com/@netlify/plugins-list/-/plugins-list-6.46.0.tgz#37ff4d0e564a42a5896b81f073cf6ed94d3d3737"
   integrity sha512-kUX90Eacqko9ni3cepVZKXFTLmhdwES/HDRlMYxyUh+SmvXWRC+h43b11nA0/6M5PEPolUChQOZN9wZql6oJJw==
@@ -2402,7 +2402,7 @@
     "@types/node" "*"
     form-data "^3.0.0"
 
-"@types/node@*", "@types/node@^18.7.18":
+"@types/node@*":
   version "18.7.18"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-18.7.18.tgz#633184f55c322e4fb08612307c274ee6d5ed3154"
   integrity sha512-m+6nTEOadJZuTPkKR/SYK3A2d7FZrgElol9UP1Kae90VVU4a6mxnPuLiIW1m4Cq4gZ/nWb9GrdVXJCoCazDAbg==
@@ -2416,6 +2416,11 @@
   version "16.11.59"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-16.11.59.tgz#823f238b9063ccc3b3b7f13186f143a57926c4f6"
   integrity sha512-6u+36Dj3aDzhfBVUf/mfmc92OEdzQ2kx2jcXGdigfl70E/neV21ZHE6UCz4MDzTRcVqGAM27fk+DLXvyDsn3Jw==
+
+"@types/node@^18.7.20":
+  version "18.7.20"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.7.20.tgz#d9442de7b5cb166476340b4271b15300fe058a39"
+  integrity sha512-adzY4vLLr5Uivmx8+zfSJ5fbdgKxX8UMtjtl+17n0B1q1Nz8JEmE151vefMdpD+1gyh+77weN4qEhej/O7budQ==
 
 "@types/normalize-package-data@^2.4.0", "@types/normalize-package-data@^2.4.1":
   version "2.4.1"
@@ -4932,13 +4937,13 @@ eslint-visitor-keys@^3.3.0:
   resolved "https://registry.yarnpkg.com/eslint-visitor-keys/-/eslint-visitor-keys-3.3.0.tgz#f6480fa6b1f30efe2d1968aa8ac745b862469826"
   integrity sha512-mQ+suqKJVyeuwGYHAdjMFqjCyfl8+Ldnxuyp3ldiMBFKkvytrXUZWaiPCEav8qDHKty44bD+qV1IP4T+w+xXRA==
 
-eslint@^8.23.1:
-  version "8.23.1"
-  resolved "https://registry.yarnpkg.com/eslint/-/eslint-8.23.1.tgz#cfd7b3f7fdd07db8d16b4ac0516a29c8d8dca5dc"
-  integrity sha512-w7C1IXCc6fNqjpuYd0yPlcTKKmHlHHktRkzmBPZ+7cvNBQuiNjx0xaMTjAJGCafJhQkrFJooREv0CtrVzmHwqg==
+eslint@^8.24.0:
+  version "8.24.0"
+  resolved "https://registry.yarnpkg.com/eslint/-/eslint-8.24.0.tgz#489516c927a5da11b3979dbfb2679394523383c8"
+  integrity sha512-dWFaPhGhTAiPcCgm3f6LI2MBWbogMnTJzFBbhXVRQDJPkr9pGZvVjlVfXd+vyDcWPA2Ic9L2AXPIQM0+vk/cSQ==
   dependencies:
     "@eslint/eslintrc" "^1.3.2"
-    "@humanwhocodes/config-array" "^0.10.4"
+    "@humanwhocodes/config-array" "^0.10.5"
     "@humanwhocodes/gitignore-to-minimatch" "^1.0.2"
     "@humanwhocodes/module-importer" "^1.0.1"
     ajv "^6.10.0"
@@ -7883,17 +7888,17 @@ nested-error-stacks@^2.0.0, nested-error-stacks@^2.1.0:
   resolved "https://registry.yarnpkg.com/nested-error-stacks/-/nested-error-stacks-2.1.1.tgz#26c8a3cee6cc05fbcf1e333cd2fc3e003326c0b5"
   integrity sha512-9iN1ka/9zmX1ZvLV9ewJYEk9h7RyRRtqdK0woXcqohu8EWIerfPUjYJPg0ULy0UqP7cslmdGc8xKDJcojlKiaw==
 
-netlify-cli@^11.8.2:
-  version "11.8.2"
-  resolved "https://registry.yarnpkg.com/netlify-cli/-/netlify-cli-11.8.2.tgz#d8ccfb13f96aadfe8c32595dc73870bd31530f03"
-  integrity sha512-eE8JVouRA/q8toPHJN2G5NBUreKo64Ooz6nJi3M6qgJHA+bWDhPu36Ta9JHSyTxIsHj9Nu+zhyDIT/Fkz7OdoQ==
+netlify-cli@^11.8.3:
+  version "11.8.3"
+  resolved "https://registry.yarnpkg.com/netlify-cli/-/netlify-cli-11.8.3.tgz#20ee6af1be0374eaefa1fe064c2f7ab6c3270bf6"
+  integrity sha512-g8CG+kOrT/euh8dKoS7KB5ItuT0wYs0uxb8HctlWMm5g4DP1wTXX2O9Vnhhoqy4nQ2bhiTp9NUef7EcDim/uzw==
   dependencies:
-    "@netlify/build" "^27.18.4"
+    "@netlify/build" "^27.18.5"
     "@netlify/config" "^18.2.3"
     "@netlify/edge-bundler" "^2.2.0"
     "@netlify/framework-info" "^9.2.0"
     "@netlify/local-functions-proxy" "^1.1.1"
-    "@netlify/plugins-list" "^6.45.0"
+    "@netlify/plugins-list" "^6.46.0"
     "@netlify/zip-it-and-ship-it" "^7.1.2"
     "@octokit/rest" "^18.0.0"
     "@sindresorhus/slugify" "^1.1.0"
@@ -9143,10 +9148,10 @@ react-fontawesome-slim@^1.0.0:
   resolved "https://registry.yarnpkg.com/react-fontawesome-slim/-/react-fontawesome-slim-1.0.0.tgz#bd19a292d2d33608ab50f61468b971d96206900d"
   integrity sha512-3qWGFE9GEpcxDyeORSxTGVkI0zMpie2E/UdVfAiiBGSzAdrNsd6lAAODGWmH8g6ff7uWKvHyw83Sn523igVmRw==
 
-react-hook-form@^7.36.0:
-  version "7.36.0"
-  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.36.0.tgz#27bf64e2a06b994bc64e055b4cc502794b8f6978"
-  integrity sha512-2PmRhTDH90/G1XWbUGpfuFBf7wxj9kYvzPqoZCv4wUGBIfuac0fK3up9sbeoz0ghpLYcFFXRVDKMUXgMutLXTw==
+react-hook-form@^7.36.1:
+  version "7.36.1"
+  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.36.1.tgz#82a311fe8cbe75e689fd4529f083b7c983da6520"
+  integrity sha512-EbYYkCG2p8ywe7ikOH2l02lAFMrrrslZi1I8fqd8ifDGNAkhomHZQzQsP6ksvzrWBKntRe8b5L5L7Zsd+Gm02Q==
 
 react-is@^16.12.0, react-is@^16.13.1, react-is@^16.7.0:
   version "16.13.1"
@@ -10953,10 +10958,10 @@ vite-plugin-pwa@^0.13.1:
     workbox-build "^6.5.4"
     workbox-window "^6.5.4"
 
-vite-tsconfig-paths@^3.5.0:
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/vite-tsconfig-paths/-/vite-tsconfig-paths-3.5.0.tgz#bfdf93f8072eff04125112ea9602fd50ae8cdad9"
-  integrity sha512-NKIubr7gXgh/3uniQaOytSg+aKWPrjquP6anAy+zCWEn6h9fB8z2/qdlfQrTgZWaXJ2pHVlllrSdRZltHn9P4g==
+vite-tsconfig-paths@^3.5.1:
+  version "3.5.1"
+  resolved "https://registry.yarnpkg.com/vite-tsconfig-paths/-/vite-tsconfig-paths-3.5.1.tgz#415f8ef442b71b1a0cd40686a00fe4fbfa7627a2"
+  integrity sha512-t7cPvDMDxOCUxxNLqngXiX+L6jPYBr+eMgkeVadknxBb89d2s1aejz+wFEep010VfXjGVAUWGEFPe1fkRYTFvg==
   dependencies:
     debug "^4.1.1"
     globrex "^0.1.2"
