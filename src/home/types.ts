@@ -63,9 +63,13 @@ export type FullData = {
   codecVideo?: string;
   codecAudio?: string;
 
-  rewatches?: Array<string>;
-  ratingAverage?: number;
+  rewatches?: Array<{
+    id: string;
+    dateIso: string;
+    date: string;
+  }>;
 
+  ratingAverage?: number;
   rating?: {
     audio: number;
     enjoyment: number;

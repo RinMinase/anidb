@@ -448,10 +448,10 @@ const HomeView = (props: Props) => {
                     </Typography>
                     {data.rewatches?.length ? (
                       <Box sx={{ pl: 2 }}>
-                        {data.rewatches.map((item, index) => (
-                          <Typography variant="body1" key={`rewatch-${index}`}>
+                        {data.rewatches.map((item) => (
+                          <Typography variant="body1" key={item.id}>
                             <Icon icon={BulletIcon} />
-                            {item}
+                            {item.date}
                           </Typography>
                         ))}
                       </Box>

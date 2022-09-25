@@ -29,9 +29,13 @@ import {
 } from "../validation";
 
 type Props = {
-  rewatches?: Array<string>;
-  onClose: () => void;
   open: boolean;
+  onClose: () => void;
+  rewatches?: Array<{
+    id: string;
+    dateIso: string;
+    date: string;
+  }>;
 };
 
 const CustomDialog = styled(Paper)({
@@ -56,7 +60,7 @@ const ViewRewatchDialogue = (props: Props) => {
     mode: "onChange",
   });
 
-  const handleDeleteClick = (e: any, id: number) => {
+  const handleDeleteClick = (e: any, id: string) => {
     setLoading(true);
     console.log(id);
     setLoading(false);
@@ -108,12 +112,12 @@ const ViewRewatchDialogue = (props: Props) => {
           </Grid>
 
           <List>
-            {props.rewatches?.map((date, index) => (
-              <ListItem key={date}>
-                <ListItemText primary={date} />
+            {props.rewatches?.map((item) => (
+              <ListItem key={item.id}>
+                <ListItemText primary={item.date} />
                 <IconButton
                   size="small"
-                  onClick={(e) => handleDeleteClick(e, index)}
+                  onClick={(e) => handleDeleteClick(e, item.id)}
                 >
                   <FontAwesomeSvgIcon color="red" icon={DeleteIcon} />
                 </IconButton>
