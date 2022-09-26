@@ -5,6 +5,7 @@ import { TextField } from "@mui/material";
 type Props = {
   control: Control<any>;
   name: string;
+  numeric?: boolean;
   variant?: "outlined" | "standard" | "filled";
   label?: string;
   helperText?: string;
@@ -16,6 +17,13 @@ type Props = {
   fullWidth?: boolean;
 };
 
+const disableNonNumeric = (e: any) => {
+  const el = e.target as HTMLInputElement;
+  const value = el.value;
+
+  el.value = value.replaceAll(/\D/g, "");
+};
+
 const ControlledField = (props: Props) => {
   return (
     <Controller
@@ -24,7 +32,10 @@ const ControlledField = (props: Props) => {
       render={({ field: { onChange, value } }) => (
         <TextField
           variant={props.variant ?? "outlined"}
-          onChange={onChange}
+          onChange={(e) => {
+            if (props.numeric) disableNonNumeric(e);
+            onChange(e)
+          }}
           label={props.label}
           helperText={props.helperText}
           error={props.error}
