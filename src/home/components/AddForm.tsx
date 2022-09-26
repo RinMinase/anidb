@@ -193,6 +193,7 @@ const AddForm = (props: Props) => {
           helperText={errors.episodes?.message}
           disabled={isLoading}
           fullWidth
+          numeric
         />
       </Grid>
       <Grid item xs={4} sm={2}>
@@ -204,6 +205,7 @@ const AddForm = (props: Props) => {
           helperText={errors.ovas?.message}
           disabled={isLoading}
           fullWidth
+          numeric
         />
       </Grid>
       <Grid item xs={4} sm={2}>
@@ -215,6 +217,7 @@ const AddForm = (props: Props) => {
           helperText={errors.specials?.message}
           disabled={isLoading}
           fullWidth
+          numeric
         />
       </Grid>
 
@@ -238,6 +241,7 @@ const AddForm = (props: Props) => {
           helperText={errors.filesize?.message}
           disabled={isLoading}
           fullWidth
+          numeric
         />
       </Grid>
 
@@ -250,6 +254,7 @@ const AddForm = (props: Props) => {
           helperText={errors.season_number?.message}
           disabled={isLoading}
           fullWidth
+          numeric
         />
       </Grid>
       <Grid item xs={8} sm={4}>
