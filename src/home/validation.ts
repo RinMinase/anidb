@@ -1,6 +1,8 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { bool, date, number, object, string } from "yup";
 
+import { emptyStringToNull } from "@components";
+
 export type Form = {
   id_quality: string;
   title: string;
@@ -57,14 +59,14 @@ const schema = object().shape({
   id_quality: number().typeError("Required").required("Required"),
   title: string().required("Required"),
   date_finished: date().max(new Date()),
-  duration: number().nullable(),
-  filesize: number().nullable(),
+  duration: string().nullable(),
+  filesize: number().transform(emptyStringToNull).nullable(),
 
-  episodes: number().nullable(),
-  ovas: number().nullable(),
-  specials: number().nullable(),
+  episodes: number().transform(emptyStringToNull).nullable(),
+  ovas: number().transform(emptyStringToNull).nullable(),
+  specials: number().transform(emptyStringToNull).nullable(),
 
-  season_number: number().nullable(),
+  season_number: number().transform(emptyStringToNull).nullable(),
   season_first_title_id: string().nullable(),
 
   prequel_id: string().nullable(),
