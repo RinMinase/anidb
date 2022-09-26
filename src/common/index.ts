@@ -12,6 +12,7 @@ export { default as ControlledAutocomplete } from "./components/ControlledAutoco
 export { default as ControlledField } from "./components/ControlledField";
 export { default as ControlledDatepicker } from "./components/ControlledDatepicker";
 export { default as ControlledSelect } from "./components/ControlledSelect";
+export { default as ControlledSwitch } from "./components/ControlledSwitch";
 export { default as DashboardTile } from "./components/DashboardTile";
 export { default as IconButton } from "./components/IconButton";
 export { default as Nav } from "./components/Nav";
