@@ -27,6 +27,13 @@ const ControlledAutocomplete = (props: Props) => {
       render={({ field: { onChange } }) => (
         <Autocomplete
           onChange={(e, data: any) => onChange(data.value)}
+          onInputChange={
+            !props.freeSolo
+              ? undefined
+              : (e, data) => {
+                  if (data) onChange(data);
+                }
+          }
           options={props.options}
           freeSolo={props.freeSolo}
           disabled={props.disabled}
