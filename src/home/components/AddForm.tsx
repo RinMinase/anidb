@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "preact/hooks";
 import { Control, FieldErrorsImpl, UseFormSetValue } from "react-hook-form";
 import axios from "axios";
+import DebouncePromise from "awesome-debounce-promise";
 
 import { Grid } from "@mui/material";
 
@@ -21,6 +22,11 @@ type Props = {
   setValue: UseFormSetValue<Form>;
   errors: FieldErrorsImpl<Form>;
 };
+
+type TitleList = Array<{
+  value: string;
+  label: string;
+}>;
 
 const seasons = ["Winter", "Spring", "Summer", "Fall"];
 
@@ -46,6 +52,15 @@ const titles = [
   },
 ];
 
+const searchAPI = (needle: string) =>
+  axios.get("/entries/titles", {
+    params: {
+      needle,
+    },
+  });
+
+const searchAPIDebounced = DebouncePromise(searchAPI, 250);
+
 const AddForm = (props: Props) => {
   const { control, errors } = props;
 
@@ -54,6 +69,13 @@ const AddForm = (props: Props) => {
   const [videoCodecs, setVideoCodecs] = useState<OptionsKeyedProps>([]);
 
   const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
+
+  const [prequels, setPrequels] = useState<TitleList>([]);
+  const [sequels, setSequels] = useState<TitleList>([]);
+  const [acLoading, setACLoading] = useState({
+    prequel: false,
+    sequel: false,
+  });
 
   const fetchQualities = async () => {
     const {
@@ -93,6 +115,38 @@ const AddForm = (props: Props) => {
         value: `${item.id}`,
       })),
     );
+  };
+
+  const handleChange = (e: any, type: "prequel" | "sequel") => {
+    const element = e.target as HTMLInputElement;
+    const val = element.value;
+
+    if (type === "prequel") setACLoading((p) => ({ ...p, prequel: true }));
+    if (type === "sequel") setACLoading((p) => ({ ...p, sequel: true }));
+
+    searchAPIDebounced(val).then(({ data: { data } }) => {
+      if (type === "prequel") {
+        setPrequels(
+          data.map((item: { id: string; title: string }) => ({
+            value: item.id,
+            label: item.title,
+          })),
+        );
+
+        setACLoading((prev) => ({ ...prev, prequel: false }));
+      }
+
+      if (type === "sequel") {
+        setSequels(
+          data.map((item: { id: string; title: string }) => ({
+            value: item.id,
+            label: item.title,
+          })),
+        );
+
+        setACLoading((prev) => ({ ...prev, sequel: false }));
+      }
+    });
   };
 
   useEffect(() => {
@@ -274,26 +328,28 @@ const AddForm = (props: Props) => {
         <ControlledAutocomplete
           name="prequel_id"
           label="Prequel"
-          options={titles}
+          options={prequels}
           control={control}
           error={!!errors.prequel_id}
           helperText={errors.prequel_id?.message}
           disabled={isLoading}
+          loadingContents={acLoading.prequel}
+          onChange={(e: any) => handleChange(e, "prequel")}
           fullWidth
-          freeSolo
         />
       </Grid>
       <Grid item xs={12} sm={6}>
         <ControlledAutocomplete
           name="sequel_id"
           label="Sequel"
-          options={titles}
+          options={sequels}
           control={control}
           error={!!errors.sequel_id}
           helperText={errors.sequel_id?.message}
           disabled={isLoading}
+          loadingContents={acLoading.sequel}
+          onChange={(e: any) => handleChange(e, "sequel")}
           fullWidth
-          freeSolo
         />
       </Grid>
 
