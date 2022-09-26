@@ -4,6 +4,7 @@ export type { Qualities } from "./components/Quality";
 
 export { default as Alert } from "./components/Alert";
 export { default as Button } from "./components/Button";
+export { default as ControlledAutocomplete } from "./components/ControlledAutocomplete";
 export { default as ControlledField } from "./components/ControlledField";
 export { default as ControlledDatepicker } from "./components/ControlledDatepicker";
 export { default as ControlledSelect } from "./components/ControlledSelect";
