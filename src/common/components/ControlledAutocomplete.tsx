@@ -15,6 +15,8 @@ type Props = {
   disabled?: boolean;
   fullWidth?: boolean;
   freeSolo?: boolean;
+  loadingContents?: boolean;
+  onChange?: (e?: any) => void;
 };
 
 const ControlledAutocomplete = (props: Props) => {
@@ -29,10 +31,12 @@ const ControlledAutocomplete = (props: Props) => {
           freeSolo={props.freeSolo}
           disabled={props.disabled}
           fullWidth={props.fullWidth}
+          loading={props.loadingContents}
           getOptionLabel={(option: any) => option.label}
           renderInput={(params) => (
             <TextField
               {...params}
+              onChange={props.onChange}
               label={props.label}
               helperText={props.helperText}
               error={props.error}
