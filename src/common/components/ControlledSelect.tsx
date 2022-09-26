@@ -17,6 +17,12 @@ export type OptionsProps =
       value?: number | string;
     }>;
 
+export type OptionsKeyedProps = Array<{
+  label: string;
+  key?: any;
+  value?: number | string;
+}>;
+
 type Props = {
   control: Control<any>;
   name: string;
