@@ -1,11 +1,10 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { format } from "date-fns";
 import { date, number, object, string } from "yup";
 
 export type Form = {
-  id_quality: number;
+  id_quality: string;
   title: string;
-  date_finished: string;
+  date_finished: Date;
   duration?: number;
   filesize?: number;
 
@@ -23,7 +22,7 @@ export type Form = {
   encoder_audio?: string;
   encoder_subs?: string;
 
-  release_year?: number;
+  release_year?: string;
   release_season?: string;
 
   variants?: string;
@@ -35,9 +34,11 @@ export type RewatchForm = {
 };
 
 const defaultValues = {
-  id_quality: 2,
+  id_quality: "",
   title: "",
-  date_finished: format(new Date(), "MM-dd-yyyy"),
+  date_finished: new Date(),
+  release_year: "",
+  release_season: "",
 };
 
 const rewatchDefaultValues = {

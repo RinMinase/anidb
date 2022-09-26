@@ -52,6 +52,7 @@ const HomeAdd = () => {
   const {
     control,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm<Form>({
     resolver,
@@ -117,7 +118,7 @@ const HomeAdd = () => {
         </ControlButtonsContainer>
       </Header>
 
-      <AddForm control={control} errors={errors} />
+      <AddForm control={control} setValue={setValue} errors={errors} />
     </ModuleContainer>
   );
 };
