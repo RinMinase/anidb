@@ -29,24 +29,37 @@ const ControlledField = (props: Props) => {
     <Controller
       name={props.name}
       control={props.control}
-      render={({ field: { onChange, value } }) => (
-        <TextField
-          variant={props.variant ?? "outlined"}
-          onChange={(e) => {
-            if (props.numeric) disableNonNumeric(e);
-            onChange(e)
-          }}
-          label={props.label}
-          helperText={props.helperText}
-          error={props.error}
-          disabled={props.disabled}
-          multiline={props.multiline}
-          minRows={props.minRows}
-          maxRows={props.maxRows}
-          fullWidth={props.fullWidth}
-          value={value}
-        />
-      )}
+      render={({ field: { onChange, value } }) => {
+        let numericProps = {};
+
+        if (props.numeric) {
+          numericProps = {
+            type: "tel",
+            pattern: "[0-9]*",
+            inputmode: "numeric",
+          };
+        }
+
+        return (
+          <TextField
+            {...numericProps}
+            variant={props.variant ?? "outlined"}
+            label={props.label}
+            helperText={props.helperText}
+            error={props.error}
+            disabled={props.disabled}
+            multiline={props.multiline}
+            minRows={props.minRows}
+            maxRows={props.maxRows}
+            fullWidth={props.fullWidth}
+            value={value}
+            onChange={(e) => {
+              if (props.numeric) disableNonNumeric(e);
+              onChange(e);
+            }}
+          />
+        );
+      }}
     />
   );
 };
