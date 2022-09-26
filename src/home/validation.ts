@@ -1,5 +1,5 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { date, number, object, string } from "yup";
+import { bool, date, number, object, string } from "yup";
 
 export type Form = {
   id_quality: string;
@@ -15,6 +15,7 @@ export type Form = {
   season_number?: number;
   season_first_title_id?: string;
 
+  prequel?: string;
   prequel_id?: string;
   sequel_id?: string;
 
@@ -24,6 +25,10 @@ export type Form = {
 
   release_year?: string;
   release_season?: string;
+
+  codec_video?: string;
+  codec_audio?: string;
+  hdr?: boolean;
 
   variants?: string;
   remarks?: string;
@@ -39,6 +44,9 @@ const defaultValues = {
   date_finished: new Date(),
   release_year: "",
   release_season: "",
+  codec_video: "",
+  codec_audio: "",
+  hdr: false,
 };
 
 const rewatchDefaultValues = {
@@ -46,7 +54,7 @@ const rewatchDefaultValues = {
 };
 
 const schema = object().shape({
-  id_quality: number().required("Required"),
+  id_quality: number().typeError("Required").required("Required"),
   title: string().required("Required"),
   date_finished: date().max(new Date()),
   duration: number().nullable(),
@@ -66,8 +74,12 @@ const schema = object().shape({
   encoder_audio: string().nullable(),
   encoder_subs: string().nullable(),
 
-  release_year: number().nullable(),
+  release_year: string().nullable(),
   release_season: string().nullable(),
+
+  codec_video: string().nullable(),
+  codec_audio: string().nullable(),
+  hdr: bool(),
 
   variants: string().nullable(),
   remarks: string().nullable(),

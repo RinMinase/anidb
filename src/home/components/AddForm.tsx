@@ -1,16 +1,20 @@
 import { useContext, useEffect, useState } from "preact/hooks";
 import { Control, FieldErrorsImpl, UseFormSetValue } from "react-hook-form";
+import axios from "axios";
 
 import { Grid } from "@mui/material";
 
 import {
+  ControlledAutocomplete,
   ControlledDatepicker,
   ControlledField,
   ControlledSelect,
+  ControlledSwitch,
   GlobalLoaderContext,
+  OptionsKeyedProps,
 } from "@components";
+
 import { Form } from "../validation";
-import axios from "axios";
 
 type Props = {
   control: Control<Form>;
@@ -27,15 +31,27 @@ const years = Array.from({ length: 25 }, (_, i) => ({
   value: currYear - i,
 }));
 
+const titles = [
+  {
+    value: "1de",
+    label: "one",
+  },
+  {
+    value: "2ab",
+    label: "two",
+  },
+  {
+    value: "3cd",
+    label: "three",
+  },
+];
+
 const AddForm = (props: Props) => {
   const { control, errors } = props;
-  const [qualities, setQualities] = useState<
-    Array<{
-      label: string;
-      key: string;
-      value: string;
-    }>
-  >([]);
+
+  const [qualities, setQualities] = useState<OptionsKeyedProps>([]);
+  const [audioCodecs, setAudioCodecs] = useState<OptionsKeyedProps>([]);
+  const [videoCodecs, setVideoCodecs] = useState<OptionsKeyedProps>([]);
 
   const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
 
@@ -43,6 +59,7 @@ const AddForm = (props: Props) => {
     const {
       data: { data },
     } = await axios.get("/qualities");
+
     setQualities(
       data.map((item: { quality: string; id: string }) => ({
         label: item.quality,
@@ -54,9 +71,36 @@ const AddForm = (props: Props) => {
     props.setValue("id_quality", "2");
   };
 
+  const fetchCodecs = async () => {
+    const {
+      data: {
+        data: { audio, video },
+      },
+    } = await axios.get("/codecs");
+
+    setAudioCodecs(
+      audio.map((item: { id: number; codec: string }) => ({
+        label: item.codec,
+        key: `acodec-${item.id}`,
+        value: `${item.id}`,
+      })),
+    );
+
+    setVideoCodecs(
+      video.map((item: { id: number; codec: string }) => ({
+        label: item.codec,
+        key: `acodec-${item.id}`,
+        value: `${item.id}`,
+      })),
+    );
+  };
+
   useEffect(() => {
     toggleLoader(true);
-    fetchQualities().then(() => toggleLoader(false));
+
+    fetchQualities().then(() => {
+      fetchCodecs().then(() => toggleLoader(false));
+    });
   }, []);
 
   return (
@@ -227,30 +271,100 @@ const AddForm = (props: Props) => {
       </Grid>
 
       <Grid item xs={12} sm={6}>
-        prequel
+        <ControlledAutocomplete
+          name="prequel_id"
+          label="Prequel"
+          options={titles}
+          control={control}
+          error={!!errors.prequel_id}
+          helperText={errors.prequel_id?.message}
+          disabled={isLoading}
+          fullWidth
+          freeSolo
+        />
       </Grid>
       <Grid item xs={12} sm={6}>
-        sequel
+        <ControlledAutocomplete
+          name="sequel_id"
+          label="Sequel"
+          options={titles}
+          control={control}
+          error={!!errors.sequel_id}
+          helperText={errors.sequel_id?.message}
+          disabled={isLoading}
+          fullWidth
+          freeSolo
+        />
       </Grid>
 
       <Grid item xs={12} sm={4}>
-        enc-vid
+        <ControlledAutocomplete
+          name="encoder_video"
+          label="Video Encoder"
+          options={titles}
+          control={control}
+          error={!!errors.encoder_video}
+          helperText={errors.encoder_video?.message}
+          disabled={isLoading}
+          fullWidth
+          freeSolo
+        />
       </Grid>
       <Grid item xs={12} sm={4}>
-        enc-audio
+        <ControlledAutocomplete
+          name="encoder_audio"
+          label="Audio Encoder"
+          options={titles}
+          control={control}
+          error={!!errors.encoder_audio}
+          helperText={errors.encoder_audio?.message}
+          disabled={isLoading}
+          fullWidth
+          freeSolo
+        />
       </Grid>
       <Grid item xs={12} sm={4}>
-        enc-subs
+        <ControlledAutocomplete
+          name="encoder_subs"
+          label="Subtitle Encoder"
+          options={titles}
+          control={control}
+          error={!!errors.encoder_subs}
+          helperText={errors.encoder_subs?.message}
+          disabled={isLoading}
+          fullWidth
+          freeSolo
+        />
       </Grid>
 
-      <Grid item xs={4} sm={5}>
-        codec vid
+      <Grid item xs={6} sm={5}>
+        <ControlledSelect
+          name="codec_video"
+          label="Video Codec"
+          options={videoCodecs}
+          control={control}
+          error={!!errors.codec_video}
+          helperText={errors.codec_video?.message}
+          disabled={isLoading}
+          displayEmpty
+          fullWidth
+        />
       </Grid>
-      <Grid item xs={4} sm={5}>
-        codec aud
+      <Grid item xs={6} sm={5}>
+        <ControlledSelect
+          name="codec_audio"
+          label="Audio Codec"
+          options={audioCodecs}
+          control={control}
+          error={!!errors.codec_audio}
+          helperText={errors.codec_audio?.message}
+          disabled={isLoading}
+          displayEmpty
+          fullWidth
+        />
       </Grid>
-      <Grid item xs={4} sm={2}>
-        hdr
+      <Grid item xs={12} sm={2}>
+        <ControlledSwitch name="hdr" label="HDR" control={control} />
       </Grid>
     </Grid>
   );
