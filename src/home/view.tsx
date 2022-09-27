@@ -227,6 +227,7 @@ const HomeView = (props: Props) => {
                   variant="contained"
                   color="warning"
                   startIcon={<FontAwesomeSvgIcon icon={EditIcon} />}
+                  onClick={() => route(`/home/edit/${props.matches.id}`)}
                   fullWidth
                 >
                   Edit
