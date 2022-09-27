@@ -29,6 +29,7 @@ const ControlledField = (props: Props) => {
     <Controller
       name={props.name}
       control={props.control}
+      defaultValue=""
       render={({ field: { onChange, value } }) => {
         let numericProps = {};
 
