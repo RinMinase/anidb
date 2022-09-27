@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "preact/hooks";
+import { StateUpdater, useContext, useEffect, useState } from "preact/hooks";
 import { Control, FieldErrorsImpl, UseFormSetValue } from "react-hook-form";
 import axios from "axios";
 import DebouncePromise from "awesome-debounce-promise";
@@ -21,6 +21,7 @@ type Props = {
   control: Control<Form>;
   setValue: UseFormSetValue<Form>;
   errors: FieldErrorsImpl<Form>;
+  setDropdownLoading: StateUpdater<boolean>;
 };
 
 type TitleList = Array<{
@@ -151,9 +152,13 @@ const AddForm = (props: Props) => {
 
   useEffect(() => {
     toggleLoader(true);
+    props.setDropdownLoading(true);
 
     fetchQualities().then(() => {
-      fetchCodecs().then(() => toggleLoader(false));
+      fetchCodecs().then(() => {
+        toggleLoader(false);
+        props.setDropdownLoading(false);
+      });
     });
   }, []);
 
@@ -400,12 +405,12 @@ const AddForm = (props: Props) => {
 
       <Grid item xs={6} sm={5}>
         <ControlledSelect
-          name="codec_video"
+          name="id_codec_video"
           label="Video Codec"
           options={videoCodecs}
           control={control}
-          error={!!errors.codec_video}
-          helperText={errors.codec_video?.message}
+          error={!!errors.id_codec_video}
+          helperText={errors.id_codec_video?.message}
           disabled={isLoading}
           displayEmpty
           fullWidth
@@ -413,19 +418,19 @@ const AddForm = (props: Props) => {
       </Grid>
       <Grid item xs={6} sm={5}>
         <ControlledSelect
-          name="codec_audio"
+          name="id_codec_audio"
           label="Audio Codec"
           options={audioCodecs}
           control={control}
-          error={!!errors.codec_audio}
-          helperText={errors.codec_audio?.message}
+          error={!!errors.id_codec_audio}
+          helperText={errors.id_codec_audio?.message}
           disabled={isLoading}
           displayEmpty
           fullWidth
         />
       </Grid>
       <Grid item xs={12} sm={2}>
-        <ControlledSwitch name="hdr" label="HDR" control={control} />
+        <ControlledSwitch name="codec_hdr" label="HDR" control={control} />
       </Grid>
     </Grid>
   );

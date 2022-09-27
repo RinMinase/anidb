@@ -28,9 +28,9 @@ export type Form = {
   release_year?: string;
   release_season?: string;
 
-  codec_video?: string;
-  codec_audio?: string;
-  hdr?: boolean;
+  id_codec_video?: string;
+  id_codec_audio?: string;
+  codec_hdr?: boolean;
 
   variants?: string;
   remarks?: string;
@@ -46,9 +46,9 @@ const defaultValues = {
   date_finished: new Date(),
   release_year: "",
   release_season: "",
-  codec_video: "",
-  codec_audio: "",
-  hdr: false,
+  id_codec_video: "",
+  id_codec_audio: "",
+  codec_hdr: false,
 };
 
 const rewatchDefaultValues = {
@@ -79,9 +79,9 @@ const schema = object().shape({
   release_year: string().nullable(),
   release_season: string().nullable(),
 
-  codec_video: string().nullable(),
-  codec_audio: string().nullable(),
-  hdr: bool(),
+  id_codec_video: string().nullable(),
+  id_codec_audio: string().nullable(),
+  codec_hdr: bool(),
 
   variants: string().nullable(),
   remarks: string().nullable(),

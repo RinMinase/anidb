@@ -1,8 +1,9 @@
-import { useContext } from "preact/hooks";
+import { useContext, useEffect, useState } from "preact/hooks";
 import { route } from "preact-router";
 import { FontAwesomeSvgIcon } from "react-fontawesome-slim";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 import { Box, styled, Typography } from "@mui/material";
 
@@ -15,6 +16,13 @@ import { Button, GlobalLoaderContext } from "@components";
 import { defaultValues, Form, resolver } from "./validation";
 
 import AddForm from "./components/AddForm";
+import { format } from "date-fns";
+
+type Props = {
+  matches?: {
+    id: string;
+  };
+};
 
 const ModuleContainer = styled(Box)({
   paddingTop: 24,
@@ -46,13 +54,17 @@ const ControlButtons = styled(Button)(({ theme }) => ({
   },
 }));
 
-const HomeAdd = () => {
+const HomeAdd = (props: Props) => {
   const { toggleLoader } = useContext(GlobalLoaderContext);
+
+  const [isDropdownLoading, setDropdownLoading] = useState(false);
+  const [hasEntryId, setHasEntryId] = useState(false);
 
   const {
     control,
     handleSubmit,
     setValue,
+    reset,
     formState: { errors },
   } = useForm<Form>({
     resolver,
@@ -71,11 +83,107 @@ const HomeAdd = () => {
     });
   };
 
-  const handleSubmitForm = (formdata: Form) => {
+  const handleSubmitForm = async (formdata: Form) => {
     toggleLoader(true);
-    console.log(formdata);
-    toggleLoader(false);
+
+    try {
+      const body = {
+        ...formdata,
+        date_finished: format(formdata.date_finished, "yyyy-MM-dd"),
+        codec_hdr: formdata.codec_hdr ? 1 : 0,
+      };
+
+      if (props.matches?.id) {
+        await axios.put(`/entries/${props.matches.id}`, formdata);
+      } else {
+        await axios.post("/entries", body);
+      }
+
+      await Swal.fire({
+        title: "Success!",
+        icon: "success",
+      });
+
+      if (props.matches?.id) {
+        route(`/home/view/${props.matches.id}`);
+      } else {
+        route("/home");
+      }
+    } catch (err) {
+      console.error(err);
+    } finally {
+      toggleLoader(false);
+    }
   };
+
+  const fetchEntryData = async () => {
+    if (props.matches?.id) {
+      const { id } = props.matches;
+
+      const partialsData = await axios.get(`/entries/${id}`);
+      const {
+        id_quality,
+        title,
+        dateInitFinishedRaw,
+        filesizeRaw,
+        episodes,
+        ovas,
+        specials,
+        seasonNumber,
+        seasonFirstTitle,
+        releaseSeason,
+        releaseYear,
+        variants,
+        remarks,
+        encoderVideo,
+        encoderAudio,
+        encoderSubs,
+        id_codec_video,
+        id_codec_audio,
+        codecHDR,
+      } = partialsData.data.data;
+
+      reset({
+        id_quality,
+        title,
+        date_finished: dateInitFinishedRaw,
+        filesize: filesizeRaw,
+
+        episodes,
+        ovas,
+        specials,
+
+        season_number: seasonNumber,
+        season_first_title_id: seasonFirstTitle,
+
+        release_season: releaseSeason,
+        release_year: releaseYear,
+
+        variants,
+        remarks,
+
+        encoder_video: encoderVideo,
+        encoder_audio: encoderAudio,
+        encoder_subs: encoderSubs,
+
+        id_codec_video,
+        id_codec_audio,
+        codec_hdr: !!codecHDR,
+      });
+    }
+  };
+
+  useEffect(() => {
+    if (hasEntryId && !isDropdownLoading) {
+      fetchEntryData();
+    }
+  }, [hasEntryId, isDropdownLoading]);
+
+  useEffect(() => {
+    if (props.matches?.id) {
+      setHasEntryId(true);
+    }
+  }, []);
 
   return (
     <ModuleContainer>
@@ -118,7 +226,12 @@ const HomeAdd = () => {
         </ControlButtonsContainer>
       </Header>
 
-      <AddForm control={control} setValue={setValue} errors={errors} />
+      <AddForm
+        control={control}
+        setValue={setValue}
+        errors={errors}
+        setDropdownLoading={setDropdownLoading}
+      />
     </ModuleContainer>
   );
 };
