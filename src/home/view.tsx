@@ -466,6 +466,13 @@ const HomeView = (props: Props) => {
                       </Button>
                     </Box>
                   </Stack>
+
+                  {data.remarks && (
+                    <Box>
+                      <Typography variant="body1">Remarks:</Typography>
+                      <Typography variant="body1">{data.remarks}</Typography>
+                    </Box>
+                  )}
                 </Stack>
               </Box>
 
