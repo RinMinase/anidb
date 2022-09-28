@@ -13,6 +13,7 @@ import {
   MenuList,
   Paper,
   styled,
+  Tooltip,
 } from "@mui/material";
 
 import { green, orange, red } from "@mui/material/colors";
@@ -182,24 +183,36 @@ const BucketSim = () => {
                 onClick={() => handleSelectSim(item.uuid)}
               >
                 <ListItemText>{item.description}</ListItemText>
-                <IconButton
-                  size="small"
-                  onClick={(e) => handleSaveClick(e, item.uuid)}
-                >
-                  <FontAwesomeSvgIcon icon={SaveIcon} />
-                </IconButton>
-                <IconButton
-                  size="small"
-                  onClick={(e) => handleEditClick(e, item.uuid)}
-                >
-                  <FontAwesomeSvgIcon icon={EditIcon} />
-                </IconButton>
-                <IconButton
-                  size="small"
-                  onClick={(e) => handleDeleteClick(e, item.uuid)}
-                >
-                  <FontAwesomeSvgIcon icon={DeleteIcon} />
-                </IconButton>
+                <Tooltip title="Save as current bucket" placement="top">
+                  <Box>
+                  <IconButton
+                    size="small"
+                    onClick={(e) => handleSaveClick(e, item.uuid)}
+                  >
+                    <FontAwesomeSvgIcon icon={SaveIcon} />
+                  </IconButton>
+                  </Box>
+                </Tooltip>
+                <Tooltip title="Edit" placement="top">
+                  <Box>
+                  <IconButton
+                    size="small"
+                    onClick={(e) => handleEditClick(e, item.uuid)}
+                  >
+                    <FontAwesomeSvgIcon icon={EditIcon} />
+                  </IconButton>
+                  </Box>
+                </Tooltip>
+                <Tooltip title="Delete" placement="top">
+                  <Box>
+                  <IconButton
+                    size="small"
+                    onClick={(e) => handleDeleteClick(e, item.uuid)}
+                  >
+                    <FontAwesomeSvgIcon icon={DeleteIcon} />
+                  </IconButton>
+                  </Box>
+                </Tooltip>
               </MenuItem>
             ))}
           </CustomMenuList>
