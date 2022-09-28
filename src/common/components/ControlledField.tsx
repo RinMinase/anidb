@@ -36,8 +36,10 @@ const ControlledField = (props: Props) => {
         if (props.numeric) {
           numericProps = {
             type: "tel",
-            pattern: "[0-9]*",
-            inputmode: "numeric",
+            inputProps: {
+              pattern: "[0-9]*",
+              inputMode: "numeric",
+            }
           };
         }
 
