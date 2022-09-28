@@ -8,6 +8,7 @@ import { Grid } from "@mui/material";
 import {
   ControlledAutocomplete,
   ControlledDatepicker,
+  ControlledDuration,
   ControlledField,
   ControlledSelect,
   ControlledSwitch,
@@ -301,7 +302,7 @@ const AddForm = (props: Props) => {
       </Grid>
 
       <Grid item xs={12} sm={4}>
-        <ControlledField
+        <ControlledDuration
           name="duration"
           label="Duration"
           control={control}
