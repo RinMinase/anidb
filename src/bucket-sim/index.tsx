@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "preact/hooks";
 import { route } from "preact-router";
 import axios from "axios";
 import { FontAwesomeSvgIcon } from "react-fontawesome-slim";
+import Swal from "sweetalert2";
 
 import {
   Box,
@@ -31,16 +32,12 @@ import {
   IconButton,
 } from "@components";
 
+import { Dashboard } from "./_components";
 import { Data, Item, Sims } from "./types";
-import Swal from "sweetalert2";
 
 const ModuleContainer = styled(Box)({
   paddingTop: 24,
   paddingBottom: 24,
-});
-
-const Dashboard = styled(Box)({
-  marginBottom: 32,
 });
 
 const CustomMenuList = styled(MenuList)<{ component: any }>({

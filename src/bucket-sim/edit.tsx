@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "preact/hooks";
+import { useContext, useEffect, useState } from "preact/hooks";
 import { route } from "preact-router";
 import { FontAwesomeSvgIcon } from "react-fontawesome-slim";
 import Swal from "sweetalert2";
@@ -9,7 +9,9 @@ import {
   Box,
   FormControl,
   FormHelperText,
+  Grid,
   InputAdornment,
+  LinearProgress,
   Paper,
   Table,
   TableBody,
@@ -19,34 +21,45 @@ import {
   Typography,
 } from "@mui/material";
 
+import { green, orange, red } from "@mui/material/colors";
+
 import {
   faAdd as AddIcon,
   faArrowLeftLong as BackIcon,
   faAngleDown as DownIcon,
   faAngleUp as UpIcon,
+  faDatabase as StorageIcon,
+  faEye as PreviewIcon,
   faFloppyDisk as SaveIcon,
+  faHardDrive as DriveIcon,
   faTrash as RemoveIcon,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { Button, GlobalLoaderContext } from "@components";
-
-import { Form, resolver } from "./validation";
-import { Item } from "./types";
+import {
+  Button,
+  ButtonLoading,
+  DashboardTile,
+  GlobalLoaderContext,
+} from "@components";
 
 import {
-  ModuleContainer,
-  Header,
-  ControlButtonsContainer,
-  ControlButtons,
-  DescriptionContainer,
-  CustomIconButton,
-  CustomCell,
-  CustomCellButton,
   CellContainer,
-  CellLabel,
   CellField,
   CellField2,
+  CellLabel,
+  ControlButtons,
+  ControlButtonsContainer,
+  CustomCell,
+  CustomCellButton,
+  CustomIconButton,
+  Dashboard,
+  DescriptionContainer,
+  Header,
+  ModuleContainer,
 } from "./_components";
+
+import { Form, resolver } from "./validation";
+import { Data, Item } from "./types";
 
 type Props = {
   matches: {
@@ -58,6 +71,9 @@ const TB = 1000169533440;
 
 const BucketSimEdit = (props: Props) => {
   const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
+
+  const [data, setData] = useState<Data>([]);
+  const [previewLoader, setPreviewLoader] = useState(false);
 
   const {
     control,
@@ -75,36 +91,83 @@ const BucketSimEdit = (props: Props) => {
     name: "buckets",
   });
 
-  const handleSubmitForm = (formdata: Form) => {
+  const handlePreviewForm = async (formdata: Form) => {
+    setPreviewLoader(true);
+
+    try {
+      if (formdata.buckets) {
+        const buckets = formdata.buckets.map((item) => ({
+          from: item.from.toLowerCase(),
+          to: item.to.toLowerCase(),
+          size: item.size ? item.size * TB : 0,
+        }));
+
+        const bucketData = JSON.stringify(buckets);
+
+        await axios.put(`/bucket-sims/${props.matches.id}`, {
+          description: formdata.description,
+          buckets: bucketData,
+        });
+
+        const {
+          data: { data: { data } },
+        } = await axios.get(`/bucket-sims/${props.matches.id}`);
+
+        const newBuckets: Data = data.map((item: Item) => {
+          const { percent } = item;
+
+          let bucketColor: string = green[700];
+          let progressColor = "success";
+
+          if (percent > 90) {
+            bucketColor = red[700];
+            progressColor = "error";
+          } else if (percent > 80) {
+            bucketColor = orange[700];
+            progressColor = "warning";
+          }
+
+          return { ...item, bucketColor, progressColor };
+        });
+
+        setData(() => newBuckets);
+        setPreviewLoader(false);
+      }
+    } catch (err) {
+      setPreviewLoader(false);
+      console.error(err);
+    }
+  };
+
+  const handleSubmitForm = async (formdata: Form) => {
     toggleLoader(true);
 
-    if (formdata.buckets) {
-      const buckets = formdata.buckets.map((item) => ({
-        from: item.from.toLowerCase(),
-        to: item.to.toLowerCase(),
-        size: item.size ? item.size * TB : 0,
-      }));
+    try {
+      if (formdata.buckets) {
+        const buckets = formdata.buckets.map((item) => ({
+          from: item.from.toLowerCase(),
+          to: item.to.toLowerCase(),
+          size: item.size ? item.size * TB : 0,
+        }));
 
-      const data = JSON.stringify(buckets);
+        const data = JSON.stringify(buckets);
 
-      axios
-        .put(`/bucket-sims/${props.matches.id}`, {
+        await axios.put(`/bucket-sims/${props.matches.id}`, {
           description: formdata.description,
           buckets: data,
-        })
-        .then(() => {
-          Swal.fire({
-            title: "Success!",
-            icon: "success",
-          }).then(() => {
-            toggleLoader(false);
-            route("/bucket-sims");
-          });
-        })
-        .catch((err) => {
-          toggleLoader(false);
-          console.error(err);
         });
+
+        await Swal.fire({
+          title: "Success!",
+          icon: "success",
+        });
+
+        toggleLoader(false);
+        route("/bucket-sims");
+      }
+    } catch (err) {
+      toggleLoader(false);
+      console.error(err);
     }
   };
 
@@ -133,8 +196,26 @@ const BucketSimEdit = (props: Props) => {
           size: item.rawTotal ? Math.round(item.rawTotal / TB) : 0,
         }));
 
+        const buckets: Data = data.map((item: Item) => {
+          const { percent } = item;
+
+          let bucketColor: string = green[700];
+          let progressColor = "success";
+
+          if (percent > 90) {
+            bucketColor = red[700];
+            progressColor = "error";
+          } else if (percent > 80) {
+            bucketColor = orange[700];
+            progressColor = "warning";
+          }
+
+          return { ...item, bucketColor, progressColor };
+        });
+
         replace([...formData]);
         setValue("description", description);
+        setData(() => buckets);
       })
       .catch((err) => console.error(err))
       .finally(() => toggleLoader(false));
@@ -195,17 +276,90 @@ const BucketSimEdit = (props: Props) => {
       </Header>
 
       {!isLoading && (
+        <Grid item xs={12} sm={8}>
+          <Dashboard>
+            <Grid container spacing={4}>
+              {data &&
+                data.map((item, index) => {
+                  if (index === 0) {
+                    return (
+                      <Grid item xs={12} sm={4} md={3} key={`bucket${index}`}>
+                        <DashboardTile
+                          icon={
+                            <FontAwesomeSvgIcon size="2x" icon={StorageIcon} />
+                          }
+                          iconColor={item.bucketColor}
+                          heading={"Total"}
+                          subHeading={`${item.used} / ${item.total}`}
+                          value={`${item.percent}%`}
+                          footerLeft={`Free: ${item.free}`}
+                          footerRight={`${item.titles} Titles`}
+                          CustomDivider={
+                            <LinearProgress
+                              variant="determinate"
+                              value={item.percent}
+                              color={item.progressColor}
+                            />
+                          }
+                        />
+                      </Grid>
+                    );
+                  }
+
+                  return (
+                    <Grid item xs={12} sm={4} md={3} key={`bucket${index}`}>
+                      <DashboardTile
+                        icon={<FontAwesomeSvgIcon size="2x" icon={DriveIcon} />}
+                        iconColor={item.bucketColor}
+                        heading={`${item.from.toUpperCase()} - ${item.to.toUpperCase()}`}
+                        subHeading={`${item.used} / ${item.total}`}
+                        value={`${item.percent}%`}
+                        footerLeft={`Free: ${item.free}`}
+                        footerRight={`${item.titles} Titles`}
+                        CustomDivider={
+                          <LinearProgress
+                            variant="determinate"
+                            value={item.percent}
+                            color={item.progressColor}
+                          />
+                        }
+                      />
+                    </Grid>
+                  );
+                })}
+            </Grid>
+          </Dashboard>
+        </Grid>
+      )}
+
+      {!isLoading && (
         <>
           <DescriptionContainer>
-            <TextField
-              fullWidth
-              variant="outlined"
-              label="Description"
-              error={!!errors.description}
-              helperText={errors.description?.message}
-              InputLabelProps={{ shrink: true }}
-              {...register("description")}
-            />
+            <Grid container spacing={2}>
+              <Grid item xs={12} sm={9} md={10}>
+                <TextField
+                  fullWidth
+                  variant="outlined"
+                  label="Description"
+                  size="small"
+                  error={!!errors.description}
+                  helperText={errors.description?.message}
+                  InputLabelProps={{ shrink: true }}
+                  {...register("description")}
+                />
+              </Grid>
+              <Grid item xs={12} sm={3} md={2} display="flex">
+                <ButtonLoading
+                  variant="contained"
+                  startIcon={<FontAwesomeSvgIcon icon={PreviewIcon} />}
+                  onClick={handleSubmit(handlePreviewForm)}
+                  loading={previewLoader}
+                  fullWidth
+                >
+                  Preview
+                </ButtonLoading>
+              </Grid>
+            </Grid>
           </DescriptionContainer>
 
           <TableContainer component={Paper}>
@@ -249,7 +403,7 @@ const BucketSimEdit = (props: Props) => {
                         <CellLabel>Size:</CellLabel>
                         <FormControl>
                           <CellField2
-                            type="number"
+                            type="tel"
                             size="small"
                             endAdornment={
                               <InputAdornment position="end">TB</InputAdornment>

@@ -41,6 +41,10 @@ const ControlButtons = styled(Button)(({ theme }) => ({
   },
 }));
 
+const Dashboard = styled(Box)({
+  marginBottom: 32,
+});
+
 const DescriptionContainer = styled(Paper)({
   marginBottom: 16,
 });
@@ -115,6 +119,7 @@ export {
   Header,
   ControlButtonsContainer,
   ControlButtons,
+  Dashboard,
   DescriptionContainer,
   CustomIconButton,
   CustomCell,
