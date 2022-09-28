@@ -1,12 +1,13 @@
 import { Control, Controller } from "react-hook-form";
 
-import { TextField } from "@mui/material";
+import { OutlinedInput, TextField } from "@mui/material";
 
 type Props = {
   control: Control<any>;
   name: string;
   numeric?: boolean;
   variant?: "outlined" | "standard" | "filled";
+  size?: "small" | "medium";
   label?: string;
   helperText?: string;
   error?: boolean;
@@ -15,6 +16,9 @@ type Props = {
   minRows?: number;
   maxRows?: number;
   fullWidth?: boolean;
+  maxLength?: number;
+  outlinedInput?: boolean;
+  endAdornment?: any;
 };
 
 const disableNonNumeric = (e: any) => {
@@ -39,22 +43,43 @@ const ControlledField = (props: Props) => {
             inputProps: {
               pattern: "[0-9]*",
               inputMode: "numeric",
-            }
+              maxLength: props.maxLength,
+            },
           };
         }
 
+        if (!props.outlinedInput) {
+          return (
+            <TextField
+              {...numericProps}
+              variant={props.variant ?? "outlined"}
+              size={props.size}
+              label={props.label}
+              helperText={props.helperText}
+              error={props.error}
+              disabled={props.disabled}
+              multiline={props.multiline}
+              minRows={props.minRows}
+              maxRows={props.maxRows}
+              fullWidth={props.fullWidth}
+              value={value}
+              onChange={(e) => {
+                if (props.numeric) disableNonNumeric(e);
+                onChange(e);
+              }}
+            />
+          );
+        }
+
         return (
-          <TextField
+          <OutlinedInput
             {...numericProps}
-            variant={props.variant ?? "outlined"}
             label={props.label}
-            helperText={props.helperText}
+            size={props.size}
             error={props.error}
             disabled={props.disabled}
-            multiline={props.multiline}
-            minRows={props.minRows}
-            maxRows={props.maxRows}
             fullWidth={props.fullWidth}
+            endAdornment={props.endAdornment}
             value={value}
             onChange={(e) => {
               if (props.numeric) disableNonNumeric(e);
