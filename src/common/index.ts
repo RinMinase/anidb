@@ -8,6 +8,7 @@ export type {
 
 export { default as Alert } from "./components/Alert";
 export { default as Button } from "./components/Button";
+export { default as ButtonLoading } from "./components/ButtonLoading";
 export { default as ControlledAutocomplete } from "./components/ControlledAutocomplete";
 export { default as ControlledField } from "./components/ControlledField";
 export { default as ControlledDatepicker } from "./components/ControlledDatepicker";
