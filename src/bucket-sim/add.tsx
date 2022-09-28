@@ -30,22 +30,22 @@ import {
 
 import { Button, GlobalLoaderContext } from "@components";
 
-import { defaultValues, Form, resolver } from "./validation";
-
 import {
-  ModuleContainer,
-  Header,
-  ControlButtonsContainer,
-  ControlButtons,
-  DescriptionContainer,
-  CustomIconButton,
-  CustomCell,
-  CustomCellButton,
   CellContainer,
-  CellLabel,
   CellField,
   CellField2,
+  CellLabel,
+  ControlButtons,
+  ControlButtonsContainer,
+  CustomCell,
+  CustomCellButton,
+  CustomIconButton,
+  DescriptionContainer,
+  Header,
+  ModuleContainer,
 } from "./_components";
+
+import { defaultValues, Form, resolver } from "./validation";
 
 const TB = 1000169533440;
 
@@ -68,36 +68,35 @@ const BucketSimAdd = () => {
     name: "buckets",
   });
 
-  const handleSubmitForm = (formdata: Form) => {
+  const handleSubmitForm = async (formdata: Form) => {
     toggleLoader(true);
 
-    if (formdata.buckets) {
-      const buckets = formdata.buckets.map((item) => ({
-        from: item.from.toLowerCase(),
-        to: item.to.toLowerCase(),
-        size: item.size ? item.size * TB : 0,
-      }));
+    try {
+      if (formdata.buckets) {
+        const buckets = formdata.buckets.map((item) => ({
+          from: item.from.toLowerCase(),
+          to: item.to.toLowerCase(),
+          size: item.size ? item.size * TB : 0,
+        }));
 
-      const data = JSON.stringify(buckets);
+        const data = JSON.stringify(buckets);
 
-      axios
-        .post("/bucket-sims", {
+        await axios.post("/bucket-sims", {
           description: formdata.description,
           buckets: data,
-        })
-        .then(() => {
-          Swal.fire({
-            title: "Success!",
-            icon: "success",
-          }).then(() => {
-            toggleLoader(false);
-            route("/bucket-sims");
-          });
-        })
-        .catch((err) => {
-          toggleLoader(false);
-          console.error(err);
         });
+
+        await Swal.fire({
+          title: "Success!",
+          icon: "success",
+        });
+
+        toggleLoader(false);
+        route("/bucket-sims");
+      }
+    } catch (err) {
+      toggleLoader(false);
+      console.error(err);
     }
   };
 
