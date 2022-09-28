@@ -162,11 +162,7 @@ const Home = () => {
                   onClick={() => route(`/home/view/${item.id}`)}
                 >
                   <TableCell>
-                    <Tooltip title={item.quality ?? ""} placement="top">
-                      <Box display="inline-block">
-                        <Quality quality={item.quality} />
-                      </Box>
-                    </Tooltip>
+                    <Quality quality={item.quality} />
                     {item.title}
                   </TableCell>
                   <TableCell>

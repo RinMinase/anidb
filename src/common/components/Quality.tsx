@@ -1,6 +1,11 @@
-import { styled } from "@mui/material";
+import { styled, Tooltip } from "@mui/material";
 
-export type Qualities = "4K 2160p" | "FHD 1080p" | "HD 720p" | "HQ 480p" | "LQ 360p";
+export type Qualities =
+  | "4K 2160p"
+  | "FHD 1080p"
+  | "HD 720p"
+  | "HQ 480p"
+  | "LQ 360p";
 
 type Props = {
   quality?: Qualities;
@@ -24,7 +29,11 @@ const Container = styled("div")<Props>(({ quality }) => {
 });
 
 const Quality = (props: Props) => {
-  return <Container quality={props.quality} />;
+  return (
+    <Tooltip title={props.quality} placement="top">
+      <Container quality={props.quality} />
+    </Tooltip>
+  );
 };
 
 export default Quality;
