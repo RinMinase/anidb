@@ -7,7 +7,6 @@ export type Form = {
   id_quality: string;
   title: string;
   date_finished: Date;
-  duration?: number;
   filesize?: number;
 
   episodes?: number;
@@ -34,6 +33,10 @@ export type Form = {
 
   variants?: string;
   remarks?: string;
+
+  duration_hrs?: number;
+  duration_mins?: number;
+  duration_secs?: number;
 };
 
 export type RewatchForm = {
@@ -59,7 +62,6 @@ const schema = object().shape({
   id_quality: number().typeError("Required").required("Required"),
   title: string().required("Required"),
   date_finished: date().max(new Date()),
-  duration: string().nullable(),
   filesize: number().transform(emptyStringToNull).nullable(),
 
   episodes: number().transform(emptyStringToNull).nullable(),
@@ -85,6 +87,23 @@ const schema = object().shape({
 
   variants: string().nullable(),
   remarks: string().nullable(),
+
+  duration_hrs: number()
+    .transform(emptyStringToNull)
+    .min(0, "Invalid hours value")
+    .nullable(),
+
+  duration_mins: number()
+    .transform(emptyStringToNull)
+    .min(0, "Invalid minutes value")
+    .max(59, "Invalid minutes value")
+    .nullable(),
+
+  duration_secs: number()
+    .transform(emptyStringToNull)
+    .min(0, "Invalid seconds value")
+    .max(59, "Invalid seconds value")
+    .nullable(),
 });
 
 const rewatchSchema = object({

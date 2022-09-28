@@ -3,12 +3,11 @@ import { Control, FieldErrorsImpl, UseFormSetValue } from "react-hook-form";
 import axios from "axios";
 import DebouncePromise from "awesome-debounce-promise";
 
-import { Grid } from "@mui/material";
+import { FormGroup, FormHelperText, Grid, InputAdornment, Stack, styled } from "@mui/material";
 
 import {
   ControlledAutocomplete,
   ControlledDatepicker,
-  ControlledDuration,
   ControlledField,
   ControlledSelect,
   ControlledSwitch,
@@ -62,6 +61,36 @@ const searchAPI = (needle: string) =>
   });
 
 const searchAPIDebounced = DebouncePromise(searchAPI, 250);
+
+const DurationContainer = styled(FormGroup)(({ theme }) => ({
+  position: "relative",
+  border: "1px solid",
+  borderColor: theme.palette.action.disabled,
+  paddingTop: 15,
+  paddingLeft: 4,
+  paddingRight: 4,
+  paddingBottom: 4,
+  borderRadius: 6,
+
+  "& .MuiOutlinedInput-input": {
+    paddingTop: 6,
+    paddingBottom: 6,
+  },
+
+  "& .MuiOutlinedInput-notchedOutline legend": {
+    display: "none",
+  },
+}));
+
+const DurationLabel = styled("span")(({ theme }) => ({
+  position: "absolute",
+  top: 0,
+  left: 0,
+  transform: `translate(6px, -13px) scale(0.75)`,
+  backgroundColor: theme.palette.background.default,
+  paddingLeft: 4,
+  paddingRight: 8,
+}));
 
 const AddForm = (props: Props) => {
   const { control, errors } = props;
@@ -302,15 +331,56 @@ const AddForm = (props: Props) => {
       </Grid>
 
       <Grid item xs={12} sm={4}>
-        <ControlledDuration
-          name="duration"
-          label="Duration"
-          control={control}
-          error={!!errors.duration}
-          helperText={errors.duration?.message}
-          disabled={isLoading}
-          fullWidth
-        />
+        <DurationContainer>
+          <DurationLabel>Duration</DurationLabel>
+          <Stack spacing={2} direction="row">
+            <ControlledField
+              name="duration_hrs"
+              size="small"
+              control={control}
+              error={!!errors.duration_hrs}
+              disabled={isLoading}
+              maxLength={3}
+              endAdornment={<InputAdornment position="end" children="hrs" />}
+              outlinedInput
+              fullWidth
+              numeric
+            />
+            <ControlledField
+              name="duration_mins"
+              size="small"
+              control={control}
+              error={!!errors.duration_mins}
+              disabled={isLoading}
+              maxLength={2}
+              endAdornment={<InputAdornment position="end" children="mins" />}
+              outlinedInput
+              fullWidth
+              numeric
+            />
+            <ControlledField
+              name="duration_secs"
+              size="small"
+              control={control}
+              error={!!errors.duration_secs}
+              disabled={isLoading}
+              maxLength={2}
+              endAdornment={<InputAdornment position="end" children="secs" />}
+              outlinedInput
+              fullWidth
+              numeric
+            />
+          </Stack>
+          {errors.duration_hrs && (
+            <FormHelperText error>{errors.duration_hrs?.message}</FormHelperText>
+          )}
+          {errors.duration_mins && (
+            <FormHelperText error>{errors.duration_mins?.message}</FormHelperText>
+          )}
+          {errors.duration_secs && (
+            <FormHelperText error>{errors.duration_secs?.message}</FormHelperText>
+          )}
+        </DurationContainer>
       </Grid>
       <Grid item xs={12} sm={4}>
         <ControlledField

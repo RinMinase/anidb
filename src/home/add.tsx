@@ -87,14 +87,22 @@ const HomeAdd = (props: Props) => {
     toggleLoader(true);
 
     try {
+      const { duration_hrs, duration_mins, duration_secs } = formdata;
+
+      let duration = 0;
+      if (duration_hrs) duration += duration_hrs * 3600;
+      if (duration_mins) duration += duration_mins * 60;
+      if (duration_secs) duration += duration_secs;
+
       const body = {
         ...formdata,
         date_finished: format(formdata.date_finished, "yyyy-MM-dd"),
         codec_hdr: formdata.codec_hdr ? 1 : 0,
+        duration,
       };
 
       if (props.matches?.id) {
-        await axios.put(`/entries/${props.matches.id}`, formdata);
+        await axios.put(`/entries/${props.matches.id}`, body);
       } else {
         await axios.post("/entries", body);
       }
@@ -135,6 +143,7 @@ const HomeAdd = (props: Props) => {
         releaseYear,
         variants,
         remarks,
+        durationRaw,
         encoderVideo,
         encoderAudio,
         encoderSubs,
@@ -142,6 +151,17 @@ const HomeAdd = (props: Props) => {
         id_codec_audio,
         codecHDR,
       } = partialsData.data.data;
+
+      let hrs = 0;
+      let mins = 0;
+      let secs = 0;
+      const duration: number | undefined = durationRaw;
+
+      if (duration) {
+        hrs = Math.floor(duration / 3600);
+        mins = Math.floor((duration % 3600) / 60);
+        secs = (duration % 3600) % 60;
+      }
 
       reset({
         id_quality,
@@ -169,6 +189,10 @@ const HomeAdd = (props: Props) => {
         id_codec_video,
         id_codec_audio,
         codec_hdr: !!codecHDR,
+
+        duration_hrs: hrs,
+        duration_mins: mins,
+        duration_secs: secs,
       });
     }
   };
