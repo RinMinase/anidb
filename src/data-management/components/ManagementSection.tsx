@@ -58,7 +58,7 @@ const ManagementSection = (props: Props) => {
     body.append("file", file);
 
     axios
-      .post("/entries/import", body, {
+      .post("/import", body, {
         headers: { "Content-Type": "multipart/form-data" },
       })
       .then(({ data: { data } }) => {
