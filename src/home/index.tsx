@@ -103,6 +103,7 @@ const Home = () => {
   const [searchQuery, setSearchQuery] = useState("");
 
   const [page, setPage] = useState(1);
+  const [hasNext, setHasNext] = useState(true);
 
   const handleChange = (e: any) => {
     const element = e.target as HTMLInputElement;
@@ -118,16 +119,20 @@ const Home = () => {
   };
 
   const fetchNextPage = () => {
-    if (data.length && !searchQuery) {
+    if (data.length && !searchQuery && hasNext) {
       axios
         .get("/entries", {
           params: {
             page: page + 1,
           },
         })
-        .then(({ data: { data } }) => {
+        .then(({ data: { data, meta } }) => {
           setData((prev) => [...prev, ...data]);
           setPage(page + 1);
+
+          if (meta) {
+            setHasNext(meta.has_next);
+          }
 
           toggleLoader(false);
         })
@@ -140,8 +145,13 @@ const Home = () => {
 
     axios
       .get("/entries")
-      .then(({ data: { data } }) => {
+      .then(({ data: { data, meta } }) => {
         setData(() => data);
+
+        if (meta) {
+          setHasNext(meta.has_next);
+        }
+
         toggleLoader(false);
       })
       .catch((err) => console.error(err));
@@ -231,7 +241,7 @@ const Home = () => {
       </TableContainer>
 
       <Waypoint onEnter={fetchNextPage}>
-        {!isLoading ? (
+        {!isLoading && hasNext ? (
           <SpinnerContainer children={<CircularProgress />} />
         ) : null}
       </Waypoint>
