@@ -1,11 +1,14 @@
 import { useContext, useEffect, useState } from "preact/hooks";
 import { route } from "preact-router";
+
 import axios from "axios";
 import { FontAwesomeSvgIcon } from "react-fontawesome-slim";
 import DebouncePromise from "awesome-debounce-promise";
+import { Waypoint } from "react-waypoint";
 
 import {
   Box,
+  CircularProgress,
   Grid,
   InputAdornment,
   OutlinedInput,
@@ -77,6 +80,12 @@ const RatingIcon = styled(FontAwesomeSvgIcon)({
   fontSize: 14,
 });
 
+const SpinnerContainer = styled(Box)({
+  width: "100%",
+  textAlign: "center",
+  marginTop: 16,
+});
+
 const searchAPI = (needle: string) =>
   axios.get("/entries", {
     params: {
@@ -89,18 +98,41 @@ const searchAPIDebounced = DebouncePromise(searchAPI, 250);
 
 const Home = () => {
   const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
+
   const [data, setData] = useState<Data>([]);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const [page, setPage] = useState(1);
 
   const handleChange = (e: any) => {
     const element = e.target as HTMLInputElement;
     const val = element.value;
 
+    setSearchQuery(val);
     toggleLoader(true);
 
     searchAPIDebounced(val).then(({ data: { data } }) => {
       toggleLoader(false);
       setData(data);
     });
+  };
+
+  const fetchNextPage = () => {
+    if (data.length && !searchQuery) {
+      axios
+        .get("/entries", {
+          params: {
+            page: page + 1,
+          },
+        })
+        .then(({ data: { data } }) => {
+          setData((prev) => [...prev, ...data]);
+          setPage(page + 1);
+
+          toggleLoader(false);
+        })
+        .catch((err) => console.error(err));
+    }
   };
 
   useEffect(() => {
@@ -134,6 +166,7 @@ const Home = () => {
                 </InputAdornment>
               }
               onChange={handleChange}
+              value={searchQuery}
             />
           </Grid>
         </Grid>
@@ -155,7 +188,7 @@ const Home = () => {
 
           <TableBody>
             {!isLoading ? (
-              data.map((item) => (
+              data.map((item, index) => (
                 <CustomTableRow
                   hover
                   key={item.id}
@@ -196,6 +229,12 @@ const Home = () => {
           </TableBody>
         </CustomTable>
       </TableContainer>
+
+      <Waypoint onEnter={fetchNextPage}>
+        {!isLoading ? (
+          <SpinnerContainer children={<CircularProgress />} />
+        ) : null}
+      </Waypoint>
     </ModuleContainer>
   );
 };
