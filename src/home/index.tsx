@@ -198,7 +198,7 @@ const Home = () => {
 
           <TableBody>
             {!isLoading ? (
-              data.map((item, index) => (
+              data.map((item) => (
                 <CustomTableRow
                   hover
                   key={item.id}
