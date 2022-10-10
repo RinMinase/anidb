@@ -4,7 +4,7 @@ import axios from "axios";
 import { FontAwesomeSvgIcon } from "react-fontawesome-slim";
 import Swal from "sweetalert2";
 
-import { Box, Grid, styled, Typography } from "@mui/material";
+import { Box, Grid, Stack, styled, Typography } from "@mui/material";
 
 import {
   faCloudArrowDown as ExportIcon,
@@ -31,9 +31,8 @@ const DropzoneContainer = styled(Box)({
   cursor: "pointer",
 });
 
-const ImportButton = styled(Button)({
-  width: 200,
-  marginTop: 12,
+const ImportContainer = styled(Stack)({
+  marginTop: 24,
 });
 
 const ManagementSection = (props: Props) => {
@@ -102,14 +101,25 @@ const ManagementSection = (props: Props) => {
           </Typography>
         ) : null}
 
-        <ImportButton
+        <ImportContainer spacing={2} direction="row" justifyContent="center">
+        <Button
           variant="contained"
           endIcon={<FontAwesomeSvgIcon icon={ImportIcon} />}
           disabled={!acceptedFiles.length || uploading}
           onClick={handleImport}
         >
-          Import
-        </ImportButton>
+          Import All Data
+        </Button>
+
+        <Button
+          variant="contained"
+          endIcon={<FontAwesomeSvgIcon icon={ImportIcon} />}
+          disabled={!acceptedFiles.length || uploading}
+          onClick={handleImport}
+        >
+          Import Groups
+        </Button>
+        </ImportContainer>
       </Grid>
       <CustomGrid item md={4}>
         <Button
