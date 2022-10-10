@@ -31,6 +31,8 @@ import {
   faMoon as DarkModeIcon,
   faSun as LightModeIcon,
   faTv as MarathonsIcon,
+  faUserGroup as GroupIcon,
+  faUserTie as ManagementIcon,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { ColorModeContext } from "../providers/ColorMode";
@@ -52,15 +54,18 @@ const Nav = () => {
 
   const [anchorNav, setAnchorNav] = useState<null | HTMLElement>(null);
   const [anchorList, setAnchorList] = useState<null | HTMLElement>(null);
+  const [anchorManagement, setAnchorManagement] = useState<null | HTMLElement>(null);
 
-  const handleOpenList = (event: any, menu: "nav" | "import" | "list") => {
+  const handleOpenList = (event: any, menu: "nav" | "import" | "list" | "mgmt") => {
     if (menu === "nav") setAnchorNav(event.currentTarget);
     if (menu === "list") setAnchorList(event.currentTarget);
+    if (menu === "mgmt") setAnchorManagement(event.currentTarget);
   };
 
-  const handleCloseList = (menu: "nav" | "import" | "list") => {
+  const handleCloseList = (menu: "nav" | "import" | "list" | "mgmt") => {
     if (menu === "nav") setAnchorNav(null);
     if (menu === "list") setAnchorList(null);
+    if (menu === "mgmt") setAnchorManagement(null);
   };
 
   const handleLogout = () => {
@@ -107,6 +112,20 @@ const Nav = () => {
     </>
   );
 
+  const MenuItemManagement = (props: { onClick: () => void }) => (
+    <>
+      <MenuItem component="a" href="/data-management" onClick={props.onClick}>
+        <ListItemIcon children={<FontAwesomeSvgIcon icon={DataManagementIcon} />} />
+        Data Management
+      </MenuItem>
+      <Divider />
+      <MenuItem component="a" href="/groups" onClick={props.onClick}>
+        <ListItemIcon children={<FontAwesomeSvgIcon icon={GroupIcon} />} />
+        Groups Management
+      </MenuItem>
+    </>
+  )
+
   return (
     <AppBar position="sticky">
       <Container maxWidth="xl">
@@ -151,16 +170,7 @@ const Nav = () => {
             >
               <MenuItemList onClick={() => handleCloseList("nav")} />
               <Divider />
-              <MenuItem
-                component="a"
-                href="/data-management"
-                onClick={() => handleCloseList("nav")}
-              >
-                <ListItemIcon
-                  children={<FontAwesomeSvgIcon icon={DataManagementIcon} />}
-                />
-                Data Management
-              </MenuItem>
+              <MenuItemManagement onClick={() => handleCloseList("nav")} />
               <MenuItem
                 onClick={() => {
                   handleCloseList("nav");
@@ -211,11 +221,18 @@ const Nav = () => {
             <Button
               iconSize={18}
               color="inherit"
-              href="/data-management"
-              startIcon={<NavIcon icon={DataManagementIcon} />}
+              onClick={(e: any) => handleOpenList(e, "mgmt")}
+              startIcon={<NavIcon icon={ManagementIcon} />}
             >
-              Data Management
+              Management
             </Button>
+            <Menu
+              anchorEl={anchorManagement}
+              open={!!anchorManagement}
+              onClose={() => handleCloseList("mgmt")}
+            >
+              <MenuItemManagement onClick={() => handleCloseList("mgmt")} />
+            </Menu>
           </Box>
 
           <IconButton onClick={colorMode.toggleColorMode} color="inherit">
