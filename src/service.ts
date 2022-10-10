@@ -34,9 +34,7 @@ if (API_URL) {
   );
 
   if (localStorage.getItem("authToken")) {
-    axios.defaults.headers.common = {
-      ...axios.defaults.headers.common,
-      Authorization: `Bearer ${localStorage.getItem("authToken")}`,
-    };
+    const AUTH_TOKEN = `Bearer ${localStorage.getItem("authToken")}`;
+    axios.defaults.headers.common["Authorization"] = AUTH_TOKEN;
   }
 }
