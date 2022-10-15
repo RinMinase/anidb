@@ -60,18 +60,22 @@ const ByYear = () => {
     axios
       .get("/entries/by-year")
       .then(({ data: { data } }) => {
-        const firstYear = data[0].year;
+        if (data && data.length) {
+          const firstYear = data[0].year;
 
-        setYearData(() => data);
-        setSelectedYear(firstYear);
+          setYearData(() => data);
+          setSelectedYear(firstYear);
 
-        axios
-          .get(`entries/by-year/${firstYear}`)
-          .then(({ data: { data } }) => {
-            setData(() => data);
-          })
-          .catch((err) => console.error(err))
-          .finally(() => toggleLoader(false));
+          axios
+            .get(`entries/by-year/${firstYear}`)
+            .then(({ data: { data } }) => {
+              setData(() => data);
+            })
+            .catch((err) => console.error(err))
+            .finally(() => toggleLoader(false));
+        } else {
+          toggleLoader(false);
+        }
       })
       .catch((err) => {
         console.error(err);
@@ -211,6 +215,9 @@ const ByYear = () => {
           </Stack>
         </Grid>
       </Grid>
+      {!isLoading && !yearData.length ? (
+        <Typography textAlign="center">Empty Dataset</Typography>
+      ) : null}
     </ModuleContainer>
   );
 };
