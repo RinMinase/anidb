@@ -13,10 +13,6 @@ import {
   InputAdornment,
   LinearProgress,
   Paper,
-  Table,
-  TableBody,
-  TableContainer,
-  TableRow,
   TextField,
   Typography,
 } from "@mui/material";
@@ -40,6 +36,7 @@ import {
   ButtonLoading,
   DashboardTile,
   GlobalLoaderContext,
+  Table,
 } from "@components";
 
 import {
@@ -362,11 +359,11 @@ const BucketSimEdit = (props: Props) => {
             </Grid>
           </DescriptionContainer>
 
-          <TableContainer component={Paper}>
-            <Table>
-              <TableBody>
+          <Table.Container component={Paper}>
+            <Table.Element>
+              <Table.Body>
                 {fields.map((field, index) => (
-                  <TableRow key={field.id}>
+                  <Table.Row key={field.id}>
                     <CustomCell>
                       <CellContainer>
                         <CellLabel>From:</CellLabel>
@@ -456,11 +453,11 @@ const BucketSimEdit = (props: Props) => {
                         <FontAwesomeSvgIcon icon={RemoveIcon} />
                       </CustomIconButton>
                     </CustomCellButton>
-                  </TableRow>
+                  </Table.Row>
                 ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
+              </Table.Body>
+            </Table.Element>
+          </Table.Container>
         </>
       )}
     </ModuleContainer>

@@ -11,10 +11,6 @@ import {
   FormHelperText,
   InputAdornment,
   Paper,
-  Table,
-  TableBody,
-  TableContainer,
-  TableRow,
   TextField,
   Typography,
 } from "@mui/material";
@@ -28,7 +24,7 @@ import {
   faTrash as RemoveIcon,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { Button, GlobalLoaderContext } from "@components";
+import { Button, GlobalLoaderContext, Table } from "@components";
 
 import {
   CellContainer,
@@ -172,11 +168,11 @@ const BucketSimAdd = () => {
         />
       </DescriptionContainer>
 
-      <TableContainer component={Paper}>
-        <Table>
-          <TableBody>
+      <Table.Container component={Paper}>
+        <Table.Element>
+          <Table.Body>
             {fields.map((field, index) => (
-              <TableRow key={field.id}>
+              <Table.Row key={field.id}>
                 <CustomCell>
                   <CellContainer>
                     <CellLabel>From:</CellLabel>
@@ -260,11 +256,11 @@ const BucketSimAdd = () => {
                     <FontAwesomeSvgIcon icon={RemoveIcon} />
                   </CustomIconButton>
                 </CustomCellButton>
-              </TableRow>
+              </Table.Row>
             ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+          </Table.Body>
+        </Table.Element>
+      </Table.Container>
     </ModuleContainer>
   );
 };
