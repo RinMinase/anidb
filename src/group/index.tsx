@@ -1,7 +1,8 @@
 import { useContext, useEffect, useState } from "preact/hooks";
-import { route } from "preact-router";
-import axios from "axios";
+import { useForm } from "react-hook-form";
 import { FontAwesomeSvgIcon } from "react-fontawesome-slim";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 import {
   Box,
@@ -15,21 +16,23 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  TextField,
 } from "@mui/material";
 
 import {
+  faFloppyDisk as SaveIcon,
   faPenToSquare as EditIcon,
   faTrash as DeleteIcon,
 } from "@fortawesome/free-solid-svg-icons";
 
 import {
   Button,
+  ControlledField,
   GlobalLoaderContext,
   IconButton,
   TableLoader,
 } from "@components";
 
+import { defaultValues, Form, resolver } from "./validation";
 import { Data } from "./types";
 
 const ModuleContainer = styled(Box)({
@@ -50,24 +53,73 @@ const Group = () => {
 
   const [data, setData] = useState<Data>([]);
 
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Form>({ defaultValues, resolver, mode: "onChange" });
+
+  const fetchData = async () => {
+    try {
+      const { data: { data } } = await axios.get("/groups");
+
+      setData(() => data);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      toggleLoader(false);
+    }
+  };
+
   const handleEditClick = async (uuid: string) => {};
 
-  const handleDeleteClick = async (uuid: string) => {};
+  const handleDeleteClick = async (uuid: string) => {
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: "This item will be deleted",
+      icon: "error",
+      showCancelButton: true,
+    });
+
+    if (result.isConfirmed) {
+      toggleLoader(true);
+
+      await axios.delete(`/groups/${uuid}`);
+      await Swal.fire({
+        title: "Success!",
+        icon: "success",
+      });
+
+      await fetchData();
+    }
+  };
+
+  const handleSubmitForm = async (formdata: Form) => {
+    toggleLoader(true);
+
+    try {
+      await axios.post("/groups", formdata);
+
+      await Swal.fire({
+        title: "Success!",
+        icon: "success",
+      });
+
+      await fetchData();
+    } catch (err) {
+      await Swal.fire({
+        title: "Failed",
+        icon: "error",
+      });
+
+      console.error(err);
+      toggleLoader(false);
+    }
+  };
 
   useEffect(() => {
     toggleLoader(true);
-
-    axios
-      .get("/groups")
-      .then(({ data: { data } }) => {
-        setData(() => data);
-      })
-      .catch((err) => {
-        console.error(err);
-      })
-      .finally(() => {
-        toggleLoader(false);
-      });
+    fetchData();
   }, []);
 
   return (
@@ -75,11 +127,19 @@ const Group = () => {
       <Grid container spacing={2}>
         <Grid item xs={12} sm={5} md={3}>
           <Stack spacing={2}>
-            <TextField size="small" fullWidth />
+            <ControlledField
+              name="name"
+              label="Group Name"
+              size="small"
+              control={control}
+              error={!!errors.name}
+              helperText={errors.name?.message}
+              disabled={isLoading}
+            />
             <Button
               variant="contained"
-              fullWidth
-              onClick={() => route("/catalogs/add")}
+              startIcon={<FontAwesomeSvgIcon icon={SaveIcon} />}
+              onClick={handleSubmit(handleSubmitForm)}
             >
               Add Group
             </Button>
