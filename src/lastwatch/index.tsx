@@ -7,12 +7,6 @@ import {
   Grid,
   Paper,
   styled,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
 } from "@mui/material";
 
 import { faClock as LastCountIcon } from "@fortawesome/free-regular-svg-icons";
@@ -28,7 +22,7 @@ import {
   GlobalLoaderContext,
   Quality,
   RewatchIndicator,
-  TableLoader,
+  Table,
 } from "@components";
 import { Data, Stats } from "./types";
 
@@ -41,7 +35,7 @@ const Dashboard = styled(Box)({
   marginBottom: 32,
 });
 
-const CustomTable = styled(Table)({
+const CustomTable = styled(Table.Element)({
   minWidth: 650,
 });
 
@@ -118,45 +112,45 @@ const LastWatch = () => {
         </Grid>
       </Dashboard>
 
-      <TableContainer component={Paper}>
+      <Table.Container component={Paper}>
         <CustomTable>
-          <TableHead>
-            <TableRow>
-              <TableCell>Title</TableCell>
-              <TableCell sx={{ minWidth: 110 }}>E / O / S</TableCell>
-              <TableCell sx={{ minWidth: 115 }}>Filesize</TableCell>
-              <TableCell sx={{ minWidth: 190 }}>Date Finished</TableCell>
-              <TableCell sx={{ minWidth: 130 }}>Release</TableCell>
-              <TableCell>Encoder</TableCell>
-            </TableRow>
-          </TableHead>
+          <Table.Head>
+            <Table.Row>
+              <Table.Cell>Title</Table.Cell>
+              <Table.Cell sx={{ minWidth: 110 }}>E / O / S</Table.Cell>
+              <Table.Cell sx={{ minWidth: 115 }}>Filesize</Table.Cell>
+              <Table.Cell sx={{ minWidth: 190 }}>Date Finished</Table.Cell>
+              <Table.Cell sx={{ minWidth: 130 }}>Release</Table.Cell>
+              <Table.Cell>Encoder</Table.Cell>
+            </Table.Row>
+          </Table.Head>
 
-          <TableBody>
+          <Table.Body>
             {!isLoading ? (
               data.map((item) => (
-                <TableRow hover key={item.id}>
-                  <TableCell>
+                <Table.Row hover key={item.id}>
+                  <Table.Cell>
                     <Quality quality={item.quality} />
                     {item.title}
-                  </TableCell>
-                  <TableCell>
+                  </Table.Cell>
+                  <Table.Cell>
                     {item.episodes} / {item.ovas} / {item.specials}
-                  </TableCell>
-                  <TableCell>{item.filesize}</TableCell>
-                  <TableCell>
+                  </Table.Cell>
+                  <Table.Cell>{item.filesize}</Table.Cell>
+                  <Table.Cell>
                     {item.dateFinished}
                     <RewatchIndicator show={item.rewatched} />
-                  </TableCell>
-                  <TableCell>{item.release}</TableCell>
-                  <TableCell>{item.encoder}</TableCell>
-                </TableRow>
+                  </Table.Cell>
+                  <Table.Cell>{item.release}</Table.Cell>
+                  <Table.Cell>{item.encoder}</Table.Cell>
+                </Table.Row>
               ))
             ) : (
-              <TableLoader />
+              <Table.Loader />
             )}
-          </TableBody>
+          </Table.Body>
         </CustomTable>
-      </TableContainer>
+      </Table.Container>
     </ModuleContainer>
   );
 };
