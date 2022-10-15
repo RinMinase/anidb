@@ -63,7 +63,10 @@ const LastWatch = () => {
       .get("/entries/last")
       .then(({ data: { data } }) => {
         setData(() => data.data);
-        setStats(() => data.stats);
+
+        if (data.stats) {
+          setStats(() => data.stats);
+        }
       })
       .catch((err) => console.error(err))
       .finally(() => toggleLoader(false));
