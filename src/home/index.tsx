@@ -15,12 +15,6 @@ import {
   Paper,
   Rating,
   styled,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
   Tooltip,
 } from "@mui/material";
 
@@ -34,7 +28,7 @@ import {
   GlobalLoaderContext,
   Quality,
   RewatchIndicator,
-  TableLoader,
+  Table,
 } from "@components";
 
 const ModuleContainer = styled(Box)({
@@ -55,11 +49,11 @@ const SearchIconContainer = styled(FontAwesomeSvgIcon)({
   marginRight: 4,
 });
 
-const CustomTable = styled(Table)({
+const CustomTable = styled(Table.Element)({
   minWidth: 650,
 });
 
-const CustomTableRow = styled(TableRow)({
+const CustomTableRow = styled(Table.Row)({
   cursor: "pointer",
 });
 
@@ -182,21 +176,21 @@ const Home = () => {
         </Grid>
       </SearchContainer>
 
-      <TableContainer component={Paper}>
+      <Table.Container component={Paper}>
         <CustomTable>
-          <TableHead>
-            <TableRow>
-              <TableCell>Title</TableCell>
-              <TableCell sx={{ minWidth: 110 }}>E / O / S</TableCell>
-              <TableCell sx={{ minWidth: 115 }}>Filesize</TableCell>
-              <TableCell sx={{ minWidth: 190 }}>Date Finished</TableCell>
-              <TableCell sx={{ minWidth: 130 }}>Release</TableCell>
-              <TableCell>Encoder</TableCell>
-              <TableCell>Rating</TableCell>
-            </TableRow>
-          </TableHead>
+          <Table.Head>
+            <Table.Row>
+              <Table.Cell>Title</Table.Cell>
+              <Table.Cell sx={{ minWidth: 110 }}>E / O / S</Table.Cell>
+              <Table.Cell sx={{ minWidth: 115 }}>Filesize</Table.Cell>
+              <Table.Cell sx={{ minWidth: 190 }}>Date Finished</Table.Cell>
+              <Table.Cell sx={{ minWidth: 130 }}>Release</Table.Cell>
+              <Table.Cell>Encoder</Table.Cell>
+              <Table.Cell>Rating</Table.Cell>
+            </Table.Row>
+          </Table.Head>
 
-          <TableBody>
+          <Table.Body>
             {!isLoading ? (
               data.map((item) => (
                 <CustomTableRow
@@ -204,21 +198,21 @@ const Home = () => {
                   key={item.id}
                   onClick={() => route(`/home/view/${item.id}`)}
                 >
-                  <TableCell>
+                  <Table.Cell>
                     <Quality quality={item.quality} />
                     {item.title}
-                  </TableCell>
-                  <TableCell>
+                  </Table.Cell>
+                  <Table.Cell>
                     {item.episodes} / {item.ovas} / {item.specials}
-                  </TableCell>
-                  <TableCell>{item.filesize}</TableCell>
-                  <TableCell>
+                  </Table.Cell>
+                  <Table.Cell>{item.filesize}</Table.Cell>
+                  <Table.Cell>
                     {item.dateFinished}
                     <RewatchIndicator show={item.rewatched} />
-                  </TableCell>
-                  <TableCell>{item.release}</TableCell>
-                  <TableCell>{item.encoder}</TableCell>
-                  <TableCell>
+                  </Table.Cell>
+                  <Table.Cell>{item.release}</Table.Cell>
+                  <Table.Cell>{item.encoder}</Table.Cell>
+                  <Table.Cell>
                     <Tooltip title={item.rating ?? "0"} placement="top">
                       <Box>
                         <StyledRating
@@ -230,15 +224,15 @@ const Home = () => {
                         />
                       </Box>
                     </Tooltip>
-                  </TableCell>
+                  </Table.Cell>
                 </CustomTableRow>
               ))
             ) : (
-              <TableLoader />
+              <Table.Loader />
             )}
-          </TableBody>
+          </Table.Body>
         </CustomTable>
-      </TableContainer>
+      </Table.Container>
 
       <Waypoint onEnter={fetchNextPage}>
         {!isLoading && hasNext ? (
