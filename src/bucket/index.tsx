@@ -8,12 +8,6 @@ import {
   LinearProgress,
   Paper,
   styled,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
   Typography,
 } from "@mui/material";
 
@@ -26,7 +20,7 @@ import {
   DashboardTile,
   GlobalLoaderContext,
   Quality,
-  TableLoader,
+  Table,
 } from "@components";
 
 import { Bucket as SingleBucket, Buckets, Data, Stats } from "./types";
@@ -41,7 +35,7 @@ const Dashboard = styled(Box)({
   marginBottom: 32,
 });
 
-const CustomTable = styled(Table)({
+const CustomTable = styled(Table.Element)({
   minWidth: 650,
 });
 
@@ -174,32 +168,32 @@ const Bucket = () => {
         </Typography>
       )}
 
-      <TableContainer component={Paper}>
+      <Table.Container component={Paper}>
         <CustomTable>
-          <TableHead>
-            <TableRow>
-              <TableCell>Title</TableCell>
-              <TableCell>Filesize</TableCell>
-            </TableRow>
-          </TableHead>
+          <Table.Head>
+            <Table.Row>
+              <Table.Cell>Title</Table.Cell>
+              <Table.Cell>Filesize</Table.Cell>
+            </Table.Row>
+          </Table.Head>
 
-          <TableBody>
+          <Table.Body>
             {!isLoading ? (
               data.map((item) => (
-                <TableRow hover key={item.id}>
-                  <TableCell>
+                <Table.Row hover key={item.id}>
+                  <Table.Cell>
                     <Quality quality={item.quality} />
                     {item.title}
-                  </TableCell>
-                  <TableCell>{item.filesize}</TableCell>
-                </TableRow>
+                  </Table.Cell>
+                  <Table.Cell>{item.filesize}</Table.Cell>
+                </Table.Row>
               ))
             ) : (
-              <TableLoader />
+              <Table.Loader />
             )}
-          </TableBody>
+          </Table.Body>
         </CustomTable>
-      </TableContainer>
+      </Table.Container>
     </ModuleContainer>
   );
 };
