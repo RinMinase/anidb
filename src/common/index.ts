@@ -22,7 +22,6 @@ export { default as Quality } from "./components/Quality";
 export { default as RewatchIndicator } from "./components/RewatchIndicator";
 export { default as Snackbar } from "./components/Snackbar";
 export { default as Table } from "./components/Table";
-export { default as TableLoader } from "./components/TableLoader";
 
 export { GlobalLoaderContext } from "./providers/GlobalLoader";
 export { ColorModeContext } from "./providers/ColorMode";
