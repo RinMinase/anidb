@@ -27,3 +27,26 @@ export { GlobalLoaderContext } from "./providers/GlobalLoader";
 export { ColorModeContext } from "./providers/ColorMode";
 
 export { emptyStringToNull } from "./functions";
+
+import TableLoader from "./components/TableLoader";
+
+import {
+  Table as MuiTable,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+} from "@mui/material";
+
+const Table = {
+  Element: MuiTable,
+  Body: TableBody,
+  Cell: TableCell,
+  Container: TableContainer,
+  Head: TableHead,
+  Row: TableRow,
+  Loader: TableLoader,
+};
+
+export { Table };
