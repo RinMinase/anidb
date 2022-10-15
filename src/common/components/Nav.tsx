@@ -25,6 +25,7 @@ import {
   faCalendarDays as ByYearIcon,
   faClockRotateLeft as LastWatchIcon,
   faDatabase as DataManagementIcon,
+  faFileLines as LogsIcon,
   faFlaskVial as BucketSimIcon,
   faHardDrive as BucketsIcon,
   faListUl as ListIcon,
@@ -54,9 +55,14 @@ const Nav = () => {
 
   const [anchorNav, setAnchorNav] = useState<null | HTMLElement>(null);
   const [anchorList, setAnchorList] = useState<null | HTMLElement>(null);
-  const [anchorManagement, setAnchorManagement] = useState<null | HTMLElement>(null);
+  const [anchorManagement, setAnchorManagement] = useState<null | HTMLElement>(
+    null,
+  );
 
-  const handleOpenList = (event: any, menu: "nav" | "import" | "list" | "mgmt") => {
+  const handleOpenList = (
+    event: any,
+    menu: "nav" | "import" | "list" | "mgmt",
+  ) => {
     if (menu === "nav") setAnchorNav(event.currentTarget);
     if (menu === "list") setAnchorList(event.currentTarget);
     if (menu === "mgmt") setAnchorManagement(event.currentTarget);
@@ -115,16 +121,22 @@ const Nav = () => {
   const MenuItemManagement = (props: { onClick: () => void }) => (
     <>
       <MenuItem component="a" href="/data-management" onClick={props.onClick}>
-        <ListItemIcon children={<FontAwesomeSvgIcon icon={DataManagementIcon} />} />
+        <ListItemIcon
+          children={<FontAwesomeSvgIcon icon={DataManagementIcon} />}
+        />
         Data Management
+      </MenuItem>
+      <MenuItem component="a" href="/logs" onClick={props.onClick}>
+        <ListItemIcon children={<FontAwesomeSvgIcon icon={LogsIcon} />} />
+        Logs
       </MenuItem>
       <Divider />
       <MenuItem component="a" href="/groups" onClick={props.onClick}>
         <ListItemIcon children={<FontAwesomeSvgIcon icon={GroupIcon} />} />
-        Groups Management
+        Groups
       </MenuItem>
     </>
-  )
+  );
 
   return (
     <AppBar position="sticky">
