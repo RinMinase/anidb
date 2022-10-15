@@ -12,12 +12,6 @@ import {
   MenuList,
   Paper,
   styled,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
 } from "@mui/material";
 
 import {
@@ -29,7 +23,7 @@ import {
   Button,
   GlobalLoaderContext,
   IconButton,
-  TableLoader,
+  Table,
 } from "@components";
 
 import { Catalogs, Data } from "./types";
@@ -45,11 +39,11 @@ const CustomMenuList = styled(MenuList)<{ component: any }>({
   overflow: "hidden",
 });
 
-const CustomTable = styled(Table)({
+const CustomTable = styled(Table.Element)({
   minWidth: 650,
 });
 
-const ActionTableCell = styled(TableCell)({
+const ActionTableCell = styled(Table.Cell)({
   textAlign: "right",
 });
 
@@ -205,22 +199,22 @@ const Catalog = () => {
           </CustomMenuList>
         </Grid>
         <Grid item xs={12} sm={7} md={9}>
-          <TableContainer component={Paper}>
+          <Table.Container component={Paper}>
             <CustomTable>
-              <TableHead>
-                <TableRow>
-                  <TableCell>Title</TableCell>
-                  <TableCell>Priority</TableCell>
-                  <TableCell />
-                </TableRow>
-              </TableHead>
+              <Table.Head>
+                <Table.Row>
+                  <Table.Cell>Title</Table.Cell>
+                  <Table.Cell>Priority</Table.Cell>
+                  <Table.Cell />
+                </Table.Row>
+              </Table.Head>
 
-              <TableBody>
+              <Table.Body>
                 {!isLoading ? (
                   data.map((item) => (
-                    <TableRow hover key={item.id}>
-                      <TableCell>{item.title}</TableCell>
-                      <TableCell>{item.priority}</TableCell>
+                    <Table.Row hover key={item.id}>
+                      <Table.Cell>{item.title}</Table.Cell>
+                      <Table.Cell>{item.priority}</Table.Cell>
                       <ActionTableCell>
                         <IconButton
                           size="small"
@@ -236,14 +230,14 @@ const Catalog = () => {
                           <FontAwesomeSvgIcon icon={DeleteIcon} />
                         </IconButton>
                       </ActionTableCell>
-                    </TableRow>
+                    </Table.Row>
                   ))
                 ) : (
-                  <TableLoader />
+                  <Table.Loader />
                 )}
-              </TableBody>
+              </Table.Body>
             </CustomTable>
-          </TableContainer>
+          </Table.Container>
         </Grid>
       </Grid>
     </ModuleContainer>
