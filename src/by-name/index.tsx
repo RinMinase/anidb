@@ -11,17 +11,11 @@ import {
   Grid,
   Paper,
   styled,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
   useMediaQuery,
   useTheme,
 } from "@mui/material";
 
-import { GlobalLoaderContext, Quality, TableLoader } from "@components";
+import { GlobalLoaderContext, Quality, Table } from "@components";
 import { Data, Stats } from "./types";
 
 type TableRowProps = {
@@ -33,7 +27,7 @@ const ModuleContainer = styled(Box)({
   paddingBottom: 24,
 });
 
-const CustomTableRow = styled(TableRow)<TableRowProps>(({ active, theme }) => ({
+const CustomTableRow = styled(Table.Row)<TableRowProps>(({ active, theme }) => ({
   cursor: "pointer",
   backgroundColor: active
     ? theme.palette.mode === "light"
@@ -110,17 +104,17 @@ const ByName = () => {
     <ModuleContainer>
       <Grid container spacing={2}>
         <Grid item xs={12} sm={7} md={3}>
-          <TableContainer component={Paper}>
-            <Table>
-              <TableHead>
-                <TableRow>
-                  <TableCell />
-                  <TableCell align="center">Titles</TableCell>
-                  <TableCell align="center">Filesize</TableCell>
-                </TableRow>
-              </TableHead>
+          <Table.Container component={Paper}>
+            <Table.Element>
+              <Table.Head>
+                <Table.Row>
+                  <Table.Cell />
+                  <Table.Cell align="center">Titles</Table.Cell>
+                  <Table.Cell align="center">Filesize</Table.Cell>
+                </Table.Row>
+              </Table.Head>
 
-              <TableBody>
+              <Table.Body>
                 {stats.map((item) => (
                   <CustomTableRow
                     hover
@@ -128,43 +122,43 @@ const ByName = () => {
                     onClick={() => handleChangeData(item.letter)}
                     active={`${item.letter}` === selected}
                   >
-                    <TableCell>{item.letter}</TableCell>
-                    <TableCell align="center">{item.titles}</TableCell>
-                    <TableCell align="center">{item.filesize}</TableCell>
+                    <Table.Cell>{item.letter}</Table.Cell>
+                    <Table.Cell align="center">{item.titles}</Table.Cell>
+                    <Table.Cell align="center">{item.filesize}</Table.Cell>
                   </CustomTableRow>
                 ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
+              </Table.Body>
+            </Table.Element>
+          </Table.Container>
         </Grid>
         <Grid item xs={12} sm={5} md={8}>
           <ScrollToElement name="table" />
-          <TableContainer component={Paper}>
-            <Table>
-              <TableHead>
-                <TableRow>
-                  <TableCell>Title</TableCell>
-                  <TableCell>Filesize</TableCell>
-                </TableRow>
-              </TableHead>
+          <Table.Container component={Paper}>
+            <Table.Element>
+              <Table.Head>
+                <Table.Row>
+                  <Table.Cell>Title</Table.Cell>
+                  <Table.Cell>Filesize</Table.Cell>
+                </Table.Row>
+              </Table.Head>
 
-              <TableBody>
+              <Table.Body>
                 {!isLoading ? (
                   data.map((item) => (
-                    <TableRow hover key={item.id}>
-                      <TableCell>
+                    <Table.Row hover key={item.id}>
+                      <Table.Cell>
                         <Quality quality={item.quality} />
                         {item.title}
-                      </TableCell>
-                      <TableCell>{item.filesize}</TableCell>
-                    </TableRow>
+                      </Table.Cell>
+                      <Table.Cell>{item.filesize}</Table.Cell>
+                    </Table.Row>
                   ))
                 ) : (
-                  <TableLoader />
+                  <Table.Loader />
                 )}
-              </TableBody>
-            </Table>
-          </TableContainer>
+              </Table.Body>
+            </Table.Element>
+          </Table.Container>
         </Grid>
       </Grid>
     </ModuleContainer>
