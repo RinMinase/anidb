@@ -50,6 +50,7 @@ const DividingBox = styled(Box)({
 const ByYear = () => {
   const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
 
+  const [initLoad, setInitLoad] = useState(true);
   const [data, setData] = useState<Data>({});
   const [yearData, setYearData] = useState<YearData>([]);
   const [selectedYear, setSelectedYear] = useState<number | null>(null);
@@ -72,14 +73,19 @@ const ByYear = () => {
               setData(() => data);
             })
             .catch((err) => console.error(err))
-            .finally(() => toggleLoader(false));
+            .finally(() => {
+              toggleLoader(false);
+              setInitLoad(false);
+            });
         } else {
           toggleLoader(false);
+          setInitLoad(false);
         }
       })
       .catch((err) => {
         console.error(err);
         toggleLoader(false);
+        setInitLoad(false);
       });
   }, []);
 
@@ -215,7 +221,7 @@ const ByYear = () => {
           </Stack>
         </Grid>
       </Grid>
-      {!isLoading && !yearData.length ? (
+      {!initLoad && !isLoading && !yearData.length ? (
         <Typography textAlign="center">Empty Dataset</Typography>
       ) : null}
     </ModuleContainer>
