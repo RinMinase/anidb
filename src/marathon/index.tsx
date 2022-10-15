@@ -14,12 +14,6 @@ import {
   MenuList,
   Paper,
   styled,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
 } from "@mui/material";
 
 import {
@@ -37,7 +31,7 @@ import {
   IconButton,
   Quality,
   RewatchIndicator,
-  TableLoader,
+  Table,
 } from "@components";
 
 import { Data, Sequences, Stats } from "./types";
@@ -66,7 +60,7 @@ const CustomMenuList = styled(MenuList)<{ component: any }>({
   overflow: "hidden",
 });
 
-const CustomTable = styled(Table)({
+const CustomTable = styled(Table.Element)({
   minWidth: 650,
 });
 
@@ -310,41 +304,41 @@ const Marathon = () => {
           </CustomMenuList>
         </Grid>
         <Grid item xs={12} sm={7} md={9}>
-          <TableContainer component={Paper}>
+          <Table.Container component={Paper}>
             <CustomTable>
-              <TableHead>
-                <TableRow>
-                  <TableCell>Title</TableCell>
-                  <TableCell sx={{ minWidth: 110 }}>E / O / S</TableCell>
-                  <TableCell sx={{ minWidth: 115 }}>Filesize</TableCell>
-                  <TableCell sx={{ minWidth: 190 }}>Date Finished</TableCell>
-                </TableRow>
-              </TableHead>
+              <Table.Head>
+                <Table.Row>
+                  <Table.Cell>Title</Table.Cell>
+                  <Table.Cell sx={{ minWidth: 110 }}>E / O / S</Table.Cell>
+                  <Table.Cell sx={{ minWidth: 115 }}>Filesize</Table.Cell>
+                  <Table.Cell sx={{ minWidth: 190 }}>Date Finished</Table.Cell>
+                </Table.Row>
+              </Table.Head>
 
-              <TableBody>
+              <Table.Body>
                 {!isLoading ? (
                   data.map((item) => (
-                    <TableRow hover key={item.id}>
-                      <TableCell>
+                    <Table.Row hover key={item.id}>
+                      <Table.Cell>
                         <Quality quality={item.quality} />
                         {item.title}
-                      </TableCell>
-                      <TableCell>
+                      </Table.Cell>
+                      <Table.Cell>
                         {item.episodes} / {item.ovas} / {item.specials}
-                      </TableCell>
-                      <TableCell>{item.filesize}</TableCell>
-                      <TableCell>
+                      </Table.Cell>
+                      <Table.Cell>{item.filesize}</Table.Cell>
+                      <Table.Cell>
                         {item.dateFinished}
                         <RewatchIndicator show={item.rewatched} />
-                      </TableCell>
-                    </TableRow>
+                      </Table.Cell>
+                    </Table.Row>
                   ))
                 ) : (
-                  <TableLoader />
+                  <Table.Loader />
                 )}
-              </TableBody>
+              </Table.Body>
             </CustomTable>
-          </TableContainer>
+          </Table.Container>
         </Grid>
       </Grid>
     </ModuleContainer>
