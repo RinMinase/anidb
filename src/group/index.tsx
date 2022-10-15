@@ -5,8 +5,12 @@ import axios from "axios";
 import Swal from "sweetalert2";
 
 import {
+  Backdrop,
   Box,
+  DialogContent,
+  DialogTitle,
   Grid,
+  LinearProgress,
   Paper,
   Stack,
   styled,
@@ -16,6 +20,7 @@ import {
   faFloppyDisk as SaveIcon,
   faPenToSquare as EditIcon,
   faTrash as DeleteIcon,
+  faXmark as CloseIcon,
 } from "@fortawesome/free-solid-svg-icons";
 
 import {
@@ -27,7 +32,7 @@ import {
 } from "@components";
 
 import { defaultValues, Form, resolver } from "./validation";
-import { Data } from "./types";
+import { Data, Item } from "./types";
 
 const ModuleContainer = styled(Box)({
   paddingTop: 24,
@@ -42,10 +47,29 @@ const ActionTableCell = styled(Table.Cell)({
   textAlign: "right",
 });
 
+const CustomDialog = styled(Paper)({
+  position: "fixed",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: "100%",
+  maxWidth: 400,
+  maxHeight: "80vh",
+});
+
 const Group = () => {
   const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
 
   const [data, setData] = useState<Data>([]);
+  const [selectedData, setSelectedData] = useState<Item>({
+    uuid: "",
+    name: "",
+  });
+
+  const [dialog, setDialog] = useState({
+    loading: false,
+    show: false,
+  });
 
   const {
     control,
@@ -53,9 +77,19 @@ const Group = () => {
     formState: { errors },
   } = useForm<Form>({ defaultValues, resolver, mode: "onChange" });
 
+  const {
+    control: editControl,
+    setValue: editSetValue,
+    trigger: editTrigger,
+    handleSubmit: editHandleSubmit,
+    formState: { errors: editErrors },
+  } = useForm<Form>({ resolver, mode: "onChange" });
+
   const fetchData = async () => {
     try {
-      const { data: { data } } = await axios.get("/groups");
+      const {
+        data: { data },
+      } = await axios.get("/groups");
 
       setData(() => data);
     } catch (err) {
@@ -65,7 +99,53 @@ const Group = () => {
     }
   };
 
-  const handleEditClick = async (uuid: string) => {};
+  const handleEditClick = (item: Item) => {
+    setSelectedData(item);
+
+    editSetValue("name", item.name);
+    editTrigger("name");
+
+    setDialog((prev) => ({
+      ...prev,
+      show: true,
+    }));
+  };
+
+  const handleEditSubmit = async (formdata: Form) => {
+    setDialog((prev) => ({
+      ...prev,
+      loading: true,
+    }));
+
+    const uuid = selectedData.uuid;
+
+    try {
+      await axios.put(`/groups/${uuid}`, formdata);
+
+      await Swal.fire({
+        title: "Success!",
+        icon: "success",
+      });
+
+      setDialog({
+        show: false,
+        loading: false,
+      });
+
+      await fetchData();
+    } catch (err) {
+      console.error(err);
+      await Swal.fire({
+        title: "Failed",
+        icon: "error",
+      });
+
+      setDialog((prev) => ({
+        ...prev,
+        loading: false,
+      }));
+    }
+  };
 
   const handleDeleteClick = async (uuid: string) => {
     const result = await Swal.fire({
@@ -157,7 +237,7 @@ const Group = () => {
                       <ActionTableCell>
                         <IconButton
                           size="small"
-                          onClick={() => handleEditClick(item.uuid)}
+                          onClick={() => handleEditClick(item)}
                         >
                           <FontAwesomeSvgIcon icon={EditIcon} />
                         </IconButton>
@@ -179,6 +259,44 @@ const Group = () => {
           </Table.Container>
         </Grid>
       </Grid>
+
+      <Backdrop open={dialog.show}>
+        <CustomDialog>
+          {dialog.loading && <LinearProgress />}
+          <DialogTitle display="flex" justifyContent="space-between">
+            Edit Group Name
+            <IconButton
+              disabled={dialog.loading}
+              onClick={() => setDialog({ show: false, loading: false })}
+            >
+              <FontAwesomeSvgIcon width={22} icon={CloseIcon} />
+            </IconButton>
+          </DialogTitle>
+          <DialogContent>
+            <Stack spacing={2} sx={{ mt: 1 }}>
+              <ControlledField
+                name="name"
+                label="Group Name"
+                size="small"
+                control={editControl}
+                error={!!editErrors.name}
+                helperText={editErrors.name?.message}
+                disabled={isLoading}
+              />
+
+              <Button
+                variant="contained"
+                startIcon={<FontAwesomeSvgIcon icon={SaveIcon} />}
+                onClick={editHandleSubmit(handleEditSubmit)}
+                disabled={dialog.loading}
+                fullWidth
+              >
+                Save
+              </Button>
+            </Stack>
+          </DialogContent>
+        </CustomDialog>
+      </Backdrop>
     </ModuleContainer>
   );
 };
