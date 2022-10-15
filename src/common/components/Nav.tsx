@@ -30,10 +30,12 @@ import {
   faHardDrive as BucketsIcon,
   faListUl as ListIcon,
   faMoon as DarkModeIcon,
+  faMusic as AudioCodecIcon,
   faSun as LightModeIcon,
   faTv as MarathonsIcon,
   faUserGroup as GroupIcon,
   faUserTie as ManagementIcon,
+  faVideo as VideoCodecIcon,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { ColorModeContext } from "../providers/ColorMode";
@@ -131,6 +133,14 @@ const Nav = () => {
         Logs
       </MenuItem>
       <Divider />
+      <MenuItem component="a" href="/audio-codecs" onClick={props.onClick}>
+        <ListItemIcon children={<FontAwesomeSvgIcon icon={AudioCodecIcon} />} />
+        Audio Codecs
+      </MenuItem>
+      <MenuItem component="a" href="/video-codecs" onClick={props.onClick}>
+        <ListItemIcon children={<FontAwesomeSvgIcon icon={VideoCodecIcon} />} />
+        Video Codecs
+      </MenuItem>
       <MenuItem component="a" href="/groups" onClick={props.onClick}>
         <ListItemIcon children={<FontAwesomeSvgIcon icon={GroupIcon} />} />
         Groups
