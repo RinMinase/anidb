@@ -10,12 +10,6 @@ import {
   MenuList,
   Paper,
   styled,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
   Typography,
 } from "@mui/material";
 
@@ -27,7 +21,7 @@ import {
   faTree as SpringIcon,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { GlobalLoaderContext, Quality } from "@components";
+import { GlobalLoaderContext, Quality, Table } from "@components";
 import { Data, YearData } from "./types";
 import { Stack } from "@mui/system";
 
@@ -139,25 +133,26 @@ const ByYear = () => {
             {icon}
             {heading}
           </Typography>
-          <TableContainer component={Paper}>
-            <Table>
-              <TableHead>
-                <TableRow>
-                  <TableCell>Title</TableCell>
-                </TableRow>
-              </TableHead>
+          <Table.Container component={Paper}>
+            <Table.Element>
+              <Table.Head>
+                <Table.Row>
+                  <Table.Cell>Title</Table.Cell>
+                </Table.Row>
+              </Table.Head>
 
-              <TableBody>
+              <Table.Body>
                 {values.map((item) => (
-                  <TableRow hover key={item.uuid}>
-                    <TableCell>
-                        <Quality quality={item.quality} />
-                        {item.title}</TableCell>
-                  </TableRow>
+                  <Table.Row hover key={item.uuid}>
+                    <Table.Cell>
+                      <Quality quality={item.quality} />
+                      {item.title}
+                    </Table.Cell>
+                  </Table.Row>
                 ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
+              </Table.Body>
+            </Table.Element>
+          </Table.Container>
         </Box>
       ) : null}
     </>
