@@ -10,12 +10,6 @@ import {
   Paper,
   Stack,
   styled,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
 } from "@mui/material";
 
 import {
@@ -29,7 +23,7 @@ import {
   ControlledField,
   GlobalLoaderContext,
   IconButton,
-  TableLoader,
+  Table,
 } from "@components";
 
 import { defaultValues, Form, resolver } from "./validation";
@@ -40,11 +34,11 @@ const ModuleContainer = styled(Box)({
   paddingBottom: 24,
 });
 
-const CustomTable = styled(Table)({
+const CustomTable = styled(Table.Element)({
   minWidth: 650,
 });
 
-const ActionTableCell = styled(TableCell)({
+const ActionTableCell = styled(Table.Cell)({
   textAlign: "right",
 });
 
@@ -146,20 +140,20 @@ const Group = () => {
           </Stack>
         </Grid>
         <Grid item xs={12} sm={7} md={9}>
-          <TableContainer component={Paper}>
+          <Table.Container component={Paper}>
             <CustomTable>
-              <TableHead>
-                <TableRow>
-                  <TableCell>Name</TableCell>
-                  <TableCell />
-                </TableRow>
-              </TableHead>
+              <Table.Head>
+                <Table.Row>
+                  <Table.Cell>Name</Table.Cell>
+                  <Table.Cell />
+                </Table.Row>
+              </Table.Head>
 
-              <TableBody>
+              <Table.Body>
                 {!isLoading ? (
                   data.map((item) => (
-                    <TableRow hover key={item.uuid}>
-                      <TableCell>{item.name}</TableCell>
+                    <Table.Row hover key={item.uuid}>
+                      <Table.Cell>{item.name}</Table.Cell>
                       <ActionTableCell>
                         <IconButton
                           size="small"
@@ -175,14 +169,14 @@ const Group = () => {
                           <FontAwesomeSvgIcon icon={DeleteIcon} />
                         </IconButton>
                       </ActionTableCell>
-                    </TableRow>
+                    </Table.Row>
                   ))
                 ) : (
-                  <TableLoader />
+                  <Table.Loader />
                 )}
-              </TableBody>
+              </Table.Body>
             </CustomTable>
-          </TableContainer>
+          </Table.Container>
         </Grid>
       </Grid>
     </ModuleContainer>
