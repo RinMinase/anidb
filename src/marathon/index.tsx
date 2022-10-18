@@ -245,7 +245,7 @@ const Marathon = () => {
               heading="Total titles"
               value={stats.total_titles}
               footers={[
-                `Total titles: ${stats.total_eps}`,
+                `Total episodes: ${stats.total_eps}`,
                 `Total size: ${stats.total_size}`,
               ]}
             />
