@@ -234,11 +234,13 @@ const Home = () => {
         </CustomTable>
       </Table.Container>
 
-      <Waypoint onEnter={fetchNextPage}>
-        {!isLoading && hasNext ? (
-          <SpinnerContainer children={<CircularProgress />} />
-        ) : null}
-      </Waypoint>
+      {data.length && !isLoading ? (
+        <Waypoint onEnter={fetchNextPage}>
+          {!isLoading && hasNext ? (
+            <SpinnerContainer children={<CircularProgress />} />
+          ) : null}
+        </Waypoint>
+      ) : null}
     </ModuleContainer>
   );
 };
