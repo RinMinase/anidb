@@ -135,9 +135,12 @@ const AudioCodec = () => {
         loading: false,
       });
 
+      toggleLoader(true);
+
       await fetchData();
     } catch (err) {
       console.error(err);
+
       await Swal.fire({
         title: "Failed",
         icon: "error",
@@ -147,6 +150,8 @@ const AudioCodec = () => {
         ...prev,
         loading: false,
       }));
+
+      toggleLoader(false);
     }
   };
 
