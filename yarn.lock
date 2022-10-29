@@ -9510,10 +9510,10 @@ react-is@^17.0.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-18.2.0.tgz#199431eeaaa2e09f86427efbb4f1473edb47609b"
   integrity sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==
 
-react-scroll@^1.8.7:
-  version "1.8.7"
-  resolved "https://registry.yarnpkg.com/react-scroll/-/react-scroll-1.8.7.tgz#8020035329efad00f03964e18aff6822137de3aa"
-  integrity sha512-fBOIwweAlhicx8RqP9tQXn/Uhd+DTtVRjw+0VBsIn1Z+MjRYLhTZ0tMoTAU1vOD3dce8mI6copexI4yWII+Luw==
+react-scroll@^1.8.8:
+  version "1.8.8"
+  resolved "https://registry.yarnpkg.com/react-scroll/-/react-scroll-1.8.8.tgz#445c6137174d6f2ed02352af408a48d160959e22"
+  integrity sha512-RnU0wLaLozKIhLNAfoz6yxMus+PMypk7eBRfOitalYd2+qCiHrZdJ0MSDBs1Y23IFSfqSCdCEmENMJeSh0KoHA==
   dependencies:
     lodash.throttle "^4.1.1"
     prop-types "^15.7.2"
@@ -10706,10 +10706,10 @@ supports-preserve-symlinks-flag@^1.0.0:
   resolved "https://registry.yarnpkg.com/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz#6eda4bd344a3c94aea376d4cc31bc77311039e09"
   integrity sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
 
-sweetalert2@^11.5.2:
-  version "11.5.2"
-  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-11.5.2.tgz#d0752eccb466e6cdf072009238580825bb2f64da"
-  integrity sha512-gVS4tSvYxY83RdgL7OQijDRP/othOA/v3JRjiWctGSRYY1NkX6sBirYLtgoRFprQ24HAQdbsWZiFg1k3uLoZZw==
+sweetalert2@^11.6.4:
+  version "11.6.4"
+  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-11.6.4.tgz#8d0bcfcc9af415319f9e93262923b49834da729c"
+  integrity sha512-EfvbqpApvOLbJ7UehO4rjmlltramOGVNpWhh9hBDyeSP1WhoslpmYUXZXI8AiC77Yl6esCfRcWXpzCAKkbvcgg==
 
 symbol-observable@^1.1.0:
   version "1.2.0"
