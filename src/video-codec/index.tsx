@@ -105,7 +105,7 @@ const VideoCodec = () => {
     editSetValue("codec", item.codec);
     editTrigger("codec");
 
-    editSetValue("order", item.order);
+    editSetValue("order", item.order || undefined);
     editTrigger("order");
 
     setDialog((prev) => ({
