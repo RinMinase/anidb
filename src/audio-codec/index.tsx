@@ -105,6 +105,9 @@ const AudioCodec = () => {
     editSetValue("codec", item.codec);
     editTrigger("codec");
 
+    editSetValue("order", item.order);
+    editTrigger("order");
+
     setDialog((prev) => ({
       ...prev,
       show: true,
@@ -210,6 +213,15 @@ const AudioCodec = () => {
               helperText={errors.codec?.message}
               disabled={isLoading}
             />
+            <ControlledField
+              name="order"
+              label="Order"
+              size="small"
+              control={control}
+              error={!!errors.order}
+              helperText={errors.order?.message}
+              disabled={isLoading}
+            />
             <Button
               variant="contained"
               startIcon={<FontAwesomeSvgIcon icon={SaveIcon} />}
@@ -225,6 +237,7 @@ const AudioCodec = () => {
               <Table.Head>
                 <Table.Row>
                   <Table.Cell>Name</Table.Cell>
+                  <Table.Cell>Order</Table.Cell>
                   <Table.Cell />
                 </Table.Row>
               </Table.Head>
@@ -234,6 +247,7 @@ const AudioCodec = () => {
                   data.map((item) => (
                     <Table.Row hover key={`codec-${item.id}`}>
                       <Table.Cell>{item.codec}</Table.Cell>
+                      <Table.Cell>{item.order}</Table.Cell>
                       <ActionTableCell>
                         <IconButton
                           size="small"
@@ -281,6 +295,15 @@ const AudioCodec = () => {
                 control={editControl}
                 error={!!editErrors.codec}
                 helperText={editErrors.codec?.message}
+                disabled={isLoading}
+              />
+              <ControlledField
+                name="order"
+                label="Order"
+                size="small"
+                control={editControl}
+                error={!!editErrors.order}
+                helperText={editErrors.order?.message}
                 disabled={isLoading}
               />
 
