@@ -113,7 +113,7 @@ const Home = () => {
   };
 
   const fetchNextPage = () => {
-    if (data.length && !searchQuery && hasNext) {
+    if (!searchQuery && hasNext) {
       axios
         .get("/entries", {
           params: {
