@@ -34,6 +34,7 @@ const BucketSimAdd = () => import("./bucket-sim/add").then((c) => c.default);
 const BucketSimEdit = () => import("./bucket-sim/edit").then((c) => c.default);
 
 const DataManagement = () => import("./data-management").then((c) => c.default);
+const Logs = () => import("./logs").then((c) => c.default);
 const Group = () => import("./group").then((c) => c.default);
 const AudioCodec = () => import("./audio-codec").then((c) => c.default);
 const VideoCodec = () => import("./video-codec").then((c) => c.default);
@@ -70,6 +71,7 @@ const Routes = (props: Props) => (
     <AsyncRoute path="/bucket-sims/edit/:id" getComponent={BucketSimEdit} />
 
     <AsyncRoute path="/data-management" getComponent={DataManagement} />
+    <AsyncRoute path="/logs" getComponent={Logs} />
     <AsyncRoute path="/groups" getComponent={Group} />
     <AsyncRoute path="/audio-codecs" getComponent={AudioCodec} />
     <AsyncRoute path="/video-codecs" getComponent={VideoCodec} />
