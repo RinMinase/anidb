@@ -28,11 +28,6 @@ type ImageProps = {
   component?: string;
 };
 
-const ModuleContainer = styled(Box)({
-  paddingTop: 24,
-  paddingBottom: 24,
-});
-
 const Header = styled(Typography)(({ theme }) => ({
   fontSize: 22,
   borderBottom: `2px solid ${theme.palette.primary.light}`,
@@ -173,7 +168,6 @@ const RatingIconContainer = (props: IconContainerProps) => {
 };
 
 export {
-  ModuleContainer,
   Header,
   Icon,
   ImageBox,

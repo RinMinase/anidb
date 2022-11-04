@@ -5,14 +5,14 @@ import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import axios from "axios";
 
-import { Box, styled, Typography } from "@mui/material";
+import { styled } from "@mui/material";
 
 import {
   faArrowLeftLong as BackIcon,
   faFloppyDisk as SaveIcon,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { Button, GlobalLoaderContext } from "@components";
+import { Button, GlobalLoaderContext, ModuleContainer } from "@components";
 import { defaultValues, Form, resolver } from "./validation";
 
 import AddForm from "./components/AddForm";
@@ -23,27 +23,6 @@ type Props = {
     id: string;
   };
 };
-
-const ModuleContainer = styled(Box)({
-  paddingTop: 24,
-  paddingBottom: 24,
-});
-
-const Header = styled(Box)({
-  display: "flex",
-  marginBottom: 32,
-});
-
-const ControlButtonsContainer = styled(Box)(({ theme }) => ({
-  display: "flex",
-  flexDirection: "row",
-  alignItems: "center",
-
-  [theme.breakpoints.down("sm")]: {
-    flexDirection: "column-reverse",
-    alignItems: "unset",
-  },
-}));
 
 const ControlButtons = styled(Button)(({ theme }) => ({
   minWidth: 120,
@@ -197,6 +176,27 @@ const HomeAdd = (props: Props) => {
     }
   };
 
+  const HeaderControls = () => (
+    <>
+      <ControlButtons
+        variant="contained"
+        color="error"
+        startIcon={<FontAwesomeSvgIcon icon={BackIcon} />}
+        sx={{ display: { xs: "none", sm: "inline-flex" } }}
+        onClick={handleBack}
+      >
+        Back
+      </ControlButtons>
+      <ControlButtons
+        variant="contained"
+        startIcon={<FontAwesomeSvgIcon icon={SaveIcon} />}
+        onClick={handleSubmit(handleSubmitForm)}
+      >
+        Save
+      </ControlButtons>
+    </>
+  );
+
   useEffect(() => {
     if (hasEntryId && !isDropdownLoading) {
       fetchEntryData();
@@ -210,46 +210,11 @@ const HomeAdd = (props: Props) => {
   }, []);
 
   return (
-    <ModuleContainer>
-      <Header>
-        <Box display="flex" flexDirection="column" flexGrow={1}>
-          <Button
-            variant="contained"
-            color="error"
-            startIcon={<FontAwesomeSvgIcon icon={BackIcon} />}
-            sx={{
-              display: { xs: "inline-flex", sm: "none" },
-              width: 120,
-              marginBottom: 2,
-            }}
-            onClick={handleBack}
-          >
-            Back
-          </Button>
-          <Typography variant="h5" alignItems="center">
-            Add Entry
-          </Typography>
-        </Box>
-        <ControlButtonsContainer>
-          <ControlButtons
-            variant="contained"
-            color="error"
-            startIcon={<FontAwesomeSvgIcon icon={BackIcon} />}
-            sx={{ display: { xs: "none", sm: "inline-flex" } }}
-            onClick={handleBack}
-          >
-            Back
-          </ControlButtons>
-          <ControlButtons
-            variant="contained"
-            startIcon={<FontAwesomeSvgIcon icon={SaveIcon} />}
-            onClick={handleSubmit(handleSubmitForm)}
-          >
-            Save
-          </ControlButtons>
-        </ControlButtonsContainer>
-      </Header>
-
+    <ModuleContainer
+      headerText={props.matches?.id ? "Edit Entry" : "Add Entry"}
+      handleBack={handleBack}
+      headerControls={<HeaderControls />}
+    >
       <AddForm
         control={control}
         setValue={setValue}

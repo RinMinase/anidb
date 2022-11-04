@@ -25,11 +25,10 @@ import {
 
 import { faHeart as TotalRatingEmptyIcon } from "@fortawesome/free-regular-svg-icons";
 
-import { Button, GlobalLoaderContext } from "@components";
+import { Button, GlobalLoaderContext, ModuleContainer } from "@components";
 import { FullData } from "./types";
 
 import {
-  ModuleContainer,
   Header,
   Icon,
   TotalStyledRating,

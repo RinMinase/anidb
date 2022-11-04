@@ -26,15 +26,11 @@ import { Data } from "./types";
 import {
   Button,
   GlobalLoaderContext,
+  ModuleContainer,
   Quality,
   RewatchIndicator,
   Table,
 } from "@components";
-
-const ModuleContainer = styled(Box)({
-  paddingTop: 24,
-  paddingBottom: 24,
-});
 
 const SearchContainer = styled(Paper)({
   padding: 8,
