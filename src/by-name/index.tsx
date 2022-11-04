@@ -15,26 +15,28 @@ import {
   useTheme,
 } from "@mui/material";
 
-import { GlobalLoaderContext, Quality, Table } from "@components";
+import {
+  GlobalLoaderContext,
+  ModuleContainer,
+  Quality,
+  Table,
+} from "@components";
 import { Data, Stats } from "./types";
 
 type TableRowProps = {
   active: boolean;
 };
 
-const ModuleContainer = styled(Box)({
-  paddingTop: 24,
-  paddingBottom: 24,
-});
-
-const CustomTableRow = styled(Table.Row)<TableRowProps>(({ active, theme }) => ({
-  cursor: "pointer",
-  backgroundColor: active
-    ? theme.palette.mode === "light"
-      ? "rgba(25, 135, 84, 0.08)"
-      : "rgba(16, 84, 52, 0.16)"
-    : "",
-}));
+const CustomTableRow = styled(Table.Row)<TableRowProps>(
+  ({ active, theme }) => ({
+    cursor: "pointer",
+    backgroundColor: active
+      ? theme.palette.mode === "light"
+        ? "rgba(25, 135, 84, 0.08)"
+        : "rgba(16, 84, 52, 0.16)"
+      : "",
+  }),
+);
 
 const ByName = () => {
   const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
@@ -101,7 +103,7 @@ const ByName = () => {
   }, []);
 
   return (
-    <ModuleContainer>
+    <ModuleContainer headerText="Entries by Name">
       <Grid container spacing={2}>
         <Grid item xs={12} sm={7} md={3}>
           <Table.Container component={Paper}>
