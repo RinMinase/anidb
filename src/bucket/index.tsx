@@ -19,17 +19,13 @@ import {
 import {
   DashboardTile,
   GlobalLoaderContext,
+  ModuleContainer,
   Quality,
   Table,
 } from "@components";
 
 import { Bucket as SingleBucket, Buckets, Data, Stats } from "./types";
 import { green, orange, red } from "@mui/material/colors";
-
-const ModuleContainer = styled(Box)({
-  paddingTop: 24,
-  paddingBottom: 24,
-});
 
 const Dashboard = styled(Box)({
   marginBottom: 32,
@@ -99,7 +95,7 @@ const Bucket = () => {
   };
 
   return (
-    <ModuleContainer>
+    <ModuleContainer headerText="Bucket Lists">
       <Dashboard>
         <Grid container spacing={4}>
           {buckets &&
