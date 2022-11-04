@@ -6,17 +6,15 @@ import Swal from "sweetalert2";
 import { format } from "date-fns";
 import axios from "axios";
 
-import { Box, Button, Stack, styled, Typography } from "@mui/material";
+import { Button, Stack, styled } from "@mui/material";
 
-import {
-  faArrowLeftLong as BackIcon,
-  faFloppyDisk as SaveIcon,
-} from "@fortawesome/free-solid-svg-icons";
+import { faFloppyDisk as SaveIcon } from "@fortawesome/free-solid-svg-icons";
 
 import {
   ControlledField,
   ControlledDatepicker,
   GlobalLoaderContext,
+  ModuleContainer,
 } from "@components";
 
 import { defaultValues, Form, resolver } from "./validation";
@@ -26,31 +24,6 @@ type Props = {
     id: string;
   };
 };
-
-const ModuleContainer = styled(Box)({
-  paddingTop: 24,
-  paddingBottom: 24,
-});
-
-const Header = styled(Box)({
-  display: "flex",
-  marginBottom: 32,
-});
-
-const ControlButtonsContainer = styled(Box)(({ theme }) => ({
-  display: "flex",
-  flexDirection: "row",
-  alignItems: "center",
-
-  [theme.breakpoints.down("sm")]: {
-    flexDirection: "column-reverse",
-    alignItems: "unset",
-  },
-}));
-
-const ControlButtions = styled(Button)({
-  minWidth: 120,
-});
 
 const SaveButton = styled(Button)(({ theme }) => ({
   maxWidth: 150,
@@ -129,28 +102,11 @@ const MarathonAdd = (props: Props) => {
   }, []);
 
   return (
-    <ModuleContainer>
-      <Header>
-        <Typography
-          variant="h5"
-          alignItems="center"
-          display="flex"
-          flexGrow={1}
-        >
-          {props.matches?.id ? "Edit marathon" : "Add Marathon"}
-        </Typography>
-        <ControlButtonsContainer>
-          <ControlButtions
-            variant="contained"
-            color="error"
-            startIcon={<FontAwesomeSvgIcon icon={BackIcon} />}
-            onClick={handleBack}
-          >
-            Back
-          </ControlButtions>
-        </ControlButtonsContainer>
-      </Header>
-
+    <ModuleContainer
+      headerText={props.matches?.id ? "Edit marathon" : "Add Marathon"}
+      handleBack={handleBack}
+      largeGutter
+    >
       <Stack spacing={3} maxWidth={450}>
         <ControlledField
           name="title"
