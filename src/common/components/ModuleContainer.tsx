@@ -76,10 +76,7 @@ const ModuleContainer = (props: Props) => (
               variant="contained"
               color="error"
               startIcon={<FontAwesomeSvgIcon icon={BackIcon} />}
-              sx={{
-                width: 120,
-                marginBottom: 2,
-              }}
+              sx={{ width: 120 }}
               onClick={props.handleBack}
             >
               Back
