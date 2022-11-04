@@ -31,15 +31,11 @@ import {
   DashboardTile,
   GlobalLoaderContext,
   IconButton,
+  ModuleContainer,
 } from "@components";
 
 import { Dashboard } from "./_components";
 import { Data, Item, Sims } from "./types";
-
-const ModuleContainer = styled(Box)({
-  paddingTop: 24,
-  paddingBottom: 24,
-});
 
 const CustomMenuList = styled(MenuList)<{ component: any }>({
   marginTop: 12,
@@ -165,7 +161,7 @@ const BucketSim = () => {
   }, []);
 
   return (
-    <ModuleContainer>
+    <ModuleContainer headerText="Bucket Simulator">
       <Grid container spacing={4}>
         <Grid item xs={12} sm={4}>
           <Button
@@ -185,32 +181,32 @@ const BucketSim = () => {
                 <ListItemText>{item.description}</ListItemText>
                 <Tooltip title="Save as current bucket" placement="top">
                   <Box>
-                  <IconButton
-                    size="small"
-                    onClick={(e) => handleSaveClick(e, item.uuid)}
-                  >
-                    <FontAwesomeSvgIcon icon={SaveIcon} />
-                  </IconButton>
+                    <IconButton
+                      size="small"
+                      onClick={(e) => handleSaveClick(e, item.uuid)}
+                    >
+                      <FontAwesomeSvgIcon icon={SaveIcon} />
+                    </IconButton>
                   </Box>
                 </Tooltip>
                 <Tooltip title="Edit" placement="top">
                   <Box>
-                  <IconButton
-                    size="small"
-                    onClick={(e) => handleEditClick(e, item.uuid)}
-                  >
-                    <FontAwesomeSvgIcon icon={EditIcon} />
-                  </IconButton>
+                    <IconButton
+                      size="small"
+                      onClick={(e) => handleEditClick(e, item.uuid)}
+                    >
+                      <FontAwesomeSvgIcon icon={EditIcon} />
+                    </IconButton>
                   </Box>
                 </Tooltip>
                 <Tooltip title="Delete" placement="top">
                   <Box>
-                  <IconButton
-                    size="small"
-                    onClick={(e) => handleDeleteClick(e, item.uuid)}
-                  >
-                    <FontAwesomeSvgIcon icon={DeleteIcon} />
-                  </IconButton>
+                    <IconButton
+                      size="small"
+                      onClick={(e) => handleDeleteClick(e, item.uuid)}
+                    >
+                      <FontAwesomeSvgIcon icon={DeleteIcon} />
+                    </IconButton>
                   </Box>
                 </Tooltip>
               </MenuItem>

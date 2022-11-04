@@ -11,27 +11,6 @@ import {
 
 import { Button } from "@components";
 
-const ModuleContainer = styled(Box)({
-  paddingTop: 24,
-  paddingBottom: 24,
-});
-
-const Header = styled(Box)({
-  display: "flex",
-  marginBottom: 32,
-});
-
-const ControlButtonsContainer = styled(Box)(({ theme }) => ({
-  display: "flex",
-  flexDirection: "row",
-  alignItems: "center",
-
-  [theme.breakpoints.down("sm")]: {
-    flexDirection: "column-reverse",
-    alignItems: "unset",
-  },
-}));
-
 const ControlButtons = styled(Button)(({ theme }) => ({
   minWidth: 120,
   marginLeft: 16,
@@ -115,9 +94,6 @@ const CellField2 = styled(OutlinedInput)({
 });
 
 export {
-  ModuleContainer,
-  Header,
-  ControlButtonsContainer,
   ControlButtons,
   Dashboard,
   DescriptionContainer,

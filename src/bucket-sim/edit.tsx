@@ -6,7 +6,6 @@ import { useFieldArray, useForm } from "react-hook-form";
 import axios from "axios";
 
 import {
-  Box,
   FormControl,
   FormHelperText,
   Grid,
@@ -14,7 +13,6 @@ import {
   LinearProgress,
   Paper,
   TextField,
-  Typography,
 } from "@mui/material";
 
 import { green, orange, red } from "@mui/material/colors";
@@ -32,10 +30,10 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import {
-  Button,
   ButtonLoading,
   DashboardTile,
   GlobalLoaderContext,
+  ModuleContainer,
   Table,
 } from "@components";
 
@@ -45,14 +43,11 @@ import {
   CellField2,
   CellLabel,
   ControlButtons,
-  ControlButtonsContainer,
   CustomCell,
   CustomCellButton,
   CustomIconButton,
   Dashboard,
   DescriptionContainer,
-  Header,
-  ModuleContainer,
 } from "./_components";
 
 import { Form, resolver } from "./validation";
@@ -107,7 +102,9 @@ const BucketSimEdit = (props: Props) => {
         });
 
         const {
-          data: { data: { data } },
+          data: {
+            data: { data },
+          },
         } = await axios.get(`/bucket-sims/${props.matches.id}`);
 
         const newBuckets: Data = data.map((item: Item) => {
@@ -179,6 +176,40 @@ const BucketSimEdit = (props: Props) => {
     });
   };
 
+  const HeaderControls = () => (
+    <>
+      <ControlButtons
+        variant="contained"
+        color="error"
+        startIcon={<FontAwesomeSvgIcon icon={BackIcon} />}
+        sx={{ display: { xs: "none", sm: "inline-flex" } }}
+        onClick={handleBack}
+      >
+        Back
+      </ControlButtons>
+      {!isLoading && (
+        <>
+          <ControlButtons
+            variant="contained"
+            startIcon={<FontAwesomeSvgIcon icon={AddIcon} />}
+            onClick={() => {
+              append({ from: "", to: "", size: null });
+            }}
+          >
+            Add
+          </ControlButtons>
+          <ControlButtons
+            variant="contained"
+            startIcon={<FontAwesomeSvgIcon icon={SaveIcon} />}
+            onClick={handleSubmit(handleSubmitForm)}
+          >
+            Save
+          </ControlButtons>
+        </>
+      )}
+    </>
+  );
+
   useEffect(() => {
     toggleLoader(true);
 
@@ -219,59 +250,11 @@ const BucketSimEdit = (props: Props) => {
   }, []);
 
   return (
-    <ModuleContainer>
-      <Header>
-        <Box display="flex" flexDirection="column" flexGrow={1}>
-          <Button
-            variant="contained"
-            color="error"
-            startIcon={<FontAwesomeSvgIcon icon={BackIcon} />}
-            sx={{
-              display: { xs: "inline-flex", sm: "none" },
-              width: 120,
-              marginBottom: 2,
-            }}
-            onClick={handleBack}
-          >
-            Back
-          </Button>
-          <Typography variant="h5" alignItems="center">
-            Edit Bucket Simulation
-          </Typography>
-        </Box>
-        <ControlButtonsContainer>
-          <ControlButtons
-            variant="contained"
-            color="error"
-            startIcon={<FontAwesomeSvgIcon icon={BackIcon} />}
-            sx={{ display: { xs: "none", sm: "inline-flex" } }}
-            onClick={handleBack}
-          >
-            Back
-          </ControlButtons>
-          {!isLoading && (
-            <>
-              <ControlButtons
-                variant="contained"
-                startIcon={<FontAwesomeSvgIcon icon={AddIcon} />}
-                onClick={() => {
-                  append({ from: "", to: "", size: null });
-                }}
-              >
-                Add
-              </ControlButtons>
-              <ControlButtons
-                variant="contained"
-                startIcon={<FontAwesomeSvgIcon icon={SaveIcon} />}
-                onClick={handleSubmit(handleSubmitForm)}
-              >
-                Save
-              </ControlButtons>
-            </>
-          )}
-        </ControlButtonsContainer>
-      </Header>
-
+    <ModuleContainer
+      headerText="Edit Bucket Simulation"
+      handleBack={handleBack}
+      headerControls={<HeaderControls />}
+    >
       {!isLoading && (
         <Grid item xs={12} sm={8}>
           <Dashboard>
