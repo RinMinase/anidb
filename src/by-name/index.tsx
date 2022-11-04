@@ -6,14 +6,7 @@ import {
   scroller,
 } from "react-scroll";
 
-import {
-  Box,
-  Grid,
-  Paper,
-  styled,
-  useMediaQuery,
-  useTheme,
-} from "@mui/material";
+import { Grid, Paper, styled, useMediaQuery, useTheme } from "@mui/material";
 
 import {
   GlobalLoaderContext,
