@@ -5,7 +5,6 @@ import { FontAwesomeSvgIcon } from "react-fontawesome-slim";
 import Swal from "sweetalert2";
 
 import {
-  Box,
   Grid,
   ListItemText,
   MenuItem,
@@ -23,15 +22,11 @@ import {
   Button,
   GlobalLoaderContext,
   IconButton,
+  ModuleContainer,
   Table,
 } from "@components";
 
 import { Catalogs, Data } from "./types";
-
-const ModuleContainer = styled(Box)({
-  paddingTop: 24,
-  paddingBottom: 24,
-});
 
 const CustomMenuList = styled(MenuList)<{ component: any }>({
   marginTop: 12,
@@ -153,7 +148,7 @@ const Catalog = () => {
   }, []);
 
   return (
-    <ModuleContainer>
+    <ModuleContainer headerText="Catalogs">
       <Grid container spacing={2}>
         <Grid item xs={12} sm={5} md={3}>
           <Button

@@ -6,25 +6,15 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import { stringify } from "qs";
 
-import {
-  Box,
-  Button,
-  Grid,
-  styled,
-  Typography,
-  useMediaQuery,
-  useTheme,
-} from "@mui/material";
+import { Button, Grid, styled, useMediaQuery, useTheme } from "@mui/material";
 
-import {
-  faArrowLeftLong as BackIcon,
-  faFloppyDisk as SaveIcon,
-} from "@fortawesome/free-solid-svg-icons";
+import { faFloppyDisk as SaveIcon } from "@fortawesome/free-solid-svg-icons";
 
 import {
   ControlledField,
-  GlobalLoaderContext,
   ControlledSelect,
+  GlobalLoaderContext,
+  ModuleContainer,
 } from "@components";
 
 import { defaultValues, Form, resolver } from "./validation-multi";
@@ -35,31 +25,6 @@ type Props = {
     id: string;
   };
 };
-
-const ModuleContainer = styled(Box)({
-  paddingTop: 24,
-  paddingBottom: 24,
-});
-
-const Header = styled(Box)({
-  display: "flex",
-  marginBottom: 32,
-});
-
-const ControlButtonsContainer = styled(Box)(({ theme }) => ({
-  display: "flex",
-  flexDirection: "row",
-  alignItems: "center",
-
-  [theme.breakpoints.down("sm")]: {
-    flexDirection: "column-reverse",
-    alignItems: "unset",
-  },
-}));
-
-const ControlButtions = styled(Button)({
-  minWidth: 120,
-});
 
 const SaveButton = styled(Button)(({ theme }) => ({
   marginTop: 18,
@@ -182,33 +147,15 @@ const CatalogMulti = (props: Props) => {
         .catch((err) => console.error(err))
         .finally(() => toggleLoader(false));
     }
-  }, [])
+  }, []);
 
   return (
-    <ModuleContainer>
-      <Header>
-        <Typography
-          variant="h5"
-          alignItems="center"
-          display="flex"
-          flexGrow={1}
-        >
-          {props.matches?.id
-            ? "Bulk Edit Partial Entry"
-            : "Bulk Add Partial Entry"}
-        </Typography>
-        <ControlButtonsContainer>
-          <ControlButtions
-            variant="contained"
-            color="error"
-            startIcon={<FontAwesomeSvgIcon icon={BackIcon} />}
-            onClick={handleBack}
-          >
-            Back
-          </ControlButtions>
-        </ControlButtonsContainer>
-      </Header>
-
+    <ModuleContainer
+      handleBack={handleBack}
+      headerText={
+        props.matches?.id ? "Bulk Edit Partial Entry" : "Bulk Add Partial Entry"
+      }
+    >
       <Grid container spacing={2} sx={{ mb: 2 }}>
         <Grid item xs={12} sm={4} md={3}>
           <ControlledSelect
