@@ -40,7 +40,7 @@ import { Data, Sequences, Stats } from "./types";
 let chartElement: Chart;
 Chart.register(...registerables, ChartDataLabels);
 
-const Dashboard = styled(Box)({
+const DashboardContainer = styled(Box)({
   marginBottom: 32,
 });
 
@@ -175,6 +175,44 @@ const Marathon = () => {
     }
   };
 
+  const DashboardTiles = () => (
+    <>
+      <Grid item xs={12} sm={6} md={3}>
+        <DashboardTile
+          icon={<FontAwesomeSvgIcon size="2x" icon={TitleCountIcon} />}
+          iconColor="#ff9800"
+          heading="Titles per day"
+          value={stats.titles_per_day}
+          footer={`Episodes per day: ${stats.eps_per_day}`}
+        />
+      </Grid>
+      <Grid item xs={12} sm={6} md={3}>
+        <DashboardTile
+          icon={<FontAwesomeSvgIcon size="2x" icon={TotalCountIcon} />}
+          iconColor="#2196f3"
+          heading="Total titles"
+          value={stats.total_titles}
+          footers={[
+            `Total episodes: ${stats.total_eps}`,
+            `Total size: ${stats.total_size}`,
+          ]}
+        />
+      </Grid>
+      <Grid item xs={12} sm={6} md={3}>
+        <DashboardTile
+          icon={<FontAwesomeSvgIcon size="2x" icon={DayCountIcon} />}
+          iconColor="#009688"
+          heading="Days"
+          value={stats.total_days}
+          footers={[
+            `Starts at: ${stats.start_date}`,
+            `Ends at: ${stats.end_date}`,
+          ]}
+        />
+      </Grid>
+    </>
+  );
+
   useEffect(() => {
     if (document.getElementById("graph")) {
       const canvas = document.getElementById("graph") as HTMLCanvasElement;
@@ -222,50 +260,22 @@ const Marathon = () => {
   }, [chartData]);
 
   return (
-    <ModuleContainer headerText="Marathons">
-      <Dashboard>
-        <Grid container spacing={4}>
-          <Grid item xs={12} sm={6} md={3}>
-            <DashboardTile
-              icon={<FontAwesomeSvgIcon size="2x" icon={TitleCountIcon} />}
-              iconColor="#ff9800"
-              heading="Titles per day"
-              value={stats.titles_per_day}
-              footer={`Episodes per day: ${stats.eps_per_day}`}
-            />
-          </Grid>
-          <Grid item xs={12} sm={6} md={3}>
-            <DashboardTile
-              icon={<FontAwesomeSvgIcon size="2x" icon={TotalCountIcon} />}
-              iconColor="#2196f3"
-              heading="Total titles"
-              value={stats.total_titles}
-              footers={[
-                `Total episodes: ${stats.total_eps}`,
-                `Total size: ${stats.total_size}`,
-              ]}
-            />
-          </Grid>
-          <Grid item xs={12} sm={6} md={3}>
-            <DashboardTile
-              icon={<FontAwesomeSvgIcon size="2x" icon={DayCountIcon} />}
-              iconColor="#009688"
-              heading="Days"
-              value={stats.total_days}
-              footers={[
-                `Starts at: ${stats.start_date}`,
-                `Ends at: ${stats.end_date}`,
-              ]}
-            />
-          </Grid>
-          <Grid item xs={12} sm={6} md={3}>
-            <ChartContainer>
-              <canvas id="graph" />
-            </ChartContainer>
-          </Grid>
-        </Grid>
-      </Dashboard>
+    <ModuleContainer
+      headerText="Marathons"
+      dashboard={
+        <DashboardContainer>
+          <Grid container spacing={4}>
+            <DashboardTiles />
 
+            <Grid item xs={12} sm={6} md={3}>
+              <ChartContainer>
+                <canvas id="graph" />
+              </ChartContainer>
+            </Grid>
+          </Grid>
+        </DashboardContainer>
+      }
+    >
       <Grid container spacing={2}>
         <Grid item xs={12} sm={5} md={3}>
           <Button
