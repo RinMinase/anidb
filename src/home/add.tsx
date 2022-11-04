@@ -66,7 +66,7 @@ const HomeAdd = (props: Props) => {
     toggleLoader(true);
 
     try {
-      const { duration_hrs, duration_mins, duration_secs } = formdata;
+      const { duration_hrs, duration_mins, duration_secs, ...rest } = formdata;
 
       let duration = 0;
       if (duration_hrs) duration += duration_hrs * 3600;
@@ -74,7 +74,7 @@ const HomeAdd = (props: Props) => {
       if (duration_secs) duration += duration_secs;
 
       const body = {
-        ...formdata,
+        ...rest,
         date_finished: format(formdata.date_finished, "yyyy-MM-dd"),
         codec_hdr: formdata.codec_hdr ? 1 : 0,
         duration,
