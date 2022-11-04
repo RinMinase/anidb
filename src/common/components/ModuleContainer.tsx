@@ -43,7 +43,7 @@ const ModuleContainer = (props: Props) => (
     {props.headerText && (
       <Header largeGutter={props.largeGutter}>
         <Box display="flex" flexDirection="column" flexGrow={1}>
-          {!!props.handleBack && (
+          {!!props.handleBack && props.headerControls ? (
             <Button
               variant="contained"
               color="error"
@@ -57,14 +57,35 @@ const ModuleContainer = (props: Props) => (
             >
               Back
             </Button>
-          )}
+          ) : null}
+
           <Typography variant="h5" alignItems="center">
             {props.headerText}
           </Typography>
         </Box>
-        <ControlButtonsContainer>
-          {props.headerControls}
-        </ControlButtonsContainer>
+
+        {props.headerControls ? (
+          <ControlButtonsContainer>
+            {props.headerControls}
+          </ControlButtonsContainer>
+        ) : null}
+
+        {!props.headerControls && !!props.handleBack ? (
+          <ControlButtonsContainer>
+            <Button
+              variant="contained"
+              color="error"
+              startIcon={<FontAwesomeSvgIcon icon={BackIcon} />}
+              sx={{
+                width: 120,
+                marginBottom: 2,
+              }}
+              onClick={props.handleBack}
+            >
+              Back
+            </Button>
+          </ControlButtonsContainer>
+        ) : null}
       </Header>
     )}
 
