@@ -2,12 +2,7 @@ import { useContext, useEffect, useState } from "preact/hooks";
 import axios from "axios";
 import { FontAwesomeSvgIcon } from "react-fontawesome-slim";
 
-import {
-  Box,
-  Grid,
-  Paper,
-  styled,
-} from "@mui/material";
+import { Box, Grid, Paper, styled } from "@mui/material";
 
 import { faClock as LastCountIcon } from "@fortawesome/free-regular-svg-icons";
 
@@ -20,18 +15,14 @@ import {
 import {
   DashboardTile,
   GlobalLoaderContext,
+  ModuleContainer,
   Quality,
   RewatchIndicator,
   Table,
 } from "@components";
 import { Data, Stats } from "./types";
 
-const ModuleContainer = styled(Box)({
-  paddingTop: 24,
-  paddingBottom: 24,
-});
-
-const Dashboard = styled(Box)({
+const DashboardContainer = styled(Box)({
   marginBottom: 32,
 });
 
@@ -56,6 +47,49 @@ const LastWatch = () => {
     epsPerDay: 0,
   });
 
+  const Dashboard = () => (
+    <DashboardContainer>
+      <Grid container spacing={4}>
+        <Grid item xs={12} sm={6} md={3}>
+          <DashboardTile
+            icon={<FontAwesomeSvgIcon size="2x" icon={TotalCountIcon} />}
+            iconColor="#ff9800"
+            heading="Total Episodes"
+            value={stats.totalEps}
+            footer={`Total Titles: ${stats.totalTitles}`}
+          />
+        </Grid>
+        <Grid item xs={12} sm={6} md={3}>
+          <DashboardTile
+            icon={<FontAwesomeSvgIcon size="2x" icon={LastCountIcon} />}
+            iconColor="#2196f3"
+            heading="Days since last entry"
+            value={stats.daysLastEntry}
+            footer={`Days since oldest entry: ${stats.daysOldestEntry}`}
+          />
+        </Grid>
+        <Grid item xs={12} sm={6} md={3}>
+          <DashboardTile
+            icon={<FontAwesomeSvgIcon size="2x" icon={WeeklyCountIcon} />}
+            iconColor="#009688"
+            heading="Titles per week"
+            value={stats.titlesPerWeek}
+            footer={`One-Cour (12 Eps) per week: ${stats.coursPerWeek}`}
+          />
+        </Grid>
+        <Grid item xs={12} sm={6} md={3}>
+          <DashboardTile
+            icon={<FontAwesomeSvgIcon size="2x" icon={DailyCountIcon} />}
+            iconColor="#00bcd4"
+            heading="Episodes per day"
+            value={stats.epsPerDay}
+            footer={`Episodes per week: ${stats.epsPerWeek}`}
+          />
+        </Grid>
+      </Grid>
+    </DashboardContainer>
+  );
+
   useEffect(() => {
     toggleLoader(true);
 
@@ -73,48 +107,7 @@ const LastWatch = () => {
   }, []);
 
   return (
-    <ModuleContainer>
-      <Dashboard>
-        <Grid container spacing={4}>
-          <Grid item xs={12} sm={6} md={3}>
-            <DashboardTile
-              icon={<FontAwesomeSvgIcon size="2x" icon={TotalCountIcon} />}
-              iconColor="#ff9800"
-              heading="Total Episodes"
-              value={stats.totalEps}
-              footer={`Total Titles: ${stats.totalTitles}`}
-            />
-          </Grid>
-          <Grid item xs={12} sm={6} md={3}>
-            <DashboardTile
-              icon={<FontAwesomeSvgIcon size="2x" icon={LastCountIcon} />}
-              iconColor="#2196f3"
-              heading="Days since last entry"
-              value={stats.daysLastEntry}
-              footer={`Days since oldest entry: ${stats.daysOldestEntry}`}
-            />
-          </Grid>
-          <Grid item xs={12} sm={6} md={3}>
-            <DashboardTile
-              icon={<FontAwesomeSvgIcon size="2x" icon={WeeklyCountIcon} />}
-              iconColor="#009688"
-              heading="Titles per week"
-              value={stats.titlesPerWeek}
-              footer={`One-Cour (12 Eps) per week: ${stats.coursPerWeek}`}
-            />
-          </Grid>
-          <Grid item xs={12} sm={6} md={3}>
-            <DashboardTile
-              icon={<FontAwesomeSvgIcon size="2x" icon={DailyCountIcon} />}
-              iconColor="#00bcd4"
-              heading="Episodes per day"
-              value={stats.epsPerDay}
-              footer={`Episodes per week: ${stats.epsPerWeek}`}
-            />
-          </Grid>
-        </Grid>
-      </Dashboard>
-
+    <ModuleContainer headerText="Last Watched" dashboard={<Dashboard />}>
       <Table.Container component={Paper}>
         <CustomTable>
           <Table.Head>
