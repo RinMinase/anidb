@@ -10,6 +10,7 @@ type Props = {
   headerControls?: any;
   handleBack?: () => void;
   largeGutter?: boolean;
+  dashboard?: any;
   children: any;
 };
 
@@ -40,6 +41,8 @@ const ControlButtonsContainer = styled(Box)(({ theme }) => ({
 
 const ModuleContainer = (props: Props) => (
   <Container>
+    {props.dashboard}
+
     {props.headerText && (
       <Header largeGutter={props.largeGutter}>
         <Box display="flex" flexDirection="column" flexGrow={1}>
