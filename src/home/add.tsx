@@ -214,6 +214,7 @@ const HomeAdd = (props: Props) => {
       headerText={props.matches?.id ? "Edit Entry" : "Add Entry"}
       handleBack={handleBack}
       headerControls={<HeaderControls />}
+      largeGutter
     >
       <AddForm
         control={control}
