@@ -181,9 +181,9 @@ const Marathon = () => {
         <DashboardTile
           icon={<FontAwesomeSvgIcon size="2x" icon={TitleCountIcon} />}
           iconColor="#ff9800"
-          heading="Titles per day"
-          value={stats.titles_per_day}
-          footer={`Episodes per day: ${stats.eps_per_day}`}
+          heading="Episodes per day"
+          value={stats.eps_per_day}
+          footer={`Titles per day: ${stats.titles_per_day}`}
         />
       </Grid>
       <Grid item xs={12} sm={6} md={3}>
