@@ -1,16 +1,11 @@
 import { useContext, useEffect, useState } from "preact/hooks";
 import axios from "axios";
 
-import { Box, Chip, Paper, styled } from "@mui/material";
+import { Chip, Paper, styled } from "@mui/material";
 
-import { GlobalLoaderContext, Table } from "@components";
+import { GlobalLoaderContext, ModuleContainer, Table } from "@components";
 
 import { Data } from "./types";
-
-const ModuleContainer = styled(Box)({
-  paddingTop: 24,
-  paddingBottom: 24,
-});
 
 const CustomTable = styled(Table.Element)({
   minWidth: 650,
@@ -45,7 +40,7 @@ const Logs = () => {
   }, []);
 
   return (
-    <ModuleContainer>
+    <ModuleContainer headerText="Logs">
       <Table.Container component={Paper}>
         <CustomTable size="small">
           <Table.Head>
