@@ -21,14 +21,14 @@ import {
   faTree as SpringIcon,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { GlobalLoaderContext, Quality, Table } from "@components";
+import {
+  GlobalLoaderContext,
+  ModuleContainer,
+  Quality,
+  Table,
+} from "@components";
 import { Data, YearData } from "./types";
 import { Stack } from "@mui/system";
-
-const ModuleContainer = styled(Box)({
-  paddingTop: 24,
-  paddingBottom: 24,
-});
 
 const CustomMenuList = styled(MenuList)<{ component: any }>({
   padding: 0,
@@ -169,7 +169,7 @@ const ByYear = () => {
   );
 
   return (
-    <ModuleContainer>
+    <ModuleContainer headerText="Entries by Year">
       <Grid container spacing={2}>
         <Grid item xs={12} sm={5} md={3}>
           <CustomMenuList component={Paper}>
