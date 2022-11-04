@@ -6,7 +6,6 @@ import Swal from "sweetalert2";
 
 import {
   Backdrop,
-  Box,
   DialogContent,
   DialogTitle,
   Grid,
@@ -28,16 +27,12 @@ import {
   ControlledField,
   GlobalLoaderContext,
   IconButton,
+  ModuleContainer,
   Table,
 } from "@components";
 
 import { defaultValues, Form, resolver } from "./validation";
 import { Data, Item } from "./types";
-
-const ModuleContainer = styled(Box)({
-  paddingTop: 24,
-  paddingBottom: 24,
-});
 
 const CustomTable = styled(Table.Element)({
   minWidth: 650,
@@ -205,7 +200,7 @@ const VideoCodec = () => {
   }, []);
 
   return (
-    <ModuleContainer>
+    <ModuleContainer headerText="Video Codecs">
       <Grid container spacing={2}>
         <Grid item xs={12} sm={5} md={3}>
           <Stack spacing={2}>
