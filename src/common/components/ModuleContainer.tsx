@@ -9,7 +9,12 @@ type Props = {
   headerText?: string;
   headerControls?: any;
   handleBack?: () => void;
+  largeGutter?: boolean;
   children: any;
+};
+
+type HeaderProps = {
+  largeGutter?: boolean;
 };
 
 const Container = styled(Box)({
@@ -17,10 +22,10 @@ const Container = styled(Box)({
   paddingBottom: 24,
 });
 
-const Header = styled(Box)({
+const Header = styled(Box)<HeaderProps>(({ largeGutter }) => ({
   display: "flex",
-  marginBottom: 32,
-});
+  marginBottom: largeGutter ? 32 : 16,
+}));
 
 const ControlButtonsContainer = styled(Box)(({ theme }) => ({
   display: "flex",
@@ -36,7 +41,7 @@ const ControlButtonsContainer = styled(Box)(({ theme }) => ({
 const ModuleContainer = (props: Props) => (
   <Container>
     {props.headerText && (
-      <Header>
+      <Header largeGutter={props.largeGutter}>
         <Box display="flex" flexDirection="column" flexGrow={1}>
           {!!props.handleBack && (
             <Button
