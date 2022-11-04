@@ -4,6 +4,8 @@ import { FontAwesomeSvgIcon } from "react-fontawesome-slim";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import axios from "axios";
+import { format } from "date-fns";
+import { isEmpty } from "lodash-es";
 
 import { styled } from "@mui/material";
 
@@ -16,7 +18,8 @@ import { Button, GlobalLoaderContext, ModuleContainer } from "@components";
 import { defaultValues, Form, resolver } from "./validation";
 
 import AddForm from "./components/AddForm";
-import { format } from "date-fns";
+import AutofillHelper from "./components/AutofillHelper";
+import { AutofillProps } from "./types";
 
 type Props = {
   matches?: {
@@ -38,6 +41,8 @@ const HomeAdd = (props: Props) => {
 
   const [isDropdownLoading, setDropdownLoading] = useState(false);
   const [hasEntryId, setHasEntryId] = useState(false);
+
+  const [autofillValues, setAutofillValues] = useState<AutofillProps>({});
 
   const {
     control,
@@ -198,6 +203,21 @@ const HomeAdd = (props: Props) => {
   );
 
   useEffect(() => {
+    if (!isEmpty(autofillValues)) {
+      console.log("af", autofillValues);
+
+      setValue("episodes", autofillValues.episodes);
+      setValue("encoder_video", autofillValues.encoderVideo);
+      setValue("encoder_audio", autofillValues.encoderAudio);
+      setValue("encoder_subs", autofillValues.encoderSub);
+      setValue("filesize", autofillValues.filesize);
+      setValue("duration_hrs", autofillValues.durationHr);
+      setValue("duration_mins", autofillValues.durationMin);
+      setValue("duration_secs", autofillValues.durationSec);
+    }
+  }, [autofillValues]);
+
+  useEffect(() => {
     if (hasEntryId && !isDropdownLoading) {
       fetchEntryData();
     }
@@ -222,6 +242,8 @@ const HomeAdd = (props: Props) => {
         errors={errors}
         setDropdownLoading={setDropdownLoading}
       />
+
+      <AutofillHelper setAutofillValues={setAutofillValues} />
     </ModuleContainer>
   );
 };

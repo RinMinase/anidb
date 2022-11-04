@@ -47,7 +47,7 @@ export type FullData = {
   offquels?: Array<{
     id: string;
     title: string;
-  }>
+  }>;
 
   encoder?: string;
   encoderVideo?: string | null;
@@ -78,4 +78,15 @@ export type FullData = {
   };
 
   image?: string;
+};
+
+export type AutofillProps = {
+  encoderVideo?: string;
+  encoderAudio?: string;
+  encoderSub?: string;
+  episodes?: number;
+  filesize?: number;
+  durationSec?: number;
+  durationMin?: number;
+  durationHr?: number;
 };
