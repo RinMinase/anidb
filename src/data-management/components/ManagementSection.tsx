@@ -46,6 +46,7 @@ const ManagementSection = (props: Props) => {
     },
     maxFiles: 1,
   };
+
   const { acceptedFiles, fileRejections, getRootProps, getInputProps } =
     useDropzone(dzConfig);
 
@@ -102,23 +103,23 @@ const ManagementSection = (props: Props) => {
         ) : null}
 
         <ImportContainer spacing={2} direction="row" justifyContent="center">
-        <Button
-          variant="contained"
-          endIcon={<FontAwesomeSvgIcon icon={ImportIcon} />}
-          disabled={!acceptedFiles.length || uploading}
-          onClick={handleImport}
-        >
-          Import All Data
-        </Button>
+          <Button
+            variant="contained"
+            endIcon={<FontAwesomeSvgIcon icon={ImportIcon} />}
+            disabled={!acceptedFiles.length || uploading}
+            onClick={handleImport}
+          >
+            Import All Data
+          </Button>
 
-        <Button
-          variant="contained"
-          endIcon={<FontAwesomeSvgIcon icon={ImportIcon} />}
-          disabled={!acceptedFiles.length || uploading}
-          onClick={handleImport}
-        >
-          Import Groups
-        </Button>
+          <Button
+            variant="contained"
+            endIcon={<FontAwesomeSvgIcon icon={ImportIcon} />}
+            disabled={!acceptedFiles.length || uploading}
+            onClick={handleImport}
+          >
+            Import Groups
+          </Button>
         </ImportContainer>
       </Grid>
       <CustomGrid item md={4}>
