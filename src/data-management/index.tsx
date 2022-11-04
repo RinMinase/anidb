@@ -3,18 +3,13 @@ import axios from "axios";
 
 import { Box, LinearProgress, styled, Typography } from "@mui/material";
 
-import { GlobalLoaderContext } from "@components";
+import { GlobalLoaderContext, ModuleContainer } from "@components";
 
 import DataSection from "./components/DataSection";
 import GraphSection from "./components/GraphSection";
 import ManagementSection from "./components/ManagementSection";
 import StatsSection from "./components/StatsSection";
 import { Data, Graph, Stats } from "./types";
-
-const ModuleContainer = styled(Box)({
-  paddingTop: 24,
-  paddingBottom: 24,
-});
 
 const Label = styled(Typography)({
   paddingTop: 24,
