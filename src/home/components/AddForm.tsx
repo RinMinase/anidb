@@ -3,7 +3,14 @@ import { Control, FieldErrorsImpl, UseFormSetValue } from "react-hook-form";
 import axios from "axios";
 import DebouncePromise from "awesome-debounce-promise";
 
-import { FormGroup, FormHelperText, Grid, InputAdornment, Stack, styled } from "@mui/material";
+import {
+  FormGroup,
+  FormHelperText,
+  Grid,
+  InputAdornment,
+  Stack,
+  styled,
+} from "@mui/material";
 
 import {
   ControlledAutocomplete,
@@ -24,11 +31,6 @@ type Props = {
   setDropdownLoading: StateUpdater<boolean>;
 };
 
-type TitleList = Array<{
-  value: string;
-  label: string;
-}>;
-
 const seasons = ["Winter", "Spring", "Summer", "Fall"];
 
 const currYear = new Date().getFullYear();
@@ -38,22 +40,7 @@ const years = Array.from({ length: 25 }, (_, i) => ({
   value: currYear - i,
 }));
 
-const titles = [
-  {
-    value: "1de",
-    label: "one",
-  },
-  {
-    value: "2ab",
-    label: "two",
-  },
-  {
-    value: "3cd",
-    label: "three",
-  },
-];
-
-const searchAPI = (needle: string) =>
+const searchAPI = (needle?: string) =>
   axios.get("/entries/titles", {
     params: {
       needle,
@@ -98,11 +85,12 @@ const AddForm = (props: Props) => {
   const [qualities, setQualities] = useState<OptionsKeyedProps>([]);
   const [audioCodecs, setAudioCodecs] = useState<OptionsKeyedProps>([]);
   const [videoCodecs, setVideoCodecs] = useState<OptionsKeyedProps>([]);
+  const [groups, setGroups] = useState<Array<string>>([]);
 
   const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
 
-  const [prequels, setPrequels] = useState<TitleList>([]);
-  const [sequels, setSequels] = useState<TitleList>([]);
+  const [prequels, setPrequels] = useState<Array<string>>([]);
+  const [sequels, setSequels] = useState<Array<string>>([]);
   const [acLoading, setACLoading] = useState({
     prequel: false,
     sequel: false,
@@ -148,6 +136,14 @@ const AddForm = (props: Props) => {
     );
   };
 
+  const fetchGroups = async () => {
+    const {
+      data: { data },
+    } = await axios.get("/groups/names");
+
+    setGroups([...data]);
+  };
+
   const handleChange = (e: any, type: "prequel" | "sequel") => {
     const element = e.target as HTMLInputElement;
     const val = element.value;
@@ -157,24 +153,12 @@ const AddForm = (props: Props) => {
 
     searchAPIDebounced(val).then(({ data: { data } }) => {
       if (type === "prequel") {
-        setPrequels(
-          data.map((item: { id: string; title: string }) => ({
-            value: item.id,
-            label: item.title,
-          })),
-        );
-
+        setPrequels([...data]);
         setACLoading((prev) => ({ ...prev, prequel: false }));
       }
 
       if (type === "sequel") {
-        setSequels(
-          data.map((item: { id: string; title: string }) => ({
-            value: item.id,
-            label: item.title,
-          })),
-        );
-
+        setSequels([...data]);
         setACLoading((prev) => ({ ...prev, sequel: false }));
       }
     });
@@ -184,10 +168,17 @@ const AddForm = (props: Props) => {
     toggleLoader(true);
     props.setDropdownLoading(true);
 
-    fetchQualities().then(() => {
-      fetchCodecs().then(() => {
-        toggleLoader(false);
-        props.setDropdownLoading(false);
+    searchAPI().then(({ data: { data } }) => {
+      setPrequels([...data]);
+      setSequels([...data]);
+
+      fetchGroups().finally(() => {
+        fetchQualities().finally(() => {
+          fetchCodecs().finally(() => {
+            toggleLoader(false);
+            props.setDropdownLoading(false);
+          });
+        });
       });
     });
   }, []);
@@ -372,13 +363,19 @@ const AddForm = (props: Props) => {
             />
           </Stack>
           {errors.duration_hrs && (
-            <FormHelperText error>{errors.duration_hrs?.message}</FormHelperText>
+            <FormHelperText error>
+              {errors.duration_hrs?.message}
+            </FormHelperText>
           )}
           {errors.duration_mins && (
-            <FormHelperText error>{errors.duration_mins?.message}</FormHelperText>
+            <FormHelperText error>
+              {errors.duration_mins?.message}
+            </FormHelperText>
           )}
           {errors.duration_secs && (
-            <FormHelperText error>{errors.duration_secs?.message}</FormHelperText>
+            <FormHelperText error>
+              {errors.duration_secs?.message}
+            </FormHelperText>
           )}
         </DurationContainer>
       </Grid>
@@ -407,12 +404,12 @@ const AddForm = (props: Props) => {
 
       <Grid item xs={12} sm={6}>
         <ControlledAutocomplete
-          name="prequel_id"
+          name="prequel_title"
           label="Prequel"
           options={prequels}
           control={control}
-          error={!!errors.prequel_id}
-          helperText={errors.prequel_id?.message}
+          error={!!errors.prequel_title}
+          helperText={errors.prequel_title?.message}
           disabled={isLoading}
           loadingContents={acLoading.prequel}
           onChange={(e: any) => handleChange(e, "prequel")}
@@ -421,12 +418,12 @@ const AddForm = (props: Props) => {
       </Grid>
       <Grid item xs={12} sm={6}>
         <ControlledAutocomplete
-          name="sequel_id"
+          name="sequel_title"
           label="Sequel"
           options={sequels}
           control={control}
-          error={!!errors.sequel_id}
-          helperText={errors.sequel_id?.message}
+          error={!!errors.sequel_title}
+          helperText={errors.sequel_title?.message}
           disabled={isLoading}
           loadingContents={acLoading.sequel}
           onChange={(e: any) => handleChange(e, "sequel")}
@@ -438,7 +435,7 @@ const AddForm = (props: Props) => {
         <ControlledAutocomplete
           name="encoder_video"
           label="Video Encoder"
-          options={titles}
+          options={groups}
           control={control}
           error={!!errors.encoder_video}
           helperText={errors.encoder_video?.message}
@@ -451,7 +448,7 @@ const AddForm = (props: Props) => {
         <ControlledAutocomplete
           name="encoder_audio"
           label="Audio Encoder"
-          options={titles}
+          options={groups}
           control={control}
           error={!!errors.encoder_audio}
           helperText={errors.encoder_audio?.message}
@@ -464,7 +461,7 @@ const AddForm = (props: Props) => {
         <ControlledAutocomplete
           name="encoder_subs"
           label="Subtitle Encoder"
-          options={titles}
+          options={groups}
           control={control}
           error={!!errors.encoder_subs}
           helperText={errors.encoder_subs?.message}

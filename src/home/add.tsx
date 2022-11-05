@@ -134,6 +134,8 @@ const HomeAdd = (props: Props) => {
         id_codec_video,
         id_codec_audio,
         codecHDR,
+        prequelTitle,
+        sequelTitle,
       } = partialsData.data.data;
 
       let hrs = 0;
@@ -170,6 +172,9 @@ const HomeAdd = (props: Props) => {
         encoder_audio: encoderAudio,
         encoder_subs: encoderSubs,
 
+        prequel_title: prequelTitle || null,
+        sequel_title: sequelTitle || null,
+
         id_codec_video,
         id_codec_audio,
         codec_hdr: !!codecHDR,
@@ -204,8 +209,6 @@ const HomeAdd = (props: Props) => {
 
   useEffect(() => {
     if (!isEmpty(autofillValues)) {
-      console.log("af", autofillValues);
-
       setValue("episodes", autofillValues.episodes);
       setValue("encoder_video", autofillValues.encoderVideo);
       setValue("encoder_audio", autofillValues.encoderAudio);

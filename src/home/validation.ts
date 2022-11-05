@@ -1,5 +1,6 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { bool, date, number, object, string } from "yup";
+import { format } from "date-fns";
 
 import { emptyStringToNull } from "@components";
 
@@ -17,7 +18,9 @@ export type Form = {
   season_first_title_id?: string;
 
   prequel?: string;
+  prequel_title: string | null;
   prequel_id?: string;
+  sequel_title: string | null;
   sequel_id?: string;
 
   encoder_video?: string;
@@ -27,8 +30,8 @@ export type Form = {
   release_year?: string;
   release_season?: string;
 
-  id_codec_video?: string;
-  id_codec_audio?: string;
+  id_codec_video?: number;
+  id_codec_audio?: number;
   codec_hdr?: boolean;
 
   variants?: string;
@@ -49,19 +52,29 @@ const defaultValues = {
   date_finished: new Date(),
   release_year: "",
   release_season: "",
-  id_codec_video: "",
-  id_codec_audio: "",
+  id_codec_video: 0,
+  id_codec_audio: 0,
   codec_hdr: false,
+  prequel_title: null,
+  sequel_title: null,
 };
 
 const rewatchDefaultValues = {
   dateRewatch: new Date(),
 };
 
+const dateTime = new Date();
+dateTime.setDate(dateTime.getDate() + 1);
+
+const dateOnly = new Date(
+  dateTime.valueOf() + dateTime.getTimezoneOffset() * 60 * 1000,
+);
+const now = format(dateOnly, "yyyy-MM-dd");
+
 const schema = object().shape({
   id_quality: number().typeError("Required").required("Required"),
   title: string().required("Required"),
-  date_finished: date().max(new Date()),
+  date_finished: date().max(now),
   filesize: number().transform(emptyStringToNull).nullable(),
 
   episodes: number().transform(emptyStringToNull).nullable(),
@@ -73,6 +86,8 @@ const schema = object().shape({
 
   prequel_id: string().nullable(),
   sequel_id: string().nullable(),
+  prequel_title: string().nullable(),
+  sequel_title: string().nullable(),
 
   encoder_video: string().nullable(),
   encoder_audio: string().nullable(),
@@ -81,8 +96,8 @@ const schema = object().shape({
   release_year: string().nullable(),
   release_season: string().nullable(),
 
-  id_codec_video: string().nullable(),
-  id_codec_audio: string().nullable(),
+  id_codec_video: number().transform(emptyStringToNull).nullable(),
+  id_codec_audio: number().transform(emptyStringToNull).nullable(),
   codec_hdr: bool(),
 
   variants: string().nullable(),
