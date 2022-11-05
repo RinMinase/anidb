@@ -98,6 +98,12 @@ const AddForm = (props: Props) => {
     sequel: false,
   });
 
+  // Promise Handling
+  const [isDoneQuality, setDoneQuality] = useState(false);
+  const [isDoneCodecs, setDoneCodecs] = useState(false);
+  const [isDoneGroups, setDoneGroups] = useState(false);
+  const [isDoneRelations, setDoneRelations] = useState(false);
+
   const fetchQualities = async () => {
     const {
       data: { data },
@@ -170,20 +176,34 @@ const AddForm = (props: Props) => {
     toggleLoader(true);
     props.setDropdownLoading(true);
 
-    searchAPI(props.entryId).then(({ data: { data } }) => {
-      setPrequels([...data]);
-      setSequels([...data]);
-
-      fetchGroups().finally(() => {
-        fetchQualities().finally(() => {
-          fetchCodecs().finally(() => {
-            toggleLoader(false);
-            props.setDropdownLoading(false);
-          });
-        });
+    searchAPI(props.entryId)
+      .then(({ data: { data } }) => {
+        setPrequels([...data]);
+        setSequels([...data]);
+      })
+      .finally(() => {
+        setDoneRelations(true);
       });
+
+    fetchGroups().finally(() => {
+      setDoneGroups(true);
+    });
+
+    fetchQualities().finally(() => {
+      setDoneQuality(true);
+    });
+
+    fetchCodecs().finally(() => {
+      setDoneCodecs(true);
     });
   }, []);
+
+  useEffect(() => {
+    if (isDoneRelations && isDoneGroups && isDoneQuality && isDoneCodecs) {
+      toggleLoader(false);
+      props.setDropdownLoading(false);
+    }
+  }, [isDoneRelations, isDoneGroups, isDoneQuality, isDoneCodecs]);
 
   return (
     <Grid container spacing={2}>

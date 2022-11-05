@@ -110,9 +110,11 @@ const HomeAdd = (props: Props) => {
 
   const fetchEntryData = async () => {
     if (props.matches?.id) {
-      const { id } = props.matches;
+      toggleLoader(true);
 
+      const { id } = props.matches;
       const partialsData = await axios.get(`/entries/${id}`);
+
       const {
         id_quality,
         title,
@@ -183,6 +185,8 @@ const HomeAdd = (props: Props) => {
         duration_mins: mins,
         duration_secs: secs,
       });
+
+      toggleLoader(false);
     }
   };
 
