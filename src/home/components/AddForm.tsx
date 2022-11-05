@@ -29,6 +29,7 @@ type Props = {
   setValue: UseFormSetValue<Form>;
   errors: FieldErrorsImpl<Form>;
   setDropdownLoading: StateUpdater<boolean>;
+  entryId?: string;
 };
 
 const seasons = ["Winter", "Spring", "Summer", "Fall"];
@@ -40,9 +41,10 @@ const years = Array.from({ length: 25 }, (_, i) => ({
   value: currYear - i,
 }));
 
-const searchAPI = (needle?: string) =>
+const searchAPI = (id?: string, needle?: string) =>
   axios.get("/entries/titles", {
     params: {
+      id,
       needle,
     },
   });
@@ -151,7 +153,7 @@ const AddForm = (props: Props) => {
     if (type === "prequel") setACLoading((p) => ({ ...p, prequel: true }));
     if (type === "sequel") setACLoading((p) => ({ ...p, sequel: true }));
 
-    searchAPIDebounced(val).then(({ data: { data } }) => {
+    searchAPIDebounced(props.entryId, val).then(({ data: { data } }) => {
       if (type === "prequel") {
         setPrequels([...data]);
         setACLoading((prev) => ({ ...prev, prequel: false }));
@@ -168,7 +170,7 @@ const AddForm = (props: Props) => {
     toggleLoader(true);
     props.setDropdownLoading(true);
 
-    searchAPI().then(({ data: { data } }) => {
+    searchAPI(props.entryId).then(({ data: { data } }) => {
       setPrequels([...data]);
       setSequels([...data]);
 

@@ -240,6 +240,7 @@ const HomeAdd = (props: Props) => {
       largeGutter
     >
       <AddForm
+        entryId={props.matches?.id || ""}
         control={control}
         setValue={setValue}
         errors={errors}
