@@ -4,10 +4,7 @@ import { Autocomplete, TextField } from "@mui/material";
 
 type Props = {
   control: Control<any>;
-  options: Array<{
-    value: string;
-    label: string;
-  }>;
+  options: Array<string>;
   name: string;
   label?: string;
   helperText?: string;
@@ -24,33 +21,34 @@ const ControlledAutocomplete = (props: Props) => {
     <Controller
       name={props.name}
       control={props.control}
-      render={({ field: { onChange } }) => (
-        <Autocomplete
-          onChange={(e, data: any) => onChange(data.value)}
-          onInputChange={
-            !props.freeSolo
-              ? undefined
-              : (e, data) => {
-                  if (data) onChange(data);
-                }
-          }
-          options={props.options}
-          freeSolo={props.freeSolo}
-          disabled={props.disabled}
-          fullWidth={props.fullWidth}
-          loading={props.loadingContents}
-          getOptionLabel={(option: any) => option.label}
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              onChange={props.onChange}
-              label={props.label}
-              helperText={props.helperText}
-              error={props.error}
-            />
-          )}
-        />
-      )}
+      defaultValue={null}
+      render={({ field: { onChange, value } }) => {
+        return (
+          <Autocomplete
+            value={value}
+            onChange={(e, data: any) => {
+              return onChange(data);
+            }}
+            onInputChange={(e, data) => {
+              if (data) onChange(data);
+            }}
+            options={props.options}
+            freeSolo={props.freeSolo}
+            disabled={props.disabled}
+            fullWidth={props.fullWidth}
+            loading={props.loadingContents}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                onChange={props.onChange}
+                label={props.label}
+                helperText={props.helperText}
+                error={props.error}
+              />
+            )}
+          />
+        );
+      }}
     />
   );
 };
