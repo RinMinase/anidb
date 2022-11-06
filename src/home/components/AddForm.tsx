@@ -269,7 +269,7 @@ const AddForm = (props: Props) => {
         />
       </Grid>
 
-      <Grid item xs={6} sm={3}>
+      <Grid item xs={6} sm={6} md={3}>
         <ControlledDatepicker
           name="date_finished"
           label="Date Finished"
@@ -305,7 +305,7 @@ const AddForm = (props: Props) => {
           numeric
         />
       </Grid>
-      <Grid item xs={8} sm={4}>
+      <Grid item xs={8} sm={7} md={4}>
         <ControlledField
           name="season_first_title_id"
           label="First Season Title"
@@ -343,7 +343,7 @@ const AddForm = (props: Props) => {
         />
       </Grid>
 
-      <Grid item xs={12} sm={4}>
+      <Grid item xs={12} sm={6} md={4}>
         <DurationContainer>
           <DurationLabel>Duration</DurationLabel>
           <Stack spacing={2} direction="row">
@@ -401,7 +401,7 @@ const AddForm = (props: Props) => {
           )}
         </DurationContainer>
       </Grid>
-      <Grid item xs={12} sm={4}>
+      <Grid item xs={12} sm={6} md={4}>
         <ControlledField
           name="variants"
           label="Variants"
@@ -412,7 +412,7 @@ const AddForm = (props: Props) => {
           fullWidth
         />
       </Grid>
-      <Grid item xs={12} sm={4}>
+      <Grid item xs={12} sm={6} md={4}>
         <ControlledField
           name="remarks"
           label="Remarks"
