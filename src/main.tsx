@@ -1,4 +1,5 @@
 import "@fortawesome/fontawesome-svg-core/styles.css";
+import "animate.css";
 
 import { render } from "preact";
 
