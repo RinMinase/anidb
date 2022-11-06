@@ -1,9 +1,13 @@
 import { StateUpdater } from "preact/hooks";
 import { DropzoneOptions, FileWithPath, useDropzone } from "react-dropzone";
+import UAParser from "ua-parser-js";
 
 import { Box, styled, Typography } from "@mui/material";
 
 import { AutofillProps } from "../types";
+
+const parser = new UAParser("user-agent");
+const browser = parser.getBrowser().name;
 
 type Props = {
   setAutofillValues: StateUpdater<AutofillProps>;
@@ -123,27 +127,30 @@ const AutofillHelper = (props: Props) => {
 
   const { acceptedFiles, getRootProps, getInputProps } = useDropzone(dzConfig);
 
-  return (
-    <Box>
-      <DropzoneContainer {...getRootProps({ className: "dropzone" })}>
-        <input {...getInputProps()} />
-        {acceptedFiles.length ? (
-          <Box>
-            <Typography>Files Selected:</Typography>
-            {acceptedFiles.map((file, index) => (
-              <Typography key={`file-${index}`}>
-                &#11208; {file.name}
-              </Typography>
-            ))}
-          </Box>
-        ) : (
-          <Typography>
-            Drop some files here, or click to select files
-          </Typography>
-        )}
-      </DropzoneContainer>
-    </Box>
-  );
+  if (browser === "Chrome" || browser === "Edge") {
+    return (
+      <Box>
+        <DropzoneContainer {...getRootProps({ className: "dropzone" })}>
+          <input {...getInputProps()} />
+          {acceptedFiles.length ? (
+            <Box>
+              <Typography>Files Selected:</Typography>
+              {acceptedFiles.map((file, index) => (
+                <Typography key={`file-${index}`}>
+                  &#11208; {file.name}
+                </Typography>
+              ))}
+            </Box>
+          ) : (
+            <Typography>
+              Drop some files here, or click to select files
+            </Typography>
+          )}
+        </DropzoneContainer>
+      </Box>
+    );
+  }
+  return null;
 };
 
 export default AutofillHelper;
