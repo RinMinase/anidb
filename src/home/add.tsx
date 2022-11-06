@@ -2,7 +2,6 @@ import { useContext, useEffect, useState } from "preact/hooks";
 import { route } from "preact-router";
 import { FontAwesomeSvgIcon } from "react-fontawesome-slim";
 import { useForm } from "react-hook-form";
-import Swal from "sweetalert2";
 import axios from "axios";
 import { format } from "date-fns";
 import { isEmpty } from "lodash-es";
@@ -14,7 +13,12 @@ import {
   faFloppyDisk as SaveIcon,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { Button, GlobalLoaderContext, ModuleContainer } from "@components";
+import {
+  Button,
+  GlobalLoaderContext,
+  ModuleContainer,
+  Swal,
+} from "@components";
 import { defaultValues, Form, resolver } from "./validation";
 
 import AddForm from "./components/AddForm";
