@@ -164,8 +164,8 @@ const HomeAdd = (props: Props) => {
         season_number: seasonNumber,
         season_first_title_id: seasonFirstTitle,
 
-        release_season: releaseSeason,
-        release_year: releaseYear,
+        release_season: releaseSeason || "",
+        release_year: releaseYear || "",
 
         variants,
         remarks,
@@ -177,8 +177,8 @@ const HomeAdd = (props: Props) => {
         prequel_title: prequelTitle || null,
         sequel_title: sequelTitle || null,
 
-        id_codec_video,
-        id_codec_audio,
+        id_codec_video: id_codec_video || "",
+        id_codec_audio: id_codec_audio || "",
         codec_hdr: !!codecHDR,
 
         duration_hrs: hrs,

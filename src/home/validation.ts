@@ -30,8 +30,8 @@ export type Form = {
   release_year?: string;
   release_season?: string;
 
-  id_codec_video?: number;
-  id_codec_audio?: number;
+  id_codec_video?: number | string;
+  id_codec_audio?: number | string;
   codec_hdr?: boolean;
 
   variants?: string;
@@ -52,8 +52,8 @@ const defaultValues = {
   date_finished: new Date(),
   release_year: "",
   release_season: "",
-  id_codec_video: 0,
-  id_codec_audio: 0,
+  id_codec_video: "",
+  id_codec_audio: "",
   codec_hdr: false,
   prequel_title: null,
   sequel_title: null,
