@@ -212,7 +212,9 @@ const Home = () => {
                     <RewatchIndicator show={item.rewatched} />
                   </Table.Cell>
                   <Table.Cell>{item.release}</Table.Cell>
-                  <Table.Cell>{item.encoder}</Table.Cell>
+                  <Table.Cell>
+                    {item.encoder ? item.encoder.replaceAll(" ", "\u00a0") : ""}
+                  </Table.Cell>
 
                   {!isMobile && (
                     <Table.Cell>
