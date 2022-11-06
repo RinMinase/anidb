@@ -16,6 +16,8 @@ import {
   Rating,
   styled,
   Tooltip,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
 
 import { faHeart, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
@@ -88,6 +90,9 @@ const searchAPIDebounced = DebouncePromise(searchAPI, 250);
 
 const Home = () => {
   const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
+
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   const [data, setData] = useState<Data>([]);
   const [searchQuery, setSearchQuery] = useState("");
@@ -182,7 +187,7 @@ const Home = () => {
               <Table.Cell sx={{ minWidth: 190 }}>Date Finished</Table.Cell>
               <Table.Cell sx={{ minWidth: 130 }}>Release</Table.Cell>
               <Table.Cell>Encoder</Table.Cell>
-              <Table.Cell>Rating</Table.Cell>
+              {!isMobile && <Table.Cell>Rating</Table.Cell>}
             </Table.Row>
           </Table.Head>
 
@@ -208,19 +213,22 @@ const Home = () => {
                   </Table.Cell>
                   <Table.Cell>{item.release}</Table.Cell>
                   <Table.Cell>{item.encoder}</Table.Cell>
-                  <Table.Cell>
-                    <Tooltip title={item.rating ?? "0"} placement="top">
-                      <Box>
-                        <StyledRating
-                          value={item.rating ? item.rating / 2 : 0}
-                          precision={0.25}
-                          icon={<RatingIcon icon={faHeart} />}
-                          emptyIcon={<RatingIcon icon={faHeartEmpty} />}
-                          readOnly
-                        />
-                      </Box>
-                    </Tooltip>
-                  </Table.Cell>
+
+                  {!isMobile && (
+                    <Table.Cell>
+                      <Tooltip title={item.rating ?? "0"} placement="top">
+                        <Box>
+                          <StyledRating
+                            value={item.rating ? item.rating / 2 : 0}
+                            precision={0.25}
+                            icon={<RatingIcon icon={faHeart} />}
+                            emptyIcon={<RatingIcon icon={faHeartEmpty} />}
+                            readOnly
+                          />
+                        </Box>
+                      </Tooltip>
+                    </Table.Cell>
+                  )}
                 </CustomTableRow>
               ))
             ) : (
