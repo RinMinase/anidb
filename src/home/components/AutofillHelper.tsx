@@ -67,15 +67,19 @@ const AutofillHelper = (props: Props) => {
   const handleDropFiles = async (files: Array<FileWithPath>) => {
     if (files.length) {
       const filesize = getTotalFilesize(files);
-      const duration = Math.floor(await getTotalDuration(files));
 
       let hrs = 0;
       let mins = 0;
       let secs = 0;
-      if (duration) {
-        hrs = Math.floor(duration / 3600);
-        mins = Math.floor((duration % 3600) / 60);
-        secs = (duration % 3600) % 60;
+
+      if (browser === "Chrome" || browser === "Edge") {
+        const duration = Math.floor(await getTotalDuration(files));
+
+        if (duration) {
+          hrs = Math.floor(duration / 3600);
+          mins = Math.floor((duration % 3600) / 60);
+          secs = (duration % 3600) % 60;
+        }
       }
 
       let foldername = "";
@@ -104,16 +108,26 @@ const AutofillHelper = (props: Props) => {
         }
       }
 
-      props.setAutofillValues({
-        encoderVideo,
-        encoderAudio,
-        encoderSub,
-        filesize,
-        episodes: files.length,
-        durationHr: hrs,
-        durationMin: mins,
-        durationSec: secs,
-      });
+      if (browser === "Chrome" || browser === "Edge") {
+        props.setAutofillValues({
+          encoderVideo,
+          encoderAudio,
+          encoderSub,
+          filesize,
+          episodes: files.length,
+          durationHr: hrs,
+          durationMin: mins,
+          durationSec: secs,
+        });
+      } else {
+        props.setAutofillValues({
+          encoderVideo,
+          encoderAudio,
+          encoderSub,
+          filesize,
+          episodes: files.length,
+        });
+      }
     }
   };
 
@@ -127,30 +141,27 @@ const AutofillHelper = (props: Props) => {
 
   const { acceptedFiles, getRootProps, getInputProps } = useDropzone(dzConfig);
 
-  if (browser === "Chrome" || browser === "Edge") {
-    return (
-      <Box>
-        <DropzoneContainer {...getRootProps({ className: "dropzone" })}>
-          <input {...getInputProps()} />
-          {acceptedFiles.length ? (
-            <Box>
-              <Typography>Files Selected:</Typography>
-              {acceptedFiles.map((file, index) => (
-                <Typography key={`file-${index}`}>
-                  &#11208; {file.name}
-                </Typography>
-              ))}
-            </Box>
-          ) : (
-            <Typography>
-              Drop some files here, or click to select files
-            </Typography>
-          )}
-        </DropzoneContainer>
-      </Box>
-    );
-  }
-  return null;
+  return (
+    <Box>
+      <DropzoneContainer {...getRootProps({ className: "dropzone" })}>
+        <input {...getInputProps()} />
+        {acceptedFiles.length ? (
+          <Box>
+            <Typography>Files Selected:</Typography>
+            {acceptedFiles.map((file, index) => (
+              <Typography key={`file-${index}`}>
+                &#11208; {file.name}
+              </Typography>
+            ))}
+          </Box>
+        ) : (
+          <Typography>
+            Drop some files here, or click to select files
+          </Typography>
+        )}
+      </DropzoneContainer>
+    </Box>
+  );
 };
 
 export default AutofillHelper;
