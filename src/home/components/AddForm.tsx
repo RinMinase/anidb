@@ -27,6 +27,7 @@ import {
   ControlledSwitch,
   GlobalLoaderContext,
   OptionsKeyedProps,
+  Swal,
 } from "@components";
 
 import { Form } from "../validation";
@@ -184,6 +185,17 @@ const AddForm = (props: Props) => {
     });
   };
 
+  const setAutofillTitleValues = (premiered: string, episodes: number) => {
+    props.setValue("episodes", episodes);
+
+    if (premiered) {
+      const [season, year] = premiered.split(" ");
+
+      props.setValue("release_season", season);
+      props.setValue("release_year", year);
+    }
+  };
+
   const handleClickTitle = async () => {
     toggleLoader(true);
 
@@ -192,19 +204,28 @@ const AddForm = (props: Props) => {
       const obj = titleObjects.find((item) => item.title === title);
 
       if (!isEmpty(obj)) {
-        const id = obj.id;
-        const res = await axios.get(`mal/${id}`);
-        const malTitle: MalTitle = res.data;
+        const { data }: { data: MalTitle } = await axios.get(`mal/${obj.id}`);
+        const { premiered, episodes } = data;
 
-        props.setValue("episodes", malTitle.episodes);
+        const {
+          episodes: cEpisodes,
+          release_season: cSeason,
+          release_year: cYear,
+        } = props.getValues();
 
-        const { premiered } = malTitle;
+        if (cEpisodes || cSeason || cYear) {
+          const result = await Swal.fire({
+            title: "Override?",
+            text: "Override existing 'Episodes', 'Release Season' and 'Release Year'?",
+            icon: "question",
+            showCancelButton: true,
+          });
 
-        if (premiered) {
-          const [season, year] = premiered.split(" ");
-
-          props.setValue("release_season", season);
-          props.setValue("release_year", year);
+          if (result.isConfirmed) {
+            setAutofillTitleValues(premiered, episodes);
+          }
+        } else {
+          setAutofillTitleValues(premiered, episodes);
         }
       }
     } finally {
