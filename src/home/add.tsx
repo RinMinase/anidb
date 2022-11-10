@@ -51,6 +51,7 @@ const HomeAdd = (props: Props) => {
   const {
     control,
     handleSubmit,
+    getValues,
     setValue,
     reset,
     formState: { errors },
@@ -250,6 +251,7 @@ const HomeAdd = (props: Props) => {
       <AddForm
         entryId={props.matches?.id || ""}
         control={control}
+        getValues={getValues}
         setValue={setValue}
         errors={errors}
         setDropdownLoading={setDropdownLoading}

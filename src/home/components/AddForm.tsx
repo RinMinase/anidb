@@ -1,7 +1,14 @@
 import { StateUpdater, useContext, useEffect, useState } from "preact/hooks";
-import { Control, FieldErrorsImpl, UseFormSetValue } from "react-hook-form";
 import axios from "axios";
 import DebouncePromise from "awesome-debounce-promise";
+import { isEmpty } from "lodash-es";
+
+import {
+  Control,
+  FieldErrorsImpl,
+  UseFormGetValues,
+  UseFormSetValue,
+} from "react-hook-form";
 
 import {
   FormGroup,
@@ -23,9 +30,11 @@ import {
 } from "@components";
 
 import { Form } from "../validation";
+import { MalTitle, TitleObject, TitleObjects } from "../types";
 
 type Props = {
   control: Control<Form>;
+  getValues: UseFormGetValues<Form>;
   setValue: UseFormSetValue<Form>;
   errors: FieldErrorsImpl<Form>;
   setDropdownLoading: StateUpdater<boolean>;
@@ -49,7 +58,10 @@ const searchAPI = (id?: string, needle?: string) =>
     },
   });
 
+const titleSearchAPI = (title?: string) => axios.get(`/mal/${title}`);
+
 const searchAPIDebounced = DebouncePromise(searchAPI, 250);
+const titleSearchAPIDebounced = DebouncePromise(titleSearchAPI, 250);
 
 const DurationContainer = styled(FormGroup)(({ theme }) => ({
   position: "relative",
@@ -97,6 +109,10 @@ const AddForm = (props: Props) => {
     prequel: false,
     sequel: false,
   });
+
+  const [titleLoading, setTitleLoading] = useState(false);
+  const [titleSearch, setTitleSearch] = useState<Array<string>>([]);
+  const [titleObjects, setTitleObjects] = useState<TitleObjects>([]);
 
   // Promise Handling
   const [isDoneQuality, setDoneQuality] = useState(false);
@@ -150,6 +166,50 @@ const AddForm = (props: Props) => {
     } = await axios.get("/groups/names");
 
     setGroups([...data]);
+  };
+
+  const handleSearchTitle = (e: any) => {
+    const element = e.target as HTMLInputElement;
+    const val = element.value;
+
+    setTitleLoading(true);
+    setTitleObjects([]);
+    setTitleSearch([]);
+
+    titleSearchAPIDebounced(val).then(({ data }) => {
+      const titles = data.map((item: TitleObject) => item.title);
+
+      setTitleSearch(titles);
+      setTitleObjects(data);
+    });
+  };
+
+  const handleClickTitle = async () => {
+    toggleLoader(true);
+
+    try {
+      const title = props.getValues("title");
+      const obj = titleObjects.find((item) => item.title === title);
+
+      if (!isEmpty(obj)) {
+        const id = obj.id;
+        const res = await axios.get(`mal/${id}`);
+        const malTitle: MalTitle = res.data;
+
+        props.setValue("episodes", malTitle.episodes);
+
+        const { premiered } = malTitle;
+
+        if (premiered) {
+          const [season, year] = premiered.split(" ");
+
+          props.setValue("release_season", season);
+          props.setValue("release_year", year);
+        }
+      }
+    } finally {
+      toggleLoader(false);
+    }
   };
 
   const handleChange = (e: any, type: "prequel" | "sequel") => {
@@ -221,14 +281,19 @@ const AddForm = (props: Props) => {
         />
       </Grid>
       <Grid item xs={12} sm={8} md={9}>
-        <ControlledField
+        <ControlledAutocomplete
           name="title"
           label="Title"
+          options={titleSearch}
           control={control}
           error={!!errors.title}
           helperText={errors.title?.message}
           disabled={isLoading}
+          loadingContents={titleLoading}
+          onChange={handleSearchTitle}
+          extraOnChange={handleClickTitle}
           fullWidth
+          freeSolo
         />
       </Grid>
 

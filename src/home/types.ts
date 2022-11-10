@@ -90,3 +90,21 @@ export type AutofillProps = {
   durationMin?: number;
   durationHr?: number;
 };
+
+export type TitleObjects = Array<{
+  id: string;
+  title: string;
+}>;
+
+export type TitleObject = {
+  id: string;
+  title: string;
+};
+
+export type MalTitle = {
+  url: string;
+  title: string;
+  synonyms: string;
+  episodes: number;
+  premiered: string;
+};

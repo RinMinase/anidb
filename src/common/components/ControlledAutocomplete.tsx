@@ -14,6 +14,7 @@ type Props = {
   freeSolo?: boolean;
   loadingContents?: boolean;
   onChange?: (e?: any) => void;
+  extraOnChange?: (e?: any) => void;
 };
 
 const ControlledAutocomplete = (props: Props) => {
@@ -27,6 +28,7 @@ const ControlledAutocomplete = (props: Props) => {
           <Autocomplete
             value={value}
             onChange={(e, data: any) => {
+              if (props.extraOnChange) props.extraOnChange();
               return onChange(data);
             }}
             onInputChange={(e, data) => {
