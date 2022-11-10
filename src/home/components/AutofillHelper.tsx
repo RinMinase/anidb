@@ -13,6 +13,12 @@ type Props = {
   setAutofillValues: StateUpdater<AutofillProps>;
 };
 
+const pathValidator = (file: FileWithPath): any => {
+  const depth = file.path?.match(/\//g)?.length || 2;
+
+  return depth > 2 ? true : null;
+};
+
 const DropzoneContainer = styled(Box)({
   border: "8px dashed #b3e5fc",
   margin: 12,
@@ -137,6 +143,7 @@ const AutofillHelper = (props: Props) => {
     },
     multiple: true,
     onDropAccepted: handleDropFiles,
+    validator: pathValidator,
   };
 
   const { acceptedFiles, getRootProps, getInputProps } = useDropzone(dzConfig);
