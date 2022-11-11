@@ -47,7 +47,7 @@
     "qs": "^6.11.0",
     "react-dropzone": "^14.2.3",
     "react-fontawesome-slim": "^1.0.0",
-    "react-hook-form": "^7.39.2",
+    "react-hook-form": "^7.39.3",
     "react-scroll": "^1.8.8",
     "react-waypoint": "^10.3.0",
     "sweetalert2": "^11.6.8",
