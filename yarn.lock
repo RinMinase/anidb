@@ -1960,9 +1960,9 @@
   integrity sha512-/caRJIYmI8yZNnvqMTE3K8zI72GjzwqGF+aX77Nj653z1t5+Cs7DiV4Cnw8CsaF4nYFHAGwDU5eWTrpsCJLNhw==
 
 "@netlify/plugins-list@^6.54.0":
-  version "6.55.0"
-  resolved "https://registry.yarnpkg.com/@netlify/plugins-list/-/plugins-list-6.55.0.tgz#1262e1887d41d654441cd06ec335eacdef407861"
-  integrity sha512-fAOZS/7HZs9gyiNcOW6xa6Ki8V/2BJelJ3d65JwrUUpPr8lfHIjZ8kKVBf8GOiOAMRYzqxa80VRKAayxHhzyMQ==
+  version "6.56.0"
+  resolved "https://registry.yarnpkg.com/@netlify/plugins-list/-/plugins-list-6.56.0.tgz#d3b3e2e383da8e4c47bfd1189c8c289608a33a87"
+  integrity sha512-Y0664AZiVHQEm1eABcv/9KyA9ehp9QzAxetHH4ZlEh80Q/9l1UKIHTQmcPmA884sSUkaH56mxZAnds8cctSgZw==
 
 "@netlify/run-utils@^5.0.1":
   version "5.0.1"
@@ -8406,9 +8406,9 @@ node-fetch@^2.3.0, node-fetch@^2.6.0, node-fetch@^2.6.7:
     whatwg-url "^5.0.0"
 
 node-fetch@^3.0.0, node-fetch@^3.1.1:
-  version "3.2.10"
-  resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-3.2.10.tgz#e8347f94b54ae18b57c9c049ef641cef398a85c8"
-  integrity sha512-MhuzNwdURnZ1Cp4XTazr69K0BTizsBroX7Zx3UgDSVcZYKF/6p0CBe4EUb/hLqmzVhl0UpYfgRljQ4yxE+iCxA==
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-3.3.0.tgz#37e71db4ecc257057af828d523a7243d651d91e4"
+  integrity sha512-BKwRP/O0UvoMKp7GNdwPlObhYGB5DQqwhEDQlNKuoqwVYSxkSZCSbHjnFFmUEtwSKRPU4kNK8PbDYYitwaE3QA==
   dependencies:
     data-uri-to-buffer "^4.0.0"
     fetch-blob "^3.1.4"
@@ -9238,9 +9238,9 @@ postcss-values-parser@^6.0.2:
     quote-unquote "^1.0.0"
 
 postcss@^8.4.12, postcss@^8.4.18:
-  version "8.4.18"
-  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.18.tgz#6d50046ea7d3d66a85e0e782074e7203bc7fbca2"
-  integrity sha512-Wi8mWhncLJm11GATDaQKobXSNEYGUHeQLiQqDFG1qQ5UTDPTEvKw0Xt5NsTpktGTwLps3ByrWsBrG0rB8YQ9oA==
+  version "8.4.19"
+  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.19.tgz#61178e2add236b17351897c8bcc0b4c8ecab56fc"
+  integrity sha512-h+pbPsyhlYj6N2ozBmHhHrs9DzGmbaarbLvWipMRO7RLS+v4onj26MPFXA5OBYFxyqYhUJK456SwDcY9H2/zsA==
   dependencies:
     nanoid "^3.3.4"
     picocolors "^1.0.0"
