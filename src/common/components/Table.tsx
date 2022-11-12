@@ -1,4 +1,5 @@
 import TableLoader from "./TableLoader";
+import TablePaginationActions from "./TablePaginationActions";
 
 import {
   Table as MuiTable,
@@ -19,6 +20,7 @@ const Table = {
   Row: TableRow,
   Loader: TableLoader,
   Pagination: TablePagination,
+  PaginationActions: TablePaginationActions,
 };
 
 export default Table;
