@@ -1,3 +1,4 @@
+import { useState } from "preact/hooks";
 import { FontAwesomeSvgIcon } from "react-fontawesome-slim";
 
 import { Box, styled, TextField } from "@mui/material";
@@ -18,6 +19,15 @@ interface TablePaginationActionsProps {
   onPageChange: (event: any, newPage: number) => void;
 }
 
+const numericProps = {
+  type: "tel",
+  inputProps: {
+    pattern: "[0-9]*",
+    inputMode: "numeric",
+    maxLength: 3,
+  },
+};
+
 const PaginationTextfield = styled(TextField)({
   width: 64,
 });
@@ -27,20 +37,26 @@ const TablePaginationActions = (props: TablePaginationActionsProps) => {
 
   const getLastPage = Math.max(0, Math.ceil(count / rowsPerPage) - 1);
 
+  const [value, setValue] = useState("1");
+
   const handleFirstPageButtonClick = (event: any) => {
     onPageChange(event, 0);
+    setValue("1");
   };
 
   const handleBackButtonClick = (event: any) => {
     onPageChange(event, page - 1);
+    setValue(`${page}`);
   };
 
   const handleNextButtonClick = (event: any) => {
     onPageChange(event, page + 1);
+    setValue(`${page + 2}`);
   };
 
   const handleLastPageButtonClick = (event: any) => {
     onPageChange(event, getLastPage);
+    setValue(`${getLastPage + 1}`);
   };
 
   const handleCustomPageChange = (event: any) => {
@@ -51,8 +67,18 @@ const TablePaginationActions = (props: TablePaginationActionsProps) => {
 
       if (value <= getLastPage) {
         onPageChange(event, value);
+        setValue(`${value + 1}`);
       }
     }
+  };
+
+  const disableNonNumeric = (e: any) => {
+    const el = e.target as HTMLInputElement;
+    const value = el.value;
+    const newValue = value.replaceAll(/\D/g, "");
+
+    setValue(newValue);
+    el.value = newValue;
   };
 
   return (
@@ -66,9 +92,12 @@ const TablePaginationActions = (props: TablePaginationActionsProps) => {
       </IconButton>
 
       <PaginationTextfield
+        {...numericProps}
         size="small"
         inputProps={{ style: { textAlign: "center" } }}
         onKeyDown={handleCustomPageChange}
+        onChange={(e) => disableNonNumeric(e)}
+        value={value}
       />
 
       <IconButton
