@@ -56,7 +56,7 @@ const Logs = () => {
           <Table.Body>
             {!isLoading ? (
               data.map((item) => (
-                <Table.Row hover key={item.uuid}>
+                <Table.Row hover key={item.id}>
                   <Table.Cell>
                     {item.action === "add" && <AddChip />}
                     {item.action === "edit" && <EditChip />}

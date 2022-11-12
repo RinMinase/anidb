@@ -1,5 +1,5 @@
 export type Data = Array<{
-  uuid: string;
+  id: string;
   table_changed: string;
   id_changed: string;
   description: string;
