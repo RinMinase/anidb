@@ -113,6 +113,7 @@ const Logs = () => {
         page={pagination.page}
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
+        ActionsComponent={Table.PaginationActions}
       />
     </ModuleContainer>
   );
