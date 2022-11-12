@@ -5,7 +5,7 @@ import { Chip, Paper, styled } from "@mui/material";
 
 import { GlobalLoaderContext, ModuleContainer, Table } from "@components";
 
-import { Data } from "./types";
+import { Data, Pagination, paginationDefaults } from "./types";
 
 const CustomTable = styled(Table.Element)({
   minWidth: 650,
@@ -19,14 +19,33 @@ const Logs = () => {
   const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
 
   const [data, setData] = useState<Data>([]);
+  const [meta, setMeta] = useState<Pagination>(paginationDefaults);
 
-  const fetchData = async () => {
+  const [pagination, setPagination] = useState({
+    page: paginationDefaults.page,
+    limit: paginationDefaults.limit,
+  });
+
+  const fetchData = async (page?: number, limit?: number) => {
+    toggleLoader(true);
+
     try {
       const {
-        data: { data },
-      } = await axios.get("/logs");
+        data: { data, meta },
+      } = await axios.get("/logs", {
+        params: {
+          page,
+          limit: limit && limit !== pagination.limit ? limit : pagination.limit,
+        },
+      });
 
       setData(() => data);
+      setMeta(() => meta);
+
+      setPagination({
+        page: meta.page - 1,
+        limit: meta.limit,
+      });
     } catch (err) {
       console.error(err);
     } finally {
@@ -34,8 +53,20 @@ const Logs = () => {
     }
   };
 
+  const handleChangePage = (e: any, newPage: number) => {
+    setPagination((prev) => ({ ...prev, page: newPage }));
+    fetchData(newPage + 1);
+  };
+
+  const handleChangeRowsPerPage = (e: any) => {
+    const el = e.target as HTMLInputElement;
+    const value = parseInt(el.value) || 30;
+
+    setPagination({ page: 0, limit: value });
+    fetchData(1, value);
+  };
+
   useEffect(() => {
-    toggleLoader(true);
     fetchData();
   }, []);
 
@@ -74,6 +105,15 @@ const Logs = () => {
           </Table.Body>
         </CustomTable>
       </Table.Container>
+      <Table.Pagination
+        rowsPerPageOptions={[30, 50, 100]}
+        component="div"
+        count={meta.total_data}
+        rowsPerPage={pagination.limit}
+        page={pagination.page}
+        onPageChange={handleChangePage}
+        onRowsPerPageChange={handleChangeRowsPerPage}
+      />
     </ModuleContainer>
   );
 };
