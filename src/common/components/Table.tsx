@@ -6,6 +6,7 @@ import {
   TableCell,
   TableContainer,
   TableHead,
+  TablePagination,
   TableRow,
 } from "@mui/material";
 
@@ -17,6 +18,7 @@ const Table = {
   Head: TableHead,
   Row: TableRow,
   Loader: TableLoader,
+  Pagination: TablePagination,
 };
 
 export default Table;
