@@ -4,7 +4,6 @@ import axios from "axios";
 import { Chart, ChartOptions, registerables } from "chart.js";
 import ChartDataLabels from "chartjs-plugin-datalabels";
 import { FontAwesomeSvgIcon } from "react-fontawesome-slim";
-import Swal from "sweetalert2";
 
 import {
   Box,
@@ -32,6 +31,7 @@ import {
   ModuleContainer,
   Quality,
   RewatchIndicator,
+  Swal,
   Table,
 } from "@components";
 
