@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 import { FontAwesomeSvgIcon } from "react-fontawesome-slim";
 import axios from "axios";
 import { format } from "date-fns";
-import Swal from "sweetalert2";
 
 import {
   Backdrop,
@@ -23,7 +22,7 @@ import {
   faXmark as CloseIcon,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { Button, ControlledDatepicker, IconButton } from "@components";
+import { Button, ControlledDatepicker, IconButton, Swal } from "@components";
 
 import {
   rewatchDefaultValues,
