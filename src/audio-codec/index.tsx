@@ -2,7 +2,6 @@ import { useContext, useEffect, useState } from "preact/hooks";
 import { useForm } from "react-hook-form";
 import { FontAwesomeSvgIcon } from "react-fontawesome-slim";
 import axios from "axios";
-import Swal from "sweetalert2";
 
 import {
   Backdrop,
@@ -28,6 +27,7 @@ import {
   GlobalLoaderContext,
   IconButton,
   ModuleContainer,
+  Swal,
   Table,
 } from "@components";
 
