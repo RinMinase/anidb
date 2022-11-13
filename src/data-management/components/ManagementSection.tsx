@@ -2,7 +2,6 @@ import { useContext, useState } from "preact/hooks";
 import { useDropzone } from "react-dropzone";
 import axios from "axios";
 import { FontAwesomeSvgIcon } from "react-fontawesome-slim";
-import Swal from "sweetalert2";
 
 import { Box, Grid, Stack, styled, Typography } from "@mui/material";
 
@@ -11,7 +10,7 @@ import {
   faCloudArrowUp as ImportIcon,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { Button, GlobalLoaderContext } from "@components";
+import { Button, GlobalLoaderContext, Swal } from "@components";
 
 type Props = {
   reloadPageData: () => void;
