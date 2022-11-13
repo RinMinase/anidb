@@ -2,7 +2,6 @@ import { useContext, useEffect, useState } from "preact/hooks";
 import { route } from "preact-router";
 import axios from "axios";
 import { FontAwesomeSvgIcon } from "react-fontawesome-slim";
-import Swal from "sweetalert2";
 
 import {
   Grid,
@@ -23,6 +22,7 @@ import {
   GlobalLoaderContext,
   IconButton,
   ModuleContainer,
+  Swal,
   Table,
 } from "@components";
 

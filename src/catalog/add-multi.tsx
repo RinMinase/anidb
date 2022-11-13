@@ -2,7 +2,6 @@ import { route } from "preact-router";
 import { useContext, useEffect } from "preact/hooks";
 import { useForm } from "react-hook-form";
 import { FontAwesomeSvgIcon } from "react-fontawesome-slim";
-import Swal from "sweetalert2";
 import axios from "axios";
 import { stringify } from "qs";
 
@@ -15,6 +14,7 @@ import {
   ControlledSelect,
   GlobalLoaderContext,
   ModuleContainer,
+  Swal,
 } from "@components";
 
 import { defaultValues, Form, resolver } from "./validation-multi";
