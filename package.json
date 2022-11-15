@@ -41,7 +41,7 @@
     "font-color-contrast": "^11.1.0",
     "js-cookie": "^3.0.1",
     "lodash-es": "^4.17.21",
-    "preact": "^10.11.2",
+    "preact": "^10.11.3",
     "preact-async-route": "^2.2.1",
     "preact-router": "^4.1.0",
     "qs": "^6.11.0",

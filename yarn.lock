@@ -9256,10 +9256,10 @@ preact-router@^4.1.0:
   resolved "https://registry.yarnpkg.com/preact-router/-/preact-router-4.1.0.tgz#5fb77f65746ac937c24746afef11f684ed6ed654"
   integrity sha512-y1w2YvVpKAju9FMV+fAVR1NpH4MW5q07BZrziMZeg6F/rGJ9KvLUZtjOqsy2I8fDYiX36AM1AQTXIIK3jigBhA==
 
-preact@10.11.2:
-  version "10.11.2"
-  resolved "https://registry.yarnpkg.com/preact/-/preact-10.11.2.tgz#e43f2a2f2985dedb426bb4c765b7bb037734f8a8"
-  integrity sha512-skAwGDFmgxhq1DCBHke/9e12ewkhc7WYwjuhHB8HHS8zkdtITXLRmUMTeol2ldxvLwYtwbFeifZ9uDDWuyL4Iw==
+preact@^10.11.3:
+  version "10.11.3"
+  resolved "https://registry.yarnpkg.com/preact/-/preact-10.11.3.tgz#8a7e4ba19d3992c488b0785afcc0f8aa13c78d19"
+  integrity sha512-eY93IVpod/zG3uMF22Unl8h9KkrcKIRs2EGar8hwLZZDU1lkjph303V9HZBwufh2s736U6VXuhD109LYqPoffg==
 
 precinct@^9.0.1:
   version "9.0.1"
@@ -11177,7 +11177,7 @@ typedarray-to-buffer@^3.1.5:
   dependencies:
     is-typedarray "^1.0.0"
 
-typescript@^4.5.5, typescript@^4.6.4, typescript@^4.8.4, typescript@~4.8.4:
+typescript@^4.5.5, typescript@^4.6.4, typescript@^4.8.4:
   version "4.8.4"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.8.4.tgz#c464abca159669597be5f96b8943500b238e60e6"
   integrity sha512-QCh+85mCy+h0IGff8r5XWzOVSbBO+KfeYrMQh7NJ58QujwcE22u+NUSmUxqF+un70P9GXKxa2HCNiTTMJknyjQ==
@@ -11466,7 +11466,7 @@ vite-tsconfig-paths@^3.5.2:
     recrawl-sync "^2.0.3"
     tsconfig-paths "^4.0.0"
 
-vite@~3.2.3:
+vite@^3.2.3:
   version "3.2.3"
   resolved "https://registry.yarnpkg.com/vite/-/vite-3.2.3.tgz#7a68d9ef73eff7ee6dc0718ad3507adfc86944a7"
   integrity sha512-h8jl1TZ76eGs3o2dIBSsvXDLb1m/Ec1iej8ZMdz+PsaFUsftZeWe2CZOI3qogEsMNaywc17gu0q6cQDzh/weCQ==
