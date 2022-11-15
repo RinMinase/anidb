@@ -70,6 +70,7 @@ const GraphSection = (props: Props) => {
       {
         data: [],
         backgroundColor: ["#777", "#fc6", "#9cf", "#9f9", "#f9c"],
+        borderColor: "rgb(25, 135, 84)",
       },
     ],
   };
@@ -80,15 +81,20 @@ const GraphSection = (props: Props) => {
       y: {
         ticks: {
           stepSize: 5,
-        }
-      }
+        },
+      },
     },
     plugins: {
       datalabels: {
         formatter: (val) => {
           return val < 0 ? "None" : val < 1 ? "" : val;
         },
-        color: "#000",
+        color: "#2196F3",
+        font: {
+          weight: "bold",
+          size: 14,
+        },
+        align: "top",
       },
       legend: {
         display: false,
