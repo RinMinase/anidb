@@ -63,7 +63,7 @@
     "@preact/preset-vite": "^2.4.0",
     "@types/js-cookie": "^3.0.2",
     "@types/lodash-es": "^4.17.6",
-    "@types/node": "^18.11.10",
+    "@types/node": "^18.11.18",
     "@types/qs": "^6.9.7",
     "@types/react-scroll": "^1.8.5",
     "@types/ua-parser-js": "^0.7.36",
