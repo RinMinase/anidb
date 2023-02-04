@@ -10,13 +10,13 @@
 </p>
 <p align="center">
     <a href="https://preactjs.com/">
-        <img alt="Preact" src="https://img.shields.io/badge/Preact-%5E10.9-673AB8.svg?logo=preact&style=for-the-badge">
+        <img alt="Preact" src="https://img.shields.io/badge/Preact-%5E10-673AB8.svg?logo=preact&style=for-the-badge">
     </a>
     <a href="https://vitejs.dev/">
-        <img alt="Vite" src="https://img.shields.io/badge/Vite-%5E3.0-646CFF.svg?logo=vite&style=for-the-badge">
+        <img alt="Vite" src="https://img.shields.io/badge/Vite-%5E4-646CFF.svg?logo=vite&style=for-the-badge">
     </a>
     <a href="https://nodejs.org">
-        <img alt="Node" src="https://img.shields.io/badge/node-%5E16.0%20%7C%7C%20%5E17.0-brightgreen.svg?logo=node.js&logoColor=white&style=for-the-badge">
+        <img alt="Node" src="https://img.shields.io/badge/node-%5E16.0%20%7C%7C%20%5E18.0-brightgreen.svg?logo=node.js&logoColor=white&style=for-the-badge">
     </a>
 </p>
 
