@@ -11,7 +11,7 @@ const schema = object({
   email: string().required("Email is required"),
   password: string().required("Password is required"),
   password_confirmation: string().oneOf(
-    [ref("password"), null],
+    [ref("password")],
     "Passwords does not match",
   ),
 });
