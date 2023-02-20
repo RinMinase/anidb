@@ -2,7 +2,7 @@
 
 <p align="center">
     <a href="https://circleci.com/gh/RinMinase/anidb">
-        <img alt="Circle-CI" src="https://img.shields.io/circleci/build/github/RinMinase/anidb/master.svg?logo=circleci&style=for-the-badge&label=Circle%20CI%20(Build)">
+        <img alt="Circle-CI" src="https://img.shields.io/circleci/build/github/RinMinase/anidb/staging.svg?logo=circleci&style=for-the-badge&label=Circle%20CI%20(Build)">
     </a>
     <a href="https://app.netlify.com/sites/anidb/deploys">
         <img alt="Netlify-Status" src="https://img.shields.io/netlify/635b50f7-7b22-4c87-9b6b-7da2c0fb2180?logo=netlify&style=for-the-badge&label=Netlify%20(Domain)">
