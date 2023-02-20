@@ -39,4 +39,4 @@ jobs:
 
       - run:
           name: Deploying to Netlify
-          command: $HOME/.local/.bin/netlify deploy --site $NETLIFY_SITE_ID_STG --auth $NETLIFY_ACCESS_TOKEN --message "$COMMIT_MESSAGE" --prod --dir=dist --skip-functions-cache
+          command: $HOME/.local/bin/netlify deploy --site $NETLIFY_SITE_ID_STG --auth $NETLIFY_ACCESS_TOKEN --message "$COMMIT_MESSAGE" --prod --dir=dist --skip-functions-cache
