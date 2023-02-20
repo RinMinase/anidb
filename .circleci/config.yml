@@ -10,8 +10,8 @@ jobs:
 
     parameters:
       netlify_version:
+        description: 12.14.0
         type: string
-        default: 12.14.0
 
     steps:
       - checkout
