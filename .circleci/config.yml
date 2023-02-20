@@ -23,7 +23,7 @@ jobs:
           name: Saving release dependency cache
           key: release-deps-{{ checksum ".circleci/config.yml" }}
           paths:
-            - $HOME/.local
+            - /$HOME/.local
 
       - run:
           name: Retrieve latest commit message for title
