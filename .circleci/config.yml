@@ -8,6 +8,11 @@ jobs:
       only:
         - staging
 
+    parameters:
+      netlify_version:
+        type: string
+        default: 12.14.0
+
     steps:
       - checkout
 
@@ -17,7 +22,7 @@ jobs:
 
       - run:
           name: Install release dependency
-          command: npm install --prefix=$HOME/.local --global netlify-cli@12.14.0
+          command: npm list --global netlify-cli@<< parameters.netlify_version >> || npm install --prefix=$HOME/.local --global netlify-cli@<< parameters.netlify_version >>
 
       - save_cache:
           name: Saving release dependency cache
