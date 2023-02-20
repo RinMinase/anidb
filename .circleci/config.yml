@@ -11,9 +11,19 @@ jobs:
     steps:
       - checkout
 
+      - restore_cache:
+          name: Restoring release dependency cache if present
+          key: release-deps-{{ checksum ".circleci/config.yml" }}
+
       - run:
           name: Install release dependency
           command: npm install --prefix=$HOME/.local --global netlify-cli@12.14.0
+
+      - save_cache:
+          name: Saving release dependency cache
+          key: release-deps-{{ checksum ".circleci/config.yml" }}
+          paths:
+            - $HOME/.local
 
       - run:
           name: Retrieve latest commit message for title
