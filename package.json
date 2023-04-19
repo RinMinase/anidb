@@ -44,16 +44,16 @@
     "preact": "^10.13.0",
     "preact-async-route": "^2.2.1",
     "preact-router": "^4.1.0",
-    "qs": "^6.11.0",
+    "qs": "^6.11.1",
     "react-dropzone": "^14.2.3",
     "react-fontawesome-slim": "^1.0.0",
-    "react-hook-form": "^7.43.5",
+    "react-hook-form": "^7.43.9",
     "react-scroll": "^1.8.9",
     "react-waypoint": "^10.3.0",
     "sweetalert2": "^11.7.3",
-    "ua-parser-js": "^1.0.34",
+    "ua-parser-js": "^1.0.35",
     "uuid": "^9.0.0",
-    "yup": "^1.0.2"
+    "yup": "^1.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.21.0",
