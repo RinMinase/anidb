@@ -26,8 +26,8 @@
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
-    "@fortawesome/free-regular-svg-icons": "^6.3.0",
-    "@fortawesome/free-solid-svg-icons": "^6.3.0",
+    "@fortawesome/free-regular-svg-icons": "^6.4.0",
+    "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@hookform/resolvers": "^2.9.11",
     "@mui/lab": "^5.0.0-alpha.122",
     "@mui/material": "^5.11.12",
@@ -58,7 +58,7 @@
   "devDependencies": {
     "@babel/core": "^7.21.0",
     "@date-io/date-fns": "^2.16.0",
-    "@fortawesome/fontawesome-svg-core": "^6.3.0",
+    "@fortawesome/fontawesome-svg-core": "^6.4.0",
     "@mui/system": "^5.11.12",
     "@preact/preset-vite": "^2.5.0",
     "@types/js-cookie": "^3.0.3",
