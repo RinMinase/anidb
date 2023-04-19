@@ -22,7 +22,8 @@ const ByYear = () => import("./by-year").then((c) => c.default);
 
 const Catalog = () => import("./catalog").then((c) => c.default);
 const CatalogAdd = () => import("./catalog/add").then((c) => c.default);
-const CatalogAddMulti = () => import("./catalog/add-multi").then((c) => c.default);
+const CatalogAddMulti = () =>
+  import("./catalog/add-multi").then((c) => c.default);
 
 const Bucket = () => import("./bucket").then((c) => c.default);
 
@@ -38,6 +39,8 @@ const Logs = () => import("./logs").then((c) => c.default);
 const Group = () => import("./group").then((c) => c.default);
 const AudioCodec = () => import("./audio-codec").then((c) => c.default);
 const VideoCodec = () => import("./video-codec").then((c) => c.default);
+
+const Rss = () => import("./rss").then((c) => c.default);
 
 const Routes = (props: Props) => (
   <Router onChange={props.onChange}>
@@ -58,7 +61,10 @@ const Routes = (props: Props) => (
     <AsyncRoute path="/catalogs/add" getComponent={CatalogAdd} />
     <AsyncRoute path="/catalogs/edit/:id" getComponent={CatalogAdd} />
     <AsyncRoute path="/catalogs/add-multi" getComponent={CatalogAddMulti} />
-    <AsyncRoute path="/catalogs/edit-multi/:id" getComponent={CatalogAddMulti} />
+    <AsyncRoute
+      path="/catalogs/edit-multi/:id"
+      getComponent={CatalogAddMulti}
+    />
 
     <AsyncRoute path="/buckets" getComponent={Bucket} />
 
@@ -75,6 +81,8 @@ const Routes = (props: Props) => (
     <AsyncRoute path="/groups" getComponent={Group} />
     <AsyncRoute path="/audio-codecs" getComponent={AudioCodec} />
     <AsyncRoute path="/video-codecs" getComponent={VideoCodec} />
+
+    <AsyncRoute path="/rss" getComponent={Rss} />
 
     <Route default component={Page404} />
   </Router>

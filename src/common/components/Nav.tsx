@@ -31,6 +31,7 @@ import {
   faListUl as ListIcon,
   faMoon as DarkModeIcon,
   faMusic as AudioCodecIcon,
+  faRss as RssIcon,
   faSun as LightModeIcon,
   faTv as MarathonsIcon,
   faUserGroup as GroupIcon,
@@ -255,6 +256,15 @@ const Nav = () => {
             >
               <MenuItemManagement onClick={() => handleCloseList("mgmt")} />
             </Menu>
+
+            <Button
+              iconSize={18}
+              color="inherit"
+              href="/rss"
+              startIcon={<NavIcon icon={RssIcon} />}
+            >
+              RSS
+            </Button>
           </Box>
 
           <IconButton onClick={colorMode.toggleColorMode} color="inherit">
