@@ -25,21 +25,20 @@ const ControlledDatepicker = (props: Props) => {
       render={({ field: { onChange, value } }) => (
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <DesktopDatePicker
-            inputFormat="MM/dd/yyyy"
+            format="MM/dd/yyyy"
             onChange={onChange}
             label={props.label}
             disabled={props.disabled}
             disableFuture={props.disableFuture}
             value={value}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                fullWidth={props.fullWidth}
-                size={props.size || "medium"}
-                helperText={props.helperText}
-                error={props.error}
-              />
-            )}
+            slotProps={{
+              textField: {
+                fullWidth: props.fullWidth,
+                helperText: props.helperText,
+                size: props.size || "medium",
+                error: props.error,
+              },
+            }}
           />
         </LocalizationProvider>
       )}
