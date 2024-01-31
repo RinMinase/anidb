@@ -123,7 +123,7 @@ const ViewEntryImage = (props: Props) => {
         )}
 
         {isDesktop && (
-          <ImageBoxEdit component="label" disabled={!!imageFile}>
+          <ImageBoxEdit disabled={!!imageFile}>
             <input
               type="file"
               accept="image/*"
