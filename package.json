@@ -34,7 +34,7 @@
     "@mui/x-date-pickers": "^6.3.1",
     "animate.css": "^4.1.1",
     "awesome-debounce-promise": "^2.1.0",
-    "axios": "^1.4.0",
+    "axios": "^1.6.7",
     "chart.js": "^4.3.0",
     "chartjs-plugin-datalabels": "^2.2.0",
     "date-fns": "^2.30.0",
