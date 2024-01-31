@@ -62,11 +62,17 @@ const ViewEntryImage = (props: Props) => {
       try {
         setImageUploading(true);
 
+        console.log(imageFile);
+
         const body = new FormData();
         body.append("_method", "PUT");
         body.append("image", imageFile);
 
-        await axios.post(`/entries/img-upload/${props.id}`, body);
+        await axios.post(`/entries/img-upload/${props.id}`, body, {
+          headers: {
+            "Content-Type": "image/*",
+          },
+        });
 
         setImageUploading(false);
 
