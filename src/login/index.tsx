@@ -1,6 +1,8 @@
-import { useForm } from "react-hook-form";
 import { useContext, useEffect, useState } from "preact/hooks";
+import { route } from "preact-router";
+
 import axios from "axios";
+import { useForm } from "react-hook-form";
 
 import {
   CircularProgress,
@@ -13,7 +15,6 @@ import {
 
 import { Alert, AlertProps, Button, GlobalLoaderContext } from "@components";
 import { Form, resolver } from "./validation";
-import { route } from "preact-router";
 
 const ModuleContainer = styled(Grid)({
   height: "calc(100vh - 48px)",
