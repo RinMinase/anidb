@@ -38,6 +38,7 @@ const Login = () => {
     handleSubmit,
     setError,
     formState: { errors },
+    resetField,
   } = useForm<Form>({ resolver });
 
   useEffect(() => {
@@ -80,6 +81,8 @@ const Login = () => {
             severity: "error",
           }));
         }
+
+        resetField("password");
       })
       .finally(() => {
         loader.toggleLoader(false);
