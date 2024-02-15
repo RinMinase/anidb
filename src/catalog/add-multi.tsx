@@ -140,7 +140,7 @@ const CatalogMulti = (props: Props) => {
       const { id } = props.matches;
 
       axios
-        .get(`/catalogs/${id}`)
+        .get(`/catalogs/${id}/partials`)
         .then(({ data }) => {
           handleEditLoad(data.data, data.stats);
         })

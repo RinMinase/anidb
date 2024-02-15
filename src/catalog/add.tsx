@@ -115,10 +115,10 @@ const CatalogAdd = (props: Props) => {
       const { id } = props.matches;
 
       const partialsData = await axios.get(`/partials/${id}`);
-      const { title, id_catalogs, id_priority } = partialsData.data.data;
+      const { title, id_catalog, id_priority } = partialsData.data.data;
 
       setValue("title", title);
-      setValue("id_catalogs", id_catalogs);
+      setValue("id_catalog", id_catalog);
       setValue("id_priority", id_priority);
     }
 
@@ -147,12 +147,12 @@ const CatalogAdd = (props: Props) => {
         />
 
         <ControlledSelect
-          name="id_catalogs"
+          name="id_catalog"
           label="Catalog"
           options={catalogs}
           control={control}
-          error={!!errors.id_catalogs}
-          helperText={errors.id_catalogs?.message}
+          error={!!errors.id_catalog}
+          helperText={errors.id_catalog?.message}
           disabled={isLoading}
           displayEmpty
         />

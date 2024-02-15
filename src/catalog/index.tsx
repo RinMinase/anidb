@@ -54,7 +54,7 @@ const Catalog = () => {
       toggleLoader(true);
 
       axios
-        .get(`/catalogs/${id}`)
+        .get(`/catalogs/${id}/partials`)
         .then(({ data: { data } }) => {
           setData(() => data);
           setSelected(id);
@@ -93,7 +93,7 @@ const Catalog = () => {
 
       const {
         data: { data },
-      } = await axios.get(`/catalogs/${selected}`);
+      } = await axios.get(`/catalogs/${selected}/partials`);
 
       setData(() => data);
       toggleLoader(false);

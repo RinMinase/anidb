@@ -3,19 +3,19 @@ import { number, object, string } from "yup";
 
 export type Form = {
   title: string;
-  id_catalogs?: string;
+  id_catalog?: string;
   id_priority: number | "";
 };
 
 const defaultValues: Form = {
   title: "",
-  id_catalogs: "",
+  id_catalog: "",
   id_priority: "",
 };
 
 const schema = object({
   title: string().required("Title is required"),
-  id_catalogs: string().required("Catalog is required"),
+  id_catalog: string().required("Catalog is required"),
   id_priority: number()
     .typeError("Priority is invalid")
     .required("Priority is required"),
