@@ -1,4 +1,5 @@
 import { yupResolver } from "@hookform/resolvers/yup";
+import { Resolver } from "react-hook-form";
 import { number, object, string } from "yup";
 
 export type Form = {
@@ -21,6 +22,6 @@ const schema = object({
     .required("Priority is required"),
 });
 
-const resolver = yupResolver(schema);
+const resolver: Resolver<Form> = yupResolver(schema) as any;
 
 export { defaultValues, resolver };

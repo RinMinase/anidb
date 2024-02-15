@@ -1,4 +1,5 @@
 import { yupResolver } from "@hookform/resolvers/yup";
+import { Resolver } from "react-hook-form";
 import { number, object, string } from "yup";
 
 import { emptyStringToNull } from "@components";
@@ -20,6 +21,6 @@ const schema = object({
     .nullable(),
 });
 
-const resolver = yupResolver(schema);
+const resolver: Resolver<Form> = yupResolver(schema) as any;
 
 export { defaultValues, resolver };

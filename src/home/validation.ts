@@ -1,6 +1,7 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { bool, date, number, object, string } from "yup";
 import { format } from "date-fns";
+import { Resolver } from "react-hook-form";
+import { bool, date, number, object, string } from "yup";
 
 import { emptyStringToNull } from "@components";
 
@@ -127,7 +128,9 @@ const rewatchSchema = object({
     .required("Date is required"),
 });
 
-const resolver = yupResolver(schema);
-const rewatchResolver = yupResolver(rewatchSchema);
+const resolver: Resolver<Form> = yupResolver(schema) as any;
+const rewatchResolver: Resolver<RewatchForm> = yupResolver(
+  rewatchSchema,
+) as any;
 
 export { defaultValues, resolver, rewatchDefaultValues, rewatchResolver };

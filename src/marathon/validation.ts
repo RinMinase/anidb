@@ -1,4 +1,5 @@
 import { yupResolver } from "@hookform/resolvers/yup";
+import { Resolver } from "react-hook-form";
 import { date, object, ref, string } from "yup";
 
 export type Form = {
@@ -21,6 +22,6 @@ const schema = object({
     .min(ref("dateFrom"), "Date needs to be after 'From'"),
 });
 
-const resolver = yupResolver(schema);
+const resolver: Resolver<Form> = yupResolver(schema) as any;
 
 export { defaultValues, resolver };

@@ -1,4 +1,5 @@
 import { yupResolver } from "@hookform/resolvers/yup";
+import { Resolver } from "react-hook-form";
 import { array, number, object, string } from "yup";
 
 export type Form = {
@@ -29,12 +30,12 @@ const schema = object().shape({
         .required("Required")
         .min(1, "Single letter only")
         .max(1, "Single letter only")
-        .matches(/^[A-z]$/, 'Letters only'),
+        .matches(/^[A-z]$/, "Letters only"),
       to: string()
         .required("Required")
         .min(1, "Single letter only")
         .max(1, "Single letter only")
-        .matches(/^[A-z]$/, 'Letters only'),
+        .matches(/^[A-z]$/, "Letters only"),
       size: number()
         .typeError("Invalid")
         .nullable()
@@ -45,6 +46,6 @@ const schema = object().shape({
   ),
 });
 
-const resolver = yupResolver(schema);
+const resolver: Resolver<Form> = yupResolver(schema) as any;
 
 export { defaultValues, resolver };
