@@ -95,12 +95,9 @@ const LastWatch = () => {
 
     axios
       .get("/entries/last")
-      .then(({ data: { data } }) => {
+      .then(({ data }) => {
         setData(() => data.data);
-
-        if (data.stats) {
-          setStats(() => data.stats);
-        }
+        setStats(() => data.stats);
       })
       .catch((err) => console.error(err))
       .finally(() => toggleLoader(false));
