@@ -122,7 +122,7 @@ const Marathon = () => {
 
       axios
         .get(`/entries/by-sequence/${id}`)
-        .then(({ data: { data } }) => {
+        .then(({ data }) => {
           setData(() => data.data);
           setStats(() => data.stats);
           setSelected(id);
