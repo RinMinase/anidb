@@ -373,7 +373,7 @@ const HomeView = (props: Props) => {
                     {data.releaseSeason === "Spring" && <IconSpring />}
                     {data.releaseSeason === "Summer" && <IconSummer />}
                     {data.releaseSeason === "Fall" && <IconFall />}
-                    <Typography variant="body1" component="span">
+                    <Typography variant="body1" component={"span" as any}>
                       {data.release}
                     </Typography>
                   </Box>
@@ -384,7 +384,9 @@ const HomeView = (props: Props) => {
                     <Stack spacing={1}>
                       {data.prequel?.id && (
                         <Typography variant="body1">
-                          <Typography component="span">Prequel: </Typography>
+                          <Typography component={"span" as any}>
+                            Prequel:{" "}
+                          </Typography>
                           <Link href={`/home/view/${data.prequel.id}`}>
                             {data.prequel.title}
                           </Link>
@@ -392,7 +394,9 @@ const HomeView = (props: Props) => {
                       )}
                       {data.sequel?.id && (
                         <Typography variant="body1">
-                          <Typography component="span">Sequel: </Typography>
+                          <Typography component={"span" as any}>
+                            Sequel:{" "}
+                          </Typography>
                           <Link href={`/home/view/${data.sequel.id}`}>
                             {data.sequel.title}
                           </Link>

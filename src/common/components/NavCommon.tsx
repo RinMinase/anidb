@@ -30,7 +30,7 @@ const RightMenuContainer = styled(Box)({
 });
 
 const NavIcon = styled(FontAwesomeSvgIcon)({
-  marginLeft: 8
+  marginLeft: 8,
 });
 
 const NavCommon = () => {
@@ -53,7 +53,7 @@ const NavCommon = () => {
         <Toolbar variant="dense" disableGutters>
           <Typography
             variant="h6"
-            component="a"
+            component={"a" as any}
             href="/"
             sx={{
               mr: 2,
@@ -108,7 +108,7 @@ const NavCommon = () => {
           <Typography
             variant="h6"
             noWrap
-            component="a"
+            component={"a" as any}
             href="/"
             sx={{
               display: { xs: "flex", md: "none" },

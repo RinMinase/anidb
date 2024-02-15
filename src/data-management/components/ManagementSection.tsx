@@ -80,6 +80,7 @@ const ManagementSection = (props: Props) => {
     <Grid container>
       <Grid item md={8} textAlign="center">
         <DropzoneContainer {...getRootProps({ className: "dropzone" })}>
+          {/* @ts-expect-error: Expected for dropzone */}
           <input {...getInputProps()} />
           {acceptedFiles.length ? (
             <Typography>File Selected: {acceptedFiles[0].name}</Typography>
@@ -92,7 +93,7 @@ const ManagementSection = (props: Props) => {
 
         {fileRejections.length ? (
           <Typography
-            component="p"
+            component={"p" as any}
             variant="caption"
             color="error"
             gutterBottom

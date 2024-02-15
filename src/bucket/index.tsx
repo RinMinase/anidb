@@ -150,16 +150,16 @@ const Bucket = () => {
 
       {!isLoading && (
         <Typography variant="h5" gutterBottom>
-          <Typography variant="inherit" component="span">
+          <Typography variant="inherit" component={"span" as any}>
             Selected Disk:{" "}
           </Typography>
           <Typography
             variant="inherit"
-            component="span"
+            component={"span" as any}
           >{` ${currBucket.from.toUpperCase()}`}</Typography>
           <Typography
             variant="inherit"
-            component="span"
+            component={"span" as any}
           >{` - ${currBucket.to.toUpperCase()}`}</Typography>
         </Typography>
       )}

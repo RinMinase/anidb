@@ -40,6 +40,7 @@ const ControlledAutocomplete = (props: Props) => {
             fullWidth={props.fullWidth}
             loading={props.loadingContents}
             renderInput={(params) => (
+              // @ts-expect-error: Unknown error
               <TextField
                 {...params}
                 onChange={props.onChange}

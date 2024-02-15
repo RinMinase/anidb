@@ -117,7 +117,7 @@ const ByYear = () => {
       {value ? (
         <Stack spacing={2} direction="row" alignItems="center">
           <DividingSpacer />
-          <Typography component="span" variant="body2">
+          <Typography component={"span" as any} variant="body2">
             {label === "Winter" ? <IconWinter /> : null}
             {label === "Spring" ? <IconSpring /> : null}
             {label === "Summer" ? <IconSummer /> : null}
@@ -125,7 +125,11 @@ const ByYear = () => {
             {label}
           </Typography>
           <DividingBox />
-          <Typography component="span" variant="body2" children={value} />
+          <Typography
+            component={"span" as any}
+            variant="body2"
+            children={value}
+          />
         </Stack>
       ) : null}
     </>

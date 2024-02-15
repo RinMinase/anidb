@@ -88,33 +88,45 @@ const Nav = () => {
 
   const MenuItemList = (props: { onClick: () => void }) => (
     <>
-      <MenuItem component="a" href="/last-watch" onClick={props.onClick}>
+      <MenuItem
+        component={"a" as any}
+        href="/last-watch"
+        onClick={props.onClick}
+      >
         <ListItemIcon children={<FontAwesomeSvgIcon icon={LastWatchIcon} />} />
         Last Watched
       </MenuItem>
       <Divider />
-      <MenuItem component="a" href="/by-name" onClick={props.onClick}>
+      <MenuItem component={"a" as any} href="/by-name" onClick={props.onClick}>
         <ListItemIcon children={<FontAwesomeSvgIcon icon={ByNameIcon} />} />
         By Name
       </MenuItem>
-      <MenuItem component="a" href="/by-year" onClick={props.onClick}>
+      <MenuItem component={"a" as any} href="/by-year" onClick={props.onClick}>
         <ListItemIcon children={<FontAwesomeSvgIcon icon={ByYearIcon} />} />
         By Year
       </MenuItem>
       <Divider />
-      <MenuItem component="a" href="/catalogs" onClick={props.onClick}>
+      <MenuItem component={"a" as any} href="/catalogs" onClick={props.onClick}>
         <ListItemIcon children={<FontAwesomeSvgIcon icon={CatalogsIcon} />} />
         Download Lists
       </MenuItem>
-      <MenuItem component="a" href="/marathons" onClick={props.onClick}>
+      <MenuItem
+        component={"a" as any}
+        href="/marathons"
+        onClick={props.onClick}
+      >
         <ListItemIcon children={<FontAwesomeSvgIcon icon={MarathonsIcon} />} />
         Marathon Lists
       </MenuItem>
-      <MenuItem component="a" href="/buckets" onClick={props.onClick}>
+      <MenuItem component={"a" as any} href="/buckets" onClick={props.onClick}>
         <ListItemIcon children={<FontAwesomeSvgIcon icon={BucketsIcon} />} />
         Bucket Lists
       </MenuItem>
-      <MenuItem component="a" href="/bucket-sims" onClick={props.onClick}>
+      <MenuItem
+        component={"a" as any}
+        href="/bucket-sims"
+        onClick={props.onClick}
+      >
         <ListItemIcon children={<FontAwesomeSvgIcon icon={BucketSimIcon} />} />
         Bucket Simulator
       </MenuItem>
@@ -123,26 +135,38 @@ const Nav = () => {
 
   const MenuItemManagement = (props: { onClick: () => void }) => (
     <>
-      <MenuItem component="a" href="/data-management" onClick={props.onClick}>
+      <MenuItem
+        component={"a" as any}
+        href="/data-management"
+        onClick={props.onClick}
+      >
         <ListItemIcon
           children={<FontAwesomeSvgIcon icon={DataManagementIcon} />}
         />
         Data Management
       </MenuItem>
-      <MenuItem component="a" href="/logs" onClick={props.onClick}>
+      <MenuItem component={"a" as any} href="/logs" onClick={props.onClick}>
         <ListItemIcon children={<FontAwesomeSvgIcon icon={LogsIcon} />} />
         Logs
       </MenuItem>
       <Divider />
-      <MenuItem component="a" href="/audio-codecs" onClick={props.onClick}>
+      <MenuItem
+        component={"a" as any}
+        href="/audio-codecs"
+        onClick={props.onClick}
+      >
         <ListItemIcon children={<FontAwesomeSvgIcon icon={AudioCodecIcon} />} />
         Audio Codecs
       </MenuItem>
-      <MenuItem component="a" href="/video-codecs" onClick={props.onClick}>
+      <MenuItem
+        component={"a" as any}
+        href="/video-codecs"
+        onClick={props.onClick}
+      >
         <ListItemIcon children={<FontAwesomeSvgIcon icon={VideoCodecIcon} />} />
         Video Codecs
       </MenuItem>
-      <MenuItem component="a" href="/groups" onClick={props.onClick}>
+      <MenuItem component={"a" as any} href="/groups" onClick={props.onClick}>
         <ListItemIcon children={<FontAwesomeSvgIcon icon={GroupIcon} />} />
         Groups
       </MenuItem>
@@ -155,7 +179,7 @@ const Nav = () => {
         <Toolbar variant="dense" disableGutters>
           <Typography
             variant="h6"
-            component="a"
+            component={"a" as any}
             href="/"
             sx={{
               mr: 2,
@@ -211,7 +235,7 @@ const Nav = () => {
           <Typography
             variant="h6"
             noWrap
-            component="a"
+            component={"a" as any}
             href="/"
             sx={{
               display: { xs: "flex", md: "none" },

@@ -39,6 +39,7 @@ const ViewEntryImage = (props: Props) => {
   const [dialog, setDialog] = useState<AlertProps>({ open: false });
 
   const handleChangeFile = (e: any) => {
+    console.log("test");
     const element = e.target as HTMLInputElement;
     const { files } = element;
 
