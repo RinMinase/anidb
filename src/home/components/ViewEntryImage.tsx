@@ -1,12 +1,14 @@
 import { StateUpdater, useState } from "preact/hooks";
-import axios from "axios";
+
 import { FontAwesomeSvgIcon } from "react-fontawesome-slim";
+import axios from "axios";
 
 import { CircularProgress, useMediaQuery, useTheme } from "@mui/material";
 
 import {
   faCheck as UploadSaveIcon,
   faCloudArrowUp as UploadImageIcon,
+  faTrash as UploadDeleteIcon,
   faXmark as UploadCancelIcon,
 } from "@fortawesome/free-solid-svg-icons";
 
@@ -19,6 +21,7 @@ import {
   ImageBoxEdit,
   ImageBoxSave,
   ImageBoxRemove,
+  ImageBoxDelete,
 } from "./ViewComponents";
 
 import { FullData } from "../types";
@@ -29,6 +32,8 @@ type Props = {
   setData: StateUpdater<FullData>;
 };
 
+const BlankImage = "data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=";
+
 const ViewEntryImage = (props: Props) => {
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
@@ -37,9 +42,9 @@ const ViewEntryImage = (props: Props) => {
   const [tempImage, setTempImage] = useState<string>("");
   const [imageUploading, setImageUploading] = useState<boolean>(false);
   const [dialog, setDialog] = useState<AlertProps>({ open: false });
+  const [deleteIcon, setDeleteIcon] = useState(!!props.data.image);
 
   const handleChangeFile = (e: any) => {
-    console.log("test");
     const element = e.target as HTMLInputElement;
     const { files } = element;
 
@@ -48,6 +53,32 @@ const ViewEntryImage = (props: Props) => {
 
       const url = URL.createObjectURL(files[0]);
       setTempImage(url);
+    }
+  };
+
+  const handleDeleteFile = async () => {
+    try {
+      setImageUploading(true);
+
+      await axios.delete(`/entries/img-upload/${props.id}`);
+
+      setTempImage(() => BlankImage);
+      setImageUploading(false);
+      setDeleteIcon(false);
+      setDialog({
+        open: true,
+        message: "Success!",
+        severity: "success",
+      });
+    } catch (err) {
+      console.error(err);
+
+      setImageUploading(false);
+      setDialog({
+        open: true,
+        message: "Failed",
+        severity: "error",
+      });
     }
   };
 
@@ -62,8 +93,6 @@ const ViewEntryImage = (props: Props) => {
     if (imageFile) {
       try {
         setImageUploading(true);
-
-        console.log(imageFile);
 
         const body = new FormData();
         body.append("_method", "PUT");
@@ -88,6 +117,7 @@ const ViewEntryImage = (props: Props) => {
           image: data.image,
         }));
 
+        setDeleteIcon(true);
         setDialog({
           open: true,
           message: "Success!",
@@ -123,7 +153,7 @@ const ViewEntryImage = (props: Props) => {
           />
         )}
 
-        {isDesktop && (
+        {isDesktop && !imageFile && (
           <ImageBoxEdit component="label" disabled={!!imageFile}>
             <FontAwesomeSvgIcon icon={UploadImageIcon} color="#fff" />
             <input
@@ -133,6 +163,12 @@ const ViewEntryImage = (props: Props) => {
               onChange={handleChangeFile}
             />
           </ImageBoxEdit>
+        )}
+
+        {isDesktop && !imageFile && deleteIcon && (
+          <ImageBoxDelete onClick={handleDeleteFile}>
+            <FontAwesomeSvgIcon icon={UploadDeleteIcon} color="#fff" />
+          </ImageBoxDelete>
         )}
 
         {imageFile && (

@@ -74,6 +74,19 @@ const ImageBoxEdit = styled(Button)(({ theme }) => ({
   },
 }));
 
+const ImageBoxDelete = styled(IconButton)(({ theme }) => ({
+  position: "absolute",
+  top: 64,
+  right: 12,
+
+  height: 46,
+  width: 46,
+
+  "&:hover": {
+    backgroundColor: theme.palette.error.main,
+  },
+}));
+
 const ImageBoxSave = styled(IconButton)(({ theme }) => ({
   backgroundColor: theme.palette.success.main,
   position: "absolute",
@@ -177,6 +190,7 @@ export {
   Image,
   ImageLoader,
   ImageBoxEdit,
+  ImageBoxDelete,
   ImageBoxSave,
   ImageBoxRemove,
   TotalStyledRating,
