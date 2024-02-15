@@ -4,6 +4,7 @@ import axios from "axios";
 import { Chart, ChartOptions, registerables } from "chart.js";
 import ChartDataLabels from "chartjs-plugin-datalabels";
 import { FontAwesomeSvgIcon } from "react-fontawesome-slim";
+import { v4 as uuid } from "uuid";
 
 import {
   Box,
@@ -116,6 +117,23 @@ const Marathon = () => {
     },
   };
 
+  const processDuplicateIds = (data: Data) => {
+    const existingIds: Array<string> = [];
+
+    return data.map((item) => {
+      if (!existingIds.includes(item.id)) {
+        existingIds.push(item.id);
+
+        return item;
+      }
+
+      return {
+        ...item,
+        id: uuid(),
+      };
+    });
+  };
+
   const handleClickSequence = (id: number) => {
     if (id !== selected) {
       toggleLoader(true);
@@ -123,7 +141,7 @@ const Marathon = () => {
       axios
         .get(`/entries/by-sequence/${id}`)
         .then(({ data }) => {
-          setData(() => data.data);
+          setData(() => processDuplicateIds(data.data));
           setStats(() => data.stats);
           setSelected(id);
           setChartData(() => [
