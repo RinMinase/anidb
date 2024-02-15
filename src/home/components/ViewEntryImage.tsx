@@ -123,14 +123,14 @@ const ViewEntryImage = (props: Props) => {
         )}
 
         {isDesktop && (
-          <ImageBoxEdit disabled={!!imageFile}>
+          <ImageBoxEdit component="label" disabled={!!imageFile}>
+            <FontAwesomeSvgIcon icon={UploadImageIcon} color="#fff" />
             <input
               type="file"
               accept="image/*"
               hidden
               onChange={handleChangeFile}
             />
-            <FontAwesomeSvgIcon icon={UploadImageIcon} color="#fff" />
           </ImageBoxEdit>
         )}
 

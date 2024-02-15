@@ -16,11 +16,7 @@ import {
   faTree as SpringIcon,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { IconButton } from "@components";
-
-type IconButtonProps = {
-  component?: any;
-};
+import { Button, IconButton } from "@components";
 
 type ImageProps = {
   src?: string;
@@ -58,16 +54,23 @@ const ImageLoader = styled(Box)({
   left: 12,
 });
 
-const ImageBoxEdit = styled(IconButton)<IconButtonProps>(({ theme }) => ({
+const ImageBoxEdit = styled(Button)(({ theme }) => ({
   position: "absolute",
   top: 12,
   right: 12,
 
   height: 46,
   width: 46,
+  minWidth: 46,
+  borderRadius: "100%",
 
   "&:hover": {
     backgroundColor: theme.palette.warning.main,
+  },
+
+  "&> svg": {
+    width: "100%",
+    height: "100%",
   },
 }));
 
