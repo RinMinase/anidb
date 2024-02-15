@@ -65,7 +65,7 @@
     "@preact/preset-vite": "^2.8.1",
     "@types/js-cookie": "^3.0.6",
     "@types/lodash-es": "^4.17.12",
-    "@types/node": "^20.11.16",
+    "@types/node": "^20.11.18",
     "@types/qs": "^6.9.11",
     "@types/react-scroll": "^1.8.10",
     "@types/ua-parser-js": "^0.7.39",
