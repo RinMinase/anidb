@@ -38,7 +38,7 @@
     "axios": "^1.6.7",
     "chart.js": "^4.4.1",
     "chartjs-plugin-datalabels": "^2.2.0",
-    "date-fns": "2.30.0",
+    "date-fns": "^3.3.1",
     "font-color-contrast": "^11.1.0",
     "js-cookie": "^3.0.5",
     "lodash-es": "^4.17.21",
@@ -58,7 +58,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.23.9",
-    "@date-io/date-fns": "3.0.0",
+    "@date-io/date-fns": "^3.0.0",
     "@fortawesome/fontawesome-svg-core": "^6.5.1",
     "@mui/base": "^5.0.0-beta.36",
     "@mui/system": "^5.15.9",
