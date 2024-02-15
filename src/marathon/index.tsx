@@ -145,11 +145,11 @@ const Marathon = () => {
           setStats(() => data.stats);
           setSelected(id);
           setChartData(() => [
-            data.stats.quality_2160,
-            data.stats.quality_1080,
-            data.stats.quality_720,
-            data.stats.quality_480,
             data.stats.quality_360,
+            data.stats.quality_480,
+            data.stats.quality_720,
+            data.stats.quality_1080,
+            data.stats.quality_2160,
           ]);
         })
         .catch((err) => console.error(err))
