@@ -54,7 +54,7 @@ const years = Array.from({ length: 25 }, (_, i) => ({
 const searchAPI = (id?: string, needle?: string) =>
   axios.get("/entries/titles", {
     params: {
-      id,
+      id: id === "" ? null : id,
       needle,
     },
   });
