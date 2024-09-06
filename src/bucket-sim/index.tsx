@@ -57,7 +57,7 @@ const BucketSim = () => {
       axios
         .get(`/bucket-sims/${uuid}`)
         .then(({ data: { data } }) => {
-          const buckets: Data = data.data.map((item: Item) => {
+          const buckets: Data = data.map((item: Item) => {
             const { percent } = item;
 
             let bucketColor: string = green[700];
@@ -231,7 +231,7 @@ const BucketSim = () => {
                             }
                             iconColor={item.bucketColor}
                             heading={"Total"}
-                            subHeading={`${item.used} / ${item.total}`}
+                            subHeading={`${item.used || "0 B"} / ${item.total}`}
                             value={`${item.percent}%`}
                             footerLeft={`Free: ${item.free}`}
                             footerRight={`${item.titles} Titles`}
@@ -255,7 +255,7 @@ const BucketSim = () => {
                           }
                           iconColor={item.bucketColor}
                           heading={`${item.from.toUpperCase()} - ${item.to.toUpperCase()}`}
-                          subHeading={`${item.used} / ${item.total}`}
+                          subHeading={`${item.used || "0 B"} / ${item.total}`}
                           value={`${item.percent}%`}
                           footerLeft={`Free: ${item.free}`}
                           footerRight={`${item.titles} Titles`}

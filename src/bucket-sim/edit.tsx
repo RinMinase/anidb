@@ -102,9 +102,7 @@ const BucketSimEdit = (props: Props) => {
         });
 
         const {
-          data: {
-            data: { data },
-          },
+          data: { data },
         } = await axios.get(`/bucket-sims/${props.matches.id}`);
 
         const newBuckets: Data = data.map((item: Item) => {
@@ -215,8 +213,8 @@ const BucketSimEdit = (props: Props) => {
 
     axios
       .get(`/bucket-sims/${props.matches.id}`)
-      .then(({ data: { data: apiData } }) => {
-        const { data, description } = apiData;
+      .then(({ data: { data, stats } }) => {
+        const { description } = stats;
 
         const formData = data.slice(1).map((item: Item) => ({
           from: item.from,

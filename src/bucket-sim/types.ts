@@ -6,6 +6,7 @@ export type Sims = Array<{
 export type Data = Item[];
 
 export type Item = {
+  id: number | null;
   from: string;
   to: string;
   free?: string;
