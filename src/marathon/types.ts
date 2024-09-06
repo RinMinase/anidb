@@ -15,22 +15,22 @@ export type Data = Array<{
 export type Sequences = Array<{
   id: number;
   title: string;
-  date_from: string;
-  date_to: string;
+  dateFrom: string;
+  dateTo: string;
 }>;
 
 export type Stats = {
-  titles_per_day?: number;
-  eps_per_day?: number;
-  quality_2160?: number;
-  quality_1080?: number;
-  quality_720?: number;
-  quality_480?: number;
-  quality_360?: number;
-  total_titles?: number;
-  total_eps?: number;
-  total_size?: string;
-  total_days?: number;
-  start_date?: string;
-  end_date?: string;
+  titlesPerDay?: number;
+  epsPerDay?: number;
+  quality2160?: number;
+  quality1080?: number;
+  quality720?: number;
+  quality480?: number;
+  quality360?: number;
+  totalTitles?: number;
+  totalEps?: number;
+  totalSize?: string;
+  totalDays?: number;
+  startDate?: string;
+  endDate?: string;
 };

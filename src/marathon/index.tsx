@@ -69,19 +69,19 @@ const Marathon = () => {
   const [sequences, setSequences] = useState<Sequences>([]);
   const [selected, setSelected] = useState(0);
   const [stats, setStats] = useState<Stats>({
-    titles_per_day: 0,
-    eps_per_day: 0,
-    quality_2160: 0,
-    quality_1080: 0,
-    quality_720: 0,
-    quality_480: 0,
-    quality_360: 0,
-    total_titles: 0,
-    total_eps: 0,
-    total_size: "",
-    total_days: 0,
-    start_date: "-",
-    end_date: "-",
+    titlesPerDay: 0,
+    epsPerDay: 0,
+    quality2160: 0,
+    quality1080: 0,
+    quality720: 0,
+    quality480: 0,
+    quality360: 0,
+    totalTitles: 0,
+    totalEps: 0,
+    totalSize: "",
+    totalDays: 0,
+    startDate: "-",
+    endDate: "-",
   });
 
   const chartInitialData = {
@@ -145,11 +145,11 @@ const Marathon = () => {
           setStats(() => data.stats);
           setSelected(id);
           setChartData(() => [
-            data.stats.quality_360,
-            data.stats.quality_480,
-            data.stats.quality_720,
-            data.stats.quality_1080,
-            data.stats.quality_2160,
+            data.stats.quality360,
+            data.stats.quality480,
+            data.stats.quality720,
+            data.stats.quality1080,
+            data.stats.quality2160,
           ]);
         })
         .catch((err) => console.error(err))
@@ -200,8 +200,8 @@ const Marathon = () => {
           icon={<FontAwesomeSvgIcon size="2x" icon={TitleCountIcon} />}
           iconColor="#ff9800"
           heading="Episodes per day"
-          value={stats.eps_per_day}
-          footer={`Titles per day: ${stats.titles_per_day}`}
+          value={stats.epsPerDay}
+          footer={`Titles per day: ${stats.titlesPerDay}`}
         />
       </Grid>
       <Grid item xs={12} sm={6} md={3}>
@@ -209,10 +209,10 @@ const Marathon = () => {
           icon={<FontAwesomeSvgIcon size="2x" icon={TotalCountIcon} />}
           iconColor="#2196f3"
           heading="Total titles"
-          value={stats.total_titles}
+          value={stats.totalTitles}
           footers={[
-            `Total episodes: ${stats.total_eps}`,
-            `Total size: ${stats.total_size}`,
+            `Total episodes: ${stats.totalEps}`,
+            `Total size: ${stats.totalSize}`,
           ]}
         />
       </Grid>
@@ -221,10 +221,10 @@ const Marathon = () => {
           icon={<FontAwesomeSvgIcon size="2x" icon={DayCountIcon} />}
           iconColor="#009688"
           heading="Days"
-          value={stats.total_days}
+          value={stats.totalDays}
           footers={[
-            `Starts at: ${stats.start_date}`,
-            `Ends at: ${stats.end_date}`,
+            `Starts at: ${stats.startDate}`,
+            `Ends at: ${stats.endDate}`,
           ]}
         />
       </Grid>

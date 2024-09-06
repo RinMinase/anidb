@@ -93,8 +93,8 @@ const MarathonAdd = (props: Props) => {
         .get(`/sequences/${id}`)
         .then(({ data: { data } }) => {
           setValue("title", data.title);
-          setValue("dateFrom", new Date(data.date_from));
-          setValue("dateTo", new Date(data.date_to));
+          setValue("dateFrom", new Date(data.dateFrom));
+          setValue("dateTo", new Date(data.dateTo));
         })
         .catch((err) => console.error(err))
         .finally(() => toggleLoader(false));
