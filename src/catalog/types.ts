@@ -1,5 +1,5 @@
 export type Data = Array<{
-  id: string;
+  uuid: string;
   title: string;
   priority?: "Low" | "Normal" | "High";
 }>;
@@ -7,10 +7,10 @@ export type Data = Array<{
 export type Stats = {
   year?: number;
   season?: "Winter" | "Spring" | "Summer" | "Fall";
-}
+};
 
 export type Catalogs = Array<{
-  id: string;
+  uuid: string;
   year: number;
   season: "Winter" | "Spring" | "Summer" | "Fall";
 }>;

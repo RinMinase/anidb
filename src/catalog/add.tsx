@@ -104,8 +104,8 @@ const CatalogAdd = (props: Props) => {
     const catalogsAPI = await axios.get("/catalogs");
     const rawCatalogs: Catalogs = catalogsAPI.data.data;
     const catalogOptions: OptionsProps = rawCatalogs.map((item) => ({
-      key: item.id,
-      value: item.id,
+      key: item.uuid,
+      value: item.uuid,
       label: `${item.season} ${item.year}`,
     }));
 

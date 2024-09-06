@@ -49,32 +49,32 @@ const Catalog = () => {
   const [catalogs, setCatalogs] = useState<Catalogs>([]);
   const [selected, setSelected] = useState("");
 
-  const handleClickCatalog = (id: string) => {
-    if (id !== selected) {
+  const handleClickCatalog = (uuid: string) => {
+    if (uuid !== selected) {
       toggleLoader(true);
 
       axios
-        .get(`/catalogs/${id}/partials`)
+        .get(`/catalogs/${uuid}/partials`)
         .then(({ data: { data } }) => {
           setData(() => data);
-          setSelected(id);
+          setSelected(uuid);
         })
         .catch((err) => console.error(err))
         .finally(() => toggleLoader(false));
     }
   };
 
-  const handleEditClick = (id: string) => {
-    route(`/catalogs/edit/${id}`);
+  const handleEditClick = (uuid: string) => {
+    route(`/catalogs/edit/${uuid}`);
   };
 
-  const handleEditMultiClick = (e: any, id: string) => {
+  const handleEditMultiClick = (e: any, uuid: string) => {
     e.stopPropagation();
 
-    route(`/catalogs/edit-multi/${id}`);
+    route(`/catalogs/edit-multi/${uuid}`);
   };
 
-  const handleDeleteClick = async (id: string) => {
+  const handleDeleteClick = async (uuid: string) => {
     const result = await Swal.fire({
       title: "Are you sure?",
       text: "This item will be deleted",
@@ -85,7 +85,7 @@ const Catalog = () => {
     if (result.isConfirmed) {
       toggleLoader(true);
 
-      await axios.delete(`/partials/${id}`);
+      await axios.delete(`/partials/${uuid}`);
       await Swal.fire({
         title: "Success!",
         icon: "success",
@@ -100,7 +100,7 @@ const Catalog = () => {
     }
   };
 
-  const handleDeleteMultiClick = async (e: any, id: string) => {
+  const handleDeleteMultiClick = async (e: any, uuid: string) => {
     e.stopPropagation();
 
     const result = await Swal.fire({
@@ -113,7 +113,7 @@ const Catalog = () => {
     if (result.isConfirmed) {
       toggleLoader(true);
 
-      await axios.delete(`/catalogs/${id}`);
+      await axios.delete(`/catalogs/${uuid}`);
       await Swal.fire({
         title: "Success!",
         icon: "success",
@@ -125,7 +125,7 @@ const Catalog = () => {
 
       setCatalogs(() => data);
 
-      if (data.length) handleClickCatalog(data[0].id);
+      if (data.length) handleClickCatalog(data[0].uuid);
 
       toggleLoader(false);
     }
@@ -139,7 +139,7 @@ const Catalog = () => {
       .then(({ data: { data } }) => {
         setCatalogs(() => data);
 
-        if (data.length) handleClickCatalog(data[0].id);
+        if (data.length) handleClickCatalog(data[0].uuid);
       })
       .catch((err) => {
         console.error(err);
@@ -170,21 +170,21 @@ const Catalog = () => {
             {catalogs.map((item, index) => (
               <MenuItem
                 key={`mara-${index}`}
-                selected={selected === item.id}
-                onClick={() => handleClickCatalog(item.id)}
+                selected={selected === item.uuid}
+                onClick={() => handleClickCatalog(item.uuid)}
               >
                 <ListItemText>
                   {item.season} {item.year}
                 </ListItemText>
                 <IconButton
                   size="small"
-                  onClick={(e) => handleEditMultiClick(e, item.id)}
+                  onClick={(e) => handleEditMultiClick(e, item.uuid)}
                 >
                   <FontAwesomeSvgIcon icon={EditIcon} />
                 </IconButton>
                 <IconButton
                   size="small"
-                  onClick={(e) => handleDeleteMultiClick(e, item.id)}
+                  onClick={(e) => handleDeleteMultiClick(e, item.uuid)}
                 >
                   <FontAwesomeSvgIcon icon={DeleteIcon} />
                 </IconButton>
@@ -207,19 +207,19 @@ const Catalog = () => {
               <Table.Body>
                 {!isLoading ? (
                   data.map((item) => (
-                    <Table.Row hover key={item.id}>
+                    <Table.Row hover key={item.uuid}>
                       <Table.Cell>{item.title}</Table.Cell>
                       <Table.Cell>{item.priority}</Table.Cell>
                       <ActionTableCell>
                         <IconButton
                           size="small"
-                          onClick={() => handleEditClick(item.id)}
+                          onClick={() => handleEditClick(item.uuid)}
                         >
                           <FontAwesomeSvgIcon icon={EditIcon} />
                         </IconButton>
                         <IconButton
                           size="small"
-                          onClick={() => handleDeleteClick(item.id)}
+                          onClick={() => handleDeleteClick(item.uuid)}
                           sx={{ ml: 1 }}
                         >
                           <FontAwesomeSvgIcon icon={DeleteIcon} />
