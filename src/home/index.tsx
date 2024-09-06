@@ -78,17 +78,16 @@ const SpinnerContainer = styled(Box)({
   marginTop: 16,
 });
 
-const searchAPI = (needle: string) => {
+const searchAPI = (query: string) => {
   let params = {};
 
-  if (needle) {
+  if (query) {
     params = {
-      haystack: "title",
-      needle,
+      query,
     };
   }
 
-  return axios.get("/entries", params);
+  return axios.get("/entries", { params });
 };
 
 const searchAPIDebounced = DebouncePromise(searchAPI, 250);
