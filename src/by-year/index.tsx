@@ -53,7 +53,9 @@ const ByYear = () => {
   const [initLoad, setInitLoad] = useState(true);
   const [data, setData] = useState<Data>({});
   const [yearData, setYearData] = useState<YearData>([]);
-  const [selectedYear, setSelectedYear] = useState<number | null>(null);
+  const [selectedYear, setSelectedYear] = useState<number | "uncategorized">(
+    "uncategorized",
+  );
 
   useEffect(() => {
     toggleLoader(true);
@@ -62,7 +64,7 @@ const ByYear = () => {
       .get("/entries/by-year")
       .then(({ data: { data } }) => {
         if (data && data.length) {
-          const firstYear = data[0].year;
+          const firstYear = data[0].year ?? "uncategorized";
 
           setYearData(() => data);
           setSelectedYear(firstYear);
@@ -89,11 +91,11 @@ const ByYear = () => {
       });
   }, []);
 
-  const handleClickYear = (id: number | null) => {
+  const handleClickYear = (id: number | "uncategorized") => {
     toggleLoader(true);
     setSelectedYear(id);
 
-    const yearId = id ?? "null";
+    const yearId = id ?? "uncategorized";
 
     axios
       .get(`/entries/by-year/${yearId}`)
@@ -122,6 +124,7 @@ const ByYear = () => {
             {label === "Spring" ? <IconSpring /> : null}
             {label === "Summer" ? <IconSummer /> : null}
             {label === "Fall" ? <IconFall /> : null}
+            {label === "Uncategorized" ? <IconUncategorized /> : null}
             {label}
           </Typography>
           <DividingBox />
@@ -138,7 +141,7 @@ const ByYear = () => {
   const renderTable = (
     heading: string,
     icon: any,
-    values?: Data["Uncategorized"],
+    values?: Data["uncategorized"],
   ) => (
     <>
       {values?.length ? (
@@ -180,17 +183,20 @@ const ByYear = () => {
             {yearData.map((item, index) => (
               <MenuItem
                 key={`mara-${index}`}
-                onClick={() => handleClickYear(item.year)}
+                onClick={() => handleClickYear(item.year ?? "uncategorized")}
                 selected={selectedYear === item.year}
               >
                 {item.year ? (
                   <Box width="100%" pb={0.5}>
                     <Typography>{item.year}</Typography>
-                    {renderSubmenu("None", item.seasons?.None)}
-                    {renderSubmenu("Winter", item.seasons?.Winter)}
-                    {renderSubmenu("Spring", item.seasons?.Spring)}
-                    {renderSubmenu("Summer", item.seasons?.Summer)}
-                    {renderSubmenu("Fall", item.seasons?.Fall)}
+                    {renderSubmenu(
+                      "Uncategorized",
+                      item.seasons?.uncategorized,
+                    )}
+                    {renderSubmenu("Winter", item.seasons?.winter)}
+                    {renderSubmenu("Spring", item.seasons?.spring)}
+                    {renderSubmenu("Summer", item.seasons?.summer)}
+                    {renderSubmenu("Fall", item.seasons?.fall)}
                   </Box>
                 ) : (
                   <Box
@@ -214,12 +220,12 @@ const ByYear = () => {
                 {renderTable(
                   "Uncategorized",
                   <IconUncategorized />,
-                  data.Uncategorized,
+                  data.uncategorized,
                 )}
-                {renderTable("Winter", <IconWinter />, data.Winter)}
-                {renderTable("Spring", <IconSpring />, data.Spring)}
-                {renderTable("Summer", <IconSummer />, data.Summer)}
-                {renderTable("Fall", <IconFall />, data.Fall)}
+                {renderTable("Winter", <IconWinter />, data.winter)}
+                {renderTable("Spring", <IconSpring />, data.spring)}
+                {renderTable("Summer", <IconSummer />, data.summer)}
+                {renderTable("Fall", <IconFall />, data.fall)}
               </>
             )}
           </Stack>

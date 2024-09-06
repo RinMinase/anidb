@@ -1,31 +1,31 @@
 import type { Qualities } from "@components";
 
 export type Data = {
-  Winter?: Array<{
+  winter?: Array<{
     uuid: string;
     title: string;
     quality: Qualities;
   }>;
 
-  Spring?: Array<{
+  spring?: Array<{
     uuid: string;
     title: string;
     quality: Qualities;
   }>;
 
-  Summer?: Array<{
+  summer?: Array<{
     uuid: string;
     title: string;
     quality: Qualities;
   }>;
 
-  Fall?: Array<{
+  fall?: Array<{
     uuid: string;
     title: string;
     quality: Qualities;
   }>;
 
-  Uncategorized?: Array<{
+  uncategorized?: Array<{
     uuid: string;
     title: string;
     quality: Qualities;
@@ -35,11 +35,11 @@ export type Data = {
 export type YearData = Array<{
   year: number | null;
   seasons: null | {
-    None?: number;
-    Winter?: number;
-    Spring?: number;
-    Summer?: number;
-    Fall?: number;
+    uncategorized?: number;
+    winter?: number;
+    spring?: number;
+    summer?: number;
+    fall?: number;
   };
   count: number | null;
 }>;
