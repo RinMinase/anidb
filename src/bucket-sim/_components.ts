@@ -2,7 +2,6 @@ import {
   Box,
   IconButton,
   OutlinedInput,
-  Paper,
   styled,
   TableCell,
   TextField,
@@ -24,7 +23,7 @@ const Dashboard = styled(Box)({
   marginBottom: 32,
 });
 
-const DescriptionContainer = styled(Paper)({
+const DescriptionContainer = styled(Box)({
   marginBottom: 16,
 });
 
