@@ -71,9 +71,9 @@ const Bucket = () => {
 
         axios
           .get("/entries/by-bucket/1")
-          .then(({ data: { data } }) => {
-            setData(() => data.data);
-            setCurrBucket(() => data.stats);
+          .then(({ data: { data, stats } }) => {
+            setData(() => data);
+            setCurrBucket(() => stats);
             toggleLoader(false);
           })
           .catch((err) => console.error(err));
@@ -86,9 +86,9 @@ const Bucket = () => {
 
     axios
       .get(`/entries/by-bucket/${id}`)
-      .then(({ data: { data } }) => {
-        setData(() => data.data);
-        setCurrBucket(() => data.stats);
+      .then(({ data: { data, stats } }) => {
+        setData(() => data);
+        setCurrBucket(() => stats);
         toggleLoader(false);
       })
       .catch((err) => console.error(err));
