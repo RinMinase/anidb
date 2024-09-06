@@ -130,7 +130,7 @@ const Home = () => {
           setPage(page + 1);
 
           if (meta) {
-            setHasNext(meta.has_next);
+            setHasNext(meta.hasNext);
           }
 
           toggleLoader(false);
@@ -148,7 +148,7 @@ const Home = () => {
         setData(() => data);
 
         if (meta) {
-          setHasNext(meta.has_next);
+          setHasNext(meta.hasNext);
         }
 
         toggleLoader(false);
