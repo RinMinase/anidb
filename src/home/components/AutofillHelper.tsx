@@ -1,4 +1,4 @@
-import { StateUpdater } from "preact/hooks";
+import { Dispatch, StateUpdater } from "preact/hooks";
 import { DropzoneOptions, FileWithPath, useDropzone } from "react-dropzone";
 import UAParser from "ua-parser-js";
 
@@ -10,7 +10,7 @@ const parser = new UAParser("user-agent");
 const browser = parser.getBrowser().name;
 
 type Props = {
-  setAutofillValues: StateUpdater<AutofillProps>;
+  setAutofillValues: Dispatch<StateUpdater<AutofillProps>>;
 };
 
 const pathValidator = (file: FileWithPath): any => {

@@ -1,4 +1,4 @@
-import { StateUpdater, useState } from "preact/hooks";
+import { Dispatch, StateUpdater, useState } from "preact/hooks";
 
 import { FontAwesomeSvgIcon } from "react-fontawesome-slim";
 import axios from "axios";
@@ -29,7 +29,7 @@ import { FullData } from "../types";
 type Props = {
   id?: string;
   data: FullData;
-  setData: StateUpdater<FullData>;
+  setData: Dispatch<StateUpdater<FullData>>;
 };
 
 const BlankImage = "data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=";

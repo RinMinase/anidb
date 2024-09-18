@@ -1,4 +1,11 @@
-import { StateUpdater, useContext, useEffect, useState } from "preact/hooks";
+import {
+  Dispatch,
+  StateUpdater,
+  useContext,
+  useEffect,
+  useState,
+} from "preact/hooks";
+
 import axios from "axios";
 import DebouncePromise from "awesome-debounce-promise";
 import { isEmpty } from "lodash-es";
@@ -38,7 +45,7 @@ type Props = {
   getValues: UseFormGetValues<Form>;
   setValue: UseFormSetValue<Form>;
   errors: FieldErrorsImpl<Form>;
-  setDropdownLoading: StateUpdater<boolean>;
+  setDropdownLoading: Dispatch<StateUpdater<boolean>>;
   entryId?: string;
 };
 
