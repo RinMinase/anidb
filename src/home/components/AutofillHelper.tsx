@@ -151,7 +151,6 @@ const AutofillHelper = (props: Props) => {
   return (
     <Box>
       <DropzoneContainer {...getRootProps({ className: "dropzone" })}>
-        {/* @ts-expect-error: Expected for dropzone */}
         <input {...getInputProps()} />
         {acceptedFiles.length ? (
           <Box>
