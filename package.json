@@ -76,7 +76,7 @@
     "concurrently": "^9.0.1",
     "cz-emoji-conventional": "^1.1.0",
     "devmoji": "^2.3.0",
-    "eslint": "^8.57.0",
+    "eslint": "8.57.0",
     "eslint-config-preact": "^1.5.0",
     "lodash.deburr": "^4.1.0",
     "nodemon": "^3.1.5",
