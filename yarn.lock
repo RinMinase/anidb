@@ -3039,10 +3039,10 @@ cz-conventional-changelog@3.3.0:
   optionalDependencies:
     "@commitlint/load" ">6.1.1"
 
-cz-emoji-conventional@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/cz-emoji-conventional/-/cz-emoji-conventional-1.0.2.tgz#5d99c2737573a9bf478341c527cc33d9e04b9326"
-  integrity sha512-wWVpU8yIzE8WuzOl8JFHx5IdIn/zVWSHMU991ujDtcPVnX6+d6orQGwwRF4XhgMdWpPpZ0He4TWBG+7JD5fMyQ==
+cz-emoji-conventional@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/cz-emoji-conventional/-/cz-emoji-conventional-1.1.0.tgz#c42c34828619a5c2c7337afd4798c7da4366c753"
+  integrity sha512-W0EHK/Ek9ZHwJ+UaClF/xBHp6lkLuJgkiREiCVnwGuIz8Jhp/khoQzLcRI9AAF6vfT2slfz7E+RgGelmsVfzoQ==
   dependencies:
     chalk "4.1.2"
     commitizen "^4.3.0"
@@ -6320,10 +6320,10 @@ vite-tsconfig-paths@^5.0.1:
     globrex "^0.1.2"
     tsconfck "^3.0.3"
 
-vite@^5.4.3:
-  version "5.4.3"
-  resolved "https://registry.yarnpkg.com/vite/-/vite-5.4.3.tgz#771c470e808cb6732f204e1ee96c2ed65b97a0eb"
-  integrity sha512-IH+nl64eq9lJjFqU+/yrRnrHPVTlgy42/+IzbOdaFDVlyLgI/wDlf+FCobXLX1cT0X5+7LMyH1mIy2xJdLfo8Q==
+vite@^5.4.6:
+  version "5.4.6"
+  resolved "https://registry.yarnpkg.com/vite/-/vite-5.4.6.tgz#85a93a1228a7fb5a723ca1743e337a2588ed008f"
+  integrity sha512-IeL5f8OO5nylsgzd9tq4qD2QqI0k2CQLGrWD0rCN0EQJZpBK5vJAx0I+GDkMOXxQX/OfFHMuLIx6ddAxGX/k+Q==
   dependencies:
     esbuild "^0.21.3"
     postcss "^8.4.43"
