@@ -96,6 +96,7 @@ const DurationLabel = styled("span")(({ theme }) => ({
   top: 0,
   left: 0,
   transform: `translate(6px, -13px) scale(0.75)`,
+  /* @ts-expect-error Seems to error on typescript as of now (react-hook-form@7.52.1) */
   backgroundColor: theme.palette.background.default,
   paddingLeft: 4,
   paddingRight: 8,
@@ -438,6 +439,7 @@ const AddForm = (props: Props) => {
 
       <Grid item xs={12} sm={6} md={4}>
         <DurationContainer>
+          {/* @ts-expect-error Seems to error on typescript as of now (react-hook-form@7.52.1) */}
           <DurationLabel>Duration</DurationLabel>
           <Stack spacing={2} direction="row">
             <ControlledField
