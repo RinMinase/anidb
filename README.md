@@ -1,22 +1,17 @@
 <h1 align="center"> Rin Minase's Anime Database </h1>
 
 <p align="center">
-    <a href="https://circleci.com/gh/RinMinase/anidb">
-        <img alt="Circle-CI" src="https://img.shields.io/circleci/build/github/RinMinase/anidb/staging.svg?logo=circleci&style=for-the-badge&label=Circle%20CI%20(Build)">
+    <a href="https://app.netlify.com/sites/anidb-stg/deploys">
+        <img alt="Netlify-Status" src="https://img.shields.io/netlify/9999c68a-46d7-4f17-adb9-7620084a38ea?logo=netlify&style=for-the-badge&label=Netlify">
     </a>
-    <a href="https://app.netlify.com/sites/anidb/deploys">
-        <img alt="Netlify-Status" src="https://img.shields.io/netlify/635b50f7-7b22-4c87-9b6b-7da2c0fb2180?logo=netlify&style=for-the-badge&label=Netlify%20(Domain)">
-    </a>
-</p>
-<p align="center">
     <a href="https://preactjs.com/">
         <img alt="Preact" src="https://img.shields.io/badge/Preact-%5E10-673AB8.svg?logo=preact&style=for-the-badge">
     </a>
     <a href="https://vitejs.dev/">
-        <img alt="Vite" src="https://img.shields.io/badge/Vite-%5E4-646CFF.svg?logo=vite&style=for-the-badge">
+        <img alt="Vite" src="https://img.shields.io/badge/Vite-%5E5-646CFF.svg?logo=vite&style=for-the-badge">
     </a>
     <a href="https://nodejs.org">
-        <img alt="Node" src="https://img.shields.io/badge/node-%5E16.0%20%7C%7C%20%5E18.0-brightgreen.svg?logo=node.js&logoColor=white&style=for-the-badge">
+        <img alt="Node" src="https://img.shields.io/badge/node-%5E18.0%20%7C%7C%20%5E20.0-brightgreen.svg?logo=node.js&logoColor=white&style=for-the-badge">
     </a>
 </p>
 
@@ -102,23 +97,13 @@ Installations Required:
 
 Task automation is based on [Yarn scripts](https://yarnpkg.com/lang/en/docs/cli/run/) or [NPM scripts](https://docs.npmjs.com/misc/scripts).
 
-| Task                       | Description                                                                  |
-| -------------------------- | ---------------------------------------------------------------------------- |
-| `yarn dev` or `yarn start` | Run **dev server** on `http://localhost:3000/`, also runs linter in parallel |
-| `yarn preview`             | Run **prod server** on `http://localhost:3000/`                              |
-| `yarn build`               | Build production code to `dist` folder                                       |
-| `yarn cz`                  | Commitizen commit formatter                                                  |
-
-Other tasks included in `package.json` that should not be executed manually:
-
-| Task              | Description                                                               |
-| ----------------- | ------------------------------------------------------------------------- |
-| `yarn develop`    | Runs in **dev server** and code linter in parallel (aliased by dev/start) |
-| `yarn lint`       | Runs code linter process marked by `lint:**` in tasks                     |
-| `yarn lint:begin` | Echo out start of linting process                                         |
-| `yarn lint:exec`  | Runs code linter                                                          |
-| `yarn lint:post`  | Echo out if no lint issues are found                                      |
-| `yarn lint:watch` | Runs nodemon (file changes watcher) for code linter                       |
+| Task            | Description                                       |
+| --------------- | ------------------------------------------------- |
+| `yarn dev`      | Run **dev server** on `http://localhost:3000/`    |
+| `yarn preview`  | Run **prod server** on `http://localhost:3000/`   |
+| `yarn build`    | Build production code to `dist` folder            |
+| `yarn lint`     | Runs code linter manually                         |
+| `yarn cz`       | Commitizen commit formatter                       |
 
 
 ## Built with
@@ -127,9 +112,8 @@ Other tasks included in `package.json` that should not be executed manually:
 * <img width=20 height=20 src="https://vitejs.dev/logo.svg"> [Vite](https://vitejs.dev/) - Source Code Bundler
 * <img width=20 height=20 src="https://emotion.sh/logo-32x32.png"> [Emotion CSS](https://emotion.sh/) - CSS pre-processor
 * <img width=20 height=20 src="https://mui.com/static/favicon.ico"> [Material UI](https://mui.com/) - Layouting Framework
-* <img width=20 height=20 src="https://dmmj3mmt94rvw.cloudfront.net/favicon-undefined.ico"> [Circle CI](https://circleci.com/) - Continuous Integration (CI) service
-* <img width=20 height=20 src="https://www.netlify.com/img/global/favicon/favicon-32x32.png"> [Netlify](https://netlify.com) - Hosting Platform
+* <img width=20 height=20 src="https://app.netlify.com/favicon.ico"> [Netlify](https://netlify.com) - Hosting Platform
 
 
 ## Deployed to
-* <img width=20 height=20 src="https://www.netlify.com/img/global/favicon/favicon-32x32.png"> [Netlify](https://anidb.netlify.com)
+* <img width=20 height=20 src="https://app.netlify.com/favicon.ico"> [Netlify](https://anidb.netlify.com)
