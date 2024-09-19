@@ -81,6 +81,8 @@ const Group = () => {
   } = useForm<Form>({ resolver, mode: "onChange" });
 
   const fetchData = async () => {
+    toggleLoader(true);
+
     try {
       const {
         data: { data },
