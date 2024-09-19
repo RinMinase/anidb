@@ -1,26 +1,26 @@
 export type Data = Array<{
   id: string;
-  table_changed: string;
-  id_changed: string;
+  tableChanged: string;
+  idChanged: string;
   description: string;
   action: string;
-  created_at: string;
+  createdAt: string;
 }>;
 
 export type Pagination = {
   page: number;
   limit: number;
-  total_data: number;
-  total_pages: number;
-  has_next: boolean;
+  totalResults: number;
+  totalPages: number;
+  hasNext: boolean;
 };
 
 const paginationDefaults: Pagination = {
   page: 0,
   limit: 30,
-  total_data: 1,
-  total_pages: 1,
-  has_next: false,
+  totalResults: 1,
+  totalPages: 1,
+  hasNext: false,
 };
 
 export { paginationDefaults };

@@ -93,10 +93,10 @@ const Logs = () => {
                     {item.action === "edit" && <EditChip />}
                     {item.action === "delete" && <DeleteChip />}
                   </Table.Cell>
-                  <Table.Cell>{item.table_changed}</Table.Cell>
-                  <Table.Cell>{item.id_changed}</Table.Cell>
+                  <Table.Cell>{item.tableChanged}</Table.Cell>
+                  <Table.Cell>{item.idChanged}</Table.Cell>
                   <Table.Cell>{item.description}</Table.Cell>
-                  <Table.Cell>{item.created_at}</Table.Cell>
+                  <Table.Cell>{item.createdAt}</Table.Cell>
                 </Table.Row>
               ))
             ) : (
@@ -108,7 +108,7 @@ const Logs = () => {
       <Table.Pagination
         rowsPerPageOptions={[30, 50, 100]}
         component="div"
-        count={meta.total_data}
+        count={meta.totalResults}
         rowsPerPage={pagination.limit}
         page={pagination.page}
         onPageChange={handleChangePage}
