@@ -2,7 +2,7 @@ import { useEffect } from "preact/hooks";
 import { Chart, ChartOptions, registerables } from "chart.js";
 import ChartDataLabels from "chartjs-plugin-datalabels";
 
-import { Box, Grid, styled } from "@mui/material";
+import { Box, Grid, styled, Typography } from "@mui/material";
 
 import { Graph } from "../types";
 
@@ -141,11 +141,11 @@ const GraphSection = (props: Props) => {
 
     if (hasAnyValue) {
       chartQuality.data.datasets[0].data = [
-        props.graph.quality.quality_360 || 0,
-        props.graph.quality.quality_480 || 0,
-        props.graph.quality.quality_720 || 0,
-        props.graph.quality.quality_1080 || 0,
-        props.graph.quality.quality_2160 || 0,
+        props.graph.quality.quality360 || 0,
+        props.graph.quality.quality480 || 0,
+        props.graph.quality.quality720 || 0,
+        props.graph.quality.quality1080 || 0,
+        props.graph.quality.quality2160 || 0,
       ];
     } else {
       chartQuality.data.datasets[0].data = [-1, -1, -1, -1, -1];
@@ -172,8 +172,13 @@ const GraphSection = (props: Props) => {
           sm={12}
           md={6}
           display="flex"
-          justifyContent="center"
+          alignItems="center"
+          flexDirection="column"
+          gap={2}
         >
+          <Typography variant="h6" textAlign="center">
+            Titles per Quality
+          </Typography>
           <PieChartContainer>
             <canvas id="quality" />
           </PieChartContainer>
@@ -184,9 +189,14 @@ const GraphSection = (props: Props) => {
           sm={12}
           md={6}
           display="flex"
-          justifyContent="center"
-          alignItems="end"
+          alignItems="center"
+          flexDirection="column"
+          justifyContent="end"
+          gap={2}
         >
+          <Typography variant="h6" textAlign="center">
+            Titles per Month
+          </Typography>
           <LineChartContainer>
             <canvas id="month" />
           </LineChartContainer>

@@ -31,7 +31,7 @@ const DataManagement = () => {
     axios
       .get("/management")
       .then(({ data: { data } }) => {
-        setData(() => data.data);
+        setData(() => data.count);
         setStats(() => data.stats);
         setGraph(() => data.graph);
       })
