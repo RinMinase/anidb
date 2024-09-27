@@ -40,6 +40,7 @@ type Props = {
   disabled?: boolean;
   displayEmpty?: boolean;
   fullWidth?: boolean;
+  size?: "small" | "medium";
 };
 
 const id = uuid();
@@ -49,7 +50,7 @@ const ControlledSelect = (props: Props) => {
       name={props.name}
       control={props.control}
       render={({ field: { onChange, value } }) => (
-        <FormControl fullWidth={props.fullWidth}>
+        <FormControl fullWidth={props.fullWidth} size={props.size}>
           <InputLabel id={id}>{props.label}</InputLabel>
           <Select
             id={id}
