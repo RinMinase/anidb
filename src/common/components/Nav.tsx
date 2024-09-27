@@ -29,6 +29,7 @@ import {
   faFlaskVial as BucketSimIcon,
   faHardDrive as BucketsIcon,
   faListUl as ListIcon,
+  faMagnifyingGlass as SearchIcon,
   faMoon as DarkModeIcon,
   faMusic as AudioCodecIcon,
   faRss as RssIcon,
@@ -88,6 +89,10 @@ const Nav = () => {
 
   const MenuItemList = (props: { onClick: () => void }) => (
     <>
+      <MenuItem component={"a" as any} href="/search" onClick={props.onClick}>
+        <ListItemIcon children={<FontAwesomeSvgIcon icon={SearchIcon} />} />
+        Advanced Seearch
+      </MenuItem>
       <MenuItem
         component={"a" as any}
         href="/last-watch"
