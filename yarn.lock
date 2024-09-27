@@ -1856,10 +1856,17 @@
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.17.7.tgz#2f776bcb53adc9e13b2c0dfd493dfcbd7de43612"
   integrity sha512-8wTvZawATi/lsmNu10/j2hk1KEP0IvjubqPE3cu1Xz7xfXXt5oCq3SNUz4fMIP4XGF9Ky+Ue2tBA3hcS7LSBlA==
 
-"@types/node@*", "@types/node@^22.5.5":
+"@types/node@*":
   version "22.5.5"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-22.5.5.tgz#52f939dd0f65fc552a4ad0b392f3c466cc5d7a44"
   integrity sha512-Xjs4y5UPO/CLdzpgR6GirZJx36yScjh73+2NlLlkFRSoQN8B0DpfXPdZGnvVmLRLOsqDpOfTNv7D9trgGhmOIA==
+  dependencies:
+    undici-types "~6.19.2"
+
+"@types/node@^22.7.3":
+  version "22.7.3"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-22.7.3.tgz#7ddf1ddf13078692b4cfadb835852b2a718ee1ef"
+  integrity sha512-qXKfhXXqGTyBskvWEzJZPUxSslAiLaB6JGP1ic/XTH9ctGgzdgYguuLP1C601aRTSDNlLb0jbKqXjZ48GNraSA==
   dependencies:
     undici-types "~6.19.2"
 
@@ -2468,6 +2475,26 @@ commitizen@^4.0.3, commitizen@^4.3.0:
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/commitizen/-/commitizen-4.3.0.tgz#0d056c542a2d2b1f9b9aba981aa32575b2849924"
   integrity sha512-H0iNtClNEhT0fotHvGV3E9tDejDeS04sN1veIebsKYGMuGscFaswRoYJKmT3eW85eIJAs0F28bG2+a/9wCOfPw==
+  dependencies:
+    cachedir "2.3.0"
+    cz-conventional-changelog "3.3.0"
+    dedent "0.7.0"
+    detect-indent "6.1.0"
+    find-node-modules "^2.1.2"
+    find-root "1.1.0"
+    fs-extra "9.1.0"
+    glob "7.2.3"
+    inquirer "8.2.5"
+    is-utf8 "^0.2.1"
+    lodash "4.17.21"
+    minimist "1.2.7"
+    strip-bom "4.0.0"
+    strip-json-comments "3.1.1"
+
+commitizen@^4.3.1:
+  version "4.3.1"
+  resolved "https://registry.yarnpkg.com/commitizen/-/commitizen-4.3.1.tgz#f0e0e4b7ae3fafc92e444bbb78f2ded5a1d4311a"
+  integrity sha512-gwAPAVTy/j5YcOOebcCRIijn+mSjWJC+IYKivTu6aG8Ei/scoXgfsMRnuAk6b0GRste2J4NGxVdMN3ZpfNaVaw==
   dependencies:
     cachedir "2.3.0"
     cz-conventional-changelog "3.3.0"
@@ -4487,10 +4514,10 @@ preact-router@^4.1.2:
   resolved "https://registry.yarnpkg.com/preact-router/-/preact-router-4.1.2.tgz#f44b03737b670eeaec958563582eb8c4efaa87a5"
   integrity sha512-uICUaUFYh+XQ+6vZtQn1q+X6rSqwq+zorWOCLWPF5FAsQh3EJ+RsDQ9Ee+fjk545YWQHfUxhrBAaemfxEnMOUg==
 
-preact@^10.24.0:
-  version "10.24.0"
-  resolved "https://registry.yarnpkg.com/preact/-/preact-10.24.0.tgz#bd8139bee35aafede3c6de96d2453982610dfeef"
-  integrity sha512-aK8Cf+jkfyuZ0ZZRG9FbYqwmEiGQ4y/PUO4SuTWoyWL244nZZh7bd5h2APd4rSNDYTBNghg1L+5iJN3Skxtbsw==
+preact@^10.24.1:
+  version "10.24.1"
+  resolved "https://registry.yarnpkg.com/preact/-/preact-10.24.1.tgz#501e206d0a46667b6d0d8b780c7a65172239b2d0"
+  integrity sha512-PnBAwFI3Yjxxcxw75n6VId/5TFxNW/81zexzWD9jn1+eSrOP84NdsS38H5IkF/UH3frqRPT+MvuCoVHjTDTnDw==
 
 prelude-ls@^1.2.1:
   version "1.2.1"
@@ -5120,10 +5147,10 @@ supports-preserve-symlinks-flag@^1.0.0:
   resolved "https://registry.yarnpkg.com/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz#6eda4bd344a3c94aea376d4cc31bc77311039e09"
   integrity sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
 
-sweetalert2@^11.14.0:
-  version "11.14.0"
-  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-11.14.0.tgz#baaec0f53aefb7c01fcbc78288e1c59da332e9c4"
-  integrity sha512-kF1Q/+GtZZXr+rYVcBNwlEsnxP089CpDbck+MYjvLaQj9x4fzHqN9UhlkHOIR0k09LVu2sx8cU9BnvRlxWIZqg==
+sweetalert2@^11.14.1:
+  version "11.14.1"
+  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-11.14.1.tgz#aa066422e1045aa6923ae5d0ef8cad7067b23097"
+  integrity sha512-xadhfcA4STGMh8nC5zHFFWURhRpWc4zyI3GdMDFH/m3hGWZeQQNWhX9xcG4lI9gZYsi/IlazKbwvvje3juL3Xg==
 
 temp-dir@^2.0.0:
   version "2.0.0"
@@ -5432,10 +5459,10 @@ vite-tsconfig-paths@^5.0.1:
     globrex "^0.1.2"
     tsconfck "^3.0.3"
 
-vite@^5.4.6:
-  version "5.4.6"
-  resolved "https://registry.yarnpkg.com/vite/-/vite-5.4.6.tgz#85a93a1228a7fb5a723ca1743e337a2588ed008f"
-  integrity sha512-IeL5f8OO5nylsgzd9tq4qD2QqI0k2CQLGrWD0rCN0EQJZpBK5vJAx0I+GDkMOXxQX/OfFHMuLIx6ddAxGX/k+Q==
+vite@^5.4.8:
+  version "5.4.8"
+  resolved "https://registry.yarnpkg.com/vite/-/vite-5.4.8.tgz#af548ce1c211b2785478d3ba3e8da51e39a287e8"
+  integrity sha512-FqrItQ4DT1NC4zCUqMB4c4AZORMKIa0m8/URVCZ77OZ/QSNeJ54bU1vrFADbDsuwfIPcgknRkmqakQcgnL4GiQ==
   dependencies:
     esbuild "^0.21.3"
     postcss "^8.4.43"
