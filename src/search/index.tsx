@@ -18,6 +18,7 @@ import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as faHeartEmpty } from "@fortawesome/free-regular-svg-icons";
 
 import {
+  Button,
   ControlledField,
   ControlledMultiSelect,
   ControlledSelect,
@@ -144,10 +145,26 @@ const Search = () => {
       {!isLoading && (
         <Grid container spacing={2}>
           <Grid size={4}>
-            <Box component={Paper} p={3}>
-              <Grid container spacing={2.5}>
+            <Box component={Paper}>
+              <Typography variant="h6" p={2}>
+                Search Parameters
+              </Typography>
+
+              <Grid
+                container
+                spacing={2.5}
+                p={2}
+                sx={{
+                  // 100vh - screen
+                  // 48px - navbar
+                  // 48px - main container top padding
+                  // 64px - search params heading height and margin
+                  // 72px - search button height and padding
+                  maxHeight: "calc(100vh - 48px - 48px - 64px - 72px)",
+                  overflowY: "auto",
+                }}
+              >
                 {/* Search Fields */}
-                <Typography variant="h6">Search Parameters</Typography>
 
                 <Grid container size={12} spacing={1}>
                   <ControlledField
@@ -455,6 +472,18 @@ const Search = () => {
                 </Grid>
                 {/* End of Search Fields */}
               </Grid>
+
+              <Box
+                component={Paper}
+                elevation={3}
+                width="100%"
+                height="72px"
+                p={2}
+              >
+                <Button variant="contained" fullWidth>
+                  Search
+                </Button>
+              </Box>
             </Box>
           </Grid>
           <Grid size={8}>
