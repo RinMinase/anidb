@@ -1,4 +1,4 @@
-import { object, string } from "yup";
+import { array, object, string } from "yup";
 import { Resolver } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { OptionsKeyedProps } from "@components";
@@ -184,8 +184,8 @@ const schema = object().shape({
   has_image: string().oneOf(SearchDropdownValues),
   is_hdr: string().oneOf(SearchDropdownValues),
 
-  codec_video: string(),
-  codec_audio: string(),
+  codec_video: array(string()),
+  codec_audio: array(string()),
 
   column: string(),
   order: string().oneOf(OrderDropdownValues),
