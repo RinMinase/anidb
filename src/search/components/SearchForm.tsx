@@ -18,7 +18,7 @@ import {
   Form,
   OrderDropDownOptions,
   resolver,
-  SearchDropDownOptions,
+  SearchDropdownOptions,
 } from "../validation";
 
 type Props = {
@@ -70,11 +70,12 @@ const SearchForm = (props: Props) => {
       <Grid
         container
         spacing={2.5}
-        p={2}
+        px={2}
+        pb={2}
         sx={{
           // 100vh - screen
           // 48px - navbar
-          // 48px - main container top padding
+          // 48px - main container top and bottom padding
           // 64px - search params heading height and margin
           // 72px - search button height and padding
           maxHeight: "calc(100vh - 48px - 48px - 64px - 72px)",
@@ -302,7 +303,7 @@ const SearchForm = (props: Props) => {
             name="has_remarks"
             label="Has Remarks?"
             size="small"
-            options={SearchDropDownOptions}
+            options={SearchDropdownOptions}
             control={control}
             error={!!errors.has_remarks}
             helperText={errors.has_remarks?.message}
@@ -315,7 +316,7 @@ const SearchForm = (props: Props) => {
             name="has_image"
             label="Has an Image?"
             size="small"
-            options={SearchDropDownOptions}
+            options={SearchDropdownOptions}
             control={control}
             error={!!errors.has_image}
             helperText={errors.has_image?.message}
@@ -328,7 +329,7 @@ const SearchForm = (props: Props) => {
             name="is_hdr"
             label="Is the content HDR?"
             size="small"
-            options={SearchDropDownOptions}
+            options={SearchDropdownOptions}
             control={control}
             error={!!errors.is_hdr}
             helperText={errors.is_hdr?.message}

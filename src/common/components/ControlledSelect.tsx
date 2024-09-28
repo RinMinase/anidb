@@ -49,18 +49,17 @@ const ControlledSelect = (props: Props) => {
     <Controller
       name={props.name}
       control={props.control}
-      render={({ field: { onChange, value } }) => (
+      render={({ field }) => (
         <FormControl fullWidth={props.fullWidth} size={props.size}>
           <InputLabel id={id}>{props.label}</InputLabel>
           <Select
             id={id}
             variant={props.variant ?? "outlined"}
-            onChange={onChange}
             label={props.label}
             error={props.error}
             disabled={props.disabled}
             displayEmpty={props.displayEmpty}
-            value={value}
+            {...field}
           >
             {props.options &&
               props.options.map((item) => {

@@ -5,7 +5,7 @@ import { OptionsKeyedProps } from "@components";
 
 export const SearchDropdownValues = ["any", "yes", "no"] as const;
 export type SearchDropdownType = (typeof SearchDropdownValues)[number];
-export const SearchDropDownOptions: OptionsKeyedProps = [
+export const SearchDropdownOptions: OptionsKeyedProps = [
   {
     label: "Any",
     key: "any",

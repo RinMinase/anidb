@@ -1,12 +1,10 @@
 import {
-  Box,
+  Chip,
   Grid2 as Grid,
   Paper,
   Rating,
+  Stack,
   styled,
-  Tooltip,
-  useMediaQuery,
-  useTheme,
 } from "@mui/material";
 
 import { useContext, useEffect, useState } from "preact/hooks";
@@ -26,33 +24,7 @@ import {
 import { Codecs, Data } from "./types";
 import { Form } from "./validation";
 import SearchForm from "./components/SearchForm";
-
-const sampleCodecData: Codecs = {
-  audio: [
-    {
-      id: "35aec409-de76-489f-a48b-284367b4c423",
-      codec: "Codec 1",
-    },
-    {
-      id: "ce7e2467-0708-410e-8b9e-75052a6d3733",
-      codec: "Codec 2",
-    },
-    {
-      id: "e819f06b-c3a7-426a-a490-11801a5976cf",
-      codec: "Codec 3",
-    },
-  ],
-  video: [
-    {
-      id: "7dc98c43-654c-43aa-a32d-6eefc58c3df0",
-      codec: "Vid Codec 1",
-    },
-    {
-      id: "8490fb5a-6be8-462a-9f2d-89d05ca384a6",
-      codec: "Vid Codec 2",
-    },
-  ],
-};
+import axios from "axios";
 
 const CustomTableRow = styled(Table.Row)({
   cursor: "pointer",
@@ -78,54 +50,91 @@ const RatingIcon = styled(FontAwesomeSvgIcon)({
 const Search = () => {
   const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
 
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-
+  const [tableLoader, setTableLoader] = useState(false);
   const [data, setData] = useState<Data>([]);
   const [codecs, setCodecs] = useState<Codecs>({
     audio: [],
     video: [],
   });
 
-  const handleSearch = (formData: Form) => {
-    console.log(formData);
+  const handleSearch = async (formData: Form) => {
+    setTableLoader(true);
+
+    try {
+      const query: any = { ...formData };
+
+      for (const key of Object.keys(query)) {
+        if (query[key] === "") {
+          delete query[key];
+        }
+      }
+
+      const {
+        data: { data },
+      } = await axios.get("/entries/search", {
+        params: {
+          ...query,
+        },
+      });
+
+      setData(data);
+    } catch {
+    } finally {
+      setTableLoader(false);
+    }
+  };
+
+  const fetchData = async () => {
+    toggleLoader(true);
+
+    try {
+      const {
+        data: { data },
+      } = await axios.get("/codecs");
+
+      setCodecs(data);
+    } catch {
+    } finally {
+      toggleLoader(false);
+    }
   };
 
   useEffect(() => {
-    toggleLoader(true);
-
-    setData([]);
-    setCodecs(sampleCodecData);
-
-    toggleLoader(false);
+    fetchData();
   }, []);
 
   return (
     <ModuleContainer>
       {!isLoading && (
         <Grid container spacing={2}>
-          <Grid size={4}>
+          <Grid size={{ xs: 12, md: 4, lg: 3 }}>
             <SearchForm codecs={codecs} handleSearch={handleSearch} />
           </Grid>
-          <Grid size={8}>
-            <Table.Container component={Paper}>
-              <Table.Element>
+          <Grid size={{ xs: 12, md: 8, lg: 9 }}>
+            <Table.Container
+              component={Paper}
+              // 100vh - screen
+              // 48px - navbar
+              // 48px - main container top and bottom padding
+              sx={{ maxHeight: "calc(100vh - 48px - 48px)", overflowY: "auto" }}
+            >
+              <Table.Element size="small">
                 <Table.Head>
                   <Table.Row>
-                    <Table.Cell>Title</Table.Cell>
+                    <Table.Cell sx={{ minWidth: 250 }}>Title</Table.Cell>
                     <Table.Cell sx={{ minWidth: 110 }}>E / O / S</Table.Cell>
-                    <Table.Cell sx={{ minWidth: 115 }}>Filesize</Table.Cell>
-                    <Table.Cell sx={{ minWidth: 190 }}>
+                    <Table.Cell sx={{ minWidth: 100 }}>Filesize</Table.Cell>
+                    <Table.Cell sx={{ minWidth: 180 }}>
                       Date Finished
                     </Table.Cell>
                     <Table.Cell sx={{ minWidth: 130 }}>Release</Table.Cell>
                     <Table.Cell>Encoder</Table.Cell>
-                    {!isMobile && <Table.Cell>Rating</Table.Cell>}
+                    <Table.Cell>Rating</Table.Cell>
                   </Table.Row>
                 </Table.Head>
 
                 <Table.Body>
-                  {!isLoading ? (
+                  {!isLoading && !tableLoader ? (
                     data.map((item) => (
                       <CustomTableRow
                         hover
@@ -134,6 +143,7 @@ const Search = () => {
                       >
                         <Table.Cell>
                           <Quality quality={item.quality} />
+                          {item.title}
                           {item.title}
                         </Table.Cell>
                         <Table.Cell>
@@ -145,27 +155,32 @@ const Search = () => {
                           <RewatchIndicator show={item.rewatched} />
                         </Table.Cell>
                         <Table.Cell>{item.release}</Table.Cell>
-                        <Table.Cell>
+                        <Table.Cell sx={{ whiteSpace: "nowrap" }}>
                           {item.encoder
                             ? item.encoder.replaceAll(" ", "\u00a0")
                             : ""}
                         </Table.Cell>
 
-                        {!isMobile && (
-                          <Table.Cell>
-                            <Tooltip title={item.rating ?? "0"} placement="top">
-                              <Box>
-                                <StyledRating
-                                  value={item.rating ? item.rating / 2 : 0}
-                                  precision={0.25}
-                                  icon={<RatingIcon icon={faHeart} />}
-                                  emptyIcon={<RatingIcon icon={faHeartEmpty} />}
-                                  readOnly
-                                />
-                              </Box>
-                            </Tooltip>
-                          </Table.Cell>
-                        )}
+                        <Table.Cell>
+                          <Stack
+                            direction="row"
+                            spacing={1}
+                            alignItems="center"
+                          >
+                            <Chip
+                              label={item.rating ?? "0"}
+                              size="small"
+                              sx={{ width: "45px", height: "20px" }}
+                            />
+                            <StyledRating
+                              value={item.rating ? item.rating / 2 : 0}
+                              precision={0.25}
+                              icon={<RatingIcon icon={faHeart} />}
+                              emptyIcon={<RatingIcon icon={faHeartEmpty} />}
+                              readOnly
+                            />
+                          </Stack>
+                        </Table.Cell>
                       </CustomTableRow>
                     ))
                   ) : (
