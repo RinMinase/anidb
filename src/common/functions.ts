@@ -25,3 +25,12 @@ export async function waitForElement(selector: string): Promise<any> {
     });
   });
 }
+
+export function queryParamsArrayToString(
+  data: Array<any>,
+  name: string,
+): string {
+  return data.reduce((acc, val, index) => {
+    return val ? `${acc}${index > 0 ? "&" : ""}${name}[${index}]=${val}` : "";
+  }, "");
+}

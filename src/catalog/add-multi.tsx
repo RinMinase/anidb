@@ -3,7 +3,6 @@ import { useContext, useEffect } from "preact/hooks";
 import { useForm } from "react-hook-form";
 import { FontAwesomeSvgIcon } from "react-fontawesome-slim";
 import axios from "axios";
-import { stringify } from "qs";
 
 import { Button, Grid, styled, useMediaQuery, useTheme } from "@mui/material";
 
@@ -19,6 +18,7 @@ import {
 
 import { defaultValues, Form, resolver } from "./validation-multi";
 import { Data, Stats } from "./types";
+import { queryParamsArrayToString } from "@components/functions";
 
 type Props = {
   matches?: {
@@ -69,15 +69,21 @@ const CatalogMulti = (props: Props) => {
   const handleSubmitForm = async (formdata: Form) => {
     toggleLoader(true);
     try {
-      const body = {
-        low: formdata.low ? formdata.low.split("\n") : [],
-        normal: formdata.normal ? formdata.normal.split("\n") : [],
-        high: formdata.high ? formdata.high.split("\n") : [],
-      };
+      const parsed_low = formdata.low.split("\n");
+      const parsed_normal = formdata.normal.split("\n");
+      const parsed_high = formdata.high.split("\n");
+
+      const low = queryParamsArrayToString(parsed_low, "low");
+      const normal = queryParamsArrayToString(parsed_normal, "normal");
+      const high = queryParamsArrayToString(parsed_high, "high");
+
+      const body = encodeURI(
+        `${low}${normal ? `&${normal}` : ""}${high ? `&${high}` : ""}`,
+      );
 
       let response;
       const formBody = new FormData();
-      formBody.append("data", stringify(body));
+      formBody.append("data", body);
       formBody.append("season", formdata.season);
       formBody.append("year", formdata.year);
 
