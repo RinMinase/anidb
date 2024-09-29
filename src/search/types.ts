@@ -1,5 +1,3 @@
-import type { Qualities } from "@components";
-
 export type { Data } from "../home/types";
 
 export type Codecs = {
