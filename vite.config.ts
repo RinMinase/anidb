@@ -6,8 +6,6 @@ import tsconfigPaths from "vite-tsconfig-paths";
 import viteCompression from "vite-plugin-compression";
 import eslint from "vite-plugin-eslint";
 
-import { VitePWA } from "vite-plugin-pwa";
-
 const eslintConfig: PluginOption = {
   apply: "serve",
   enforce: "post",
@@ -25,7 +23,6 @@ export default defineConfig({
     eslintConfig,
     preact(),
     tsconfigPaths(),
-    VitePWA(),
     viteCompression({
       ext: ".jgz",
       verbose: false,
