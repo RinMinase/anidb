@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "preact/hooks";
 import axios from "axios";
 import { FontAwesomeSvgIcon } from "react-fontawesome-slim";
+import { Slash as UncategorizedIcon } from "react-feather";
 
 import {
   Box,
@@ -13,13 +14,10 @@ import {
   Typography,
 } from "@mui/material";
 
-import {
-  faBan as UncategorizedIcon,
-  faLeaf as FallIcon,
-  faSnowflake as WinterIcon,
-  faSun as SummerIcon,
-  faTree as SpringIcon,
-} from "@fortawesome/free-solid-svg-icons";
+import FallIcon from "@components/icons/fall.svg";
+import SpringIcon from "@components/icons/spring.svg";
+import SummerIcon from "@components/icons/summer.svg";
+import WinterIcon from "@components/icons/winter.svg";
 
 import {
   GlobalLoaderContext,
@@ -27,8 +25,13 @@ import {
   Quality,
   Table,
 } from "@components";
+
 import { Data, YearData } from "./types";
 import { Stack } from "@mui/system";
+
+type CustomIconProps = {
+  small?: boolean;
+};
 
 const CustomMenuList = styled(MenuList)<{ component: any }>({
   padding: 0,
@@ -46,6 +49,46 @@ const DividingBox = styled(Box)({
   display: "flex",
   flexGrow: 1,
 });
+
+const IconWinter = ({ small }: CustomIconProps) => (
+  <img
+    src={WinterIcon}
+    style={{ width: small ? "12px" : "22px", marginRight: small ? 6 : 8 }}
+  />
+);
+
+const IconSpring = ({ small }: CustomIconProps) => (
+  <img
+    src={SpringIcon}
+    style={{ width: small ? "12px" : "22px", marginRight: small ? 6 : 8 }}
+  />
+);
+
+const IconSummer = ({ small }: CustomIconProps) => (
+  <img
+    src={SummerIcon}
+    style={{ width: small ? "12px" : "22px", marginRight: small ? 6 : 8 }}
+  />
+);
+
+const IconFall = ({ small }: CustomIconProps) => (
+  <img
+    src={FallIcon}
+    style={{ width: small ? "12px" : "22px", marginRight: small ? 6 : 8 }}
+  />
+);
+
+const IconUncategorized = ({ small }: CustomIconProps) => (
+  <span
+    style={{
+      marginRight: small ? 6 : 8,
+      display: "flex",
+      alignItems: "center",
+    }}
+  >
+    <UncategorizedIcon size={small ? 14 : 24} color="#d32f2f" />
+  </span>
+);
 
 const ByYear = () => {
   const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
@@ -106,25 +149,22 @@ const ByYear = () => {
       .finally(() => toggleLoader(false));
   };
 
-  const IconWinter = () => <Icon icon={WinterIcon} color="#87ceeb" />;
-  const IconSpring = () => <Icon icon={SpringIcon} color="#008000" />;
-  const IconSummer = () => <Icon icon={SummerIcon} color="#ffa726" />;
-  const IconFall = () => <Icon icon={FallIcon} color="#ff5722" />;
-  const IconUncategorized = () => (
-    <Icon icon={UncategorizedIcon} color="#d32f2f" />
-  );
-
   const renderSubmenu = (label: string, value?: number) => (
     <>
       {value ? (
         <Stack spacing={2} direction="row" alignItems="center">
           <DividingSpacer />
-          <Typography component={"span" as any} variant="body2">
-            {label === "Winter" ? <IconWinter /> : null}
-            {label === "Spring" ? <IconSpring /> : null}
-            {label === "Summer" ? <IconSummer /> : null}
-            {label === "Fall" ? <IconFall /> : null}
-            {label === "Uncategorized" ? <IconUncategorized /> : null}
+          <Typography
+            component={"span" as any}
+            variant="body2"
+            display="flex"
+            alignItems="center"
+          >
+            {label === "Winter" ? <IconWinter small /> : null}
+            {label === "Spring" ? <IconSpring small /> : null}
+            {label === "Summer" ? <IconSummer small /> : null}
+            {label === "Fall" ? <IconFall small /> : null}
+            {label === "Uncategorized" ? <IconUncategorized small /> : null}
             {label}
           </Typography>
           <DividingBox />
@@ -146,7 +186,12 @@ const ByYear = () => {
     <>
       {values?.length ? (
         <Box>
-          <Typography variant="h5" gutterBottom>
+          <Typography
+            variant="h5"
+            display="flex"
+            alignItems="center"
+            gutterBottom
+          >
             {icon}
             {heading}
           </Typography>
