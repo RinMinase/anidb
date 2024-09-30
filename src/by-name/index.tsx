@@ -1,12 +1,19 @@
 import { useContext, useEffect, useState } from "preact/hooks";
 import axios from "axios";
+
 import {
   animateScroll,
   Element as ScrollToElement,
   scroller,
 } from "react-scroll";
 
-import { Grid, Paper, styled, useMediaQuery, useTheme } from "@mui/material";
+import {
+  Grid2 as Grid,
+  Paper,
+  styled,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 
 import {
   GlobalLoaderContext,
@@ -98,7 +105,7 @@ const ByName = () => {
   return (
     <ModuleContainer headerText="Entries by Name">
       <Grid container spacing={2}>
-        <Grid item xs={12} sm={7} md={3}>
+        <Grid size={{ xs: 12, sm: 7, md: 3 }}>
           <Table.Container component={Paper}>
             <Table.Element>
               <Table.Head>
@@ -126,7 +133,7 @@ const ByName = () => {
             </Table.Element>
           </Table.Container>
         </Grid>
-        <Grid item xs={12} sm={5} md={8}>
+        <Grid size={{ xs: 12, sm: 5, md: 8 }}>
           <ScrollToElement name="table" />
           <Table.Container component={Paper}>
             <Table.Element>
