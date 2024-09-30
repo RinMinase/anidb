@@ -1,17 +1,11 @@
 import { useContext, useEffect, useState } from "preact/hooks";
 import { route } from "preact-router";
-import { FontAwesomeSvgIcon } from "react-fontawesome-slim";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { format } from "date-fns";
 import { isEmpty } from "lodash-es";
-
 import { styled } from "@mui/material";
-
-import {
-  faArrowLeftLong as BackIcon,
-  faFloppyDisk as SaveIcon,
-} from "@fortawesome/free-solid-svg-icons";
+import { ArrowLeft as BackIcon, Save as SaveIcon } from "react-feather";
 
 import {
   Button,
@@ -200,7 +194,7 @@ const HomeAdd = (props: Props) => {
       <ControlButtons
         variant="contained"
         color="error"
-        startIcon={<FontAwesomeSvgIcon icon={BackIcon} />}
+        startIcon={<BackIcon size={20} />}
         sx={{ display: { xs: "none", sm: "inline-flex" } }}
         onClick={handleBack}
       >
@@ -208,7 +202,7 @@ const HomeAdd = (props: Props) => {
       </ControlButtons>
       <ControlButtons
         variant="contained"
-        startIcon={<FontAwesomeSvgIcon icon={SaveIcon} />}
+        startIcon={<SaveIcon size={20} />}
         onClick={handleSubmit(handleSubmitForm)}
       >
         Save

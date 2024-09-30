@@ -1,8 +1,8 @@
 import { useState } from "preact/hooks";
 import { useForm } from "react-hook-form";
-import { FontAwesomeSvgIcon } from "react-fontawesome-slim";
 import axios from "axios";
 import { format } from "date-fns";
+import { Trash as DeleteIcon, X as CloseIcon } from "react-feather";
 
 import {
   Backdrop,
@@ -16,11 +16,6 @@ import {
   Paper,
   styled,
 } from "@mui/material";
-
-import {
-  faTrash as DeleteIcon,
-  faXmark as CloseIcon,
-} from "@fortawesome/free-solid-svg-icons";
 
 import { Button, ControlledDatepicker, IconButton, Swal } from "@components";
 
@@ -113,7 +108,7 @@ const ViewRewatchDialogue = (props: Props) => {
         <DialogTitle display="flex" justifyContent="space-between">
           Rewatch List
           <IconButton onClick={props.onClose}>
-            <FontAwesomeSvgIcon width={22} icon={CloseIcon} />
+            <CloseIcon size={22} />
           </IconButton>
         </DialogTitle>
         <DialogContent sx={{ px: 0 }}>
@@ -149,7 +144,7 @@ const ViewRewatchDialogue = (props: Props) => {
                   size="small"
                   onClick={(e) => handleDeleteClick(e, item.id)}
                 >
-                  <FontAwesomeSvgIcon color="red" icon={DeleteIcon} />
+                  <DeleteIcon />
                 </IconButton>
               </ListItem>
             ))}

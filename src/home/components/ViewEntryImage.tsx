@@ -1,18 +1,13 @@
 import { Dispatch, StateUpdater, useState } from "preact/hooks";
-
-import { FontAwesomeSvgIcon } from "react-fontawesome-slim";
 import axios from "axios";
-
 import { CircularProgress, useMediaQuery, useTheme } from "@mui/material";
 
 import {
-  faCheck as UploadSaveIcon,
-  faCloudArrowUp as UploadImageIcon,
-  faTrash as UploadDeleteIcon,
-  faXmark as UploadCancelIcon,
-} from "@fortawesome/free-solid-svg-icons";
-
-import { Alert, AlertProps } from "@components";
+  X as UploadCancelIcon,
+  Trash as UploadDeleteIcon,
+  UploadCloud as UploadImageIcon,
+  Check as UploadSaveIcon,
+} from "react-feather";
 
 import {
   ImageBox,
@@ -24,6 +19,7 @@ import {
   ImageBoxDelete,
 } from "./ViewComponents";
 
+import { Alert, AlertProps } from "@components";
 import { FullData } from "../types";
 
 type Props = {
@@ -155,7 +151,7 @@ const ViewEntryImage = (props: Props) => {
 
         {isDesktop && !imageFile && (
           <ImageBoxEdit component="label" disabled={!!imageFile}>
-            <FontAwesomeSvgIcon icon={UploadImageIcon} color="#fff" />
+            <UploadImageIcon color="#fff" />
             <input
               type="file"
               accept="image/*"
@@ -167,17 +163,17 @@ const ViewEntryImage = (props: Props) => {
 
         {isDesktop && !imageFile && deleteIcon && (
           <ImageBoxDelete onClick={handleDeleteFile}>
-            <FontAwesomeSvgIcon icon={UploadDeleteIcon} color="#fff" />
+            <UploadDeleteIcon color="#fff" />
           </ImageBoxDelete>
         )}
 
         {imageFile && (
           <>
             <ImageBoxSave onClick={handleUploadFile}>
-              <FontAwesomeSvgIcon icon={UploadSaveIcon} color="#fff" />
+              <UploadSaveIcon color="#fff" />
             </ImageBoxSave>
             <ImageBoxRemove onClick={handleRemoveFile}>
-              <FontAwesomeSvgIcon icon={UploadCancelIcon} color="#fff" />
+              <UploadCancelIcon color="#fff" />
             </ImageBoxRemove>
           </>
         )}

@@ -2,9 +2,9 @@ import { useContext, useEffect, useState } from "preact/hooks";
 import { route } from "preact-router";
 
 import axios from "axios";
-import { FontAwesomeSvgIcon } from "react-fontawesome-slim";
 import DebouncePromise from "awesome-debounce-promise";
 import { Waypoint } from "react-waypoint";
+import { Search as SearchIcon } from "react-feather";
 
 import {
   Box,
@@ -20,8 +20,8 @@ import {
   useTheme,
 } from "@mui/material";
 
-import { faHeart, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import { faHeart as faHeartEmpty } from "@fortawesome/free-regular-svg-icons";
+import RatingFilledIcon from "@components/icons/heart-filled.svg?react";
+import RatingEmptyIcon from "@components/icons/heart.svg?react";
 
 import { Data } from "./types";
 
@@ -43,7 +43,7 @@ const SearchBox = styled(OutlinedInput)({
   paddingRight: 8,
 });
 
-const SearchIconContainer = styled(FontAwesomeSvgIcon)({
+const SearchIconContainer = styled(SearchIcon)({
   marginRight: 4,
 });
 
@@ -56,8 +56,12 @@ const CustomTableRow = styled(Table.Row)({
 });
 
 const StyledRating = styled(Rating)(({ value }) => ({
+  "& .MuiRating-decimal": {
+    marginRight: 2,
+  },
   "& .MuiRating-iconFilled": {
-    color: value
+    width: 14,
+    fill: value
       ? value > 3.75
         ? "#28a745"
         : value > 3
@@ -66,11 +70,6 @@ const StyledRating = styled(Rating)(({ value }) => ({
       : "",
   },
 }));
-
-const RatingIcon = styled(FontAwesomeSvgIcon)({
-  marginRight: 2,
-  fontSize: 14,
-});
 
 const SpinnerContainer = styled(Box)({
   width: "100%",
@@ -171,7 +170,7 @@ const Home = () => {
               fullWidth
               endAdornment={
                 <InputAdornment position="end">
-                  <SearchIconContainer icon={faMagnifyingGlass} />
+                  <SearchIconContainer />
                 </InputAdornment>
               }
               onChange={handleChange}
@@ -222,13 +221,16 @@ const Home = () => {
 
                   {!isMobile && (
                     <Table.Cell>
-                      <Tooltip title={item.rating ?? "0"} placement="top">
+                      <Tooltip
+                        title={`${item.rating ?? "0"} / 10`}
+                        placement="top"
+                      >
                         <Box>
                           <StyledRating
                             value={item.rating ? item.rating / 2 : 0}
                             precision={0.25}
-                            icon={<RatingIcon icon={faHeart} />}
-                            emptyIcon={<RatingIcon icon={faHeartEmpty} />}
+                            icon={<RatingFilledIcon width={14} />}
+                            emptyIcon={<RatingEmptyIcon width={14} />}
                             readOnly
                           />
                         </Box>

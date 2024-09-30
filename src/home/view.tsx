@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from "preact/hooks";
 import { route } from "preact-router";
 import axios from "axios";
-import { FontAwesomeSvgIcon } from "react-fontawesome-slim";
 import contrast from "font-color-contrast";
+import { debounce } from "lodash-es";
 
 import {
   Box,
@@ -16,24 +16,22 @@ import {
 } from "@mui/material";
 
 import {
-  faAngleRight as BulletIcon,
-  faArrowLeftLong as BackIcon,
-  faHeart as TotalRatingFilledIcon,
-  faPen as EditIcon,
-  faTrash as DeleteIcon,
-} from "@fortawesome/free-solid-svg-icons";
-
-import { faHeart as TotalRatingEmptyIcon } from "@fortawesome/free-regular-svg-icons";
+  ArrowLeft as BackIcon,
+  ChevronRight as BulletIcon,
+  Edit as EditIcon,
+  Trash as DeleteIcon,
+} from "react-feather";
 
 import { Button, GlobalLoaderContext, ModuleContainer } from "@components";
+import TotalRatingFilledIcon from "@components/icons/heart-filled.svg?react";
+import TotalRatingEmptyIcon from "@components/icons/heart.svg?react";
+
 import { FullData } from "./types";
 
 import {
   Header,
-  Icon,
   TotalStyledRating,
   StyledRating,
-  TotalRatingIcon,
   IconWinter,
   IconSpring,
   IconSummer,
@@ -65,6 +63,31 @@ const HomeView = (props: Props) => {
     graphics: 0,
     plot: 0,
   });
+
+  // Temporary handlers due to MUI6 Rating issue
+  const handleHover = (
+    type: "audio" | "enjoyment" | "graphics" | "plot",
+    value: number | null,
+  ) => {
+    setHoverRatings((prev) => ({
+      ...prev,
+      [type]: value && value !== -1 ? value : 0,
+    }));
+  };
+
+  const debouncedOnHover = debounce(
+    (type: "audio" | "enjoyment" | "graphics" | "plot", value: number | null) =>
+      handleHover(type, value),
+    200,
+  );
+
+  const [hoverRatings, setHoverRatings] = useState({
+    audio: 0,
+    enjoyment: 0,
+    graphics: 0,
+    plot: 0,
+  });
+  // Temporary handlers end here
 
   const handleChangeRating = async (type: string, value: number | null) => {
     const { audio, enjoyment, graphics, plot } = ratings;
@@ -98,8 +121,8 @@ const HomeView = (props: Props) => {
       <TotalStyledRating
         value={ratings.average ? ratings.average / 2 : 0}
         precision={0.25}
-        icon={<TotalRatingIcon icon={TotalRatingFilledIcon} />}
-        emptyIcon={<TotalRatingIcon icon={TotalRatingEmptyIcon} />}
+        icon={<TotalRatingFilledIcon width={28} />}
+        emptyIcon={<TotalRatingEmptyIcon width={28} />}
         readOnly
       />
       <Typography>Rating: {ratings.average}</Typography>
@@ -116,8 +139,14 @@ const HomeView = (props: Props) => {
           value={ratings.audio}
           IconContainerComponent={RatingIconContainer}
           max={10}
-          onChange={(e: any, value: number | null) => {
-            handleChangeRating("audio", value);
+          // onChange={(e: any, value: number | null) => {
+          //   handleChangeRating("audio", value);
+          // }}
+          onChangeActive={(e: any, value: number | null) =>
+            debouncedOnHover("audio", value)
+          }
+          onClick={() => {
+            handleChangeRating("audio", hoverRatings.audio);
           }}
         />
       </Box>
@@ -129,8 +158,14 @@ const HomeView = (props: Props) => {
           value={ratings.enjoyment}
           IconContainerComponent={RatingIconContainer}
           max={10}
-          onChange={(e: any, value: number | null) => {
-            handleChangeRating("enjoyment", value);
+          // onChange={(e: any, value: number | null) => {
+          //   handleChangeRating("enjoyment", value);
+          // }}
+          onChangeActive={(e: any, value: number | null) =>
+            debouncedOnHover("enjoyment", value)
+          }
+          onClick={() => {
+            handleChangeRating("enjoyment", hoverRatings.enjoyment);
           }}
         />
       </Box>
@@ -142,8 +177,14 @@ const HomeView = (props: Props) => {
           value={ratings.graphics}
           IconContainerComponent={RatingIconContainer}
           max={10}
-          onChange={(e: any, value: number | null) => {
-            handleChangeRating("graphics", value);
+          // onChange={(e: any, value: number | null) => {
+          //   handleChangeRating("graphics", value);
+          // }}
+          onChangeActive={(e: any, value: number | null) =>
+            debouncedOnHover("graphics", value)
+          }
+          onClick={() => {
+            handleChangeRating("graphics", hoverRatings.graphics);
           }}
         />
       </Box>
@@ -155,8 +196,14 @@ const HomeView = (props: Props) => {
           value={ratings.plot}
           IconContainerComponent={RatingIconContainer}
           max={10}
-          onChange={(e: any, value: number | null) => {
-            handleChangeRating("plot", value);
+          // onChange={(e: any, value: number | null) => {
+          //   handleChangeRating("plot", value);
+          // }}
+          onChangeActive={(e: any, value: number | null) =>
+            debouncedOnHover("plot", value)
+          }
+          onClick={() => {
+            handleChangeRating("plot", hoverRatings.plot);
           }}
         />
       </Box>
@@ -188,6 +235,13 @@ const HomeView = (props: Props) => {
           graphics: data.rating ? data.rating?.graphics : 0,
           plot: data.rating ? data.rating?.plot : 0,
         });
+
+        setHoverRatings({
+          audio: data.rating ? data.rating?.audio : 0,
+          enjoyment: data.rating ? data.rating?.enjoyment : 0,
+          graphics: data.rating ? data.rating?.graphics : 0,
+          plot: data.rating ? data.rating?.plot : 0,
+        });
       })
       .catch((err) => {
         console.error(err);
@@ -213,7 +267,7 @@ const HomeView = (props: Props) => {
               <Button
                 variant="contained"
                 color="info"
-                startIcon={<FontAwesomeSvgIcon icon={BackIcon} />}
+                startIcon={<BackIcon size={16} />}
                 onClick={() => route("/home")}
                 fullWidth
               >
@@ -224,7 +278,7 @@ const HomeView = (props: Props) => {
               <Button
                 variant="contained"
                 color="warning"
-                startIcon={<FontAwesomeSvgIcon icon={EditIcon} />}
+                startIcon={<EditIcon size={16} />}
                 onClick={() => route(`/home/edit/${props.matches.id}`)}
                 fullWidth
               >
@@ -235,7 +289,7 @@ const HomeView = (props: Props) => {
               <Button
                 variant="contained"
                 color="error"
-                startIcon={<FontAwesomeSvgIcon icon={DeleteIcon} />}
+                startIcon={<DeleteIcon size={16} />}
                 fullWidth
               >
                 Delete
@@ -405,8 +459,13 @@ const HomeView = (props: Props) => {
                           <Typography variant="body1">Offquels:</Typography>
                           <Box sx={{ pl: 2 }}>
                             {data.offquels.map((item) => (
-                              <Typography variant="body1" key={item.id}>
-                                <Icon icon={BulletIcon} />
+                              <Typography
+                                variant="body1"
+                                key={item.id}
+                                display="flex"
+                                alignItems="center"
+                              >
+                                <BulletIcon size={18} />
                                 <Link href={`/home/view/${item.id}`}>
                                   {item.title}
                                 </Link>
@@ -453,7 +512,7 @@ const HomeView = (props: Props) => {
                       <Box sx={{ pl: 2 }}>
                         {data.rewatches.map((item) => (
                           <Typography variant="body1" key={item.id}>
-                            <Icon icon={BulletIcon} />
+                            <BulletIcon size={14} />
                             {item.date}
                           </Typography>
                         ))}

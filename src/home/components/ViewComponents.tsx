@@ -1,5 +1,3 @@
-import { FontAwesomeSvgIcon } from "react-fontawesome-slim";
-
 import {
   Box,
   IconContainerProps,
@@ -8,15 +6,13 @@ import {
   Typography,
 } from "@mui/material";
 
-import {
-  faLeaf as FallIcon,
-  faSnowflake as WinterIcon,
-  faStar as RatingFilledIcon,
-  faSun as SummerIcon,
-  faTree as SpringIcon,
-} from "@fortawesome/free-solid-svg-icons";
-
 import { Button, IconButton } from "@components";
+
+import RatingFilledIcon from "@components/icons/star-filled.svg?react";
+import FallIcon from "@components/icons/fall.svg?react";
+import SpringIcon from "@components/icons/spring.svg?react";
+import SummerIcon from "@components/icons/summer.svg?react";
+import WinterIcon from "@components/icons/winter.svg?react";
 
 type ImageProps = {
   src?: string;
@@ -29,10 +25,6 @@ const Header = styled(Typography)(({ theme }) => ({
   borderBottom: `2px solid ${theme.palette.primary.light}`,
   marginBottom: 8,
 }));
-
-const Icon = styled(FontAwesomeSvgIcon)({
-  marginRight: 8,
-});
 
 const ImageBox = styled(Box)({
   position: "relative",
@@ -97,7 +89,7 @@ const ImageBoxSave = styled(IconButton)(({ theme }) => ({
   width: 46,
 
   "&:hover": {
-    backgroundColor: theme.palette.success.main,
+    backgroundColor: theme.palette.success.dark,
   },
 }));
 
@@ -111,13 +103,17 @@ const ImageBoxRemove = styled(IconButton)(({ theme }) => ({
   width: 46,
 
   "&:hover": {
-    backgroundColor: theme.palette.error.main,
+    backgroundColor: theme.palette.error.dark,
   },
 }));
 
 const TotalStyledRating = styled(Rating)(({ value }) => ({
+  "& .MuiRating-decimal": {
+    marginRight: 2,
+  },
   "& .MuiRating-iconFilled": {
-    color: value
+    width: 28,
+    fill: value
       ? value > 3.75
         ? "#28a745"
         : value > 3
@@ -128,8 +124,10 @@ const TotalStyledRating = styled(Rating)(({ value }) => ({
 }));
 
 const StyledRating = styled(Rating)(({ theme, value }) => ({
-  "& .MuiRating-iconFilled:not(.MuiRating-iconHover) svg": {
-    color: value
+  "& .MuiRating-iconFilled": {
+    width: 18,
+    marginRight: 2,
+    fill: value
       ? value >= 8
         ? "#28a745 !important"
         : value >= 6
@@ -138,34 +136,23 @@ const StyledRating = styled(Rating)(({ theme, value }) => ({
       : "",
   },
   "& .MuiRating-iconEmpty svg": {
-    color: theme.palette.action.disabled,
+    width: 18,
+    fill: theme.palette.action.disabled,
   },
 }));
 
-const TotalRatingIcon = styled(FontAwesomeSvgIcon)({
+const RatingIcon = styled(RatingFilledIcon)({
   marginRight: 2,
-  fontSize: 28,
 });
 
-const RatingIcon = styled(FontAwesomeSvgIcon)({
-  marginRight: 2,
-  fontSize: 18,
-});
+const IconWinter = () => <WinterIcon width={16} style={{ marginRight: 6 }} />;
+const IconSpring = () => <SpringIcon width={16} style={{ marginRight: 6 }} />;
+const IconSummer = () => <SummerIcon width={16} style={{ marginRight: 6 }} />;
+const IconFall = () => <FallIcon width={16} style={{ marginRight: 6 }} />;
 
-const IconWinter = () => <Icon icon={WinterIcon} color="#87ceeb" />;
-const IconSpring = () => <Icon icon={SpringIcon} color="#008000" />;
-const IconSummer = () => <Icon icon={SummerIcon} color="#ffa726" />;
-const IconFall = () => <Icon icon={FallIcon} color="#ff5722" />;
-
-const IconRateLow = () => (
-  <RatingIcon icon={RatingFilledIcon} color="#e57373" />
-);
-const IconRateNormal = () => (
-  <RatingIcon icon={RatingFilledIcon} color="#1e90ff" />
-);
-const IconRateHigh = () => (
-  <RatingIcon icon={RatingFilledIcon} color="#28a745" />
-);
+const IconRateLow = () => <RatingIcon fill="#e57373" />;
+const IconRateNormal = () => <RatingIcon fill="#1e90ff" />;
+const IconRateHigh = () => <RatingIcon fill="#28a745" />;
 
 const RatingIconContainer = (props: IconContainerProps) => {
   const { value, ...other } = props;
@@ -185,7 +172,6 @@ const RatingIconContainer = (props: IconContainerProps) => {
 
 export {
   Header,
-  Icon,
   ImageBox,
   Image,
   ImageLoader,
@@ -195,7 +181,6 @@ export {
   ImageBoxRemove,
   TotalStyledRating,
   StyledRating,
-  TotalRatingIcon,
   IconWinter,
   IconSpring,
   IconSummer,
