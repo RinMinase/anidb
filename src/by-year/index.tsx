@@ -13,10 +13,10 @@ import {
   Typography,
 } from "@mui/material";
 
-import FallIcon from "@components/icons/fall.svg";
-import SpringIcon from "@components/icons/spring.svg";
-import SummerIcon from "@components/icons/summer.svg";
-import WinterIcon from "@components/icons/winter.svg";
+import FallIcon from "@components/icons/fall.svg?react";
+import SpringIcon from "@components/icons/spring.svg?react";
+import SummerIcon from "@components/icons/summer.svg?react";
+import WinterIcon from "@components/icons/winter.svg?react";
 
 import {
   GlobalLoaderContext,
@@ -46,29 +46,25 @@ const DividingBox = styled(Box)({
 });
 
 const IconWinter = ({ small }: CustomIconProps) => (
-  <img
-    src={WinterIcon}
+  <WinterIcon
     style={{ width: small ? "12px" : "22px", marginRight: small ? 6 : 8 }}
   />
 );
 
 const IconSpring = ({ small }: CustomIconProps) => (
-  <img
-    src={SpringIcon}
+  <SpringIcon
     style={{ width: small ? "12px" : "22px", marginRight: small ? 6 : 8 }}
   />
 );
 
 const IconSummer = ({ small }: CustomIconProps) => (
-  <img
-    src={SummerIcon}
+  <SummerIcon
     style={{ width: small ? "12px" : "22px", marginRight: small ? 6 : 8 }}
   />
 );
 
 const IconFall = ({ small }: CustomIconProps) => (
-  <img
-    src={FallIcon}
+  <FallIcon
     style={{ width: small ? "12px" : "22px", marginRight: small ? 6 : 8 }}
   />
 );
