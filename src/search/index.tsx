@@ -1,3 +1,7 @@
+import { useContext, useEffect, useState } from "preact/hooks";
+import { route } from "preact-router";
+import axios from "axios";
+
 import {
   Chip,
   Grid2 as Grid,
@@ -7,11 +11,11 @@ import {
   styled,
 } from "@mui/material";
 
-import { useContext, useEffect, useState } from "preact/hooks";
-import { route } from "preact-router";
-import { FontAwesomeSvgIcon } from "react-fontawesome-slim";
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
-import { faHeart as faHeartEmpty } from "@fortawesome/free-regular-svg-icons";
+import RatingFilledIcon from "@components/icons/heart-filled.svg?react";
+import RatingEmptyIcon from "@components/icons/heart.svg?react";
+import { Codecs, Data } from "./types";
+import { Form } from "./validation";
+import SearchForm from "./components/SearchForm";
 
 import {
   GlobalLoaderContext,
@@ -21,18 +25,17 @@ import {
   Table,
 } from "@components";
 
-import { Codecs, Data } from "./types";
-import { Form } from "./validation";
-import SearchForm from "./components/SearchForm";
-import axios from "axios";
-
 const CustomTableRow = styled(Table.Row)({
   cursor: "pointer",
 });
 
 const StyledRating = styled(Rating)(({ value }) => ({
+  "& .MuiRating-decimal": {
+    marginRight: 2,
+  },
   "& .MuiRating-iconFilled": {
-    color: value
+    width: 14,
+    fill: value
       ? value > 3.75
         ? "#28a745"
         : value > 3
@@ -41,11 +44,6 @@ const StyledRating = styled(Rating)(({ value }) => ({
       : "",
   },
 }));
-
-const RatingIcon = styled(FontAwesomeSvgIcon)({
-  marginRight: 2,
-  fontSize: 14,
-});
 
 const Search = () => {
   const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
@@ -175,8 +173,8 @@ const Search = () => {
                             <StyledRating
                               value={item.rating ? item.rating / 2 : 0}
                               precision={0.25}
-                              icon={<RatingIcon icon={faHeart} />}
-                              emptyIcon={<RatingIcon icon={faHeartEmpty} />}
+                              icon={<RatingFilledIcon width={14} />}
+                              emptyIcon={<RatingEmptyIcon width={14} />}
                               readOnly
                             />
                           </Stack>
