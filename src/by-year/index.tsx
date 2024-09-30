@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from "preact/hooks";
 import axios from "axios";
-import { FontAwesomeSvgIcon } from "react-fontawesome-slim";
 import { Slash as UncategorizedIcon } from "react-feather";
 
 import {
@@ -36,10 +35,6 @@ type CustomIconProps = {
 const CustomMenuList = styled(MenuList)<{ component: any }>({
   padding: 0,
   overflow: "hidden",
-});
-
-const Icon = styled(FontAwesomeSvgIcon)({
-  marginRight: 8,
 });
 
 const DividingSpacer = styled(Box)({});
