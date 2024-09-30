@@ -1,20 +1,16 @@
 import { useContext, useEffect, useState } from "preact/hooks";
 import axios from "axios";
-import { FontAwesomeSvgIcon } from "react-fontawesome-slim";
+import { HardDrive as DriveIcon, Database as StorageIcon } from "react-feather";
+import { green, orange, red } from "@mui/material/colors";
 
 import {
   Box,
-  Grid,
+  Grid2 as Grid,
   LinearProgress,
   Paper,
   styled,
   Typography,
 } from "@mui/material";
-
-import {
-  faDatabase as StorageIcon,
-  faHardDrive as DriveIcon,
-} from "@fortawesome/free-solid-svg-icons";
 
 import {
   DashboardTile,
@@ -25,7 +21,6 @@ import {
 } from "@components";
 
 import { Bucket as SingleBucket, Buckets, Data, Stats } from "./types";
-import { green, orange, red } from "@mui/material/colors";
 
 const Dashboard = styled(Box)({
   marginBottom: 32,
@@ -102,9 +97,9 @@ const Bucket = () => {
             buckets.map((bucket, index) => {
               if (index === 0) {
                 return (
-                  <Grid item xs={12} sm={6} md={3} key={`bucket${index}`}>
+                  <Grid size={{ xs: 12, sm: 6, md: 3 }} key={`bucket${index}`}>
                     <DashboardTile
-                      icon={<FontAwesomeSvgIcon size="2x" icon={StorageIcon} />}
+                      icon={<StorageIcon size={32} />}
                       iconColor={bucket.bucketColor}
                       heading={"Total"}
                       subHeading={`${bucket.used} / ${bucket.total}`}
@@ -124,9 +119,9 @@ const Bucket = () => {
               }
 
               return (
-                <Grid item xs={12} sm={6} md={3} key={`bucket${index}`}>
+                <Grid size={{ xs: 12, sm: 6, md: 3 }} key={`bucket${index}`}>
                   <DashboardTile
-                    icon={<FontAwesomeSvgIcon size="2x" icon={DriveIcon} />}
+                    icon={<DriveIcon size={32} />}
                     iconColor={bucket.bucketColor}
                     heading={`${bucket.from.toUpperCase()} - ${bucket.to.toUpperCase()}`}
                     subHeading={`${bucket.used} / ${bucket.total}`}
