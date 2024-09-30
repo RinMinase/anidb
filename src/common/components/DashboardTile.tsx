@@ -48,6 +48,7 @@ const DashboardIcon = styled(Box)<DashboardIconProps>(({ iconColor }) => ({
   alignItems: "center",
   backgroundColor: iconColor || "#cecece",
   color: "#fff",
+  borderRadius: 4,
 
   position: "absolute",
   top: -15,
