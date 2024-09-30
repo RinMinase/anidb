@@ -21,8 +21,6 @@
   "dependencies": {
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
-    "@fortawesome/free-regular-svg-icons": "^6.6.0",
-    "@fortawesome/free-solid-svg-icons": "^6.6.0",
     "@hookform/resolvers": "^3.9.0",
     "@mui/lab": "^6.0.0-beta.10",
     "@mui/material": "^6.1.1",
@@ -41,7 +39,6 @@
     "preact-router": "^4.1.2",
     "react-dropzone": "^14.2.3",
     "react-feather": "^2.0.10",
-    "react-fontawesome-slim": "^1.0.0",
     "react-hook-form": "^7.52.1",
     "react-scroll": "^1.9.0",
     "react-waypoint": "^10.3.0",
@@ -53,7 +50,6 @@
   "devDependencies": {
     "@babel/core": "^7.25.2",
     "@date-io/date-fns": "^3.0.0",
-    "@fortawesome/fontawesome-svg-core": "^6.6.0",
     "@mui/system": "^6.1.1",
     "@preact/preset-vite": "^2.9.1",
     "@types/js-cookie": "^3.0.6",
