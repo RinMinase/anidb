@@ -1,13 +1,12 @@
 import { useContext, useState } from "preact/hooks";
 import { useDropzone } from "react-dropzone";
 import axios from "axios";
-import { FontAwesomeSvgIcon } from "react-fontawesome-slim";
 import { Box, Grid2 as Grid, Stack, styled, Typography } from "@mui/material";
 
 import {
-  faCloudArrowDown as ExportIcon,
-  faCloudArrowUp as ImportIcon,
-} from "@fortawesome/free-solid-svg-icons";
+  DownloadCloud as ExportIcon,
+  UploadCloud as ImportIcon,
+} from "react-feather";
 
 import { Button, GlobalLoaderContext, Swal } from "@components";
 
@@ -103,7 +102,7 @@ const ManagementSection = (props: Props) => {
         <ImportContainer spacing={2} direction="row" justifyContent="center">
           <Button
             variant="contained"
-            endIcon={<FontAwesomeSvgIcon icon={ImportIcon} />}
+            endIcon={<ImportIcon size={20} />}
             disabled={!acceptedFiles.length || uploading}
             onClick={handleImport}
           >
@@ -112,7 +111,7 @@ const ManagementSection = (props: Props) => {
 
           <Button
             variant="contained"
-            endIcon={<FontAwesomeSvgIcon icon={ImportIcon} />}
+            endIcon={<ImportIcon size={20} />}
             disabled={!acceptedFiles.length || uploading}
             onClick={handleImport}
           >
@@ -123,7 +122,7 @@ const ManagementSection = (props: Props) => {
       <CustomGrid size={{ md: 4 }}>
         <Button
           variant="contained"
-          endIcon={<FontAwesomeSvgIcon icon={ExportIcon} />}
+          endIcon={<ExportIcon size={20} />}
           disabled
           fullWidth
         >
