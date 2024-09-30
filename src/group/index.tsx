@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from "preact/hooks";
 import { useForm } from "react-hook-form";
-import { FontAwesomeSvgIcon } from "react-fontawesome-slim";
 import axios from "axios";
 
 import {
@@ -15,11 +14,11 @@ import {
 } from "@mui/material";
 
 import {
-  faFloppyDisk as SaveIcon,
-  faPenToSquare as EditIcon,
-  faTrash as DeleteIcon,
-  faXmark as CloseIcon,
-} from "@fortawesome/free-solid-svg-icons";
+  Plus as AddIcon,
+  X as CloseIcon,
+  Trash as DeleteIcon,
+  Edit as EditIcon,
+} from "react-feather";
 
 import {
   Button,
@@ -209,7 +208,7 @@ const Group = () => {
             />
             <Button
               variant="contained"
-              startIcon={<FontAwesomeSvgIcon icon={SaveIcon} />}
+              startIcon={<AddIcon size={20} />}
               onClick={handleSubmit(handleSubmitForm)}
             >
               Add Group
@@ -235,16 +234,14 @@ const Group = () => {
                         <IconButton
                           size="small"
                           onClick={() => handleEditClick(item)}
-                        >
-                          <FontAwesomeSvgIcon icon={EditIcon} />
-                        </IconButton>
+                          children={<EditIcon size={20} />}
+                        />
                         <IconButton
                           size="small"
                           onClick={() => handleDeleteClick(item.uuid)}
                           sx={{ ml: 1 }}
-                        >
-                          <FontAwesomeSvgIcon icon={DeleteIcon} />
-                        </IconButton>
+                          children={<DeleteIcon size={20} />}
+                        />
                       </ActionTableCell>
                     </Table.Row>
                   ))
@@ -265,9 +262,8 @@ const Group = () => {
             <IconButton
               disabled={dialog.loading}
               onClick={() => setDialog({ show: false, loading: false })}
-            >
-              <FontAwesomeSvgIcon width={22} icon={CloseIcon} />
-            </IconButton>
+              children={<CloseIcon size={20} />}
+            />
           </DialogTitle>
           <DialogContent>
             <Stack spacing={2} sx={{ mt: 1 }}>
@@ -283,7 +279,6 @@ const Group = () => {
 
               <Button
                 variant="contained"
-                startIcon={<FontAwesomeSvgIcon icon={SaveIcon} />}
                 onClick={editHandleSubmit(handleEditSubmit)}
                 disabled={dialog.loading}
                 fullWidth
