@@ -1,14 +1,12 @@
 import { useState } from "preact/hooks";
-import { FontAwesomeSvgIcon } from "react-fontawesome-slim";
-
 import { Box, styled, TextField } from "@mui/material";
 
 import {
-  faAngleLeft as PrevPageIcon,
-  faAnglesLeft as FirstPageIcon,
-  faAngleRight as NextPageIcon,
-  faAnglesRight as LastPageIcon,
-} from "@fortawesome/free-solid-svg-icons";
+  ChevronLeft as PrevPageIcon,
+  ChevronsLeft as FirstPageIcon,
+  ChevronRight as NextPageIcon,
+  ChevronsRight as LastPageIcon,
+} from "react-feather";
 
 import IconButton from "./IconButton";
 
@@ -82,19 +80,28 @@ const TablePaginationActions = (props: TablePaginationActionsProps) => {
   };
 
   return (
-    <Box sx={{ flexShrink: 0, ml: 2.5 }}>
+    <Box sx={{ flexShrink: 0, display: "flex", alignItems: "center", ml: 2.5 }}>
       <IconButton onClick={handleFirstPageButtonClick} disabled={page === 0}>
-        <FontAwesomeSvgIcon icon={FirstPageIcon} />
+        <FirstPageIcon size={20} />
       </IconButton>
 
       <IconButton onClick={handleBackButtonClick} disabled={page === 0}>
-        <FontAwesomeSvgIcon icon={PrevPageIcon} />
+        <PrevPageIcon size={20} />
       </IconButton>
 
       <PaginationTextfield
         {...numericProps}
-        size="small"
-        inputProps={{ style: { textAlign: "center" } }}
+        slotProps={{
+          htmlInput: {
+            style: {
+              textAlign: "center",
+              paddingTop: 4,
+              paddingBottom: 4,
+              paddingLeft: 8,
+              paddingRight: 8,
+            },
+          },
+        }}
         onKeyDown={handleCustomPageChange}
         onChange={(e) => disableNonNumeric(e)}
         value={value}
@@ -104,14 +111,14 @@ const TablePaginationActions = (props: TablePaginationActionsProps) => {
         onClick={handleNextButtonClick}
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
       >
-        <FontAwesomeSvgIcon icon={NextPageIcon} />
+        <NextPageIcon size={20} />
       </IconButton>
 
       <IconButton
         onClick={handleLastPageButtonClick}
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
       >
-        <FontAwesomeSvgIcon icon={LastPageIcon} />
+        <LastPageIcon size={22} />
       </IconButton>
     </Box>
   );

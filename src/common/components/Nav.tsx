@@ -17,12 +17,13 @@ import {
 } from "@mui/material";
 
 import {
+  Menu as MenuIcon,
   List as ListIcon,
   Rss as RssIcon,
   User as ManagementIcon,
+  LogOut as LogoutIcon,
   Sun as LightModeIcon,
   Moon as DarkModeIcon,
-  LogOut as LogoutIcon,
   Search as SearchIcon,
   RotateCcw as LastWatchIcon,
   Type as ByNameIcon,
@@ -36,7 +37,6 @@ import {
   Headphones as AudioCodecIcon,
   Video as VideoCodecIcon,
   Users as GroupIcon,
-  Menu as MenuIcon,
 } from "react-feather";
 
 import { ColorModeContext } from "../providers/ColorMode";

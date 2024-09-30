@@ -1,5 +1,4 @@
 import { useContext, useState } from "preact/hooks";
-import { FontAwesomeSvgIcon } from "react-fontawesome-slim";
 
 import {
   AppBar,
@@ -16,20 +15,16 @@ import {
 } from "@mui/material";
 
 import {
-  faBars as MenuIcon,
-  faCode as DeveloperIcon,
-  faMoon as DarkModeIcon,
-  faSun as LightModeIcon,
-} from "@fortawesome/free-solid-svg-icons";
+  Sun as LightModeIcon,
+  Moon as DarkModeIcon,
+  Menu as MenuIcon,
+  Code as DeveloperIcon,
+} from "react-feather";
 
 import { ColorModeContext } from "../providers/ColorMode";
 import { Button, IconButton } from "@components";
 
 const RightMenuContainer = styled(Box)({
-  marginLeft: 8,
-});
-
-const NavIcon = styled(FontAwesomeSvgIcon)({
   marginLeft: 8,
 });
 
@@ -72,7 +67,7 @@ const NavCommon = () => {
               size="large"
               onClick={(e) => handleOpenList(e, "nav")}
               color="inherit"
-              children={<FontAwesomeSvgIcon icon={MenuIcon} />}
+              children={<MenuIcon size={24} />}
             />
             <Menu
               anchorEl={anchorNav}
@@ -97,9 +92,7 @@ const NavCommon = () => {
                 href="https://rin.anidb.moe"
                 target="_blank"
               >
-                <ListItemIcon
-                  children={<FontAwesomeSvgIcon icon={DeveloperIcon} />}
-                />
+                <ListItemIcon children={<DeveloperIcon size={24} />} />
                 Developer
               </MenuItem>
             </Menu>
@@ -123,16 +116,16 @@ const NavCommon = () => {
 
           <IconButton onClick={colorMode.toggleColorMode} color="inherit">
             {theme.palette.mode === "dark" ? (
-              <FontAwesomeSvgIcon icon={LightModeIcon} />
+              <LightModeIcon size={20} />
             ) : (
-              <FontAwesomeSvgIcon icon={DarkModeIcon} />
+              <DarkModeIcon size={20} />
             )}
           </IconButton>
 
           <RightMenuContainer sx={{ display: { xs: "none", md: "flex" } }}>
             <Button
               color="inherit"
-              startIcon={<NavIcon icon={DeveloperIcon} />}
+              startIcon={<DeveloperIcon size={20} />}
               href="https://rin.anidb.moe"
             >
               Developer

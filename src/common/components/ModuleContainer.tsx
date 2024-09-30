@@ -1,7 +1,5 @@
-import { FontAwesomeSvgIcon } from "react-fontawesome-slim";
 import { Box, styled, Typography } from "@mui/material";
-
-import { faArrowLeftLong as BackIcon } from "@fortawesome/free-solid-svg-icons";
+import { ArrowLeft as BackIcon } from "react-feather";
 
 import { Button } from "@components";
 
@@ -50,7 +48,7 @@ const ModuleContainer = (props: Props) => (
             <Button
               variant="contained"
               color="error"
-              startIcon={<FontAwesomeSvgIcon icon={BackIcon} />}
+              startIcon={<BackIcon size={18} />}
               sx={{
                 display: { xs: "inline-flex", sm: "none" },
                 width: 120,
@@ -78,7 +76,7 @@ const ModuleContainer = (props: Props) => (
             <Button
               variant="contained"
               color="error"
-              startIcon={<FontAwesomeSvgIcon icon={BackIcon} />}
+              startIcon={<BackIcon size={18} />}
               sx={{ width: 120 }}
               onClick={props.handleBack}
             >
