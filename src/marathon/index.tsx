@@ -3,7 +3,6 @@ import { route } from "preact-router";
 import axios from "axios";
 import { Chart, ChartOptions, registerables } from "chart.js";
 import ChartDataLabels from "chartjs-plugin-datalabels";
-import { FontAwesomeSvgIcon } from "react-fontawesome-slim";
 import { v4 as uuid } from "uuid";
 
 import {
@@ -17,12 +16,12 @@ import {
 } from "@mui/material";
 
 import {
-  faCalendarDays as DayCountIcon,
-  faClapperboard as TotalCountIcon,
-  faPenToSquare as EditIcon,
-  faTrash as DeleteIcon,
-  faTv as TitleCountIcon,
-} from "@fortawesome/free-solid-svg-icons";
+  Calendar as DayCountIcon,
+  Trash as DeleteIcon,
+  Edit as EditIcon,
+  Tv as TitleCountIcon,
+  Database as TotalCountIcon,
+} from "react-feather";
 
 import {
   Button,
@@ -197,7 +196,7 @@ const Marathon = () => {
     <>
       <Grid item xs={12} sm={6} md={3}>
         <DashboardTile
-          icon={<FontAwesomeSvgIcon size="2x" icon={TitleCountIcon} />}
+          icon={<TitleCountIcon size={32} />}
           iconColor="#ff9800"
           heading="Episodes per day"
           value={stats.epsPerDay}
@@ -206,7 +205,7 @@ const Marathon = () => {
       </Grid>
       <Grid item xs={12} sm={6} md={3}>
         <DashboardTile
-          icon={<FontAwesomeSvgIcon size="2x" icon={TotalCountIcon} />}
+          icon={<TotalCountIcon size={32} />}
           iconColor="#2196f3"
           heading="Total titles"
           value={stats.totalTitles}
@@ -218,7 +217,7 @@ const Marathon = () => {
       </Grid>
       <Grid item xs={12} sm={6} md={3}>
         <DashboardTile
-          icon={<FontAwesomeSvgIcon size="2x" icon={DayCountIcon} />}
+          icon={<DayCountIcon size={32} />}
           iconColor="#009688"
           heading="Days"
           value={stats.totalDays}
@@ -312,16 +311,17 @@ const Marathon = () => {
               >
                 <ListItemText>{item.title}</ListItemText>
                 <IconButton
+                  sx={{ marginRight: 1 }}
                   size="small"
                   onClick={(e) => handleEditClick(e, item.id)}
                 >
-                  <FontAwesomeSvgIcon icon={EditIcon} />
+                  <EditIcon size={20} />
                 </IconButton>
                 <IconButton
                   size="small"
                   onClick={(e) => handleDeleteClick(e, item.id)}
                 >
-                  <FontAwesomeSvgIcon icon={DeleteIcon} />
+                  <DeleteIcon size={20} />
                 </IconButton>
               </MenuItem>
             ))}
