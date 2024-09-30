@@ -10,7 +10,7 @@ const eslintConfig: PluginOption = {
   apply: "serve",
   enforce: "post",
   ...eslint({
-    include: ["**/*.ts", "**/*.tsx"],
+    include: ["./src/**/*.ts", "./src/**/*.tsx"],
     cache: true,
     failOnWarning: false,
     failOnError: false,
