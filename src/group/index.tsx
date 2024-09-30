@@ -6,7 +6,7 @@ import {
   Backdrop,
   DialogContent,
   DialogTitle,
-  Grid,
+  Grid2 as Grid,
   LinearProgress,
   Paper,
   Stack,
@@ -195,7 +195,7 @@ const Group = () => {
   return (
     <ModuleContainer headerText="Groups">
       <Grid container spacing={2}>
-        <Grid item xs={12} sm={5} md={3}>
+        <Grid size={{ xs: 12, sm: 5, md: 3 }}>
           <Stack spacing={2}>
             <ControlledField
               name="name"
@@ -215,7 +215,7 @@ const Group = () => {
             </Button>
           </Stack>
         </Grid>
-        <Grid item xs={12} sm={7} md={9}>
+        <Grid size={{ xs: 12, sm: 7, md: 9 }}>
           <Table.Container component={Paper}>
             <CustomTable>
               <Table.Head>
