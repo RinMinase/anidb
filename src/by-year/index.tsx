@@ -6,7 +6,7 @@ import { Slash as UncategorizedIcon } from "react-feather";
 import {
   Box,
   Chip,
-  Grid,
+  Grid2 as Grid,
   MenuItem,
   MenuList,
   Paper,
@@ -223,7 +223,7 @@ const ByYear = () => {
   return (
     <ModuleContainer headerText="Entries by Year">
       <Grid container spacing={2}>
-        <Grid item xs={12} sm={5} md={3}>
+        <Grid size={{ xs: 12, sm: 5, md: 3 }}>
           <CustomMenuList component={Paper}>
             {yearData.map((item, index) => (
               <MenuItem
@@ -258,7 +258,7 @@ const ByYear = () => {
           </CustomMenuList>
         </Grid>
 
-        <Grid item xs={12} sm={7} md={9}>
+        <Grid size={{ xs: 12, sm: 7, md: 9 }}>
           <Stack spacing={3}>
             {!isLoading && (
               <>
