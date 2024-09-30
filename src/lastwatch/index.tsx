@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "preact/hooks";
 import axios from "axios";
 import { FontAwesomeSvgIcon } from "react-fontawesome-slim";
 
-import { Box, Grid, Paper, styled } from "@mui/material";
+import { Box, Grid2 as Grid, Paper, styled } from "@mui/material";
 
 import { faClock as LastCountIcon } from "@fortawesome/free-regular-svg-icons";
 
@@ -50,7 +50,7 @@ const LastWatch = () => {
   const Dashboard = () => (
     <DashboardContainer>
       <Grid container spacing={4}>
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid size={{ xs: 12, sm: 6, md: 3 }}>
           <DashboardTile
             icon={<FontAwesomeSvgIcon size="2x" icon={TotalCountIcon} />}
             iconColor="#ff9800"
@@ -59,7 +59,7 @@ const LastWatch = () => {
             footer={`Total Titles: ${stats.totalTitles}`}
           />
         </Grid>
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid size={{ xs: 12, sm: 6, md: 3 }}>
           <DashboardTile
             icon={<FontAwesomeSvgIcon size="2x" icon={LastCountIcon} />}
             iconColor="#2196f3"
@@ -68,7 +68,7 @@ const LastWatch = () => {
             footer={`Days since oldest entry: ${stats.daysOldestEntry}`}
           />
         </Grid>
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid size={{ xs: 12, sm: 6, md: 3 }}>
           <DashboardTile
             icon={<FontAwesomeSvgIcon size="2x" icon={WeeklyCountIcon} />}
             iconColor="#009688"
@@ -77,7 +77,7 @@ const LastWatch = () => {
             footer={`One-Cour (12 Eps) per week: ${stats.coursPerWeek}`}
           />
         </Grid>
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid size={{ xs: 12, sm: 6, md: 3 }}>
           <DashboardTile
             icon={<FontAwesomeSvgIcon size="2x" icon={DailyCountIcon} />}
             iconColor="#00bcd4"
