@@ -1,7 +1,6 @@
 import { useContext, useState } from "preact/hooks";
 import { route } from "preact-router";
 import axios from "axios";
-import { FontAwesomeSvgIcon } from "react-fontawesome-slim";
 
 import {
   AppBar,
@@ -18,37 +17,33 @@ import {
 } from "@mui/material";
 
 import {
-  faArrowDownAZ as ByNameIcon,
-  faArrowRightFromBracket as LogoutIcon,
-  faBars as MenuIcon,
-  faBook as CatalogsIcon,
-  faCalendarDays as ByYearIcon,
-  faClockRotateLeft as LastWatchIcon,
-  faDatabase as DataManagementIcon,
-  faFileLines as LogsIcon,
-  faFlaskVial as BucketSimIcon,
-  faHardDrive as BucketsIcon,
-  faListUl as ListIcon,
-  faMagnifyingGlass as SearchIcon,
-  faMoon as DarkModeIcon,
-  faMusic as AudioCodecIcon,
-  faRss as RssIcon,
-  faSun as LightModeIcon,
-  faTv as MarathonsIcon,
-  faUserGroup as GroupIcon,
-  faUserTie as ManagementIcon,
-  faVideo as VideoCodecIcon,
-} from "@fortawesome/free-solid-svg-icons";
+  List as ListIcon,
+  Rss as RssIcon,
+  User as ManagementIcon,
+  Sun as LightModeIcon,
+  Moon as DarkModeIcon,
+  LogOut as LogoutIcon,
+  Search as SearchIcon,
+  RotateCcw as LastWatchIcon,
+  Type as ByNameIcon,
+  Calendar as ByYearIcon,
+  Tv as MarathonsIcon,
+  HardDrive as BucketsIcon,
+  Cpu as BucketSimIcon,
+  Bookmark as CatalogsIcon,
+  Database as DataManagementIcon,
+  FileText as LogsIcon,
+  Headphones as AudioCodecIcon,
+  Video as VideoCodecIcon,
+  Users as GroupIcon,
+  Menu as MenuIcon,
+} from "react-feather";
 
 import { ColorModeContext } from "../providers/ColorMode";
 import { GlobalLoaderContext } from "../providers/GlobalLoader";
 import { Button, IconButton } from "@components";
 
 const RightMenuContainer = styled(Box)({
-  marginLeft: 8,
-});
-
-const NavIcon = styled(FontAwesomeSvgIcon)({
   marginLeft: 8,
 });
 
@@ -90,7 +85,7 @@ const Nav = () => {
   const MenuItemList = (props: { onClick: () => void }) => (
     <>
       <MenuItem component={"a" as any} href="/search" onClick={props.onClick}>
-        <ListItemIcon children={<FontAwesomeSvgIcon icon={SearchIcon} />} />
+        <ListItemIcon children={<SearchIcon size={18} />} />
         Advanced Seearch
       </MenuItem>
       <MenuItem
@@ -98,21 +93,21 @@ const Nav = () => {
         href="/last-watch"
         onClick={props.onClick}
       >
-        <ListItemIcon children={<FontAwesomeSvgIcon icon={LastWatchIcon} />} />
+        <ListItemIcon children={<LastWatchIcon size={18} />} />
         Last Watched
       </MenuItem>
       <Divider />
       <MenuItem component={"a" as any} href="/by-name" onClick={props.onClick}>
-        <ListItemIcon children={<FontAwesomeSvgIcon icon={ByNameIcon} />} />
+        <ListItemIcon children={<ByNameIcon size={18} />} />
         By Name
       </MenuItem>
       <MenuItem component={"a" as any} href="/by-year" onClick={props.onClick}>
-        <ListItemIcon children={<FontAwesomeSvgIcon icon={ByYearIcon} />} />
+        <ListItemIcon children={<ByYearIcon size={18} />} />
         By Year
       </MenuItem>
       <Divider />
       <MenuItem component={"a" as any} href="/catalogs" onClick={props.onClick}>
-        <ListItemIcon children={<FontAwesomeSvgIcon icon={CatalogsIcon} />} />
+        <ListItemIcon children={<CatalogsIcon size={18} />} />
         Download Lists
       </MenuItem>
       <MenuItem
@@ -120,11 +115,11 @@ const Nav = () => {
         href="/marathons"
         onClick={props.onClick}
       >
-        <ListItemIcon children={<FontAwesomeSvgIcon icon={MarathonsIcon} />} />
+        <ListItemIcon children={<MarathonsIcon size={18} />} />
         Marathon Lists
       </MenuItem>
       <MenuItem component={"a" as any} href="/buckets" onClick={props.onClick}>
-        <ListItemIcon children={<FontAwesomeSvgIcon icon={BucketsIcon} />} />
+        <ListItemIcon children={<BucketsIcon size={18} />} />
         Bucket Lists
       </MenuItem>
       <MenuItem
@@ -132,7 +127,7 @@ const Nav = () => {
         href="/bucket-sims"
         onClick={props.onClick}
       >
-        <ListItemIcon children={<FontAwesomeSvgIcon icon={BucketSimIcon} />} />
+        <ListItemIcon children={<BucketSimIcon size={18} />} />
         Bucket Simulator
       </MenuItem>
     </>
@@ -145,13 +140,11 @@ const Nav = () => {
         href="/data-management"
         onClick={props.onClick}
       >
-        <ListItemIcon
-          children={<FontAwesomeSvgIcon icon={DataManagementIcon} />}
-        />
+        <ListItemIcon children={<DataManagementIcon size={18} />} />
         Data Management
       </MenuItem>
       <MenuItem component={"a" as any} href="/logs" onClick={props.onClick}>
-        <ListItemIcon children={<FontAwesomeSvgIcon icon={LogsIcon} />} />
+        <ListItemIcon children={<LogsIcon size={18} />} />
         Logs
       </MenuItem>
       <Divider />
@@ -160,7 +153,7 @@ const Nav = () => {
         href="/audio-codecs"
         onClick={props.onClick}
       >
-        <ListItemIcon children={<FontAwesomeSvgIcon icon={AudioCodecIcon} />} />
+        <ListItemIcon children={<AudioCodecIcon size={18} />} />
         Audio Codecs
       </MenuItem>
       <MenuItem
@@ -168,11 +161,11 @@ const Nav = () => {
         href="/video-codecs"
         onClick={props.onClick}
       >
-        <ListItemIcon children={<FontAwesomeSvgIcon icon={VideoCodecIcon} />} />
+        <ListItemIcon children={<VideoCodecIcon size={18} />} />
         Video Codecs
       </MenuItem>
       <MenuItem component={"a" as any} href="/groups" onClick={props.onClick}>
-        <ListItemIcon children={<FontAwesomeSvgIcon icon={GroupIcon} />} />
+        <ListItemIcon children={<GroupIcon size={18} />} />
         Groups
       </MenuItem>
     </>
@@ -201,7 +194,7 @@ const Nav = () => {
             <IconButton
               onClick={(e) => handleOpenList(e, "nav")}
               color="inherit"
-              children={<FontAwesomeSvgIcon icon={MenuIcon} />}
+              children={<MenuIcon size={24} />}
             />
             <Menu
               anchorEl={anchorNav}
@@ -229,9 +222,7 @@ const Nav = () => {
                   handleLogout();
                 }}
               >
-                <ListItemIcon
-                  children={<FontAwesomeSvgIcon icon={LogoutIcon} />}
-                />
+                <ListItemIcon children={<LogoutIcon size={20} />} />
                 Logout
               </MenuItem>
             </Menu>
@@ -258,7 +249,7 @@ const Nav = () => {
               iconSize={18}
               color="inherit"
               onClick={(e: any) => handleOpenList(e, "list")}
-              startIcon={<NavIcon icon={ListIcon} />}
+              startIcon={<ListIcon size={18} />}
             >
               Special Lists
             </Button>
@@ -274,7 +265,7 @@ const Nav = () => {
               iconSize={18}
               color="inherit"
               onClick={(e: any) => handleOpenList(e, "mgmt")}
-              startIcon={<NavIcon icon={ManagementIcon} />}
+              startIcon={<ManagementIcon size={18} />}
             >
               Management
             </Button>
@@ -290,7 +281,7 @@ const Nav = () => {
               iconSize={18}
               color="inherit"
               href="/rss"
-              startIcon={<NavIcon icon={RssIcon} />}
+              startIcon={<RssIcon size={18} />}
             >
               RSS
             </Button>
@@ -298,9 +289,9 @@ const Nav = () => {
 
           <IconButton onClick={colorMode.toggleColorMode} color="inherit">
             {theme.palette.mode === "dark" ? (
-              <FontAwesomeSvgIcon icon={LightModeIcon} />
+              <LightModeIcon size={20} />
             ) : (
-              <FontAwesomeSvgIcon icon={DarkModeIcon} />
+              <DarkModeIcon size={20} />
             )}
           </IconButton>
 
@@ -308,7 +299,7 @@ const Nav = () => {
             <Button
               iconSize={18}
               color="inherit"
-              startIcon={<NavIcon icon={LogoutIcon} />}
+              startIcon={<LogoutIcon size={16} />}
               onClick={handleLogout}
             >
               Logout
