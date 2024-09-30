@@ -1,32 +1,30 @@
 import { useContext, useEffect, useState } from "preact/hooks";
 import { route } from "preact-router";
-import { FontAwesomeSvgIcon } from "react-fontawesome-slim";
 import { useFieldArray, useForm } from "react-hook-form";
 import axios from "axios";
+import { green, orange, red } from "@mui/material/colors";
 
 import {
   FormControl,
   FormHelperText,
-  Grid,
+  Grid2 as Grid,
   InputAdornment,
   LinearProgress,
   Paper,
   TextField,
 } from "@mui/material";
 
-import { green, orange, red } from "@mui/material/colors";
-
 import {
-  faAdd as AddIcon,
-  faArrowLeftLong as BackIcon,
-  faAngleDown as DownIcon,
-  faAngleUp as UpIcon,
-  faDatabase as StorageIcon,
-  faEye as PreviewIcon,
-  faFloppyDisk as SaveIcon,
-  faHardDrive as DriveIcon,
-  faTrash as RemoveIcon,
-} from "@fortawesome/free-solid-svg-icons";
+  Plus as AddIcon,
+  ArrowLeft as BackIcon,
+  ChevronDown as DownIcon,
+  HardDrive as DriveIcon,
+  Trash2 as RemoveIcon,
+  Eye as PreviewIcon,
+  Save as SaveIcon,
+  Database as StorageIcon,
+  ChevronUp as UpIcon,
+} from "react-feather";
 
 import {
   ButtonLoading,
@@ -179,7 +177,7 @@ const BucketSimEdit = (props: Props) => {
       <ControlButtons
         variant="contained"
         color="error"
-        startIcon={<FontAwesomeSvgIcon icon={BackIcon} />}
+        startIcon={<BackIcon size={20} />}
         sx={{ display: { xs: "none", sm: "inline-flex" } }}
         onClick={handleBack}
       >
@@ -189,7 +187,7 @@ const BucketSimEdit = (props: Props) => {
         <>
           <ControlButtons
             variant="contained"
-            startIcon={<FontAwesomeSvgIcon icon={AddIcon} />}
+            startIcon={<AddIcon size={20} />}
             onClick={() => {
               append({ from: "", to: "", size: null });
             }}
@@ -198,7 +196,7 @@ const BucketSimEdit = (props: Props) => {
           </ControlButtons>
           <ControlButtons
             variant="contained"
-            startIcon={<FontAwesomeSvgIcon icon={SaveIcon} />}
+            startIcon={<SaveIcon size={20} />}
             onClick={handleSubmit(handleSubmitForm)}
           >
             Save
@@ -254,18 +252,19 @@ const BucketSimEdit = (props: Props) => {
       headerControls={<HeaderControls />}
     >
       {!isLoading && (
-        <Grid item xs={12} sm={8}>
+        <Grid size={{ xs: 12, sm: 8 }}>
           <Dashboard>
             <Grid container spacing={4}>
               {data &&
                 data.map((item, index) => {
                   if (index === 0) {
                     return (
-                      <Grid item xs={12} sm={4} md={3} key={`bucket${index}`}>
+                      <Grid
+                        size={{ xs: 12, sm: 4, md: 3 }}
+                        key={`bucket${index}`}
+                      >
                         <DashboardTile
-                          icon={
-                            <FontAwesomeSvgIcon size="2x" icon={StorageIcon} />
-                          }
+                          icon={<StorageIcon size={32} />}
                           iconColor={item.bucketColor}
                           heading={"Total"}
                           subHeading={`${item.used} / ${item.total}`}
@@ -285,9 +284,12 @@ const BucketSimEdit = (props: Props) => {
                   }
 
                   return (
-                    <Grid item xs={12} sm={4} md={3} key={`bucket${index}`}>
+                    <Grid
+                      size={{ xs: 12, sm: 4, md: 3 }}
+                      key={`bucket${index}`}
+                    >
                       <DashboardTile
-                        icon={<FontAwesomeSvgIcon size="2x" icon={DriveIcon} />}
+                        icon={<DriveIcon size={32} />}
                         iconColor={item.bucketColor}
                         heading={`${item.from.toUpperCase()} - ${item.to.toUpperCase()}`}
                         subHeading={`${item.used} / ${item.total}`}
@@ -314,7 +316,7 @@ const BucketSimEdit = (props: Props) => {
         <>
           <DescriptionContainer>
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={9} md={10}>
+              <Grid size={{ xs: 12, sm: 9, md: 10 }}>
                 <TextField
                   fullWidth
                   variant="outlined"
@@ -326,10 +328,10 @@ const BucketSimEdit = (props: Props) => {
                   {...register("description")}
                 />
               </Grid>
-              <Grid item xs={12} sm={3} md={2} display="flex">
+              <Grid size={{ xs: 12, sm: 3, md: 2 }} display="flex">
                 <ButtonLoading
                   variant="contained"
-                  startIcon={<FontAwesomeSvgIcon icon={PreviewIcon} />}
+                  startIcon={<PreviewIcon size={20} />}
                   onClick={handleSubmit(handlePreviewForm)}
                   loading={previewLoader}
                   fullWidth
@@ -404,9 +406,8 @@ const BucketSimEdit = (props: Props) => {
                         <CustomIconButton
                           size="small"
                           onClick={() => swap(index, index - 1)}
-                        >
-                          <FontAwesomeSvgIcon icon={UpIcon} />
-                        </CustomIconButton>
+                          children={<UpIcon size={20} />}
+                        />
                       </CustomCellButton>
                     ) : (
                       <CustomCellButton />
@@ -417,9 +418,8 @@ const BucketSimEdit = (props: Props) => {
                         <CustomIconButton
                           size="small"
                           onClick={() => swap(index, index + 1)}
-                        >
-                          <FontAwesomeSvgIcon icon={DownIcon} />
-                        </CustomIconButton>
+                          children={<DownIcon size={20} />}
+                        />
                       </CustomCellButton>
                     ) : (
                       <CustomCellButton />
@@ -430,9 +430,8 @@ const BucketSimEdit = (props: Props) => {
                         size="small"
                         color="error"
                         onClick={() => remove(index)}
-                      >
-                        <FontAwesomeSvgIcon icon={RemoveIcon} />
-                      </CustomIconButton>
+                        children={<RemoveIcon size={20} />}
+                      />
                     </CustomCellButton>
                   </Table.Row>
                 ))}

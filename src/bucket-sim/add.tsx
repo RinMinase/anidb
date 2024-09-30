@@ -1,6 +1,5 @@
 import { useContext } from "preact/hooks";
 import { route } from "preact-router";
-import { FontAwesomeSvgIcon } from "react-fontawesome-slim";
 import { useFieldArray, useForm } from "react-hook-form";
 import axios from "axios";
 
@@ -13,13 +12,13 @@ import {
 } from "@mui/material";
 
 import {
-  faAdd as AddIcon,
-  faArrowLeftLong as BackIcon,
-  faAngleDown as DownIcon,
-  faAngleUp as UpIcon,
-  faFloppyDisk as SaveIcon,
-  faTrash as RemoveIcon,
-} from "@fortawesome/free-solid-svg-icons";
+  Plus as AddIcon,
+  ArrowLeft as BackIcon,
+  ChevronDown as DownIcon,
+  Trash2 as RemoveIcon,
+  Save as SaveIcon,
+  ChevronUp as UpIcon,
+} from "react-feather";
 
 import { GlobalLoaderContext, ModuleContainer, Swal, Table } from "@components";
 
@@ -106,7 +105,7 @@ const BucketSimAdd = () => {
       <ControlButtons
         variant="contained"
         color="error"
-        startIcon={<FontAwesomeSvgIcon icon={BackIcon} />}
+        startIcon={<BackIcon size={20} />}
         sx={{ display: { xs: "none", sm: "inline-flex" } }}
         onClick={handleBack}
       >
@@ -114,7 +113,7 @@ const BucketSimAdd = () => {
       </ControlButtons>
       <ControlButtons
         variant="contained"
-        startIcon={<FontAwesomeSvgIcon icon={AddIcon} />}
+        startIcon={<AddIcon size={20} />}
         onClick={() => {
           append({ from: "", to: "", size: null });
         }}
@@ -123,7 +122,7 @@ const BucketSimAdd = () => {
       </ControlButtons>
       <ControlButtons
         variant="contained"
-        startIcon={<FontAwesomeSvgIcon icon={SaveIcon} />}
+        startIcon={<SaveIcon size={20} />}
         onClick={handleSubmit(handleSubmitForm)}
       >
         Save
@@ -206,9 +205,8 @@ const BucketSimAdd = () => {
                     <CustomIconButton
                       size="small"
                       onClick={() => swap(index, index - 1)}
-                    >
-                      <FontAwesomeSvgIcon icon={UpIcon} />
-                    </CustomIconButton>
+                      children={<UpIcon size={20} />}
+                    />
                   </CustomCellButton>
                 ) : (
                   <CustomCellButton />
@@ -219,9 +217,8 @@ const BucketSimAdd = () => {
                     <CustomIconButton
                       size="small"
                       onClick={() => swap(index, index + 1)}
-                    >
-                      <FontAwesomeSvgIcon icon={DownIcon} />
-                    </CustomIconButton>
+                      children={<DownIcon size={20} />}
+                    />
                   </CustomCellButton>
                 ) : (
                   <CustomCellButton />
@@ -232,9 +229,8 @@ const BucketSimAdd = () => {
                     size="small"
                     color="error"
                     onClick={() => remove(index)}
-                  >
-                    <FontAwesomeSvgIcon icon={RemoveIcon} />
-                  </CustomIconButton>
+                    children={<RemoveIcon size={20} />}
+                  />
                 </CustomCellButton>
               </Table.Row>
             ))}

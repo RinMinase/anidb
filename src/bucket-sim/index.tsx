@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from "preact/hooks";
 import { route } from "preact-router";
 import axios from "axios";
-import { FontAwesomeSvgIcon } from "react-fontawesome-slim";
+import { green, orange, red } from "@mui/material/colors";
 
 import {
   Box,
-  Grid,
+  Grid2 as Grid,
   LinearProgress,
   ListItemText,
   MenuItem,
@@ -15,15 +15,13 @@ import {
   Tooltip,
 } from "@mui/material";
 
-import { green, orange, red } from "@mui/material/colors";
-
 import {
-  faDatabase as StorageIcon,
-  faFloppyDisk as SaveIcon,
-  faHardDrive as DriveIcon,
-  faPenToSquare as EditIcon,
-  faTrash as DeleteIcon,
-} from "@fortawesome/free-solid-svg-icons";
+  Trash as DeleteIcon,
+  HardDrive as DriveIcon,
+  Edit as EditIcon,
+  Save as SaveIcon,
+  Database as StorageIcon,
+} from "react-feather";
 
 import {
   Button,
@@ -163,7 +161,7 @@ const BucketSim = () => {
   return (
     <ModuleContainer headerText="Bucket Simulator">
       <Grid container spacing={4}>
-        <Grid item xs={12} sm={4}>
+        <Grid size={{ xs: 12, sm: 4 }}>
           <Button
             variant="contained"
             fullWidth
@@ -184,9 +182,8 @@ const BucketSim = () => {
                     <IconButton
                       size="small"
                       onClick={(e) => handleSaveClick(e, item.uuid)}
-                    >
-                      <FontAwesomeSvgIcon icon={SaveIcon} />
-                    </IconButton>
+                      children={<SaveIcon size={20} />}
+                    />
                   </Box>
                 </Tooltip>
                 <Tooltip title="Edit" placement="top">
@@ -194,9 +191,8 @@ const BucketSim = () => {
                     <IconButton
                       size="small"
                       onClick={(e) => handleEditClick(e, item.uuid)}
-                    >
-                      <FontAwesomeSvgIcon icon={EditIcon} />
-                    </IconButton>
+                      children={<EditIcon size={20} />}
+                    />
                   </Box>
                 </Tooltip>
                 <Tooltip title="Delete" placement="top">
@@ -204,9 +200,8 @@ const BucketSim = () => {
                     <IconButton
                       size="small"
                       onClick={(e) => handleDeleteClick(e, item.uuid)}
-                    >
-                      <FontAwesomeSvgIcon icon={DeleteIcon} />
-                    </IconButton>
+                      children={<DeleteIcon size={20} />}
+                    />
                   </Box>
                 </Tooltip>
               </MenuItem>
@@ -214,21 +209,19 @@ const BucketSim = () => {
           </CustomMenuList>
         </Grid>
         {!isLoading && (
-          <Grid item xs={12} sm={8}>
+          <Grid size={{ xs: 12, sm: 8 }}>
             <Dashboard>
               <Grid container spacing={4}>
                 {data &&
                   data.map((item, index) => {
                     if (index === 0) {
                       return (
-                        <Grid item xs={12} sm={6} md={4} key={`bucket${index}`}>
+                        <Grid
+                          size={{ xs: 12, sm: 6, md: 4 }}
+                          key={`bucket${index}`}
+                        >
                           <DashboardTile
-                            icon={
-                              <FontAwesomeSvgIcon
-                                size="2x"
-                                icon={StorageIcon}
-                              />
-                            }
+                            icon={<StorageIcon size={32} />}
                             iconColor={item.bucketColor}
                             heading={"Total"}
                             subHeading={`${item.used || "0 B"} / ${item.total}`}
@@ -248,11 +241,12 @@ const BucketSim = () => {
                     }
 
                     return (
-                      <Grid item xs={12} sm={6} md={4} key={`bucket${index}`}>
+                      <Grid
+                        size={{ xs: 12, sm: 6, md: 4 }}
+                        key={`bucket${index}`}
+                      >
                         <DashboardTile
-                          icon={
-                            <FontAwesomeSvgIcon size="2x" icon={DriveIcon} />
-                          }
+                          icon={<DriveIcon size={32} />}
                           iconColor={item.bucketColor}
                           heading={`${item.from.toUpperCase()} - ${item.to.toUpperCase()}`}
                           subHeading={`${item.used || "0 B"} / ${item.total}`}
