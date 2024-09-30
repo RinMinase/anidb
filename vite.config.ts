@@ -5,6 +5,7 @@ import preact from "@preact/preset-vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 import viteCompression from "vite-plugin-compression";
 import eslint from "vite-plugin-eslint";
+import svgr from "vite-plugin-svgr";
 
 const eslintConfig: PluginOption = {
   apply: "serve",
@@ -22,6 +23,7 @@ export default defineConfig({
   plugins: [
     eslintConfig,
     preact(),
+    svgr(),
     tsconfigPaths(),
     viteCompression({
       ext: ".jgz",
