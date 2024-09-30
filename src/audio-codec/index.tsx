@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from "preact/hooks";
 import { useForm } from "react-hook-form";
-import { FontAwesomeSvgIcon } from "react-fontawesome-slim";
 import axios from "axios";
 
 import {
@@ -15,11 +14,11 @@ import {
 } from "@mui/material";
 
 import {
-  faFloppyDisk as SaveIcon,
-  faPenToSquare as EditIcon,
-  faTrash as DeleteIcon,
-  faXmark as CloseIcon,
-} from "@fortawesome/free-solid-svg-icons";
+  Plus as AddIcon,
+  X as CloseIcon,
+  Trash as DeleteIcon,
+  Edit as EditIcon,
+} from "react-feather";
 
 import {
   Button,
@@ -224,7 +223,7 @@ const AudioCodec = () => {
             />
             <Button
               variant="contained"
-              startIcon={<FontAwesomeSvgIcon icon={SaveIcon} />}
+              startIcon={<AddIcon size={20} />}
               onClick={handleSubmit(handleSubmitForm)}
             >
               Add Audio Codec
@@ -253,14 +252,14 @@ const AudioCodec = () => {
                           size="small"
                           onClick={() => handleEditClick(item)}
                         >
-                          <FontAwesomeSvgIcon icon={EditIcon} />
+                          <EditIcon size={20} />
                         </IconButton>
                         <IconButton
                           size="small"
                           onClick={() => handleDeleteClick(item.id)}
                           sx={{ ml: 1 }}
                         >
-                          <FontAwesomeSvgIcon icon={DeleteIcon} />
+                          <DeleteIcon size={20} />
                         </IconButton>
                       </ActionTableCell>
                     </Table.Row>
@@ -283,7 +282,7 @@ const AudioCodec = () => {
               disabled={dialog.loading}
               onClick={() => setDialog({ show: false, loading: false })}
             >
-              <FontAwesomeSvgIcon width={22} icon={CloseIcon} />
+              <CloseIcon size={20} />
             </IconButton>
           </DialogTitle>
           <DialogContent>
@@ -309,7 +308,6 @@ const AudioCodec = () => {
 
               <Button
                 variant="contained"
-                startIcon={<FontAwesomeSvgIcon icon={SaveIcon} />}
                 onClick={editHandleSubmit(handleEditSubmit)}
                 disabled={dialog.loading}
                 fullWidth
