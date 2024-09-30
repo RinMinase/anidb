@@ -1,12 +1,9 @@
 import { route } from "preact-router";
 import { useContext, useEffect, useState } from "preact/hooks";
 import { useForm } from "react-hook-form";
-import { FontAwesomeSvgIcon } from "react-fontawesome-slim";
 import axios from "axios";
-
+import { Save as SaveIcon } from "react-feather";
 import { Button, Stack, styled } from "@mui/material";
-
-import { faFloppyDisk as SaveIcon } from "@fortawesome/free-solid-svg-icons";
 
 import {
   ControlledField,
@@ -169,7 +166,7 @@ const CatalogAdd = (props: Props) => {
 
         <SaveButton
           variant="contained"
-          startIcon={<FontAwesomeSvgIcon icon={SaveIcon} />}
+          startIcon={<SaveIcon size={20} />}
           onClick={handleSubmit(handleSubmitForm)}
         >
           Save

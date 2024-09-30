@@ -1,21 +1,16 @@
 import { useContext, useEffect, useState } from "preact/hooks";
 import { route } from "preact-router";
 import axios from "axios";
-import { FontAwesomeSvgIcon } from "react-fontawesome-slim";
+import { Edit as EditIcon, Trash as DeleteIcon } from "react-feather";
 
 import {
-  Grid,
+  Grid2 as Grid,
   ListItemText,
   MenuItem,
   MenuList,
   Paper,
   styled,
 } from "@mui/material";
-
-import {
-  faPenToSquare as EditIcon,
-  faTrash as DeleteIcon,
-} from "@fortawesome/free-solid-svg-icons";
 
 import {
   Button,
@@ -150,7 +145,7 @@ const Catalog = () => {
   return (
     <ModuleContainer headerText="Catalogs">
       <Grid container spacing={2}>
-        <Grid item xs={12} sm={5} md={3}>
+        <Grid size={{ xs: 12, sm: 5, md: 3 }}>
           <Button
             variant="contained"
             fullWidth
@@ -179,21 +174,19 @@ const Catalog = () => {
                 <IconButton
                   size="small"
                   onClick={(e) => handleEditMultiClick(e, item.uuid)}
-                >
-                  <FontAwesomeSvgIcon icon={EditIcon} />
-                </IconButton>
+                  children={<EditIcon size={16} />}
+                  sx={{ marginRight: 0.5 }}
+                />
                 <IconButton
                   size="small"
                   onClick={(e) => handleDeleteMultiClick(e, item.uuid)}
-                >
-                  <FontAwesomeSvgIcon icon={DeleteIcon} />
-                </IconButton>
-                {}
+                  children={<DeleteIcon size={16} />}
+                />
               </MenuItem>
             ))}
           </CustomMenuList>
         </Grid>
-        <Grid item xs={12} sm={7} md={9}>
+        <Grid size={{ xs: 12, sm: 7, md: 9 }}>
           <Table.Container component={Paper}>
             <CustomTable>
               <Table.Head>
@@ -214,16 +207,14 @@ const Catalog = () => {
                         <IconButton
                           size="small"
                           onClick={() => handleEditClick(item.uuid)}
-                        >
-                          <FontAwesomeSvgIcon icon={EditIcon} />
-                        </IconButton>
+                          children={<EditIcon size={18} />}
+                        />
                         <IconButton
                           size="small"
                           onClick={() => handleDeleteClick(item.uuid)}
                           sx={{ ml: 1 }}
-                        >
-                          <FontAwesomeSvgIcon icon={DeleteIcon} />
-                        </IconButton>
+                          children={<DeleteIcon size={18} />}
+                        />
                       </ActionTableCell>
                     </Table.Row>
                   ))

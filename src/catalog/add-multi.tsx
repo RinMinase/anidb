@@ -1,12 +1,16 @@
 import { route } from "preact-router";
 import { useContext, useEffect } from "preact/hooks";
 import { useForm } from "react-hook-form";
-import { FontAwesomeSvgIcon } from "react-fontawesome-slim";
 import axios from "axios";
+import { Save as SaveIcon } from "react-feather";
 
-import { Button, Grid, styled, useMediaQuery, useTheme } from "@mui/material";
-
-import { faFloppyDisk as SaveIcon } from "@fortawesome/free-solid-svg-icons";
+import {
+  Button,
+  Grid2 as Grid,
+  styled,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 
 import {
   ControlledField,
@@ -16,9 +20,9 @@ import {
   Swal,
 } from "@components";
 
+import { queryParamsArrayToString } from "@components/functions";
 import { defaultValues, Form, resolver } from "./validation-multi";
 import { Data, Stats } from "./types";
-import { queryParamsArrayToString } from "@components/functions";
 
 type Props = {
   matches?: {
@@ -163,7 +167,7 @@ const CatalogMulti = (props: Props) => {
       }
     >
       <Grid container spacing={2} sx={{ mb: 2 }}>
-        <Grid item xs={12} sm={4} md={3}>
+        <Grid size={{ xs: 12, sm: 4, md: 3 }}>
           <ControlledSelect
             name="season"
             label="Season"
@@ -176,7 +180,7 @@ const CatalogMulti = (props: Props) => {
             fullWidth
           />
         </Grid>
-        <Grid item xs={12} sm={4} md={3}>
+        <Grid size={{ xs: 12, sm: 4, md: 3 }}>
           <ControlledSelect
             name="year"
             label="Year"
@@ -191,7 +195,7 @@ const CatalogMulti = (props: Props) => {
         </Grid>
       </Grid>
       <Grid container spacing={2}>
-        <Grid item xs={12} md={4}>
+        <Grid size={{ xs: 12, md: 4 }}>
           <ControlledField
             name="low"
             label="Low"
@@ -204,7 +208,7 @@ const CatalogMulti = (props: Props) => {
             fullWidth
           />
         </Grid>
-        <Grid item xs={12} md={4}>
+        <Grid size={{ xs: 12, md: 4 }}>
           <ControlledField
             name="normal"
             label="Normal"
@@ -217,7 +221,7 @@ const CatalogMulti = (props: Props) => {
             fullWidth
           />
         </Grid>
-        <Grid item xs={12} md={4}>
+        <Grid size={{ xs: 12, md: 4 }}>
           <ControlledField
             name="high"
             label="High"
@@ -234,7 +238,7 @@ const CatalogMulti = (props: Props) => {
 
       <SaveButton
         variant="contained"
-        startIcon={<FontAwesomeSvgIcon icon={SaveIcon} />}
+        startIcon={<SaveIcon size={20} />}
         onClick={handleSubmit(handleSubmitForm)}
         fullWidth
       >
