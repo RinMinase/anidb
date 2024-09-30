@@ -7,7 +7,7 @@ import { v4 as uuid } from "uuid";
 
 import {
   Box,
-  Grid,
+  Grid2 as Grid,
   ListItemText,
   MenuItem,
   MenuList,
@@ -194,7 +194,7 @@ const Marathon = () => {
 
   const DashboardTiles = () => (
     <>
-      <Grid item xs={12} sm={6} md={3}>
+      <Grid size={{ xs: 12, sm: 6, md: 3 }}>
         <DashboardTile
           icon={<TitleCountIcon size={32} />}
           iconColor="#ff9800"
@@ -203,7 +203,7 @@ const Marathon = () => {
           footer={`Titles per day: ${stats.titlesPerDay}`}
         />
       </Grid>
-      <Grid item xs={12} sm={6} md={3}>
+      <Grid size={{ xs: 12, sm: 6, md: 3 }}>
         <DashboardTile
           icon={<TotalCountIcon size={32} />}
           iconColor="#2196f3"
@@ -215,7 +215,7 @@ const Marathon = () => {
           ]}
         />
       </Grid>
-      <Grid item xs={12} sm={6} md={3}>
+      <Grid size={{ xs: 12, sm: 6, md: 3 }}>
         <DashboardTile
           icon={<DayCountIcon size={32} />}
           iconColor="#009688"
@@ -284,7 +284,7 @@ const Marathon = () => {
           <Grid container spacing={4}>
             <DashboardTiles />
 
-            <Grid item xs={12} sm={6} md={3}>
+            <Grid size={{ xs: 12, sm: 6, md: 3 }}>
               <ChartContainer>
                 <canvas id="graph" />
               </ChartContainer>
@@ -294,7 +294,7 @@ const Marathon = () => {
       }
     >
       <Grid container spacing={2}>
-        <Grid item xs={12} sm={5} md={3}>
+        <Grid size={{ xs: 12, sm: 5, md: 3 }}>
           <Button
             variant="contained"
             fullWidth
@@ -327,7 +327,7 @@ const Marathon = () => {
             ))}
           </CustomMenuList>
         </Grid>
-        <Grid item xs={12} sm={7} md={9}>
+        <Grid size={{ xs: 12, sm: 7, md: 9 }}>
           <Table.Container component={Paper}>
             <CustomTable>
               <Table.Head>
