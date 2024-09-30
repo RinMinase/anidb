@@ -1,8 +1,7 @@
 import { useEffect } from "preact/hooks";
 import { Chart, ChartOptions, registerables } from "chart.js";
 import ChartDataLabels from "chartjs-plugin-datalabels";
-
-import { Box, Grid, styled, Typography } from "@mui/material";
+import { Box, Grid2 as Grid, styled, Typography } from "@mui/material";
 
 import { Graph } from "../types";
 
@@ -167,10 +166,7 @@ const GraphSection = (props: Props) => {
     <GraphTopContainer>
       <Grid container spacing={2}>
         <Grid
-          item
-          xs={12}
-          sm={12}
-          md={6}
+          size={{ xs: 12, sm: 12, md: 6 }}
           display="flex"
           alignItems="center"
           flexDirection="column"
@@ -184,10 +180,7 @@ const GraphSection = (props: Props) => {
           </PieChartContainer>
         </Grid>
         <Grid
-          item
-          xs={12}
-          sm={12}
-          md={6}
+          size={{ xs: 12, sm: 12, md: 6 }}
           display="flex"
           alignItems="center"
           flexDirection="column"

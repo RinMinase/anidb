@@ -2,8 +2,7 @@ import { useContext, useState } from "preact/hooks";
 import { useDropzone } from "react-dropzone";
 import axios from "axios";
 import { FontAwesomeSvgIcon } from "react-fontawesome-slim";
-
-import { Box, Grid, Stack, styled, Typography } from "@mui/material";
+import { Box, Grid2 as Grid, Stack, styled, Typography } from "@mui/material";
 
 import {
   faCloudArrowDown as ExportIcon,
@@ -78,7 +77,7 @@ const ManagementSection = (props: Props) => {
 
   return (
     <Grid container>
-      <Grid item md={8} textAlign="center">
+      <Grid size={{ md: 8 }} textAlign="center">
         <DropzoneContainer {...getRootProps({ className: "dropzone" })}>
           <input {...getInputProps()} />
           {acceptedFiles.length ? (
@@ -121,7 +120,7 @@ const ManagementSection = (props: Props) => {
           </Button>
         </ImportContainer>
       </Grid>
-      <CustomGrid item md={4}>
+      <CustomGrid size={{ md: 4 }}>
         <Button
           variant="contained"
           endIcon={<FontAwesomeSvgIcon icon={ExportIcon} />}

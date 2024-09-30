@@ -1,5 +1,5 @@
 import { DashboardTile } from "@components";
-import { Grid } from "@mui/material";
+import { Grid2 as Grid } from "@mui/material";
 
 import { Stats } from "../types";
 
@@ -11,27 +11,27 @@ const StatsSection = (props: Props) => {
   return (
     <>
       <Grid container spacing={4}>
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid size={{ xs: 12, sm: 6, md: 3 }}>
           <DashboardTile
             heading="Total watch time"
             value={props.stats.watch}
             subHeading={props.stats.watchSubtext}
           />
         </Grid>
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid size={{ xs: 12, sm: 6, md: 3 }}>
           <DashboardTile
             heading="Total rewatch time"
             value={props.stats.rewatch}
             subHeading={props.stats.rewatchSubtext}
           />
         </Grid>
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid size={{ xs: 12, sm: 6, md: 3 }}>
           <DashboardTile
             heading="Total bucket size"
             value={props.stats.bucketSize}
           />
         </Grid>
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid size={{ xs: 12, sm: 6, md: 3 }}>
           <DashboardTile
             heading="Total entry size"
             value={props.stats.entrySize}
@@ -40,21 +40,21 @@ const StatsSection = (props: Props) => {
       </Grid>
 
       <Grid container spacing={4}>
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid size={{ xs: 12, sm: 6, md: 3 }}>
           <DashboardTile
             heading="Total episode count"
             value={props.stats.episodes}
             largeText
           />
         </Grid>
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid size={{ xs: 12, sm: 6, md: 3 }}>
           <DashboardTile
             heading="Total title count"
             value={props.stats.titles}
             largeText
           />
         </Grid>
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid size={{ xs: 12, sm: 6, md: 3 }}>
           <DashboardTile
             heading="Total season count"
             value={props.stats.seasons}
