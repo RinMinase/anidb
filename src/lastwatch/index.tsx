@@ -1,16 +1,14 @@
 import { useContext, useEffect, useState } from "preact/hooks";
 import axios from "axios";
-import { FontAwesomeSvgIcon } from "react-fontawesome-slim";
 
 import { Box, Grid2 as Grid, Paper, styled } from "@mui/material";
 
-import { faClock as LastCountIcon } from "@fortawesome/free-regular-svg-icons";
-
 import {
-  faClapperboard as WeeklyCountIcon,
-  faHashtag as TotalCountIcon,
-  faTv as DailyCountIcon,
-} from "@fortawesome/free-solid-svg-icons";
+  Tv as DailyCountIcon,
+  Clock as LastCountIcon,
+  Hash as TotalCountIcon,
+  Calendar as WeeklyCountIcon,
+} from "react-feather";
 
 import {
   DashboardTile,
@@ -52,7 +50,7 @@ const LastWatch = () => {
       <Grid container spacing={4}>
         <Grid size={{ xs: 12, sm: 6, md: 3 }}>
           <DashboardTile
-            icon={<FontAwesomeSvgIcon size="2x" icon={TotalCountIcon} />}
+            icon={<TotalCountIcon size={32} />}
             iconColor="#ff9800"
             heading="Total Episodes"
             value={stats.totalEps}
@@ -61,7 +59,7 @@ const LastWatch = () => {
         </Grid>
         <Grid size={{ xs: 12, sm: 6, md: 3 }}>
           <DashboardTile
-            icon={<FontAwesomeSvgIcon size="2x" icon={LastCountIcon} />}
+            icon={<LastCountIcon size={32} />}
             iconColor="#2196f3"
             heading="Days since last entry"
             value={stats.daysLastEntry}
@@ -70,7 +68,7 @@ const LastWatch = () => {
         </Grid>
         <Grid size={{ xs: 12, sm: 6, md: 3 }}>
           <DashboardTile
-            icon={<FontAwesomeSvgIcon size="2x" icon={WeeklyCountIcon} />}
+            icon={<WeeklyCountIcon size={32} />}
             iconColor="#009688"
             heading="Titles per week"
             value={stats.titlesPerWeek}
@@ -79,7 +77,7 @@ const LastWatch = () => {
         </Grid>
         <Grid size={{ xs: 12, sm: 6, md: 3 }}>
           <DashboardTile
-            icon={<FontAwesomeSvgIcon size="2x" icon={DailyCountIcon} />}
+            icon={<DailyCountIcon size={32} />}
             iconColor="#00bcd4"
             heading="Episodes per day"
             value={stats.epsPerDay}
