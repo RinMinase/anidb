@@ -9,6 +9,10 @@ const CustomButton = styled(MuiButton)<Props>(({ iconSize }) => ({
     marginLeft: 0,
     marginRight: 6,
   },
+  "& .MuiButton-iconSizeMedium.MuiButton-endIcon": {
+    marginLeft: 6,
+    marginRight: 0,
+  },
   "& .MuiButton-iconSizeMedium svg:first-of-type": {
     fontSize: 16,
   },
