@@ -20,7 +20,7 @@ import {
 import {
   FormGroup,
   FormHelperText,
-  Grid,
+  Grid2 as Grid,
   InputAdornment,
   Stack,
   styled,
@@ -296,7 +296,7 @@ const AddForm = (props: Props) => {
 
   return (
     <Grid container spacing={2}>
-      <Grid item xs={12} sm={4} md={3}>
+      <Grid size={{ xs: 12, sm: 4, md: 3 }}>
         <ControlledSelect
           name="id_quality"
           label="Quality"
@@ -309,7 +309,7 @@ const AddForm = (props: Props) => {
           fullWidth
         />
       </Grid>
-      <Grid item xs={12} sm={8} md={9}>
+      <Grid size={{ xs: 12, sm: 8, md: 9 }}>
         <ControlledAutocomplete
           name="title"
           label="Title"
@@ -326,7 +326,7 @@ const AddForm = (props: Props) => {
         />
       </Grid>
 
-      <Grid item xs={4} sm={2}>
+      <Grid size={{ xs: 4, sm: 2 }}>
         <ControlledField
           name="episodes"
           label="Episodes"
@@ -338,7 +338,7 @@ const AddForm = (props: Props) => {
           numeric
         />
       </Grid>
-      <Grid item xs={4} sm={2}>
+      <Grid size={{ xs: 4, sm: 2 }}>
         <ControlledField
           name="ovas"
           label="OVAs"
@@ -350,7 +350,7 @@ const AddForm = (props: Props) => {
           numeric
         />
       </Grid>
-      <Grid item xs={4} sm={2}>
+      <Grid size={{ xs: 4, sm: 2 }}>
         <ControlledField
           name="specials"
           label="Specials"
@@ -363,7 +363,7 @@ const AddForm = (props: Props) => {
         />
       </Grid>
 
-      <Grid item xs={6} sm={6} md={3}>
+      <Grid size={{ xs: 6, md: 3 }}>
         <ControlledDatepicker
           name="date_finished"
           label="Date Finished"
@@ -374,7 +374,7 @@ const AddForm = (props: Props) => {
           fullWidth
         />
       </Grid>
-      <Grid item xs={6} sm={3}>
+      <Grid size={{ xs: 6, sm: 3 }}>
         <ControlledField
           name="filesize"
           label="Filesize"
@@ -387,7 +387,7 @@ const AddForm = (props: Props) => {
         />
       </Grid>
 
-      <Grid item xs={4} sm={2}>
+      <Grid size={{ xs: 4, sm: 2 }}>
         <ControlledField
           name="season_number"
           label="Season #"
@@ -399,7 +399,7 @@ const AddForm = (props: Props) => {
           numeric
         />
       </Grid>
-      <Grid item xs={8} sm={7} md={4}>
+      <Grid size={{ xs: 8, sm: 7, md: 4 }}>
         <ControlledField
           name="season_first_title_id"
           label="First Season Title"
@@ -410,7 +410,7 @@ const AddForm = (props: Props) => {
           fullWidth
         />
       </Grid>
-      <Grid item xs={6} sm={3}>
+      <Grid size={{ xs: 6, sm: 3 }}>
         <ControlledSelect
           name="release_season"
           label="Release Season"
@@ -423,7 +423,7 @@ const AddForm = (props: Props) => {
           fullWidth
         />
       </Grid>
-      <Grid item xs={6} sm={3}>
+      <Grid size={{ xs: 6, sm: 3 }}>
         <ControlledSelect
           name="release_year"
           label="Release Year"
@@ -437,7 +437,7 @@ const AddForm = (props: Props) => {
         />
       </Grid>
 
-      <Grid item xs={12} sm={6} md={4}>
+      <Grid size={{ xs: 12, sm: 6, md: 4 }}>
         <DurationContainer>
           {/* @ts-expect-error Seems to error on typescript as of now (react-hook-form@7.52.1) */}
           <DurationLabel>Duration</DurationLabel>
@@ -496,7 +496,7 @@ const AddForm = (props: Props) => {
           )}
         </DurationContainer>
       </Grid>
-      <Grid item xs={12} sm={6} md={4}>
+      <Grid size={{ xs: 12, sm: 6, md: 4 }}>
         <ControlledField
           name="variants"
           label="Variants"
@@ -507,7 +507,7 @@ const AddForm = (props: Props) => {
           fullWidth
         />
       </Grid>
-      <Grid item xs={12} sm={6} md={4}>
+      <Grid size={{ xs: 12, sm: 6, md: 4 }}>
         <ControlledField
           name="remarks"
           label="Remarks"
@@ -519,7 +519,7 @@ const AddForm = (props: Props) => {
         />
       </Grid>
 
-      <Grid item xs={12} sm={6}>
+      <Grid size={{ xs: 12, sm: 6 }}>
         <ControlledAutocomplete
           name="prequel_title"
           label="Prequel"
@@ -533,7 +533,7 @@ const AddForm = (props: Props) => {
           fullWidth
         />
       </Grid>
-      <Grid item xs={12} sm={6}>
+      <Grid size={{ xs: 12, sm: 6 }}>
         <ControlledAutocomplete
           name="sequel_title"
           label="Sequel"
@@ -548,7 +548,7 @@ const AddForm = (props: Props) => {
         />
       </Grid>
 
-      <Grid item xs={12} sm={4}>
+      <Grid size={{ xs: 12, sm: 4 }}>
         <ControlledAutocomplete
           name="encoder_video"
           label="Video Encoder"
@@ -561,7 +561,7 @@ const AddForm = (props: Props) => {
           freeSolo
         />
       </Grid>
-      <Grid item xs={12} sm={4}>
+      <Grid size={{ xs: 12, sm: 4 }}>
         <ControlledAutocomplete
           name="encoder_audio"
           label="Audio Encoder"
@@ -574,7 +574,7 @@ const AddForm = (props: Props) => {
           freeSolo
         />
       </Grid>
-      <Grid item xs={12} sm={4}>
+      <Grid size={{ xs: 12, sm: 4 }}>
         <ControlledAutocomplete
           name="encoder_subs"
           label="Subtitle Encoder"
@@ -588,7 +588,7 @@ const AddForm = (props: Props) => {
         />
       </Grid>
 
-      <Grid item xs={6} sm={5}>
+      <Grid size={{ xs: 6, sm: 4 }}>
         <ControlledSelect
           name="id_codec_video"
           label="Video Codec"
@@ -601,7 +601,7 @@ const AddForm = (props: Props) => {
           fullWidth
         />
       </Grid>
-      <Grid item xs={6} sm={5}>
+      <Grid size={{ xs: 6, sm: 5, md: 4 }}>
         <ControlledSelect
           name="id_codec_audio"
           label="Audio Codec"
@@ -614,7 +614,7 @@ const AddForm = (props: Props) => {
           fullWidth
         />
       </Grid>
-      <Grid item xs={12} sm={2}>
+      <Grid size={{ xs: 12, sm: 3, md: 2 }}>
         <ControlledSwitch name="codec_hdr" label="HDR" control={control} />
       </Grid>
     </Grid>

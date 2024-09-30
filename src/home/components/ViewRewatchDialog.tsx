@@ -8,7 +8,7 @@ import {
   Backdrop,
   DialogContent,
   DialogTitle,
-  Grid,
+  Grid2 as Grid,
   LinearProgress,
   List,
   ListItem,
@@ -118,7 +118,7 @@ const ViewRewatchDialogue = (props: Props) => {
         </DialogTitle>
         <DialogContent sx={{ px: 0 }}>
           <Grid container spacing={2} sx={{ pt: 1, px: 3 }}>
-            <Grid item xs={12} sm={7} md={8}>
+            <Grid size={{ xs: 12, sm: 7, md: 8 }}>
               <ControlledDatepicker
                 name="dateRewatch"
                 label="Add Date Rewatched"
@@ -130,7 +130,7 @@ const ViewRewatchDialogue = (props: Props) => {
                 fullWidth
               />
             </Grid>
-            <Grid item xs={12} sm={5} md={4}>
+            <Grid size={{ xs: 12, sm: 5, md: 4 }}>
               <Button
                 variant="contained"
                 onClick={handleSubmit(handleSubmitForm)}

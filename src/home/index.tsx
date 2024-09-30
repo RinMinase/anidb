@@ -9,7 +9,7 @@ import { Waypoint } from "react-waypoint";
 import {
   Box,
   CircularProgress,
-  Grid,
+  Grid2 as Grid,
   InputAdornment,
   OutlinedInput,
   Paper,
@@ -160,12 +160,12 @@ const Home = () => {
     <ModuleContainer>
       <SearchContainer>
         <Grid container spacing={2}>
-          <Grid item xs={12} md={2}>
+          <Grid size={{ xs: 12, md: 2 }}>
             <Button variant="contained" href="/home/add" fullWidth>
               Add
             </Button>
           </Grid>
-          <Grid item xs={12} md={10}>
+          <Grid size={{ xs: 12, md: 10 }}>
             <SearchBox
               size="small"
               fullWidth

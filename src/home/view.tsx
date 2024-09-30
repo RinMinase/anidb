@@ -7,7 +7,7 @@ import contrast from "font-color-contrast";
 import {
   Box,
   Chip,
-  Grid,
+  Grid2 as Grid,
   Link,
   Stack,
   Typography,
@@ -208,44 +208,42 @@ const HomeView = (props: Props) => {
     <ModuleContainer>
       {!isLoading && data.title && (
         <Grid container spacing={2.5}>
-          <Grid item xs={12} sm={4} md={3}>
-            <Grid container spacing={1.25}>
-              <Grid item xs={4} sm={12}>
-                <Button
-                  variant="contained"
-                  color="info"
-                  startIcon={<FontAwesomeSvgIcon icon={BackIcon} />}
-                  fullWidth
-                  onClick={() => route("/home")}
-                >
-                  Back
-                </Button>
-              </Grid>
-              <Grid item xs={4} sm={6}>
-                <Button
-                  variant="contained"
-                  color="warning"
-                  startIcon={<FontAwesomeSvgIcon icon={EditIcon} />}
-                  onClick={() => route(`/home/edit/${props.matches.id}`)}
-                  fullWidth
-                >
-                  Edit
-                </Button>
-              </Grid>
-              <Grid item xs={4} sm={6}>
-                <Button
-                  variant="contained"
-                  color="error"
-                  startIcon={<FontAwesomeSvgIcon icon={DeleteIcon} />}
-                  fullWidth
-                >
-                  Delete
-                </Button>
-              </Grid>
+          <Grid container size={{ xs: 12, sm: 4, md: 3 }} spacing={1.25}>
+            <Grid size={{ xs: 4, sm: 12 }}>
+              <Button
+                variant="contained"
+                color="info"
+                startIcon={<FontAwesomeSvgIcon icon={BackIcon} />}
+                onClick={() => route("/home")}
+                fullWidth
+              >
+                Back
+              </Button>
+            </Grid>
+            <Grid size={{ xs: 4, sm: 6 }}>
+              <Button
+                variant="contained"
+                color="warning"
+                startIcon={<FontAwesomeSvgIcon icon={EditIcon} />}
+                onClick={() => route(`/home/edit/${props.matches.id}`)}
+                fullWidth
+              >
+                Edit
+              </Button>
+            </Grid>
+            <Grid size={{ xs: 4, sm: 6 }}>
+              <Button
+                variant="contained"
+                color="error"
+                startIcon={<FontAwesomeSvgIcon icon={DeleteIcon} />}
+                fullWidth
+              >
+                Delete
+              </Button>
             </Grid>
           </Grid>
 
-          <Grid item xs={12} sm={8} md={9}>
+          <Grid size={{ xs: 12, sm: 8, md: 9 }}>
             <Stack
               spacing={1.5}
               sx={{ textAlign: { xs: "center", sm: "unset" } }}
@@ -268,7 +266,7 @@ const HomeView = (props: Props) => {
             </Stack>
           </Grid>
 
-          <Grid item xs={12} sm={4} md={3}>
+          <Grid size={{ xs: 12, sm: 4, md: 3 }}>
             <Stack
               spacing={3}
               sx={{ textAlign: { xs: "center", sm: "unset" } }}
@@ -300,7 +298,7 @@ const HomeView = (props: Props) => {
             </Stack>
           </Grid>
 
-          <Grid item xs={12} sm={8} md={9}>
+          <Grid size={{ xs: 12, sm: 8, md: 9 }}>
             <Stack spacing={3}>
               <Stack
                 spacing={1.5}
