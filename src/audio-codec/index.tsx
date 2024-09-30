@@ -251,16 +251,14 @@ const AudioCodec = () => {
                         <IconButton
                           size="small"
                           onClick={() => handleEditClick(item)}
-                        >
-                          <EditIcon size={20} />
-                        </IconButton>
+                          children={<EditIcon size={20} />}
+                        />
                         <IconButton
                           size="small"
                           onClick={() => handleDeleteClick(item.id)}
                           sx={{ ml: 1 }}
-                        >
-                          <DeleteIcon size={20} />
-                        </IconButton>
+                          children={<DeleteIcon size={20} />}
+                        />
                       </ActionTableCell>
                     </Table.Row>
                   ))
@@ -281,9 +279,8 @@ const AudioCodec = () => {
             <IconButton
               disabled={dialog.loading}
               onClick={() => setDialog({ show: false, loading: false })}
-            >
-              <CloseIcon size={20} />
-            </IconButton>
+              children={<CloseIcon size={20} />}
+            />
           </DialogTitle>
           <DialogContent>
             <Stack spacing={2} sx={{ mt: 1 }}>

@@ -314,15 +314,13 @@ const Marathon = () => {
                   sx={{ marginRight: 1 }}
                   size="small"
                   onClick={(e) => handleEditClick(e, item.id)}
-                >
-                  <EditIcon size={20} />
-                </IconButton>
+                  children={<EditIcon size={20} />}
+                />
                 <IconButton
                   size="small"
                   onClick={(e) => handleDeleteClick(e, item.id)}
-                >
-                  <DeleteIcon size={20} />
-                </IconButton>
+                  children={<DeleteIcon size={20} />}
+                />
               </MenuItem>
             ))}
           </CustomMenuList>
