@@ -4,7 +4,7 @@ import axios from "axios";
 
 import {
   CircularProgress,
-  Grid,
+  Grid2 as Grid,
   Stack,
   styled,
   TextField,
@@ -12,7 +12,6 @@ import {
 } from "@mui/material";
 
 import { Alert, AlertProps, Button, GlobalLoaderContext } from "@components";
-
 import { Form, resolver } from "./validation";
 
 const RegistrationContainer = styled(Grid)({
@@ -76,7 +75,7 @@ const Registration = () => {
 
   return (
     <RegistrationContainer container justifyContent="center">
-      <Grid item xs={12} sm={6} md={4}>
+      <Grid size={{ xs: 12, sm: 6, md: 4 }}>
         <form onSubmit={handleSubmit(handleSubmitForm)}>
           <LoginStack spacing={3}>
             <Typography variant="h4">Register</Typography>

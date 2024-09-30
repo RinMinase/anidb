@@ -1,4 +1,11 @@
-import { Box, Divider, Grid, Paper, styled, Typography } from "@mui/material";
+import {
+  Box,
+  Divider,
+  Grid2 as Grid,
+  Paper,
+  styled,
+  Typography,
+} from "@mui/material";
 
 type Props = {
   onClick?: any;
@@ -92,8 +99,8 @@ const DashboardTile = (props: Props) => {
       {(props.footerLeft || props.footerRight) && (
         <DashboardFooter>
           <Grid container justifyContent="space-between">
-            <Grid item>{props.footerLeft}</Grid>
-            <FooterRight item>{props.footerRight}</FooterRight>
+            <Grid>{props.footerLeft}</Grid>
+            <FooterRight>{props.footerRight}</FooterRight>
           </Grid>
           <Typography variant="caption">{props.footer}</Typography>
         </DashboardFooter>
