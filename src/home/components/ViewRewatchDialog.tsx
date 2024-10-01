@@ -52,7 +52,15 @@ const RewatchList = styled(List)({
   overflowY: "auto",
   paddingLeft: 24,
   paddingRight: 24,
+  paddingTop: 16,
 });
+
+const RewatchListItem = styled(ListItem)(({ theme }) => ({
+  borderRadius: 4,
+  ":hover": {
+    backgroundColor: theme.palette.grey[800],
+  },
+}));
 
 const ViewRewatchDialogue = (props: Props) => {
   const [isLoading, setLoading] = useState(false);
@@ -138,7 +146,7 @@ const ViewRewatchDialogue = (props: Props) => {
 
           <RewatchList>
             {props.rewatches?.map((item) => (
-              <ListItem key={item.id}>
+              <RewatchListItem key={item.id}>
                 <ListItemText primary={item.date} />
                 <IconButton
                   size="small"
@@ -146,7 +154,7 @@ const ViewRewatchDialogue = (props: Props) => {
                 >
                   <DeleteIcon />
                 </IconButton>
-              </ListItem>
+              </RewatchListItem>
             ))}
           </RewatchList>
         </DialogContent>
