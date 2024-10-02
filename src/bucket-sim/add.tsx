@@ -1,12 +1,15 @@
-import { useContext } from "preact/hooks";
+import { useContext, useState } from "preact/hooks";
 import { route } from "preact-router";
 import { useFieldArray, useForm } from "react-hook-form";
 import axios from "axios";
+import { green, orange, red } from "@mui/material/colors";
 
 import {
   FormControl,
   FormHelperText,
+  Grid2 as Grid,
   InputAdornment,
+  LinearProgress,
   Paper,
   TextField,
 } from "@mui/material";
@@ -15,12 +18,22 @@ import {
   Plus as AddIcon,
   ArrowLeft as BackIcon,
   ChevronDown as DownIcon,
+  HardDrive as DriveIcon,
+  Eye as PreviewIcon,
   Trash2 as RemoveIcon,
   Save as SaveIcon,
+  Database as StorageIcon,
   ChevronUp as UpIcon,
 } from "react-feather";
 
-import { GlobalLoaderContext, ModuleContainer, Swal, Table } from "@components";
+import {
+  ButtonLoading,
+  DashboardTile,
+  GlobalLoaderContext,
+  ModuleContainer,
+  Swal,
+  Table,
+} from "@components";
 
 import {
   CellContainer,
@@ -31,15 +44,20 @@ import {
   CustomCell,
   CustomCellButton,
   CustomIconButton,
+  Dashboard,
   DescriptionContainer,
 } from "./_components";
 
 import { defaultValues, Form, resolver } from "./validation";
+import { Data, Item } from "./types";
 
 const TB = 1000169533440;
 
 const BucketSimAdd = () => {
   const { toggleLoader } = useContext(GlobalLoaderContext);
+
+  const [previewData, setPreviewData] = useState<Data>([]);
+  const [isPreviewLoading, setPreviewLoading] = useState(false);
 
   const {
     control,
@@ -56,6 +74,51 @@ const BucketSimAdd = () => {
     control,
     name: "buckets",
   });
+
+  const handlePreviewForm = async (formdata: Form) => {
+    setPreviewLoading(true);
+
+    try {
+      if (formdata.buckets) {
+        const buckets = formdata.buckets.map((item) => ({
+          from: item.from.toLowerCase(),
+          to: item.to.toLowerCase(),
+          size: item.size ? item.size * TB : 0,
+        }));
+
+        const bucketData = JSON.stringify(buckets);
+
+        const {
+          data: { data },
+        } = await axios.post(`/bucket-sims/preview`, {
+          buckets: bucketData,
+        });
+
+        const newBuckets: Data = data.map((item: Item) => {
+          const { percent } = item;
+
+          let bucketColor: string = green[700];
+          let progressColor = "success";
+
+          if (percent > 90) {
+            bucketColor = red[700];
+            progressColor = "error";
+          } else if (percent > 80) {
+            bucketColor = orange[700];
+            progressColor = "warning";
+          }
+
+          return { ...item, bucketColor, progressColor };
+        });
+
+        setPreviewData(() => newBuckets);
+      }
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setPreviewLoading(false);
+    }
+  };
 
   const handleSubmitForm = async (formdata: Form) => {
     toggleLoader(true);
@@ -136,15 +199,93 @@ const BucketSimAdd = () => {
       handleBack={handleBack}
       headerControls={<HeaderControls />}
     >
+      {!isPreviewLoading && (
+        <Grid size={{ xs: 12, sm: 8 }}>
+          <Dashboard>
+            <Grid container spacing={4}>
+              {previewData &&
+                previewData.map((item, index) => {
+                  if (index === 0) {
+                    return (
+                      <Grid
+                        size={{ xs: 12, sm: 4, md: 3 }}
+                        key={`bucket${index}`}
+                      >
+                        <DashboardTile
+                          icon={<StorageIcon size={32} />}
+                          iconColor={item.bucketColor}
+                          heading={"Total"}
+                          subHeading={`${item.used} / ${item.total}`}
+                          value={`${item.percent}%`}
+                          footerLeft={`Free: ${item.free}`}
+                          footerRight={`${item.titles} Titles`}
+                          CustomDivider={
+                            <LinearProgress
+                              variant="determinate"
+                              value={item.percent}
+                              color={item.progressColor}
+                            />
+                          }
+                        />
+                      </Grid>
+                    );
+                  }
+
+                  return (
+                    <Grid
+                      size={{ xs: 12, sm: 4, md: 3 }}
+                      key={`bucket${index}`}
+                    >
+                      <DashboardTile
+                        icon={<DriveIcon size={32} />}
+                        iconColor={item.bucketColor}
+                        heading={`${item.from.toUpperCase()} - ${item.to.toUpperCase()}`}
+                        subHeading={`${item.used} / ${item.total}`}
+                        value={`${item.percent}%`}
+                        footerLeft={`Free: ${item.free}`}
+                        footerRight={`${item.titles} Titles`}
+                        CustomDivider={
+                          <LinearProgress
+                            variant="determinate"
+                            value={item.percent}
+                            color={item.progressColor}
+                          />
+                        }
+                      />
+                    </Grid>
+                  );
+                })}
+            </Grid>
+          </Dashboard>
+        </Grid>
+      )}
+
       <DescriptionContainer>
-        <TextField
-          fullWidth
-          variant="outlined"
-          label="Description"
-          error={!!errors.description}
-          helperText={errors.description?.message}
-          {...register("description")}
-        />
+        <Grid container spacing={2}>
+          <Grid size={{ xs: 12, sm: 9, md: 10 }}>
+            <TextField
+              fullWidth
+              variant="outlined"
+              label="Description"
+              size="small"
+              error={!!errors.description}
+              helperText={errors.description?.message}
+              {...register("description")}
+            />
+          </Grid>
+          <Grid size={{ xs: 12, sm: 3, md: 2 }} display="flex">
+            <ButtonLoading
+              sx={{ maxHeight: 40 }}
+              variant="contained"
+              startIcon={<PreviewIcon size={20} />}
+              onClick={handleSubmit(handlePreviewForm)}
+              loading={isPreviewLoading}
+              fullWidth
+            >
+              Preview
+            </ButtonLoading>
+          </Grid>
+        </Grid>
       </DescriptionContainer>
 
       <Table.Container component={Paper}>
