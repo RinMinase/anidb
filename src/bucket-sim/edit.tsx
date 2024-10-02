@@ -334,6 +334,7 @@ const BucketSimEdit = (props: Props) => {
               </Grid>
               <Grid size={{ xs: 12, sm: 3, md: 2 }} display="flex">
                 <ButtonLoading
+                  sx={{ maxHeight: 40 }}
                   variant="contained"
                   startIcon={<PreviewIcon size={20} />}
                   onClick={handleSubmit(handlePreviewForm)}
