@@ -37,7 +37,7 @@
     "preact": "^10.24.1",
     "preact-async-route": "^2.2.1",
     "preact-router": "^4.1.2",
-    "react-dropzone": "^14.2.6",
+    "react-dropzone": "14.2.5",
     "react-feather": "^2.0.10",
     "react-hook-form": "^7.52.1",
     "react-scroll": "^1.9.0",
