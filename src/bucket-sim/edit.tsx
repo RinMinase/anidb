@@ -324,7 +324,11 @@ const BucketSimEdit = (props: Props) => {
                   size="small"
                   error={!!errors.description}
                   helperText={errors.description?.message}
-                  InputLabelProps={{ shrink: true }}
+                  slotProps={{
+                    inputLabel: {
+                      shrink: true,
+                    },
+                  }}
                   {...register("description")}
                 />
               </Grid>
