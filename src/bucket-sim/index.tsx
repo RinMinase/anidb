@@ -16,10 +16,10 @@ import {
 } from "@mui/material";
 
 import {
+  Copy as CopyIcon,
   Trash as DeleteIcon,
   HardDrive as DriveIcon,
   Edit as EditIcon,
-  Save as SaveIcon,
   Database as StorageIcon,
 } from "react-feather";
 
@@ -80,9 +80,7 @@ const BucketSim = () => {
     }
   };
 
-  const handleSaveClick = async (e: any, uuid: string) => {
-    e.stopPropagation();
-
+  const handleSaveClick = async () => {
     const result = await Swal.fire({
       title: "Are you sure?",
       text: "This will replace the current bucket list",
@@ -93,7 +91,7 @@ const BucketSim = () => {
     if (result.isConfirmed) {
       toggleLoader(true);
 
-      await axios.post(`/bucket-sims/${uuid}`);
+      await axios.post(`/bucket-sims/save/${selected}`);
       await Swal.fire({
         title: "Success!",
         icon: "success",
@@ -101,6 +99,42 @@ const BucketSim = () => {
 
       toggleLoader(false);
       route(`/buckets`);
+    }
+  };
+
+  const handleCloneClick = async (e: any, uuid: string) => {
+    e.stopPropagation();
+
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: "This item will be cloned to a new bucket sim",
+      icon: "question",
+      showCancelButton: true,
+    });
+
+    if (result.isConfirmed) {
+      toggleLoader(true);
+
+      const {
+        data: {
+          data: { newId },
+        },
+      } = await axios.post(`/bucket-sims/clone/${uuid}`);
+
+      await Swal.fire({
+        title: "Success!",
+        icon: "success",
+      });
+
+      const {
+        data: { data },
+      } = await axios.get("/bucket-sims");
+
+      setSims(() => data);
+
+      if (data.length) {
+        handleSelectSim(newId);
+      }
     }
   };
 
@@ -154,8 +188,7 @@ const BucketSim = () => {
           handleSelectSim(data[0].uuid);
         }
       })
-      .catch((err) => console.error(err))
-      .finally(() => toggleLoader(false));
+      .catch((err) => console.error(err));
   }, []);
 
   return (
@@ -177,12 +210,12 @@ const BucketSim = () => {
                 onClick={() => handleSelectSim(item.uuid)}
               >
                 <ListItemText>{item.description}</ListItemText>
-                <Tooltip title="Save as current bucket" placement="top">
+                <Tooltip title="Clone" placement="top">
                   <Box>
                     <IconButton
                       size="small"
-                      onClick={(e) => handleSaveClick(e, item.uuid)}
-                      children={<SaveIcon size={20} />}
+                      onClick={(e) => handleCloneClick(e, item.uuid)}
+                      children={<CopyIcon size={20} />}
                     />
                   </Box>
                 </Tooltip>
@@ -211,44 +244,23 @@ const BucketSim = () => {
         {!isLoading && (
           <Grid size={{ xs: 12, sm: 8 }}>
             <Dashboard>
+              <Box mb={2} textAlign="center">
+                <Button variant="contained" onClick={handleSaveClick}>
+                  Overwrite current bucket setup with this
+                </Button>
+              </Box>
               <Grid container spacing={4}>
-                {data &&
-                  data.map((item, index) => {
-                    if (index === 0) {
-                      return (
-                        <Grid
-                          size={{ xs: 12, sm: 6, md: 4 }}
-                          key={`bucket${index}`}
-                        >
-                          <DashboardTile
-                            icon={<StorageIcon size={32} />}
-                            iconColor={item.bucketColor}
-                            heading={"Total"}
-                            subHeading={`${item.used || "0 B"} / ${item.total}`}
-                            value={`${item.percent}%`}
-                            footerLeft={`Free: ${item.free}`}
-                            footerRight={`${item.titles} Titles`}
-                            CustomDivider={
-                              <LinearProgress
-                                variant="determinate"
-                                value={item.percent}
-                                color={item.progressColor}
-                              />
-                            }
-                          />
-                        </Grid>
-                      );
-                    }
-
+                {data.map((item, index) => {
+                  if (index === 0) {
                     return (
                       <Grid
                         size={{ xs: 12, sm: 6, md: 4 }}
                         key={`bucket${index}`}
                       >
                         <DashboardTile
-                          icon={<DriveIcon size={32} />}
+                          icon={<StorageIcon size={32} />}
                           iconColor={item.bucketColor}
-                          heading={`${item.from.toUpperCase()} - ${item.to.toUpperCase()}`}
+                          heading={"Total"}
                           subHeading={`${item.used || "0 B"} / ${item.total}`}
                           value={`${item.percent}%`}
                           footerLeft={`Free: ${item.free}`}
@@ -263,7 +275,32 @@ const BucketSim = () => {
                         />
                       </Grid>
                     );
-                  })}
+                  }
+
+                  return (
+                    <Grid
+                      size={{ xs: 12, sm: 6, md: 4 }}
+                      key={`bucket${index}`}
+                    >
+                      <DashboardTile
+                        icon={<DriveIcon size={32} />}
+                        iconColor={item.bucketColor}
+                        heading={`${item.from.toUpperCase()} - ${item.to.toUpperCase()}`}
+                        subHeading={`${item.used || "0 B"} / ${item.total}`}
+                        value={`${item.percent}%`}
+                        footerLeft={`Free: ${item.free}`}
+                        footerRight={`${item.titles} Titles`}
+                        CustomDivider={
+                          <LinearProgress
+                            variant="determinate"
+                            value={item.percent}
+                            color={item.progressColor}
+                          />
+                        }
+                      />
+                    </Grid>
+                  );
+                })}
               </Grid>
             </Dashboard>
           </Grid>
