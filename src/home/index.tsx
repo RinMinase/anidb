@@ -97,6 +97,7 @@ const Home = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
+  const [isTableLoading, setTableLoading] = useState(false);
   const [data, setData] = useState<Data>([]);
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -108,10 +109,10 @@ const Home = () => {
     const val = element.value;
 
     setSearchQuery(val);
-    toggleLoader(true);
+    setTableLoading(true);
 
     searchAPIDebounced(val).then(({ data: { data } }) => {
-      toggleLoader(false);
+      setTableLoading(false);
       setData(data);
     });
   };
@@ -195,7 +196,7 @@ const Home = () => {
           </Table.Head>
 
           <Table.Body>
-            {!isLoading ? (
+            {!isTableLoading ? (
               data.map((item) => (
                 <CustomTableRow
                   hover
