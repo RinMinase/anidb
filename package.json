@@ -14,7 +14,6 @@
   "scripts": {
     "dev": "vite",
     "build": "npm run lint && tsc && vite build",
-    "preview": "vite preview",
     "lint": "eslint --ext .ts,tsx ./src",
     "cz": "cz"
   },
