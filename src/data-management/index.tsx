@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "preact/hooks";
 import axios from "axios";
 
-import { Box, LinearProgress, styled, Typography } from "@mui/material";
+import { Box, styled, Typography } from "@mui/material";
 
 import { GlobalLoaderContext, ModuleContainer } from "@components";
 
@@ -43,28 +43,17 @@ const DataManagement = () => {
     reloadPageData();
   }, []);
 
+  if (isLoading) return null;
+
   return (
     <ModuleContainer>
       <Typography variant="h5">Data</Typography>
-      {!isLoading ? (
-        <DataSection data={data} />
-      ) : (
-        <Box width="100%" height={170}>
-          <LinearProgress />
-        </Box>
-      )}
+
+      <DataSection data={data} />
 
       <Label variant="h5">Statistics</Label>
-      {!isLoading ? (
-        <>
-          <StatsSection stats={stats} />
-          <GraphSection graph={graph} />
-        </>
-      ) : (
-        <Box width="100%" height={400}>
-          <LinearProgress />
-        </Box>
-      )}
+      <StatsSection stats={stats} />
+      <GraphSection graph={graph} />
 
       <Box sx={{ display: { sm: "none", md: "block" } }}>
         <Label variant="h5">Import / Export</Label>
