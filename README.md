@@ -17,7 +17,7 @@
 
 
 ## Introduction
-This project uses Preact (Faster & Leaner React) with Vite and deployed to Netlify using Circle CI
+This project uses Preact (Faster & Leaner React) with Vite and deployed to Netlify
 
 
 ## Getting Started
@@ -65,7 +65,6 @@ Installations Required:
 
 ### Project Structure
     .
-    ├── .circleci/              # Circle CI configuration folder
     ├── public/                 # Public assets folder
     ├── dist/                   # Compiled production code
     ├── src/                    # Project source code

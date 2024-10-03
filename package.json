@@ -1,6 +1,6 @@
 {
   "name": "rin-anidb",
-  "description": "Rin Minase's AniDB using Preact with Vite and deployed to Netlify using Circle CI",
+  "description": "Rin Minase's AniDB using Preact with Vite and deployed to Netlify",
   "homepage": "https://anidb.netlify.com/",
   "version": "0.3.0",
   "license": "MIT",
