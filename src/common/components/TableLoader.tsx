@@ -7,7 +7,7 @@ type Props = {
 const CustomCell = styled(TableCell)({
   padding: 0,
   border: 0,
-})
+});
 
 const TableLoader = (props: Props) => {
   return (
