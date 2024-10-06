@@ -38,15 +38,16 @@ const ActionTableCell = styled(Table.Cell)({
 });
 
 const Catalog = () => {
-  const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
+  const { toggleLoader } = useContext(GlobalLoaderContext);
 
+  const [isTableLoading, setTableLoading] = useState(false);
   const [data, setData] = useState<Data>([]);
   const [catalogs, setCatalogs] = useState<Catalogs>([]);
   const [selected, setSelected] = useState("");
 
   const handleClickCatalog = (uuid: string) => {
     if (uuid !== selected) {
-      toggleLoader(true);
+      setTableLoading(true);
 
       axios
         .get(`/catalogs/${uuid}/partials`)
@@ -55,7 +56,7 @@ const Catalog = () => {
           setSelected(uuid);
         })
         .catch((err) => console.error(err))
-        .finally(() => toggleLoader(false));
+        .finally(() => setTableLoading(false));
     }
   };
 
@@ -78,7 +79,7 @@ const Catalog = () => {
     });
 
     if (result.isConfirmed) {
-      toggleLoader(true);
+      setTableLoading(true);
 
       await axios.delete(`/partials/${uuid}`);
       await Swal.fire({
@@ -91,7 +92,7 @@ const Catalog = () => {
       } = await axios.get(`/catalogs/${selected}/partials`);
 
       setData(() => data);
-      toggleLoader(false);
+      setTableLoading(false);
     }
   };
 
@@ -106,7 +107,7 @@ const Catalog = () => {
     });
 
     if (result.isConfirmed) {
-      toggleLoader(true);
+      setTableLoading(true);
 
       await axios.delete(`/catalogs/${uuid}`);
       await Swal.fire({
@@ -122,7 +123,7 @@ const Catalog = () => {
 
       if (data.length) handleClickCatalog(data[0].uuid);
 
-      toggleLoader(false);
+      setTableLoading(false);
     }
   };
 
@@ -133,6 +134,7 @@ const Catalog = () => {
       .get("/catalogs")
       .then(({ data: { data } }) => {
         setCatalogs(() => data);
+        toggleLoader(false);
 
         if (data.length) handleClickCatalog(data[0].uuid);
       })
@@ -198,7 +200,7 @@ const Catalog = () => {
               </Table.Head>
 
               <Table.Body>
-                {!isLoading ? (
+                {!isTableLoading ? (
                   data.map((item) => (
                     <Table.Row hover key={item.uuid}>
                       <Table.Cell>{item.title}</Table.Cell>

@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "preact/hooks";
+import { useContext, useEffect, useLayoutEffect, useState } from "preact/hooks";
 import axios from "axios";
 
 import { Box, styled, Typography } from "@mui/material";
@@ -41,6 +41,10 @@ const DataManagement = () => {
 
   useEffect(() => {
     reloadPageData();
+  }, []);
+
+  useLayoutEffect(() => {
+    toggleLoader(true);
   }, []);
 
   if (isLoading) return null;

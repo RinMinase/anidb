@@ -32,6 +32,8 @@ const CustomTable = styled(Table.Element)({
 
 const Bucket = () => {
   const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
+
+  const [isTableLoading, setTableLoading] = useState(false);
   const [data, setData] = useState<Data>([]);
   const [buckets, setBuckets] = useState<Buckets>([]);
   const [currBucket, setCurrBucket] = useState<Stats>({
@@ -39,55 +41,61 @@ const Bucket = () => {
     to: "",
   });
 
-  useEffect(() => {
-    toggleLoader(true);
+  const handleClickBucket = async (id: number) => {
+    try {
+      setTableLoading(true);
 
-    axios
-      .get("/entries/by-bucket")
-      .then(({ data: { data } }) => {
-        const bucketList: Buckets = data.map((item: SingleBucket) => {
-          const { percent } = item;
+      const {
+        data: { data, stats },
+      } = await axios.get(`/entries/by-bucket/${id}`);
 
-          let bucketColor: string = green[700];
-          let progressColor = "success";
-
-          if (percent > 90) {
-            bucketColor = red[700];
-            progressColor = "error";
-          } else if (percent > 80) {
-            bucketColor = orange[700];
-            progressColor = "warning";
-          }
-
-          return { ...item, bucketColor, progressColor };
-        });
-
-        setBuckets(() => bucketList);
-
-        axios
-          .get("/entries/by-bucket/1")
-          .then(({ data: { data, stats } }) => {
-            setData(() => data);
-            setCurrBucket(() => stats);
-            toggleLoader(false);
-          })
-          .catch((err) => console.error(err));
-      })
-      .catch((err) => console.error(err));
-  }, []);
-
-  const handleClickBucket = (id: number) => {
-    toggleLoader(true);
-
-    axios
-      .get(`/entries/by-bucket/${id}`)
-      .then(({ data: { data, stats } }) => {
-        setData(() => data);
-        setCurrBucket(() => stats);
-        toggleLoader(false);
-      })
-      .catch((err) => console.error(err));
+      setData(() => data);
+      setCurrBucket(() => stats);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setTableLoading(false);
+    }
   };
+
+  const fetchData = async () => {
+    try {
+      toggleLoader(true);
+
+      const {
+        data: { data },
+      } = await axios.get("/entries/by-bucket");
+
+      const bucketList: Buckets = data.map((item: SingleBucket) => {
+        const { percent } = item;
+
+        let bucketColor: string = green[700];
+        let progressColor = "success";
+
+        if (percent > 90) {
+          bucketColor = red[700];
+          progressColor = "error";
+        } else if (percent > 80) {
+          bucketColor = orange[700];
+          progressColor = "warning";
+        }
+
+        return { ...item, bucketColor, progressColor };
+      });
+
+      setBuckets(() => bucketList);
+
+      handleClickBucket(bucketList[1].id);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      toggleLoader(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <ModuleContainer headerText="Bucket Lists">
@@ -143,7 +151,7 @@ const Bucket = () => {
         </Grid>
       </Dashboard>
 
-      {!isLoading && (
+      {!isLoading && !isTableLoading && (
         <Typography variant="h5" gutterBottom>
           <Typography variant="inherit" component={"span" as any}>
             Selected Disk:{" "}
@@ -169,7 +177,7 @@ const Bucket = () => {
           </Table.Head>
 
           <Table.Body>
-            {!isLoading ? (
+            {!isTableLoading ? (
               data.map((item) => (
                 <Table.Row hover key={item.id}>
                   <Table.Cell>

@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "preact/hooks";
+import { useEffect, useState } from "preact/hooks";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 
@@ -23,7 +23,6 @@ import {
 import {
   Button,
   ControlledField,
-  GlobalLoaderContext,
   IconButton,
   ModuleContainer,
   Swal,
@@ -52,8 +51,7 @@ const CustomDialog = styled(Paper)({
 });
 
 const Group = () => {
-  const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
-
+  const [isTableLoading, setTableLoading] = useState(true);
   const [data, setData] = useState<Data>([]);
   const [selectedData, setSelectedData] = useState<Item>({
     uuid: "",
@@ -80,7 +78,7 @@ const Group = () => {
   } = useForm<Form>({ resolver, mode: "onChange" });
 
   const fetchData = async () => {
-    toggleLoader(true);
+    setTableLoading(true);
 
     try {
       const {
@@ -88,10 +86,8 @@ const Group = () => {
       } = await axios.get("/groups");
 
       setData(() => data);
-    } catch (err) {
-      console.error(err);
     } finally {
-      toggleLoader(false);
+      setTableLoading(false);
     }
   };
 
@@ -152,7 +148,7 @@ const Group = () => {
     });
 
     if (result.isConfirmed) {
-      toggleLoader(true);
+      setTableLoading(true);
 
       await axios.delete(`/groups/${uuid}`);
       await Swal.fire({
@@ -165,7 +161,7 @@ const Group = () => {
   };
 
   const handleSubmitForm = async (formdata: Form) => {
-    toggleLoader(true);
+    setTableLoading(true);
 
     try {
       await axios.post("/groups", formdata);
@@ -183,12 +179,12 @@ const Group = () => {
       });
 
       console.error(err);
-      toggleLoader(false);
+      setTableLoading(false);
     }
   };
 
   useEffect(() => {
-    toggleLoader(true);
+    setTableLoading(true);
     fetchData();
   }, []);
 
@@ -204,7 +200,7 @@ const Group = () => {
               control={control}
               error={!!errors.name}
               helperText={errors.name?.message}
-              disabled={isLoading}
+              disabled={isTableLoading}
             />
             <Button
               variant="contained"
@@ -226,7 +222,7 @@ const Group = () => {
               </Table.Head>
 
               <Table.Body>
-                {!isLoading ? (
+                {!isTableLoading ? (
                   data.map((item) => (
                     <Table.Row hover key={item.uuid}>
                       <Table.Cell>{item.name}</Table.Cell>
@@ -274,7 +270,7 @@ const Group = () => {
                 control={editControl}
                 error={!!editErrors.name}
                 helperText={editErrors.name?.message}
-                disabled={isLoading}
+                disabled={isTableLoading}
               />
 
               <Button

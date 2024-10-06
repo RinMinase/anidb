@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "preact/hooks";
+import { useEffect, useState } from "preact/hooks";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 
@@ -23,7 +23,6 @@ import {
 import {
   Button,
   ControlledField,
-  GlobalLoaderContext,
   IconButton,
   ModuleContainer,
   Swal,
@@ -52,8 +51,7 @@ const CustomDialog = styled(Paper)({
 });
 
 const VideoCodec = () => {
-  const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
-
+  const [isTableLoading, setTableLoading] = useState(true);
   const [data, setData] = useState<Data>([]);
   const [selectedData, setSelectedData] = useState<Item>({
     id: "",
@@ -86,10 +84,8 @@ const VideoCodec = () => {
       } = await axios.get("/codecs/video");
 
       setData(() => data);
-    } catch (err) {
-      console.error(err);
     } finally {
-      toggleLoader(false);
+      setTableLoading(false);
     }
   };
 
@@ -129,23 +125,11 @@ const VideoCodec = () => {
         loading: false,
       });
 
-      toggleLoader(true);
+      setTableLoading(true);
 
       await fetchData();
-    } catch (err) {
-      console.error(err);
-
-      await Swal.fire({
-        title: "Failed",
-        icon: "error",
-      });
-
-      setDialog((prev) => ({
-        ...prev,
-        loading: false,
-      }));
-
-      toggleLoader(false);
+    } finally {
+      setTableLoading(false);
     }
   };
 
@@ -158,7 +142,7 @@ const VideoCodec = () => {
     });
 
     if (result.isConfirmed) {
-      toggleLoader(true);
+      setTableLoading(true);
 
       await axios.delete(`/codecs/video/${id}`);
       await Swal.fire({
@@ -171,7 +155,7 @@ const VideoCodec = () => {
   };
 
   const handleSubmitForm = async (formdata: Form) => {
-    toggleLoader(true);
+    setTableLoading(true);
 
     try {
       await axios.post("/codecs/video", formdata);
@@ -189,12 +173,12 @@ const VideoCodec = () => {
       });
 
       console.error(err);
-      toggleLoader(false);
+      setTableLoading(false);
     }
   };
 
   useEffect(() => {
-    toggleLoader(true);
+    setTableLoading(true);
     fetchData();
   }, []);
 
@@ -210,7 +194,7 @@ const VideoCodec = () => {
               control={control}
               error={!!errors.codec}
               helperText={errors.codec?.message}
-              disabled={isLoading}
+              disabled={isTableLoading}
             />
             <ControlledField
               name="order"
@@ -219,7 +203,7 @@ const VideoCodec = () => {
               control={control}
               error={!!errors.order}
               helperText={errors.order?.message}
-              disabled={isLoading}
+              disabled={isTableLoading}
             />
             <Button
               variant="contained"
@@ -242,7 +226,7 @@ const VideoCodec = () => {
               </Table.Head>
 
               <Table.Body>
-                {!isLoading ? (
+                {!isTableLoading ? (
                   data.map((item) => (
                     <Table.Row hover key={`codec-${item.id}`}>
                       <Table.Cell>{item.codec}</Table.Cell>
@@ -291,7 +275,7 @@ const VideoCodec = () => {
                 control={editControl}
                 error={!!editErrors.codec}
                 helperText={editErrors.codec?.message}
-                disabled={isLoading}
+                disabled={isTableLoading}
               />
               <ControlledField
                 name="order"
@@ -300,7 +284,7 @@ const VideoCodec = () => {
                 control={editControl}
                 error={!!editErrors.order}
                 helperText={editErrors.order?.message}
-                disabled={isLoading}
+                disabled={isTableLoading}
               />
 
               <Button

@@ -1,9 +1,9 @@
-import { useContext, useEffect, useState } from "preact/hooks";
+import { useEffect, useState } from "preact/hooks";
 import axios from "axios";
 
 import { Chip, Paper, styled } from "@mui/material";
 
-import { GlobalLoaderContext, ModuleContainer, Table } from "@components";
+import { ModuleContainer, Table } from "@components";
 
 import { Data, Pagination, paginationDefaults } from "./types";
 
@@ -16,8 +16,7 @@ const EditChip = () => <Chip label="Edit" size="small" color="warning" />;
 const DeleteChip = () => <Chip label="Delete" size="small" color="error" />;
 
 const Logs = () => {
-  const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
-
+  const [isTableLoading, setTableLoading] = useState(true);
   const [data, setData] = useState<Data>([]);
   const [meta, setMeta] = useState<Pagination>(paginationDefaults);
 
@@ -27,7 +26,7 @@ const Logs = () => {
   });
 
   const fetchData = async (page?: number, limit?: number) => {
-    toggleLoader(true);
+    setTableLoading(true);
 
     try {
       const {
@@ -49,7 +48,7 @@ const Logs = () => {
     } catch (err) {
       console.error(err);
     } finally {
-      toggleLoader(false);
+      setTableLoading(false);
     }
   };
 
@@ -85,7 +84,7 @@ const Logs = () => {
           </Table.Head>
 
           <Table.Body>
-            {!isLoading ? (
+            {!isTableLoading ? (
               data.map((item) => (
                 <Table.Row hover key={item.id}>
                   <Table.Cell>

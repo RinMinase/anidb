@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "preact/hooks";
+import { useContext, useEffect, useLayoutEffect, useState } from "preact/hooks";
 import { route } from "preact-router";
 import axios from "axios";
 
@@ -99,6 +99,10 @@ const Search = () => {
 
   useEffect(() => {
     fetchData();
+  }, []);
+
+  useLayoutEffect(() => {
+    toggleLoader(true);
   }, []);
 
   return (

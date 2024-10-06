@@ -158,7 +158,7 @@ const Home = () => {
 
   return (
     <ModuleContainer>
-      <SearchContainer>
+      <SearchContainer sx={{ position: "sticky", top: 0 }}>
         <Grid container spacing={2}>
           <Grid size={{ xs: 12, md: 2 }}>
             <Button variant="contained" href="/home/add" fullWidth>

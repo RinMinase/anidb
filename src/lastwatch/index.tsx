@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "preact/hooks";
+import { useContext, useEffect, useLayoutEffect, useState } from "preact/hooks";
 import axios from "axios";
 
 import { Box, Grid2 as Grid, Paper, styled } from "@mui/material";
@@ -101,6 +101,12 @@ const LastWatch = () => {
       .finally(() => toggleLoader(false));
   }, []);
 
+  useLayoutEffect(() => {
+    toggleLoader(true);
+  }, []);
+
+  if (isLoading) return null;
+
   return (
     <ModuleContainer headerText="Last Watched" dashboard={<Dashboard />}>
       <Table.Container component={Paper}>
@@ -117,28 +123,24 @@ const LastWatch = () => {
           </Table.Head>
 
           <Table.Body>
-            {!isLoading ? (
-              data.map((item) => (
-                <Table.Row hover key={item.id}>
-                  <Table.Cell>
-                    <Quality quality={item.quality} />
-                    {item.title}
-                  </Table.Cell>
-                  <Table.Cell>
-                    {item.episodes} / {item.ovas} / {item.specials}
-                  </Table.Cell>
-                  <Table.Cell>{item.filesize}</Table.Cell>
-                  <Table.Cell>
-                    {item.dateFinished}
-                    <RewatchIndicator show={item.rewatched} />
-                  </Table.Cell>
-                  <Table.Cell>{item.release}</Table.Cell>
-                  <Table.Cell>{item.encoder}</Table.Cell>
-                </Table.Row>
-              ))
-            ) : (
-              <Table.Loader />
-            )}
+            {data.map((item) => (
+              <Table.Row hover key={item.id}>
+                <Table.Cell>
+                  <Quality quality={item.quality} />
+                  {item.title}
+                </Table.Cell>
+                <Table.Cell>
+                  {item.episodes} / {item.ovas} / {item.specials}
+                </Table.Cell>
+                <Table.Cell>{item.filesize}</Table.Cell>
+                <Table.Cell>
+                  {item.dateFinished}
+                  <RewatchIndicator show={item.rewatched} />
+                </Table.Cell>
+                <Table.Cell>{item.release}</Table.Cell>
+                <Table.Cell>{item.encoder}</Table.Cell>
+              </Table.Row>
+            ))}
           </Table.Body>
         </CustomTable>
       </Table.Container>

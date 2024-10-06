@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "preact/hooks";
+import { useEffect, useState } from "preact/hooks";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 
@@ -23,7 +23,6 @@ import {
 import {
   Button,
   ControlledField,
-  GlobalLoaderContext,
   IconButton,
   ModuleContainer,
   Swal,
@@ -52,8 +51,7 @@ const CustomDialog = styled(Paper)({
 });
 
 const AudioCodec = () => {
-  const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
-
+  const [isTableLoading, setTableLoading] = useState(true);
   const [data, setData] = useState<Data>([]);
   const [selectedData, setSelectedData] = useState<Item>({
     id: "",
@@ -80,16 +78,16 @@ const AudioCodec = () => {
   } = useForm<Form>({ resolver, mode: "onChange" });
 
   const fetchData = async () => {
+    setTableLoading(true);
+
     try {
       const {
         data: { data },
       } = await axios.get("/codecs/audio");
 
       setData(() => data);
-    } catch (err) {
-      console.error(err);
     } finally {
-      toggleLoader(false);
+      setTableLoading(false);
     }
   };
 
@@ -129,7 +127,7 @@ const AudioCodec = () => {
         loading: false,
       });
 
-      toggleLoader(true);
+      setTableLoading(true);
 
       await fetchData();
     } catch (err) {
@@ -145,7 +143,7 @@ const AudioCodec = () => {
         loading: false,
       }));
 
-      toggleLoader(false);
+      setTableLoading(false);
     }
   };
 
@@ -158,7 +156,7 @@ const AudioCodec = () => {
     });
 
     if (result.isConfirmed) {
-      toggleLoader(true);
+      setTableLoading(true);
 
       await axios.delete(`/codecs/audio/${id}`);
       await Swal.fire({
@@ -171,7 +169,7 @@ const AudioCodec = () => {
   };
 
   const handleSubmitForm = async (formdata: Form) => {
-    toggleLoader(true);
+    setTableLoading(true);
 
     try {
       await axios.post("/codecs/audio", formdata);
@@ -182,19 +180,17 @@ const AudioCodec = () => {
       });
 
       await fetchData();
-    } catch (err) {
+    } catch {
       await Swal.fire({
         title: "Failed",
         icon: "error",
       });
-
-      console.error(err);
-      toggleLoader(false);
+    } finally {
+      setTableLoading(false);
     }
   };
 
   useEffect(() => {
-    toggleLoader(true);
     fetchData();
   }, []);
 
@@ -210,7 +206,7 @@ const AudioCodec = () => {
               control={control}
               error={!!errors.codec}
               helperText={errors.codec?.message}
-              disabled={isLoading}
+              disabled={isTableLoading}
             />
             <ControlledField
               name="order"
@@ -219,7 +215,7 @@ const AudioCodec = () => {
               control={control}
               error={!!errors.order}
               helperText={errors.order?.message}
-              disabled={isLoading}
+              disabled={isTableLoading}
             />
             <Button
               variant="contained"
@@ -242,7 +238,7 @@ const AudioCodec = () => {
               </Table.Head>
 
               <Table.Body>
-                {!isLoading ? (
+                {!isTableLoading ? (
                   data.map((item) => (
                     <Table.Row hover key={`codec-${item.id}`}>
                       <Table.Cell>{item.codec}</Table.Cell>
@@ -291,7 +287,7 @@ const AudioCodec = () => {
                 control={editControl}
                 error={!!editErrors.codec}
                 helperText={editErrors.codec?.message}
-                disabled={isLoading}
+                disabled={isTableLoading}
               />
               <ControlledField
                 name="order"
@@ -300,7 +296,7 @@ const AudioCodec = () => {
                 control={editControl}
                 error={!!editErrors.order}
                 helperText={editErrors.order?.message}
-                disabled={isLoading}
+                disabled={isTableLoading}
               />
 
               <Button

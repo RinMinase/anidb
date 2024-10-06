@@ -61,8 +61,9 @@ const CustomTable = styled(Table.Element)({
 });
 
 const Marathon = () => {
-  const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
+  const { toggleLoader } = useContext(GlobalLoaderContext);
 
+  const [isTableLoading, setTableLoading] = useState(false);
   const [chartData, setChartData] = useState([-1, -1, -1, -1, -1]);
   const [data, setData] = useState<Data>([]);
   const [sequences, setSequences] = useState<Sequences>([]);
@@ -135,7 +136,7 @@ const Marathon = () => {
 
   const handleClickSequence = (id: number) => {
     if (id !== selected) {
-      toggleLoader(true);
+      setTableLoading(true);
 
       axios
         .get(`/entries/by-sequence/${id}`)
@@ -152,7 +153,7 @@ const Marathon = () => {
           ]);
         })
         .catch((err) => console.error(err))
-        .finally(() => toggleLoader(false));
+        .finally(() => setTableLoading(false));
     }
   };
 
@@ -172,7 +173,7 @@ const Marathon = () => {
     });
 
     if (result.isConfirmed) {
-      toggleLoader(true);
+      setTableLoading(true);
 
       await axios.delete(`/sequences/${id}`);
       await Swal.fire({
@@ -188,7 +189,7 @@ const Marathon = () => {
 
       if (data.length) handleClickSequence(data[0].id);
 
-      toggleLoader(false);
+      setTableLoading(false);
     }
   };
 
@@ -249,6 +250,7 @@ const Marathon = () => {
       .get("/sequences")
       .then(({ data: { data } }) => {
         setSequences(() => data);
+        toggleLoader(false);
 
         if (data.length) handleClickSequence(data[0].id);
       })
@@ -338,7 +340,7 @@ const Marathon = () => {
               </Table.Head>
 
               <Table.Body>
-                {!isLoading ? (
+                {!isTableLoading ? (
                   data.map((item) => (
                     <Table.Row hover key={item.id}>
                       <Table.Cell>

@@ -39,17 +39,18 @@ const CustomTableRow = styled(Table.Row)<TableRowProps>(
 );
 
 const ByName = () => {
-  const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
+  const { toggleLoader } = useContext(GlobalLoaderContext);
 
   const theme = useTheme();
   const nonMobile = useMediaQuery(theme.breakpoints.up("md"));
 
+  const [isTableLoading, setTableLoader] = useState(false);
   const [data, setData] = useState<Data>([]);
   const [stats, setStats] = useState<Stats>([]);
   const [selected, setSelected] = useState<string | null>(null);
 
   const handleChangeData = (letter: string) => {
-    toggleLoader(true);
+    setTableLoader(true);
 
     if (nonMobile) {
       animateScroll.scrollToTop({
@@ -76,7 +77,7 @@ const ByName = () => {
         }
       })
       .catch((err) => console.error(err))
-      .finally(() => toggleLoader(false));
+      .finally(() => setTableLoader(false));
   };
 
   useEffect(() => {
@@ -86,6 +87,8 @@ const ByName = () => {
       .get("/entries/by-name")
       .then(({ data: { data } }) => {
         setStats(() => data);
+        toggleLoader(false);
+        setTableLoader(true);
 
         axios
           .get("/entries/by-name/0")
@@ -94,7 +97,7 @@ const ByName = () => {
             setSelected("#");
           })
           .catch((err) => console.error(err))
-          .finally(() => toggleLoader(false));
+          .finally(() => setTableLoader(false));
       })
       .catch((err) => {
         console.error(err);
@@ -105,7 +108,7 @@ const ByName = () => {
   return (
     <ModuleContainer headerText="Entries by Name">
       <Grid container spacing={2}>
-        <Grid size={{ xs: 12, sm: 7, md: 3 }}>
+        <Grid size={{ xs: 12, sm: 5, md: 3 }}>
           <Table.Container component={Paper}>
             <Table.Element>
               <Table.Head>
@@ -133,7 +136,7 @@ const ByName = () => {
             </Table.Element>
           </Table.Container>
         </Grid>
-        <Grid size={{ xs: 12, sm: 5, md: 8 }}>
+        <Grid size={{ xs: 12, sm: 7, md: 9 }}>
           <ScrollToElement name="table" />
           <Table.Container component={Paper}>
             <Table.Element>
@@ -145,7 +148,7 @@ const ByName = () => {
               </Table.Head>
 
               <Table.Body>
-                {!isLoading ? (
+                {!isTableLoading ? (
                   data.map((item) => (
                     <Table.Row hover key={item.id}>
                       <Table.Cell>
