@@ -14,7 +14,7 @@ type ContainerProps = {
   id?: string;
 };
 
-const Progress = styled(LinearProgress)(({ theme }) => ({
+export const Progress = styled(LinearProgress)(({ theme }) => ({
   position: "fixed",
   width: "100%",
   zIndex: 99999,

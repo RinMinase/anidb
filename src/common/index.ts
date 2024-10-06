@@ -26,7 +26,11 @@ export { default as Snackbar } from "./components/Snackbar";
 export { default as Swal } from "./components/Swal";
 export { default as Table } from "./components/Table";
 
-export { GlobalLoaderContext } from "./providers/GlobalLoader";
 export { ColorModeContext } from "./providers/ColorMode";
+
+export {
+  GlobalLoaderContext,
+  Progress as GlobalLoader,
+} from "./providers/GlobalLoader";
 
 export { emptyStringToNull } from "./functions";
