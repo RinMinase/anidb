@@ -12,6 +12,10 @@ const CustomButton = styled(LoadingButton)<Props>(({ iconSize }) => ({
   "& .MuiButton-iconSizeSmall svg:first-of-type": {
     fontSize: 12,
   },
+  "& .MuiButton-iconSizeMedium": {
+    marginLeft: 0,
+    marginRight: 6,
+  },
   "& svg:first-of-type": {
     fontSize: iconSize,
   },
