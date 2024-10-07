@@ -25,18 +25,22 @@ const DataManagement = () => {
     months: {},
   });
 
-  const reloadPageData = () => {
-    toggleLoader(true);
+  const reloadPageData = async () => {
+    try {
+      toggleLoader(true);
 
-    axios
-      .get("/management")
-      .then(({ data: { data } }) => {
-        setData(() => data.count);
-        setStats(() => data.stats);
-        setGraph(() => data.graph);
-      })
-      .catch((err) => console.error(err))
-      .finally(() => toggleLoader(false));
+      const {
+        data: { data },
+      } = await axios.get("/management");
+
+      setData(() => data.count);
+      setStats(() => data.stats);
+      setGraph(() => data.graph);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      toggleLoader(false);
+    }
   };
 
   useEffect(() => {
