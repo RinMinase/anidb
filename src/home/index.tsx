@@ -104,56 +104,68 @@ const Home = () => {
   const [page, setPage] = useState(1);
   const [hasNext, setHasNext] = useState(true);
 
-  const handleChange = (e: any) => {
-    const element = e.target as HTMLInputElement;
-    const val = element.value;
+  const fetchData = async () => {
+    try {
+      toggleLoader(true);
 
-    setSearchQuery(val);
-    setTableLoading(true);
+      const {
+        data: { data, meta },
+      } = await axios.get("/entries");
 
-    searchAPIDebounced(val).then(({ data: { data } }) => {
-      setTableLoading(false);
-      setData(data);
-    });
-  };
+      setData(() => data);
 
-  const fetchNextPage = () => {
-    if (!searchQuery && hasNext) {
-      axios
-        .get("/entries", {
-          params: {
-            page: page + 1,
-          },
-        })
-        .then(({ data: { data, meta } }) => {
-          setData((prev) => [...prev, ...data]);
-          setPage(page + 1);
-
-          if (meta) {
-            setHasNext(meta.hasNext);
-          }
-
-          toggleLoader(false);
-        })
-        .catch((err) => console.error(err));
+      if (meta) {
+        setHasNext(meta.hasNext);
+      }
+    } catch (err) {
+      console.error(err);
+    } finally {
+      toggleLoader(false);
     }
   };
 
-  useEffect(() => {
-    toggleLoader(true);
+  const fetchNextPage = async () => {
+    try {
+      if (!searchQuery && hasNext) {
+        const {
+          data: { data, meta },
+        } = await axios.get("/entries", {
+          params: {
+            page: page + 1,
+          },
+        });
 
-    axios
-      .get("/entries")
-      .then(({ data: { data, meta } }) => {
-        setData(() => data);
+        setData((prev) => [...prev, ...data]);
+        setPage(page + 1);
 
         if (meta) {
           setHasNext(meta.hasNext);
         }
 
         toggleLoader(false);
-      })
-      .catch((err) => console.error(err));
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handleChange = async (evt: any) => {
+    const element = evt.target as HTMLInputElement;
+    const val = element.value;
+
+    setSearchQuery(val);
+    setTableLoading(true);
+
+    const {
+      data: { data },
+    } = await searchAPIDebounced(val);
+
+    setTableLoading(false);
+    setData(data);
+  };
+
+  useEffect(() => {
+    fetchData();
   }, []);
 
   return (

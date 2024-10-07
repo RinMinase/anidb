@@ -199,7 +199,7 @@ const AddForm = (props: Props) => {
     }
   };
 
-  const handleSearchTitle = (e: any) => {
+  const handleSearchTitle = async (e: any) => {
     const element = e.target as HTMLInputElement;
     const val = element.value;
 
@@ -207,12 +207,12 @@ const AddForm = (props: Props) => {
     setTitleObjects([]);
     setTitleSearch([]);
 
-    titleSearchAPIDebounced(val).then(({ data }) => {
-      const titles = data.map((item: TitleObject) => item.title);
+    const { data } = await titleSearchAPIDebounced(val);
 
-      setTitleSearch(titles);
-      setTitleObjects(data);
-    });
+    const titles = data.map((item: TitleObject) => item.title);
+
+    setTitleSearch(titles);
+    setTitleObjects(data);
   };
 
   const setAutofillTitleValues = (premiered: string, episodes: number) => {

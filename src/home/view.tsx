@@ -210,47 +210,49 @@ const HomeView = (props: Props) => {
     </Stack>
   );
 
-  const handleChangeData = () => {
-    const { id } = props.matches;
-    const getColor = (id?: number) => {
-      if (id === 1) return "#f9c";
-      if (id === 2) return "#9f9";
-      if (id === 3) return "#9cf";
-      if (id === 4) return "#fc6";
-      return "#777";
-    };
+  const handleChangeData = async () => {
+    try {
+      const { id } = props.matches;
+      const getColor = (id?: number) => {
+        if (id === 1) return "#f9c";
+        if (id === 2) return "#9f9";
+        if (id === 3) return "#9cf";
+        if (id === 4) return "#fc6";
+        return "#777";
+      };
 
-    return axios
-      .get(`/entries/${id}`)
-      .then(({ data: { data } }) => {
-        setData({
-          ...data,
-          quality_color: getColor(data.id_quality),
-        });
+      const {
+        data: { data },
+      } = await axios.get(`/entries/${id}`);
 
-        setRatings({
-          average: data.ratingAverage || 0,
-          audio: data.rating ? data.rating?.audio : 0,
-          enjoyment: data.rating ? data.rating?.enjoyment : 0,
-          graphics: data.rating ? data.rating?.graphics : 0,
-          plot: data.rating ? data.rating?.plot : 0,
-        });
+      setData({
+        ...data,
+        quality_color: getColor(data.id_quality),
+      });
 
-        setHoverRatings({
-          audio: data.rating ? data.rating?.audio : 0,
-          enjoyment: data.rating ? data.rating?.enjoyment : 0,
-          graphics: data.rating ? data.rating?.graphics : 0,
-          plot: data.rating ? data.rating?.plot : 0,
-        });
-      })
-      .catch((err) => {
-        console.error(err);
+      setRatings({
+        average: data.ratingAverage || 0,
+        audio: data.rating ? data.rating?.audio : 0,
+        enjoyment: data.rating ? data.rating?.enjoyment : 0,
+        graphics: data.rating ? data.rating?.graphics : 0,
+        plot: data.rating ? data.rating?.plot : 0,
+      });
 
-        if (err.response?.data?.message?.includes("ID is invalid")) {
-          route("/home");
-        }
-      })
-      .finally(() => toggleLoader(false));
+      setHoverRatings({
+        audio: data.rating ? data.rating?.audio : 0,
+        enjoyment: data.rating ? data.rating?.enjoyment : 0,
+        graphics: data.rating ? data.rating?.graphics : 0,
+        plot: data.rating ? data.rating?.plot : 0,
+      });
+    } catch (err: any) {
+      console.error(err);
+
+      if (err.response?.data?.message?.includes("ID is invalid")) {
+        route("/home");
+      }
+    } finally {
+      toggleLoader(false);
+    }
   };
 
   useEffect(() => {

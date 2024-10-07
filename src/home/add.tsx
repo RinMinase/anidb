@@ -55,58 +55,6 @@ const HomeAdd = (props: Props) => {
     mode: "onChange",
   });
 
-  const handleBack = () => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "Any changes will not be saved",
-      icon: "warning",
-      showCancelButton: true,
-    }).then((result) => {
-      if (result.isConfirmed) route("/home");
-    });
-  };
-
-  const handleSubmitForm = async (formdata: Form) => {
-    toggleLoader(true);
-
-    try {
-      const { duration_hrs, duration_mins, duration_secs, ...rest } = formdata;
-
-      let duration = 0;
-      if (duration_hrs) duration += duration_hrs * 3600;
-      if (duration_mins) duration += duration_mins * 60;
-      if (duration_secs) duration += duration_secs;
-
-      const body = {
-        ...rest,
-        date_finished: format(formdata.date_finished, "yyyy-MM-dd"),
-        codec_hdr: formdata.codec_hdr ? 1 : 0,
-        duration,
-      };
-
-      if (props.matches?.id) {
-        await axios.put(`/entries/${props.matches.id}`, body);
-      } else {
-        await axios.post("/entries", body);
-      }
-
-      await Swal.fire({
-        title: "Success!",
-        icon: "success",
-      });
-
-      if (props.matches?.id) {
-        route(`/home/view/${props.matches.id}`);
-      } else {
-        route("/home");
-      }
-    } catch (err) {
-      console.error(err);
-    } finally {
-      toggleLoader(false);
-    }
-  };
-
   const fetchEntryData = async () => {
     if (props.matches?.id) {
       toggleLoader(true);
@@ -185,6 +133,58 @@ const HomeAdd = (props: Props) => {
         duration_secs: secs,
       });
 
+      toggleLoader(false);
+    }
+  };
+
+  const handleBack = async () => {
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: "Any changes will not be saved",
+      icon: "warning",
+      showCancelButton: true,
+    });
+
+    if (result.isConfirmed) route("/home");
+  };
+
+  const handleSubmitForm = async (formdata: Form) => {
+    toggleLoader(true);
+
+    try {
+      const { duration_hrs, duration_mins, duration_secs, ...rest } = formdata;
+
+      let duration = 0;
+      if (duration_hrs) duration += duration_hrs * 3600;
+      if (duration_mins) duration += duration_mins * 60;
+      if (duration_secs) duration += duration_secs;
+
+      const body = {
+        ...rest,
+        date_finished: format(formdata.date_finished, "yyyy-MM-dd"),
+        codec_hdr: formdata.codec_hdr ? 1 : 0,
+        duration,
+      };
+
+      if (props.matches?.id) {
+        await axios.put(`/entries/${props.matches.id}`, body);
+      } else {
+        await axios.post("/entries", body);
+      }
+
+      await Swal.fire({
+        title: "Success!",
+        icon: "success",
+      });
+
+      if (props.matches?.id) {
+        route(`/home/view/${props.matches.id}`);
+      } else {
+        route("/home");
+      }
+    } catch (err) {
+      console.error(err);
+    } finally {
       toggleLoader(false);
     }
   };
