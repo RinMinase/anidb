@@ -59,15 +59,15 @@ const CatalogMulti = (props: Props) => {
     formState: { errors },
   } = useForm<Form>({ defaultValues, resolver, mode: "onChange" });
 
-  const handleBack = () => {
-    Swal.fire({
+  const handleBack = async () => {
+    const result = await Swal.fire({
       title: "Are you sure?",
       text: "Any changes will not be saved",
       icon: "warning",
       showCancelButton: true,
-    }).then((result) => {
-      if (result.isConfirmed) route("/catalogs");
     });
+
+    if (result.isConfirmed) route("/catalogs");
   };
 
   const handleSubmitForm = async (formdata: Form) => {
@@ -143,19 +143,24 @@ const CatalogMulti = (props: Props) => {
     setValue("high", formatted.high.join("\\n"));
   };
 
-  useEffect(() => {
-    if (props.matches?.id) {
+  const fetchData = async () => {
+    try {
       toggleLoader(true);
 
-      const { id } = props.matches;
+      const { id } = props.matches!;
+      const { data } = await axios.get(`/catalogs/${id}/partials`);
 
-      axios
-        .get(`/catalogs/${id}/partials`)
-        .then(({ data }) => {
-          handleEditLoad(data.data, data.stats);
-        })
-        .catch((err) => console.error(err))
-        .finally(() => toggleLoader(false));
+      handleEditLoad(data.data, data.stats);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      toggleLoader(false);
+    }
+  };
+
+  useEffect(() => {
+    if (props.matches?.id) {
+      fetchData();
     }
   }, []);
 

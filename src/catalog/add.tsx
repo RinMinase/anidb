@@ -44,15 +44,15 @@ const CatalogAdd = (props: Props) => {
     formState: { errors },
   } = useForm<Form>({ defaultValues, resolver, mode: "onChange" });
 
-  const handleBack = () => {
-    Swal.fire({
+  const handleBack = async () => {
+    const result = await Swal.fire({
       title: "Are you sure?",
       text: "Any changes will not be saved",
       icon: "warning",
       showCancelButton: true,
-    }).then((result) => {
-      if (result.isConfirmed) route("/catalogs");
     });
+
+    if (result.isConfirmed) route("/catalogs");
   };
 
   const handleSubmitForm = async (formdata: Form) => {

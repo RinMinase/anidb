@@ -45,18 +45,22 @@ const Catalog = () => {
   const [catalogs, setCatalogs] = useState<Catalogs>([]);
   const [selected, setSelected] = useState("");
 
-  const handleClickCatalog = (uuid: string) => {
+  const handleClickCatalog = async (uuid: string) => {
     if (uuid !== selected) {
-      setTableLoading(true);
+      try {
+        setTableLoading(true);
 
-      axios
-        .get(`/catalogs/${uuid}/partials`)
-        .then(({ data: { data } }) => {
-          setData(() => data);
-          setSelected(uuid);
-        })
-        .catch((err) => console.error(err))
-        .finally(() => setTableLoading(false));
+        const {
+          data: { data },
+        } = await axios.get(`/catalogs/${uuid}/partials`);
+
+        setData(() => data);
+        setSelected(uuid);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setTableLoading(false);
+      }
     }
   };
 
@@ -127,21 +131,26 @@ const Catalog = () => {
     }
   };
 
-  useEffect(() => {
+  const fetchData = async () => {
     toggleLoader(true);
+    try {
+      const {
+        data: { data },
+      } = await axios.get("/catalogs");
 
-    axios
-      .get("/catalogs")
-      .then(({ data: { data } }) => {
-        setCatalogs(() => data);
-        toggleLoader(false);
+      setCatalogs(() => data);
+      toggleLoader(false);
 
-        if (data.length) handleClickCatalog(data[0].uuid);
-      })
-      .catch((err) => {
-        console.error(err);
-        toggleLoader(false);
-      });
+      if (data.length) handleClickCatalog(data[0].uuid);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      toggleLoader(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
   }, []);
 
   return (
