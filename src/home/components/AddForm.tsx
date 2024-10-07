@@ -123,12 +123,6 @@ const AddForm = (props: Props) => {
   const [titleSearch, setTitleSearch] = useState<Array<string>>([]);
   const [titleObjects, setTitleObjects] = useState<TitleObjects>([]);
 
-  // Promise Handling
-  const [isDoneQuality, setDoneQuality] = useState(false);
-  const [isDoneCodecs, setDoneCodecs] = useState(false);
-  const [isDoneGroups, setDoneGroups] = useState(false);
-  const [isDoneRelations, setDoneRelations] = useState(false);
-
   const fetchQualities = async () => {
     const {
       data: { data },
@@ -152,21 +146,20 @@ const AddForm = (props: Props) => {
       },
     } = await axios.get("/codecs");
 
-    setAudioCodecs(
-      audio.map((item: { id: number; codec: string }) => ({
-        label: item.codec,
-        key: `acodec-${item.id}`,
-        value: `${item.id}`,
-      })),
-    );
+    const newAudioCodecs = audio.map((item: { id: number; codec: string }) => ({
+      label: item.codec,
+      key: `acodec-${item.id}`,
+      value: `${item.id}`,
+    }));
 
-    setVideoCodecs(
-      video.map((item: { id: number; codec: string }) => ({
-        label: item.codec,
-        key: `acodec-${item.id}`,
-        value: `${item.id}`,
-      })),
-    );
+    const newVideoCodecs = video.map((item: { id: number; codec: string }) => ({
+      label: item.codec,
+      key: `acodec-${item.id}`,
+      value: `${item.id}`,
+    }));
+
+    setAudioCodecs(newAudioCodecs);
+    setVideoCodecs(newVideoCodecs);
   };
 
   const fetchGroups = async () => {
@@ -175,6 +168,35 @@ const AddForm = (props: Props) => {
     } = await axios.get("/groups/names");
 
     setGroups([...data]);
+  };
+
+  const fetchRelations = async () => {
+    const {
+      data: { data },
+    } = await searchAPI(props.entryId);
+
+    setPrequels([...data]);
+    setSequels([...data]);
+  };
+
+  const fetchData = async () => {
+    try {
+      toggleLoader(true);
+      props.setDropdownLoading(true);
+
+      await Promise.all([
+        fetchRelations(),
+        fetchGroups(),
+        fetchQualities(),
+        fetchCodecs(),
+      ]);
+
+      toggleLoader(false);
+      props.setDropdownLoading(false);
+    } catch (err) {
+      console.error(err);
+      // Trigger error popup
+    }
   };
 
   const handleSearchTitle = (e: any) => {
@@ -241,58 +263,31 @@ const AddForm = (props: Props) => {
     }
   };
 
-  const handleChange = (e: any, type: "prequel" | "sequel") => {
+  const handleChange = async (e: any, type: "prequel" | "sequel") => {
     const element = e.target as HTMLInputElement;
     const val = element.value;
 
     if (type === "prequel") setACLoading((p) => ({ ...p, prequel: true }));
     if (type === "sequel") setACLoading((p) => ({ ...p, sequel: true }));
 
-    searchAPIDebounced(props.entryId, val).then(({ data: { data } }) => {
-      if (type === "prequel") {
-        setPrequels([...data]);
-        setACLoading((prev) => ({ ...prev, prequel: false }));
-      }
+    const {
+      data: { data },
+    } = await searchAPIDebounced(props.entryId, val);
 
-      if (type === "sequel") {
-        setSequels([...data]);
-        setACLoading((prev) => ({ ...prev, sequel: false }));
-      }
-    });
+    if (type === "prequel") {
+      setPrequels([...data]);
+      setACLoading((prev) => ({ ...prev, prequel: false }));
+    }
+
+    if (type === "sequel") {
+      setSequels([...data]);
+      setACLoading((prev) => ({ ...prev, sequel: false }));
+    }
   };
 
   useEffect(() => {
-    toggleLoader(true);
-    props.setDropdownLoading(true);
-
-    searchAPI(props.entryId)
-      .then(({ data: { data } }) => {
-        setPrequels([...data]);
-        setSequels([...data]);
-      })
-      .finally(() => {
-        setDoneRelations(true);
-      });
-
-    fetchGroups().finally(() => {
-      setDoneGroups(true);
-    });
-
-    fetchQualities().finally(() => {
-      setDoneQuality(true);
-    });
-
-    fetchCodecs().finally(() => {
-      setDoneCodecs(true);
-    });
+    fetchData();
   }, []);
-
-  useEffect(() => {
-    if (isDoneRelations && isDoneGroups && isDoneQuality && isDoneCodecs) {
-      toggleLoader(false);
-      props.setDropdownLoading(false);
-    }
-  }, [isDoneRelations, isDoneGroups, isDoneQuality, isDoneCodecs]);
 
   return (
     <Grid container spacing={2}>
