@@ -48,35 +48,39 @@ const BucketSim = () => {
   const [data, setData] = useState<Data>([]);
   const [selected, setSelected] = useState("");
 
-  const handleSelectSim = (uuid: string) => {
+  const handleSelectSim = async (uuid: string) => {
     if (uuid !== selected) {
       toggleLoader(true);
 
-      axios
-        .get(`/bucket-sims/${uuid}`)
-        .then(({ data: { data } }) => {
-          const buckets: Data = data.map((item: Item) => {
-            const { percent } = item;
+      try {
+        const {
+          data: { data },
+        } = await axios.get(`/bucket-sims/${uuid}`);
 
-            let bucketColor: string = green[700];
-            let progressColor = "success";
+        const buckets: Data = data.map((item: Item) => {
+          const { percent } = item;
 
-            if (percent > 90) {
-              bucketColor = red[700];
-              progressColor = "error";
-            } else if (percent > 80) {
-              bucketColor = orange[700];
-              progressColor = "warning";
-            }
+          let bucketColor: string = green[700];
+          let progressColor = "success";
 
-            return { ...item, bucketColor, progressColor };
-          });
+          if (percent > 90) {
+            bucketColor = red[700];
+            progressColor = "error";
+          } else if (percent > 80) {
+            bucketColor = orange[700];
+            progressColor = "warning";
+          }
 
-          setData(() => buckets);
-          setSelected(uuid);
-        })
-        .catch((err) => console.error(err))
-        .finally(() => toggleLoader(false));
+          return { ...item, bucketColor, progressColor };
+        });
+
+        setData(() => buckets);
+        setSelected(uuid);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        toggleLoader(false);
+      }
     }
   };
 
@@ -176,19 +180,26 @@ const BucketSim = () => {
     }
   };
 
-  useEffect(() => {
+  const fetchData = async () => {
     toggleLoader(true);
 
-    axios
-      .get("/bucket-sims")
-      .then(({ data: { data } }) => {
-        setSims(() => data);
+    try {
+      const {
+        data: { data },
+      } = await axios.get("/bucket-sims");
 
-        if (data.length) {
-          handleSelectSim(data[0].uuid);
-        }
-      })
-      .catch((err) => console.error(err));
+      setSims(() => data);
+
+      if (data.length) {
+        await handleSelectSim(data[0].uuid);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
   }, []);
 
   return (

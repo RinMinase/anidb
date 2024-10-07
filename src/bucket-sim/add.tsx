@@ -152,15 +152,15 @@ const BucketSimAdd = () => {
     }
   };
 
-  const handleBack = () => {
-    Swal.fire({
+  const handleBack = async () => {
+    const result = await Swal.fire({
       title: "Are you sure?",
       text: "Any changes will not be saved",
       icon: "warning",
       showCancelButton: true,
-    }).then((result) => {
-      if (result.isConfirmed) route("/bucket-sims");
     });
+
+    if (result.isConfirmed) route("/bucket-sims");
   };
 
   const HeaderControls = () => (
