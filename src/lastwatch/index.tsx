@@ -45,10 +45,23 @@ const LastWatch = () => {
     epsPerDay: 0,
   });
 
+  const fetchData = async () => {
+    try {
+      const { data } = await axios.get("/entries/last");
+
+      setData(() => data.data);
+      setStats(() => data.stats);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      toggleLoader(false);
+    }
+  };
+
   const Dashboard = () => (
     <DashboardContainer>
       <Grid container spacing={4}>
-        <Grid size={{ xs: 12, sm: 6, md: 3 }}>
+        <Grid size={{ xs: 12, sm: 6, lg: 3 }}>
           <DashboardTile
             icon={<TotalCountIcon size={32} />}
             iconColor="#ff9800"
@@ -57,7 +70,7 @@ const LastWatch = () => {
             footer={`Total Titles: ${stats.totalTitles}`}
           />
         </Grid>
-        <Grid size={{ xs: 12, sm: 6, md: 3 }}>
+        <Grid size={{ xs: 12, sm: 6, lg: 3 }}>
           <DashboardTile
             icon={<LastCountIcon size={32} />}
             iconColor="#2196f3"
@@ -66,7 +79,7 @@ const LastWatch = () => {
             footer={`Days since oldest entry: ${stats.daysOldestEntry}`}
           />
         </Grid>
-        <Grid size={{ xs: 12, sm: 6, md: 3 }}>
+        <Grid size={{ xs: 12, sm: 6, lg: 3 }}>
           <DashboardTile
             icon={<WeeklyCountIcon size={32} />}
             iconColor="#009688"
@@ -75,7 +88,7 @@ const LastWatch = () => {
             footer={`One-Cour (12 Eps) per week: ${stats.coursPerWeek}`}
           />
         </Grid>
-        <Grid size={{ xs: 12, sm: 6, md: 3 }}>
+        <Grid size={{ xs: 12, sm: 6, lg: 3 }}>
           <DashboardTile
             icon={<DailyCountIcon size={32} />}
             iconColor="#00bcd4"
@@ -89,16 +102,7 @@ const LastWatch = () => {
   );
 
   useEffect(() => {
-    toggleLoader(true);
-
-    axios
-      .get("/entries/last")
-      .then(({ data }) => {
-        setData(() => data.data);
-        setStats(() => data.stats);
-      })
-      .catch((err) => console.error(err))
-      .finally(() => toggleLoader(false));
+    fetchData();
   }, []);
 
   useLayoutEffect(() => {
