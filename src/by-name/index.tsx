@@ -49,10 +49,10 @@ const ByName = () => {
   const [stats, setStats] = useState<Stats>([]);
   const [selected, setSelected] = useState<string | null>(null);
 
-  const handleChangeData = (letter: string) => {
+  const handleChangeData = async (letter: string, init?: boolean) => {
     setTableLoader(true);
 
-    if (nonMobile) {
+    if (nonMobile && !init) {
       animateScroll.scrollToTop({
         smooth: true,
         duration: 500,
@@ -62,47 +62,50 @@ const ByName = () => {
 
     const id = letter === "#" ? 0 : letter;
 
-    axios
-      .get(`/entries/by-name/${id}`)
-      .then(({ data: { data } }) => {
-        setData(() => data);
-        setSelected(letter);
+    try {
+      const {
+        data: { data },
+      } = await axios.get(`/entries/by-name/${id}`);
 
-        if (!nonMobile) {
-          scroller.scrollTo("table", {
-            smooth: true,
-            duration: 500,
-            containerId: "main",
-          });
-        }
-      })
-      .catch((err) => console.error(err))
-      .finally(() => setTableLoader(false));
+      setData(() => data);
+      setSelected(letter);
+
+      if (!nonMobile) {
+        scroller.scrollTo("table", {
+          smooth: true,
+          duration: 500,
+          containerId: "main",
+        });
+      }
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setTableLoader(false);
+    }
+  };
+
+  const fetchData = async () => {
+    toggleLoader(true);
+
+    try {
+      const {
+        data: { data },
+      } = await axios.get("/entries/by-name");
+
+      setStats(() => data);
+      toggleLoader(false);
+      setTableLoader(true);
+
+      await handleChangeData("#", true);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      toggleLoader(false);
+    }
   };
 
   useEffect(() => {
-    toggleLoader(true);
-
-    axios
-      .get("/entries/by-name")
-      .then(({ data: { data } }) => {
-        setStats(() => data);
-        toggleLoader(false);
-        setTableLoader(true);
-
-        axios
-          .get("/entries/by-name/0")
-          .then(({ data: { data } }) => {
-            setData(() => data);
-            setSelected("#");
-          })
-          .catch((err) => console.error(err))
-          .finally(() => setTableLoader(false));
-      })
-      .catch((err) => {
-        console.error(err);
-        toggleLoader(false);
-      });
+    fetchData();
   }, []);
 
   return (
