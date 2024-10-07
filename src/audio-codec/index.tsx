@@ -1,6 +1,7 @@
 import { useEffect, useState } from "preact/hooks";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import { toast } from "sonner";
 
 import {
   Backdrop,
@@ -86,6 +87,9 @@ const AudioCodec = () => {
       } = await axios.get("/codecs/audio");
 
       setData(() => data);
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed");
     } finally {
       setTableLoading(false);
     }
@@ -117,74 +121,61 @@ const AudioCodec = () => {
     try {
       await axios.put(`/codecs/audio/${id}`, formdata);
 
-      await Swal.fire({
-        title: "Success!",
-        icon: "success",
-      });
+      toast.success("Success");
 
       setDialog({
         show: false,
         loading: false,
       });
 
-      setTableLoading(true);
-
       await fetchData();
     } catch (err) {
       console.error(err);
-
-      await Swal.fire({
-        title: "Failed",
-        icon: "error",
-      });
+      toast.error("Failed");
 
       setDialog((prev) => ({
         ...prev,
         loading: false,
       }));
-
+    } finally {
       setTableLoading(false);
     }
   };
 
   const handleDeleteClick = async (id: string) => {
-    const result = await Swal.fire({
-      title: "Are you sure?",
-      text: "This item will be deleted",
-      icon: "error",
-      showCancelButton: true,
-    });
-
-    if (result.isConfirmed) {
-      setTableLoading(true);
-
-      await axios.delete(`/codecs/audio/${id}`);
-      await Swal.fire({
-        title: "Success!",
-        icon: "success",
+    try {
+      const result = await Swal.fire({
+        title: "Are you sure?",
+        text: "This item will be deleted",
+        icon: "error",
+        showCancelButton: true,
       });
 
-      await fetchData();
+      if (result.isConfirmed) {
+        setTableLoading(true);
+
+        await axios.delete(`/codecs/audio/${id}`);
+        toast.success("Success");
+
+        await fetchData();
+      }
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed");
     }
   };
 
   const handleSubmitForm = async (formdata: Form) => {
-    setTableLoading(true);
-
     try {
-      await axios.post("/codecs/audio", formdata);
+      setTableLoading(true);
 
-      await Swal.fire({
-        title: "Success!",
-        icon: "success",
-      });
+      await axios.post("/codecs/audio", formdata);
+      toast.success("Success");
 
       await fetchData();
-    } catch {
-      await Swal.fire({
-        title: "Failed",
-        icon: "error",
-      });
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed");
     } finally {
       setTableLoading(false);
     }
