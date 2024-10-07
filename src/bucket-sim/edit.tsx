@@ -162,15 +162,59 @@ const BucketSimEdit = (props: Props) => {
     }
   };
 
-  const handleBack = () => {
-    Swal.fire({
+  const handleBack = async () => {
+    const result = await Swal.fire({
       title: "Are you sure?",
       text: "Any changes will not be saved",
       icon: "warning",
       showCancelButton: true,
-    }).then((result) => {
-      if (result.isConfirmed) route("/bucket-sims");
     });
+
+    if (result.isConfirmed) route("/bucket-sims");
+  };
+
+  const fetchData = async () => {
+    toggleLoader(true);
+
+    try {
+      const {
+        data: {
+          data,
+          stats: { description },
+        },
+      } = await axios.get(`/bucket-sims/${props.matches.id}`);
+
+      const formData = data.slice(1).map((item: Item) => ({
+        from: item.from,
+        to: item.to,
+        size: item.rawTotal ? Math.round(item.rawTotal / TB) : 0,
+      }));
+
+      const buckets: Data = data.map((item: Item) => {
+        const { percent } = item;
+
+        let bucketColor: string = green[700];
+        let progressColor = "success";
+
+        if (percent > 90) {
+          bucketColor = red[700];
+          progressColor = "error";
+        } else if (percent > 80) {
+          bucketColor = orange[700];
+          progressColor = "warning";
+        }
+
+        return { ...item, bucketColor, progressColor };
+      });
+
+      replace([...formData]);
+      setValue("description", description);
+      setData(() => buckets);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      toggleLoader(false);
+    }
   };
 
   const HeaderControls = () => (
@@ -208,42 +252,7 @@ const BucketSimEdit = (props: Props) => {
   );
 
   useEffect(() => {
-    toggleLoader(true);
-
-    axios
-      .get(`/bucket-sims/${props.matches.id}`)
-      .then(({ data: { data, stats } }) => {
-        const { description } = stats;
-
-        const formData = data.slice(1).map((item: Item) => ({
-          from: item.from,
-          to: item.to,
-          size: item.rawTotal ? Math.round(item.rawTotal / TB) : 0,
-        }));
-
-        const buckets: Data = data.map((item: Item) => {
-          const { percent } = item;
-
-          let bucketColor: string = green[700];
-          let progressColor = "success";
-
-          if (percent > 90) {
-            bucketColor = red[700];
-            progressColor = "error";
-          } else if (percent > 80) {
-            bucketColor = orange[700];
-            progressColor = "warning";
-          }
-
-          return { ...item, bucketColor, progressColor };
-        });
-
-        replace([...formData]);
-        setValue("description", description);
-        setData(() => buckets);
-      })
-      .catch((err) => console.error(err))
-      .finally(() => toggleLoader(false));
+    fetchData();
   }, []);
 
   useLayoutEffect(() => {
@@ -257,11 +266,11 @@ const BucketSimEdit = (props: Props) => {
       headerControls={<HeaderControls />}
     >
       {!isLoading && (
-        <Grid size={{ xs: 12, sm: 8 }}>
-          <Dashboard>
-            <Grid container spacing={4}>
-              {data &&
-                data.map((item, index) => {
+        <>
+          <Grid size={{ xs: 12, sm: 8 }}>
+            <Dashboard>
+              <Grid container spacing={4}>
+                {data.map((item, index) => {
                   if (index === 0) {
                     return (
                       <Grid
@@ -312,13 +321,10 @@ const BucketSimEdit = (props: Props) => {
                     </Grid>
                   );
                 })}
-            </Grid>
-          </Dashboard>
-        </Grid>
-      )}
+              </Grid>
+            </Dashboard>
+          </Grid>
 
-      {!isLoading && (
-        <>
           <DescriptionContainer>
             <Grid container spacing={2}>
               <Grid size={{ xs: 12, sm: 9, md: 10 }}>
