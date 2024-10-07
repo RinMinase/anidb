@@ -91,53 +91,47 @@ const ByYear = () => {
     "uncategorized",
   );
 
-  useEffect(() => {
+  const handleClickYear = async (id: number | "uncategorized") => {
     toggleLoader(true);
 
-    axios
-      .get("/entries/by-year")
-      .then(({ data: { data } }) => {
-        if (data && data.length) {
-          const firstYear = data[0].year ?? "uncategorized";
+    try {
+      const yearId = id ?? "uncategorized";
+      setSelectedYear(yearId);
 
-          setYearData(() => data);
-          setSelectedYear(firstYear);
+      const {
+        data: { data },
+      } = await axios.get(`/entries/by-year/${yearId}`);
 
-          axios
-            .get(`entries/by-year/${firstYear}`)
-            .then(({ data: { data } }) => {
-              setData(() => data);
-            })
-            .catch((err) => console.error(err))
-            .finally(() => {
-              toggleLoader(false);
-              setInitLoad(false);
-            });
-        } else {
-          toggleLoader(false);
-          setInitLoad(false);
-        }
-      })
-      .catch((err) => {
-        console.error(err);
-        toggleLoader(false);
-        setInitLoad(false);
-      });
-  }, []);
+      setData(() => data);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      toggleLoader(false);
+    }
+  };
 
-  const handleClickYear = (id: number | "uncategorized") => {
+  const fetchData = async () => {
     toggleLoader(true);
-    setSelectedYear(id);
 
-    const yearId = id ?? "uncategorized";
+    try {
+      const {
+        data: { data },
+      } = await axios.get("/entries/by-year");
 
-    axios
-      .get(`/entries/by-year/${yearId}`)
-      .then(({ data: { data } }) => {
-        setData(() => data);
-      })
-      .catch((err) => console.error(err))
-      .finally(() => toggleLoader(false));
+      if (data && data.length) {
+        const firstYear = data[0].year ?? "uncategorized";
+
+        setYearData(() => data);
+        setSelectedYear(firstYear);
+
+        await handleClickYear(firstYear);
+      }
+    } catch (err) {
+      console.error(err);
+    } finally {
+      toggleLoader(false);
+      setInitLoad(false);
+    }
   };
 
   const renderSubmenu = (label: string, value?: number) => (
@@ -168,6 +162,10 @@ const ByYear = () => {
       ) : null}
     </>
   );
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const renderTable = (
     heading: string,
@@ -220,7 +218,10 @@ const ByYear = () => {
               <MenuItem
                 key={`mara-${index}`}
                 onClick={() => handleClickYear(item.year ?? "uncategorized")}
-                selected={selectedYear === item.year}
+                selected={
+                  (selectedYear === "uncategorized" && !item.year) ||
+                  selectedYear === item.year
+                }
               >
                 {item.year ? (
                   <Box width="100%" pb={0.5}>
