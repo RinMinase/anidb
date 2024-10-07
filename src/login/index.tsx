@@ -27,7 +27,7 @@ const LoginStack = styled(Stack)({
 });
 
 const Login = () => {
-  const loader = useContext(GlobalLoaderContext);
+  const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
 
   const [dialog, setDialog] = useState<AlertProps>({
     open: false,
@@ -48,46 +48,50 @@ const Login = () => {
     }
   }, []);
 
-  const handleSubmitForm = (formdata: Form) => {
-    loader.toggleLoader(true);
+  const handleSubmitForm = async (formdata: Form) => {
+    toggleLoader(true);
 
-    axios
-      .post("/auth/login", formdata)
-      .then(({ data: { data } }) => {
-        localStorage.setItem("authToken", data.token);
-        axios.defaults.headers.common["Authorization"] = `Bearer ${data.token}`;
+    try {
+      const {
+        data: { data },
+      } = await axios.post("/auth/login", formdata);
 
-        route("/home");
-      })
-      .catch(({ response: { data: err } }) => {
-        if (err?.status === 401) {
-          if (err?.message) {
-            setDialog(() => ({
-              open: true,
-              message: err.message,
-              severity: "error",
-            }));
-          } else {
-            for (const field in err.data) {
-              setError(field as any, {
-                type: "server",
-                message: err.data[field][0],
-              });
-            }
-          }
-        } else {
+      localStorage.setItem("authToken", data.token);
+      axios.defaults.headers.common["Authorization"] = `Bearer ${data.token}`;
+
+      route("/home");
+    } catch (error: any) {
+      const {
+        response: { data: err },
+      } = error;
+
+      if (err?.status === 401) {
+        if (err?.message) {
           setDialog(() => ({
             open: true,
-            message: "An unknown error has ocurred",
+            message: err.message,
             severity: "error",
           }));
+        } else {
+          for (const field in err.data) {
+            setError(field as any, {
+              type: "server",
+              message: err.data[field][0],
+            });
+          }
         }
+      } else {
+        setDialog(() => ({
+          open: true,
+          message: "An unknown error has ocurred",
+          severity: "error",
+        }));
+      }
 
-        resetField("password");
-      })
-      .finally(() => {
-        loader.toggleLoader(false);
-      });
+      resetField("password");
+    } finally {
+      toggleLoader(false);
+    }
   };
 
   return (
@@ -102,7 +106,7 @@ const Login = () => {
               label="Email Address"
               error={!!errors.email}
               helperText={errors.email?.message}
-              disabled={loader.isLoading}
+              disabled={isLoading}
               {...register("email")}
             />
             <TextField
@@ -111,7 +115,7 @@ const Login = () => {
               label="Password"
               error={!!errors.password}
               helperText={errors.password?.message}
-              disabled={loader.isLoading}
+              disabled={isLoading}
               {...register("password")}
             />
 
@@ -121,9 +125,9 @@ const Login = () => {
               variant="contained"
               size="large"
               type="submit"
-              disabled={loader.isLoading}
+              disabled={isLoading}
             >
-              {!loader.isLoading ? (
+              {!isLoading ? (
                 "Login"
               ) : (
                 <CircularProgress color="inherit" size="1.75em" />

@@ -25,7 +25,7 @@ const LoginStack = styled(Stack)({
 });
 
 const Registration = () => {
-  const loader = useContext(GlobalLoaderContext);
+  const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
 
   const {
     register,
@@ -40,37 +40,38 @@ const Registration = () => {
     severity: "success",
   });
 
-  const handleSubmitForm = (formdata: Form) => {
-    loader.toggleLoader(true);
+  const handleSubmitForm = async (formdata: Form) => {
+    toggleLoader(true);
 
-    axios
-      .post("/auth/register", formdata)
-      .then(() => {
+    try {
+      await axios.post("/auth/register", formdata);
+      setDialog(() => ({
+        open: true,
+        message: "Success",
+        severity: "success",
+      }));
+    } catch (error: any) {
+      const {
+        response: { data: err },
+      } = error;
+
+      if (err.status === 401) {
+        for (const field in err.data) {
+          setError(field as any, {
+            type: "server",
+            message: err.data[field][0],
+          });
+        }
+      } else {
         setDialog(() => ({
           open: true,
-          message: "Success",
-          severity: "success",
+          message: err.message,
+          severity: "error",
         }));
-      })
-      .catch(({ response: { data: err } }) => {
-        if (err.status === 401) {
-          for (const field in err.data) {
-            setError(field as any, {
-              type: "server",
-              message: err.data[field][0],
-            });
-          }
-        } else {
-          setDialog(() => ({
-            open: true,
-            message: err.message,
-            severity: "error",
-          }));
-        }
-      })
-      .finally(() => {
-        loader.toggleLoader(false);
-      });
+      }
+    } finally {
+      toggleLoader(false);
+    }
   };
 
   return (
@@ -85,7 +86,7 @@ const Registration = () => {
               label="Email Address"
               error={!!errors.email}
               helperText={errors.email?.message}
-              disabled={loader.isLoading}
+              disabled={isLoading}
               {...register("email")}
             />
             <TextField
@@ -94,7 +95,7 @@ const Registration = () => {
               label="Password"
               error={!!errors.password}
               helperText={errors.password?.message}
-              disabled={loader.isLoading}
+              disabled={isLoading}
               {...register("password")}
             />
             <TextField
@@ -103,7 +104,7 @@ const Registration = () => {
               label="Confirm Password"
               error={!!errors.password_confirmation}
               helperText={errors.password_confirmation?.message}
-              disabled={loader.isLoading}
+              disabled={isLoading}
               {...register("password_confirmation")}
             />
 
@@ -113,9 +114,9 @@ const Registration = () => {
               variant="contained"
               size="large"
               type="submit"
-              disabled={loader.isLoading}
+              disabled={isLoading}
             >
-              {!loader.isLoading ? (
+              {!isLoading ? (
                 "Register"
               ) : (
                 <CircularProgress color="inherit" size="1.75em" />
