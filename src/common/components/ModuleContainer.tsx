@@ -1,5 +1,6 @@
 import { Box, styled, Typography } from "@mui/material";
 import { ArrowLeft as BackIcon } from "react-feather";
+import { Toaster } from "sonner";
 
 import { Button } from "@components";
 
@@ -88,6 +89,8 @@ const ModuleContainer = (props: Props) => (
     )}
 
     {props.children}
+
+    <Toaster position="bottom-right" richColors />
   </Container>
 );
 
