@@ -9,39 +9,38 @@ type Props = {
   onChange: () => void;
 };
 
-const Registration = () => import("./registration").then((c) => c.default);
+const Registration = async () => (await import("./registration")).default;
 
-const Home = () => import("./home").then((c) => c.default);
-const HomeAdd = () => import("./home/add").then((c) => c.default);
-const HomeView = () => import("./home/view").then((c) => c.default);
+const Home = async () => (await import("./home")).default;
+const HomeAdd = async () => (await import("./home/add")).default;
+const HomeView = async () => (await import("./home/view")).default;
 
-const Search = () => import("./search").then((c) => c.default);
+const Search = async () => (await import("./search")).default;
 
-const LastWatch = () => import("./lastwatch").then((c) => c.default);
-const ByName = () => import("./by-name").then((c) => c.default);
-const ByYear = () => import("./by-year").then((c) => c.default);
+const LastWatch = async () => (await import("./lastwatch")).default;
+const ByName = async () => (await import("./by-name")).default;
+const ByYear = async () => (await import("./by-year")).default;
 
-const Catalog = () => import("./catalog").then((c) => c.default);
-const CatalogAdd = () => import("./catalog/add").then((c) => c.default);
-const CatalogAddMulti = () =>
-  import("./catalog/add-multi").then((c) => c.default);
+const Catalog = async () => (await import("./catalog")).default;
+const CatalogAdd = async () => (await import("./catalog/add")).default;
+const CatalogMulti = async () => (await import("./catalog/add-multi")).default;
 
-const Bucket = () => import("./bucket").then((c) => c.default);
+const Bucket = async () => (await import("./bucket")).default;
 
-const Marathon = () => import("./marathon").then((c) => c.default);
-const MarathonAdd = () => import("./marathon/add").then((c) => c.default);
+const Marathon = async () => (await import("./marathon")).default;
+const MarathonAdd = async () => (await import("./marathon/add")).default;
 
-const BucketSim = () => import("./bucket-sim").then((c) => c.default);
-const BucketSimAdd = () => import("./bucket-sim/add").then((c) => c.default);
-const BucketSimEdit = () => import("./bucket-sim/edit").then((c) => c.default);
+const BucketSim = async () => (await import("./bucket-sim")).default;
+const BucketSimAdd = async () => (await import("./bucket-sim/add")).default;
+const BucketSimEdit = async () => (await import("./bucket-sim/edit")).default;
 
-const DataManagement = () => import("./data-management").then((c) => c.default);
-const Logs = () => import("./logs").then((c) => c.default);
-const Group = () => import("./group").then((c) => c.default);
-const AudioCodec = () => import("./audio-codec").then((c) => c.default);
-const VideoCodec = () => import("./video-codec").then((c) => c.default);
+const DataManagement = async () => (await import("./data-management")).default;
+const Logs = async () => (await import("./logs")).default;
+const Group = async () => (await import("./group")).default;
+const AudioCodec = async () => (await import("./audio-codec")).default;
+const VideoCodec = async () => (await import("./video-codec")).default;
 
-const Rss = () => import("./rss").then((c) => c.default);
+const Rss = async () => (await import("./rss")).default;
 
 const Routes = (props: Props) => (
   <Router onChange={props.onChange}>
@@ -62,11 +61,8 @@ const Routes = (props: Props) => (
     <AsyncRoute path="/catalogs" getComponent={Catalog} />
     <AsyncRoute path="/catalogs/add" getComponent={CatalogAdd} />
     <AsyncRoute path="/catalogs/edit/:id" getComponent={CatalogAdd} />
-    <AsyncRoute path="/catalogs/add-multi" getComponent={CatalogAddMulti} />
-    <AsyncRoute
-      path="/catalogs/edit-multi/:id"
-      getComponent={CatalogAddMulti}
-    />
+    <AsyncRoute path="/catalogs/add-multi" getComponent={CatalogMulti} />
+    <AsyncRoute path="/catalogs/edit-multi/:id" getComponent={CatalogMulti} />
 
     <AsyncRoute path="/buckets" getComponent={Bucket} />
 
