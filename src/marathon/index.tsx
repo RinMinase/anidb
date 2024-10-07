@@ -134,26 +134,61 @@ const Marathon = () => {
     });
   };
 
-  const handleClickSequence = (id: number) => {
-    if (id !== selected) {
-      setTableLoading(true);
+  const fetchData = async () => {
+    try {
+      if (document.getElementById("graph")) {
+        const canvas = document.getElementById("graph") as HTMLCanvasElement;
+        const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
 
-      axios
-        .get(`/entries/by-sequence/${id}`)
-        .then(({ data }) => {
-          setData(() => processDuplicateIds(data.data));
-          setStats(() => data.stats);
-          setSelected(id);
-          setChartData(() => [
-            data.stats.quality360,
-            data.stats.quality480,
-            data.stats.quality720,
-            data.stats.quality1080,
-            data.stats.quality2160,
-          ]);
-        })
-        .catch((err) => console.error(err))
-        .finally(() => setTableLoading(false));
+        chartElement = new Chart(ctx, {
+          type: "pie",
+          plugins: [ChartDataLabels],
+          options: chartOptions,
+          data: chartInitialData,
+        });
+      }
+
+      toggleLoader(true);
+
+      const {
+        data: { data },
+      } = await axios.get("/sequences");
+
+      setSequences(() => data);
+      toggleLoader(false);
+
+      if (data.length) {
+        handleClickSequence(data[0].id);
+      }
+    } catch (err) {
+      console.error(err);
+    } finally {
+      toggleLoader(false);
+    }
+  };
+
+  const handleClickSequence = async (id: number) => {
+    try {
+      if (id !== selected) {
+        setTableLoading(true);
+
+        const { data } = await axios.get(`/entries/by-sequence/${id}`);
+
+        setData(() => processDuplicateIds(data.data));
+        setStats(() => data.stats);
+        setSelected(id);
+        setChartData(() => [
+          data.stats.quality360,
+          data.stats.quality480,
+          data.stats.quality720,
+          data.stats.quality1080,
+          data.stats.quality2160,
+        ]);
+      }
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setTableLoading(false);
     }
   };
 
@@ -232,32 +267,7 @@ const Marathon = () => {
   );
 
   useEffect(() => {
-    if (document.getElementById("graph")) {
-      const canvas = document.getElementById("graph") as HTMLCanvasElement;
-      const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
-
-      chartElement = new Chart(ctx, {
-        type: "pie",
-        plugins: [ChartDataLabels],
-        options: chartOptions,
-        data: chartInitialData,
-      });
-    }
-
-    toggleLoader(true);
-
-    axios
-      .get("/sequences")
-      .then(({ data: { data } }) => {
-        setSequences(() => data);
-        toggleLoader(false);
-
-        if (data.length) handleClickSequence(data[0].id);
-      })
-      .catch((err) => {
-        console.error(err);
-        toggleLoader(false);
-      });
+    fetchData();
   }, []);
 
   useEffect(() => {

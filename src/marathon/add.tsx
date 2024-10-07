@@ -40,15 +40,35 @@ const MarathonAdd = (props: Props) => {
     formState: { errors },
   } = useForm<Form>({ defaultValues, resolver, mode: "onChange" });
 
-  const handleBack = () => {
-    Swal.fire({
+  const fetchData = async () => {
+    try {
+      if (props.matches?.id) {
+        toggleLoader(true);
+
+        const {
+          data: { data },
+        } = await axios.get(`/sequences/${props.matches.id}`);
+
+        setValue("title", data.title);
+        setValue("dateFrom", new Date(data.dateFrom));
+        setValue("dateTo", new Date(data.dateTo));
+      }
+    } catch (err) {
+      console.error(err);
+    } finally {
+      toggleLoader(false);
+    }
+  };
+
+  const handleBack = async () => {
+    const result = await Swal.fire({
       title: "Are you sure?",
       text: "Any changes will not be saved",
       icon: "warning",
       showCancelButton: true,
-    }).then((result) => {
-      if (result.isConfirmed) route("/marathons");
     });
+
+    if (result.isConfirmed) route("/marathons");
   };
 
   const handleSubmitForm = async (formdata: Form) => {
@@ -81,21 +101,7 @@ const MarathonAdd = (props: Props) => {
   };
 
   useEffect(() => {
-    if (props.matches?.id) {
-      toggleLoader(true);
-
-      const { id } = props.matches;
-
-      axios
-        .get(`/sequences/${id}`)
-        .then(({ data: { data } }) => {
-          setValue("title", data.title);
-          setValue("dateFrom", new Date(data.dateFrom));
-          setValue("dateTo", new Date(data.dateTo));
-        })
-        .catch((err) => console.error(err))
-        .finally(() => toggleLoader(false));
-    }
+    fetchData();
   }, []);
 
   return (
