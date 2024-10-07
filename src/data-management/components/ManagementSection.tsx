@@ -48,30 +48,36 @@ const ManagementSection = (props: Props) => {
     useDropzone(dzConfig);
 
   const handleImport = async () => {
-    setUploading(true);
+    try {
+      setUploading(true);
 
-    const file = acceptedFiles[0];
-    const body = new FormData();
-    body.append("file", file);
+      const file = acceptedFiles[0];
+      const body = new FormData();
+      body.append("file", file);
 
-    axios
-      .post("/import", body, {
+      const {
+        data: { data },
+      } = await axios.post("/import", body, {
         headers: { "Content-Type": "multipart/form-data" },
-      })
-      .then(({ data: { data } }) => {
-        setUploading(false);
+      });
 
-        Swal.fire({
-          title: "Success!",
-          html: `
+      setUploading(false);
+
+      await Swal.fire({
+        title: "Success!",
+        html: `
             Accepted: ${data.acceptedImports}<br />
             JSON Entries: ${data.totalJsonEntries}
           `,
-          icon: "success",
-        }).then(() => props.reloadPageData());
-      })
-      .catch((err) => console.error(err))
-      .finally(() => toggleLoader(false));
+        icon: "success",
+      });
+
+      props.reloadPageData();
+    } catch (err) {
+      console.error(err);
+    } finally {
+      toggleLoader(false);
+    }
   };
 
   return (
