@@ -1,5 +1,6 @@
 import { useContext, useEffect, useLayoutEffect, useState } from "preact/hooks";
 import axios from "axios";
+import { toast } from "sonner";
 
 import { Box, styled, Typography } from "@mui/material";
 
@@ -38,6 +39,7 @@ const DataManagement = () => {
       setGraph(() => data.graph);
     } catch (err) {
       console.error(err);
+      toast.error("Failed");
     } finally {
       toggleLoader(false);
     }

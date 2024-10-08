@@ -59,6 +59,7 @@ const Catalog = () => {
         setSelected(uuid);
       } catch (err) {
         console.error(err);
+        toast.error("Failed");
       } finally {
         setTableLoading(false);
       }
@@ -150,6 +151,7 @@ const Catalog = () => {
       if (data.length) handleClickCatalog(data[0].uuid);
     } catch (err) {
       console.error(err);
+      toast.error("Failed");
     } finally {
       toggleLoader(false);
     }

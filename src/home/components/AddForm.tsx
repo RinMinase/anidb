@@ -1,3 +1,8 @@
+import axios from "axios";
+import DebouncePromise from "awesome-debounce-promise";
+import { isEmpty } from "lodash-es";
+import { toast } from "sonner";
+
 import {
   Dispatch,
   StateUpdater,
@@ -5,10 +10,6 @@ import {
   useEffect,
   useState,
 } from "preact/hooks";
-
-import axios from "axios";
-import DebouncePromise from "awesome-debounce-promise";
-import { isEmpty } from "lodash-es";
 
 import {
   Control,
@@ -190,12 +191,12 @@ const AddForm = (props: Props) => {
         fetchQualities(),
         fetchCodecs(),
       ]);
-
-      toggleLoader(false);
-      props.setDropdownLoading(false);
     } catch (err) {
       console.error(err);
-      // Trigger error popup
+      toast.error("Failed");
+    } finally {
+      toggleLoader(false);
+      props.setDropdownLoading(false);
     }
   };
 

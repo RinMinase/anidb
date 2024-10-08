@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "preact/hooks";
 import axios from "axios";
 import { Slash as UncategorizedIcon } from "react-feather";
+import { toast } from "sonner";
 
 import {
   Box,
@@ -9,6 +10,7 @@ import {
   MenuItem,
   MenuList,
   Paper,
+  Stack,
   styled,
   Typography,
 } from "@mui/material";
@@ -26,7 +28,6 @@ import {
 } from "@components";
 
 import { Data, YearData } from "./types";
-import { Stack } from "@mui/system";
 
 type CustomIconProps = {
   small?: boolean;
@@ -105,6 +106,7 @@ const ByYear = () => {
       setData(() => data);
     } catch (err) {
       console.error(err);
+      toast.error("Failed");
     } finally {
       toggleLoader(false);
     }
@@ -128,6 +130,7 @@ const ByYear = () => {
       }
     } catch (err) {
       console.error(err);
+      toast.error("Failed");
     } finally {
       toggleLoader(false);
       setInitLoad(false);

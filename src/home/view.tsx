@@ -3,6 +3,7 @@ import { route } from "preact-router";
 import axios from "axios";
 import contrast from "font-color-contrast";
 import { debounce } from "lodash-es";
+import { toast } from "sonner";
 
 import {
   Box,
@@ -26,8 +27,6 @@ import { Button, GlobalLoaderContext, ModuleContainer } from "@components";
 import TotalRatingFilledIcon from "@components/icons/heart-filled.svg?react";
 import TotalRatingEmptyIcon from "@components/icons/heart.svg?react";
 
-import { FullData } from "./types";
-
 import {
   Header,
   TotalStyledRating,
@@ -41,6 +40,7 @@ import {
 
 import ViewEntryImage from "./components/ViewEntryImage";
 import ViewRewatchDialogue from "./components/ViewRewatchDialog";
+import { FullData } from "./types";
 
 type Props = {
   matches: {
@@ -246,6 +246,7 @@ const HomeView = (props: Props) => {
       });
     } catch (err: any) {
       console.error(err);
+      toast.error("Failed");
 
       if (err.response?.data?.message?.includes("ID is invalid")) {
         route("/home");

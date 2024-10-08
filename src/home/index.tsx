@@ -1,10 +1,10 @@
 import { useContext, useEffect, useState } from "preact/hooks";
 import { route } from "preact-router";
-
 import axios from "axios";
 import DebouncePromise from "awesome-debounce-promise";
 import { Waypoint } from "react-waypoint";
 import { Search as SearchIcon } from "react-feather";
+import { toast } from "sonner";
 
 import {
   Box,
@@ -23,8 +23,6 @@ import {
 import RatingFilledIcon from "@components/icons/heart-filled.svg?react";
 import RatingEmptyIcon from "@components/icons/heart.svg?react";
 
-import { Data } from "./types";
-
 import {
   Button,
   GlobalLoaderContext,
@@ -33,6 +31,8 @@ import {
   RewatchIndicator,
   Table,
 } from "@components";
+
+import { Data } from "./types";
 
 const SearchContainer = styled(Paper)({
   padding: 8,
@@ -119,6 +119,7 @@ const Home = () => {
       }
     } catch (err) {
       console.error(err);
+      toast.error("Failed");
     } finally {
       toggleLoader(false);
     }
@@ -141,11 +142,12 @@ const Home = () => {
         if (meta) {
           setHasNext(meta.hasNext);
         }
-
-        toggleLoader(false);
       }
     } catch (err) {
       console.error(err);
+      toast.error("Failed");
+    } finally {
+      toggleLoader(false);
     }
   };
 

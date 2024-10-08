@@ -79,6 +79,7 @@ const BucketSim = () => {
         setSelected(uuid);
       } catch (err) {
         console.error(err);
+        toast.error("Failed");
       } finally {
         toggleLoader(false);
       }
@@ -199,6 +200,9 @@ const BucketSim = () => {
       }
     } catch (err) {
       console.error(err);
+      toast.error("Failed");
+    } finally {
+      toggleLoader(false);
     }
   };
 

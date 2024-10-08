@@ -1,6 +1,6 @@
 import { useEffect, useState } from "preact/hooks";
 import axios from "axios";
-
+import { toast } from "sonner";
 import { Chip, Paper, styled } from "@mui/material";
 
 import { ModuleContainer, Table } from "@components";
@@ -47,6 +47,7 @@ const Logs = () => {
       });
     } catch (err) {
       console.error(err);
+      toast.error("Failed");
     } finally {
       setTableLoading(false);
     }

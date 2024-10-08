@@ -208,6 +208,7 @@ const BucketSimEdit = (props: Props) => {
       setData(() => buckets);
     } catch (err) {
       console.error(err);
+      toast.error("Failed");
     } finally {
       toggleLoader(false);
     }

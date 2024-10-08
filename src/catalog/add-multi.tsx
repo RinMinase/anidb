@@ -150,6 +150,7 @@ const CatalogMulti = (props: Props) => {
       handleEditLoad(data.data, data.stats);
     } catch (err) {
       console.error(err);
+      toast.error("Failed");
     } finally {
       toggleLoader(false);
     }

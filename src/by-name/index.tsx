@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "preact/hooks";
 import axios from "axios";
+import { toast } from "sonner";
 
 import {
   animateScroll,
@@ -21,6 +22,7 @@ import {
   Quality,
   Table,
 } from "@components";
+
 import { Data, Stats } from "./types";
 
 type TableRowProps = {
@@ -79,6 +81,7 @@ const ByName = () => {
       }
     } catch (err) {
       console.error(err);
+      toast.error("Failed");
     } finally {
       setTableLoader(false);
     }
@@ -99,6 +102,7 @@ const ByName = () => {
       await handleChangeData("#", true);
     } catch (err) {
       console.error(err);
+      toast.error("Failed");
     } finally {
       toggleLoader(false);
     }

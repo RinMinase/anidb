@@ -163,6 +163,7 @@ const Marathon = () => {
       }
     } catch (err) {
       console.error(err);
+      toast.error("Failed");
     } finally {
       toggleLoader(false);
     }
@@ -188,6 +189,7 @@ const Marathon = () => {
       }
     } catch (err) {
       console.error(err);
+      toast.error("Failed");
     } finally {
       setTableLoading(false);
     }

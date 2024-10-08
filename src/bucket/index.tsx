@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "preact/hooks";
 import axios from "axios";
 import { HardDrive as DriveIcon, Database as StorageIcon } from "react-feather";
 import { green, orange, red } from "@mui/material/colors";
+import { toast } from "sonner";
 
 import {
   Box,
@@ -53,6 +54,7 @@ const Bucket = () => {
       setCurrBucket(() => stats);
     } catch (err) {
       console.error(err);
+      toast.error("Failed");
     } finally {
       setTableLoading(false);
     }
@@ -88,6 +90,7 @@ const Bucket = () => {
       handleClickBucket(bucketList[1].id);
     } catch (err) {
       console.error(err);
+      toast.error("Failed");
     } finally {
       toggleLoader(false);
     }

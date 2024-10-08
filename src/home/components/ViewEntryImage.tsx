@@ -1,6 +1,7 @@
 import { Dispatch, StateUpdater, useState } from "preact/hooks";
 import axios from "axios";
 import { CircularProgress, useMediaQuery, useTheme } from "@mui/material";
+import { toast } from "sonner";
 
 import {
   X as UploadCancelIcon,
@@ -66,8 +67,11 @@ const ViewEntryImage = (props: Props) => {
         message: "Success!",
         severity: "success",
       });
+
+      toast.success("Success");
     } catch (err) {
       console.error(err);
+      toast.error("Failed");
 
       setImageUploading(false);
       setDialog({
@@ -119,8 +123,11 @@ const ViewEntryImage = (props: Props) => {
           message: "Success!",
           severity: "success",
         });
+
+        toast.success("Success");
       } catch (err) {
         console.error(err);
+        toast.error("Failed");
 
         setDialog({
           open: true,

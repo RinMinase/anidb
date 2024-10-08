@@ -1,6 +1,6 @@
 import { useContext, useEffect, useLayoutEffect, useState } from "preact/hooks";
 import axios from "axios";
-
+import { toast } from "sonner";
 import { Box, Grid2 as Grid, Paper, styled } from "@mui/material";
 
 import {
@@ -18,6 +18,7 @@ import {
   RewatchIndicator,
   Table,
 } from "@components";
+
 import { Data, Stats } from "./types";
 
 const DashboardContainer = styled(Box)({
@@ -53,6 +54,7 @@ const LastWatch = () => {
       setStats(() => data.stats);
     } catch (err) {
       console.error(err);
+      toast.error("Failed");
     } finally {
       toggleLoader(false);
     }
