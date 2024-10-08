@@ -8,8 +8,6 @@ import eslint from "vite-plugin-eslint";
 import svgr from "vite-plugin-svgr";
 
 const eslintConfig: PluginOption = {
-  apply: "serve",
-  enforce: "post",
   ...eslint({
     include: ["./src/**/*.ts", "./src/**/*.tsx"],
     cache: true,
@@ -17,19 +15,20 @@ const eslintConfig: PluginOption = {
     failOnError: false,
     lintOnStart: true,
   }),
+  apply: "serve",
+  enforce: "post",
+};
+
+const compressionConfig: PluginOption = {
+  ...viteCompression({
+    ext: ".jgz",
+    verbose: false,
+  }),
+  apply: "build",
 };
 
 export default defineConfig({
-  plugins: [
-    eslintConfig,
-    preact(),
-    svgr(),
-    tsconfigPaths(),
-    viteCompression({
-      ext: ".jgz",
-      verbose: false,
-    }),
-  ],
+  plugins: [eslintConfig, compressionConfig, preact(), svgr(), tsconfigPaths()],
   esbuild: {
     logOverride: { "this-is-undefined-in-esm": "silent" },
   },
