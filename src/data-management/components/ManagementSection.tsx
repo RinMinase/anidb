@@ -9,7 +9,7 @@ import {
   UploadCloud as ImportIcon,
 } from "react-feather";
 
-import { Button, GlobalLoaderContext, Swal } from "@components";
+import { Button, GlobalLoaderContext } from "@components";
 
 type Props = {
   reloadPageData: () => void;
