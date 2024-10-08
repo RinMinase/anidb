@@ -27,8 +27,23 @@ const compressionConfig: PluginOption = {
   apply: "build",
 };
 
+const compressionConfigBrotli: PluginOption = {
+  ...viteCompression({
+    algorithm: "brotliCompress",
+    verbose: false,
+  }),
+  apply: "build",
+};
+
 export default defineConfig({
-  plugins: [eslintConfig, compressionConfig, preact(), svgr(), tsconfigPaths()],
+  plugins: [
+    eslintConfig,
+    compressionConfig,
+    compressionConfigBrotli,
+    preact(),
+    svgr(),
+    tsconfigPaths(),
+  ],
   server: {
     port: 3000,
     host: true,
