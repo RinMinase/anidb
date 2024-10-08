@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "preact/hooks";
 import { route } from "preact-router";
 import axios from "axios";
 import { green, orange, red } from "@mui/material/colors";
+import { toast } from "sonner";
 
 import {
   Box,
@@ -96,10 +97,7 @@ const BucketSim = () => {
       toggleLoader(true);
 
       await axios.post(`/bucket-sims/save/${selected}`);
-      await Swal.fire({
-        title: "Success!",
-        icon: "success",
-      });
+      toast.success("Success");
 
       toggleLoader(false);
       route(`/buckets`);
@@ -109,36 +107,40 @@ const BucketSim = () => {
   const handleCloneClick = async (e: any, uuid: string) => {
     e.stopPropagation();
 
-    const result = await Swal.fire({
-      title: "Are you sure?",
-      text: "This item will be cloned to a new bucket sim",
-      icon: "question",
-      showCancelButton: true,
-    });
-
-    if (result.isConfirmed) {
-      toggleLoader(true);
-
-      const {
-        data: {
-          data: { newId },
-        },
-      } = await axios.post(`/bucket-sims/clone/${uuid}`);
-
-      await Swal.fire({
-        title: "Success!",
-        icon: "success",
+    try {
+      const result = await Swal.fire({
+        title: "Are you sure?",
+        text: "This item will be cloned to a new bucket sim",
+        icon: "question",
+        showCancelButton: true,
       });
 
-      const {
-        data: { data },
-      } = await axios.get("/bucket-sims");
+      if (result.isConfirmed) {
+        toggleLoader(true);
 
-      setSims(() => data);
+        const {
+          data: {
+            data: { newId },
+          },
+        } = await axios.post(`/bucket-sims/clone/${uuid}`);
 
-      if (data.length) {
-        handleSelectSim(newId);
+        toast.success("Success");
+
+        const {
+          data: { data },
+        } = await axios.get("/bucket-sims");
+
+        setSims(() => data);
+
+        if (data.length) {
+          handleSelectSim(newId);
+        }
       }
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed");
+    } finally {
+      toggleLoader(false);
     }
   };
 
@@ -150,32 +152,34 @@ const BucketSim = () => {
   const handleDeleteClick = async (e: any, uuid: string) => {
     e.stopPropagation();
 
-    const result = await Swal.fire({
-      title: "Are you sure?",
-      text: "This item will be deleted",
-      icon: "error",
-      showCancelButton: true,
-    });
-
-    if (result.isConfirmed) {
-      toggleLoader(true);
-
-      await axios.delete(`/bucket-sims/${uuid}`);
-      await Swal.fire({
-        title: "Success!",
-        icon: "success",
+    try {
+      const result = await Swal.fire({
+        title: "Are you sure?",
+        text: "This item will be deleted",
+        icon: "error",
+        showCancelButton: true,
       });
 
-      const {
-        data: { data },
-      } = await axios.get("/bucket-sims");
+      if (result.isConfirmed) {
+        toggleLoader(true);
 
-      setSims(() => data);
+        await axios.delete(`/bucket-sims/${uuid}`);
+        toast.success("Success");
 
-      if (data.length) {
-        handleSelectSim(data[0].uuid);
+        const {
+          data: { data },
+        } = await axios.get("/bucket-sims");
+
+        setSims(() => data);
+
+        if (data.length) {
+          handleSelectSim(data[0].uuid);
+        }
       }
-
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed");
+    } finally {
       toggleLoader(false);
     }
   };

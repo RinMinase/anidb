@@ -4,6 +4,7 @@ import { route } from "preact-router";
 import { useFieldArray, useForm } from "react-hook-form";
 import axios from "axios";
 import { green, orange, red } from "@mui/material/colors";
+import { toast } from "sonner";
 
 import {
   FormControl,
@@ -122,11 +123,12 @@ const BucketSimEdit = (props: Props) => {
         });
 
         setData(() => newBuckets);
-        setPreviewLoader(false);
       }
     } catch (err) {
-      setPreviewLoader(false);
       console.error(err);
+      toast.error("Failed");
+    } finally {
+      setPreviewLoader(false);
     }
   };
 
@@ -148,17 +150,14 @@ const BucketSimEdit = (props: Props) => {
           buckets: data,
         });
 
-        await Swal.fire({
-          title: "Success!",
-          icon: "success",
-        });
-
-        toggleLoader(false);
         route("/bucket-sims");
+        toast.success("Success");
       }
     } catch (err) {
-      toggleLoader(false);
       console.error(err);
+      toast.error("Failed");
+    } finally {
+      toggleLoader(false);
     }
   };
 
