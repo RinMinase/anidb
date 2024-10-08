@@ -29,9 +29,6 @@ const compressionConfig: PluginOption = {
 
 export default defineConfig({
   plugins: [eslintConfig, compressionConfig, preact(), svgr(), tsconfigPaths()],
-  esbuild: {
-    logOverride: { "this-is-undefined-in-esm": "silent" },
-  },
   server: {
     port: 3000,
     host: true,
