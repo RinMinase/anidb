@@ -96,14 +96,11 @@ const BucketSimEdit = (props: Props) => {
 
         const bucketData = JSON.stringify(buckets);
 
-        await axios.put(`/bucket-sims/${props.matches.id}`, {
-          description: formdata.description,
-          buckets: bucketData,
-        });
-
         const {
           data: { data },
-        } = await axios.get(`/bucket-sims/${props.matches.id}`);
+        } = await axios.post(`/bucket-sims/preview`, {
+          buckets: bucketData,
+        });
 
         const newBuckets: Data = data.map((item: Item) => {
           const { percent } = item;
