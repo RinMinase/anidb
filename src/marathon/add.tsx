@@ -5,6 +5,7 @@ import { format } from "date-fns";
 import axios from "axios";
 import { Button, Stack, styled } from "@mui/material";
 import { Save as SaveIcon } from "react-feather";
+import { toast } from "sonner";
 
 import {
   ControlledField,
@@ -55,6 +56,7 @@ const MarathonAdd = (props: Props) => {
       }
     } catch (err) {
       console.error(err);
+      toast.error("Failed");
     } finally {
       toggleLoader(false);
     }
@@ -87,16 +89,13 @@ const MarathonAdd = (props: Props) => {
         await axios.post("/sequences", body);
       }
 
-      await Swal.fire({
-        title: "Success!",
-        icon: "success",
-      });
-
-      toggleLoader(false);
+      toast.success("Success");
       route("/marathons");
     } catch (err) {
-      toggleLoader(false);
       console.error(err);
+      toast.error("Failed");
+    } finally {
+      toggleLoader(false);
     }
   };
 

@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "preact/hooks";
 import { route } from "preact-router";
 import axios from "axios";
 import { Edit as EditIcon, Trash as DeleteIcon } from "react-feather";
+import { toast } from "sonner";
 
 import {
   Grid2 as Grid,
@@ -75,27 +76,30 @@ const Catalog = () => {
   };
 
   const handleDeleteClick = async (uuid: string) => {
-    const result = await Swal.fire({
-      title: "Are you sure?",
-      text: "This item will be deleted",
-      icon: "error",
-      showCancelButton: true,
-    });
-
-    if (result.isConfirmed) {
-      setTableLoading(true);
-
-      await axios.delete(`/partials/${uuid}`);
-      await Swal.fire({
-        title: "Success!",
-        icon: "success",
+    try {
+      const result = await Swal.fire({
+        title: "Are you sure?",
+        text: "This item will be deleted",
+        icon: "error",
+        showCancelButton: true,
       });
 
-      const {
-        data: { data },
-      } = await axios.get(`/catalogs/${selected}/partials`);
+      if (result.isConfirmed) {
+        setTableLoading(true);
 
-      setData(() => data);
+        await axios.delete(`/partials/${uuid}`);
+        toast.success("Success");
+
+        const {
+          data: { data },
+        } = await axios.get(`/catalogs/${selected}/partials`);
+
+        setData(() => data);
+      }
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed");
+    } finally {
       setTableLoading(false);
     }
   };
@@ -103,30 +107,32 @@ const Catalog = () => {
   const handleDeleteMultiClick = async (e: any, uuid: string) => {
     e.stopPropagation();
 
-    const result = await Swal.fire({
-      title: "Are you sure?",
-      text: "This item will be deleted",
-      icon: "error",
-      showCancelButton: true,
-    });
-
-    if (result.isConfirmed) {
-      setTableLoading(true);
-
-      await axios.delete(`/catalogs/${uuid}`);
-      await Swal.fire({
-        title: "Success!",
-        icon: "success",
+    try {
+      const result = await Swal.fire({
+        title: "Are you sure?",
+        text: "This item will be deleted",
+        icon: "error",
+        showCancelButton: true,
       });
 
-      const {
-        data: { data },
-      } = await axios.get("/catalogs");
+      if (result.isConfirmed) {
+        setTableLoading(true);
 
-      setCatalogs(() => data);
+        await axios.delete(`/catalogs/${uuid}`);
+        toast.success("Success");
 
-      if (data.length) handleClickCatalog(data[0].uuid);
+        const {
+          data: { data },
+        } = await axios.get("/catalogs");
 
+        setCatalogs(() => data);
+
+        if (data.length) handleClickCatalog(data[0].uuid);
+      }
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed");
+    } finally {
       setTableLoading(false);
     }
   };

@@ -4,6 +4,7 @@ import axios from "axios";
 import { Chart, ChartOptions, registerables } from "chart.js";
 import ChartDataLabels from "chartjs-plugin-datalabels";
 import { v4 as uuid } from "uuid";
+import { toast } from "sonner";
 
 import {
   Box,
@@ -200,30 +201,32 @@ const Marathon = () => {
   const handleDeleteClick = async (e: any, id: number) => {
     e.stopPropagation();
 
-    const result = await Swal.fire({
-      title: "Are you sure?",
-      text: "This item will be deleted",
-      icon: "error",
-      showCancelButton: true,
-    });
-
-    if (result.isConfirmed) {
-      setTableLoading(true);
-
-      await axios.delete(`/sequences/${id}`);
-      await Swal.fire({
-        title: "Success!",
-        icon: "success",
+    try {
+      const result = await Swal.fire({
+        title: "Are you sure?",
+        text: "This item will be deleted",
+        icon: "error",
+        showCancelButton: true,
       });
 
-      const {
-        data: { data },
-      } = await axios.get("/sequences");
+      if (result.isConfirmed) {
+        setTableLoading(true);
 
-      setSequences(() => data);
+        await axios.delete(`/sequences/${id}`);
+        toast.success("Success");
 
-      if (data.length) handleClickSequence(data[0].id);
+        const {
+          data: { data },
+        } = await axios.get("/sequences");
 
+        setSequences(() => data);
+
+        if (data.length) handleClickSequence(data[0].id);
+      }
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed");
+    } finally {
       setTableLoading(false);
     }
   };

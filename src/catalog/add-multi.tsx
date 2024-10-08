@@ -3,6 +3,7 @@ import { useContext, useEffect } from "preact/hooks";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { Save as SaveIcon } from "react-feather";
+import { toast } from "sonner";
 
 import {
   Button,
@@ -105,19 +106,15 @@ const CatalogMulti = (props: Props) => {
       if (response.data.data) {
         const { data } = response.data;
 
-        await Swal.fire({
-          title: "Success!",
-          icon: "success",
-          html: `
-            Accepted: ${data.accepted}<br />
-            JSON Entries: ${data.total}
-          `,
+        toast.success("Success", {
+          description: `Accepted: ${data.accepted}, Total: ${data.total}`,
         });
       }
 
       route("/catalogs");
     } catch (err) {
       console.error(err);
+      toast.error("Failed");
     } finally {
       toggleLoader(false);
     }

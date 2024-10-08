@@ -1,6 +1,7 @@
 import { useEffect, useState } from "preact/hooks";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import { toast } from "sonner";
 
 import {
   Backdrop,
@@ -84,6 +85,9 @@ const VideoCodec = () => {
       } = await axios.get("/codecs/video");
 
       setData(() => data);
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed");
     } finally {
       setTableLoading(false);
     }
@@ -114,11 +118,7 @@ const VideoCodec = () => {
 
     try {
       await axios.put(`/codecs/video/${id}`, formdata);
-
-      await Swal.fire({
-        title: "Success!",
-        icon: "success",
-      });
+      toast.success("Success");
 
       setDialog({
         show: false,
@@ -128,29 +128,36 @@ const VideoCodec = () => {
       setTableLoading(true);
 
       await fetchData();
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed");
     } finally {
       setTableLoading(false);
     }
   };
 
   const handleDeleteClick = async (id: string) => {
-    const result = await Swal.fire({
-      title: "Are you sure?",
-      text: "This item will be deleted",
-      icon: "error",
-      showCancelButton: true,
-    });
-
-    if (result.isConfirmed) {
-      setTableLoading(true);
-
-      await axios.delete(`/codecs/video/${id}`);
-      await Swal.fire({
-        title: "Success!",
-        icon: "success",
+    try {
+      const result = await Swal.fire({
+        title: "Are you sure?",
+        text: "This item will be deleted",
+        icon: "error",
+        showCancelButton: true,
       });
 
-      await fetchData();
+      if (result.isConfirmed) {
+        setTableLoading(true);
+
+        await axios.delete(`/codecs/video/${id}`);
+        toast.success("Success");
+
+        await fetchData();
+      }
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed");
+    } finally {
+      setTableLoading(false);
     }
   };
 
@@ -159,26 +166,18 @@ const VideoCodec = () => {
 
     try {
       await axios.post("/codecs/video", formdata);
-
-      await Swal.fire({
-        title: "Success!",
-        icon: "success",
-      });
+      toast.success("Success");
 
       await fetchData();
     } catch (err) {
-      await Swal.fire({
-        title: "Failed",
-        icon: "error",
-      });
-
       console.error(err);
+      toast.error("Failed");
+    } finally {
       setTableLoading(false);
     }
   };
 
   useEffect(() => {
-    setTableLoading(true);
     fetchData();
   }, []);
 

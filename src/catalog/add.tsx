@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { Save as SaveIcon } from "react-feather";
 import { Button, Stack, styled } from "@mui/material";
+import { toast } from "sonner";
 
 import {
   ControlledField,
@@ -65,61 +66,63 @@ const CatalogAdd = (props: Props) => {
         await axios.post("/partials", formdata);
       }
 
-      await Swal.fire({
-        title: "Success!",
-        icon: "success",
-      });
-
+      toast.success("Success");
       route("/catalogs");
     } catch (err) {
       console.error(err);
+      toast.error("Failed");
     } finally {
       toggleLoader(false);
     }
   };
 
   const handleOnLoad = async () => {
-    toggleLoader(true);
+    try {
+      toggleLoader(true);
 
-    const priorityAPI = await axios.get("/priorities");
-    const rawPriorities: Priorities = priorityAPI.data.data;
-    const priorityOptions: OptionsProps = rawPriorities.map((item) => ({
-      key: item.id,
-      value: item.id,
-      label: item.priority,
-    }));
+      const priorityAPI = await axios.get("/priorities");
+      const rawPriorities: Priorities = priorityAPI.data.data;
+      const priorityOptions: OptionsProps = rawPriorities.map((item) => ({
+        key: item.id,
+        value: item.id,
+        label: item.priority,
+      }));
 
-    if (priorityOptions.length) {
-      setPriorities(() => priorityOptions);
+      if (priorityOptions.length) {
+        setPriorities(() => priorityOptions);
 
-      const normalId = priorityOptions.findIndex((i) => i.label === "Normal");
-      if (normalId >= 0) {
-        setValue("id_priority", priorityOptions[normalId].value as number);
+        const normalId = priorityOptions.findIndex((i) => i.label === "Normal");
+        if (normalId >= 0) {
+          setValue("id_priority", priorityOptions[normalId].value as number);
+        }
       }
+
+      const catalogsAPI = await axios.get("/catalogs");
+      const rawCatalogs: Catalogs = catalogsAPI.data.data;
+      const catalogOptions: OptionsProps = rawCatalogs.map((item) => ({
+        key: item.uuid,
+        value: item.uuid,
+        label: `${item.season} ${item.year}`,
+      }));
+
+      setCatalogs(() => catalogOptions);
+
+      if (props.matches?.id) {
+        const { id } = props.matches;
+
+        const partialsData = await axios.get(`/partials/${id}`);
+        const { title, id_catalog, id_priority } = partialsData.data.data;
+
+        setValue("title", title);
+        setValue("id_catalog", id_catalog);
+        setValue("id_priority", id_priority);
+      }
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed");
+    } finally {
+      toggleLoader(false);
     }
-
-    const catalogsAPI = await axios.get("/catalogs");
-    const rawCatalogs: Catalogs = catalogsAPI.data.data;
-    const catalogOptions: OptionsProps = rawCatalogs.map((item) => ({
-      key: item.uuid,
-      value: item.uuid,
-      label: `${item.season} ${item.year}`,
-    }));
-
-    setCatalogs(() => catalogOptions);
-
-    if (props.matches?.id) {
-      const { id } = props.matches;
-
-      const partialsData = await axios.get(`/partials/${id}`);
-      const { title, id_catalog, id_priority } = partialsData.data.data;
-
-      setValue("title", title);
-      setValue("id_catalog", id_catalog);
-      setValue("id_priority", id_priority);
-    }
-
-    toggleLoader(false);
   };
 
   useEffect(() => {

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "preact/hooks";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import { toast } from "sonner";
 
 import {
   Backdrop,
@@ -113,11 +114,7 @@ const Group = () => {
 
     try {
       await axios.put(`/groups/${uuid}`, formdata);
-
-      await Swal.fire({
-        title: "Success!",
-        icon: "success",
-      });
+      toast.success("Success");
 
       setDialog({
         show: false,
@@ -127,10 +124,7 @@ const Group = () => {
       await fetchData();
     } catch (err) {
       console.error(err);
-      await Swal.fire({
-        title: "Failed",
-        icon: "error",
-      });
+      toast.error("Failed");
 
       setDialog((prev) => ({
         ...prev,
@@ -140,23 +134,27 @@ const Group = () => {
   };
 
   const handleDeleteClick = async (uuid: string) => {
-    const result = await Swal.fire({
-      title: "Are you sure?",
-      text: "This item will be deleted",
-      icon: "error",
-      showCancelButton: true,
-    });
-
-    if (result.isConfirmed) {
-      setTableLoading(true);
-
-      await axios.delete(`/groups/${uuid}`);
-      await Swal.fire({
-        title: "Success!",
-        icon: "success",
+    try {
+      const result = await Swal.fire({
+        title: "Are you sure?",
+        text: "This item will be deleted",
+        icon: "error",
+        showCancelButton: true,
       });
 
-      await fetchData();
+      if (result.isConfirmed) {
+        setTableLoading(true);
+
+        await axios.delete(`/groups/${uuid}`);
+        toast.success("Success");
+
+        await fetchData();
+      }
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed");
+    } finally {
+      setTableLoading(false);
     }
   };
 
@@ -165,26 +163,18 @@ const Group = () => {
 
     try {
       await axios.post("/groups", formdata);
-
-      await Swal.fire({
-        title: "Success!",
-        icon: "success",
-      });
+      toast.success("Success");
 
       await fetchData();
     } catch (err) {
-      await Swal.fire({
-        title: "Failed",
-        icon: "error",
-      });
-
       console.error(err);
+      toast.error("Failed");
+    } finally {
       setTableLoading(false);
     }
   };
 
   useEffect(() => {
-    setTableLoading(true);
     fetchData();
   }, []);
 

@@ -2,6 +2,7 @@ import { useContext, useState } from "preact/hooks";
 import { useDropzone } from "react-dropzone";
 import axios from "axios";
 import { Box, Grid2 as Grid, Stack, styled, Typography } from "@mui/material";
+import { toast } from "sonner";
 
 import {
   DownloadCloud as ExportIcon,
@@ -63,18 +64,14 @@ const ManagementSection = (props: Props) => {
 
       setUploading(false);
 
-      await Swal.fire({
-        title: "Success!",
-        html: `
-            Accepted: ${data.acceptedImports}<br />
-            JSON Entries: ${data.totalJsonEntries}
-          `,
-        icon: "success",
+      toast.success("Success", {
+        description: `Accepted: ${data.acceptedImports}, Total: ${data.totalJsonEntries}`,
       });
 
       props.reloadPageData();
     } catch (err) {
       console.error(err);
+      toast.error("Failed");
     } finally {
       toggleLoader(false);
     }

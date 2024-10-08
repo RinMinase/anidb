@@ -6,6 +6,7 @@ import { format } from "date-fns";
 import { isEmpty } from "lodash-es";
 import { styled } from "@mui/material";
 import { ArrowLeft as BackIcon, Save as SaveIcon } from "react-feather";
+import { toast } from "sonner";
 
 import {
   Button,
@@ -56,83 +57,88 @@ const HomeAdd = (props: Props) => {
   });
 
   const fetchEntryData = async () => {
-    if (props.matches?.id) {
-      toggleLoader(true);
+    try {
+      if (props.matches?.id) {
+        toggleLoader(true);
 
-      const { id } = props.matches;
-      const partialsData = await axios.get(`/entries/${id}`);
+        const { id } = props.matches;
+        const partialsData = await axios.get(`/entries/${id}`);
 
-      const {
-        id_quality,
-        title,
-        dateInitFinishedRaw,
-        filesizeRaw,
-        episodes,
-        ovas,
-        specials,
-        seasonNumber,
-        seasonFirstTitle,
-        releaseSeason,
-        releaseYear,
-        variants,
-        remarks,
-        durationRaw,
-        encoderVideo,
-        encoderAudio,
-        encoderSubs,
-        id_codec_video,
-        id_codec_audio,
-        codecHDR,
-        prequelTitle,
-        sequelTitle,
-      } = partialsData.data.data;
+        const {
+          id_quality,
+          title,
+          dateInitFinishedRaw,
+          filesizeRaw,
+          episodes,
+          ovas,
+          specials,
+          seasonNumber,
+          seasonFirstTitle,
+          releaseSeason,
+          releaseYear,
+          variants,
+          remarks,
+          durationRaw,
+          encoderVideo,
+          encoderAudio,
+          encoderSubs,
+          id_codec_video,
+          id_codec_audio,
+          codecHDR,
+          prequelTitle,
+          sequelTitle,
+        } = partialsData.data.data;
 
-      let hrs = 0;
-      let mins = 0;
-      let secs = 0;
-      const duration: number | undefined = durationRaw;
+        let hrs = 0;
+        let mins = 0;
+        let secs = 0;
+        const duration: number | undefined = durationRaw;
 
-      if (duration) {
-        hrs = Math.floor(duration / 3600);
-        mins = Math.floor((duration % 3600) / 60);
-        secs = (duration % 3600) % 60;
+        if (duration) {
+          hrs = Math.floor(duration / 3600);
+          mins = Math.floor((duration % 3600) / 60);
+          secs = (duration % 3600) % 60;
+        }
+
+        reset({
+          id_quality,
+          title,
+          date_finished: dateInitFinishedRaw,
+          filesize: filesizeRaw,
+
+          episodes,
+          ovas,
+          specials,
+
+          season_number: seasonNumber,
+          season_first_title_id: seasonFirstTitle,
+
+          release_season: releaseSeason || "",
+          release_year: releaseYear || "",
+
+          variants,
+          remarks,
+
+          encoder_video: encoderVideo,
+          encoder_audio: encoderAudio,
+          encoder_subs: encoderSubs,
+
+          prequel_title: prequelTitle || null,
+          sequel_title: sequelTitle || null,
+
+          id_codec_video: id_codec_video || "",
+          id_codec_audio: id_codec_audio || "",
+          codec_hdr: !!codecHDR,
+
+          duration_hrs: hrs,
+          duration_mins: mins,
+          duration_secs: secs,
+        });
       }
-
-      reset({
-        id_quality,
-        title,
-        date_finished: dateInitFinishedRaw,
-        filesize: filesizeRaw,
-
-        episodes,
-        ovas,
-        specials,
-
-        season_number: seasonNumber,
-        season_first_title_id: seasonFirstTitle,
-
-        release_season: releaseSeason || "",
-        release_year: releaseYear || "",
-
-        variants,
-        remarks,
-
-        encoder_video: encoderVideo,
-        encoder_audio: encoderAudio,
-        encoder_subs: encoderSubs,
-
-        prequel_title: prequelTitle || null,
-        sequel_title: sequelTitle || null,
-
-        id_codec_video: id_codec_video || "",
-        id_codec_audio: id_codec_audio || "",
-        codec_hdr: !!codecHDR,
-
-        duration_hrs: hrs,
-        duration_mins: mins,
-        duration_secs: secs,
-      });
-
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed");
+    } finally {
       toggleLoader(false);
     }
   };
@@ -172,10 +178,7 @@ const HomeAdd = (props: Props) => {
         await axios.post("/entries", body);
       }
 
-      await Swal.fire({
-        title: "Success!",
-        icon: "success",
-      });
+      toast.success("Success");
 
       if (props.matches?.id) {
         route(`/home/view/${props.matches.id}`);
@@ -184,6 +187,7 @@ const HomeAdd = (props: Props) => {
       }
     } catch (err) {
       console.error(err);
+      toast.error("Failed");
     } finally {
       toggleLoader(false);
     }
