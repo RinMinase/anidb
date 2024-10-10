@@ -1,4 +1,5 @@
 import axios from "axios";
+import { route, getCurrentUrl } from "preact-router";
 
 const removeTrailSlashes = (str: string): string => {
   let i = str.length;
@@ -26,7 +27,15 @@ if (API_URL) {
         err.response.data.message == "Unauthorized"
       ) {
         localStorage.clear();
-        window.location.href = "/";
+
+        try {
+          // Check if router is present at scope
+          getCurrentUrl();
+          route("/");
+        } catch {
+          // If router is not present, use default routing behavior
+          window.location.href = "/";
+        }
       }
 
       return Promise.reject(err);
