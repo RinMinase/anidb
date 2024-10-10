@@ -24,8 +24,26 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@': '/src',
-      '@components': '/src/common'
-    }
-  }
+      "@": "/src",
+      "@components": "/src/common",
+    },
+  },
+  build: {
+    chunkSizeWarningLimit: 1000,
+
+    // Chunk by imported module
+    // rollupOptions: {
+    //   output: {
+    //     manualChunks(id) {
+    //       if (id.includes("node_modules")) {
+    //         return id
+    //           .toString()
+    //           .split("node_modules/")[1]
+    //           .split("/")[0]
+    //           .toString();
+    //       }
+    //     },
+    //   },
+    // },
+  },
 });
