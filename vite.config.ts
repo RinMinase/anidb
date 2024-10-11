@@ -1,7 +1,6 @@
 import { defineConfig, PluginOption } from "vite";
 
 import preact from "@preact/preset-vite";
-import tsconfigPaths from "vite-tsconfig-paths";
 import eslint from "vite-plugin-eslint";
 import svgr from "vite-plugin-svgr";
 
@@ -18,9 +17,15 @@ const eslintConfig: PluginOption = {
 };
 
 export default defineConfig({
-  plugins: [eslintConfig, preact(), svgr(), tsconfigPaths()],
+  plugins: [eslintConfig, preact(), svgr()],
   server: {
     port: 3000,
     host: true,
   },
+  resolve: {
+    alias: {
+      '@': '/src',
+      '@components': '/src/common'
+    }
+  }
 });
