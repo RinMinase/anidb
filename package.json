@@ -68,7 +68,6 @@
     "vite": "^5.4.8",
     "vite-plugin-eslint": "^1.8.1",
     "vite-plugin-svgr": "^4.2.0",
-    "vite-tsconfig-paths": "^5.0.1",
     "yorkie": "^2.0.0"
   },
   "resolutions": {
