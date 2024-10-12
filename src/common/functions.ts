@@ -39,7 +39,7 @@ export function randomAlphaString(length: number = 12): string {
   const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
   let result = "";
 
-  for (var i = length; i > 0; --i) {
+  for (let i = length; i > 0; --i) {
     result += chars[Math.floor(Math.random() * chars.length)];
   }
 
