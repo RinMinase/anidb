@@ -1,5 +1,4 @@
 import { Control, Controller } from "react-hook-form";
-import { v4 as uuid } from "uuid";
 
 import {
   Box,
@@ -12,6 +11,8 @@ import {
   MenuItem,
   Select,
 } from "@mui/material";
+
+import { randomAlphaString } from "@components";
 
 type Props = {
   control: Control<any>;
@@ -31,7 +32,8 @@ type Props = {
   size?: "small" | "medium";
 };
 
-const id = uuid();
+const id = randomAlphaString();
+
 const ControlledMultiSelect = (props: Props) => {
   return (
     <Controller

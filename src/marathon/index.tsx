@@ -3,7 +3,6 @@ import { route } from "preact-router";
 import axios from "axios";
 import { Chart, ChartOptions, registerables } from "chart.js";
 import ChartDataLabels from "chartjs-plugin-datalabels";
-import { v4 as uuid } from "uuid";
 import { toast } from "sonner";
 
 import {
@@ -31,6 +30,7 @@ import {
   IconButton,
   ModuleContainer,
   Quality,
+  randomAlphaString,
   RewatchIndicator,
   Swal,
   Table,
@@ -130,7 +130,7 @@ const Marathon = () => {
 
       return {
         ...item,
-        id: uuid(),
+        id: randomAlphaString(),
       };
     });
   };
