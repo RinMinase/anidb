@@ -48,7 +48,7 @@
     "yup": "^1.4.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.25.7",
+    "@babel/core": "^7.25.8",
     "@date-io/date-fns": "^3.0.0",
     "@mui/system": "^6.1.2",
     "@preact/preset-vite": "^2.9.1",
@@ -63,7 +63,7 @@
     "devmoji": "^2.3.0",
     "eslint": "8.57.0",
     "eslint-config-preact": "^1.5.0",
-    "typescript": "^5.6.2",
+    "typescript": "^5.6.3",
     "typescript-eslint": "^8.8.1",
     "vite": "^5.4.8",
     "vite-plugin-eslint": "^1.8.1",
