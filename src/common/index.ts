@@ -33,4 +33,4 @@ export {
   Progress as GlobalLoader,
 } from "./providers/GlobalLoader";
 
-export { emptyStringToNull } from "./functions";
+export { emptyStringToNull, randomAlphaString } from "./functions";
