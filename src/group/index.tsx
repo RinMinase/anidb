@@ -203,7 +203,7 @@ const Group = () => {
         </Grid>
         <Grid size={{ xs: 12, sm: 7, md: 9 }}>
           <Table.Container component={Paper}>
-            <CustomTable>
+            <CustomTable size="small">
               <Table.Head>
                 <Table.Row>
                   <Table.Cell>Name</Table.Cell>
