@@ -45,3 +45,10 @@ export function randomAlphaString(length: number = 12): string {
 
   return result;
 }
+
+export function removeBlankAttributes<T extends object>(obj: T): T {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const filteredObj = Object.entries(obj).filter(([_, val]) => val != null);
+
+  return Object.fromEntries(filteredObj) as T;
+}
