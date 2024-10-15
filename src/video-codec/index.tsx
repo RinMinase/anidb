@@ -1,6 +1,6 @@
 import { useEffect, useState } from "preact/hooks";
 import { useForm } from "react-hook-form";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { toast } from "sonner";
 
 import {
@@ -8,7 +8,6 @@ import {
   DialogContent,
   DialogTitle,
   Grid2 as Grid,
-  LinearProgress,
   Paper,
   Stack,
   styled,
@@ -22,13 +21,16 @@ import {
 } from "react-feather";
 
 import {
-  Button,
+  ButtonLoading,
   ControlledField,
   IconButton,
   ModuleContainer,
+  removeBlankAttributes,
   Swal,
   Table,
 } from "@components";
+
+import { ErrorResponse } from "@components/types";
 
 import { defaultValues, Form, resolver } from "./validation";
 import { Data, Item } from "./types";
@@ -52,21 +54,22 @@ const CustomDialog = styled(Paper)({
 });
 
 const VideoCodec = () => {
+  const [isAddButtonLoading, setAddButtonLoading] = useState(false);
+  const [isEditButtonLoading, setEditButtonLoading] = useState(false);
   const [isTableLoading, setTableLoading] = useState(true);
+  const [isDialogOpen, setDialogOpen] = useState(false);
+
   const [data, setData] = useState<Data>([]);
   const [selectedData, setSelectedData] = useState<Item>({
     id: "",
     codec: "",
   });
 
-  const [dialog, setDialog] = useState({
-    loading: false,
-    show: false,
-  });
-
   const {
     control,
     handleSubmit,
+    setError,
+    reset: resetAddForm,
     formState: { errors },
   } = useForm<Form>({ defaultValues, resolver, mode: "onChange" });
 
@@ -75,6 +78,7 @@ const VideoCodec = () => {
     setValue: editSetValue,
     trigger: editTrigger,
     handleSubmit: editHandleSubmit,
+    setError: editSetError,
     formState: { errors: editErrors },
   } = useForm<Form>({ resolver, mode: "onChange" });
 
@@ -102,35 +106,40 @@ const VideoCodec = () => {
     editSetValue("order", item.order || undefined);
     editTrigger("order");
 
-    setDialog((prev) => ({
-      ...prev,
-      show: true,
-    }));
+    setDialogOpen(true);
   };
 
   const handleEditSubmit = async (formdata: Form) => {
-    setDialog((prev) => ({
-      ...prev,
-      loading: true,
-    }));
-
-    const id = selectedData.id;
-
     try {
-      await axios.put(`/codecs/video/${id}`, formdata);
+      setEditButtonLoading(true);
+
+      const id = selectedData.id;
+      await axios.put(`/codecs/video/${id}`, removeBlankAttributes(formdata));
       toast.success("Success");
 
-      setDialog({
-        show: false,
-        loading: false,
-      });
-
+      setEditButtonLoading(false);
       setTableLoading(true);
+      setDialogOpen(false);
 
       await fetchData();
     } catch (err) {
-      console.error(err);
-      toast.error("Failed");
+      setEditButtonLoading(false);
+
+      if (err instanceof AxiosError && err.status === 401) {
+        const { data } = err.response?.data as ErrorResponse;
+
+        for (const key in data) {
+          editSetError(key as any, {
+            type: "manual",
+            message: data[key].length ? data[key][0] : "Unknown error.",
+          });
+        }
+
+        toast.error("Form validation failed");
+      } else {
+        console.error(err);
+        toast.error("Failed");
+      }
     } finally {
       setTableLoading(false);
     }
@@ -162,16 +171,35 @@ const VideoCodec = () => {
   };
 
   const handleSubmitForm = async (formdata: Form) => {
-    setTableLoading(true);
+    setAddButtonLoading(true);
 
     try {
-      await axios.post("/codecs/video", formdata);
+      await axios.post("/codecs/video", removeBlankAttributes(formdata));
       toast.success("Success");
+
+      resetAddForm();
+      setAddButtonLoading(false);
+      setTableLoading(true);
 
       await fetchData();
     } catch (err) {
-      console.error(err);
-      toast.error("Failed");
+      setAddButtonLoading(false);
+
+      if (err instanceof AxiosError && err.status === 401) {
+        const { data } = err.response?.data as ErrorResponse;
+
+        for (const key in data) {
+          setError(key as any, {
+            type: "manual",
+            message: data[key].length ? data[key][0] : "Unknown error.",
+          });
+        }
+
+        toast.error("Form validation failed");
+      } else {
+        console.error(err);
+        toast.error("Failed");
+      }
     } finally {
       setTableLoading(false);
     }
@@ -193,7 +221,7 @@ const VideoCodec = () => {
               control={control}
               error={!!errors.codec}
               helperText={errors.codec?.message}
-              disabled={isTableLoading}
+              disabled={isAddButtonLoading || isTableLoading}
             />
             <ControlledField
               name="order"
@@ -202,15 +230,16 @@ const VideoCodec = () => {
               control={control}
               error={!!errors.order}
               helperText={errors.order?.message}
-              disabled={isTableLoading}
+              disabled={isAddButtonLoading || isTableLoading}
             />
-            <Button
+            <ButtonLoading
               variant="contained"
               startIcon={<AddIcon size={20} />}
               onClick={handleSubmit(handleSubmitForm)}
+              loading={isAddButtonLoading || isTableLoading}
             >
               Add Video Codec
-            </Button>
+            </ButtonLoading>
           </Stack>
         </Grid>
         <Grid size={{ xs: 12, sm: 7, md: 9 }}>
@@ -254,14 +283,13 @@ const VideoCodec = () => {
         </Grid>
       </Grid>
 
-      <Backdrop open={dialog.show}>
+      <Backdrop open={isDialogOpen}>
         <CustomDialog>
-          {dialog.loading && <LinearProgress />}
           <DialogTitle display="flex" justifyContent="space-between">
             Edit Codec Name
             <IconButton
-              disabled={dialog.loading}
-              onClick={() => setDialog({ show: false, loading: false })}
+              disabled={isEditButtonLoading}
+              onClick={() => setDialogOpen(false)}
               children={<CloseIcon size={20} />}
             />
           </DialogTitle>
@@ -274,7 +302,7 @@ const VideoCodec = () => {
                 control={editControl}
                 error={!!editErrors.codec}
                 helperText={editErrors.codec?.message}
-                disabled={isTableLoading}
+                disabled={isEditButtonLoading}
               />
               <ControlledField
                 name="order"
@@ -283,17 +311,17 @@ const VideoCodec = () => {
                 control={editControl}
                 error={!!editErrors.order}
                 helperText={editErrors.order?.message}
-                disabled={isTableLoading}
+                disabled={isEditButtonLoading}
               />
 
-              <Button
+              <ButtonLoading
                 variant="contained"
                 onClick={editHandleSubmit(handleEditSubmit)}
-                disabled={dialog.loading}
+                loading={isEditButtonLoading}
                 fullWidth
               >
                 Save
-              </Button>
+              </ButtonLoading>
             </Stack>
           </DialogContent>
         </CustomDialog>
