@@ -1,10 +1,9 @@
 import { route } from "preact-router";
-import { useContext, useEffect } from "preact/hooks";
+import { useContext, useEffect, useState } from "preact/hooks";
 import { useForm } from "react-hook-form";
 import { format } from "date-fns";
-import axios from "axios";
-import { Button, Stack, styled } from "@mui/material";
-import { Save as SaveIcon } from "react-feather";
+import axios, { AxiosError } from "axios";
+import { Stack } from "@mui/material";
 import { toast } from "sonner";
 
 import {
@@ -13,7 +12,10 @@ import {
   GlobalLoaderContext,
   ModuleContainer,
   Swal,
+  ButtonLoading,
 } from "@components";
+
+import { ErrorResponse } from "@components/types";
 
 import { defaultValues, Form, resolver } from "./validation";
 
@@ -23,21 +25,16 @@ type Props = {
   };
 };
 
-const SaveButton = styled(Button)(({ theme }) => ({
-  maxWidth: 150,
-
-  [theme.breakpoints.down("sm")]: {
-    maxWidth: "unset",
-  },
-}));
-
 const MarathonAdd = (props: Props) => {
   const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
+
+  const [isButtonLoading, setButtonLoading] = useState(false);
 
   const {
     control,
     setValue,
     handleSubmit,
+    setError,
     formState: { errors },
   } = useForm<Form>({ defaultValues, resolver, mode: "onChange" });
 
@@ -74,15 +71,15 @@ const MarathonAdd = (props: Props) => {
   };
 
   const handleSubmitForm = async (formdata: Form) => {
-    toggleLoader(true);
-
-    const body = {
-      title: formdata.title,
-      date_from: format(formdata.dateFrom, "yyyy-MM-dd"),
-      date_to: format(formdata.dateTo, "yyyy-MM-dd"),
-    };
-
     try {
+      setButtonLoading(true);
+
+      const body = {
+        title: formdata.title,
+        date_from: format(formdata.dateFrom, "yyyy-MM-dd"),
+        date_to: format(formdata.dateTo, "yyyy-MM-dd"),
+      };
+
       if (props.matches?.id) {
         await axios.put(`/sequences/${props.matches.id}`, body);
       } else {
@@ -92,10 +89,23 @@ const MarathonAdd = (props: Props) => {
       toast.success("Success");
       route("/marathons");
     } catch (err) {
-      console.error(err);
-      toast.error("Failed");
+      if (err instanceof AxiosError && err.status === 401) {
+        const { data } = err.response?.data as ErrorResponse;
+
+        for (const key in data) {
+          setError(key as any, {
+            type: "manual",
+            message: data[key].length ? data[key][0] : "Unknown error.",
+          });
+        }
+
+        toast.error("Form validation failed");
+      } else {
+        console.error(err);
+        toast.error("Failed");
+      }
     } finally {
-      toggleLoader(false);
+      setButtonLoading(false);
     }
   };
 
@@ -116,7 +126,7 @@ const MarathonAdd = (props: Props) => {
           control={control}
           error={!!errors.title}
           helperText={errors.title?.message}
-          disabled={isLoading}
+          disabled={isButtonLoading || isLoading}
         />
 
         <ControlledDatepicker
@@ -125,7 +135,7 @@ const MarathonAdd = (props: Props) => {
           control={control}
           error={!!errors.dateFrom}
           helperText={errors.dateFrom?.message}
-          disabled={isLoading}
+          disabled={isButtonLoading || isLoading}
         />
 
         <ControlledDatepicker
@@ -134,16 +144,16 @@ const MarathonAdd = (props: Props) => {
           control={control}
           error={!!errors.dateTo}
           helperText={errors.dateTo?.message}
-          disabled={isLoading}
+          disabled={isButtonLoading || isLoading}
         />
 
-        <SaveButton
+        <ButtonLoading
           variant="contained"
-          startIcon={<SaveIcon size={20} />}
+          loading={isButtonLoading || isLoading}
           onClick={handleSubmit(handleSubmitForm)}
         >
           Save
-        </SaveButton>
+        </ButtonLoading>
       </Stack>
     </ModuleContainer>
   );
