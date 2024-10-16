@@ -1,6 +1,6 @@
 import { useEffect, useState } from "preact/hooks";
 import { useForm } from "react-hook-form";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { toast } from "sonner";
 
 import {
@@ -8,7 +8,6 @@ import {
   DialogContent,
   DialogTitle,
   Grid2 as Grid,
-  LinearProgress,
   Paper,
   Stack,
   styled,
@@ -22,13 +21,15 @@ import {
 } from "react-feather";
 
 import {
-  Button,
+  ButtonLoading,
   ControlledField,
   IconButton,
   ModuleContainer,
   Swal,
   Table,
 } from "@components";
+
+import { ErrorResponse } from "@components/types";
 
 import { defaultValues, Form, resolver } from "./validation";
 import { Data, Item } from "./types";
@@ -52,21 +53,22 @@ const CustomDialog = styled(Paper)({
 });
 
 const Group = () => {
+  const [isAddButtonLoading, setAddButtonLoading] = useState(false);
+  const [isEditButtonLoading, setEditButtonLoading] = useState(false);
   const [isTableLoading, setTableLoading] = useState(true);
+  const [isDialogOpen, setDialogOpen] = useState(false);
+
   const [data, setData] = useState<Data>([]);
   const [selectedData, setSelectedData] = useState<Item>({
     uuid: "",
     name: "",
   });
 
-  const [dialog, setDialog] = useState({
-    loading: false,
-    show: false,
-  });
-
   const {
     control,
     handleSubmit,
+    setError,
+    reset: resetAddForm,
     formState: { errors },
   } = useForm<Form>({ defaultValues, resolver, mode: "onChange" });
 
@@ -75,6 +77,7 @@ const Group = () => {
     setValue: editSetValue,
     trigger: editTrigger,
     handleSubmit: editHandleSubmit,
+    setError: editSetError,
     formState: { errors: editErrors },
   } = useForm<Form>({ resolver, mode: "onChange" });
 
@@ -98,38 +101,42 @@ const Group = () => {
     editSetValue("name", item.name);
     editTrigger("name");
 
-    setDialog((prev) => ({
-      ...prev,
-      show: true,
-    }));
+    setDialogOpen(true);
   };
 
   const handleEditSubmit = async (formdata: Form) => {
-    setDialog((prev) => ({
-      ...prev,
-      loading: true,
-    }));
-
-    const uuid = selectedData.uuid;
-
     try {
+      setEditButtonLoading(true);
+
+      const uuid = selectedData.uuid;
       await axios.put(`/groups/${uuid}`, formdata);
       toast.success("Success");
 
-      setDialog({
-        show: false,
-        loading: false,
-      });
+      setEditButtonLoading(false);
+      setTableLoading(true);
+      setDialogOpen(false);
 
       await fetchData();
     } catch (err) {
-      console.error(err);
-      toast.error("Failed");
+      setEditButtonLoading(false);
 
-      setDialog((prev) => ({
-        ...prev,
-        loading: false,
-      }));
+      if (err instanceof AxiosError && err.status === 401) {
+        const { data } = err.response?.data as ErrorResponse;
+
+        for (const key in data) {
+          editSetError(key as any, {
+            type: "manual",
+            message: data[key].length ? data[key][0] : "Unknown error.",
+          });
+        }
+
+        toast.error("Form validation failed");
+      } else {
+        console.error(err);
+        toast.error("Failed");
+      }
+    } finally {
+      setTableLoading(false);
     }
   };
 
@@ -159,16 +166,35 @@ const Group = () => {
   };
 
   const handleSubmitForm = async (formdata: Form) => {
-    setTableLoading(true);
-
     try {
+      setAddButtonLoading(true);
+
       await axios.post("/groups", formdata);
       toast.success("Success");
 
+      resetAddForm();
+      setAddButtonLoading(false);
+      setTableLoading(true);
+
       await fetchData();
     } catch (err) {
-      console.error(err);
-      toast.error("Failed");
+      setAddButtonLoading(false);
+
+      if (err instanceof AxiosError && err.status === 401) {
+        const { data } = err.response?.data as ErrorResponse;
+
+        for (const key in data) {
+          setError(key as any, {
+            type: "manual",
+            message: data[key].length ? data[key][0] : "Unknown error.",
+          });
+        }
+
+        toast.error("Form validation failed");
+      } else {
+        console.error(err);
+        toast.error("Failed");
+      }
     } finally {
       setTableLoading(false);
     }
@@ -190,15 +216,16 @@ const Group = () => {
               control={control}
               error={!!errors.name}
               helperText={errors.name?.message}
-              disabled={isTableLoading}
+              disabled={isAddButtonLoading || isTableLoading}
             />
-            <Button
+            <ButtonLoading
               variant="contained"
               startIcon={<AddIcon size={20} />}
               onClick={handleSubmit(handleSubmitForm)}
+              loading={isAddButtonLoading || isTableLoading}
             >
               Add Group
-            </Button>
+            </ButtonLoading>
           </Stack>
         </Grid>
         <Grid size={{ xs: 12, sm: 7, md: 9 }}>
@@ -240,14 +267,13 @@ const Group = () => {
         </Grid>
       </Grid>
 
-      <Backdrop open={dialog.show}>
+      <Backdrop open={isDialogOpen}>
         <CustomDialog>
-          {dialog.loading && <LinearProgress />}
           <DialogTitle display="flex" justifyContent="space-between">
             Edit Group Name
             <IconButton
-              disabled={dialog.loading}
-              onClick={() => setDialog({ show: false, loading: false })}
+              disabled={isEditButtonLoading}
+              onClick={() => setDialogOpen(false)}
               children={<CloseIcon size={20} />}
             />
           </DialogTitle>
@@ -260,17 +286,17 @@ const Group = () => {
                 control={editControl}
                 error={!!editErrors.name}
                 helperText={editErrors.name?.message}
-                disabled={isTableLoading}
+                disabled={isEditButtonLoading}
               />
 
-              <Button
+              <ButtonLoading
                 variant="contained"
                 onClick={editHandleSubmit(handleEditSubmit)}
-                disabled={dialog.loading}
+                loading={isEditButtonLoading}
                 fullWidth
               >
                 Save
-              </Button>
+              </ButtonLoading>
             </Stack>
           </DialogContent>
         </CustomDialog>
