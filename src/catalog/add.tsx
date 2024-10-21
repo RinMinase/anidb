@@ -45,6 +45,61 @@ const CatalogAdd = (props: Props) => {
     formState: { errors },
   } = useForm<Form>({ defaultValues, resolver, mode: "onChange" });
 
+  const fetchPriorities = async () => {
+    const priorityAPI = await axios.get("/priorities");
+    const rawPriorities: Priorities = priorityAPI.data.data;
+    const priorityOptions: OptionsProps = rawPriorities.map((item) => ({
+      key: item.id,
+      value: item.id,
+      label: item.priority,
+    }));
+
+    if (priorityOptions.length) {
+      setPriorities(() => priorityOptions);
+
+      const normalId = priorityOptions.findIndex((i) => i.label === "Normal");
+      if (normalId >= 0) {
+        setValue("id_priority", priorityOptions[normalId].value as number);
+      }
+    }
+  };
+
+  const fetchCatalogs = async () => {
+    const catalogsAPI = await axios.get("/catalogs");
+    const rawCatalogs: Catalogs = catalogsAPI.data.data;
+    const catalogOptions: OptionsProps = rawCatalogs.map((item) => ({
+      key: item.uuid,
+      value: item.uuid,
+      label: `${item.season} ${item.year}`,
+    }));
+
+    setCatalogs(() => catalogOptions);
+
+    if (props.matches?.id) {
+      const { id } = props.matches;
+
+      const partialsData = await axios.get(`/partials/${id}`);
+      const { title, id_catalog, id_priority } = partialsData.data.data;
+
+      setValue("title", title);
+      setValue("id_catalog", id_catalog);
+      setValue("id_priority", id_priority);
+    }
+  };
+
+  const fetchData = async () => {
+    try {
+      toggleLoader(true);
+
+      await Promise.all([fetchPriorities(), fetchCatalogs()]);
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed");
+    } finally {
+      toggleLoader(false);
+    }
+  };
+
   const handleBack = async () => {
     const result = await Swal.fire({
       title: "Are you sure?",
@@ -76,57 +131,8 @@ const CatalogAdd = (props: Props) => {
     }
   };
 
-  const handleOnLoad = async () => {
-    try {
-      toggleLoader(true);
-
-      const priorityAPI = await axios.get("/priorities");
-      const rawPriorities: Priorities = priorityAPI.data.data;
-      const priorityOptions: OptionsProps = rawPriorities.map((item) => ({
-        key: item.id,
-        value: item.id,
-        label: item.priority,
-      }));
-
-      if (priorityOptions.length) {
-        setPriorities(() => priorityOptions);
-
-        const normalId = priorityOptions.findIndex((i) => i.label === "Normal");
-        if (normalId >= 0) {
-          setValue("id_priority", priorityOptions[normalId].value as number);
-        }
-      }
-
-      const catalogsAPI = await axios.get("/catalogs");
-      const rawCatalogs: Catalogs = catalogsAPI.data.data;
-      const catalogOptions: OptionsProps = rawCatalogs.map((item) => ({
-        key: item.uuid,
-        value: item.uuid,
-        label: `${item.season} ${item.year}`,
-      }));
-
-      setCatalogs(() => catalogOptions);
-
-      if (props.matches?.id) {
-        const { id } = props.matches;
-
-        const partialsData = await axios.get(`/partials/${id}`);
-        const { title, id_catalog, id_priority } = partialsData.data.data;
-
-        setValue("title", title);
-        setValue("id_catalog", id_catalog);
-        setValue("id_priority", id_priority);
-      }
-    } catch (err) {
-      console.error(err);
-      toast.error("Failed");
-    } finally {
-      toggleLoader(false);
-    }
-  };
-
   useEffect(() => {
-    handleOnLoad();
+    fetchData();
   }, []);
 
   return (
