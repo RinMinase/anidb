@@ -61,6 +61,11 @@ const CustomTable = styled(Table.Element)({
   minWidth: 650,
 });
 
+const CustomMenuListItemText = styled(ListItemText)({
+  whiteSpace: "pre-wrap",
+  wordBreak: "break-all",
+});
+
 const Marathon = () => {
   const { toggleLoader } = useContext(GlobalLoaderContext);
 
@@ -326,7 +331,7 @@ const Marathon = () => {
                 selected={selected === item.id}
                 onClick={() => handleClickSequence(item.id)}
               >
-                <ListItemText>{item.title}</ListItemText>
+                <CustomMenuListItemText>{item.title}</CustomMenuListItemText>
                 <IconButton
                   sx={{ marginRight: 1 }}
                   size="small"
