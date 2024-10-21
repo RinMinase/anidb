@@ -110,7 +110,11 @@ const Search = () => {
       {!isLoading && (
         <Grid container spacing={2}>
           <Grid size={{ xs: 12, md: 4, lg: 3 }}>
-            <SearchForm codecs={codecs} handleSearch={handleSearch} />
+            <SearchForm
+              codecs={codecs}
+              isSearchLoading={tableLoader}
+              handleSearch={handleSearch}
+            />
           </Grid>
           <Grid size={{ xs: 12, md: 8, lg: 9 }}>
             <Table.Container

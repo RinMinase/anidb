@@ -3,7 +3,7 @@ import { useEffect, useState } from "preact/hooks";
 import { useForm } from "react-hook-form";
 
 import {
-  Button,
+  ButtonLoading,
   ControlledField,
   ControlledMultiSelect,
   ControlledSelect,
@@ -23,6 +23,7 @@ import {
 
 type Props = {
   codecs: Codecs;
+  isSearchLoading: boolean;
   handleSearch: (formData: Form) => void;
 };
 
@@ -392,13 +393,14 @@ const SearchForm = (props: Props) => {
       </Grid>
 
       <Box component={Paper} elevation={3} width="100%" height="72px" p={2}>
-        <Button
+        <ButtonLoading
           variant="contained"
           fullWidth
+          loading={props.isSearchLoading}
           onClick={handleSubmit(props.handleSearch)}
         >
           Search
-        </Button>
+        </ButtonLoading>
       </Box>
     </Box>
   );
