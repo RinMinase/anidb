@@ -26,6 +26,7 @@ import {
 
 import {
   Button,
+  ButtonLoading,
   DashboardTile,
   GlobalLoaderContext,
   IconButton,
@@ -45,6 +46,7 @@ const CustomMenuList = styled(MenuList)<{ component: any }>({
 const BucketSim = () => {
   const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
 
+  const [isOverwriteButtonLoading, setOverwriteButtonLoading] = useState(false);
   const [sims, setSims] = useState<Sims>([]);
   const [data, setData] = useState<Data>([]);
   const [selected, setSelected] = useState("");
@@ -95,12 +97,12 @@ const BucketSim = () => {
     });
 
     if (result.isConfirmed) {
-      toggleLoader(true);
+      setOverwriteButtonLoading(true);
 
       await axios.post(`/bucket-sims/save/${selected}`);
       toast.success("Success");
 
-      toggleLoader(false);
+      setOverwriteButtonLoading(false);
       route(`/buckets`);
     }
   };
@@ -264,9 +266,13 @@ const BucketSim = () => {
           <Grid size={{ xs: 12, sm: 8 }}>
             <Dashboard>
               <Box mb={2} textAlign="center">
-                <Button variant="contained" onClick={handleSaveClick}>
+                <ButtonLoading
+                  variant="contained"
+                  loading={isOverwriteButtonLoading || isLoading}
+                  onClick={handleSaveClick}
+                >
                   Overwrite current bucket setup with this
-                </Button>
+                </ButtonLoading>
               </Box>
               <Grid container spacing={4}>
                 {data.map((item, index) => {

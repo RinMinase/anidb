@@ -1,4 +1,4 @@
-import { useContext, useState } from "preact/hooks";
+import { useState } from "preact/hooks";
 import { route } from "preact-router";
 import { useFieldArray, useForm } from "react-hook-form";
 import axios from "axios";
@@ -22,7 +22,6 @@ import {
   HardDrive as DriveIcon,
   Eye as PreviewIcon,
   Trash2 as RemoveIcon,
-  Save as SaveIcon,
   Database as StorageIcon,
   ChevronUp as UpIcon,
 } from "react-feather";
@@ -30,7 +29,6 @@ import {
 import {
   ButtonLoading,
   DashboardTile,
-  GlobalLoaderContext,
   ModuleContainer,
   Swal,
   Table,
@@ -42,6 +40,7 @@ import {
   CellField2,
   CellLabel,
   ControlButtons,
+  ControlButtonsLoader,
   CustomCell,
   CustomCellButton,
   CustomIconButton,
@@ -55,8 +54,7 @@ import { Data, Item } from "./types";
 const TB = 1000169533440;
 
 const BucketSimAdd = () => {
-  const { toggleLoader } = useContext(GlobalLoaderContext);
-
+  const [isSaveLoading, setSaveLoading] = useState(false);
   const [previewData, setPreviewData] = useState<Data>([]);
   const [isPreviewLoading, setPreviewLoading] = useState(false);
 
@@ -124,9 +122,9 @@ const BucketSimAdd = () => {
   };
 
   const handleSubmitForm = async (formdata: Form) => {
-    toggleLoader(true);
-
     try {
+      setSaveLoading(true);
+
       if (formdata.buckets) {
         const buckets = formdata.buckets.map((item) => ({
           from: item.from.toLowerCase(),
@@ -148,7 +146,7 @@ const BucketSimAdd = () => {
       console.error(err);
       toast.error("Failed");
     } finally {
-      toggleLoader(false);
+      setSaveLoading(false);
     }
   };
 
@@ -183,13 +181,13 @@ const BucketSimAdd = () => {
       >
         Add
       </ControlButtons>
-      <ControlButtons
+      <ControlButtonsLoader
         variant="contained"
-        startIcon={<SaveIcon size={20} />}
+        loading={isSaveLoading}
         onClick={handleSubmit(handleSubmitForm)}
       >
         Save
-      </ControlButtons>
+      </ControlButtonsLoader>
     </>
   );
 
@@ -268,6 +266,7 @@ const BucketSimAdd = () => {
               variant="outlined"
               label="Description"
               size="small"
+              disabled={isSaveLoading}
               error={!!errors.description}
               helperText={errors.description?.message}
               {...register("description")}
@@ -277,6 +276,7 @@ const BucketSimAdd = () => {
             <ButtonLoading
               sx={{ maxHeight: 40 }}
               variant="contained"
+              disabled={isSaveLoading}
               startIcon={<PreviewIcon size={20} />}
               onClick={handleSubmit(handlePreviewForm)}
               loading={isPreviewLoading}
@@ -299,6 +299,7 @@ const BucketSimAdd = () => {
                     <CellField
                       variant="outlined"
                       size="small"
+                      disabled={isSaveLoading}
                       error={errors.buckets && !!errors.buckets[index]?.from}
                       helperText={
                         errors.buckets && errors.buckets[index]?.from?.message
@@ -314,6 +315,7 @@ const BucketSimAdd = () => {
                     <CellField
                       variant="outlined"
                       size="small"
+                      disabled={isSaveLoading}
                       error={errors.buckets && !!errors.buckets[index]?.to}
                       helperText={
                         errors.buckets && errors.buckets[index]?.to?.message
@@ -330,6 +332,7 @@ const BucketSimAdd = () => {
                       <CellField2
                         type="number"
                         size="small"
+                        disabled={isSaveLoading}
                         endAdornment={
                           <InputAdornment position="end">TB</InputAdornment>
                         }
@@ -347,6 +350,7 @@ const BucketSimAdd = () => {
                   <CustomCellButton>
                     <CustomIconButton
                       size="small"
+                      disabled={isSaveLoading}
                       onClick={() => swap(index, index - 1)}
                       children={<UpIcon size={20} />}
                     />
@@ -359,6 +363,7 @@ const BucketSimAdd = () => {
                   <CustomCellButton>
                     <CustomIconButton
                       size="small"
+                      disabled={isSaveLoading}
                       onClick={() => swap(index, index + 1)}
                       children={<DownIcon size={20} />}
                     />
@@ -371,6 +376,7 @@ const BucketSimAdd = () => {
                   <CustomIconButton
                     size="small"
                     color="error"
+                    disabled={isSaveLoading}
                     onClick={() => remove(index)}
                     children={<RemoveIcon size={20} />}
                   />

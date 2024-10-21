@@ -23,7 +23,6 @@ import {
   HardDrive as DriveIcon,
   Trash2 as RemoveIcon,
   Eye as PreviewIcon,
-  Save as SaveIcon,
   Database as StorageIcon,
   ChevronUp as UpIcon,
 } from "react-feather";
@@ -43,6 +42,7 @@ import {
   CellField2,
   CellLabel,
   ControlButtons,
+  ControlButtonsLoader,
   CustomCell,
   CustomCellButton,
   CustomIconButton,
@@ -64,6 +64,7 @@ const TB = 1000169533440;
 const BucketSimEdit = (props: Props) => {
   const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
 
+  const [isSaveLoading, setSaveLoading] = useState(false);
   const [data, setData] = useState<Data>([]);
   const [previewLoader, setPreviewLoader] = useState(false);
 
@@ -131,9 +132,9 @@ const BucketSimEdit = (props: Props) => {
   };
 
   const handleSubmitForm = async (formdata: Form) => {
-    toggleLoader(true);
-
     try {
+      setSaveLoading(true);
+
       if (formdata.buckets) {
         const buckets = formdata.buckets.map((item) => ({
           from: item.from.toLowerCase(),
@@ -155,7 +156,7 @@ const BucketSimEdit = (props: Props) => {
       console.error(err);
       toast.error("Failed");
     } finally {
-      toggleLoader(false);
+      setSaveLoading(false);
     }
   };
 
@@ -237,13 +238,13 @@ const BucketSimEdit = (props: Props) => {
           >
             Add
           </ControlButtons>
-          <ControlButtons
+          <ControlButtonsLoader
             variant="contained"
-            startIcon={<SaveIcon size={20} />}
+            loading={isSaveLoading || isLoading}
             onClick={handleSubmit(handleSubmitForm)}
           >
             Save
-          </ControlButtons>
+          </ControlButtonsLoader>
         </>
       )}
     </>
@@ -331,6 +332,7 @@ const BucketSimEdit = (props: Props) => {
                   variant="outlined"
                   label="Description"
                   size="small"
+                  disabled={isSaveLoading}
                   error={!!errors.description}
                   helperText={errors.description?.message}
                   slotProps={{
@@ -345,6 +347,7 @@ const BucketSimEdit = (props: Props) => {
                 <ButtonLoading
                   sx={{ maxHeight: 40 }}
                   variant="contained"
+                  disabled={isSaveLoading}
                   startIcon={<PreviewIcon size={20} />}
                   onClick={handleSubmit(handlePreviewForm)}
                   loading={previewLoader}
@@ -367,6 +370,7 @@ const BucketSimEdit = (props: Props) => {
                         <CellField
                           variant="outlined"
                           size="small"
+                          disabled={isSaveLoading}
                           error={
                             errors.buckets && !!errors.buckets[index]?.from
                           }
@@ -385,6 +389,7 @@ const BucketSimEdit = (props: Props) => {
                         <CellField
                           variant="outlined"
                           size="small"
+                          disabled={isSaveLoading}
                           error={errors.buckets && !!errors.buckets[index]?.to}
                           helperText={
                             errors.buckets && errors.buckets[index]?.to?.message
@@ -401,6 +406,7 @@ const BucketSimEdit = (props: Props) => {
                           <CellField2
                             type="tel"
                             size="small"
+                            disabled={isSaveLoading}
                             endAdornment={
                               <InputAdornment position="end">TB</InputAdornment>
                             }
@@ -421,6 +427,7 @@ const BucketSimEdit = (props: Props) => {
                       <CustomCellButton>
                         <CustomIconButton
                           size="small"
+                          disabled={isSaveLoading}
                           onClick={() => swap(index, index - 1)}
                           children={<UpIcon size={20} />}
                         />
@@ -433,6 +440,7 @@ const BucketSimEdit = (props: Props) => {
                       <CustomCellButton>
                         <CustomIconButton
                           size="small"
+                          disabled={isSaveLoading}
                           onClick={() => swap(index, index + 1)}
                           children={<DownIcon size={20} />}
                         />
@@ -445,6 +453,7 @@ const BucketSimEdit = (props: Props) => {
                       <CustomIconButton
                         size="small"
                         color="error"
+                        disabled={isSaveLoading}
                         onClick={() => remove(index)}
                         children={<RemoveIcon size={20} />}
                       />

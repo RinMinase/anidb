@@ -8,9 +8,18 @@ import {
   Typography,
 } from "@mui/material";
 
-import { Button } from "@components";
+import { Button, ButtonLoading } from "@components";
 
 const ControlButtons = styled(Button)(({ theme }) => ({
+  minWidth: 120,
+  marginLeft: 16,
+
+  [theme.breakpoints.down("sm")]: {
+    marginTop: 8,
+  },
+}));
+
+const ControlButtonsLoader = styled(ButtonLoading)(({ theme }) => ({
   minWidth: 120,
   marginLeft: 16,
 
@@ -94,6 +103,7 @@ const CellField2 = styled(OutlinedInput)({
 
 export {
   ControlButtons,
+  ControlButtonsLoader,
   Dashboard,
   DescriptionContainer,
   CustomIconButton,
