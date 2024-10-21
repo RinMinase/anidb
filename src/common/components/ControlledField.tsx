@@ -19,6 +19,7 @@ type Props = {
   maxLength?: number;
   outlinedInput?: boolean;
   endAdornment?: any;
+  maxHeight?: number;
 };
 
 const disableNonNumeric = (e: any) => {
@@ -63,6 +64,7 @@ const ControlledField = (props: Props) => {
               maxRows={props.maxRows}
               fullWidth={props.fullWidth}
               value={value}
+              sx={{ maxHeight: props.maxHeight }}
               onChange={(e) => {
                 if (props.numeric) disableNonNumeric(e);
                 onChange(e);
