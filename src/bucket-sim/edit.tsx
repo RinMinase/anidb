@@ -72,6 +72,7 @@ const BucketSimEdit = (props: Props) => {
     register,
     handleSubmit,
     setValue,
+    trigger,
     formState: { errors },
   } = useForm<Form>({
     resolver,
@@ -373,6 +374,7 @@ const BucketSimEdit = (props: Props) => {
                             errors.buckets &&
                             errors.buckets[index]?.from?.message
                           }
+                          onInput={() => trigger(`buckets.${index}.to`)}
                           {...register(`buckets.${index}.from`)}
                         />
                       </CellContainer>
@@ -387,6 +389,7 @@ const BucketSimEdit = (props: Props) => {
                           helperText={
                             errors.buckets && errors.buckets[index]?.to?.message
                           }
+                          onInput={() => trigger(`buckets.${index}.from`)}
                           {...register(`buckets.${index}.to`)}
                         />
                       </CellContainer>

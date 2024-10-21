@@ -64,6 +64,7 @@ const BucketSimAdd = () => {
     control,
     register,
     handleSubmit,
+    trigger,
     formState: { errors },
   } = useForm<Form>({
     resolver,
@@ -302,6 +303,7 @@ const BucketSimAdd = () => {
                       helperText={
                         errors.buckets && errors.buckets[index]?.from?.message
                       }
+                      onInput={() => trigger(`buckets.${index}.to`)}
                       {...register(`buckets.${index}.from`)}
                     />
                   </CellContainer>
@@ -316,6 +318,7 @@ const BucketSimAdd = () => {
                       helperText={
                         errors.buckets && errors.buckets[index]?.to?.message
                       }
+                      onInput={() => trigger(`buckets.${index}.from`)}
                       {...register(`buckets.${index}.to`)}
                     />
                   </CellContainer>
