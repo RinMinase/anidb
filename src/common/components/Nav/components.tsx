@@ -22,7 +22,7 @@ export const MenuItemList = (props: { onClick: () => void }) => (
   <>
     <MenuItem component={"a" as any} href="/search" onClick={props.onClick}>
       <ListItemIcon children={<SearchIcon size={18} />} />
-      Advanced Seearch
+      Advanced Search
     </MenuItem>
     <MenuItem component={"a" as any} href="/last-watch" onClick={props.onClick}>
       <ListItemIcon children={<LastWatchIcon size={18} />} />
