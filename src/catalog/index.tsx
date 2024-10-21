@@ -212,7 +212,7 @@ const Catalog = () => {
                 <Table.Row>
                   <Table.Cell>Title</Table.Cell>
                   <Table.Cell>Priority</Table.Cell>
-                  <Table.Cell />
+                  <Table.Cell sx={{ minWidth: 100 }} />
                 </Table.Row>
               </Table.Head>
 

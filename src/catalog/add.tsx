@@ -1,12 +1,12 @@
 import { route } from "preact-router";
 import { useContext, useEffect, useState } from "preact/hooks";
 import { useForm } from "react-hook-form";
-import axios from "axios";
-import { Save as SaveIcon } from "react-feather";
-import { Button, Stack, styled } from "@mui/material";
+import axios, { AxiosError } from "axios";
+import { Stack } from "@mui/material";
 import { toast } from "sonner";
 
 import {
+  ButtonLoading,
   ControlledField,
   ControlledSelect,
   GlobalLoaderContext,
@@ -17,6 +17,7 @@ import {
 
 import { defaultValues, Form, resolver } from "./validation";
 import { Catalogs, Priorities } from "./types";
+import { ErrorResponse } from "@components/types";
 
 type Props = {
   matches?: {
@@ -24,17 +25,10 @@ type Props = {
   };
 };
 
-const SaveButton = styled(Button)(({ theme }) => ({
-  maxWidth: 150,
-
-  [theme.breakpoints.down("sm")]: {
-    maxWidth: "unset",
-  },
-}));
-
 const CatalogAdd = (props: Props) => {
   const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
 
+  const [isSubmitLoading, setSubmitLoading] = useState(false);
   const [catalogs, setCatalogs] = useState<OptionsProps>([]);
   const [priorities, setPriorities] = useState<OptionsProps>([]);
 
@@ -42,6 +36,7 @@ const CatalogAdd = (props: Props) => {
     control,
     setValue,
     handleSubmit,
+    setError,
     formState: { errors },
   } = useForm<Form>({ defaultValues, resolver, mode: "onChange" });
 
@@ -112,9 +107,9 @@ const CatalogAdd = (props: Props) => {
   };
 
   const handleSubmitForm = async (formdata: Form) => {
-    toggleLoader(true);
-
     try {
+      setSubmitLoading(true);
+
       if (props.matches?.id) {
         await axios.put(`/partials/${props.matches.id}`, formdata);
       } else {
@@ -124,10 +119,23 @@ const CatalogAdd = (props: Props) => {
       toast.success("Success");
       route("/catalogs");
     } catch (err) {
-      console.error(err);
-      toast.error("Failed");
+      if (err instanceof AxiosError && err.status === 401) {
+        const { data } = err.response?.data as ErrorResponse;
+
+        for (const key in data) {
+          setError(key as any, {
+            type: "manual",
+            message: data[key].length ? data[key][0] : "Unknown error.",
+          });
+        }
+
+        toast.error("Form validation failed");
+      } else {
+        console.error(err);
+        toast.error("Failed");
+      }
     } finally {
-      toggleLoader(false);
+      setSubmitLoading(false);
     }
   };
 
@@ -173,13 +181,13 @@ const CatalogAdd = (props: Props) => {
           disabled={isLoading}
         />
 
-        <SaveButton
+        <ButtonLoading
           variant="contained"
-          startIcon={<SaveIcon size={20} />}
+          loading={isSubmitLoading || isLoading}
           onClick={handleSubmit(handleSubmitForm)}
         >
           Save
-        </SaveButton>
+        </ButtonLoading>
       </Stack>
     </ModuleContainer>
   );

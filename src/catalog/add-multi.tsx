@@ -1,11 +1,11 @@
 import { route } from "preact-router";
-import { useContext, useEffect } from "preact/hooks";
+import { useContext, useEffect, useState } from "preact/hooks";
 import { useForm } from "react-hook-form";
-import axios from "axios";
-import { Save as SaveIcon } from "react-feather";
+import axios, { AxiosError } from "axios";
 import { toast } from "sonner";
 
 import {
+  Box,
   Button,
   Grid2 as Grid,
   styled,
@@ -14,6 +14,7 @@ import {
 } from "@mui/material";
 
 import {
+  ButtonLoading,
   ControlledField,
   ControlledSelect,
   GlobalLoaderContext,
@@ -24,21 +25,13 @@ import {
 import { queryParamsArrayToString } from "@components/functions";
 import { defaultValues, Form, resolver } from "./validation-multi";
 import { Data, Stats } from "./types";
+import { ErrorResponse } from "@components/types";
 
 type Props = {
   matches?: {
     id: string;
   };
 };
-
-const SaveButton = styled(Button)(({ theme }) => ({
-  marginTop: 18,
-  maxWidth: 250,
-
-  [theme.breakpoints.down("sm")]: {
-    maxWidth: "unset",
-  },
-}));
 
 const currYear = new Date().getFullYear();
 const years = Array.from({ length: 25 }, (_, i) => ({
@@ -50,6 +43,8 @@ const years = Array.from({ length: 25 }, (_, i) => ({
 const CatalogMulti = (props: Props) => {
   const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
 
+  const [isSubmitLoading, setSubmitLoading] = useState(false);
+
   const theme = useTheme();
   const nonMobile = useMediaQuery(theme.breakpoints.up("md"));
 
@@ -57,6 +52,7 @@ const CatalogMulti = (props: Props) => {
     control,
     setValue,
     handleSubmit,
+    setError,
     formState: { errors },
   } = useForm<Form>({ defaultValues, resolver, mode: "onChange" });
 
@@ -72,8 +68,9 @@ const CatalogMulti = (props: Props) => {
   };
 
   const handleSubmitForm = async (formdata: Form) => {
-    toggleLoader(true);
     try {
+      setSubmitLoading(true);
+
       const parsed_low = formdata.low.split("\n");
       const parsed_normal = formdata.normal.split("\n");
       const parsed_high = formdata.high.split("\n");
@@ -81,10 +78,8 @@ const CatalogMulti = (props: Props) => {
       const low = queryParamsArrayToString(parsed_low, "low");
       const normal = queryParamsArrayToString(parsed_normal, "normal");
       const high = queryParamsArrayToString(parsed_high, "high");
-
-      const body = encodeURI(
-        `${low}${normal ? `&${normal}` : ""}${high ? `&${high}` : ""}`,
-      );
+      const values = [low, normal, high].filter((n) => n).join("&");
+      const body = encodeURI(values);
 
       let response;
       const formBody = new FormData();
@@ -113,10 +108,23 @@ const CatalogMulti = (props: Props) => {
 
       route("/catalogs");
     } catch (err) {
-      console.error(err);
-      toast.error("Failed");
+      if (err instanceof AxiosError && err.status === 401) {
+        const { data } = err.response?.data as ErrorResponse;
+
+        for (const key in data) {
+          setError(key as any, {
+            type: "manual",
+            message: data[key].length ? data[key][0] : "Unknown error.",
+          });
+        }
+
+        toast.error("Form validation failed");
+      } else {
+        console.error(err);
+        toast.error("Failed");
+      }
     } finally {
-      toggleLoader(false);
+      setSubmitLoading(false);
     }
   };
 
@@ -197,7 +205,7 @@ const CatalogMulti = (props: Props) => {
           />
         </Grid>
       </Grid>
-      <Grid container spacing={2}>
+      <Grid container spacing={2} sx={{ pb: 7 }}>
         <Grid size={{ xs: 12, md: 4 }}>
           <ControlledField
             name="low"
@@ -207,6 +215,8 @@ const CatalogMulti = (props: Props) => {
             helperText={errors.low?.message}
             disabled={isLoading}
             minRows={nonMobile ? 15 : 8}
+            maxRows={nonMobile ? 15 : 8}
+            maxHeight={370}
             multiline
             fullWidth
           />
@@ -220,6 +230,8 @@ const CatalogMulti = (props: Props) => {
             helperText={errors.normal?.message}
             disabled={isLoading}
             minRows={nonMobile ? 15 : 8}
+            maxRows={nonMobile ? 15 : 8}
+            maxHeight={370}
             multiline
             fullWidth
           />
@@ -233,20 +245,24 @@ const CatalogMulti = (props: Props) => {
             helperText={errors.high?.message}
             disabled={isLoading}
             minRows={nonMobile ? 15 : 8}
+            maxRows={nonMobile ? 15 : 8}
+            maxHeight={370}
             multiline
             fullWidth
           />
         </Grid>
       </Grid>
 
-      <SaveButton
-        variant="contained"
-        startIcon={<SaveIcon size={20} />}
-        onClick={handleSubmit(handleSubmitForm)}
-        fullWidth
-      >
-        Save
-      </SaveButton>
+      <Box sx={{ textAlign: "right" }}>
+        <ButtonLoading
+          variant="contained"
+          loading={isSubmitLoading || isLoading}
+          onClick={handleSubmit(handleSubmitForm)}
+          sx={{ minWidth: { xs: "100%", md: 250 } }}
+        >
+          Save
+        </ButtonLoading>
+      </Box>
     </ModuleContainer>
   );
 };
