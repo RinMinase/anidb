@@ -74,17 +74,6 @@ const CatalogAdd = (props: Props) => {
     }));
 
     setCatalogs(() => catalogOptions);
-
-    if (props.matches?.id) {
-      const { id } = props.matches;
-
-      const partialsData = await axios.get(`/partials/${id}`);
-      const { title, id_catalog, id_priority } = partialsData.data.data;
-
-      setValue("title", title);
-      setValue("id_catalog", id_catalog);
-      setValue("id_priority", id_priority);
-    }
   };
 
   const fetchData = async () => {
@@ -92,6 +81,17 @@ const CatalogAdd = (props: Props) => {
       toggleLoader(true);
 
       await Promise.all([fetchPriorities(), fetchCatalogs()]);
+
+      if (props.matches?.id) {
+        const { id } = props.matches;
+
+        const partialsData = await axios.get(`/partials/${id}`);
+        const { title, idCatalog, idPriority } = partialsData.data.data;
+
+        setValue("title", title);
+        setValue("id_catalog", idCatalog);
+        setValue("id_priority", idPriority);
+      }
     } catch (err) {
       console.error(err);
       toast.error("Failed");
