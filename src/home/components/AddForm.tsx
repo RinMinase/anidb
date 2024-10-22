@@ -380,7 +380,7 @@ const AddForm = (props: Props) => {
           fullWidth
         />
       </Grid>
-      <Grid size={{ xs: 6, sm: 3 }}>
+      <Grid size={{ xs: 6, sm: 4, md: 3 }}>
         <ControlledField
           name="filesize"
           label="Filesize"
@@ -408,7 +408,7 @@ const AddForm = (props: Props) => {
           numeric
         />
       </Grid>
-      <Grid size={{ xs: 8, sm: 7, md: 4 }}>
+      <Grid size={{ xs: 8, sm: 6, md: 4 }}>
         <ControlledField
           name="season_first_title_id"
           label="First Season Title"
@@ -446,7 +446,7 @@ const AddForm = (props: Props) => {
         />
       </Grid>
 
-      <Grid size={{ xs: 12, sm: 6, md: 4 }}>
+      <Grid size={{ xs: 12, sm: 6, md: 5, lg: 4 }}>
         <DurationContainer>
           {/* @ts-expect-error Seems to error on typescript as of now (react-hook-form@7.52.1) */}
           <DurationLabel>Duration</DurationLabel>
@@ -505,7 +505,7 @@ const AddForm = (props: Props) => {
           )}
         </DurationContainer>
       </Grid>
-      <Grid size={{ xs: 12, sm: 6, md: 4 }}>
+      <Grid size={{ xs: 12, sm: 6, md: 3, lg: 4 }}>
         <ControlledField
           name="variants"
           label="Variants"
