@@ -3,6 +3,13 @@ const MB = 1024 * KB;
 const GB = 1024 * MB;
 const TB = 1024 * GB;
 
+export const FILESIZES = {
+  KB,
+  MB,
+  GB,
+  TB,
+};
+
 export function emptyStringToNull(value: any, originalValue: any) {
   if (typeof originalValue === "string" && originalValue === "") {
     return null;

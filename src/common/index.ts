@@ -34,6 +34,7 @@ export {
 } from "./providers/GlobalLoader";
 
 export {
+  FILESIZES,
   emptyStringToNull,
   parseNumberFilesizeToString,
   randomAlphaString,
