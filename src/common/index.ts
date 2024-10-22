@@ -35,6 +35,7 @@ export {
 
 export {
   emptyStringToNull,
+  parseNumberFilesizeToString,
   randomAlphaString,
   removeBlankAttributes,
 } from "./functions";

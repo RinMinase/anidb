@@ -1,3 +1,8 @@
+const KB = 1024;
+const MB = 1024 * KB;
+const GB = 1024 * MB;
+const TB = 1024 * GB;
+
 export function emptyStringToNull(value: any, originalValue: any) {
   if (typeof originalValue === "string" && originalValue === "") {
     return null;
@@ -51,4 +56,26 @@ export function removeBlankAttributes<T extends object>(obj: T): T {
   const filteredObj = Object.entries(obj).filter(([_, val]) => val != null);
 
   return Object.fromEntries(filteredObj) as T;
+}
+
+function roundToTwo(num: any) {
+  return +(Math.round((num + "e+2") as any) + "e-2");
+}
+
+export function parseNumberFilesizeToString(rawFilesize: number): string {
+  if (rawFilesize <= 0 || !rawFilesize || isNaN(rawFilesize)) {
+    return "";
+  }
+
+  if (rawFilesize < KB) {
+    return `${rawFilesize} B`;
+  } else if (rawFilesize < MB) {
+    return `${roundToTwo(rawFilesize / KB)} KB`;
+  } else if (rawFilesize < GB) {
+    return `${roundToTwo(rawFilesize / MB)} MB`;
+  } else if (rawFilesize < TB) {
+    return `${roundToTwo(rawFilesize / GB)} GB`;
+  } else {
+    return `${roundToTwo(rawFilesize / TB)} TB`;
+  }
 }
