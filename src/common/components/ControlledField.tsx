@@ -1,5 +1,4 @@
 import { Control, Controller } from "react-hook-form";
-
 import { OutlinedInput, TextField } from "@mui/material";
 
 type Props = {
@@ -68,6 +67,11 @@ const ControlledField = (props: Props) => {
               onChange={(e) => {
                 if (props.numeric) disableNonNumeric(e);
                 onChange(e);
+              }}
+              slotProps={{
+                input: {
+                  endAdornment: props.endAdornment,
+                },
               }}
             />
           );
