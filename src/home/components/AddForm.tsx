@@ -35,6 +35,7 @@ import {
   ControlledSwitch,
   GlobalLoaderContext,
   OptionsKeyedProps,
+  parseNumberFilesizeToString,
   Swal,
 } from "@components";
 
@@ -48,6 +49,7 @@ type Props = {
   errors: FieldErrorsImpl<Form>;
   setDropdownLoading: Dispatch<StateUpdater<boolean>>;
   entryId?: string;
+  watchFilesize?: number;
 };
 
 const seasons = ["Winter", "Spring", "Summer", "Fall"];
@@ -123,6 +125,7 @@ const AddForm = (props: Props) => {
   const [titleLoading, setTitleLoading] = useState(false);
   const [titleSearch, setTitleSearch] = useState<Array<string>>([]);
   const [titleObjects, setTitleObjects] = useState<TitleObjects>([]);
+  const [filesizeAdornment, setFilesizeAdornment] = useState<string>();
 
   const fetchQualities = async () => {
     const {
@@ -195,7 +198,10 @@ const AddForm = (props: Props) => {
       console.error(err);
       toast.error("Failed");
     } finally {
-      toggleLoader(false);
+      if (!props.entryId) {
+        toggleLoader(false);
+      }
+
       props.setDropdownLoading(false);
     }
   };
@@ -285,6 +291,10 @@ const AddForm = (props: Props) => {
       setACLoading((prev) => ({ ...prev, sequel: false }));
     }
   };
+
+  useEffect(() => {
+    setFilesizeAdornment(parseNumberFilesizeToString(props.watchFilesize ?? 0));
+  }, [props.watchFilesize]);
 
   useEffect(() => {
     fetchData();
@@ -377,6 +387,9 @@ const AddForm = (props: Props) => {
           control={control}
           error={!!errors.filesize}
           helperText={errors.filesize?.message}
+          endAdornment={
+            <InputAdornment position="end">{filesizeAdornment}</InputAdornment>
+          }
           disabled={isLoading}
           fullWidth
           numeric

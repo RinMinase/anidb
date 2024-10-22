@@ -49,6 +49,7 @@ const HomeAdd = (props: Props) => {
     getValues,
     setValue,
     reset,
+    watch,
     formState: { errors },
   } = useForm<Form>({
     resolver,
@@ -56,7 +57,11 @@ const HomeAdd = (props: Props) => {
     mode: "onChange",
   });
 
+  const watchFilesize = watch("filesize");
+
   const fetchEntryData = async () => {
+    toggleLoader(true);
+
     try {
       if (props.matches?.id) {
         toggleLoader(true);
@@ -253,6 +258,7 @@ const HomeAdd = (props: Props) => {
         setValue={setValue}
         errors={errors}
         setDropdownLoading={setDropdownLoading}
+        watchFilesize={watchFilesize}
       />
 
       <AutofillHelper setAutofillValues={setAutofillValues} />
