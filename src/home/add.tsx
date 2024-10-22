@@ -108,7 +108,7 @@ const HomeAdd = (props: Props) => {
         reset({
           id_quality,
           title,
-          date_finished: dateInitFinishedRaw,
+          date_finished: new Date(dateInitFinishedRaw),
           filesize: filesizeRaw,
 
           episodes,
