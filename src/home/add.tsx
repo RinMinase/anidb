@@ -5,17 +5,18 @@ import axios from "axios";
 import { format } from "date-fns";
 import { isEmpty } from "lodash-es";
 import { styled } from "@mui/material";
-import { ArrowLeft as BackIcon, Save as SaveIcon } from "react-feather";
+import { ArrowLeft as BackIcon } from "react-feather";
 import { toast } from "sonner";
 
 import {
   Button,
+  ButtonLoading,
   GlobalLoaderContext,
   ModuleContainer,
   Swal,
 } from "@components";
-import { defaultValues, Form, resolver } from "./validation";
 
+import { defaultValues, Form, resolver } from "./validation";
 import AddForm from "./components/AddForm";
 import AutofillHelper from "./components/AutofillHelper";
 import { AutofillProps } from "./types";
@@ -35,11 +36,21 @@ const ControlButtons = styled(Button)(({ theme }) => ({
   },
 }));
 
+const ControlButtonsLoading = styled(ButtonLoading)(({ theme }) => ({
+  minWidth: 120,
+  marginLeft: 16,
+
+  [theme.breakpoints.down("sm")]: {
+    marginTop: 8,
+  },
+}));
+
 const HomeAdd = (props: Props) => {
-  const { toggleLoader } = useContext(GlobalLoaderContext);
+  const { toggleLoader, isLoading } = useContext(GlobalLoaderContext);
 
   const [isDropdownLoading, setDropdownLoading] = useState(false);
   const [hasEntryId, setHasEntryId] = useState(false);
+  const [isSaveLoading, setSaveLoading] = useState(false);
 
   const [autofillValues, setAutofillValues] = useState<AutofillProps>({});
 
@@ -70,7 +81,7 @@ const HomeAdd = (props: Props) => {
         const partialsData = await axios.get(`/entries/${id}`);
 
         const {
-          id_quality,
+          idQuality,
           title,
           dateInitFinishedRaw,
           filesizeRaw,
@@ -87,8 +98,8 @@ const HomeAdd = (props: Props) => {
           encoderVideo,
           encoderAudio,
           encoderSubs,
-          id_codec_video,
-          id_codec_audio,
+          idCodecVideo,
+          idCodecAudio,
           codecHDR,
           prequelTitle,
           sequelTitle,
@@ -106,7 +117,7 @@ const HomeAdd = (props: Props) => {
         }
 
         reset({
-          id_quality,
+          id_quality: idQuality,
           title,
           date_finished: new Date(dateInitFinishedRaw),
           filesize: filesizeRaw,
@@ -131,8 +142,8 @@ const HomeAdd = (props: Props) => {
           prequel_title: prequelTitle || null,
           sequel_title: sequelTitle || null,
 
-          id_codec_video: id_codec_video || "",
-          id_codec_audio: id_codec_audio || "",
+          id_codec_video: idCodecVideo || "",
+          id_codec_audio: idCodecAudio || "",
           codec_hdr: !!codecHDR,
 
           duration_hrs: hrs,
@@ -160,9 +171,9 @@ const HomeAdd = (props: Props) => {
   };
 
   const handleSubmitForm = async (formdata: Form) => {
-    toggleLoader(true);
-
     try {
+      setSaveLoading(true);
+
       const { duration_hrs, duration_mins, duration_secs, ...rest } = formdata;
 
       let duration = 0;
@@ -193,8 +204,6 @@ const HomeAdd = (props: Props) => {
     } catch (err) {
       console.error(err);
       toast.error("Failed");
-    } finally {
-      toggleLoader(false);
     }
   };
 
@@ -209,13 +218,13 @@ const HomeAdd = (props: Props) => {
       >
         Back
       </ControlButtons>
-      <ControlButtons
+      <ControlButtonsLoading
         variant="contained"
-        startIcon={<SaveIcon size={20} />}
+        loading={isSaveLoading || isLoading}
         onClick={handleSubmit(handleSubmitForm)}
       >
         Save
-      </ControlButtons>
+      </ControlButtonsLoading>
     </>
   );
 
