@@ -3,7 +3,7 @@ import { format } from "date-fns";
 import { Resolver } from "react-hook-form";
 import { bool, date, number, object, string } from "yup";
 
-import { emptyStringToNull } from "@components";
+import { emptyStringToNull, FILESIZES } from "@components";
 
 export type Form = {
   id_quality: string;
@@ -71,12 +71,23 @@ const dateOnly = new Date(
   dateTime.valueOf() + dateTime.getTimezoneOffset() * 60 * 1000,
 );
 const now = format(dateOnly, "yyyy-MM-dd");
+const minDate = "1990-01-01";
 
 const schema = object().shape({
   id_quality: number().typeError("Required").required("Required"),
   title: string().required("Required"),
-  date_finished: date().max(now),
-  filesize: number().transform(emptyStringToNull).nullable(),
+
+  date_finished: date()
+    .typeError("Invalid date")
+    .min(minDate, "Invalid date")
+    .max(now, "Date should not be in the future")
+    .nullable(),
+
+  filesize: number()
+    .transform(emptyStringToNull)
+    .positive("Filesize should be a positive number")
+    .max(FILESIZES.TB, "Filesize should be lesser than 1 TB")
+    .nullable(),
 
   episodes: number().transform(emptyStringToNull).nullable(),
   ovas: number().transform(emptyStringToNull).nullable(),
