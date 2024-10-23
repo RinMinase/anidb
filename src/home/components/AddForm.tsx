@@ -41,6 +41,7 @@ import {
 
 import { Form } from "../validation";
 import { MalTitle, TitleObject, TitleObjects } from "../types";
+import AddFormAutocomplete from "./AddFormAutocomplete";
 
 type Props = {
   control: Control<Form>;
@@ -76,7 +77,6 @@ const searchAPI = (id?: string, needle?: string) =>
 
 const titleSearchAPI = (title?: string) => axios.get(`/mal/${title}`);
 
-const searchAPIDebounced = DebouncePromise(searchAPI, 250);
 const titleSearchAPIDebounced = DebouncePromise(titleSearchAPI, 250);
 
 const DurationContainer = styled(FormGroup)(({ theme }) => ({
@@ -120,16 +120,7 @@ const AddForm = (props: Props) => {
 
   const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
 
-  const [prequels, setPrequels] = useState<AutocompleteOptions>([]);
-  const [sequels, setSequels] = useState<AutocompleteOptions>([]);
-  const [titlesFirstSeason, setTitlesFirstSeason] =
-    useState<AutocompleteOptions>([]);
-
-  const [acLoading, setACLoading] = useState({
-    prequel: false,
-    sequel: false,
-    firstTitle: false,
-  });
+  const [initACOptions, setInitACOptions] = useState<AutocompleteOptions>([]);
 
   const [titleLoading, setTitleLoading] = useState(false);
   const [titleSearch, setTitleSearch] = useState<Array<string>>([]);
@@ -193,9 +184,7 @@ const AddForm = (props: Props) => {
       label: data.title,
     }));
 
-    setPrequels(structuredClone(values));
-    setSequels(structuredClone(values));
-    setTitlesFirstSeason(structuredClone(values));
+    setInitACOptions(structuredClone(values));
   };
 
   const fetchData = async () => {
@@ -282,68 +271,6 @@ const AddForm = (props: Props) => {
       }
     } finally {
       toggleLoader(false);
-    }
-  };
-
-  const handleChange = async (
-    e: any,
-    type: "prequel" | "sequel" | "firstTitle",
-  ) => {
-    const element = e.target as HTMLInputElement;
-    const val = element.value;
-
-    if (type === "prequel") setPrequels([]);
-    if (type === "sequel") setSequels([]);
-    if (type === "firstTitle") setTitlesFirstSeason([]);
-
-    if (type === "prequel") setACLoading((p) => ({ ...p, prequel: true }));
-    if (type === "sequel") setACLoading((p) => ({ ...p, sequel: true }));
-    if (type === "firstTitle")
-      setACLoading((p) => ({ ...p, firstTitle: true }));
-
-    const {
-      data: { data },
-    } = await searchAPIDebounced(props.entryId, val);
-
-    const values = data.map((data: TitleObject) => ({
-      id: data.id,
-      label: data.title,
-    }));
-
-    if (type === "prequel") {
-      setPrequels(structuredClone(values));
-      setACLoading((prev) => ({ ...prev, prequel: false }));
-    }
-
-    if (type === "sequel") {
-      setSequels(structuredClone(values));
-      setACLoading((prev) => ({ ...prev, sequel: false }));
-    }
-
-    if (type === "firstTitle") {
-      setTitlesFirstSeason(values);
-      setACLoading((prev) => ({ ...prev, firstTitle: false }));
-    }
-  };
-
-  const handleChangeInput = (
-    e: any,
-    data: any,
-    type: "prequel" | "sequel" | "firstTitle",
-  ) => {
-    if (type === "prequel") {
-      const item = prequels.find((i) => i.label === data);
-      props.setValue("prequel_id", item?.id || undefined);
-    }
-
-    if (type === "sequel") {
-      const item = sequels.find((i) => i.label === data);
-      props.setValue("sequel_id", item?.id || undefined);
-    }
-
-    if (type === "firstTitle") {
-      const item = titlesFirstSeason.find((i) => i.label === data);
-      props.setValue("season_first_title_id", item?.id || undefined);
     }
   };
 
@@ -464,20 +391,17 @@ const AddForm = (props: Props) => {
         />
       </Grid>
       <Grid size={{ xs: 8, sm: 6, md: 4 }}>
-        <ControlledAutocomplete
+        <AddFormAutocomplete
+          entryId={props.entryId}
           name="season_first_title"
+          actualIdFieldName="season_first_title_id"
           label="First Season Title"
-          options={titlesFirstSeason}
           control={control}
+          setValue={props.setValue}
           error={!!errors.season_first_title}
           helperText={errors.season_first_title?.message}
           disabled={isLoading}
-          loadingContents={acLoading.firstTitle}
-          onChange={(e: any) => handleChange(e, "firstTitle")}
-          extraOnInputChange={(e, data) =>
-            handleChangeInput(e, data, "firstTitle")
-          }
-          fullWidth
+          initialOptions={initACOptions}
         />
       </Grid>
       <Grid size={{ xs: 6, sm: 3 }}>
@@ -590,35 +514,31 @@ const AddForm = (props: Props) => {
       </Grid>
 
       <Grid size={{ xs: 12, sm: 6 }}>
-        <ControlledAutocomplete
+        <AddFormAutocomplete
+          entryId={props.entryId}
           name="prequel"
+          actualIdFieldName="prequel_id"
           label="Prequel"
-          options={prequels}
           control={control}
+          setValue={props.setValue}
           error={!!errors.prequel}
           helperText={errors.prequel?.message}
           disabled={isLoading}
-          loadingContents={acLoading.prequel}
-          onChange={(e: any) => handleChange(e, "prequel")}
-          extraOnInputChange={(e, data) =>
-            handleChangeInput(e, data, "prequel")
-          }
-          fullWidth
+          initialOptions={initACOptions}
         />
       </Grid>
       <Grid size={{ xs: 12, sm: 6 }}>
-        <ControlledAutocomplete
+        <AddFormAutocomplete
+          entryId={props.entryId}
           name="sequel"
+          actualIdFieldName="sequel_id"
           label="Sequel"
-          options={sequels}
           control={control}
+          setValue={props.setValue}
           error={!!errors.sequel}
           helperText={errors.sequel?.message}
           disabled={isLoading}
-          loadingContents={acLoading.sequel}
-          onChange={(e: any) => handleChange(e, "sequel")}
-          extraOnInputChange={(e, data) => handleChangeInput(e, data, "sequel")}
-          fullWidth
+          initialOptions={initACOptions}
         />
       </Grid>
 
