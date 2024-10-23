@@ -32,7 +32,10 @@ export type FullData = {
   ovas?: number;
   specials?: number;
   seasonNumber?: number;
-  seasonFirstTitle?: string;
+  seasonFirstTitle?: {
+    id: string;
+    title: string;
+  };
 
   prequel?: {
     id: string;

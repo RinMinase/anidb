@@ -500,9 +500,10 @@ const HomeView = (props: Props) => {
                         Duration: {data.duration}
                       </Typography>
                     )}
-                    {data.seasonFirstTitle && (
+                    {data.seasonFirstTitle?.title && (
                       <Typography variant="body1">
-                        Season #{data.seasonNumber} of {data.seasonFirstTitle}
+                        Season #{data.seasonNumber} of{" "}
+                        {data.seasonFirstTitle.title}
                       </Typography>
                     )}
                   </Stack>
