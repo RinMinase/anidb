@@ -2,6 +2,7 @@ import axios from "axios";
 import DebouncePromise from "awesome-debounce-promise";
 import { isEmpty } from "lodash-es";
 import { toast } from "sonner";
+import { Grid2 as Grid, InputAdornment } from "@mui/material";
 
 import {
   Dispatch,
@@ -19,15 +20,6 @@ import {
 } from "react-hook-form";
 
 import {
-  FormGroup,
-  FormHelperText,
-  Grid2 as Grid,
-  InputAdornment,
-  Stack,
-  styled,
-} from "@mui/material";
-
-import {
   ControlledAutocomplete,
   ControlledDatepicker,
   ControlledField,
@@ -42,6 +34,7 @@ import {
 import { Form } from "../validation";
 import { MalTitle, TitleObject, TitleObjects } from "../types";
 import AddFormAutocomplete from "./AddFormAutocomplete";
+import AddFormDuration from "./AddFormDuration";
 
 type Props = {
   control: Control<Form>;
@@ -78,37 +71,6 @@ const searchAPI = (id?: string, needle?: string) =>
 const titleSearchAPI = (title?: string) => axios.get(`/mal/${title}`);
 
 const titleSearchAPIDebounced = DebouncePromise(titleSearchAPI, 250);
-
-const DurationContainer = styled(FormGroup)(({ theme }) => ({
-  position: "relative",
-  border: "1px solid",
-  borderColor: theme.palette.action.disabled,
-  paddingTop: 15,
-  paddingLeft: 4,
-  paddingRight: 4,
-  paddingBottom: 4,
-  borderRadius: 6,
-
-  "& .MuiOutlinedInput-input": {
-    paddingTop: 6,
-    paddingBottom: 6,
-  },
-
-  "& .MuiOutlinedInput-notchedOutline legend": {
-    display: "none",
-  },
-}));
-
-const DurationLabel = styled("span")(({ theme }) => ({
-  position: "absolute",
-  top: 0,
-  left: 0,
-  transform: `translate(6px, -13px) scale(0.75)`,
-  /* @ts-expect-error Seems to error on typescript as of now (react-hook-form@7.52.1) */
-  backgroundColor: theme.palette.background.default,
-  paddingLeft: 4,
-  paddingRight: 8,
-}));
 
 const AddForm = (props: Props) => {
   const { control, errors } = props;
@@ -432,63 +394,11 @@ const AddForm = (props: Props) => {
       </Grid>
 
       <Grid size={{ xs: 12, sm: 6, md: 5, lg: 4 }}>
-        <DurationContainer>
-          {/* @ts-expect-error Seems to error on typescript as of now (react-hook-form@7.52.1) */}
-          <DurationLabel>Duration</DurationLabel>
-          <Stack spacing={2} direction="row">
-            <ControlledField
-              name="duration_hrs"
-              size="small"
-              control={control}
-              error={!!errors.duration_hrs}
-              disabled={isLoading}
-              maxLength={3}
-              endAdornment={<InputAdornment position="end" children="hrs" />}
-              outlinedInput
-              fullWidth
-              numeric
-            />
-            <ControlledField
-              name="duration_mins"
-              size="small"
-              control={control}
-              error={!!errors.duration_mins}
-              disabled={isLoading}
-              maxLength={2}
-              endAdornment={<InputAdornment position="end" children="mins" />}
-              outlinedInput
-              fullWidth
-              numeric
-            />
-            <ControlledField
-              name="duration_secs"
-              size="small"
-              control={control}
-              error={!!errors.duration_secs}
-              disabled={isLoading}
-              maxLength={2}
-              endAdornment={<InputAdornment position="end" children="secs" />}
-              outlinedInput
-              fullWidth
-              numeric
-            />
-          </Stack>
-          {errors.duration_hrs && (
-            <FormHelperText error>
-              {errors.duration_hrs?.message}
-            </FormHelperText>
-          )}
-          {errors.duration_mins && (
-            <FormHelperText error>
-              {errors.duration_mins?.message}
-            </FormHelperText>
-          )}
-          {errors.duration_secs && (
-            <FormHelperText error>
-              {errors.duration_secs?.message}
-            </FormHelperText>
-          )}
-        </DurationContainer>
+        <AddFormDuration
+          control={control}
+          errors={errors}
+          disabled={isLoading}
+        />
       </Grid>
       <Grid size={{ xs: 12, sm: 6, md: 3, lg: 4 }}>
         <ControlledField
