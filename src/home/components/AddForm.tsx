@@ -13,7 +13,7 @@ import {
 
 import {
   Control,
-  FieldErrorsImpl,
+  FieldErrors,
   UseFormGetValues,
   UseFormSetValue,
 } from "react-hook-form";
@@ -46,11 +46,16 @@ type Props = {
   control: Control<Form>;
   getValues: UseFormGetValues<Form>;
   setValue: UseFormSetValue<Form>;
-  errors: FieldErrorsImpl<Form>;
+  errors: FieldErrors<Form>;
   setDropdownLoading: Dispatch<StateUpdater<boolean>>;
   entryId?: string;
   watchFilesize?: number;
 };
+
+type AutocompleteOptions = Array<{
+  id: string;
+  label: string;
+}>;
 
 const seasons = ["Winter", "Spring", "Summer", "Fall"];
 
@@ -65,7 +70,7 @@ const searchAPI = (id?: string, needle?: string) =>
   axios.get("/entries/titles", {
     params: {
       id: id === "" ? null : id,
-      needle,
+      needle: needle === "" ? null : needle,
     },
   });
 
@@ -115,11 +120,15 @@ const AddForm = (props: Props) => {
 
   const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
 
-  const [prequels, setPrequels] = useState<Array<string>>([]);
-  const [sequels, setSequels] = useState<Array<string>>([]);
+  const [prequels, setPrequels] = useState<AutocompleteOptions>([]);
+  const [sequels, setSequels] = useState<AutocompleteOptions>([]);
+  const [titlesFirstSeason, setTitlesFirstSeason] =
+    useState<AutocompleteOptions>([]);
+
   const [acLoading, setACLoading] = useState({
     prequel: false,
     sequel: false,
+    firstTitle: false,
   });
 
   const [titleLoading, setTitleLoading] = useState(false);
@@ -179,8 +188,14 @@ const AddForm = (props: Props) => {
       data: { data },
     } = await searchAPI(props.entryId);
 
-    setPrequels([...data]);
-    setSequels([...data]);
+    const values = data.map((data: TitleObject) => ({
+      id: data.id,
+      label: data.title,
+    }));
+
+    setPrequels(structuredClone(values));
+    setSequels(structuredClone(values));
+    setTitlesFirstSeason(structuredClone(values));
   };
 
   const fetchData = async () => {
@@ -270,25 +285,65 @@ const AddForm = (props: Props) => {
     }
   };
 
-  const handleChange = async (e: any, type: "prequel" | "sequel") => {
+  const handleChange = async (
+    e: any,
+    type: "prequel" | "sequel" | "firstTitle",
+  ) => {
     const element = e.target as HTMLInputElement;
     const val = element.value;
 
+    if (type === "prequel") setPrequels([]);
+    if (type === "sequel") setSequels([]);
+    if (type === "firstTitle") setTitlesFirstSeason([]);
+
     if (type === "prequel") setACLoading((p) => ({ ...p, prequel: true }));
     if (type === "sequel") setACLoading((p) => ({ ...p, sequel: true }));
+    if (type === "firstTitle")
+      setACLoading((p) => ({ ...p, firstTitle: true }));
 
     const {
       data: { data },
     } = await searchAPIDebounced(props.entryId, val);
 
+    const values = data.map((data: TitleObject) => ({
+      id: data.id,
+      label: data.title,
+    }));
+
     if (type === "prequel") {
-      setPrequels([...data]);
+      setPrequels(structuredClone(values));
       setACLoading((prev) => ({ ...prev, prequel: false }));
     }
 
     if (type === "sequel") {
-      setSequels([...data]);
+      setSequels(structuredClone(values));
       setACLoading((prev) => ({ ...prev, sequel: false }));
+    }
+
+    if (type === "firstTitle") {
+      setTitlesFirstSeason(values);
+      setACLoading((prev) => ({ ...prev, firstTitle: false }));
+    }
+  };
+
+  const handleChangeInput = (
+    e: any,
+    data: any,
+    type: "prequel" | "sequel" | "firstTitle",
+  ) => {
+    if (type === "prequel") {
+      const item = prequels.find((i) => i.label === data);
+      props.setValue("prequel_id", item?.id || undefined);
+    }
+
+    if (type === "sequel") {
+      const item = sequels.find((i) => i.label === data);
+      props.setValue("sequel_id", item?.id || undefined);
+    }
+
+    if (type === "firstTitle") {
+      const item = titlesFirstSeason.find((i) => i.label === data);
+      props.setValue("season_first_title_id", item?.id || undefined);
     }
   };
 
@@ -409,13 +464,19 @@ const AddForm = (props: Props) => {
         />
       </Grid>
       <Grid size={{ xs: 8, sm: 6, md: 4 }}>
-        <ControlledField
-          name="season_first_title_id"
+        <ControlledAutocomplete
+          name="season_first_title"
           label="First Season Title"
+          options={titlesFirstSeason}
           control={control}
-          error={!!errors.season_first_title_id}
-          helperText={errors.season_first_title_id?.message}
+          error={!!errors.season_first_title}
+          helperText={errors.season_first_title?.message}
           disabled={isLoading}
+          loadingContents={acLoading.firstTitle}
+          onChange={(e: any) => handleChange(e, "firstTitle")}
+          extraOnInputChange={(e, data) =>
+            handleChangeInput(e, data, "firstTitle")
+          }
           fullWidth
         />
       </Grid>
@@ -530,29 +591,33 @@ const AddForm = (props: Props) => {
 
       <Grid size={{ xs: 12, sm: 6 }}>
         <ControlledAutocomplete
-          name="prequel_title"
+          name="prequel"
           label="Prequel"
           options={prequels}
           control={control}
-          error={!!errors.prequel_title}
-          helperText={errors.prequel_title?.message}
+          error={!!errors.prequel}
+          helperText={errors.prequel?.message}
           disabled={isLoading}
           loadingContents={acLoading.prequel}
           onChange={(e: any) => handleChange(e, "prequel")}
+          extraOnInputChange={(e, data) =>
+            handleChangeInput(e, data, "prequel")
+          }
           fullWidth
         />
       </Grid>
       <Grid size={{ xs: 12, sm: 6 }}>
         <ControlledAutocomplete
-          name="sequel_title"
+          name="sequel"
           label="Sequel"
           options={sequels}
           control={control}
-          error={!!errors.sequel_title}
-          helperText={errors.sequel_title?.message}
+          error={!!errors.sequel}
+          helperText={errors.sequel?.message}
           disabled={isLoading}
           loadingContents={acLoading.sequel}
           onChange={(e: any) => handleChange(e, "sequel")}
+          extraOnInputChange={(e, data) => handleChangeInput(e, data, "sequel")}
           fullWidth
         />
       </Grid>

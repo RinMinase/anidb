@@ -71,8 +71,6 @@ const HomeAdd = (props: Props) => {
   const watchFilesize = watch("filesize");
 
   const fetchEntryData = async () => {
-    toggleLoader(true);
-
     try {
       if (props.matches?.id) {
         toggleLoader(true);
@@ -101,8 +99,10 @@ const HomeAdd = (props: Props) => {
           idCodecVideo,
           idCodecAudio,
           codecHDR,
-          prequelTitle,
-          sequelTitle,
+          prequel,
+          sequel,
+          // prequelTitle,
+          // sequelTitle,
         } = partialsData.data.data;
 
         let hrs = 0;
@@ -116,6 +116,30 @@ const HomeAdd = (props: Props) => {
           secs = (duration % 3600) % 60;
         }
 
+        let prequel_value: any;
+        if (prequel) {
+          prequel_value = {
+            id: prequel.id,
+            label: prequel.title,
+          };
+        }
+
+        let sequel_value: any;
+        if (sequel) {
+          sequel_value = {
+            id: sequel.id,
+            label: sequel.title,
+          };
+        }
+
+        let season_first_title_value: any;
+        if (seasonFirstTitle) {
+          season_first_title_value = {
+            id: seasonFirstTitle.id,
+            label: seasonFirstTitle.title,
+          };
+        }
+
         reset({
           id_quality: idQuality,
           title,
@@ -127,7 +151,8 @@ const HomeAdd = (props: Props) => {
           specials,
 
           season_number: seasonNumber,
-          season_first_title_id: seasonFirstTitle,
+          season_first_title: season_first_title_value,
+          season_first_title_id: seasonFirstTitle?.id || null,
 
           release_season: releaseSeason || "",
           release_year: releaseYear || "",
@@ -139,8 +164,11 @@ const HomeAdd = (props: Props) => {
           encoder_audio: encoderAudio,
           encoder_subs: encoderSubs,
 
-          prequel_title: prequelTitle || null,
-          sequel_title: sequelTitle || null,
+          prequel: prequel_value,
+          prequel_id: prequel?.id || null,
+
+          sequel: sequel_value,
+          sequel_id: sequel?.id || null,
 
           id_codec_video: idCodecVideo || "",
           id_codec_audio: idCodecAudio || "",
@@ -204,6 +232,8 @@ const HomeAdd = (props: Props) => {
     } catch (err) {
       console.error(err);
       toast.error("Failed");
+    } finally {
+      setSaveLoading(false);
     }
   };
 

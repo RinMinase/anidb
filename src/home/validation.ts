@@ -16,12 +16,13 @@ export type Form = {
   specials?: number;
 
   season_number?: number;
+  season_first_title?: { id: string; label: string };
   season_first_title_id?: string;
 
-  prequel?: string;
-  prequel_title: string | null;
+  prequel?: { id: string; label: string };
   prequel_id?: string;
-  sequel_title: string | null;
+
+  sequel?: { id: string; label: string };
   sequel_id?: string;
 
   encoder_video?: string;
@@ -56,8 +57,6 @@ const defaultValues = {
   id_codec_video: "",
   id_codec_audio: "",
   codec_hdr: false,
-  prequel_title: null,
-  sequel_title: null,
 };
 
 const rewatchDefaultValues = {
@@ -85,7 +84,6 @@ const schema = object().shape({
 
   filesize: number()
     .transform(emptyStringToNull)
-    .positive("Filesize should be a positive number")
     .max(FILESIZES.TB, "Filesize should be lesser than 1 TB")
     .nullable(),
 
@@ -98,8 +96,6 @@ const schema = object().shape({
 
   prequel_id: string().nullable(),
   sequel_id: string().nullable(),
-  prequel_title: string().nullable(),
-  sequel_title: string().nullable(),
 
   encoder_video: string().nullable(),
   encoder_audio: string().nullable(),
