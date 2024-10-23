@@ -4,7 +4,7 @@ import { Autocomplete, TextField } from "@mui/material";
 
 type Props = {
   control: Control<any>;
-  options: Array<string>;
+  options: Array<string> | Array<{ id: string; label: string }>;
   name: string;
   label?: string;
   helperText?: string;
@@ -15,6 +15,7 @@ type Props = {
   loadingContents?: boolean;
   onChange?: (e?: any) => void;
   extraOnChange?: (e?: any) => void;
+  extraOnInputChange?: (e?: any, data?: string) => void;
 };
 
 const ControlledAutocomplete = (props: Props) => {
@@ -32,6 +33,7 @@ const ControlledAutocomplete = (props: Props) => {
               return onChange(data);
             }}
             onInputChange={(e, data) => {
+              if (props.extraOnInputChange) props.extraOnInputChange(e, data);
               if (data) onChange(data);
             }}
             options={props.options}
