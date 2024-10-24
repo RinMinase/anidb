@@ -230,7 +230,14 @@ const BucketSim = () => {
                 selected={selected === item.uuid}
                 onClick={() => handleSelectSim(item.uuid)}
               >
-                <ListItemText>{item.description}</ListItemText>
+                <ListItemText
+                  sx={{
+                    whiteSpace: "pre-wrap",
+                    wordBreak: "break-all",
+                  }}
+                >
+                  {item.description}
+                </ListItemText>
                 <Tooltip title="Clone" placement="top">
                   <Box>
                     <IconButton
