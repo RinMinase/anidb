@@ -12,6 +12,7 @@ import {
   MenuItem,
   MenuList,
   Paper,
+  Stack,
   styled,
   Tooltip,
 } from "@mui/material";
@@ -47,6 +48,8 @@ const BucketSim = () => {
   const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
 
   const [isOverwriteButtonLoading, setOverwriteButtonLoading] = useState(false);
+  const [isBackupLoading, setBackupLoading] = useState(false);
+
   const [sims, setSims] = useState<Sims>([]);
   const [data, setData] = useState<Data>([]);
   const [selected, setSelected] = useState("");
@@ -208,6 +211,22 @@ const BucketSim = () => {
     }
   };
 
+  const handleBackup = async () => {
+    try {
+      setBackupLoading(true);
+
+      await axios.post("/bucket-sims/backup");
+      toast.success("Success");
+
+      await fetchData();
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed");
+    } finally {
+      setBackupLoading(false);
+    }
+  };
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -216,13 +235,23 @@ const BucketSim = () => {
     <ModuleContainer headerText="Bucket Simulator">
       <Grid container spacing={4}>
         <Grid size={{ xs: 12, sm: 4 }}>
-          <Button
-            variant="contained"
-            fullWidth
-            onClick={() => route("/bucket-sims/add")}
-          >
-            Add
-          </Button>
+          <Stack spacing={1}>
+            <Button
+              variant="contained"
+              fullWidth
+              onClick={() => route("/bucket-sims/add")}
+            >
+              Add
+            </Button>
+            <ButtonLoading
+              variant="contained"
+              fullWidth
+              loading={isBackupLoading}
+              onClick={handleBackup}
+            >
+              Backup current bucket list
+            </ButtonLoading>
+          </Stack>
           <CustomMenuList component={Paper}>
             {sims.map((item) => (
               <MenuItem
