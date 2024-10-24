@@ -17,6 +17,7 @@ import {
   FieldErrors,
   UseFormGetValues,
   UseFormSetValue,
+  UseFormTrigger,
 } from "react-hook-form";
 
 import {
@@ -32,7 +33,7 @@ import {
 } from "@components";
 
 import { Form } from "../validation";
-import { MalTitle, TitleObject, TitleObjects } from "../types";
+import { AnilistTitle, TitleObject, TitleObjects } from "../types";
 import AddFormAutocomplete from "./AddFormAutocomplete";
 import AddFormDuration from "./AddFormDuration";
 
@@ -40,6 +41,7 @@ type Props = {
   control: Control<Form>;
   getValues: UseFormGetValues<Form>;
   setValue: UseFormSetValue<Form>;
+  trigger: UseFormTrigger<Form>;
   errors: FieldErrors<Form>;
   setDropdownLoading: Dispatch<StateUpdater<boolean>>;
   entryId?: string;
@@ -54,11 +56,15 @@ type AutocompleteOptions = Array<{
 const seasons = ["Winter", "Spring", "Summer", "Fall"];
 
 const currYear = new Date().getFullYear();
-const years = Array.from({ length: 25 }, (_, i) => ({
-  label: `${currYear - i}`,
-  key: `${currYear - i}`,
-  value: currYear - i,
-}));
+const earliestAcceptedYear = 1990;
+const years = Array.from(
+  { length: currYear - earliestAcceptedYear + 1 },
+  (_, i) => ({
+    label: `${currYear - i}`,
+    key: `${currYear - i}`,
+    value: currYear - i,
+  }),
+);
 
 const searchAPI = (id?: string, needle?: string) =>
   axios.get("/entries/titles", {
@@ -68,7 +74,12 @@ const searchAPI = (id?: string, needle?: string) =>
     },
   });
 
-const titleSearchAPI = (title?: string) => axios.get(`/mal/${title}`);
+const titleSearchAPI = (title?: string) =>
+  axios.get("/anilist/search", {
+    params: {
+      query: title,
+    },
+  });
 
 const titleSearchAPIDebounced = DebouncePromise(titleSearchAPI, 250);
 
@@ -180,15 +191,26 @@ const AddForm = (props: Props) => {
     setTitleObjects([]);
     setTitleSearch([]);
 
-    const { data } = await titleSearchAPIDebounced(val);
+    const {
+      data: { data },
+    } = await titleSearchAPIDebounced(val);
 
-    const titles = data.map((item: TitleObject) => item.title);
+    const values = data.map((data: TitleObject) => ({
+      id: data.id,
+      label: data.title,
+    }));
 
-    setTitleSearch(titles);
+    setTitleSearch(values);
     setTitleObjects(data);
   };
 
-  const setAutofillTitleValues = (premiered: string, episodes: number) => {
+  const setAutofillTitleValues = (
+    title: string,
+    premiered: string,
+    episodes: number,
+  ) => {
+    props.setValue("title", title);
+    props.trigger("title");
     props.setValue("episodes", episodes);
 
     if (premiered) {
@@ -207,8 +229,11 @@ const AddForm = (props: Props) => {
       const obj = titleObjects.find((item) => item.title === title);
 
       if (!isEmpty(obj)) {
-        const { data }: { data: MalTitle } = await axios.get(`mal/${obj.id}`);
-        const { premiered, episodes } = data;
+        const {
+          data: { data },
+        } = await axios.get(`anilist/title/${obj.id}`);
+
+        const { title, premiered, episodes } = data as AnilistTitle;
 
         const {
           episodes: cEpisodes,
@@ -225,10 +250,10 @@ const AddForm = (props: Props) => {
           });
 
           if (result.isConfirmed) {
-            setAutofillTitleValues(premiered, episodes);
+            setAutofillTitleValues(title, premiered, episodes);
           }
         } else {
-          setAutofillTitleValues(premiered, episodes);
+          setAutofillTitleValues(title, premiered, episodes);
         }
       }
     } finally {

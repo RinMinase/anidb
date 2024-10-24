@@ -104,7 +104,7 @@ export type TitleObject = {
   title: string;
 };
 
-export type MalTitle = {
+export type AnilistTitle = {
   url: string;
   title: string;
   synonyms: string;

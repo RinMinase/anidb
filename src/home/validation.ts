@@ -1,7 +1,7 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { format } from "date-fns";
 import { Resolver } from "react-hook-form";
-import { bool, date, number, object, string } from "yup";
+import { bool, date, lazy, number, object, string } from "yup";
 
 import { emptyStringToNull, FILESIZES } from "@components";
 
@@ -74,7 +74,18 @@ const minDate = "1990-01-01";
 
 const schema = object().shape({
   id_quality: number().typeError("Required").required("Required"),
-  title: string().required("Required"),
+  title: lazy((value) => {
+    if (typeof value === "object") {
+      return object({
+        id: string(),
+        label: string(),
+      })
+        .nullable()
+        .optional();
+    }
+
+    return string().required("Required");
+  }),
 
   date_finished: date()
     .typeError("Invalid date")

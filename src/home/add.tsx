@@ -1,12 +1,14 @@
 import { useContext, useEffect, useState } from "preact/hooks";
 import { route } from "preact-router";
 import { useForm } from "react-hook-form";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { format } from "date-fns";
 import { isEmpty } from "lodash-es";
 import { styled } from "@mui/material";
 import { ArrowLeft as BackIcon } from "react-feather";
 import { toast } from "sonner";
+
+import { ErrorResponse } from "@components/types";
 
 import {
   Button,
@@ -61,6 +63,8 @@ const HomeAdd = (props: Props) => {
     setValue,
     reset,
     watch,
+    trigger,
+    setError,
     formState: { errors },
   } = useForm<Form>({
     resolver,
@@ -230,8 +234,21 @@ const HomeAdd = (props: Props) => {
         route("/home");
       }
     } catch (err) {
-      console.error(err);
-      toast.error("Failed");
+      if (err instanceof AxiosError && err.status === 401) {
+        const { data } = err.response?.data as ErrorResponse;
+
+        for (const key in data) {
+          setError(key as any, {
+            type: "manual",
+            message: data[key].length ? data[key][0] : "Unknown error.",
+          });
+        }
+
+        toast.error("Form validation failed");
+      } else {
+        console.error(err);
+        toast.error("Failed");
+      }
     } finally {
       setSaveLoading(false);
     }
@@ -295,6 +312,7 @@ const HomeAdd = (props: Props) => {
         control={control}
         getValues={getValues}
         setValue={setValue}
+        trigger={trigger}
         errors={errors}
         setDropdownLoading={setDropdownLoading}
         watchFilesize={watchFilesize}
