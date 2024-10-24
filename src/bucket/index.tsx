@@ -14,6 +14,7 @@ import {
 } from "@mui/material";
 
 import {
+  ButtonLoading,
   DashboardTile,
   GlobalLoaderContext,
   ModuleContainer,
@@ -35,6 +36,8 @@ const Bucket = () => {
   const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
 
   const [isTableLoading, setTableLoading] = useState(false);
+  const [isBackupLoading, setBackupLoading] = useState(false);
+
   const [data, setData] = useState<Data>([]);
   const [buckets, setBuckets] = useState<Buckets>([]);
   const [currBucket, setCurrBucket] = useState<Stats>({
@@ -96,12 +99,35 @@ const Bucket = () => {
     }
   };
 
+  const handleBackup = async () => {
+    try {
+      setBackupLoading(true);
+      await axios.post("/bucket-sims/backup");
+      toast.success("Success");
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed");
+    } finally {
+      setBackupLoading(false);
+    }
+  };
+
   useEffect(() => {
     fetchData();
   }, []);
 
   return (
     <ModuleContainer headerText="Bucket Lists">
+      <Box textAlign="center" pb={2}>
+        <ButtonLoading
+          variant="contained"
+          loading={isBackupLoading || isLoading}
+          onClick={handleBackup}
+        >
+          Backup current buckets to Sim list
+        </ButtonLoading>
+      </Box>
+
       <Dashboard>
         <Grid container spacing={4}>
           {buckets &&
