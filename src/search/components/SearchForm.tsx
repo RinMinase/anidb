@@ -1,6 +1,10 @@
 import { Box, Grid2 as Grid, Paper, Typography } from "@mui/material";
-import { useEffect, useState } from "preact/hooks";
+import { Dispatch, StateUpdater, useEffect, useState } from "preact/hooks";
 import { useForm } from "react-hook-form";
+import axios, { AxiosError } from "axios";
+import { toast } from "sonner";
+
+import { ErrorResponse } from "@components/types";
 
 import {
   ButtonLoading,
@@ -10,7 +14,7 @@ import {
   OptionsKeyedProps,
 } from "@components";
 
-import { Codecs } from "../types";
+import { Codecs, Data } from "../types";
 
 import {
   ColumnDropDownOptions,
@@ -24,7 +28,8 @@ import {
 type Props = {
   codecs: Codecs;
   isSearchLoading: boolean;
-  handleSearch: (formData: Form) => void;
+  setTableLoader: Dispatch<StateUpdater<boolean>>;
+  setData: Dispatch<StateUpdater<Data>>;
 };
 
 const SearchForm = (props: Props) => {
@@ -34,12 +39,56 @@ const SearchForm = (props: Props) => {
   const {
     control,
     handleSubmit,
+    setError,
     formState: { errors },
   } = useForm<Form>({
     resolver,
     defaultValues,
     mode: "onChange",
   });
+
+  const handleSearch = async (formData: Form) => {
+    try {
+      props.setTableLoader(true);
+
+      const query: any = { ...formData };
+
+      for (const key of Object.keys(query)) {
+        if (query[key] === "") {
+          delete query[key];
+        }
+      }
+
+      const {
+        data: { data },
+      } = await axios.get("/entries/search", {
+        params: {
+          ...query,
+        },
+      });
+
+      props.setData(data);
+    } catch (err) {
+      if (err instanceof AxiosError && err.status === 401) {
+        const { data } = err.response?.data as ErrorResponse;
+
+        for (const key in data) {
+          setError(key as any, {
+            type: "manual",
+            message: data[key].length ? data[key][0] : "Unknown error.",
+          });
+        }
+
+        props.setData([]);
+        toast.error("Form validation failed");
+      } else {
+        console.error(err);
+        toast.error("Failed");
+      }
+    } finally {
+      props.setTableLoader(false);
+    }
+  };
 
   useEffect(() => {
     const audioCodecOptions: OptionsKeyedProps = props.codecs.audio.map(
@@ -73,6 +122,7 @@ const SearchForm = (props: Props) => {
         spacing={2.5}
         px={2}
         pb={2}
+        pt={1}
         sx={{
           // 100vh - screen
           // 48px - navbar
@@ -93,6 +143,7 @@ const SearchForm = (props: Props) => {
             control={control}
             error={!!errors.quality}
             helperText={errors.quality?.message}
+            disabled={props.isSearchLoading}
             fullWidth
           />
           <Typography variant="caption">
@@ -113,6 +164,7 @@ const SearchForm = (props: Props) => {
             control={control}
             error={!!errors.title}
             helperText={errors.title?.message}
+            disabled={props.isSearchLoading}
             fullWidth
           />
         </Grid>
@@ -125,6 +177,7 @@ const SearchForm = (props: Props) => {
             control={control}
             error={!!errors.date}
             helperText={errors.date?.message}
+            disabled={props.isSearchLoading}
             fullWidth
           />
           <Typography variant="caption">
@@ -145,6 +198,7 @@ const SearchForm = (props: Props) => {
             control={control}
             error={!!errors.filesize}
             helperText={errors.filesize?.message}
+            disabled={props.isSearchLoading}
             fullWidth
           />
           <Typography variant="caption">
@@ -162,6 +216,7 @@ const SearchForm = (props: Props) => {
             control={control}
             error={!!errors.episodes}
             helperText={errors.episodes?.message}
+            disabled={props.isSearchLoading}
             fullWidth
           />
           <Typography variant="caption">
@@ -180,6 +235,7 @@ const SearchForm = (props: Props) => {
             control={control}
             error={!!errors.ovas}
             helperText={errors.ovas?.message}
+            disabled={props.isSearchLoading}
             fullWidth
           />
           <Typography variant="caption">Similar to episodes</Typography>
@@ -193,6 +249,7 @@ const SearchForm = (props: Props) => {
             control={control}
             error={!!errors.specials}
             helperText={errors.specials?.message}
+            disabled={props.isSearchLoading}
             fullWidth
           />
           <Typography variant="caption">Similar to episodes</Typography>
@@ -206,6 +263,7 @@ const SearchForm = (props: Props) => {
             control={control}
             error={!!errors.encoder}
             helperText={errors.encoder?.message}
+            disabled={props.isSearchLoading}
             fullWidth
           />
           <Typography variant="caption">
@@ -221,6 +279,7 @@ const SearchForm = (props: Props) => {
             control={control}
             error={!!errors.encoder_video}
             helperText={errors.encoder_video?.message}
+            disabled={props.isSearchLoading}
             fullWidth
           />
         </Grid>
@@ -233,6 +292,7 @@ const SearchForm = (props: Props) => {
             control={control}
             error={!!errors.encoder_audio}
             helperText={errors.encoder_audio?.message}
+            disabled={props.isSearchLoading}
             fullWidth
           />
         </Grid>
@@ -245,6 +305,7 @@ const SearchForm = (props: Props) => {
             control={control}
             error={!!errors.encoder_subs}
             helperText={errors.encoder_subs?.message}
+            disabled={props.isSearchLoading}
             fullWidth
           />
         </Grid>
@@ -257,6 +318,7 @@ const SearchForm = (props: Props) => {
             control={control}
             error={!!errors.release}
             helperText={errors.release?.message}
+            disabled={props.isSearchLoading}
             fullWidth
           />
           <Typography variant="caption">
@@ -276,6 +338,7 @@ const SearchForm = (props: Props) => {
             control={control}
             error={!!errors.rating}
             helperText={errors.rating?.message}
+            disabled={props.isSearchLoading}
             fullWidth
           />
           <Typography variant="caption">
@@ -295,6 +358,7 @@ const SearchForm = (props: Props) => {
             control={control}
             error={!!errors.remarks}
             helperText={errors.remarks?.message}
+            disabled={props.isSearchLoading}
             fullWidth
           />
         </Grid>
@@ -308,6 +372,7 @@ const SearchForm = (props: Props) => {
             control={control}
             error={!!errors.has_remarks}
             helperText={errors.has_remarks?.message}
+            disabled={props.isSearchLoading}
             fullWidth
           />
         </Grid>
@@ -321,6 +386,7 @@ const SearchForm = (props: Props) => {
             control={control}
             error={!!errors.has_image}
             helperText={errors.has_image?.message}
+            disabled={props.isSearchLoading}
             fullWidth
           />
         </Grid>
@@ -334,6 +400,7 @@ const SearchForm = (props: Props) => {
             control={control}
             error={!!errors.is_hdr}
             helperText={errors.is_hdr?.message}
+            disabled={props.isSearchLoading}
             fullWidth
           />
         </Grid>
@@ -347,6 +414,7 @@ const SearchForm = (props: Props) => {
             control={control}
             error={!!errors.codec_video}
             helperText={errors.codec_video?.message}
+            disabled={props.isSearchLoading}
             fullWidth
           />
         </Grid>
@@ -360,6 +428,7 @@ const SearchForm = (props: Props) => {
             control={control}
             error={!!errors.codec_audio}
             helperText={errors.codec_audio?.message}
+            disabled={props.isSearchLoading}
             fullWidth
           />
         </Grid>
@@ -373,6 +442,7 @@ const SearchForm = (props: Props) => {
             control={control}
             error={!!errors.column}
             helperText={errors.column?.message}
+            disabled={props.isSearchLoading}
             fullWidth
           />
         </Grid>
@@ -386,6 +456,7 @@ const SearchForm = (props: Props) => {
             control={control}
             error={!!errors.order}
             helperText={errors.order?.message}
+            disabled={props.isSearchLoading}
             fullWidth
           />
         </Grid>
@@ -397,7 +468,7 @@ const SearchForm = (props: Props) => {
           variant="contained"
           fullWidth
           loading={props.isSearchLoading}
-          onClick={handleSubmit(props.handleSearch)}
+          onClick={handleSubmit(handleSearch)}
         >
           Search
         </ButtonLoading>

@@ -14,7 +14,6 @@ import {
 import RatingFilledIcon from "@components/icons/heart-filled.svg?react";
 import RatingEmptyIcon from "@components/icons/heart.svg?react";
 import { Codecs, Data } from "./types";
-import { Form } from "./validation";
 import SearchForm from "./components/SearchForm";
 
 import {
@@ -55,33 +54,6 @@ const Search = () => {
     video: [],
   });
 
-  const handleSearch = async (formData: Form) => {
-    setTableLoader(true);
-
-    try {
-      const query: any = { ...formData };
-
-      for (const key of Object.keys(query)) {
-        if (query[key] === "") {
-          delete query[key];
-        }
-      }
-
-      const {
-        data: { data },
-      } = await axios.get("/entries/search", {
-        params: {
-          ...query,
-        },
-      });
-
-      setData(data);
-    } catch {
-    } finally {
-      setTableLoader(false);
-    }
-  };
-
   const fetchData = async () => {
     toggleLoader(true);
 
@@ -113,7 +85,8 @@ const Search = () => {
             <SearchForm
               codecs={codecs}
               isSearchLoading={tableLoader}
-              handleSearch={handleSearch}
+              setTableLoader={setTableLoader}
+              setData={setData}
             />
           </Grid>
           <Grid size={{ xs: 12, md: 8, lg: 9 }}>
