@@ -302,7 +302,7 @@ const HomeView = (props: Props) => {
 
           <Grid size={{ xs: 12, sm: 8, md: 9 }}>
             <Stack
-              spacing={1.5}
+              spacing={2}
               sx={{ textAlign: { xs: "center", sm: "unset" } }}
             >
               <Box>
@@ -371,40 +371,44 @@ const HomeView = (props: Props) => {
                     &#12300;{data.encoder}&#12301;
                   </Typography>
                 )}
-                <Typography variant="body1">{data.filesize}</Typography>
-                <Stack
-                  direction="row"
-                  spacing={1}
-                  sx={{ justifyContent: { xs: "center", sm: "start" } }}
-                >
-                  {data.codecHDR ? (
-                    <Chip
-                      label="HDR"
-                      size="small"
-                      sx={{
-                        backgroundColor: "#fce257",
-                        px: 1,
-                        color: contrast("#fce257"),
-                      }}
-                    />
-                  ) : null}
-                  {data.codecVideo && (
-                    <Chip
-                      label={data.codecVideo}
-                      size="small"
-                      color="error"
-                      sx={{ px: 1 }}
-                    />
-                  )}
-                  {data.codecAudio && (
-                    <Chip
-                      label={data.codecAudio}
-                      size="small"
-                      color="info"
-                      sx={{ px: 1 }}
-                    />
-                  )}
-                </Stack>
+                {data.filesize && (
+                  <Typography variant="body1">{data.filesize}</Typography>
+                )}
+                {(data.codecHDR || data.codecVideo || data.codecAudio) && (
+                  <Stack
+                    direction="row"
+                    spacing={1}
+                    sx={{ justifyContent: { xs: "center", sm: "start" } }}
+                  >
+                    {data.codecHDR ? (
+                      <Chip
+                        label="HDR"
+                        size="small"
+                        sx={{
+                          backgroundColor: "#fce257",
+                          px: 1,
+                          color: contrast("#fce257"),
+                        }}
+                      />
+                    ) : null}
+                    {data.codecVideo && (
+                      <Chip
+                        label={data.codecVideo}
+                        size="small"
+                        color="error"
+                        sx={{ px: 1 }}
+                      />
+                    )}
+                    {data.codecAudio && (
+                      <Chip
+                        label={data.codecAudio}
+                        size="small"
+                        color="info"
+                        sx={{ px: 1 }}
+                      />
+                    )}
+                  </Stack>
+                )}
               </Stack>
 
               <Box>
