@@ -32,11 +32,10 @@ type TableRowProps = {
 const CustomTableRow = styled(Table.Row)<TableRowProps>(
   ({ active, theme }) => ({
     cursor: "pointer",
-    backgroundColor: active
-      ? theme.palette.mode === "light"
-        ? "rgba(25, 135, 84, 0.08)"
-        : "rgba(16, 84, 52, 0.16)"
-      : "",
+    backgroundColor: active ? "rgba(25, 135, 84, 0.08)" : "",
+    ...theme.applyStyles("dark", {
+      backgroundColor: active ? "rgba(16, 84, 52, 0.16)" : "",
+    }),
   }),
 );
 
