@@ -9,6 +9,7 @@ import {
   TableHead,
   TablePagination,
   TableRow,
+  TableSortLabel,
 } from "@mui/material";
 
 const Table = {
@@ -18,6 +19,7 @@ const Table = {
   Container: TableContainer,
   Head: TableHead,
   Row: TableRow,
+  SortHeader: TableSortLabel,
   Loader: TableLoader,
   Pagination: TablePagination,
   PaginationActions: TablePaginationActions,
