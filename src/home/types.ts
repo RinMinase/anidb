@@ -1,6 +1,6 @@
 import type { Qualities } from "@components";
 
-export type Data = Array<{
+export type Item = {
   id?: string;
   quality?: Qualities;
   title?: string;
@@ -14,7 +14,9 @@ export type Data = Array<{
   release?: string;
   remarks?: string | null;
   rating?: number;
-}>;
+};
+
+export type Data = Array<Item>;
 
 export type FullData = {
   id?: string;
@@ -111,3 +113,11 @@ export type AnilistTitle = {
   episodes: number;
   premiered: string;
 };
+
+export type TableHeadings = Array<{
+  id: string;
+  label: string;
+  minWidth?: number;
+  hideOnMobile?: boolean;
+  sortable?: boolean;
+}>;

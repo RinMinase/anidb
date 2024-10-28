@@ -1,10 +1,10 @@
 import { useContext, useEffect, useState } from "preact/hooks";
 import { route } from "preact-router";
-import axios from "axios";
-import DebouncePromise from "awesome-debounce-promise";
 import { Waypoint } from "react-waypoint";
 import { Search as SearchIcon } from "react-feather";
 import { toast } from "sonner";
+import axios from "axios";
+import DebouncePromise from "awesome-debounce-promise";
 
 import {
   Box,
@@ -32,7 +32,7 @@ import {
   Table,
 } from "@components";
 
-import { Data } from "./types";
+import { Data, TableHeadings } from "./types";
 
 const SearchIconContainer = styled(SearchIcon)({
   marginRight: 4,
@@ -60,6 +60,21 @@ const SpinnerContainer = styled(Box)({
   marginTop: 16,
 });
 
+const headings: TableHeadings = [
+  { id: "title", label: "Title", sortable: true },
+  { id: "episodes", label: "E / O / S", minWidth: 110 },
+  { id: "filesize", label: "Filesize", minWidth: 115, sortable: true },
+  {
+    id: "date_finished",
+    label: "Date Finished",
+    minWidth: 190,
+    sortable: true,
+  },
+  { id: "release", label: "Release", minWidth: 130 },
+  { id: "encoder", label: "Encoder" },
+  { id: "rating", label: "Rating", hideOnMobile: true },
+];
+
 const searchAPI = (query: string) => {
   let params = {};
 
@@ -84,8 +99,13 @@ const Home = () => {
   const [data, setData] = useState<Data>([]);
   const [searchQuery, setSearchQuery] = useState("");
 
+  // Pagination States
   const [page, setPage] = useState(1);
   const [hasNext, setHasNext] = useState(true);
+
+  // Sort States
+  const [column, setColumn] = useState<string>();
+  const [order, setOrder] = useState<"asc" | "desc">();
 
   const fetchData = async () => {
     try {
@@ -149,13 +169,59 @@ const Home = () => {
     setData(data);
   };
 
+  const handleChangeSort = async (sortColumn: string) => {
+    try {
+      setTableLoading(true);
+
+      const isAsc = column === sortColumn && order === "asc";
+      const shouldReset = column === sortColumn && order === "desc";
+
+      const newOrder = isAsc ? "desc" : "asc";
+      const newColumn = shouldReset ? "id_quality" : sortColumn;
+
+      setOrder(newOrder);
+      setColumn(newColumn);
+
+      const {
+        data: { data, meta },
+      } = await axios.get("/entries", {
+        params: {
+          page: 1,
+          query: searchQuery ?? null,
+          column: newColumn,
+          order: newOrder,
+        },
+      });
+
+      setData(data);
+      setPage(1);
+
+      if (meta) {
+        setHasNext(meta.hasNext);
+      }
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed");
+    } finally {
+      setTableLoading(false);
+    }
+  };
+
   useEffect(() => {
     fetchData();
   }, []);
 
   return (
     <ModuleContainer>
-      <Paper sx={{ position: "sticky", top: 0, padding: 1, marginBottom: 3 }}>
+      <Paper
+        sx={{
+          position: "sticky",
+          top: 0,
+          padding: 1,
+          marginBottom: 3,
+          zIndex: 500,
+        }}
+      >
         <Grid container spacing={2}>
           <Grid size={{ xs: 12, md: 2 }}>
             <Button variant="contained" href="/home/add" fullWidth>
@@ -184,13 +250,30 @@ const Home = () => {
         <Table.Element sx={{ minWidth: 650 }}>
           <Table.Head>
             <Table.Row>
-              <Table.Cell>Title</Table.Cell>
-              <Table.Cell sx={{ minWidth: 110 }}>E / O / S</Table.Cell>
-              <Table.Cell sx={{ minWidth: 115 }}>Filesize</Table.Cell>
-              <Table.Cell sx={{ minWidth: 190 }}>Date Finished</Table.Cell>
-              <Table.Cell sx={{ minWidth: 130 }}>Release</Table.Cell>
-              <Table.Cell>Encoder</Table.Cell>
-              {!isMobile && <Table.Cell>Rating</Table.Cell>}
+              {headings.map((heading) => {
+                if (heading.hideOnMobile && isMobile) {
+                  return null;
+                }
+
+                return (
+                  <Table.Cell
+                    key={heading.id}
+                    sx={{ minWidth: heading.minWidth ?? undefined }}
+                  >
+                    {heading.sortable ? (
+                      <Table.SortHeader
+                        active={column === heading.id}
+                        direction={column === heading.id ? order : "asc"}
+                        onClick={() => handleChangeSort(heading.id)}
+                      >
+                        {heading.label}
+                      </Table.SortHeader>
+                    ) : (
+                      heading.label
+                    )}
+                  </Table.Cell>
+                );
+              })}
             </Table.Row>
           </Table.Head>
 
