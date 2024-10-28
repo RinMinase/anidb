@@ -1,7 +1,17 @@
 import { useContext, useEffect, useLayoutEffect, useState } from "preact/hooks";
 import axios from "axios";
 import { toast } from "sonner";
-import { Box, Grid2 as Grid, Paper, styled } from "@mui/material";
+
+import {
+  Box,
+  FormControl,
+  Grid2 as Grid,
+  InputLabel,
+  MenuItem,
+  Paper,
+  Select,
+  styled,
+} from "@mui/material";
 
 import {
   Tv as DailyCountIcon,
@@ -15,6 +25,7 @@ import {
   GlobalLoaderContext,
   ModuleContainer,
   Quality,
+  removeBlankAttributes,
   RewatchIndicator,
   Table,
 } from "@components";
@@ -32,6 +43,7 @@ const CustomTable = styled(Table.Element)({
 const LastWatch = () => {
   const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
 
+  const [items, setItems] = useState(20);
   const [data, setData] = useState<Data>([]);
   const [stats, setStats] = useState<Stats>({
     totalEps: 0,
@@ -46,9 +58,11 @@ const LastWatch = () => {
     epsPerDay: 0,
   });
 
-  const fetchData = async () => {
+  const fetchData = async (count?: number) => {
     try {
-      const { data } = await axios.get("/entries/last");
+      const { data } = await axios.get("/entries/last", {
+        params: removeBlankAttributes({ items: count }),
+      });
 
       setData(() => data.data);
       setStats(() => data.stats);
@@ -58,6 +72,12 @@ const LastWatch = () => {
     } finally {
       toggleLoader(false);
     }
+  };
+
+  const handleChangeItems = async (evt: any) => {
+    const value: number = evt.target.value;
+    setItems(value);
+    await fetchData(value);
   };
 
   const Dashboard = () => (
@@ -103,6 +123,23 @@ const LastWatch = () => {
     </DashboardContainer>
   );
 
+  const HeaderControls = () => (
+    <FormControl sx={{ minWidth: 100 }} size="small">
+      <InputLabel id="last-watch-items">Items</InputLabel>
+      <Select
+        id="last-watch-items"
+        label="Items"
+        value={items}
+        onChange={handleChangeItems}
+      >
+        <MenuItem value={20}>20</MenuItem>
+        <MenuItem value={30}>30</MenuItem>
+        <MenuItem value={50}>50</MenuItem>
+        <MenuItem value={100}>100</MenuItem>
+      </Select>
+    </FormControl>
+  );
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -114,7 +151,11 @@ const LastWatch = () => {
   if (isLoading) return null;
 
   return (
-    <ModuleContainer headerText="Last Watched" dashboard={<Dashboard />}>
+    <ModuleContainer
+      headerText="Last Watched"
+      dashboard={<Dashboard />}
+      headerControls={<HeaderControls />}
+    >
       <Table.Container component={Paper}>
         <CustomTable>
           <Table.Head>
