@@ -34,25 +34,8 @@ import {
 
 import { Data } from "./types";
 
-const SearchContainer = styled(Paper)({
-  padding: 8,
-  marginBottom: 24,
-});
-
-const SearchBox = styled(OutlinedInput)({
-  paddingRight: 8,
-});
-
 const SearchIconContainer = styled(SearchIcon)({
   marginRight: 4,
-});
-
-const CustomTable = styled(Table.Element)({
-  minWidth: 650,
-});
-
-const CustomTableRow = styled(Table.Row)({
-  cursor: "pointer",
 });
 
 const StyledRating = styled(Rating)(({ value }) => ({
@@ -172,7 +155,7 @@ const Home = () => {
 
   return (
     <ModuleContainer>
-      <SearchContainer sx={{ position: "sticky", top: 0 }}>
+      <Paper sx={{ position: "sticky", top: 0, padding: 1, marginBottom: 3 }}>
         <Grid container spacing={2}>
           <Grid size={{ xs: 12, md: 2 }}>
             <Button variant="contained" href="/home/add" fullWidth>
@@ -180,23 +163,25 @@ const Home = () => {
             </Button>
           </Grid>
           <Grid size={{ xs: 12, md: 10 }}>
-            <SearchBox
+            <OutlinedInput
+              sx={{ paddingRight: 1 }}
               size="small"
               fullWidth
               endAdornment={
-                <InputAdornment position="end">
-                  <SearchIconContainer />
-                </InputAdornment>
+                <InputAdornment
+                  position="end"
+                  children={<SearchIconContainer sx={{ marginRight: 4 }} />}
+                />
               }
               onChange={handleChange}
               value={searchQuery}
             />
           </Grid>
         </Grid>
-      </SearchContainer>
+      </Paper>
 
       <Table.Container component={Paper}>
-        <CustomTable>
+        <Table.Element sx={{ minWidth: 650 }}>
           <Table.Head>
             <Table.Row>
               <Table.Cell>Title</Table.Cell>
@@ -212,8 +197,9 @@ const Home = () => {
           <Table.Body>
             {!isTableLoading ? (
               data.map((item) => (
-                <CustomTableRow
+                <Table.Row
                   hover
+                  sx={{ cursor: "pointer" }}
                   key={item.id}
                   onClick={() => route(`/home/view/${item.id}`)}
                 >
@@ -252,13 +238,13 @@ const Home = () => {
                       </Tooltip>
                     </Table.Cell>
                   )}
-                </CustomTableRow>
+                </Table.Row>
               ))
             ) : (
               <Table.Loader />
             )}
           </Table.Body>
-        </CustomTable>
+        </Table.Element>
       </Table.Container>
 
       {data.length && !isLoading ? (
