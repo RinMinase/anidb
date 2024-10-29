@@ -20,6 +20,8 @@ import {
   Edit as EditIcon,
 } from "react-feather";
 
+import { ErrorResponse } from "@components/types";
+
 import {
   ButtonLoading,
   ControlledField,
@@ -30,18 +32,8 @@ import {
   Table,
 } from "@components";
 
-import { ErrorResponse } from "@components/types";
-
 import { defaultValues, Form, resolver } from "./validation";
 import { Data, Item } from "./types";
-
-const CustomTable = styled(Table.Element)({
-  minWidth: 650,
-});
-
-const ActionTableCell = styled(Table.Cell)({
-  textAlign: "right",
-});
 
 const CustomDialog = styled(Paper)({
   position: "fixed",
@@ -242,7 +234,7 @@ const AudioCodec = () => {
         </Grid>
         <Grid size={{ xs: 12, sm: 7, md: 9 }}>
           <Table.Container component={Paper}>
-            <CustomTable size="small">
+            <Table.Element size="small" sx={{ minWidth: 650 }}>
               <Table.Head>
                 <Table.Row>
                   <Table.Cell>Name</Table.Cell>
@@ -257,7 +249,7 @@ const AudioCodec = () => {
                     <Table.Row hover key={`codec-${item.id}`}>
                       <Table.Cell>{item.codec}</Table.Cell>
                       <Table.Cell>{item.order}</Table.Cell>
-                      <ActionTableCell>
+                      <Table.Cell sx={{ textAlign: "right" }}>
                         <IconButton
                           size="small"
                           onClick={() => handleEditClick(item)}
@@ -269,14 +261,14 @@ const AudioCodec = () => {
                           sx={{ ml: 1 }}
                           children={<DeleteIcon size={20} />}
                         />
-                      </ActionTableCell>
+                      </Table.Cell>
                     </Table.Row>
                   ))
                 ) : (
                   <Table.Loader />
                 )}
               </Table.Body>
-            </CustomTable>
+            </Table.Element>
           </Table.Container>
         </Grid>
       </Grid>
