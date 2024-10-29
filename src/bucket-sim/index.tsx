@@ -1,6 +1,6 @@
+import axios from "axios";
 import { useContext, useEffect, useState } from "preact/hooks";
 import { route } from "preact-router";
-import axios from "axios";
 import { green, orange, red } from "@mui/material/colors";
 import { toast } from "sonner";
 
@@ -29,10 +29,10 @@ import {
   Button,
   ButtonLoading,
   DashboardTile,
+  Dialog,
   GlobalLoaderContext,
   IconButton,
   ModuleContainer,
-  Swal,
 } from "@components";
 
 import { Dashboard } from "./_components";
@@ -49,6 +49,11 @@ const BucketSim = () => {
 
   const [isOverwriteButtonLoading, setOverwriteButtonLoading] = useState(false);
   const [isBackupLoading, setBackupLoading] = useState(false);
+
+  const [isCloneDialogOpen, setCloneDialogOpen] = useState(false);
+  const [isDeleteDialogOpen, setDeleteDialogOpen] = useState(false);
+  const [isSaveDialogOpen, setSaveDialogOpen] = useState(false);
+  const [dialogSelection, setDialogSelection] = useState<string>();
 
   const [sims, setSims] = useState<Sims>([]);
   const [data, setData] = useState<Data>([]);
@@ -91,56 +96,50 @@ const BucketSim = () => {
     }
   };
 
-  const handleSaveClick = async () => {
-    const result = await Swal.fire({
-      title: "Are you sure?",
-      text: "This will replace the current bucket list",
-      icon: "warning",
-      showCancelButton: true,
-    });
-
-    if (result.isConfirmed) {
+  const handleSaveSubmit = async () => {
+    try {
+      setSaveDialogOpen(false);
       setOverwriteButtonLoading(true);
 
       await axios.post(`/bucket-sims/save/${selected}`);
       toast.success("Success");
 
-      setOverwriteButtonLoading(false);
       route(`/buckets`);
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed");
+    } finally {
+      setOverwriteButtonLoading(false);
     }
   };
 
-  const handleCloneClick = async (e: any, uuid: string) => {
+  const handleCloneClick = (e: any, uuid: string) => {
     e.stopPropagation();
+    setDialogSelection(uuid);
+    setCloneDialogOpen(true);
+  };
 
+  const handleCloneSubmit = async () => {
     try {
-      const result = await Swal.fire({
-        title: "Are you sure?",
-        text: "This item will be cloned to a new bucket sim",
-        icon: "question",
-        showCancelButton: true,
-      });
+      setCloneDialogOpen(false);
+      toggleLoader(true);
 
-      if (result.isConfirmed) {
-        toggleLoader(true);
+      const {
+        data: {
+          data: { newId },
+        },
+      } = await axios.post(`/bucket-sims/clone/${dialogSelection}`);
 
-        const {
-          data: {
-            data: { newId },
-          },
-        } = await axios.post(`/bucket-sims/clone/${uuid}`);
+      toast.success("Success");
 
-        toast.success("Success");
+      const {
+        data: { data },
+      } = await axios.get("/bucket-sims");
 
-        const {
-          data: { data },
-        } = await axios.get("/bucket-sims");
+      setSims(() => data);
 
-        setSims(() => data);
-
-        if (data.length) {
-          handleSelectSim(newId);
-        }
+      if (data.length) {
+        handleSelectSim(newId);
       }
     } catch (err) {
       console.error(err);
@@ -155,32 +154,28 @@ const BucketSim = () => {
     route(`/bucket-sims/edit/${uuid}`);
   };
 
-  const handleDeleteClick = async (e: any, uuid: string) => {
+  const handleDeleteClick = (e: any, uuid: string) => {
     e.stopPropagation();
+    setDialogSelection(uuid);
+    setDeleteDialogOpen(true);
+  };
 
+  const handleDeleteSubmit = async () => {
     try {
-      const result = await Swal.fire({
-        title: "Are you sure?",
-        text: "This item will be deleted",
-        icon: "error",
-        showCancelButton: true,
-      });
+      setDeleteDialogOpen(false);
+      toggleLoader(true);
 
-      if (result.isConfirmed) {
-        toggleLoader(true);
+      await axios.delete(`/bucket-sims/${dialogSelection}`);
+      toast.success("Success");
 
-        await axios.delete(`/bucket-sims/${uuid}`);
-        toast.success("Success");
+      const {
+        data: { data },
+      } = await axios.get("/bucket-sims");
 
-        const {
-          data: { data },
-        } = await axios.get("/bucket-sims");
+      setSims(() => data);
 
-        setSims(() => data);
-
-        if (data.length) {
-          handleSelectSim(data[0].uuid);
-        }
+      if (data.length) {
+        handleSelectSim(data[0].uuid);
       }
     } catch (err) {
       console.error(err);
@@ -305,7 +300,7 @@ const BucketSim = () => {
                 <ButtonLoading
                   variant="contained"
                   loading={isOverwriteButtonLoading || isLoading}
-                  onClick={handleSaveClick}
+                  onClick={() => setSaveDialogOpen(true)}
                 >
                   Overwrite current bucket setup with this
                 </ButtonLoading>
@@ -367,6 +362,32 @@ const BucketSim = () => {
           </Grid>
         )}
       </Grid>
+
+      <Dialog
+        type="warning"
+        title="Are you sure?"
+        text="This will replace the current bucket list."
+        onSubmit={handleSaveSubmit}
+        open={isSaveDialogOpen}
+        setOpen={setSaveDialogOpen}
+      />
+
+      <Dialog
+        type="info"
+        title="Are you sure?"
+        text="This item will be cloned to a new bucket sim."
+        onSubmit={handleCloneSubmit}
+        open={isCloneDialogOpen}
+        setOpen={setCloneDialogOpen}
+      />
+
+      <Dialog
+        title="Are you sure?"
+        text="This content would be deleted."
+        onSubmit={handleDeleteSubmit}
+        open={isDeleteDialogOpen}
+        setOpen={setDeleteDialogOpen}
+      />
     </ModuleContainer>
   );
 };

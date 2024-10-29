@@ -1,8 +1,7 @@
+import axios from "axios";
 import { useContext, useEffect, useLayoutEffect, useState } from "preact/hooks";
-
 import { route } from "preact-router";
 import { useFieldArray, useForm } from "react-hook-form";
-import axios from "axios";
 import { green, orange, red } from "@mui/material/colors";
 import { toast } from "sonner";
 
@@ -30,9 +29,10 @@ import {
 import {
   ButtonLoading,
   DashboardTile,
+  Dialog,
+  FILESIZES,
   GlobalLoaderContext,
   ModuleContainer,
-  Swal,
   Table,
 } from "@components";
 
@@ -59,11 +59,10 @@ type Props = {
   };
 };
 
-const TB = 1000169533440;
-
 const BucketSimEdit = (props: Props) => {
   const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
 
+  const [isDialogOpen, setDialogOpen] = useState(false);
   const [isSaveLoading, setSaveLoading] = useState(false);
   const [data, setData] = useState<Data>([]);
   const [previewLoader, setPreviewLoader] = useState(false);
@@ -93,7 +92,7 @@ const BucketSimEdit = (props: Props) => {
         const buckets = formdata.buckets.map((item) => ({
           from: item.from.toLowerCase(),
           to: item.to.toLowerCase(),
-          size: item.size ? item.size * TB : 0,
+          size: item.size ? item.size * FILESIZES.TB : 0,
         }));
 
         const bucketData = JSON.stringify(buckets);
@@ -139,7 +138,7 @@ const BucketSimEdit = (props: Props) => {
         const buckets = formdata.buckets.map((item) => ({
           from: item.from.toLowerCase(),
           to: item.to.toLowerCase(),
-          size: item.size ? item.size * TB : 0,
+          size: item.size ? item.size * FILESIZES.TB : 0,
         }));
 
         const data = JSON.stringify(buckets);
@@ -160,17 +159,6 @@ const BucketSimEdit = (props: Props) => {
     }
   };
 
-  const handleBack = async () => {
-    const result = await Swal.fire({
-      title: "Are you sure?",
-      text: "Any changes will not be saved",
-      icon: "warning",
-      showCancelButton: true,
-    });
-
-    if (result.isConfirmed) route("/bucket-sims");
-  };
-
   const fetchData = async () => {
     toggleLoader(true);
 
@@ -185,7 +173,7 @@ const BucketSimEdit = (props: Props) => {
       const formData = data.slice(1).map((item: Item) => ({
         from: item.from,
         to: item.to,
-        size: item.rawTotal ? Math.round(item.rawTotal / TB) : 0,
+        size: item.rawTotal ? Math.round(item.rawTotal / FILESIZES.TB) : 0,
       }));
 
       const buckets: Data = data.map((item: Item) => {
@@ -223,7 +211,7 @@ const BucketSimEdit = (props: Props) => {
         color="error"
         startIcon={<BackIcon size={20} />}
         sx={{ display: { xs: "none", sm: "inline-flex" } }}
-        onClick={handleBack}
+        onClick={() => setDialogOpen(true)}
       >
         Back
       </ControlButtons>
@@ -261,7 +249,6 @@ const BucketSimEdit = (props: Props) => {
   return (
     <ModuleContainer
       headerText="Edit Bucket Simulation"
-      handleBack={handleBack}
       headerControls={<HeaderControls />}
     >
       {!isLoading && (
@@ -465,6 +452,15 @@ const BucketSimEdit = (props: Props) => {
           </Table.Container>
         </>
       )}
+
+      <Dialog
+        type="warning"
+        title="Are you sure?"
+        text="Any changes will not be saved."
+        onSubmit={() => route("/bucket-sims")}
+        open={isDialogOpen}
+        setOpen={setDialogOpen}
+      />
     </ModuleContainer>
   );
 };

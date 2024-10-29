@@ -1,7 +1,7 @@
+import axios from "axios";
 import { useState } from "preact/hooks";
 import { route } from "preact-router";
 import { useFieldArray, useForm } from "react-hook-form";
-import axios from "axios";
 import { green, orange, red } from "@mui/material/colors";
 import { toast } from "sonner";
 
@@ -29,8 +29,9 @@ import {
 import {
   ButtonLoading,
   DashboardTile,
+  Dialog,
+  FILESIZES,
   ModuleContainer,
-  Swal,
   Table,
 } from "@components";
 
@@ -51,9 +52,8 @@ import {
 import { defaultValues, Form, resolver } from "./validation";
 import { Data, Item } from "./types";
 
-const TB = 1000169533440;
-
 const BucketSimAdd = () => {
+  const [isDialogOpen, setDialogOpen] = useState(false);
   const [isSaveLoading, setSaveLoading] = useState(false);
   const [previewData, setPreviewData] = useState<Data>([]);
   const [isPreviewLoading, setPreviewLoading] = useState(false);
@@ -83,7 +83,7 @@ const BucketSimAdd = () => {
         const buckets = formdata.buckets.map((item) => ({
           from: item.from.toLowerCase(),
           to: item.to.toLowerCase(),
-          size: item.size ? item.size * TB : 0,
+          size: item.size ? item.size * FILESIZES.TB : 0,
         }));
 
         const bucketData = JSON.stringify(buckets);
@@ -129,7 +129,7 @@ const BucketSimAdd = () => {
         const buckets = formdata.buckets.map((item) => ({
           from: item.from.toLowerCase(),
           to: item.to.toLowerCase(),
-          size: item.size ? item.size * TB : 0,
+          size: item.size ? item.size * FILESIZES.TB : 0,
         }));
 
         const data = JSON.stringify(buckets);
@@ -150,17 +150,6 @@ const BucketSimAdd = () => {
     }
   };
 
-  const handleBack = async () => {
-    const result = await Swal.fire({
-      title: "Are you sure?",
-      text: "Any changes will not be saved",
-      icon: "warning",
-      showCancelButton: true,
-    });
-
-    if (result.isConfirmed) route("/bucket-sims");
-  };
-
   const HeaderControls = () => (
     <>
       <ControlButtons
@@ -168,7 +157,7 @@ const BucketSimAdd = () => {
         color="error"
         startIcon={<BackIcon size={20} />}
         sx={{ display: { xs: "none", sm: "inline-flex" } }}
-        onClick={handleBack}
+        onClick={() => setDialogOpen(true)}
       >
         Back
       </ControlButtons>
@@ -194,7 +183,6 @@ const BucketSimAdd = () => {
   return (
     <ModuleContainer
       headerText="Add Bucket Simulation"
-      handleBack={handleBack}
       headerControls={<HeaderControls />}
     >
       {!isPreviewLoading && (
@@ -386,6 +374,15 @@ const BucketSimAdd = () => {
           </Table.Body>
         </Table.Element>
       </Table.Container>
+
+      <Dialog
+        type="warning"
+        title="Are you sure?"
+        text="Any changes will not be saved."
+        onSubmit={() => route("/bucket-sims")}
+        open={isDialogOpen}
+        setOpen={setDialogOpen}
+      />
     </ModuleContainer>
   );
 };
