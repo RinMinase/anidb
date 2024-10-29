@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 
 type Props = {
+  type?: "error" | "warning" | "info";
   open: boolean;
   setOpen: Dispatch<StateUpdater<boolean>>;
   title?: string;
@@ -36,7 +37,7 @@ const Dialog = (props: Props) => {
       >
         <Button
           variant="contained"
-          color="error"
+          color={props.type ?? "error"}
           sx={{ width: 90 }}
           onClick={props.onSubmit}
         >
