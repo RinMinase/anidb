@@ -23,7 +23,7 @@ const ColorMode = (props: any) => {
             main: mode === "light" ? "#198754" : "#105434",
           },
           secondary: {
-            main: mode === "light" ? "#00b0ff" : "#1c54b2",
+            main: mode === "light" ? "#B0BEC5" : "#BDBDBD",
           },
         },
       }),
