@@ -20,27 +20,19 @@ import {
   Edit as EditIcon,
 } from "react-feather";
 
+import { ErrorResponse } from "@components/types";
+
 import {
   ButtonLoading,
   ControlledField,
+  Dialog,
   IconButton,
   ModuleContainer,
-  Swal,
   Table,
 } from "@components";
 
-import { ErrorResponse } from "@components/types";
-
 import { defaultValues, Form, resolver } from "./validation";
 import { Data, Item } from "./types";
-
-const CustomTable = styled(Table.Element)({
-  minWidth: 650,
-});
-
-const ActionTableCell = styled(Table.Cell)({
-  textAlign: "right",
-});
 
 const CustomDialog = styled(Paper)({
   position: "fixed",
@@ -56,7 +48,8 @@ const Group = () => {
   const [isAddButtonLoading, setAddButtonLoading] = useState(false);
   const [isEditButtonLoading, setEditButtonLoading] = useState(false);
   const [isTableLoading, setTableLoading] = useState(true);
-  const [isDialogOpen, setDialogOpen] = useState(false);
+  const [isEditDialogOpen, setEditDialogOpen] = useState(false);
+  const [isDeleteDialogOpen, setDeleteDialogOpen] = useState(false);
 
   const [data, setData] = useState<Data>([]);
   const [selectedData, setSelectedData] = useState<Item>({
@@ -101,7 +94,7 @@ const Group = () => {
     editSetValue("name", item.name);
     editTrigger("name");
 
-    setDialogOpen(true);
+    setEditDialogOpen(true);
   };
 
   const handleEditSubmit = async (formdata: Form) => {
@@ -114,7 +107,7 @@ const Group = () => {
 
       setEditButtonLoading(false);
       setTableLoading(true);
-      setDialogOpen(false);
+      setEditDialogOpen(false);
 
       await fetchData();
     } catch (err) {
@@ -140,28 +133,23 @@ const Group = () => {
     }
   };
 
-  const handleDeleteClick = async (uuid: string) => {
+  const handleDeleteClick = (item: Item) => {
+    setSelectedData(item);
+    setDeleteDialogOpen(true);
+  };
+
+  const handleDeleteSubmit = async () => {
     try {
-      const result = await Swal.fire({
-        title: "Are you sure?",
-        text: "This item will be deleted",
-        icon: "error",
-        showCancelButton: true,
-      });
+      setDeleteDialogOpen(false);
+      setTableLoading(true);
 
-      if (result.isConfirmed) {
-        setTableLoading(true);
+      await axios.delete(`/groups/${selectedData.uuid}`);
+      toast.success("Success");
 
-        await axios.delete(`/groups/${uuid}`);
-        toast.success("Success");
-
-        await fetchData();
-      }
+      await fetchData();
     } catch (err) {
       console.error(err);
       toast.error("Failed");
-    } finally {
-      setTableLoading(false);
     }
   };
 
@@ -230,7 +218,7 @@ const Group = () => {
         </Grid>
         <Grid size={{ xs: 12, sm: 7, md: 9 }}>
           <Table.Container component={Paper}>
-            <CustomTable size="small">
+            <Table.Element size="small" sx={{ minWidth: 650 }}>
               <Table.Head>
                 <Table.Row>
                   <Table.Cell>Name</Table.Cell>
@@ -243,7 +231,7 @@ const Group = () => {
                   data.map((item) => (
                     <Table.Row hover key={item.uuid}>
                       <Table.Cell>{item.name}</Table.Cell>
-                      <ActionTableCell>
+                      <Table.Cell sx={{ textAlign: "right" }}>
                         <IconButton
                           size="small"
                           onClick={() => handleEditClick(item)}
@@ -251,29 +239,29 @@ const Group = () => {
                         />
                         <IconButton
                           size="small"
-                          onClick={() => handleDeleteClick(item.uuid)}
+                          onClick={() => handleDeleteClick(item)}
                           sx={{ ml: 1 }}
                           children={<DeleteIcon size={20} />}
                         />
-                      </ActionTableCell>
+                      </Table.Cell>
                     </Table.Row>
                   ))
                 ) : (
                   <Table.Loader />
                 )}
               </Table.Body>
-            </CustomTable>
+            </Table.Element>
           </Table.Container>
         </Grid>
       </Grid>
 
-      <Backdrop open={isDialogOpen}>
+      <Backdrop open={isEditDialogOpen}>
         <CustomDialog>
           <DialogTitle display="flex" justifyContent="space-between">
             Edit Group Name
             <IconButton
               disabled={isEditButtonLoading}
-              onClick={() => setDialogOpen(false)}
+              onClick={() => setEditDialogOpen(false)}
               children={<CloseIcon size={20} />}
             />
           </DialogTitle>
@@ -301,6 +289,14 @@ const Group = () => {
           </DialogContent>
         </CustomDialog>
       </Backdrop>
+
+      <Dialog
+        title="Are you sure?"
+        text="This content would be deleted."
+        onSubmit={handleDeleteSubmit}
+        open={isDeleteDialogOpen}
+        setOpen={setDeleteDialogOpen}
+      />
     </ModuleContainer>
   );
 };
