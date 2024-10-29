@@ -30,7 +30,9 @@ const Dialog = (props: Props) => {
       {props.title && (
         <DialogTitle textAlign="center">{props.title}</DialogTitle>
       )}
-      <DialogContent sx={{ pb: 2 }}>{props.text}</DialogContent>
+      <DialogContent sx={{ pb: 2, textAlign: "center", maxWidth: 400 }}>
+        {props.text}
+      </DialogContent>
       <DialogActions
         sx={{ justifyContent: "center", gap: 2, pb: 2 }}
         disableSpacing
