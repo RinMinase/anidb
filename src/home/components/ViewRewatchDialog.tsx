@@ -69,7 +69,7 @@ const RewatchListItem = styled(ListItem)(({ theme }) => ({
   },
 }));
 
-const ViewRewatchDialogue = (props: Props) => {
+const ViewRewatchDialog = (props: Props) => {
   const [isLoading, setLoading] = useState(false);
   const [isDialogOpen, setDialogOpen] = useState(false);
   const [selected, setSelected] = useState<string>();
@@ -203,4 +203,4 @@ const ViewRewatchDialogue = (props: Props) => {
   );
 };
 
-export default ViewRewatchDialogue;
+export default ViewRewatchDialog;

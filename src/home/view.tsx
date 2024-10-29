@@ -39,7 +39,7 @@ import {
 } from "./components/ViewComponents";
 
 import ViewEntryImage from "./components/ViewEntryImage";
-import ViewRewatchDialogue from "./components/ViewRewatchDialog";
+import ViewRewatchDialog from "./components/ViewRewatchDialog";
 import { FullData } from "./types";
 
 type Props = {
@@ -558,7 +558,8 @@ const HomeView = (props: Props) => {
           </Grid>
         </Grid>
       )}
-      <ViewRewatchDialogue
+
+      <ViewRewatchDialog
         entry={props.matches?.id || ""}
         open={rewatchDialog}
         onChangeData={handleChangeData}
