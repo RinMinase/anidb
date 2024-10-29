@@ -20,7 +20,6 @@ import {
   ImageBoxDelete,
 } from "./ViewComponents";
 
-import { Alert, AlertProps } from "@components";
 import { FullData } from "../types";
 
 type Props = {
@@ -38,7 +37,6 @@ const ViewEntryImage = (props: Props) => {
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [tempImage, setTempImage] = useState<string>("");
   const [imageUploading, setImageUploading] = useState<boolean>(false);
-  const [dialog, setDialog] = useState<AlertProps>({ open: false });
   const [deleteIcon, setDeleteIcon] = useState(!!props.data.image);
 
   const handleChangeFile = (e: any) => {
@@ -62,23 +60,10 @@ const ViewEntryImage = (props: Props) => {
       setTempImage(() => BlankImage);
       setImageUploading(false);
       setDeleteIcon(false);
-      setDialog({
-        open: true,
-        message: "Success!",
-        severity: "success",
-      });
-
       toast.success("Success");
     } catch (err) {
       console.error(err);
       toast.error("Failed");
-
-      setImageUploading(false);
-      setDialog({
-        open: true,
-        message: "Failed",
-        severity: "error",
-      });
     }
   };
 
@@ -118,29 +103,16 @@ const ViewEntryImage = (props: Props) => {
         }));
 
         setDeleteIcon(true);
-        setDialog({
-          open: true,
-          message: "Success!",
-          severity: "success",
-        });
-
         toast.success("Success");
       } catch (err) {
         console.error(err);
         toast.error("Failed");
-
-        setDialog({
-          open: true,
-          message: "Failed",
-          severity: "error",
-        });
       }
     }
   };
 
   return (
     <>
-      <Alert open={dialog.open} onClose={() => setDialog({ open: false })} />
       <ImageBox>
         {imageUploading && (
           <ImageLoader>

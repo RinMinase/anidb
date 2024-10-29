@@ -1,9 +1,9 @@
-import { useContext, useState } from "preact/hooks";
+import axios, { AxiosError } from "axios";
+import { useState } from "preact/hooks";
 import { useForm } from "react-hook-form";
-import axios from "axios";
+import { toast } from "sonner";
 
 import {
-  CircularProgress,
   Grid2 as Grid,
   Stack,
   styled,
@@ -11,7 +11,8 @@ import {
   Typography,
 } from "@mui/material";
 
-import { Alert, AlertProps, Button, GlobalLoaderContext } from "@components";
+import { ButtonLoading, ErrorResponseType } from "@components";
+
 import { Form, resolver } from "./validation";
 
 const RegistrationContainer = styled(Grid)({
@@ -19,13 +20,8 @@ const RegistrationContainer = styled(Grid)({
   alignItems: "center",
 });
 
-const LoginStack = styled(Stack)({
-  paddingTop: 24,
-  textAlign: "center",
-});
-
 const Registration = () => {
-  const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
+  const [isLoading, setLoading] = useState(false);
 
   const {
     register,
@@ -34,43 +30,30 @@ const Registration = () => {
     formState: { errors },
   } = useForm<Form>({ resolver });
 
-  const [dialog, setDialog] = useState<AlertProps>({
-    open: false,
-    message: "",
-    severity: "success",
-  });
-
   const handleSubmitForm = async (formdata: Form) => {
-    toggleLoader(true);
+    setLoading(true);
 
     try {
       await axios.post("/auth/register", formdata);
-      setDialog(() => ({
-        open: true,
-        message: "Success",
-        severity: "success",
-      }));
-    } catch (error: any) {
-      const {
-        response: { data: err },
-      } = error;
+      toast.success("Success");
+    } catch (err) {
+      if (err instanceof AxiosError && err.status === 401) {
+        const { data } = err.response?.data as ErrorResponseType;
 
-      if (err.status === 401) {
-        for (const field in err.data) {
-          setError(field as any, {
-            type: "server",
-            message: err.data[field][0],
+        for (const key in data) {
+          setError(key as any, {
+            type: "manual",
+            message: data[key].length ? data[key][0] : "Unknown error.",
           });
         }
+
+        toast.error("Form validation failed");
       } else {
-        setDialog(() => ({
-          open: true,
-          message: err.message,
-          severity: "error",
-        }));
+        console.error(err);
+        toast.error("Failed");
       }
     } finally {
-      toggleLoader(false);
+      setLoading(false);
     }
   };
 
@@ -78,7 +61,7 @@ const Registration = () => {
     <RegistrationContainer container justifyContent="center">
       <Grid size={{ xs: 12, sm: 6, md: 4 }}>
         <form onSubmit={handleSubmit(handleSubmitForm)}>
-          <LoginStack spacing={3}>
+          <Stack spacing={3} sx={{ paddingTop: 3, textAlign: "center" }}>
             <Typography variant="h4">Register</Typography>
 
             <TextField
@@ -108,21 +91,15 @@ const Registration = () => {
               {...register("password_confirmation")}
             />
 
-            <Alert onClose={() => setDialog({ open: false })} {...dialog} />
-
-            <Button
+            <ButtonLoading
               variant="contained"
-              size="large"
               type="submit"
               disabled={isLoading}
+              loading={isLoading}
             >
-              {!isLoading ? (
-                "Register"
-              ) : (
-                <CircularProgress color="inherit" size="1.75em" />
-              )}
-            </Button>
-          </LoginStack>
+              Register
+            </ButtonLoading>
+          </Stack>
         </form>
       </Grid>
     </RegistrationContainer>
