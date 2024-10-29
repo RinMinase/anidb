@@ -89,8 +89,6 @@ const ViewEntryImage = (props: Props) => {
           },
         });
 
-        setImageUploading(false);
-
         const {
           data: { data },
         } = await axios.get(`/entries/${props.id}`);
@@ -107,6 +105,8 @@ const ViewEntryImage = (props: Props) => {
       } catch (err) {
         console.error(err);
         toast.error("Failed");
+      } finally {
+        setImageUploading(false);
       }
     }
   };
