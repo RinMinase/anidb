@@ -24,7 +24,6 @@ export { default as NavCommon } from "./components/NavCommon";
 export { default as Quality } from "./components/Quality";
 export { default as RewatchIndicator } from "./components/RewatchIndicator";
 export { default as Snackbar } from "./components/Snackbar";
-export { default as Swal } from "./components/Swal";
 export { default as Table } from "./components/Table";
 
 export { ColorModeContext } from "./providers/ColorMode";
