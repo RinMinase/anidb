@@ -26,10 +26,10 @@ import {
   ControlledField,
   ControlledSelect,
   ControlledSwitch,
+  Dialog,
   GlobalLoaderContext,
   OptionsKeyedProps,
   parseNumberFilesizeToString,
-  Swal,
 } from "@components";
 
 import { Form } from "../validation";
@@ -52,6 +52,12 @@ type AutocompleteOptions = Array<{
   id: string;
   label: string;
 }>;
+
+type AutofillAnilistType = {
+  title?: string;
+  premiered?: string;
+  episodes?: number;
+};
 
 const seasons = ["Winter", "Spring", "Summer", "Fall"];
 
@@ -81,7 +87,7 @@ const titleSearchAPI = (title?: string) =>
     },
   });
 
-const titleSearchAPIDebounced = DebouncePromise(titleSearchAPI, 250);
+const titleSearchAPIDebounced = DebouncePromise(titleSearchAPI, 350);
 
 const AddForm = (props: Props) => {
   const { control, errors } = props;
@@ -99,6 +105,9 @@ const AddForm = (props: Props) => {
   const [titleSearch, setTitleSearch] = useState<Array<string>>([]);
   const [titleObjects, setTitleObjects] = useState<TitleObjects>([]);
   const [filesizeAdornment, setFilesizeAdornment] = useState<string>();
+
+  const [isDialogOpen, setDialogOpen] = useState(false);
+  const [savedAutofill, setSavedAutofill] = useState<AutofillAnilistType>({});
 
   const fetchQualities = async () => {
     const {
@@ -204,17 +213,14 @@ const AddForm = (props: Props) => {
     setTitleObjects(data);
   };
 
-  const setAutofillTitleValues = (
-    title: string,
-    premiered: string,
-    episodes: number,
-  ) => {
-    props.setValue("title", title);
+  const setAutofillTitleValues = (values: AutofillAnilistType) => {
+    if (values.title) props.setValue("title", values.title);
     props.trigger("title");
-    props.setValue("episodes", episodes);
 
-    if (premiered) {
-      const [season, year] = premiered.split(" ");
+    if (values.episodes) props.setValue("episodes", values.episodes);
+
+    if (values.premiered) {
+      const [season, year] = values.premiered.split(" ");
 
       props.setValue("release_season", season);
       props.setValue("release_year", year);
@@ -242,18 +248,10 @@ const AddForm = (props: Props) => {
         } = props.getValues();
 
         if (cEpisodes || cSeason || cYear) {
-          const result = await Swal.fire({
-            title: "Override?",
-            text: "Override existing 'Episodes', 'Release Season' and 'Release Year'?",
-            icon: "question",
-            showCancelButton: true,
-          });
-
-          if (result.isConfirmed) {
-            setAutofillTitleValues(title, premiered, episodes);
-          }
+          setSavedAutofill({ title, premiered, episodes });
+          setDialogOpen(true);
         } else {
-          setAutofillTitleValues(title, premiered, episodes);
+          setAutofillTitleValues({ title, premiered, episodes });
         }
       }
     } finally {
@@ -546,6 +544,18 @@ const AddForm = (props: Props) => {
       <Grid size={{ xs: 12, sm: 3, md: 2 }}>
         <ControlledSwitch name="codec_hdr" label="HDR" control={control} />
       </Grid>
+
+      <Dialog
+        type="info"
+        title="Override?"
+        text="Override existing 'Episodes', 'Release Season' and 'Release Year'?"
+        onSubmit={() => {
+          setDialogOpen(false);
+          setAutofillTitleValues(savedAutofill);
+        }}
+        open={isDialogOpen}
+        setOpen={setDialogOpen}
+      />
     </Grid>
   );
 };

@@ -1,10 +1,9 @@
+import axios, { AxiosError } from "axios";
 import { useContext, useEffect, useState } from "preact/hooks";
 import { route } from "preact-router";
 import { useForm } from "react-hook-form";
-import axios, { AxiosError } from "axios";
 import { format } from "date-fns";
 import { isEmpty } from "lodash-es";
-import { styled } from "@mui/material";
 import { ArrowLeft as BackIcon } from "react-feather";
 import { toast } from "sonner";
 
@@ -13,9 +12,9 @@ import { ErrorResponse } from "@components/types";
 import {
   Button,
   ButtonLoading,
+  Dialog,
   GlobalLoaderContext,
   ModuleContainer,
-  Swal,
 } from "@components";
 
 import { defaultValues, Form, resolver } from "./validation";
@@ -29,30 +28,13 @@ type Props = {
   };
 };
 
-const ControlButtons = styled(Button)(({ theme }) => ({
-  minWidth: 120,
-  marginLeft: 16,
-
-  [theme.breakpoints.down("sm")]: {
-    marginTop: 8,
-  },
-}));
-
-const ControlButtonsLoading = styled(ButtonLoading)(({ theme }) => ({
-  minWidth: 120,
-  marginLeft: 16,
-
-  [theme.breakpoints.down("sm")]: {
-    marginTop: 8,
-  },
-}));
-
 const HomeAdd = (props: Props) => {
   const { toggleLoader, isLoading } = useContext(GlobalLoaderContext);
 
   const [isDropdownLoading, setDropdownLoading] = useState(false);
   const [hasEntryId, setHasEntryId] = useState(false);
   const [isSaveLoading, setSaveLoading] = useState(false);
+  const [isDialogOpen, setDialogOpen] = useState(false);
 
   const [autofillValues, setAutofillValues] = useState<AutofillProps>({});
 
@@ -191,17 +173,6 @@ const HomeAdd = (props: Props) => {
     }
   };
 
-  const handleBack = async () => {
-    const result = await Swal.fire({
-      title: "Are you sure?",
-      text: "Any changes will not be saved",
-      icon: "warning",
-      showCancelButton: true,
-    });
-
-    if (result.isConfirmed) route("/home");
-  };
-
   const handleSubmitForm = async (formdata: Form) => {
     try {
       setSaveLoading(true);
@@ -256,22 +227,27 @@ const HomeAdd = (props: Props) => {
 
   const HeaderControls = () => (
     <>
-      <ControlButtons
+      <Button
         variant="contained"
         color="error"
         startIcon={<BackIcon size={20} />}
-        sx={{ display: { xs: "none", sm: "inline-flex" } }}
-        onClick={handleBack}
+        sx={{
+          display: { xs: "none", sm: "inline-flex" },
+          minWidth: 120,
+          marginLeft: 2,
+        }}
+        onClick={() => setDialogOpen(true)}
       >
         Back
-      </ControlButtons>
-      <ControlButtonsLoading
+      </Button>
+      <ButtonLoading
         variant="contained"
         loading={isSaveLoading || isLoading}
+        sx={{ minWidth: 120, marginLeft: 2 }}
         onClick={handleSubmit(handleSubmitForm)}
       >
         Save
-      </ControlButtonsLoading>
+      </ButtonLoading>
     </>
   );
 
@@ -303,7 +279,7 @@ const HomeAdd = (props: Props) => {
   return (
     <ModuleContainer
       headerText={props.matches?.id ? "Edit Entry" : "Add Entry"}
-      handleBack={handleBack}
+      handleBack={() => setDialogOpen(true)}
       headerControls={<HeaderControls />}
       largeGutter
     >
@@ -319,6 +295,15 @@ const HomeAdd = (props: Props) => {
       />
 
       <AutofillHelper setAutofillValues={setAutofillValues} />
+
+      <Dialog
+        type="warning"
+        title="Are you sure?"
+        text="Any changes will not be saved."
+        onSubmit={() => route("/home")}
+        open={isDialogOpen}
+        setOpen={setDialogOpen}
+      />
     </ModuleContainer>
   );
 };

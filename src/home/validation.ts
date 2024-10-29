@@ -45,7 +45,7 @@ export type Form = {
 };
 
 export type RewatchForm = {
-  dateRewatch: Date;
+  date_rewatched: Date;
 };
 
 const defaultValues = {
@@ -60,7 +60,7 @@ const defaultValues = {
 };
 
 const rewatchDefaultValues = {
-  dateRewatch: new Date(),
+  date_rewatched: new Date(),
 };
 
 const dateTime = new Date();
@@ -141,8 +141,8 @@ const schema = object().shape({
 });
 
 const rewatchSchema = object({
-  dateRewatch: date()
-    .max(new Date(), "Invalid date")
+  date_rewatched: date()
+    .max(new Date(), "Date should not be in the future")
     .required("Date is required"),
 });
 
