@@ -1,6 +1,6 @@
+import axios from "axios";
 import { useContext, useEffect, useState } from "preact/hooks";
 import { route } from "preact-router";
-import axios from "axios";
 import { Edit as EditIcon, Trash as DeleteIcon } from "react-feather";
 import { toast } from "sonner";
 
@@ -15,10 +15,10 @@ import {
 
 import {
   Button,
+  Dialog,
   GlobalLoaderContext,
   IconButton,
   ModuleContainer,
-  Swal,
   Table,
 } from "@components";
 
@@ -30,18 +30,15 @@ const CustomMenuList = styled(MenuList)<{ component: any }>({
   overflow: "hidden",
 });
 
-const CustomTable = styled(Table.Element)({
-  minWidth: 650,
-});
-
-const ActionTableCell = styled(Table.Cell)({
-  textAlign: "right",
-});
-
 const Catalog = () => {
   const { toggleLoader } = useContext(GlobalLoaderContext);
 
   const [isTableLoading, setTableLoading] = useState(false);
+  const [selectedDeleteItem, setSelectedDeleteItem] = useState<string>();
+  const [selectedDeleteCatalog, setSelectedDeleteCatalog] = useState<string>();
+  const [isDeleteItemOpen, setDeleteItemOpen] = useState(false);
+  const [isDeleteCatalogOpen, setDeleteCatalogOpen] = useState(false);
+
   const [data, setData] = useState<Data>([]);
   const [catalogs, setCatalogs] = useState<Catalogs>([]);
   const [selected, setSelected] = useState("");
@@ -66,37 +63,34 @@ const Catalog = () => {
     }
   };
 
-  const handleEditClick = (uuid: string) => {
+  const handleEditItemClick = (uuid: string) => {
     route(`/catalogs/edit/${uuid}`);
   };
 
-  const handleEditMultiClick = (e: any, uuid: string) => {
+  const handleEditCatalogClick = (e: any, uuid: string) => {
     e.stopPropagation();
 
     route(`/catalogs/edit-multi/${uuid}`);
   };
 
-  const handleDeleteClick = async (uuid: string) => {
+  const handleDeleteItemClick = (uuid: string) => {
+    setSelectedDeleteItem(uuid);
+    setDeleteItemOpen(true);
+  };
+
+  const handleDeleteItemSubmit = async () => {
     try {
-      const result = await Swal.fire({
-        title: "Are you sure?",
-        text: "This item will be deleted",
-        icon: "error",
-        showCancelButton: true,
-      });
+      setDeleteItemOpen(false);
+      setTableLoading(true);
 
-      if (result.isConfirmed) {
-        setTableLoading(true);
+      await axios.delete(`/partials/${selectedDeleteItem}`);
+      toast.success("Success");
 
-        await axios.delete(`/partials/${uuid}`);
-        toast.success("Success");
+      const {
+        data: { data },
+      } = await axios.get(`/catalogs/${selected}/partials`);
 
-        const {
-          data: { data },
-        } = await axios.get(`/catalogs/${selected}/partials`);
-
-        setData(() => data);
-      }
+      setData(() => data);
     } catch (err) {
       console.error(err);
       toast.error("Failed");
@@ -105,31 +99,27 @@ const Catalog = () => {
     }
   };
 
-  const handleDeleteMultiClick = async (e: any, uuid: string) => {
+  const handleDeleteCatalogClick = (e: any, uuid: string) => {
     e.stopPropagation();
+    setSelectedDeleteCatalog(uuid);
+    setDeleteCatalogOpen(true);
+  };
 
+  const handleDeleteCatalogSubmit = async () => {
     try {
-      const result = await Swal.fire({
-        title: "Are you sure?",
-        text: "This item will be deleted",
-        icon: "error",
-        showCancelButton: true,
-      });
+      setDeleteCatalogOpen(false);
+      setTableLoading(true);
 
-      if (result.isConfirmed) {
-        setTableLoading(true);
+      await axios.delete(`/catalogs/${selectedDeleteCatalog}`);
+      toast.success("Success");
 
-        await axios.delete(`/catalogs/${uuid}`);
-        toast.success("Success");
+      const {
+        data: { data },
+      } = await axios.get("/catalogs");
 
-        const {
-          data: { data },
-        } = await axios.get("/catalogs");
+      setCatalogs(() => data);
 
-        setCatalogs(() => data);
-
-        if (data.length) handleClickCatalog(data[0].uuid);
-      }
+      if (data.length) handleClickCatalog(data[0].uuid);
     } catch (err) {
       console.error(err);
       toast.error("Failed");
@@ -164,7 +154,7 @@ const Catalog = () => {
   return (
     <ModuleContainer headerText="Catalogs">
       <Grid container spacing={2}>
-        <Grid size={{ xs: 12, sm: 5, md: 3 }}>
+        <Grid size={{ xs: 12, sm: 5, md: 4, lg: 3 }}>
           <Button
             variant="contained"
             fullWidth
@@ -192,27 +182,27 @@ const Catalog = () => {
                 </ListItemText>
                 <IconButton
                   size="small"
-                  onClick={(e) => handleEditMultiClick(e, item.uuid)}
+                  onClick={(e) => handleEditCatalogClick(e, item.uuid)}
                   children={<EditIcon size={16} />}
                   sx={{ marginRight: 0.5 }}
                 />
                 <IconButton
                   size="small"
-                  onClick={(e) => handleDeleteMultiClick(e, item.uuid)}
+                  onClick={(e) => handleDeleteCatalogClick(e, item.uuid)}
                   children={<DeleteIcon size={16} />}
                 />
               </MenuItem>
             ))}
           </CustomMenuList>
         </Grid>
-        <Grid size={{ xs: 12, sm: 7, md: 9 }}>
+        <Grid size={{ xs: 12, sm: 7, md: 8, lg: 9 }}>
           <Table.Container component={Paper}>
-            <CustomTable>
+            <Table.Element>
               <Table.Head>
                 <Table.Row>
                   <Table.Cell>Title</Table.Cell>
                   <Table.Cell>Priority</Table.Cell>
-                  <Table.Cell sx={{ minWidth: 100 }} />
+                  <Table.Cell sx={{ minWidth: 100, width: 100 }} />
                 </Table.Row>
               </Table.Head>
 
@@ -222,29 +212,45 @@ const Catalog = () => {
                     <Table.Row hover key={item.uuid}>
                       <Table.Cell>{item.title}</Table.Cell>
                       <Table.Cell>{item.priority}</Table.Cell>
-                      <ActionTableCell>
+                      <Table.Cell sx={{ textAlign: "right" }}>
                         <IconButton
                           size="small"
-                          onClick={() => handleEditClick(item.uuid)}
+                          onClick={() => handleEditItemClick(item.uuid)}
                           children={<EditIcon size={18} />}
                         />
                         <IconButton
                           size="small"
-                          onClick={() => handleDeleteClick(item.uuid)}
+                          onClick={() => handleDeleteItemClick(item.uuid)}
                           sx={{ ml: 1 }}
                           children={<DeleteIcon size={18} />}
                         />
-                      </ActionTableCell>
+                      </Table.Cell>
                     </Table.Row>
                   ))
                 ) : (
                   <Table.Loader />
                 )}
               </Table.Body>
-            </CustomTable>
+            </Table.Element>
           </Table.Container>
         </Grid>
       </Grid>
+
+      <Dialog
+        title="Are you sure?"
+        text="This content would be deleted."
+        onSubmit={handleDeleteItemSubmit}
+        open={isDeleteItemOpen}
+        setOpen={setDeleteItemOpen}
+      />
+
+      <Dialog
+        title="Are you sure?"
+        text="This content would be deleted."
+        onSubmit={handleDeleteCatalogSubmit}
+        open={isDeleteCatalogOpen}
+        setOpen={setDeleteCatalogOpen}
+      />
     </ModuleContainer>
   );
 };

@@ -1,7 +1,7 @@
+import axios, { AxiosError } from "axios";
 import { route } from "preact-router";
 import { useContext, useEffect, useState } from "preact/hooks";
 import { useForm } from "react-hook-form";
-import axios, { AxiosError } from "axios";
 import { Stack } from "@mui/material";
 import { toast } from "sonner";
 
@@ -9,15 +9,15 @@ import {
   ButtonLoading,
   ControlledField,
   ControlledSelect,
+  Dialog,
+  ErrorResponseType,
   GlobalLoaderContext,
   ModuleContainer,
   OptionsProps,
-  Swal,
 } from "@components";
 
 import { defaultValues, Form, resolver } from "./validation";
 import { Catalogs, Priorities } from "./types";
-import { ErrorResponse } from "@components/types";
 
 type Props = {
   matches?: {
@@ -29,6 +29,7 @@ const CatalogAdd = (props: Props) => {
   const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
 
   const [isSubmitLoading, setSubmitLoading] = useState(false);
+  const [isDialogOpen, setDialogOpen] = useState(false);
   const [catalogs, setCatalogs] = useState<OptionsProps>([]);
   const [priorities, setPriorities] = useState<OptionsProps>([]);
 
@@ -95,17 +96,6 @@ const CatalogAdd = (props: Props) => {
     }
   };
 
-  const handleBack = async () => {
-    const result = await Swal.fire({
-      title: "Are you sure?",
-      text: "Any changes will not be saved",
-      icon: "warning",
-      showCancelButton: true,
-    });
-
-    if (result.isConfirmed) route("/catalogs");
-  };
-
   const handleSubmitForm = async (formdata: Form) => {
     try {
       setSubmitLoading(true);
@@ -120,7 +110,7 @@ const CatalogAdd = (props: Props) => {
       route("/catalogs");
     } catch (err) {
       if (err instanceof AxiosError && err.status === 401) {
-        const { data } = err.response?.data as ErrorResponse;
+        const { data } = err.response?.data as ErrorResponseType;
 
         for (const key in data) {
           setError(key as any, {
@@ -145,7 +135,7 @@ const CatalogAdd = (props: Props) => {
 
   return (
     <ModuleContainer
-      handleBack={handleBack}
+      handleBack={() => setDialogOpen(true)}
       headerText={
         props.matches?.id ? "Edit Partial Entry" : "Add Partial Entry"
       }
@@ -189,6 +179,15 @@ const CatalogAdd = (props: Props) => {
           Save
         </ButtonLoading>
       </Stack>
+
+      <Dialog
+        type="warning"
+        title="Are you sure?"
+        text="Any changes will not be saved."
+        onSubmit={() => route("/catalogs")}
+        open={isDialogOpen}
+        setOpen={setDialogOpen}
+      />
     </ModuleContainer>
   );
 };

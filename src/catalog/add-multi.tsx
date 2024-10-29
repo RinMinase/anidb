@@ -1,24 +1,23 @@
+import axios, { AxiosError } from "axios";
 import { route } from "preact-router";
 import { useContext, useEffect, useState } from "preact/hooks";
 import { useForm } from "react-hook-form";
-import axios, { AxiosError } from "axios";
 import { toast } from "sonner";
-
 import { Box, Grid2 as Grid, useMediaQuery, useTheme } from "@mui/material";
 
 import {
   ButtonLoading,
   ControlledField,
   ControlledSelect,
+  Dialog,
+  ErrorResponseType,
   GlobalLoaderContext,
   ModuleContainer,
-  Swal,
+  queryParamsArrayToString,
 } from "@components";
 
-import { queryParamsArrayToString } from "@components/functions";
 import { defaultValues, Form, resolver } from "./validation-multi";
 import { Data, Stats } from "./types";
-import { ErrorResponse } from "@components/types";
 
 type Props = {
   matches?: {
@@ -37,6 +36,7 @@ const CatalogMulti = (props: Props) => {
   const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
 
   const [isSubmitLoading, setSubmitLoading] = useState(false);
+  const [isDialogOpen, setDialogOpen] = useState(false);
 
   const theme = useTheme();
   const nonMobile = useMediaQuery(theme.breakpoints.up("md"));
@@ -48,17 +48,6 @@ const CatalogMulti = (props: Props) => {
     setError,
     formState: { errors },
   } = useForm<Form>({ defaultValues, resolver, mode: "onChange" });
-
-  const handleBack = async () => {
-    const result = await Swal.fire({
-      title: "Are you sure?",
-      text: "Any changes will not be saved",
-      icon: "warning",
-      showCancelButton: true,
-    });
-
-    if (result.isConfirmed) route("/catalogs");
-  };
 
   const handleSubmitForm = async (formdata: Form) => {
     try {
@@ -102,7 +91,7 @@ const CatalogMulti = (props: Props) => {
       route("/catalogs");
     } catch (err) {
       if (err instanceof AxiosError && err.status === 401) {
-        const { data } = err.response?.data as ErrorResponse;
+        const { data } = err.response?.data as ErrorResponseType;
 
         for (const key in data) {
           setError(key as any, {
@@ -165,7 +154,7 @@ const CatalogMulti = (props: Props) => {
 
   return (
     <ModuleContainer
-      handleBack={handleBack}
+      handleBack={() => setDialogOpen(true)}
       headerText={
         props.matches?.id ? "Bulk Edit Partial Entry" : "Bulk Add Partial Entry"
       }
@@ -256,6 +245,15 @@ const CatalogMulti = (props: Props) => {
           Save
         </ButtonLoading>
       </Box>
+
+      <Dialog
+        type="warning"
+        title="Are you sure?"
+        text="Any changes will not be saved."
+        onSubmit={() => route("/catalogs")}
+        open={isDialogOpen}
+        setOpen={setDialogOpen}
+      />
     </ModuleContainer>
   );
 };
