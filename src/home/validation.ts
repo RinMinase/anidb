@@ -1,5 +1,4 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { format } from "date-fns";
 import { Resolver } from "react-hook-form";
 import { bool, date, lazy, number, object, string } from "yup";
 
@@ -66,10 +65,12 @@ const rewatchDefaultValues = {
 const dateTime = new Date();
 dateTime.setDate(dateTime.getDate() + 1);
 
-const dateOnly = new Date(
-  dateTime.valueOf() + dateTime.getTimezoneOffset() * 60 * 1000,
-);
-const now = format(dateOnly, "yyyy-MM-dd");
+// Commented temporarily to test adding in production
+// const dateOnly = new Date(
+//   dateTime.valueOf() + dateTime.getTimezoneOffset() * 60 * 1000,
+// );
+// const now = format(dateOnly, "yyyy-MM-dd");
+
 const minDate = "1990-01-01";
 
 const schema = object().shape({
@@ -90,7 +91,7 @@ const schema = object().shape({
   date_finished: date()
     .typeError("Invalid date")
     .min(minDate, "Invalid date")
-    .max(now, "Date should not be in the future")
+    .max(new Date(), "Date should not be in the future")
     .nullable(),
 
   filesize: number()

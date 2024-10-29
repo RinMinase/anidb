@@ -23,7 +23,13 @@ import {
   Trash as DeleteIcon,
 } from "react-feather";
 
-import { Button, GlobalLoaderContext, ModuleContainer } from "@components";
+import {
+  Button,
+  ButtonLoading,
+  Dialog,
+  GlobalLoaderContext,
+  ModuleContainer,
+} from "@components";
 import TotalRatingFilledIcon from "@components/icons/heart-filled.svg?react";
 import TotalRatingEmptyIcon from "@components/icons/heart.svg?react";
 
@@ -55,6 +61,9 @@ const HomeView = (props: Props) => {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   const [rewatchDialog, setRewatchDialog] = useState(false);
+  const [isDeleteDialogOpen, setDeleteDialogOpen] = useState(false);
+  const [isDeleteLoading, setDeleteLoading] = useState(false);
+
   const [data, setData] = useState<FullData>({});
   const [ratings, setRatings] = useState({
     average: 0,
@@ -256,6 +265,23 @@ const HomeView = (props: Props) => {
     }
   };
 
+  const handleDeleteSubmit = async () => {
+    try {
+      setDeleteDialogOpen(false);
+      setDeleteLoading(true);
+
+      await axios.delete(`/entries/${props.matches.id}`);
+      toast.success("Success");
+
+      route("/home");
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed");
+    } finally {
+      setDeleteLoading(false);
+    }
+  };
+
   useEffect(() => {
     toggleLoader(true);
     handleChangeData();
@@ -289,14 +315,16 @@ const HomeView = (props: Props) => {
               </Button>
             </Grid>
             <Grid size={{ xs: 4, sm: 6 }}>
-              <Button
+              <ButtonLoading
                 variant="contained"
                 color="error"
+                loading={isDeleteLoading}
                 startIcon={<DeleteIcon size={16} />}
+                onClick={() => setDeleteDialogOpen(true)}
                 fullWidth
               >
                 Delete
-              </Button>
+              </ButtonLoading>
             </Grid>
           </Grid>
 
@@ -565,6 +593,14 @@ const HomeView = (props: Props) => {
         onChangeData={handleChangeData}
         onClose={() => setRewatchDialog(false)}
         rewatches={data.rewatches}
+      />
+
+      <Dialog
+        title="Are you sure?"
+        text="This content would be deleted."
+        onSubmit={handleDeleteSubmit}
+        open={isDeleteDialogOpen}
+        setOpen={setDeleteDialogOpen}
       />
     </ModuleContainer>
   );
