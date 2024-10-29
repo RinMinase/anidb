@@ -1,4 +1,3 @@
-export type { AlertProps } from "./components/Alert";
 export type { Qualities } from "./components/Quality";
 
 export type {
@@ -6,7 +5,6 @@ export type {
   OptionsKeyedProps,
 } from "./components/ControlledSelect";
 
-export { default as Alert } from "./components/Alert";
 export { default as Button } from "./components/Button";
 export { default as ButtonLoading } from "./components/ButtonLoading";
 export { default as ControlledAutocomplete } from "./components/ControlledAutocomplete";

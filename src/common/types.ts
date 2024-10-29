@@ -3,4 +3,5 @@ export interface ErrorResponse {
     [key: string]: Array<string>;
   };
   status: number;
+  message?: string;
 }
