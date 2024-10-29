@@ -20,28 +20,20 @@ import {
   Edit as EditIcon,
 } from "react-feather";
 
+import { ErrorResponse } from "@components/types";
+
 import {
   ButtonLoading,
   ControlledField,
+  Dialog,
   IconButton,
   ModuleContainer,
   removeBlankAttributes,
-  Swal,
   Table,
 } from "@components";
 
-import { ErrorResponse } from "@components/types";
-
 import { defaultValues, Form, resolver } from "./validation";
 import { Data, Item } from "./types";
-
-const CustomTable = styled(Table.Element)({
-  minWidth: 650,
-});
-
-const ActionTableCell = styled(Table.Cell)({
-  textAlign: "right",
-});
 
 const CustomDialog = styled(Paper)({
   position: "fixed",
@@ -57,7 +49,8 @@ const VideoCodec = () => {
   const [isAddButtonLoading, setAddButtonLoading] = useState(false);
   const [isEditButtonLoading, setEditButtonLoading] = useState(false);
   const [isTableLoading, setTableLoading] = useState(true);
-  const [isDialogOpen, setDialogOpen] = useState(false);
+  const [isEditDialogOpen, setEditDialogOpen] = useState(false);
+  const [isDeleteDialogOpen, setDeleteDialogOpen] = useState(false);
 
   const [data, setData] = useState<Data>([]);
   const [selectedData, setSelectedData] = useState<Item>({
@@ -106,7 +99,7 @@ const VideoCodec = () => {
     editSetValue("order", item.order || undefined);
     editTrigger("order");
 
-    setDialogOpen(true);
+    setEditDialogOpen(true);
   };
 
   const handleEditSubmit = async (formdata: Form) => {
@@ -119,7 +112,7 @@ const VideoCodec = () => {
 
       setEditButtonLoading(false);
       setTableLoading(true);
-      setDialogOpen(false);
+      setEditDialogOpen(false);
 
       await fetchData();
     } catch (err) {
@@ -145,28 +138,23 @@ const VideoCodec = () => {
     }
   };
 
-  const handleDeleteClick = async (id: string) => {
+  const handleDeleteClick = (item: Item) => {
+    setSelectedData(item);
+    setDeleteDialogOpen(true);
+  };
+
+  const handleDeleteSubmit = async () => {
     try {
-      const result = await Swal.fire({
-        title: "Are you sure?",
-        text: "This item will be deleted",
-        icon: "error",
-        showCancelButton: true,
-      });
+      setDeleteDialogOpen(false);
+      setTableLoading(true);
 
-      if (result.isConfirmed) {
-        setTableLoading(true);
+      await axios.delete(`/codecs/video/${selectedData.id}`);
+      toast.success("Success");
 
-        await axios.delete(`/codecs/video/${id}`);
-        toast.success("Success");
-
-        await fetchData();
-      }
+      await fetchData();
     } catch (err) {
       console.error(err);
       toast.error("Failed");
-    } finally {
-      setTableLoading(false);
     }
   };
 
@@ -244,7 +232,7 @@ const VideoCodec = () => {
         </Grid>
         <Grid size={{ xs: 12, sm: 7, md: 9 }}>
           <Table.Container component={Paper}>
-            <CustomTable size="small">
+            <Table.Element size="small" sx={{ minWidth: 650 }}>
               <Table.Head>
                 <Table.Row>
                   <Table.Cell>Name</Table.Cell>
@@ -259,7 +247,7 @@ const VideoCodec = () => {
                     <Table.Row hover key={`codec-${item.id}`}>
                       <Table.Cell>{item.codec}</Table.Cell>
                       <Table.Cell>{item.order}</Table.Cell>
-                      <ActionTableCell>
+                      <Table.Cell sx={{ textAlign: "right" }}>
                         <IconButton
                           size="small"
                           onClick={() => handleEditClick(item)}
@@ -267,29 +255,29 @@ const VideoCodec = () => {
                         />
                         <IconButton
                           size="small"
-                          onClick={() => handleDeleteClick(item.id)}
+                          onClick={() => handleDeleteClick(item)}
                           sx={{ ml: 1 }}
                           children={<DeleteIcon size={20} />}
                         />
-                      </ActionTableCell>
+                      </Table.Cell>
                     </Table.Row>
                   ))
                 ) : (
                   <Table.Loader />
                 )}
               </Table.Body>
-            </CustomTable>
+            </Table.Element>
           </Table.Container>
         </Grid>
       </Grid>
 
-      <Backdrop open={isDialogOpen}>
+      <Backdrop open={isEditDialogOpen}>
         <CustomDialog>
           <DialogTitle display="flex" justifyContent="space-between">
             Edit Codec Name
             <IconButton
               disabled={isEditButtonLoading}
-              onClick={() => setDialogOpen(false)}
+              onClick={() => setEditDialogOpen(false)}
               children={<CloseIcon size={20} />}
             />
           </DialogTitle>
@@ -326,6 +314,14 @@ const VideoCodec = () => {
           </DialogContent>
         </CustomDialog>
       </Backdrop>
+
+      <Dialog
+        title="Are you sure?"
+        text="This content would be deleted."
+        onSubmit={handleDeleteSubmit}
+        open={isDeleteDialogOpen}
+        setOpen={setDeleteDialogOpen}
+      />
     </ModuleContainer>
   );
 };
