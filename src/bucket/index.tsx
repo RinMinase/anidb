@@ -9,11 +9,13 @@ import {
   Grid2 as Grid,
   LinearProgress,
   Paper,
+  Stack,
   styled,
   Typography,
 } from "@mui/material";
 
 import {
+  Button,
   ButtonLoading,
   DashboardTile,
   GlobalLoaderContext,
@@ -118,14 +120,29 @@ const Bucket = () => {
 
   return (
     <ModuleContainer headerText="Bucket Lists">
-      <Box textAlign="center" pb={2}>
+      <Box
+        display="flex"
+        flexWrap="wrap"
+        justifyContent="center"
+        gap={2}
+        pb={2}
+      >
         <ButtonLoading
           variant="contained"
           loading={isBackupLoading || isLoading}
           onClick={handleBackup}
+          sx={{ width: { xs: "100%", sm: "45%", md: 400 } }}
         >
           Backup current buckets to Sim list
         </ButtonLoading>
+
+        <Button
+          variant="contained"
+          sx={{ width: { xs: "100%", sm: "45%", md: 250 } }}
+          href="/bucket-sims"
+        >
+          Go to Bucket Sims
+        </Button>
       </Box>
 
       <Dashboard>
