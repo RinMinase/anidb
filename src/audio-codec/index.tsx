@@ -23,10 +23,10 @@ import {
 import {
   ButtonLoading,
   ControlledField,
+  Dialog,
   IconButton,
   ModuleContainer,
   removeBlankAttributes,
-  Swal,
   Table,
 } from "@components";
 
@@ -57,7 +57,8 @@ const AudioCodec = () => {
   const [isAddButtonLoading, setAddButtonLoading] = useState(false);
   const [isEditButtonLoading, setEditButtonLoading] = useState(false);
   const [isTableLoading, setTableLoading] = useState(true);
-  const [isDialogOpen, setDialogOpen] = useState(false);
+  const [isEditDialogOpen, setEditDialogOpen] = useState(false);
+  const [isDeleteDialogOpen, setDeleteDialogOpen] = useState(false);
 
   const [data, setData] = useState<Data>([]);
   const [selectedData, setSelectedData] = useState<Item>({
@@ -108,7 +109,7 @@ const AudioCodec = () => {
     editSetValue("order", item.order || undefined);
     editTrigger("order");
 
-    setDialogOpen(true);
+    setEditDialogOpen(true);
   };
 
   const handleEditSubmit = async (formdata: Form) => {
@@ -121,7 +122,7 @@ const AudioCodec = () => {
 
       setEditButtonLoading(false);
       setTableLoading(true);
-      setDialogOpen(false);
+      setEditDialogOpen(false);
 
       await fetchData();
     } catch (err) {
@@ -147,23 +148,20 @@ const AudioCodec = () => {
     }
   };
 
-  const handleDeleteClick = async (id: string) => {
+  const handleDeleteClick = (item: Item) => {
+    setSelectedData(item);
+    setDeleteDialogOpen(true);
+  };
+
+  const handleDeleteSubmit = async () => {
     try {
-      const result = await Swal.fire({
-        title: "Are you sure?",
-        text: "This item will be deleted",
-        icon: "error",
-        showCancelButton: true,
-      });
+      setDeleteDialogOpen(false);
+      setTableLoading(true);
 
-      if (result.isConfirmed) {
-        setTableLoading(true);
+      await axios.delete(`/codecs/audio/${selectedData.id}`);
+      toast.success("Success");
 
-        await axios.delete(`/codecs/audio/${id}`);
-        toast.success("Success");
-
-        await fetchData();
-      }
+      await fetchData();
     } catch (err) {
       console.error(err);
       toast.error("Failed");
@@ -267,7 +265,7 @@ const AudioCodec = () => {
                         />
                         <IconButton
                           size="small"
-                          onClick={() => handleDeleteClick(item.id)}
+                          onClick={() => handleDeleteClick(item)}
                           sx={{ ml: 1 }}
                           children={<DeleteIcon size={20} />}
                         />
@@ -283,13 +281,13 @@ const AudioCodec = () => {
         </Grid>
       </Grid>
 
-      <Backdrop open={isDialogOpen}>
+      <Backdrop open={isEditDialogOpen}>
         <CustomDialog>
           <DialogTitle display="flex" justifyContent="space-between">
             Edit Codec Name
             <IconButton
               disabled={isEditButtonLoading}
-              onClick={() => setDialogOpen(false)}
+              onClick={() => setEditDialogOpen(false)}
               children={<CloseIcon size={20} />}
             />
           </DialogTitle>
@@ -326,6 +324,14 @@ const AudioCodec = () => {
           </DialogContent>
         </CustomDialog>
       </Backdrop>
+
+      <Dialog
+        title="Are you sure?"
+        text="This content would be deleted."
+        onSubmit={handleDeleteSubmit}
+        open={isDeleteDialogOpen}
+        setOpen={setDeleteDialogOpen}
+      />
     </ModuleContainer>
   );
 };
