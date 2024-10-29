@@ -33,7 +33,7 @@ const BlankImage = "data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=";
 
 const ViewEntryImage = (props: Props) => {
   const theme = useTheme();
-  const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
+  const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
 
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [tempImage, setTempImage] = useState<string>("");
@@ -149,11 +149,7 @@ const ViewEntryImage = (props: Props) => {
         )}
 
         {(tempImage || props.data?.image) && (
-          <Image
-            component="img"
-            alt="entry image"
-            src={tempImage || props.data?.image}
-          />
+          <Image component="img" alt="" src={tempImage || props.data?.image} />
         )}
 
         {isDesktop && !imageFile && (
