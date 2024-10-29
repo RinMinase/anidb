@@ -1,5 +1,5 @@
-import { useContext, useEffect, useState } from "preact/hooks";
 import axios from "axios";
+import { useContext, useEffect, useState } from "preact/hooks";
 import { HardDrive as DriveIcon, Database as StorageIcon } from "react-feather";
 import { green, orange, red } from "@mui/material/colors";
 import { toast } from "sonner";
@@ -9,7 +9,6 @@ import {
   Grid2 as Grid,
   LinearProgress,
   Paper,
-  Stack,
   styled,
   Typography,
 } from "@mui/material";
