@@ -16,6 +16,7 @@ export { default as ControlledMultiSelect } from "./components/ControlledMultiSe
 export { default as ControlledSelect } from "./components/ControlledSelect";
 export { default as ControlledSwitch } from "./components/ControlledSwitch";
 export { default as DashboardTile } from "./components/DashboardTile";
+export { default as Dialog } from "./components/Dialog";
 export { default as IconButton } from "./components/IconButton";
 export { default as ModuleContainer } from "./components/ModuleContainer";
 export { default as Nav } from "./components/Nav";
