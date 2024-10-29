@@ -1,8 +1,9 @@
+import axios, { AxiosError } from "axios";
 import { useState } from "preact/hooks";
 import { useForm } from "react-hook-form";
-import axios from "axios";
 import { format } from "date-fns";
 import { Trash as DeleteIcon, X as CloseIcon } from "react-feather";
+import { toast } from "sonner";
 
 import {
   Backdrop,
@@ -17,7 +18,13 @@ import {
   styled,
 } from "@mui/material";
 
-import { Button, ControlledDatepicker, IconButton, Swal } from "@components";
+import {
+  Button,
+  ControlledDatepicker,
+  Dialog,
+  ErrorResponseType,
+  IconButton,
+} from "@components";
 
 import {
   rewatchDefaultValues,
@@ -64,10 +71,13 @@ const RewatchListItem = styled(ListItem)(({ theme }) => ({
 
 const ViewRewatchDialogue = (props: Props) => {
   const [isLoading, setLoading] = useState(false);
+  const [isDialogOpen, setDialogOpen] = useState(false);
+  const [selected, setSelected] = useState<string>();
 
   const {
     control,
     handleSubmit,
+    setError,
     formState: { errors },
   } = useForm<RewatchForm>({
     defaultValues: rewatchDefaultValues,
@@ -75,34 +85,54 @@ const ViewRewatchDialogue = (props: Props) => {
     mode: "onChange",
   });
 
-  const handleDeleteClick = async (e: any, id: string) => {
-    const result = await Swal.fire({
-      title: "Are you sure?",
-      text: "This item will be deleted",
-      icon: "error",
-      showCancelButton: true,
-    });
+  const handleDeleteClick = async (e: any, uuid: string) => {
+    setSelected(uuid);
+    setDialogOpen(true);
+  };
 
-    if (result.isConfirmed) {
+  const handleDeleteSubmit = async () => {
+    try {
+      setDialogOpen(false);
       setLoading(true);
 
-      await axios.delete(`/entries/rewatch/${id}`);
+      await axios.delete(`/entries/rewatch/${selected}`);
       await props.onChangeData();
-
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed");
+    } finally {
       setLoading(false);
     }
   };
 
   const handleSubmitForm = async (formdata: RewatchForm) => {
-    setLoading(true);
+    try {
+      setLoading(true);
 
-    await axios.post(`/entries/rewatch/${props.entry}`, {
-      date_rewatched: format(formdata.dateRewatch, "yyyy-MM-dd"),
-    });
+      await axios.post(`/entries/rewatch/${props.entry}`, {
+        date_rewatched: format(formdata.date_rewatched, "yyyy-MM-dd"),
+      });
 
-    await props.onChangeData();
+      await props.onChangeData();
+    } catch (err) {
+      if (err instanceof AxiosError && err.status === 401) {
+        const { data } = err.response?.data as ErrorResponseType;
 
-    setLoading(false);
+        for (const key in data) {
+          setError(key as any, {
+            type: "manual",
+            message: data[key].length ? data[key][0] : "Unknown error.",
+          });
+        }
+
+        toast.error("Form validation failed");
+      } else {
+        console.error(err);
+        toast.error("Failed");
+      }
+    } finally {
+      setLoading(false);
+    }
   };
 
   if (!props.open) {
@@ -123,12 +153,12 @@ const ViewRewatchDialogue = (props: Props) => {
           <Grid container spacing={2} sx={{ pt: 1, px: 3 }}>
             <Grid size={{ xs: 12, sm: 7, md: 8 }}>
               <ControlledDatepicker
-                name="dateRewatch"
+                name="date_rewatched"
                 label="Add Date Rewatched"
                 size="small"
                 control={control}
-                error={!!errors.dateRewatch}
-                helperText={errors.dateRewatch?.message}
+                error={!!errors.date_rewatched}
+                helperText={errors.date_rewatched?.message}
                 disabled={isLoading}
                 fullWidth
               />
@@ -136,6 +166,7 @@ const ViewRewatchDialogue = (props: Props) => {
             <Grid size={{ xs: 12, sm: 5, md: 4 }}>
               <Button
                 variant="contained"
+                disabled={isLoading}
                 onClick={handleSubmit(handleSubmitForm)}
                 fullWidth
               >
@@ -150,6 +181,7 @@ const ViewRewatchDialogue = (props: Props) => {
                 <ListItemText primary={item.date} />
                 <IconButton
                   size="small"
+                  disabled={isLoading}
                   onClick={(e) => handleDeleteClick(e, item.id)}
                 >
                   <DeleteIcon />
@@ -159,6 +191,14 @@ const ViewRewatchDialogue = (props: Props) => {
           </RewatchList>
         </DialogContent>
       </CustomDialog>
+
+      <Dialog
+        title="Are you sure?"
+        text="This content would be deleted."
+        onSubmit={handleDeleteSubmit}
+        open={isDialogOpen}
+        setOpen={setDialogOpen}
+      />
     </Backdrop>
   );
 };
