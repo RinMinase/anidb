@@ -49,6 +49,7 @@ const Login = () => {
       localStorage.setItem("authToken", data.token);
       axios.defaults.headers.common["Authorization"] = `Bearer ${data.token}`;
 
+      toast.dismiss();
       route("/home");
     } catch (err) {
       if (err instanceof AxiosError && err.status === 401) {
