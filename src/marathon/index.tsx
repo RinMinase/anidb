@@ -1,8 +1,8 @@
+import axios from "axios";
+import ChartDataLabels from "chartjs-plugin-datalabels";
 import { useContext, useEffect, useState } from "preact/hooks";
 import { route } from "preact-router";
-import axios from "axios";
 import { Chart, ChartOptions, registerables } from "chart.js";
-import ChartDataLabels from "chartjs-plugin-datalabels";
 import { toast } from "sonner";
 
 import {
@@ -26,13 +26,13 @@ import {
 import {
   Button,
   DashboardTile,
+  Dialog,
   GlobalLoaderContext,
   IconButton,
   ModuleContainer,
   Quality,
   randomAlphaString,
   RewatchIndicator,
-  Swal,
   Table,
 } from "@components";
 
@@ -69,6 +69,10 @@ const Marathon = () => {
   const [data, setData] = useState<Data>([]);
   const [sequences, setSequences] = useState<Sequences>([]);
   const [selected, setSelected] = useState(0);
+
+  const [selectedDelete, setSelectedDelete] = useState<number>();
+  const [isDeleteDialogOpen, setDeleteDialogOpen] = useState(false);
+
   const [stats, setStats] = useState<Stats>({
     titlesPerDay: 0,
     epsPerDay: 0,
@@ -200,31 +204,27 @@ const Marathon = () => {
     route(`/marathons/edit/${id}`);
   };
 
-  const handleDeleteClick = async (e: any, id: number) => {
+  const handleDeleteClick = (e: any, id: number) => {
     e.stopPropagation();
+    setSelectedDelete(id);
+    setDeleteDialogOpen(true);
+  };
 
+  const handleDeleteSubmit = async () => {
     try {
-      const result = await Swal.fire({
-        title: "Are you sure?",
-        text: "This item will be deleted",
-        icon: "error",
-        showCancelButton: true,
-      });
+      setDeleteDialogOpen(false);
+      setTableLoading(true);
 
-      if (result.isConfirmed) {
-        setTableLoading(true);
+      await axios.delete(`/sequences/${selectedDelete}`);
+      toast.success("Success");
 
-        await axios.delete(`/sequences/${id}`);
-        toast.success("Success");
+      const {
+        data: { data },
+      } = await axios.get("/sequences");
 
-        const {
-          data: { data },
-        } = await axios.get("/sequences");
+      setSequences(() => data);
 
-        setSequences(() => data);
-
-        if (data.length) handleClickSequence(data[0].id);
-      }
+      if (data.length) handleClickSequence(data[0].id);
     } catch (err) {
       console.error(err);
       toast.error("Failed");
@@ -311,7 +311,7 @@ const Marathon = () => {
       }
     >
       <Grid container spacing={2}>
-        <Grid size={{ xs: 12, sm: 5, md: 3 }}>
+        <Grid size={{ xs: 12, sm: 5, md: 4, lg: 3 }}>
           <Button
             variant="contained"
             fullWidth
@@ -349,7 +349,7 @@ const Marathon = () => {
             ))}
           </CustomMenuList>
         </Grid>
-        <Grid size={{ xs: 12, sm: 7, md: 9 }}>
+        <Grid size={{ xs: 12, sm: 7, md: 8, lg: 9 }}>
           <Table.Container component={Paper}>
             <CustomTable>
               <Table.Head>
@@ -387,6 +387,14 @@ const Marathon = () => {
           </Table.Container>
         </Grid>
       </Grid>
+
+      <Dialog
+        title="Are you sure?"
+        text="This content would be deleted."
+        onSubmit={handleDeleteSubmit}
+        open={isDeleteDialogOpen}
+        setOpen={setDeleteDialogOpen}
+      />
     </ModuleContainer>
   );
 };

@@ -1,21 +1,20 @@
+import axios, { AxiosError } from "axios";
 import { route } from "preact-router";
 import { useContext, useEffect, useState } from "preact/hooks";
 import { useForm } from "react-hook-form";
 import { format } from "date-fns";
-import axios, { AxiosError } from "axios";
 import { Stack } from "@mui/material";
 import { toast } from "sonner";
 
 import {
   ControlledField,
   ControlledDatepicker,
+  Dialog,
+  ErrorResponseType,
   GlobalLoaderContext,
   ModuleContainer,
-  Swal,
   ButtonLoading,
 } from "@components";
-
-import { ErrorResponse } from "@components/types";
 
 import { defaultValues, Form, resolver } from "./validation";
 
@@ -29,6 +28,7 @@ const MarathonAdd = (props: Props) => {
   const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
 
   const [isButtonLoading, setButtonLoading] = useState(false);
+  const [isDialogOpen, setDialogOpen] = useState(false);
 
   const {
     control,
@@ -59,17 +59,6 @@ const MarathonAdd = (props: Props) => {
     }
   };
 
-  const handleBack = async () => {
-    const result = await Swal.fire({
-      title: "Are you sure?",
-      text: "Any changes will not be saved",
-      icon: "warning",
-      showCancelButton: true,
-    });
-
-    if (result.isConfirmed) route("/marathons");
-  };
-
   const handleSubmitForm = async (formdata: Form) => {
     try {
       setButtonLoading(true);
@@ -90,7 +79,7 @@ const MarathonAdd = (props: Props) => {
       route("/marathons");
     } catch (err) {
       if (err instanceof AxiosError && err.status === 401) {
-        const { data } = err.response?.data as ErrorResponse;
+        const { data } = err.response?.data as ErrorResponseType;
 
         for (const key in data) {
           setError(key as any, {
@@ -116,7 +105,7 @@ const MarathonAdd = (props: Props) => {
   return (
     <ModuleContainer
       headerText={props.matches?.id ? "Edit marathon" : "Add Marathon"}
-      handleBack={handleBack}
+      handleBack={() => setDialogOpen(true)}
       largeGutter
     >
       <Stack spacing={3} maxWidth={450}>
@@ -155,6 +144,15 @@ const MarathonAdd = (props: Props) => {
           Save
         </ButtonLoading>
       </Stack>
+
+      <Dialog
+        type="warning"
+        title="Are you sure?"
+        text="Any changes will not be saved."
+        onSubmit={() => route("/marathons")}
+        open={isDialogOpen}
+        setOpen={setDialogOpen}
+      />
     </ModuleContainer>
   );
 };
