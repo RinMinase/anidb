@@ -15,6 +15,7 @@
     "dev": "vite",
     "build": "npm run lint && tsc && vite build",
     "lint": "eslint --ext .ts,tsx ./src",
+    "biome": "biome",
     "cz": "cz"
   },
   "dependencies": {
@@ -46,6 +47,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.26.0",
+    "@biomejs/biome": "^1.9.4",
     "@date-io/date-fns": "^3.0.0",
     "@mui/system": "^6.1.6",
     "@preact/preset-vite": "^2.9.1",
