@@ -59,40 +59,64 @@ const BucketSim = () => {
   const [data, setData] = useState<Data>([]);
   const [selected, setSelected] = useState("");
 
+  const fetchData = async () => {
+    try {
+      toggleLoader(true);
+
+      const {
+        data: { data },
+      } = await axios.get("/bucket-sims");
+
+      setSims(() => data);
+
+      if (data.length) {
+        await fetchSim(data[0].uuid);
+      }
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed");
+    } finally {
+      toggleLoader(false);
+    }
+  };
+
+  const fetchSim = async (uuid: string) => {
+    try {
+      const {
+        data: { data },
+      } = await axios.get(`/bucket-sims/${uuid}`);
+
+      const buckets: Data = data.map((item: Item) => {
+        const { percent } = item;
+
+        let bucketColor: string = green[700];
+        let progressColor = "success";
+
+        if (percent > 90) {
+          bucketColor = red[700];
+          progressColor = "error";
+        } else if (percent > 80) {
+          bucketColor = orange[700];
+          progressColor = "warning";
+        }
+
+        return { ...item, bucketColor, progressColor };
+      });
+
+      setData(() => buckets);
+      setSelected(uuid);
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed");
+    } finally {
+      toggleLoader(false);
+    }
+  };
+
   const handleSelectSim = async (uuid: string) => {
     if (uuid !== selected) {
       toggleLoader(true);
-
-      try {
-        const {
-          data: { data },
-        } = await axios.get(`/bucket-sims/${uuid}`);
-
-        const buckets: Data = data.map((item: Item) => {
-          const { percent } = item;
-
-          let bucketColor: string = green[700];
-          let progressColor = "success";
-
-          if (percent > 90) {
-            bucketColor = red[700];
-            progressColor = "error";
-          } else if (percent > 80) {
-            bucketColor = orange[700];
-            progressColor = "warning";
-          }
-
-          return { ...item, bucketColor, progressColor };
-        });
-
-        setData(() => buckets);
-        setSelected(uuid);
-      } catch (err) {
-        console.error(err);
-        toast.error("Failed");
-      } finally {
-        toggleLoader(false);
-      }
+      await fetchSim(uuid);
     }
   };
 
@@ -176,27 +200,6 @@ const BucketSim = () => {
 
       if (data.length) {
         handleSelectSim(data[0].uuid);
-      }
-    } catch (err) {
-      console.error(err);
-      toast.error("Failed");
-    } finally {
-      toggleLoader(false);
-    }
-  };
-
-  const fetchData = async () => {
-    toggleLoader(true);
-
-    try {
-      const {
-        data: { data },
-      } = await axios.get("/bucket-sims");
-
-      setSims(() => data);
-
-      if (data.length) {
-        await handleSelectSim(data[0].uuid);
       }
     } catch (err) {
       console.error(err);

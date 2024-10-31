@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "preact/hooks";
+import { useContext, useEffect, useState } from "preact/hooks";
 import { route } from "preact-router";
 import { useFieldArray, useForm } from "react-hook-form";
 import { green, orange, red } from "@mui/material/colors";
@@ -31,6 +31,7 @@ import {
   DashboardTile,
   Dialog,
   FILESIZES,
+  GlobalLoaderContext,
   ModuleContainer,
   Table,
 } from "@components";
@@ -52,7 +53,15 @@ import {
 import { defaultValues, Form, resolver } from "./validation";
 import { Data, Item } from "./types";
 
-const BucketSimAdd = () => {
+type Props = {
+  matches?: {
+    id: string;
+  };
+};
+
+const BucketSimAdd = (props: Props) => {
+  const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
+
   const [isDialogOpen, setDialogOpen] = useState(false);
   const [isSaveLoading, setSaveLoading] = useState(false);
   const [previewData, setPreviewData] = useState<Data>([]);
@@ -62,6 +71,7 @@ const BucketSimAdd = () => {
     control,
     register,
     handleSubmit,
+    setValue,
     trigger,
     formState: { errors },
   } = useForm<Form>({
@@ -70,10 +80,57 @@ const BucketSimAdd = () => {
     mode: "onChange",
   });
 
-  const { fields, append, remove, swap } = useFieldArray({
+  const { fields, append, remove, swap, replace } = useFieldArray({
     control,
     name: "buckets",
   });
+
+  const fetchData = async () => {
+    try {
+      if (props.matches?.id) {
+        toggleLoader(true);
+
+        const {
+          data: {
+            data,
+            stats: { description },
+          },
+        } = await axios.get(`/bucket-sims/${props.matches.id}`);
+
+        const formData = data.slice(1).map((item: Item) => ({
+          from: item.from,
+          to: item.to,
+          size: item.rawTotal ? Math.round(item.rawTotal / FILESIZES.TB) : 0,
+        }));
+
+        const buckets: Data = data.map((item: Item) => {
+          const { percent } = item;
+
+          let bucketColor: string = green[700];
+          let progressColor = "success";
+
+          if (percent > 90) {
+            bucketColor = red[700];
+            progressColor = "error";
+          } else if (percent > 80) {
+            bucketColor = orange[700];
+            progressColor = "warning";
+          }
+
+          return { ...item, bucketColor, progressColor };
+        });
+
+        replace([...formData]);
+        setValue("description", description);
+        setPreviewData(() => buckets);
+      }
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed");
+    } finally {
+      toggleLoader(false);
+    }
+  };
 
   const handlePreviewForm = async (formdata: Form) => {
     setPreviewLoading(true);
@@ -134,10 +191,17 @@ const BucketSimAdd = () => {
 
         const data = JSON.stringify(buckets);
 
-        await axios.post("/bucket-sims", {
-          description: formdata.description,
-          buckets: data,
-        });
+        if (props.matches?.id) {
+          await axios.put(`/bucket-sims/${props.matches.id}`, {
+            description: formdata.description,
+            buckets: data,
+          });
+        } else {
+          await axios.post("/bucket-sims", {
+            description: formdata.description,
+            buckets: data,
+          });
+        }
 
         route("/bucket-sims");
         toast.success("Success");
@@ -161,219 +225,239 @@ const BucketSimAdd = () => {
       >
         Back
       </ControlButtons>
-      <ControlButtons
-        variant="contained"
-        startIcon={<AddIcon size={20} />}
-        onClick={() => {
-          append({ from: "", to: "", size: null });
-        }}
-      >
-        Add
-      </ControlButtons>
-      <ControlButtonsLoader
-        variant="contained"
-        loading={isSaveLoading}
-        onClick={handleSubmit(handleSubmitForm)}
-      >
-        Save
-      </ControlButtonsLoader>
+      {!isLoading && !!previewData.length && (
+        <>
+          <ControlButtons
+            variant="contained"
+            startIcon={<AddIcon size={20} />}
+            onClick={() => {
+              append({ from: "", to: "", size: null });
+            }}
+          >
+            Add
+          </ControlButtons>
+          <ControlButtonsLoader
+            variant="contained"
+            loading={isSaveLoading}
+            onClick={handleSubmit(handleSubmitForm)}
+          >
+            Save
+          </ControlButtonsLoader>
+        </>
+      )}
     </>
   );
 
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <ModuleContainer
-      headerText="Add Bucket Simulation"
+      headerText={
+        props.matches?.id ? "Edit Bucket Simulation" : "Add Bucket Simulation"
+      }
       headerControls={<HeaderControls />}
     >
-      {!isPreviewLoading && (
-        <Grid size={{ xs: 12, sm: 8 }}>
-          <Dashboard>
-            <Grid container spacing={4}>
-              {previewData &&
-                previewData.map((item, index) => {
-                  if (index === 0) {
-                    return (
-                      <Grid
-                        size={{ xs: 12, sm: 4, md: 3 }}
-                        key={`bucket${index}`}
-                      >
-                        <DashboardTile
-                          icon={<StorageIcon size={32} />}
-                          iconColor={item.bucketColor}
-                          heading={"Total"}
-                          subHeading={`${item.used} / ${item.total}`}
-                          value={`${item.percent}%`}
-                          footerLeft={`Free: ${item.free}`}
-                          footerRight={`${item.titles} Titles`}
-                          CustomDivider={
-                            <LinearProgress
-                              variant="determinate"
-                              value={item.percent}
-                              color={item.progressColor}
+      {!isLoading && !!previewData.length && (
+        <>
+          {!isPreviewLoading && (
+            <Grid size={{ xs: 12, sm: 8 }}>
+              <Dashboard>
+                <Grid container spacing={4}>
+                  {previewData &&
+                    previewData.map((item, index) => {
+                      if (index === 0) {
+                        return (
+                          <Grid
+                            size={{ xs: 12, sm: 4, md: 3 }}
+                            key={`bucket${index}`}
+                          >
+                            <DashboardTile
+                              icon={<StorageIcon size={32} />}
+                              iconColor={item.bucketColor}
+                              heading={"Total"}
+                              subHeading={`${item.used} / ${item.total}`}
+                              value={`${item.percent}%`}
+                              footerLeft={`Free: ${item.free}`}
+                              footerRight={`${item.titles} Titles`}
+                              CustomDivider={
+                                <LinearProgress
+                                  variant="determinate"
+                                  value={item.percent}
+                                  color={item.progressColor}
+                                />
+                              }
                             />
-                          }
-                        />
-                      </Grid>
-                    );
-                  }
+                          </Grid>
+                        );
+                      }
 
-                  return (
-                    <Grid
-                      size={{ xs: 12, sm: 4, md: 3 }}
-                      key={`bucket${index}`}
-                    >
-                      <DashboardTile
-                        icon={<DriveIcon size={32} />}
-                        iconColor={item.bucketColor}
-                        heading={`${item.from.toUpperCase()} - ${item.to.toUpperCase()}`}
-                        subHeading={`${item.used} / ${item.total}`}
-                        value={`${item.percent}%`}
-                        footerLeft={`Free: ${item.free}`}
-                        footerRight={`${item.titles} Titles`}
-                        CustomDivider={
-                          <LinearProgress
-                            variant="determinate"
-                            value={item.percent}
-                            color={item.progressColor}
+                      return (
+                        <Grid
+                          size={{ xs: 12, sm: 4, md: 3 }}
+                          key={`bucket${index}`}
+                        >
+                          <DashboardTile
+                            icon={<DriveIcon size={32} />}
+                            iconColor={item.bucketColor}
+                            heading={`${item.from.toUpperCase()} - ${item.to.toUpperCase()}`}
+                            subHeading={`${item.used} / ${item.total}`}
+                            value={`${item.percent}%`}
+                            footerLeft={`Free: ${item.free}`}
+                            footerRight={`${item.titles} Titles`}
+                            CustomDivider={
+                              <LinearProgress
+                                variant="determinate"
+                                value={item.percent}
+                                color={item.progressColor}
+                              />
+                            }
                           />
-                        }
-                      />
-                    </Grid>
-                  );
-                })}
+                        </Grid>
+                      );
+                    })}
+                </Grid>
+              </Dashboard>
             </Grid>
-          </Dashboard>
-        </Grid>
-      )}
+          )}
 
-      <DescriptionContainer>
-        <Grid container spacing={2}>
-          <Grid size={{ xs: 12, sm: 9, md: 10 }}>
-            <TextField
-              fullWidth
-              variant="outlined"
-              label="Description"
-              size="small"
-              disabled={isSaveLoading}
-              error={!!errors.description}
-              helperText={errors.description?.message}
-              {...register("description")}
-            />
-          </Grid>
-          <Grid size={{ xs: 12, sm: 3, md: 2 }} display="flex">
-            <ButtonLoading
-              sx={{ maxHeight: 40 }}
-              variant="contained"
-              disabled={isSaveLoading}
-              startIcon={<PreviewIcon size={20} />}
-              onClick={handleSubmit(handlePreviewForm)}
-              loading={isPreviewLoading}
-              fullWidth
-            >
-              Preview
-            </ButtonLoading>
-          </Grid>
-        </Grid>
-      </DescriptionContainer>
+          <DescriptionContainer>
+            <Grid container spacing={2}>
+              <Grid size={{ xs: 12, sm: 9, md: 10 }}>
+                <TextField
+                  fullWidth
+                  variant="outlined"
+                  label="Description"
+                  size="small"
+                  disabled={isSaveLoading}
+                  error={!!errors.description}
+                  helperText={errors.description?.message}
+                  {...register("description")}
+                />
+              </Grid>
+              <Grid size={{ xs: 12, sm: 3, md: 2 }} display="flex">
+                <ButtonLoading
+                  sx={{ maxHeight: 40 }}
+                  variant="contained"
+                  disabled={isSaveLoading}
+                  startIcon={<PreviewIcon size={20} />}
+                  onClick={handleSubmit(handlePreviewForm)}
+                  loading={isPreviewLoading}
+                  fullWidth
+                >
+                  Preview
+                </ButtonLoading>
+              </Grid>
+            </Grid>
+          </DescriptionContainer>
 
-      <Table.Container component={Paper}>
-        <Table.Element>
-          <Table.Body>
-            {fields.map((field, index) => (
-              <Table.Row key={field.id}>
-                <CustomCell>
-                  <CellContainer>
-                    <CellLabel>From:</CellLabel>
-                    <CellField
-                      variant="outlined"
-                      size="small"
-                      disabled={isSaveLoading}
-                      error={errors.buckets && !!errors.buckets[index]?.from}
-                      helperText={
-                        errors.buckets && errors.buckets[index]?.from?.message
-                      }
-                      onInput={() => trigger(`buckets.${index}.to`)}
-                      {...register(`buckets.${index}.from`)}
-                    />
-                  </CellContainer>
-                </CustomCell>
-                <CustomCell>
-                  <CellContainer>
-                    <CellLabel>To:</CellLabel>
-                    <CellField
-                      variant="outlined"
-                      size="small"
-                      disabled={isSaveLoading}
-                      error={errors.buckets && !!errors.buckets[index]?.to}
-                      helperText={
-                        errors.buckets && errors.buckets[index]?.to?.message
-                      }
-                      onInput={() => trigger(`buckets.${index}.from`)}
-                      {...register(`buckets.${index}.to`)}
-                    />
-                  </CellContainer>
-                </CustomCell>
-                <CustomCell>
-                  <CellContainer>
-                    <CellLabel>Size:</CellLabel>
-                    <FormControl>
-                      <CellField2
-                        type="number"
+          <Table.Container component={Paper}>
+            <Table.Element>
+              <Table.Body>
+                {fields.map((field, index) => (
+                  <Table.Row key={field.id}>
+                    <CustomCell>
+                      <CellContainer>
+                        <CellLabel>From:</CellLabel>
+                        <CellField
+                          variant="outlined"
+                          size="small"
+                          disabled={isSaveLoading}
+                          error={
+                            errors.buckets && !!errors.buckets[index]?.from
+                          }
+                          helperText={
+                            errors.buckets &&
+                            errors.buckets[index]?.from?.message
+                          }
+                          onInput={() => trigger(`buckets.${index}.to`)}
+                          {...register(`buckets.${index}.from`)}
+                        />
+                      </CellContainer>
+                    </CustomCell>
+                    <CustomCell>
+                      <CellContainer>
+                        <CellLabel>To:</CellLabel>
+                        <CellField
+                          variant="outlined"
+                          size="small"
+                          disabled={isSaveLoading}
+                          error={errors.buckets && !!errors.buckets[index]?.to}
+                          helperText={
+                            errors.buckets && errors.buckets[index]?.to?.message
+                          }
+                          onInput={() => trigger(`buckets.${index}.from`)}
+                          {...register(`buckets.${index}.to`)}
+                        />
+                      </CellContainer>
+                    </CustomCell>
+                    <CustomCell>
+                      <CellContainer>
+                        <CellLabel>Size:</CellLabel>
+                        <FormControl>
+                          <CellField2
+                            type="number"
+                            size="small"
+                            disabled={isSaveLoading}
+                            endAdornment={
+                              <InputAdornment position="end">TB</InputAdornment>
+                            }
+                            error={
+                              errors.buckets && !!errors.buckets[index]?.size
+                            }
+                            {...register(`buckets.${index}.size`)}
+                          />
+                          <FormHelperText error>
+                            {errors.buckets &&
+                              errors.buckets[index]?.size?.message}
+                          </FormHelperText>
+                        </FormControl>
+                      </CellContainer>
+                    </CustomCell>
+
+                    {index !== 0 ? (
+                      <CustomCellButton>
+                        <CustomIconButton
+                          size="small"
+                          disabled={isSaveLoading}
+                          onClick={() => swap(index, index - 1)}
+                          children={<UpIcon size={20} />}
+                        />
+                      </CustomCellButton>
+                    ) : (
+                      <CustomCellButton />
+                    )}
+
+                    {index !== fields.length - 1 ? (
+                      <CustomCellButton>
+                        <CustomIconButton
+                          size="small"
+                          disabled={isSaveLoading}
+                          onClick={() => swap(index, index + 1)}
+                          children={<DownIcon size={20} />}
+                        />
+                      </CustomCellButton>
+                    ) : (
+                      <CustomCellButton />
+                    )}
+
+                    <CustomCellButton>
+                      <CustomIconButton
                         size="small"
+                        color="error"
                         disabled={isSaveLoading}
-                        endAdornment={
-                          <InputAdornment position="end">TB</InputAdornment>
-                        }
-                        error={errors.buckets && !!errors.buckets[index]?.size}
-                        {...register(`buckets.${index}.size`)}
+                        onClick={() => remove(index)}
+                        children={<RemoveIcon size={20} />}
                       />
-                      <FormHelperText error>
-                        {errors.buckets && errors.buckets[index]?.size?.message}
-                      </FormHelperText>
-                    </FormControl>
-                  </CellContainer>
-                </CustomCell>
-
-                {index !== 0 ? (
-                  <CustomCellButton>
-                    <CustomIconButton
-                      size="small"
-                      disabled={isSaveLoading}
-                      onClick={() => swap(index, index - 1)}
-                      children={<UpIcon size={20} />}
-                    />
-                  </CustomCellButton>
-                ) : (
-                  <CustomCellButton />
-                )}
-
-                {index !== fields.length - 1 ? (
-                  <CustomCellButton>
-                    <CustomIconButton
-                      size="small"
-                      disabled={isSaveLoading}
-                      onClick={() => swap(index, index + 1)}
-                      children={<DownIcon size={20} />}
-                    />
-                  </CustomCellButton>
-                ) : (
-                  <CustomCellButton />
-                )}
-
-                <CustomCellButton>
-                  <CustomIconButton
-                    size="small"
-                    color="error"
-                    disabled={isSaveLoading}
-                    onClick={() => remove(index)}
-                    children={<RemoveIcon size={20} />}
-                  />
-                </CustomCellButton>
-              </Table.Row>
-            ))}
-          </Table.Body>
-        </Table.Element>
-      </Table.Container>
+                    </CustomCellButton>
+                  </Table.Row>
+                ))}
+              </Table.Body>
+            </Table.Element>
+          </Table.Container>
+        </>
+      )}
 
       <Dialog
         type="warning"

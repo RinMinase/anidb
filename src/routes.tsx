@@ -32,7 +32,6 @@ const MarathonAdd = async () => (await import("./marathon/add")).default;
 
 const BucketSim = async () => (await import("./bucket-sim")).default;
 const BucketSimAdd = async () => (await import("./bucket-sim/add")).default;
-const BucketSimEdit = async () => (await import("./bucket-sim/edit")).default;
 
 const DataManagement = async () => (await import("./data-management")).default;
 const Logs = async () => (await import("./logs")).default;
@@ -72,7 +71,7 @@ const Routes = (props: Props) => (
 
     <AsyncRoute path="/bucket-sims" getComponent={BucketSim} />
     <AsyncRoute path="/bucket-sims/add" getComponent={BucketSimAdd} />
-    <AsyncRoute path="/bucket-sims/edit/:id" getComponent={BucketSimEdit} />
+    <AsyncRoute path="/bucket-sims/edit/:id" getComponent={BucketSimAdd} />
 
     <AsyncRoute path="/data-management" getComponent={DataManagement} />
     <AsyncRoute path="/logs" getComponent={Logs} />
