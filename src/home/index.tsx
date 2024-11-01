@@ -87,7 +87,7 @@ const searchAPI = (query: string) => {
   return axios.get("/entries", { params });
 };
 
-const searchAPIDebounced = DebouncePromise(searchAPI, 250);
+const searchAPIDebounced = DebouncePromise(searchAPI, 500);
 
 const Home = () => {
   const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
@@ -233,14 +233,15 @@ const Home = () => {
               sx={{ paddingRight: 1 }}
               size="small"
               fullWidth
+              onChange={handleChange}
+              value={searchQuery}
+              placeholder="Search for Titles, Release Season or Encoders"
               endAdornment={
                 <InputAdornment
                   position="end"
                   children={<SearchIconContainer sx={{ marginRight: 4 }} />}
                 />
               }
-              onChange={handleChange}
-              value={searchQuery}
             />
           </Grid>
         </Grid>
