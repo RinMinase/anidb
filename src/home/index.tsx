@@ -239,7 +239,7 @@ const Home = () => {
               endAdornment={
                 <InputAdornment
                   position="end"
-                  children={<SearchIconContainer sx={{ marginRight: 4 }} />}
+                  children={<SearchIconContainer />}
                 />
               }
             />
