@@ -125,9 +125,9 @@ const CatalogMulti = (props: Props) => {
 
     setValue("year", `${stats.year}` || "");
     setValue("season", stats.season || "");
-    setValue("low", formatted.low.join("\\n"));
-    setValue("normal", formatted.normal.join("\\n"));
-    setValue("high", formatted.high.join("\\n"));
+    setValue("low", formatted.low.join("\n"));
+    setValue("normal", formatted.normal.join("\n"));
+    setValue("high", formatted.high.join("\n"));
   };
 
   const fetchData = async () => {
