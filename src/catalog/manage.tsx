@@ -75,7 +75,7 @@ const CatalogManage = () => {
   const [hasNext, setHasNext] = useState(true);
 
   // Sort States
-  const [column, setColumn] = useState<string>("id_catalog");
+  const [column, setColumn] = useState("id_catalog");
   const [order, setOrder] = useState<"asc" | "desc">("asc");
 
   const fetchData = async () => {
@@ -108,7 +108,6 @@ const CatalogManage = () => {
 
   const fetchNextPage = async () => {
     try {
-      console.log("fetch next", hasNext);
       if (hasNext) {
         const {
           data: { data, meta },
