@@ -1,22 +1,29 @@
-import { styled, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
+
+import { cardinalToOrdinal } from "../functions";
 
 type Props = {
   show?: boolean;
+  times?: number;
 };
-
-type Ext = {
-  component: any;
-};
-
-const CustomTypography = styled(Typography)<Ext>({
-  marginLeft: 4,
-  color: "gray",
-  fontSize: 11,
-});
 
 const RewatchIndicator = (props: Props) => {
   return props.show ? (
-    <CustomTypography component="span">(Rewatch)</CustomTypography>
+    <Typography
+      component="span"
+      sx={{
+        marginLeft: "4px",
+        color: "gray",
+        fontSize: 11,
+        whiteSpace: "nowrap",
+      }}
+    >
+      <span>(</span>
+      {props.times && props.times > 1 ? (
+        <span>{`${cardinalToOrdinal(props.times)} `}</span>
+      ) : null}
+      <span>Rewatch)</span>
+    </Typography>
   ) : null;
 };
 
