@@ -24,6 +24,9 @@ const ByYear = async () => (await import("./by-year")).default;
 const Catalog = async () => (await import("./catalog")).default;
 const CatalogAdd = async () => (await import("./catalog/add")).default;
 const CatalogMulti = async () => (await import("./catalog/add-multi")).default;
+const CatalogManage = async () => (await import("./catalog/manage")).default;
+const CatalogManageEdit = async () =>
+  (await import("./catalog/manage-edit")).default;
 
 const Bucket = async () => (await import("./bucket")).default;
 
@@ -62,6 +65,11 @@ const Routes = (props: Props) => (
     <AsyncRoute path="/catalogs/edit/:id" getComponent={CatalogAdd} />
     <AsyncRoute path="/catalogs/add-multi" getComponent={CatalogMulti} />
     <AsyncRoute path="/catalogs/edit-multi/:id" getComponent={CatalogMulti} />
+    <AsyncRoute path="/catalogs/manage" getComponent={CatalogManage} />
+    <AsyncRoute
+      path="/catalogs/manage-edit/:id"
+      getComponent={CatalogManageEdit}
+    />
 
     <AsyncRoute path="/buckets" getComponent={Bucket} />
 
