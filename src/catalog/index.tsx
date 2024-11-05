@@ -5,12 +5,12 @@ import { Edit as EditIcon, Trash as DeleteIcon } from "react-feather";
 import { toast } from "sonner";
 
 import {
+  Box,
   Grid2 as Grid,
   ListItemText,
   MenuItem,
   MenuList,
   Paper,
-  styled,
 } from "@mui/material";
 
 import {
@@ -23,12 +23,6 @@ import {
 } from "@components";
 
 import { Catalogs, Data } from "./types";
-
-const CustomMenuList = styled(MenuList)<{ component: any }>({
-  padding: 0,
-  overflow: "hidden",
-  width: "100%",
-});
 
 const Catalog = () => {
   const { toggleLoader } = useContext(GlobalLoaderContext);
@@ -155,55 +149,62 @@ const Catalog = () => {
     <ModuleContainer headerText="Catalogs">
       <Grid container spacing={2}>
         <Grid container size={{ xs: 12, sm: 5, md: 4, lg: 3 }}>
-          <Grid size={{ xs: 12, md: 6 }}>
-            <Button
-              variant="contained"
-              fullWidth
-              onClick={() => route("/catalogs/add")}
-            >
-              Add Single
-            </Button>
-          </Grid>
-          <Grid size={{ xs: 12, md: 6 }}>
-            <Button
-              variant="contained"
-              fullWidth
-              onClick={() => route("/catalogs/add-multi")}
-            >
-              Add Catalog
-            </Button>
-          </Grid>
-          <Button
-            variant="contained"
-            fullWidth
-            onClick={() => route("/catalogs/manage")}
-          >
-            Manage Catalog Data
-          </Button>
-          <CustomMenuList component={Paper}>
-            {catalogs.map((item, index) => (
-              <MenuItem
-                key={`mara-${index}`}
-                selected={selected === item.uuid}
-                onClick={() => handleClickCatalog(item.uuid)}
+          <Box>
+            <Grid container spacing={2}>
+              <Grid size={{ xs: 12, md: 6 }}>
+                <Button
+                  variant="contained"
+                  fullWidth
+                  onClick={() => route("/catalogs/add")}
+                >
+                  Add Single
+                </Button>
+              </Grid>
+              <Grid size={{ xs: 12, md: 6 }}>
+                <Button
+                  variant="contained"
+                  fullWidth
+                  onClick={() => route("/catalogs/add-multi")}
+                >
+                  Add Catalog
+                </Button>
+              </Grid>
+              <Button
+                variant="contained"
+                fullWidth
+                onClick={() => route("/catalogs/manage")}
               >
-                <ListItemText>
-                  {item.season} {item.year}
-                </ListItemText>
-                <IconButton
-                  size="small"
-                  onClick={(e) => handleEditCatalogClick(e, item.uuid)}
-                  children={<EditIcon size={16} />}
-                  sx={{ marginRight: 0.5 }}
-                />
-                <IconButton
-                  size="small"
-                  onClick={(e) => handleDeleteCatalogClick(e, item.uuid)}
-                  children={<DeleteIcon size={16} />}
-                />
-              </MenuItem>
-            ))}
-          </CustomMenuList>
+                Manage Catalog Data
+              </Button>
+              <MenuList
+                component={Paper}
+                sx={{ padding: 0, overflow: "hidden", width: "100%" }}
+              >
+                {catalogs.map((item, index) => (
+                  <MenuItem
+                    key={`mara-${index}`}
+                    selected={selected === item.uuid}
+                    onClick={() => handleClickCatalog(item.uuid)}
+                  >
+                    <ListItemText>
+                      {item.season} {item.year}
+                    </ListItemText>
+                    <IconButton
+                      size="small"
+                      onClick={(e) => handleEditCatalogClick(e, item.uuid)}
+                      children={<EditIcon size={16} />}
+                      sx={{ marginRight: 0.5 }}
+                    />
+                    <IconButton
+                      size="small"
+                      onClick={(e) => handleDeleteCatalogClick(e, item.uuid)}
+                      children={<DeleteIcon size={16} />}
+                    />
+                  </MenuItem>
+                ))}
+              </MenuList>
+            </Grid>
+          </Box>
         </Grid>
         <Grid size={{ xs: 12, sm: 7, md: 8, lg: 9 }}>
           <Table.Container component={Paper}>
