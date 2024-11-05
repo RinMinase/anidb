@@ -103,7 +103,7 @@ const Search = () => {
                     <Table.Cell sx={{ minWidth: 250 }}>Title</Table.Cell>
                     <Table.Cell sx={{ minWidth: 110 }}>E / O / S</Table.Cell>
                     <Table.Cell sx={{ minWidth: 100 }}>Filesize</Table.Cell>
-                    <Table.Cell sx={{ minWidth: 180 }}>
+                    <Table.Cell sx={{ minWidth: 205 }}>
                       Date Finished
                     </Table.Cell>
                     <Table.Cell sx={{ minWidth: 130 }}>Release</Table.Cell>
@@ -131,7 +131,10 @@ const Search = () => {
                         <Table.Cell>{item.filesize}</Table.Cell>
                         <Table.Cell>
                           {item.dateFinished}
-                          <RewatchIndicator show={item.rewatched} />
+                          <RewatchIndicator
+                            show={item.rewatched}
+                            times={item.rewatchCount}
+                          />
                         </Table.Cell>
                         <Table.Cell>{item.release}</Table.Cell>
                         <Table.Cell sx={{ whiteSpace: "nowrap" }}>

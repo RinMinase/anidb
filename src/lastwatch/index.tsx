@@ -163,7 +163,7 @@ const LastWatch = () => {
               <Table.Cell>Title</Table.Cell>
               <Table.Cell sx={{ minWidth: 110 }}>E / O / S</Table.Cell>
               <Table.Cell sx={{ minWidth: 115 }}>Filesize</Table.Cell>
-              <Table.Cell sx={{ minWidth: 190 }}>Date Finished</Table.Cell>
+              <Table.Cell sx={{ minWidth: 205 }}>Date Finished</Table.Cell>
               <Table.Cell sx={{ minWidth: 130 }}>Release</Table.Cell>
               <Table.Cell>Encoder</Table.Cell>
             </Table.Row>
@@ -182,7 +182,10 @@ const LastWatch = () => {
                 <Table.Cell>{item.filesize}</Table.Cell>
                 <Table.Cell>
                   {item.dateFinished}
-                  <RewatchIndicator show={item.rewatched} />
+                  <RewatchIndicator
+                    show={item.rewatched}
+                    times={item.rewatchCount}
+                  />
                 </Table.Cell>
                 <Table.Cell>{item.release}</Table.Cell>
                 <Table.Cell>{item.encoder}</Table.Cell>

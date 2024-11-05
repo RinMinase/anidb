@@ -67,7 +67,7 @@ const headings: TableHeadings = [
   {
     id: "date_finished",
     label: "Date Finished",
-    minWidth: 190,
+    minWidth: 205,
     sortable: true,
   },
   { id: "release", label: "Release", minWidth: 130 },
@@ -313,7 +313,10 @@ const Home = () => {
                   <Table.Cell>{item.filesize}</Table.Cell>
                   <Table.Cell>
                     {item.dateFinished}
-                    <RewatchIndicator show={item.rewatched} />
+                    <RewatchIndicator
+                      show={item.rewatched}
+                      times={item.rewatchCount}
+                    />
                   </Table.Cell>
                   <Table.Cell>{item.release}</Table.Cell>
                   <Table.Cell>

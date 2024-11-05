@@ -6,6 +6,7 @@ export type Data = Array<{
   title?: string;
   dateFinished?: string;
   rewatched?: boolean;
+  rewatchCount?: number;
   filesize?: string;
   episodes?: number;
   ovas?: number;
@@ -28,4 +29,4 @@ export type Stats = {
   coursPerWeek?: number;
   epsPerWeek?: number;
   epsPerDay?: number;
-}
+};

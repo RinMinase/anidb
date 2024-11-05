@@ -6,6 +6,7 @@ export type Item = {
   title?: string;
   dateFinished?: string;
   rewatched?: boolean;
+  rewatchCount?: number;
   filesize?: string;
   episodes?: number;
   ovas?: number;
