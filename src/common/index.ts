@@ -33,6 +33,7 @@ export {
 
 export {
   FILESIZES,
+  cardinalToOrdinal,
   emptyStringToNull,
   parseNumberFilesizeToString,
   queryParamsArrayToString,

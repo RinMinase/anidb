@@ -88,3 +88,12 @@ export function parseNumberFilesizeToString(rawFilesize: number): string {
 
   return `${roundToTwo(rawFilesize / TB)} TB`;
 }
+
+export function cardinalToOrdinal(num: number): string {
+  if (num <= 0) return "";
+
+  const suffix =
+    ["st", "nd", "rd"][((((num + 90) % 100) - 10) % 10) - 1] || "th";
+
+  return `${num}${suffix}`;
+}
