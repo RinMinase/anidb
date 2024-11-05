@@ -25,9 +25,9 @@ import {
 import { Catalogs, Data } from "./types";
 
 const CustomMenuList = styled(MenuList)<{ component: any }>({
-  marginTop: 12,
   padding: 0,
   overflow: "hidden",
+  width: "100%",
 });
 
 const Catalog = () => {
@@ -154,21 +154,31 @@ const Catalog = () => {
   return (
     <ModuleContainer headerText="Catalogs">
       <Grid container spacing={2}>
-        <Grid size={{ xs: 12, sm: 5, md: 4, lg: 3 }}>
+        <Grid container size={{ xs: 12, sm: 5, md: 4, lg: 3 }}>
+          <Grid size={{ xs: 12, md: 6 }}>
+            <Button
+              variant="contained"
+              fullWidth
+              onClick={() => route("/catalogs/add")}
+            >
+              Add Single
+            </Button>
+          </Grid>
+          <Grid size={{ xs: 12, md: 6 }}>
+            <Button
+              variant="contained"
+              fullWidth
+              onClick={() => route("/catalogs/add-multi")}
+            >
+              Add Catalog
+            </Button>
+          </Grid>
           <Button
             variant="contained"
             fullWidth
-            onClick={() => route("/catalogs/add")}
+            onClick={() => route("/catalogs/manage")}
           >
-            Add Single
-          </Button>
-          <Button
-            variant="contained"
-            fullWidth
-            onClick={() => route("/catalogs/add-multi")}
-            sx={{ mt: 1.5 }}
-          >
-            Add Catalog
+            Manage Catalog Data
           </Button>
           <CustomMenuList component={Paper}>
             {catalogs.map((item, index) => (

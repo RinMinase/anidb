@@ -23,6 +23,7 @@ type Props = {
   matches?: {
     id: string;
   };
+  fromManage?: boolean;
 };
 
 const CatalogAdd = (props: Props) => {
@@ -107,7 +108,12 @@ const CatalogAdd = (props: Props) => {
       }
 
       toast.success("Success");
-      route("/catalogs");
+
+      if (props.fromManage) {
+        route("/catalogs/manage");
+      } else {
+        route("/catalogs");
+      }
     } catch (err) {
       if (err instanceof AxiosError && err.status === 401) {
         const { data } = err.response?.data as ErrorResponseType;
@@ -126,6 +132,14 @@ const CatalogAdd = (props: Props) => {
       }
     } finally {
       setSubmitLoading(false);
+    }
+  };
+
+  const handleBackSubmit = () => {
+    if (props.fromManage) {
+      route("/catalogs/manage");
+    } else {
+      route("/catalogs");
     }
   };
 
@@ -184,7 +198,7 @@ const CatalogAdd = (props: Props) => {
         type="warning"
         title="Are you sure?"
         text="Any changes will not be saved."
-        onSubmit={() => route("/catalogs")}
+        onSubmit={handleBackSubmit}
         open={isDialogOpen}
         setOpen={setDialogOpen}
       />
