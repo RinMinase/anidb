@@ -75,16 +75,10 @@ const headings: TableHeadings = [
   { id: "rating", label: "Rating", hideOnMobile: true },
 ];
 
-const searchAPI = (query: string) => {
-  let params = {};
-
-  if (query) {
-    params = {
-      query,
-    };
-  }
-
-  return axios.get("/entries", { params });
+const searchAPI = (query: string, column: string, order: "asc" | "desc") => {
+  return axios.get("/entries", {
+    params: { query: query ?? null, column, order },
+  });
 };
 
 const searchAPIDebounced = DebouncePromise(searchAPI, 500);
@@ -104,16 +98,23 @@ const Home = () => {
   const [hasNext, setHasNext] = useState(true);
 
   // Sort States
-  const [column, setColumn] = useState<string>();
-  const [order, setOrder] = useState<"asc" | "desc">();
+  const [column, setColumn] = useState("id_quality");
+  const [order, setOrder] = useState<"asc" | "desc">("asc");
 
   const fetchData = async () => {
     try {
-      toggleLoader(true);
+      setTableLoading(true);
 
       const {
         data: { data, meta },
-      } = await axios.get("/entries");
+      } = await axios.get("/entries", {
+        params: {
+          page,
+          query: searchQuery ?? null,
+          column,
+          order,
+        },
+      });
 
       setData(() => data);
 
@@ -124,18 +125,21 @@ const Home = () => {
       console.error(err);
       toast.error("Failed");
     } finally {
-      toggleLoader(false);
+      setTableLoading(false);
     }
   };
 
   const fetchNextPage = async () => {
     try {
-      if (!searchQuery && hasNext) {
+      if (hasNext) {
         const {
           data: { data, meta },
         } = await axios.get("/entries", {
           params: {
             page: page + 1,
+            query: searchQuery ?? null,
+            column,
+            order,
           },
         });
 
@@ -155,18 +159,29 @@ const Home = () => {
   };
 
   const handleChange = async (evt: any) => {
-    const element = evt.target as HTMLInputElement;
-    const val = element.value;
+    try {
+      const element = evt.target as HTMLInputElement;
+      const val = element.value;
 
-    setSearchQuery(val);
-    setTableLoading(true);
+      setSearchQuery(val);
+      setTableLoading(true);
+      setPage(1);
 
-    const {
-      data: { data },
-    } = await searchAPIDebounced(val);
+      const {
+        data: { data, meta },
+      } = await searchAPIDebounced(val, column, order);
 
-    setTableLoading(false);
-    setData(data);
+      setData(data);
+
+      if (meta) {
+        setHasNext(meta.hasNext);
+      }
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed");
+    } finally {
+      setTableLoading(false);
+    }
   };
 
   const handleChangeSort = async (sortColumn: string) => {
@@ -178,15 +193,17 @@ const Home = () => {
 
       const newOrder = isAsc ? "desc" : "asc";
       const newColumn = shouldReset ? "id_quality" : sortColumn;
+      const newPage = 1;
 
       setOrder(newOrder);
       setColumn(newColumn);
+      setPage(newPage);
 
       const {
         data: { data, meta },
       } = await axios.get("/entries", {
         params: {
-          page: 1,
+          page: newPage,
           query: searchQuery ?? null,
           column: newColumn,
           order: newOrder,
@@ -194,7 +211,6 @@ const Home = () => {
       });
 
       setData(data);
-      setPage(1);
 
       if (meta) {
         setHasNext(meta.hasNext);
