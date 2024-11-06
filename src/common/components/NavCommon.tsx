@@ -8,7 +8,6 @@ import {
   ListItemIcon,
   Menu,
   MenuItem,
-  styled,
   Toolbar,
   Typography,
   useTheme,
@@ -21,12 +20,9 @@ import {
   Code as DeveloperIcon,
 } from "react-feather";
 
-import { ColorModeContext } from "../providers/ColorMode";
 import { Button, IconButton } from "@components";
 
-const RightMenuContainer = styled(Box)({
-  marginLeft: 8,
-});
+import { ColorModeContext } from "../providers/ColorMode";
 
 const NavCommon = () => {
   const theme = useTheme();
@@ -122,7 +118,7 @@ const NavCommon = () => {
             )}
           </IconButton>
 
-          <RightMenuContainer sx={{ display: { xs: "none", md: "flex" } }}>
+          <Box sx={{ marginLeft: 1, display: { xs: "none", md: "flex" } }}>
             <Button
               color="inherit"
               startIcon={<DeveloperIcon size={20} />}
@@ -130,7 +126,7 @@ const NavCommon = () => {
             >
               Developer
             </Button>
-          </RightMenuContainer>
+          </Box>
         </Toolbar>
       </Container>
     </AppBar>

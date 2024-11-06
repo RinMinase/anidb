@@ -17,7 +17,6 @@ import {
   InputAdornment,
   OutlinedInput,
   Paper,
-  styled,
 } from "@mui/material";
 
 import {
@@ -29,16 +28,6 @@ import {
 } from "@components";
 
 import { PartialsListData, PartialsListItem, TableHeadings } from "./types";
-
-const SearchIconContainer = styled(SearchIcon)({
-  marginRight: 4,
-});
-
-const SpinnerContainer = styled(Box)({
-  width: "100%",
-  textAlign: "center",
-  marginTop: 16,
-});
 
 const headings: TableHeadings = [
   { id: "id_catalog", label: "Catalog", sortable: true },
@@ -246,7 +235,11 @@ const CatalogManage = () => {
           value={searchQuery}
           placeholder="Search for Titles"
           endAdornment={
-            <InputAdornment position="end" children={<SearchIconContainer />} />
+            <InputAdornment
+              position="end"
+              children={<SearchIcon />}
+              sx={{ marginRight: 0.5 }}
+            />
           }
         />
       </Paper>
@@ -315,7 +308,10 @@ const CatalogManage = () => {
       {data.length && !isLoading ? (
         <Waypoint onEnter={fetchNextPage}>
           {!isLoading && hasNext ? (
-            <SpinnerContainer children={<CircularProgress />} />
+            <Box
+              children={<CircularProgress />}
+              sx={{ width: "100%", textAlign: "center", marginTop: 2 }}
+            />
           ) : null}
         </Waypoint>
       ) : null}

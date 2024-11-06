@@ -17,17 +17,13 @@ type Props = {
   disabled?: boolean;
 };
 
-const Container = styled(FormGroup)(({theme}) => ({
+const Container = styled(FormGroup)(({ theme }) => ({
   height: "100%",
   justifyContent: "center",
   border: "1px solid",
   borderColor: theme.palette.action.disabled,
   borderRadius: 4,
 }));
-
-const Label = styled(FormControlLabel)({
-  justifyContent: "center",
-});
 
 const ControlledSwitch = (props: Props) => {
   return (
@@ -36,7 +32,8 @@ const ControlledSwitch = (props: Props) => {
       control={props.control}
       render={({ field: { onChange, value } }) => (
         <Container>
-          <Label
+          <FormControlLabel
+            sx={{ justifyContent: "center" }}
             control={
               <Switch
                 onChange={onChange}

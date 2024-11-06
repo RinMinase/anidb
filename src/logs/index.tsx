@@ -1,15 +1,11 @@
 import { useEffect, useState } from "preact/hooks";
-import axios from "axios";
 import { toast } from "sonner";
-import { Chip, Paper, styled } from "@mui/material";
+import { Chip, Paper } from "@mui/material";
+import axios from "axios";
 
 import { ModuleContainer, Table } from "@components";
 
 import { Data, Pagination, paginationDefaults } from "./types";
-
-const CustomTable = styled(Table.Element)({
-  minWidth: 650,
-});
 
 const AddChip = () => <Chip label="Add" size="small" color="success" />;
 const EditChip = () => <Chip label="Edit" size="small" color="warning" />;
@@ -73,7 +69,7 @@ const Logs = () => {
   return (
     <ModuleContainer headerText="Logs">
       <Table.Container component={Paper}>
-        <CustomTable size="small">
+        <Table.Element size="small" sx={{ minWidth: 650 }}>
           <Table.Head>
             <Table.Row>
               <Table.Cell>Action</Table.Cell>
@@ -103,8 +99,9 @@ const Logs = () => {
               <Table.Loader />
             )}
           </Table.Body>
-        </CustomTable>
+        </Table.Element>
       </Table.Container>
+
       <Table.Pagination
         rowsPerPageOptions={[30, 50, 100]}
         component="div"

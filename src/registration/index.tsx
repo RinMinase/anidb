@@ -1,24 +1,13 @@
-import axios, { AxiosError } from "axios";
 import { useState } from "preact/hooks";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
+import axios, { AxiosError } from "axios";
 
-import {
-  Grid2 as Grid,
-  Stack,
-  styled,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Grid2 as Grid, Stack, TextField, Typography } from "@mui/material";
 
 import { ButtonLoading, ErrorResponseType } from "@components";
 
 import { Form, resolver } from "./validation";
-
-const RegistrationContainer = styled(Grid)({
-  height: "calc(100vh - 48px)",
-  alignItems: "center",
-});
 
 const Registration = () => {
   const [isLoading, setLoading] = useState(false);
@@ -58,7 +47,11 @@ const Registration = () => {
   };
 
   return (
-    <RegistrationContainer container justifyContent="center">
+    <Grid
+      container
+      justifyContent="center"
+      sx={{ height: "calc(100vh - 48px)", alignItems: "center" }}
+    >
       <Grid size={{ xs: 12, sm: 6, md: 4 }}>
         <form onSubmit={handleSubmit(handleSubmitForm)}>
           <Stack spacing={3} sx={{ paddingTop: 3, textAlign: "center" }}>
@@ -102,7 +95,7 @@ const Registration = () => {
           </Stack>
         </form>
       </Grid>
-    </RegistrationContainer>
+    </Grid>
   );
 };
 

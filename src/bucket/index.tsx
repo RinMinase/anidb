@@ -1,15 +1,14 @@
-import axios from "axios";
 import { useContext, useEffect, useState } from "preact/hooks";
 import { HardDrive as DriveIcon, Database as StorageIcon } from "react-feather";
 import { green, orange, red } from "@mui/material/colors";
 import { toast } from "sonner";
+import axios from "axios";
 
 import {
   Box,
   Grid2 as Grid,
   LinearProgress,
   Paper,
-  styled,
   Typography,
 } from "@mui/material";
 
@@ -24,14 +23,6 @@ import {
 } from "@components";
 
 import { Bucket as SingleBucket, Buckets, Data, Stats } from "./types";
-
-const Dashboard = styled(Box)({
-  marginBottom: 32,
-});
-
-const CustomTable = styled(Table.Element)({
-  minWidth: 650,
-});
 
 const Bucket = () => {
   const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
@@ -144,7 +135,7 @@ const Bucket = () => {
         </Button>
       </Box>
 
-      <Dashboard>
+      <Box sx={{ marginBottom: 4 }}>
         <Grid container spacing={4}>
           {buckets &&
             buckets.map((bucket, index) => {
@@ -194,7 +185,7 @@ const Bucket = () => {
               );
             })}
         </Grid>
-      </Dashboard>
+      </Box>
 
       {!isLoading && !isTableLoading && (
         <Typography variant="h5" gutterBottom>
@@ -213,7 +204,7 @@ const Bucket = () => {
       )}
 
       <Table.Container component={Paper}>
-        <CustomTable>
+        <Table.Element sx={{ minWidth: 650 }}>
           <Table.Head>
             <Table.Row>
               <Table.Cell>Title</Table.Cell>
@@ -236,7 +227,7 @@ const Bucket = () => {
               <Table.Loader />
             )}
           </Table.Body>
-        </CustomTable>
+        </Table.Element>
       </Table.Container>
     </ModuleContainer>
   );

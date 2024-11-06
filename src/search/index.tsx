@@ -24,10 +24,6 @@ import {
   Table,
 } from "@components";
 
-const CustomTableRow = styled(Table.Row)({
-  cursor: "pointer",
-});
-
 const StyledRating = styled(Rating)(({ value }) => ({
   "& .MuiRating-decimal": {
     marginRight: 2,
@@ -115,9 +111,10 @@ const Search = () => {
                 <Table.Body>
                   {!isLoading && !tableLoader ? (
                     data.map((item) => (
-                      <CustomTableRow
+                      <Table.Row
                         hover
                         key={item.id}
+                        sx={{ cursor: "pointer" }}
                         onClick={() => route(`/search/view/${item.id}`)}
                       >
                         <Table.Cell>
@@ -163,7 +160,7 @@ const Search = () => {
                             />
                           </Stack>
                         </Table.Cell>
-                      </CustomTableRow>
+                      </Table.Row>
                     ))
                   ) : (
                     <Table.Loader />

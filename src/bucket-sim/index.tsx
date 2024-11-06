@@ -1,8 +1,8 @@
-import axios from "axios";
 import { useContext, useEffect, useState } from "preact/hooks";
 import { route } from "preact-router";
 import { green, orange, red } from "@mui/material/colors";
 import { toast } from "sonner";
+import axios from "axios";
 
 import {
   Box,
@@ -13,7 +13,6 @@ import {
   MenuList,
   Paper,
   Stack,
-  styled,
   Tooltip,
 } from "@mui/material";
 
@@ -37,12 +36,6 @@ import {
 
 import { Dashboard } from "./_components";
 import { Data, Item, Sims } from "./types";
-
-const CustomMenuList = styled(MenuList)<{ component: any }>({
-  marginTop: 12,
-  padding: 0,
-  overflow: "hidden",
-});
 
 const BucketSim = () => {
   const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
@@ -250,7 +243,10 @@ const BucketSim = () => {
               Backup current bucket list
             </ButtonLoading>
           </Stack>
-          <CustomMenuList component={Paper}>
+          <MenuList
+            component={Paper}
+            sx={{ marginTop: 1.5, padding: 0, overflow: "hidden" }}
+          >
             {sims.map((item) => (
               <MenuItem
                 key={item.uuid}
@@ -294,7 +290,7 @@ const BucketSim = () => {
                 </Tooltip>
               </MenuItem>
             ))}
-          </CustomMenuList>
+          </MenuList>
         </Grid>
         {!isLoading && (
           <Grid size={{ xs: 12, sm: 8 }}>

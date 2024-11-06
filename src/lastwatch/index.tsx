@@ -1,6 +1,6 @@
 import { useContext, useEffect, useLayoutEffect, useState } from "preact/hooks";
-import axios from "axios";
 import { toast } from "sonner";
+import axios from "axios";
 
 import {
   Box,
@@ -10,7 +10,6 @@ import {
   MenuItem,
   Paper,
   Select,
-  styled,
 } from "@mui/material";
 
 import {
@@ -31,14 +30,6 @@ import {
 } from "@components";
 
 import { Data, Stats } from "./types";
-
-const DashboardContainer = styled(Box)({
-  marginBottom: 32,
-});
-
-const CustomTable = styled(Table.Element)({
-  minWidth: 650,
-});
 
 const LastWatch = () => {
   const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
@@ -81,7 +72,7 @@ const LastWatch = () => {
   };
 
   const Dashboard = () => (
-    <DashboardContainer>
+    <Box sx={{ marginBottom: 4 }}>
       <Grid container spacing={4}>
         <Grid size={{ xs: 12, sm: 6, lg: 3 }}>
           <DashboardTile
@@ -120,7 +111,7 @@ const LastWatch = () => {
           />
         </Grid>
       </Grid>
-    </DashboardContainer>
+    </Box>
   );
 
   const HeaderControls = () => (
@@ -157,7 +148,7 @@ const LastWatch = () => {
       headerControls={<HeaderControls />}
     >
       <Table.Container component={Paper}>
-        <CustomTable>
+        <Table.Element sx={{ minWidth: 650 }}>
           <Table.Head>
             <Table.Row>
               <Table.Cell>Title</Table.Cell>
@@ -192,7 +183,7 @@ const LastWatch = () => {
               </Table.Row>
             ))}
           </Table.Body>
-        </CustomTable>
+        </Table.Element>
       </Table.Container>
     </ModuleContainer>
   );

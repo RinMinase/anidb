@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "preact/hooks";
-import axios from "axios";
 import { Slash as UncategorizedIcon } from "react-feather";
 import { toast } from "sonner";
+import axios from "axios";
 
 import {
   Box,
@@ -11,7 +11,6 @@ import {
   MenuList,
   Paper,
   Stack,
-  styled,
   Typography,
 } from "@mui/material";
 
@@ -32,19 +31,6 @@ import { Data, YearData } from "./types";
 type CustomIconProps = {
   small?: boolean;
 };
-
-const CustomMenuList = styled(MenuList)<{ component: any }>({
-  padding: 0,
-  overflow: "hidden",
-});
-
-const DividingSpacer = styled(Box)({});
-
-const DividingBox = styled(Box)({
-  borderBottom: `1px solid #ccc`,
-  display: "flex",
-  flexGrow: 1,
-});
 
 const IconWinter = ({ small }: CustomIconProps) => (
   <WinterIcon
@@ -141,7 +127,7 @@ const ByYear = () => {
     <>
       {value ? (
         <Stack spacing={2} direction="row" alignItems="center">
-          <DividingSpacer />
+          <Box /> {/* spacer */}
           <Typography
             component={"span" as any}
             variant="body2"
@@ -155,7 +141,13 @@ const ByYear = () => {
             {label === "Uncategorized" ? <IconUncategorized small /> : null}
             {label}
           </Typography>
-          <DividingBox />
+          <Box
+            sx={{
+              borderBottom: "1px solid #ccc",
+              display: "flex",
+              flexGrow: 1,
+            }}
+          />
           <Typography
             component={"span" as any}
             variant="body2"
@@ -216,7 +208,7 @@ const ByYear = () => {
     <ModuleContainer headerText="Entries by Year">
       <Grid container spacing={2}>
         <Grid size={{ xs: 12, sm: 5, md: 3 }}>
-          <CustomMenuList component={Paper}>
+          <MenuList component={Paper} sx={{ padding: 0, overflow: "hidden" }}>
             {yearData.map((item, index) => (
               <MenuItem
                 key={`mara-${index}`}
@@ -250,7 +242,7 @@ const ByYear = () => {
                 )}
               </MenuItem>
             ))}
-          </CustomMenuList>
+          </MenuList>
         </Grid>
 
         <Grid size={{ xs: 12, sm: 7, md: 9 }}>

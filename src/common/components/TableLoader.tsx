@@ -1,20 +1,15 @@
-import { LinearProgress, styled, TableCell, TableRow } from "@mui/material";
+import { LinearProgress, TableCell, TableRow } from "@mui/material";
 
 type Props = {
   colspan?: number;
 };
 
-const CustomCell = styled(TableCell)({
-  padding: 0,
-  border: 0,
-});
-
 const TableLoader = (props: Props) => {
   return (
     <TableRow>
-      <CustomCell colSpan={props.colspan || 42}>
+      <TableCell colSpan={props.colspan || 42} sx={{ padding: 0, border: 0 }}>
         <LinearProgress />
-      </CustomCell>
+      </TableCell>
     </TableRow>
   );
 };

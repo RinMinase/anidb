@@ -1,9 +1,9 @@
-import axios from "axios";
-import ChartDataLabels from "chartjs-plugin-datalabels";
 import { useContext, useEffect, useState } from "preact/hooks";
 import { route } from "preact-router";
 import { Chart, ChartOptions, registerables } from "chart.js";
 import { toast } from "sonner";
+import axios from "axios";
+import ChartDataLabels from "chartjs-plugin-datalabels";
 
 import {
   Box,
@@ -12,7 +12,6 @@ import {
   MenuItem,
   MenuList,
   Paper,
-  styled,
 } from "@mui/material";
 
 import {
@@ -40,26 +39,6 @@ import { Data, Sequences, Stats } from "./types";
 
 let chartElement: Chart;
 Chart.register(...registerables, ChartDataLabels);
-
-const DashboardContainer = styled(Box)({
-  marginBottom: 32,
-});
-
-const ChartContainer = styled(Box)({
-  width: 250,
-  position: "relative",
-  boxSizing: "content-box",
-});
-
-const CustomMenuList = styled(MenuList)<{ component: any }>({
-  marginTop: 12,
-  padding: 0,
-  overflow: "hidden",
-});
-
-const CustomTable = styled(Table.Element)({
-  minWidth: 650,
-});
 
 const Marathon = () => {
   const { toggleLoader } = useContext(GlobalLoaderContext);
@@ -297,17 +276,23 @@ const Marathon = () => {
     <ModuleContainer
       headerText="Marathons"
       dashboard={
-        <DashboardContainer>
+        <Box sx={{ marginBottom: 4 }}>
           <Grid container spacing={4}>
             <DashboardTiles />
 
             <Grid size={{ xs: 12, sm: 6, md: 3 }}>
-              <ChartContainer>
+              <Box
+                sx={{
+                  width: 250,
+                  position: "relative",
+                  boxSizing: "content-box",
+                }}
+              >
                 <canvas id="graph" />
-              </ChartContainer>
+              </Box>
             </Grid>
           </Grid>
-        </DashboardContainer>
+        </Box>
       }
     >
       <Grid container spacing={2}>
@@ -319,7 +304,10 @@ const Marathon = () => {
           >
             Add
           </Button>
-          <CustomMenuList component={Paper}>
+          <MenuList
+            component={Paper}
+            sx={{ marginTop: 1.5, padding: 0, overflow: "hidden" }}
+          >
             {sequences.map((item, index) => (
               <MenuItem
                 key={`mara-${index}`}
@@ -347,11 +335,11 @@ const Marathon = () => {
                 />
               </MenuItem>
             ))}
-          </CustomMenuList>
+          </MenuList>
         </Grid>
         <Grid size={{ xs: 12, sm: 7, md: 8, lg: 9 }}>
           <Table.Container component={Paper}>
-            <CustomTable>
+            <Table.Element sx={{ minWidth: 650 }}>
               <Table.Head>
                 <Table.Row>
                   <Table.Cell>Title</Table.Cell>
@@ -383,7 +371,7 @@ const Marathon = () => {
                   <Table.Loader />
                 )}
               </Table.Body>
-            </CustomTable>
+            </Table.Element>
           </Table.Container>
         </Grid>
       </Grid>

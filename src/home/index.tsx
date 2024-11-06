@@ -34,10 +34,6 @@ import {
 
 import { Data, TableHeadings } from "./types";
 
-const SearchIconContainer = styled(SearchIcon)({
-  marginRight: 4,
-});
-
 const StyledRating = styled(Rating)(({ value }) => ({
   "& .MuiRating-decimal": {
     marginRight: 2,
@@ -53,12 +49,6 @@ const StyledRating = styled(Rating)(({ value }) => ({
       : "",
   },
 }));
-
-const SpinnerContainer = styled(Box)({
-  width: "100%",
-  textAlign: "center",
-  marginTop: 16,
-});
 
 const headings: TableHeadings = [
   { id: "title", label: "Title", sortable: true },
@@ -255,7 +245,8 @@ const Home = () => {
               endAdornment={
                 <InputAdornment
                   position="end"
-                  children={<SearchIconContainer />}
+                  children={<SearchIcon />}
+                  sx={{ marginRight: 0.5 }}
                 />
               }
             />
@@ -353,7 +344,10 @@ const Home = () => {
       {data.length && !isLoading ? (
         <Waypoint onEnter={fetchNextPage}>
           {!isLoading && hasNext ? (
-            <SpinnerContainer children={<CircularProgress />} />
+            <Box
+              children={<CircularProgress />}
+              sx={{ width: "100%", textAlign: "center", marginTop: 2 }}
+            />
           ) : null}
         </Waypoint>
       ) : null}

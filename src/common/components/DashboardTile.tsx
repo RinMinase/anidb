@@ -44,11 +44,6 @@ const DashboardItem = styled(Paper)<DashboardItemProps>(({ hasOnclick }) => ({
   position: "relative",
 }));
 
-const DashboardContainer = styled(Box)({
-  padding: 16,
-  flexGrow: 1,
-});
-
 const DashboardIcon = styled(Box)<DashboardIconProps>(({ iconColor }) => ({
   display: "flex",
   justifyContent: "center",
@@ -69,14 +64,10 @@ const DashboardFooter = styled(Box)(({ theme }) => ({
   padding: theme.spacing(1, 2),
 }));
 
-const FooterRight = styled(Grid)({
-  textAlign: "right",
-});
-
 const DashboardTile = (props: Props) => {
   return (
     <DashboardItem onClick={props.onClick} hasOnclick={!!props.onClick}>
-      <DashboardContainer>
+      <Box sx={{ padding: 2, flexGrow: 1 }}>
         {props.icon && (
           <DashboardIcon
             iconColor={props.iconColor || "#cecece"}
@@ -94,13 +85,13 @@ const DashboardTile = (props: Props) => {
         {props.subHeading && (
           <Typography variant="caption">{props.subHeading}</Typography>
         )}
-      </DashboardContainer>
+      </Box>
       {props.CustomDivider ? props.CustomDivider : <Divider />}
       {(props.footerLeft || props.footerRight) && (
         <DashboardFooter>
           <Grid container justifyContent="space-between">
             <Grid>{props.footerLeft}</Grid>
-            <FooterRight>{props.footerRight}</FooterRight>
+            <Grid sx={{ textAlign: "right" }}>{props.footerRight}</Grid>
           </Grid>
           <Typography variant="caption">{props.footer}</Typography>
         </DashboardFooter>
