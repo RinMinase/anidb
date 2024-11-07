@@ -323,6 +323,7 @@ const SearchForm = (props: Props) => {
           />
           <Typography variant="caption">
             - Absolute: spring, 2020, 'spring 2020'
+            <br />- Comma Separated: spring, 2020, fall 2021
             <br />- Range: '2020 to 2021', 'summer 2020 to spring 2021', '2020
             summer to 2022'
             <br />
