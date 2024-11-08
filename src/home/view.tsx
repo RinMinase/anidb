@@ -23,6 +23,9 @@ import {
   Trash as DeleteIcon,
 } from "react-feather";
 
+import TotalRatingFilledIcon from "@components/icons/heart-filled.svg?react";
+import TotalRatingEmptyIcon from "@components/icons/heart.svg?react";
+
 import {
   Button,
   ButtonLoading,
@@ -30,8 +33,11 @@ import {
   GlobalLoaderContext,
   ModuleContainer,
 } from "@components";
-import TotalRatingFilledIcon from "@components/icons/heart-filled.svg?react";
-import TotalRatingEmptyIcon from "@components/icons/heart.svg?react";
+
+import ViewEntryImage from "./components/ViewEntryImage";
+import ViewRewatchDialog from "./components/ViewRewatchDialog";
+import ViewOffquelDialog from "./components/ViewOffquelDialog";
+import { FullData } from "./types";
 
 import {
   Header,
@@ -43,10 +49,6 @@ import {
   IconFall,
   RatingIconContainer,
 } from "./components/ViewComponents";
-
-import ViewEntryImage from "./components/ViewEntryImage";
-import ViewRewatchDialog from "./components/ViewRewatchDialog";
-import { FullData } from "./types";
 
 type Props = {
   matches: {
@@ -61,6 +63,7 @@ const HomeView = (props: Props) => {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   const [rewatchDialog, setRewatchDialog] = useState(false);
+  const [offquelDialog, setOffquelDialog] = useState(false);
   const [isDeleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [isDeleteLoading, setDeleteLoading] = useState(false);
 
@@ -291,7 +294,7 @@ const HomeView = (props: Props) => {
     <ModuleContainer>
       {!isLoading && data.title && (
         <Grid container spacing={2.5}>
-          <Grid container size={{ xs: 12, sm: 4, md: 3 }} spacing={1.25}>
+          <Grid container size={{ xs: 12, sm: 4, lg: 3 }} spacing={1.25}>
             <Grid size={{ xs: 4, sm: 12 }}>
               <Button
                 variant="contained"
@@ -328,7 +331,7 @@ const HomeView = (props: Props) => {
             </Grid>
           </Grid>
 
-          <Grid size={{ xs: 12, sm: 8, md: 9 }}>
+          <Grid size={{ xs: 12, sm: 8, lg: 9 }}>
             <Stack
               spacing={2}
               sx={{ textAlign: { xs: "center", sm: "unset" } }}
@@ -351,7 +354,7 @@ const HomeView = (props: Props) => {
             </Stack>
           </Grid>
 
-          <Grid size={{ xs: 12, sm: 4, md: 3 }}>
+          <Grid size={{ xs: 12, sm: 4, lg: 3 }}>
             <Stack
               spacing={3}
               sx={{ textAlign: { xs: "center", sm: "unset" } }}
@@ -361,6 +364,15 @@ const HomeView = (props: Props) => {
                 setData={setData}
                 id={props.matches?.id}
               />
+              <Box sx={{ display: { xs: "none", sm: "flex" } }}>
+                <Button
+                  variant="contained"
+                  fullWidth
+                  onClick={() => setOffquelDialog(true)}
+                >
+                  Edit Offquels
+                </Button>
+              </Box>
               <Box sx={{ display: { xs: "none", sm: "flex" } }}>
                 <Button
                   variant="contained"
@@ -383,7 +395,7 @@ const HomeView = (props: Props) => {
             </Stack>
           </Grid>
 
-          <Grid size={{ xs: 12, sm: 8, md: 9 }}>
+          <Grid size={{ xs: 12, sm: 8, lg: 9 }}>
             <Stack spacing={3}>
               <Stack
                 spacing={1.5}
@@ -509,6 +521,14 @@ const HomeView = (props: Props) => {
                           </Box>
                         </>
                       ) : null}
+                      <Box sx={{ display: { xs: "inline-block", sm: "none" } }}>
+                        <Button
+                          variant="contained"
+                          onClick={() => setOffquelDialog(true)}
+                        >
+                          Edit Offquels
+                        </Button>
+                      </Box>
                     </Stack>
                   ) : null}
 
@@ -593,6 +613,14 @@ const HomeView = (props: Props) => {
         onChangeData={handleChangeData}
         onClose={() => setRewatchDialog(false)}
         rewatches={data.rewatches}
+      />
+
+      <ViewOffquelDialog
+        entry={props.matches?.id || ""}
+        open={offquelDialog}
+        onChangeData={handleChangeData}
+        onClose={() => setOffquelDialog(false)}
+        offquels={data.offquels}
       />
 
       <Dialog

@@ -47,6 +47,11 @@ export type RewatchForm = {
   date_rewatched: Date;
 };
 
+export type OffquelForm = {
+  offquel?: { id: string; label: string };
+  offquel_id?: string;
+};
+
 const defaultValues = {
   id_quality: "",
   title: "",
@@ -147,9 +152,24 @@ const rewatchSchema = object({
     .required("Date is required"),
 });
 
+const offquelSchema = object({
+  offquel_id: string().nullable(),
+});
+
 const resolver: Resolver<Form> = yupResolver(schema) as any;
+
 const rewatchResolver: Resolver<RewatchForm> = yupResolver(
   rewatchSchema,
 ) as any;
 
-export { defaultValues, resolver, rewatchDefaultValues, rewatchResolver };
+const offquelResolver: Resolver<OffquelForm> = yupResolver(
+  offquelSchema,
+) as any;
+
+export {
+  defaultValues,
+  resolver,
+  rewatchDefaultValues,
+  rewatchResolver,
+  offquelResolver,
+};

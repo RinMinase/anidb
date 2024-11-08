@@ -5,7 +5,6 @@ import { useEffect, useState } from "preact/hooks";
 import { Control, UseFormSetValue } from "react-hook-form";
 
 import { TitleObject } from "../types";
-import { Form } from "../validation";
 
 type Props = {
   entryId?: string;
@@ -13,11 +12,12 @@ type Props = {
   actualIdFieldName: string;
   label: string;
   control: Control<any>;
-  setValue: UseFormSetValue<Form>;
+  setValue: UseFormSetValue<any>;
   error: boolean;
   helperText?: string;
   disabled: boolean;
   initialOptions: AutocompleteOptions;
+  shouldExcludeEntry?: boolean;
 };
 
 type AutocompleteOptions = Array<{
@@ -25,11 +25,16 @@ type AutocompleteOptions = Array<{
   label: string;
 }>;
 
-const searchAPI = (id?: string, needle?: string) => {
+const searchAPI = (
+  id?: string,
+  needle?: string,
+  idExcluded: boolean = false,
+) => {
   return axios.get("/entries/titles", {
     params: {
       id: id === "" ? null : id,
       needle: needle === "" ? null : needle,
+      id_excluded: idExcluded,
     },
   });
 };
@@ -49,7 +54,7 @@ const AddFormAutocomplete = (props: Props) => {
 
     const {
       data: { data },
-    } = await searchAPIDebounced(props.entryId, val);
+    } = await searchAPIDebounced(props.entryId, val, props.shouldExcludeEntry);
 
     const values = data.map((data: TitleObject) => ({
       id: data.id,
