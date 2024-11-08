@@ -181,6 +181,14 @@ const HomeAdd = (props: Props) => {
     }
   };
 
+  const handleBackSubmit = () => {
+    if (props.matches?.id) {
+      route(`/home/view/${props.matches.id}`);
+    } else {
+      route("/home");
+    }
+  };
+
   const handleSubmitForm = async (formdata: Form) => {
     try {
       setSaveLoading(true);
@@ -312,7 +320,7 @@ const HomeAdd = (props: Props) => {
         type="warning"
         title="Are you sure?"
         text="Any changes will not be saved."
-        onSubmit={() => route("/home")}
+        onSubmit={handleBackSubmit}
         open={isDialogOpen}
         setOpen={setDialogOpen}
       />
