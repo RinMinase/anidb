@@ -84,6 +84,11 @@ export type FullData = {
   };
 
   image?: string;
+
+  genres?: Array<{
+    id: number;
+    genre: string;
+  }>;
 };
 
 export type AutofillProps = {

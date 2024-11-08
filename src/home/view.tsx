@@ -560,6 +560,24 @@ const HomeView = (props: Props) => {
                     )}
                   </Stack>
 
+                  {data.genres && data.genres.length ? (
+                    <Stack direction="row" spacing={1}>
+                      <Typography variant="body1">Genres:</Typography>
+                      {data.genres.map((item) => (
+                        <Chip
+                          key={`genre-${data.id}-${item.id}`}
+                          label={item.genre}
+                          size="small"
+                          sx={{
+                            backgroundColor: "#777",
+                            px: 1,
+                            color: contrast("#fce257"),
+                          }}
+                        />
+                      ))}
+                    </Stack>
+                  ) : null}
+
                   <Stack spacing={1}>
                     <Typography variant="body1">
                       Rewatches: {data.rewatches?.length || "None"}

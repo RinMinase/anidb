@@ -1,6 +1,6 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Resolver } from "react-hook-form";
-import { bool, date, lazy, number, object, string } from "yup";
+import { array, bool, date, lazy, number, object, string } from "yup";
 
 import { emptyStringToNull, FILESIZES } from "@components";
 
@@ -41,6 +41,8 @@ export type Form = {
   duration_hrs?: number;
   duration_mins?: number;
   duration_secs?: number;
+
+  genres?: Array<string>;
 };
 
 export type RewatchForm = {
@@ -61,20 +63,12 @@ const defaultValues = {
   id_codec_video: "",
   id_codec_audio: "",
   codec_hdr: false,
+  genres: [],
 };
 
 const rewatchDefaultValues = {
   date_rewatched: new Date(),
 };
-
-const dateTime = new Date();
-dateTime.setDate(dateTime.getDate() + 1);
-
-// Commented temporarily to test adding in production
-// const dateOnly = new Date(
-//   dateTime.valueOf() + dateTime.getTimezoneOffset() * 60 * 1000,
-// );
-// const now = format(dateOnly, "yyyy-MM-dd");
 
 const minDate = "1990-01-01";
 
@@ -94,10 +88,11 @@ const schema = object().shape({
   }),
 
   date_finished: date()
-    .typeError("Invalid date")
     .min(minDate, "Invalid date")
     .max(new Date(), "Date should not be in the future")
-    .nullable(),
+    .nullable()
+    .default(undefined)
+    .typeError("Invalid date"),
 
   filesize: number()
     .transform(emptyStringToNull)
@@ -127,6 +122,7 @@ const schema = object().shape({
 
   variants: string().nullable(),
   remarks: string().nullable(),
+  genres: array(string()),
 
   duration_hrs: number()
     .transform(emptyStringToNull)
@@ -148,8 +144,11 @@ const schema = object().shape({
 
 const rewatchSchema = object({
   date_rewatched: date()
+    .min(minDate, "Invalid date")
     .max(new Date(), "Date should not be in the future")
-    .required("Date is required"),
+    .required("Date is required")
+    .default(undefined)
+    .typeError("Invalid date"),
 });
 
 const offquelSchema = object({

@@ -89,6 +89,7 @@ const HomeAdd = (props: Props) => {
           sequel,
           // prequelTitle,
           // sequelTitle,
+          genres,
         } = partialsData.data.data;
 
         let hrs = 0;
@@ -124,6 +125,11 @@ const HomeAdd = (props: Props) => {
             id: seasonFirstTitle.id,
             label: seasonFirstTitle.title,
           };
+        }
+
+        let genre_ids = [];
+        if (genres && genres.length) {
+          genre_ids = genres.map((genre: any) => genre.id);
         }
 
         reset({
@@ -163,6 +169,8 @@ const HomeAdd = (props: Props) => {
           duration_hrs: hrs,
           duration_mins: mins,
           duration_secs: secs,
+
+          genres: genre_ids,
         });
       }
     } catch (err) {
@@ -177,17 +185,21 @@ const HomeAdd = (props: Props) => {
     try {
       setSaveLoading(true);
 
-      const { duration_hrs, duration_mins, duration_secs, ...rest } = formdata;
+      const { duration_hrs, duration_mins, duration_secs, genres, ...rest } =
+        formdata;
 
       let duration = 0;
       if (duration_hrs) duration += duration_hrs * 3600;
       if (duration_mins) duration += duration_mins * 60;
       if (duration_secs) duration += duration_secs;
 
+      let genre_ids = genres && genres.length ? genres.join(",") : "";
+
       const body = {
         ...rest,
         date_finished: format(formdata.date_finished, "yyyy-MM-dd"),
         codec_hdr: formdata.codec_hdr ? 1 : 0,
+        genres: genre_ids,
         duration,
       };
 

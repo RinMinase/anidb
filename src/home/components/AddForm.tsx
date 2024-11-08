@@ -24,6 +24,7 @@ import {
   ControlledAutocomplete,
   ControlledDatepicker,
   ControlledField,
+  ControlledMultiSelect,
   ControlledSelect,
   ControlledSwitch,
   Dialog,
@@ -95,6 +96,7 @@ const AddForm = (props: Props) => {
   const [qualities, setQualities] = useState<OptionsKeyedProps>([]);
   const [audioCodecs, setAudioCodecs] = useState<OptionsKeyedProps>([]);
   const [videoCodecs, setVideoCodecs] = useState<OptionsKeyedProps>([]);
+  const [genres, setGenres] = useState<OptionsKeyedProps>([]);
   const [groups, setGroups] = useState<Array<string>>([]);
 
   const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
@@ -169,6 +171,20 @@ const AddForm = (props: Props) => {
     setInitACOptions(structuredClone(values));
   };
 
+  const fetchGenres = async () => {
+    const {
+      data: { data },
+    } = await axios.get("/genres");
+
+    setGenres(
+      data.map((item: { genre: string; id: string }) => ({
+        label: item.genre,
+        key: `genre-${item.id}`,
+        value: item.id,
+      })),
+    );
+  };
+
   const fetchData = async () => {
     try {
       toggleLoader(true);
@@ -179,6 +195,7 @@ const AddForm = (props: Props) => {
         fetchGroups(),
         fetchQualities(),
         fetchCodecs(),
+        fetchGenres(),
       ]);
     } catch (err) {
       console.error(err);
@@ -268,7 +285,7 @@ const AddForm = (props: Props) => {
   }, []);
 
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={2} sx={{ pb: 4 }}>
       <Grid size={{ xs: 12, sm: 4, md: 3 }}>
         <ControlledSelect
           name="id_quality"
@@ -543,6 +560,19 @@ const AddForm = (props: Props) => {
       </Grid>
       <Grid size={{ xs: 12, sm: 3, md: 2 }}>
         <ControlledSwitch name="codec_hdr" label="HDR" control={control} />
+      </Grid>
+
+      <Grid size={{ xs: 12, sm: 8 }}>
+        <ControlledMultiSelect
+          name="genres"
+          label="Genres"
+          options={genres}
+          control={control}
+          error={!!errors.genres}
+          helperText={errors.genres?.message}
+          disabled={isLoading}
+          fullWidth
+        />
       </Grid>
 
       <Dialog
