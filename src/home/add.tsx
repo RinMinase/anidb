@@ -127,10 +127,9 @@ const HomeAdd = (props: Props) => {
           };
         }
 
-        let genre_ids = [];
-        if (genres && genres.length) {
-          genre_ids = genres.map((genre: any) => genre.id);
-        }
+        const genre_ids = genres.length
+          ? genres.map((genre: any) => genre.id)
+          : [];
 
         reset({
           id_quality: idQuality,
@@ -201,7 +200,7 @@ const HomeAdd = (props: Props) => {
       if (duration_mins) duration += duration_mins * 60;
       if (duration_secs) duration += duration_secs;
 
-      let genre_ids = genres && genres.length ? genres.join(",") : "";
+      const genre_ids = genres && genres.length ? genres.join(",") : "";
 
       const body = {
         ...rest,

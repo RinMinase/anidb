@@ -1,5 +1,10 @@
 import type { Qualities } from "@components";
 
+type GenreData = {
+  id: number;
+  genre: string;
+};
+
 export type Item = {
   id?: string;
   quality?: Qualities;
@@ -15,6 +20,7 @@ export type Item = {
   release?: string;
   remarks?: string | null;
   rating?: number;
+  genres: Array<GenreData>;
 };
 
 export type Data = Array<Item>;
@@ -85,10 +91,7 @@ export type FullData = {
 
   image?: string;
 
-  genres?: Array<{
-    id: number;
-    genre: string;
-  }>;
+  genres?: Array<GenreData>;
 };
 
 export type AutofillProps = {
