@@ -6,6 +6,7 @@ import {
   RotateCcw as LastWatchIcon,
   Type as ByNameIcon,
   Calendar as ByYearIcon,
+  Tag as ByGenreIcon,
   Tv as MarathonsIcon,
   HardDrive as BucketsIcon,
   Cpu as BucketSimIcon,
@@ -36,6 +37,10 @@ export const MenuItemList = (props: { onClick: () => void }) => (
     <MenuItem component={"a" as any} href="/by-year" onClick={props.onClick}>
       <ListItemIcon children={<ByYearIcon size={18} />} />
       By Year
+    </MenuItem>
+    <MenuItem component={"a" as any} href="/by-genre" onClick={props.onClick}>
+      <ListItemIcon children={<ByGenreIcon size={18} />} />
+      By Genre
     </MenuItem>
     <Divider />
     <MenuItem component={"a" as any} href="/catalogs" onClick={props.onClick}>

@@ -20,6 +20,7 @@ const Search = async () => (await import("./search")).default;
 const LastWatch = async () => (await import("./lastwatch")).default;
 const ByName = async () => (await import("./by-name")).default;
 const ByYear = async () => (await import("./by-year")).default;
+const ByGenre = async () => (await import("./by-genre")).default;
 
 const Catalog = async () => (await import("./catalog")).default;
 const CatalogAdd = async () => (await import("./catalog/add")).default;
@@ -59,6 +60,7 @@ const Routes = (props: Props) => (
     <AsyncRoute path="/last-watch" getComponent={LastWatch} />
     <AsyncRoute path="/by-name" getComponent={ByName} />
     <AsyncRoute path="/by-year" getComponent={ByYear} />
+    <AsyncRoute path="/by-genre" getComponent={ByGenre} />
 
     <AsyncRoute path="/catalogs" getComponent={Catalog} />
     <AsyncRoute path="/catalogs/add" getComponent={CatalogAdd} />
