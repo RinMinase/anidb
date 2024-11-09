@@ -1,5 +1,6 @@
 import { useContext, useEffect, useLayoutEffect, useState } from "preact/hooks";
 import { route } from "preact-router";
+import { toast } from "sonner";
 import axios from "axios";
 
 import {
@@ -13,7 +14,7 @@ import {
 
 import RatingFilledIcon from "@components/icons/heart-filled.svg?react";
 import RatingEmptyIcon from "@components/icons/heart.svg?react";
-import { Codecs, Data } from "./types";
+import { Codecs, Data, Genres } from "./types";
 import SearchForm from "./components/SearchForm";
 
 import {
@@ -45,21 +46,36 @@ const Search = () => {
 
   const [tableLoader, setTableLoader] = useState(false);
   const [data, setData] = useState<Data>([]);
+  const [genres, setGenres] = useState<Genres>([]);
   const [codecs, setCodecs] = useState<Codecs>({
     audio: [],
     video: [],
   });
 
+  const fetchCodecs = async () => {
+    const {
+      data: { data },
+    } = await axios.get("/codecs");
+
+    setCodecs(data);
+  };
+
+  const fetchGenres = async () => {
+    const {
+      data: { data },
+    } = await axios.get("/genres");
+
+    setGenres(data);
+  };
+
   const fetchData = async () => {
-    toggleLoader(true);
-
     try {
-      const {
-        data: { data },
-      } = await axios.get("/codecs");
+      toggleLoader(true);
 
-      setCodecs(data);
-    } catch {
+      await Promise.all([fetchCodecs(), fetchGenres()]);
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed");
     } finally {
       toggleLoader(false);
     }
@@ -80,6 +96,7 @@ const Search = () => {
           <Grid size={{ xs: 12, md: 4, lg: 3 }}>
             <SearchForm
               codecs={codecs}
+              genres={genres}
               isSearchLoading={tableLoader}
               setTableLoader={setTableLoader}
               setData={setData}
@@ -103,6 +120,7 @@ const Search = () => {
                       Date Finished
                     </Table.Cell>
                     <Table.Cell sx={{ minWidth: 130 }}>Release</Table.Cell>
+                    <Table.Cell sx={{ minWidth: 225 }}>Genres</Table.Cell>
                     <Table.Cell>Encoder</Table.Cell>
                     <Table.Cell>Rating</Table.Cell>
                   </Table.Row>
@@ -134,6 +152,17 @@ const Search = () => {
                           />
                         </Table.Cell>
                         <Table.Cell>{item.release}</Table.Cell>
+                        <Table.Cell>
+                          <Grid container spacing={1}>
+                            {item.genres.map((genre) => (
+                              <Chip
+                                key={`${item.id}_${genre.id}`}
+                                size="small"
+                                label={genre.genre}
+                              />
+                            ))}
+                          </Grid>
+                        </Table.Cell>
                         <Table.Cell sx={{ whiteSpace: "nowrap" }}>
                           {item.encoder
                             ? item.encoder.replaceAll(" ", "\u00a0")

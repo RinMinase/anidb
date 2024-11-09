@@ -10,3 +10,8 @@ export type Codecs = {
     codec: string;
   }>;
 };
+
+export type Genres = Array<{
+  id: number;
+  genre: string;
+}>;

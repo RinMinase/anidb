@@ -14,7 +14,7 @@ import {
   OptionsKeyedProps,
 } from "@components";
 
-import { Codecs, Data } from "../types";
+import { Codecs, Data, Genres } from "../types";
 
 import {
   ColumnDropDownOptions,
@@ -27,6 +27,7 @@ import {
 
 type Props = {
   codecs: Codecs;
+  genres: Genres;
   isSearchLoading: boolean;
   setTableLoader: Dispatch<StateUpdater<boolean>>;
   setData: Dispatch<StateUpdater<Data>>;
@@ -35,6 +36,7 @@ type Props = {
 const SearchForm = (props: Props) => {
   const [audioCodecs, setAudioCodecs] = useState<OptionsKeyedProps>([]);
   const [videoCodecs, setVideoCodecs] = useState<OptionsKeyedProps>([]);
+  const [genres, setGenres] = useState<OptionsKeyedProps>([]);
 
   const {
     control,
@@ -51,7 +53,9 @@ const SearchForm = (props: Props) => {
     try {
       props.setTableLoader(true);
 
-      const query: any = { ...formData };
+      const { codec_video, codec_audio, genres, ...others } = formData;
+
+      const query: any = { ...others };
 
       for (const key of Object.keys(query)) {
         if (query[key] === "") {
@@ -64,6 +68,15 @@ const SearchForm = (props: Props) => {
       } = await axios.get("/entries/search", {
         params: {
           ...query,
+          codec_video:
+            codec_video && codec_video.length
+              ? codec_video.join(",")
+              : undefined,
+          codec_audio:
+            codec_audio && codec_audio.length
+              ? codec_audio.join(",")
+              : undefined,
+          genres: genres && genres.length ? genres.join(",") : undefined,
         },
       });
 
@@ -110,6 +123,17 @@ const SearchForm = (props: Props) => {
     setAudioCodecs(audioCodecOptions);
     setVideoCodecs(videoCodecOptions);
   }, [props.codecs]);
+
+  useEffect(() => {
+    const genreOptions: OptionsKeyedProps = props.genres.map((item) => ({
+      label: item.genre,
+      key: item.id,
+
+      value: item.id,
+    }));
+
+    setGenres(genreOptions);
+  }, [props.genres]);
 
   return (
     <Box component={Paper}>
@@ -429,6 +453,20 @@ const SearchForm = (props: Props) => {
             control={control}
             error={!!errors.codec_audio}
             helperText={errors.codec_audio?.message}
+            disabled={props.isSearchLoading}
+            fullWidth
+          />
+        </Grid>
+
+        <Grid container size={12} spacing={1}>
+          <ControlledMultiSelect
+            name="genres"
+            label="Genres"
+            size="small"
+            options={genres}
+            control={control}
+            error={!!errors.genres}
+            helperText={errors.genres?.message}
             disabled={props.isSearchLoading}
             fullWidth
           />
