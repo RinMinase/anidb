@@ -4,7 +4,7 @@ type Props = {
   colspan?: number;
 };
 
-const TableLoader = (props: Props) => {
+export const TableLoader = (props: Props) => {
   return (
     <TableRow>
       <TableCell colSpan={props.colspan || 42} sx={{ padding: 0, border: 0 }}>
@@ -13,5 +13,3 @@ const TableLoader = (props: Props) => {
     </TableRow>
   );
 };
-
-export default TableLoader;

@@ -1,4 +1,4 @@
-import TableLoader from "./TableLoader";
+import { TableLoader } from "./TableLoader";
 import TablePaginationActions from "./TablePaginationActions";
 
 import {
