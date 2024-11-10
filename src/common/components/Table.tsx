@@ -1,4 +1,4 @@
-import { TableLoader } from "./TableLoader";
+import { TableLoader, TablePageLoader } from "./TableLoader";
 import TablePaginationActions from "./TablePaginationActions";
 
 import {
@@ -21,6 +21,7 @@ const Table = {
   Row: TableRow,
   SortHeader: TableSortLabel,
   Loader: TableLoader,
+  PageLoader: TablePageLoader,
   Pagination: TablePagination,
   PaginationActions: TablePaginationActions,
 };
