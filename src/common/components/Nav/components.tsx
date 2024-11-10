@@ -4,6 +4,7 @@ import {
   Rss as RssIcon,
   Search as SearchIcon,
   RotateCcw as LastWatchIcon,
+  Server as AllEntryDataIcon,
   Type as ByNameIcon,
   Calendar as ByYearIcon,
   Tag as ByGenreIcon,
@@ -28,6 +29,10 @@ export const MenuItemList = (props: { onClick: () => void }) => (
     <MenuItem component={"a" as any} href="/last-watch" onClick={props.onClick}>
       <ListItemIcon children={<LastWatchIcon size={18} />} />
       Last Watched
+    </MenuItem>
+    <MenuItem component={"a" as any} href="/entries" onClick={props.onClick}>
+      <ListItemIcon children={<AllEntryDataIcon size={18} />} />
+      All Entry Data
     </MenuItem>
     <Divider />
     <MenuItem component={"a" as any} href="/by-name" onClick={props.onClick}>

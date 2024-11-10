@@ -15,6 +15,7 @@ const Home = async () => (await import("./home")).default;
 const HomeAdd = async () => (await import("./home/add")).default;
 const HomeView = async () => (await import("./home/view")).default;
 
+const Entries = async () => (await import("./entries")).default;
 const Search = async () => (await import("./search")).default;
 
 const LastWatch = async () => (await import("./lastwatch")).default;
@@ -56,8 +57,10 @@ const Routes = (props: Props) => (
     <AsyncRoute path="/home/edit/:id" getComponent={HomeAdd} />
     <AsyncRoute path="/home/view/:id" getComponent={HomeView} />
 
+    <AsyncRoute path="/entries" getComponent={Entries} />
     <AsyncRoute path="/search" getComponent={Search} />
     <AsyncRoute path="/last-watch" getComponent={LastWatch} />
+
     <AsyncRoute path="/by-name" getComponent={ByName} />
     <AsyncRoute path="/by-year" getComponent={ByYear} />
     <AsyncRoute path="/by-genre" getComponent={ByGenre} />
