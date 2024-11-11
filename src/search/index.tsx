@@ -138,7 +138,6 @@ const Search = () => {
                         <Table.Cell>
                           <Quality quality={item.quality} />
                           {item.title}
-                          {item.title}
                         </Table.Cell>
                         <Table.Cell>
                           {item.episodes} / {item.ovas} / {item.specials}
