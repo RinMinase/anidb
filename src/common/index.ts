@@ -20,6 +20,7 @@ export { default as ModuleContainer } from "./components/ModuleContainer";
 export { default as Nav } from "./components/Nav";
 export { default as NavCommon } from "./components/NavCommon";
 export { default as Quality } from "./components/Quality";
+export { default as Rating } from "./components/Rating";
 export { default as RewatchIndicator } from "./components/RewatchIndicator";
 export { default as Table } from "./components/Table";
 
