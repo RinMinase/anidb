@@ -32,7 +32,12 @@
       "@src": ["src/"],
       "@components": ["src/common/index.ts"],
       "@components/*": ["src/common/*"]
-    }
+    },
+
+    "typeRoots": [
+      "src/common/types",
+      "node_modules/@types"
+    ]
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]
