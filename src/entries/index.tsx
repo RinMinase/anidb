@@ -98,8 +98,8 @@ function rowContent(_index: number, item: Item) {
           display="inline-block"
           sx={{
             paddingRight: !item.rating ? "12px" : undefined,
-            fontWeight: item.rating && item.rating > 7.5 ? "bold" : undefined,
-            fontSize: item.rating && item.rating > 7.5 ? "13px" : "11px",
+            fontWeight: item.rating > 7.5 ? "bold" : undefined,
+            fontSize: item.rating > 7.5 ? "13px" : "11px",
             color: !item.rating
               ? "#9E9E9E"
               : item.rating > 7.5
