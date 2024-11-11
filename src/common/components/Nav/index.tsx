@@ -101,7 +101,7 @@ const Nav = () => {
               <IconButton
                 onClick={(e) => handleOpenList(e, "nav")}
                 color="inherit"
-                children={<MenuIcon size={24} />}
+                children={<MenuIcon size={24} strokeWidth={1.5} />}
               />
               <Menu
                 anchorEl={anchorNav}
@@ -132,7 +132,9 @@ const Nav = () => {
                     handleLogout();
                   }}
                 >
-                  <ListItemIcon children={<LogoutIcon size={20} />} />
+                  <ListItemIcon
+                    children={<LogoutIcon size={20} strokeWidth={1.5} />}
+                  />
                   Logout
                 </MenuItem>
               </Menu>
@@ -159,7 +161,7 @@ const Nav = () => {
                 iconSize={18}
                 color="inherit"
                 onClick={(e: any) => handleOpenList(e, "list")}
-                startIcon={<ListIcon size={18} />}
+                startIcon={<ListIcon size={18} strokeWidth={1.5} />}
               >
                 Lists
               </Button>
@@ -175,7 +177,7 @@ const Nav = () => {
                 iconSize={18}
                 color="inherit"
                 onClick={(e: any) => handleOpenList(e, "mgmt")}
-                startIcon={<ManagementIcon size={18} />}
+                startIcon={<ManagementIcon size={18} strokeWidth={1.5} />}
               >
                 Management
               </Button>
@@ -191,7 +193,7 @@ const Nav = () => {
                 iconSize={18}
                 color="inherit"
                 onClick={(e: any) => handleOpenList(e, "other")}
-                startIcon={<OtherIcon size={18} />}
+                startIcon={<OtherIcon size={18} strokeWidth={1.5} />}
               >
                 Other
               </Button>
@@ -206,9 +208,9 @@ const Nav = () => {
 
             <IconButton onClick={colorMode.toggleColorMode} color="inherit">
               {theme.palette.mode === "dark" ? (
-                <LightModeIcon size={20} />
+                <LightModeIcon size={20} strokeWidth={1.5} />
               ) : (
-                <DarkModeIcon size={20} />
+                <DarkModeIcon size={20} strokeWidth={1.5} />
               )}
             </IconButton>
 
@@ -216,7 +218,7 @@ const Nav = () => {
               <ButtonLoading
                 iconSize={18}
                 color="inherit"
-                startIcon={<LogoutIcon size={16} />}
+                startIcon={<LogoutIcon size={16} strokeWidth={1.5} />}
                 loading={isLogoutLoading}
                 onClick={handleLogout}
               >
