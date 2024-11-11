@@ -1,45 +1,14 @@
 import { useContext, useEffect, useLayoutEffect, useState } from "preact/hooks";
-import { route } from "preact-router";
 import { toast } from "sonner";
 import axios from "axios";
 
-import {
-  Chip,
-  Grid2 as Grid,
-  Paper,
-  Rating,
-  Stack,
-  styled,
-} from "@mui/material";
+import { Grid2 as Grid } from "@mui/material";
 
-import RatingFilledIcon from "@components/icons/heart-filled.svg?react";
-import RatingEmptyIcon from "@components/icons/heart.svg?react";
+import { GlobalLoaderContext, ModuleContainer } from "@components";
+
 import { Codecs, Data, Genres } from "./types";
 import SearchForm from "./components/SearchForm";
-
-import {
-  GlobalLoaderContext,
-  ModuleContainer,
-  Quality,
-  RewatchIndicator,
-  Table,
-} from "@components";
-
-const StyledRating = styled(Rating)(({ value }) => ({
-  "& .MuiRating-decimal": {
-    marginRight: 2,
-  },
-  "& .MuiRating-iconFilled": {
-    width: 14,
-    fill: value
-      ? value > 3.75
-        ? "#28a745"
-        : value > 3
-        ? "#1e90ff"
-        : "#e57373"
-      : "",
-  },
-}));
+import SearchTable from "./components/SearchTable";
 
 const Search = () => {
   const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
@@ -103,7 +72,9 @@ const Search = () => {
             />
           </Grid>
           <Grid size={{ xs: 12, md: 8, lg: 9 }}>
-            <Table.Container
+            <SearchTable data={data} isTableLoading={tableLoader} />
+
+            {/* <Table.Container
               component={Paper}
               // 100vh - screen
               // 48px - navbar
@@ -163,9 +134,7 @@ const Search = () => {
                           </Grid>
                         </Table.Cell>
                         <Table.Cell sx={{ whiteSpace: "nowrap" }}>
-                          {item.encoder
-                            ? item.encoder.replaceAll(" ", "\u00a0")
-                            : ""}
+                          {item.encoder}
                         </Table.Cell>
 
                         <Table.Cell>
@@ -195,7 +164,7 @@ const Search = () => {
                   )}
                 </Table.Body>
               </Table.Element>
-            </Table.Container>
+            </Table.Container> */}
           </Grid>
         </Grid>
       )}
