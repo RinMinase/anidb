@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "preact/hooks";
+import { useContext, useState } from "preact/hooks";
 import { route } from "preact-router";
 import { Waypoint } from "react-waypoint";
 import { Search as SearchIcon } from "react-feather";
@@ -74,12 +74,14 @@ const searchAPI = (query: string, column: string, order: "asc" | "desc") => {
 const searchAPIDebounced = DebouncePromise(searchAPI, 500);
 
 const Home = () => {
-  const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
+  const { isLoading } = useContext(GlobalLoaderContext);
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   const [isTableLoading, setTableLoading] = useState(false);
+  const [isPageLoading, setPageLoading] = useState(false);
+  const [showStartSearchingBanner, setStartSearchingBanner] = useState(true);
   const [data, setData] = useState<Data>([]);
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -91,37 +93,11 @@ const Home = () => {
   const [column, setColumn] = useState("id_quality");
   const [order, setOrder] = useState<"asc" | "desc">("asc");
 
-  const fetchData = async () => {
-    try {
-      setTableLoading(true);
-
-      const {
-        data: { data, meta },
-      } = await axios.get("/entries", {
-        params: {
-          page,
-          query: searchQuery ?? null,
-          column,
-          order,
-        },
-      });
-
-      setData(() => data);
-
-      if (meta) {
-        setHasNext(meta.hasNext);
-      }
-    } catch (err) {
-      console.error(err);
-      toast.error("Failed");
-    } finally {
-      setTableLoading(false);
-    }
-  };
-
   const fetchNextPage = async () => {
     try {
       if (hasNext) {
+        setPageLoading(true);
+
         const {
           data: { data, meta },
         } = await axios.get("/entries", {
@@ -144,7 +120,7 @@ const Home = () => {
       console.error(err);
       toast.error("Failed");
     } finally {
-      toggleLoader(false);
+      setPageLoading(false);
     }
   };
 
@@ -154,8 +130,16 @@ const Home = () => {
       const val = element.value;
 
       setSearchQuery(val);
+
+      if (!val || val.length < 3) {
+        setStartSearchingBanner(true);
+        setData([]);
+        return;
+      }
+
       setTableLoading(true);
       setPage(1);
+      setStartSearchingBanner(false);
 
       const {
         data: { data, meta },
@@ -212,10 +196,6 @@ const Home = () => {
       setTableLoading(false);
     }
   };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
 
   return (
     <ModuleContainer>
@@ -286,7 +266,27 @@ const Home = () => {
           </Table.Head>
 
           <Table.Body>
-            {!isTableLoading ? (
+            {showStartSearchingBanner ? (
+              <Table.Row>
+                <Table.Cell
+                  colSpan={42}
+                  sx={{
+                    fontSize: 14,
+                    color: "#999",
+                    letterSpacing: "1px",
+                    textAlign: { md: "center" },
+                  }}
+                >
+                  <span>Start searching with at least</span>
+                  {isMobile ? <br /> : " "}
+                  <span>three characters to show results</span>
+                </Table.Cell>
+              </Table.Row>
+            ) : null}
+
+            {isTableLoading ? (
+              <Table.Loader />
+            ) : (
               data.map((item) => (
                 <Table.Row
                   hover
@@ -310,19 +310,14 @@ const Home = () => {
                     />
                   </Table.Cell>
                   <Table.Cell>{item.release}</Table.Cell>
-                  <Table.Cell>
-                    {item.encoder ? item.encoder.replaceAll(" ", "\u00a0") : ""}
-                  </Table.Cell>
+                  <Table.Cell>{item.encoder}</Table.Cell>
 
                   {!isMobile && (
                     <Table.Cell>
-                      <Tooltip
-                        title={`${item.rating ?? "0"} / 10`}
-                        placement="top"
-                      >
+                      <Tooltip title={`${item.rating} / 10`} placement="top">
                         <Box>
                           <StyledRating
-                            value={item.rating ? item.rating / 2 : 0}
+                            value={item.ratingOver5}
                             precision={0.25}
                             icon={<RatingFilledIcon width={14} />}
                             emptyIcon={<RatingEmptyIcon width={14} />}
@@ -334,8 +329,6 @@ const Home = () => {
                   )}
                 </Table.Row>
               ))
-            ) : (
-              <Table.Loader />
             )}
           </Table.Body>
         </Table.Element>
@@ -343,7 +336,7 @@ const Home = () => {
 
       {data.length && !isLoading ? (
         <Waypoint onEnter={fetchNextPage}>
-          {!isLoading && hasNext ? (
+          {!isPageLoading && hasNext ? (
             <Box
               children={<CircularProgress />}
               sx={{ width: "100%", textAlign: "center", marginTop: 2 }}

@@ -19,7 +19,8 @@ export type Item = {
   encoder?: string;
   release?: string;
   remarks?: string | null;
-  rating?: number;
+  rating: number;
+  ratingOver5: number;
   genres: Array<GenreData>;
 };
 
