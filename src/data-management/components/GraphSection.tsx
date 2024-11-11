@@ -69,18 +69,24 @@ const GraphSection = (props: Props) => {
       {
         data: [],
         backgroundColor: ["#777", "#fc6", "#9cf", "#9f9", "#f9c"],
-        borderColor: "rgb(25, 135, 84)",
+        borderColor: "#81C784",
       },
     ],
   };
 
   const chartMonthOptions: ChartOptions = {
     // aspectRatio: 1.5,
+    layout: {
+      padding: {
+        top: 20,
+      },
+    },
     scales: {
       y: {
         ticks: {
           stepSize: 5,
         },
+        grace: 20,
       },
     },
     plugins: {
@@ -91,7 +97,7 @@ const GraphSection = (props: Props) => {
         color: "#2196F3",
         font: {
           weight: "bold",
-          size: 14,
+          size: 12,
         },
         align: "top",
       },
@@ -184,7 +190,7 @@ const GraphSection = (props: Props) => {
           display="flex"
           alignItems="center"
           flexDirection="column"
-          justifyContent="end"
+          justifyContent="center"
           gap={2}
         >
           <Typography variant="h6" textAlign="center">
