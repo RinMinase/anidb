@@ -156,7 +156,6 @@ const LastWatch = () => {
               <Table.Cell sx={{ minWidth: 115 }}>Filesize</Table.Cell>
               <Table.Cell sx={{ minWidth: 205 }}>Date Finished</Table.Cell>
               <Table.Cell sx={{ minWidth: 130 }}>Release</Table.Cell>
-              <Table.Cell>Encoder</Table.Cell>
             </Table.Row>
           </Table.Head>
 
@@ -179,7 +178,6 @@ const LastWatch = () => {
                   />
                 </Table.Cell>
                 <Table.Cell>{item.release}</Table.Cell>
-                <Table.Cell>{item.encoder}</Table.Cell>
               </Table.Row>
             ))}
           </Table.Body>
