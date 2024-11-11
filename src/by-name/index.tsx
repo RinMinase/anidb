@@ -114,7 +114,7 @@ const ByName = () => {
   return (
     <ModuleContainer headerText="Entries by Name">
       <Grid container spacing={2}>
-        <Grid size={{ xs: 12, sm: 5, md: 3 }}>
+        <Grid size={{ xs: 12, sm: 5, md: 4, lg: 3 }}>
           <Table.Container component={Paper}>
             <Table.Element>
               <Table.Head>
@@ -142,7 +142,7 @@ const ByName = () => {
             </Table.Element>
           </Table.Container>
         </Grid>
-        <Grid size={{ xs: 12, sm: 7, md: 9 }}>
+        <Grid size={{ xs: 12, sm: 7, md: 8, lg: 9 }}>
           <ScrollToElement name="table" />
           <Table.Container component={Paper}>
             <Table.Element>
