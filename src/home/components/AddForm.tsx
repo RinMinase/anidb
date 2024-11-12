@@ -295,7 +295,7 @@ const AddForm = (props: Props) => {
           error={!!errors.id_quality}
           helperText={errors.id_quality?.message}
           disabled={isLoading}
-          displayEmpty
+          displayActualEmpty
           fullWidth
         />
       </Grid>
@@ -415,7 +415,7 @@ const AddForm = (props: Props) => {
           error={!!errors.release_season}
           helperText={errors.release_season?.message}
           disabled={isLoading}
-          displayEmpty
+          displayActualEmpty
           fullWidth
         />
       </Grid>
@@ -428,7 +428,7 @@ const AddForm = (props: Props) => {
           error={!!errors.release_year}
           helperText={errors.release_year?.message}
           disabled={isLoading}
-          displayEmpty
+          displayActualEmpty
           fullWidth
         />
       </Grid>
@@ -541,7 +541,7 @@ const AddForm = (props: Props) => {
           error={!!errors.id_codec_video}
           helperText={errors.id_codec_video?.message}
           disabled={isLoading}
-          displayEmpty
+          displayActualEmpty
           fullWidth
         />
       </Grid>
@@ -554,7 +554,7 @@ const AddForm = (props: Props) => {
           error={!!errors.id_codec_audio}
           helperText={errors.id_codec_audio?.message}
           disabled={isLoading}
-          displayEmpty
+          displayActualEmpty
           fullWidth
         />
       </Grid>
