@@ -1,3 +1,4 @@
+import { useMemo } from "preact/hooks";
 import { Control, Controller } from "react-hook-form";
 
 import {
@@ -42,11 +43,12 @@ type Props = {
   displayEmpty?: boolean;
   fullWidth?: boolean;
   size?: "small" | "medium";
+  displayActualEmpty?: boolean;
 };
 
-const id = randomAlphaString();
-
 const ControlledSelect = (props: Props) => {
+  const id = useMemo(randomAlphaString, []);
+
   return (
     <Controller
       name={props.name}
@@ -63,6 +65,9 @@ const ControlledSelect = (props: Props) => {
             displayEmpty={props.displayEmpty}
             {...field}
           >
+            {props.displayActualEmpty ? (
+              <MenuItem value="">None</MenuItem>
+            ) : null}
             {props.options &&
               props.options.map((item) => {
                 if (typeof item === "object") {
