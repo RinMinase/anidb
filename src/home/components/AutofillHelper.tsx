@@ -1,6 +1,6 @@
 import { Dispatch, StateUpdater } from "preact/hooks";
 import { DropzoneOptions, FileWithPath, useDropzone } from "react-dropzone";
-import UAParser from "ua-parser-js";
+import { UAParser } from "ua-parser-js";
 
 import { Box, styled, Typography } from "@mui/material";
 
