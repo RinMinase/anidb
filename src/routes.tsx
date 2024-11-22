@@ -46,6 +46,10 @@ const VideoCodec = async () => (await import("./video-codec")).default;
 
 const Rss = async () => (await import("./rss")).default;
 
+const PcSetup = async () => (await import("./pc-setups")).default;
+const PcOwner = async () => (await import("./pc-owners")).default;
+const PcComponent = async () => (await import("./pc-components")).default;
+
 const Routes = (props: Props) => (
   <Router onChange={props.onChange}>
     <Route path="/" component={Login} />
@@ -93,6 +97,10 @@ const Routes = (props: Props) => (
     <AsyncRoute path="/video-codecs" getComponent={VideoCodec} />
 
     <AsyncRoute path="/rss" getComponent={Rss} />
+
+    <AsyncRoute path="/pc-setups" getComponent={PcSetup} />
+    <AsyncRoute path="/pc-owners" getComponent={PcOwner} />
+    <AsyncRoute path="/pc-components" getComponent={PcComponent} />
 
     <Route default component={Page404} />
   </Router>
