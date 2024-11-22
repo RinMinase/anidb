@@ -12,6 +12,7 @@ type Props = {
   icon?: any;
   iconColor?: string;
   heading: string;
+  mediumText?: boolean;
   largeText?: boolean;
   subHeading?: string;
   value: string | number | null | undefined;
@@ -78,6 +79,10 @@ const DashboardTile = (props: Props) => {
         <Typography variant="body2">{props.heading}</Typography>
         {props.largeText ? (
           <Typography variant="h3">{props.value}</Typography>
+        ) : props.mediumText ? (
+          <Typography variant="h3" fontSize={42}>
+            {props.value}
+          </Typography>
         ) : (
           <Typography variant="h4">{props.value}</Typography>
         )}
