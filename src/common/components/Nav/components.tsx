@@ -20,6 +20,9 @@ import {
   Monitor as PCSetupsIcon,
 } from "react-feather";
 
+const PCOwnersIcon = GroupIcon;
+const PCComponentsIcon = BucketSimIcon;
+
 export const MenuItemList = (props: { onClick: () => void }) => (
   <>
     <MenuItem component={"a" as any} href="/search" onClick={props.onClick}>
@@ -119,9 +122,24 @@ export const MenuItemOther = (props: { onClick: () => void }) => (
       <ListItemIcon children={<RssIcon size={18} strokeWidth={1.5} />} />
       RSS
     </MenuItem>
+    <Divider />
     <MenuItem component={"a" as any} href="/pc-setups" onClick={props.onClick}>
       <ListItemIcon children={<PCSetupsIcon size={18} strokeWidth={1.5} />} />
       PC Setups
+    </MenuItem>
+    <MenuItem component={"a" as any} href="/pc-owners" onClick={props.onClick}>
+      <ListItemIcon children={<PCOwnersIcon size={18} strokeWidth={1.5} />} />
+      PC Owners
+    </MenuItem>
+    <MenuItem
+      component={"a" as any}
+      href="/pc-components"
+      onClick={props.onClick}
+    >
+      <ListItemIcon
+        children={<PCComponentsIcon size={18} strokeWidth={1.5} />}
+      />
+      PC Components
     </MenuItem>
   </>
 );
