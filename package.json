@@ -43,11 +43,11 @@
     "react-waypoint": "^10.3.0",
     "sonner": "^1.7.1",
     "ua-parser-js": "^2.0.0",
-    "yup": "^1.5.0"
+    "yup": "^1.6.1"
   },
   "devDependencies": {
     "@babel/core": "^7.26.0",
-    "@date-io/date-fns": "^3.0.0",
+    "@date-io/date-fns": "^3.2.0",
     "@mui/system": "^6.3.0",
     "@preact/preset-vite": "^2.9.3",
     "@types/js-cookie": "^3.0.6",
