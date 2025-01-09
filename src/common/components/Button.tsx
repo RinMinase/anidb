@@ -25,7 +25,7 @@ const CustomButton = styled(MuiButton)<Props>(({ iconSize }) => ({
 }));
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const Button = ({ as = undefined, ...props }: Props) => {
+const Button = ({ ...props }: Props) => {
   return <CustomButton {...props} />;
 };
 

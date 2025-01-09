@@ -22,7 +22,7 @@ const CustomButton = styled(LoadingButton)<Props>(({ iconSize }) => ({
 }));
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const ButtonLoading = ({ as = undefined, ...props }: Props) => {
+const ButtonLoading = ({ ...props }: Props) => {
   return <CustomButton {...props} />;
 };
 
