@@ -1,5 +1,5 @@
 import { useContext, useState } from "preact/hooks";
-import { useDropzone } from "react-dropzone";
+import { DropzoneOptions, useDropzone } from "react-dropzone";
 import axios from "axios";
 import { Box, Grid2 as Grid, Stack, styled, Typography } from "@mui/material";
 import { toast } from "sonner";
@@ -38,11 +38,12 @@ const ManagementSection = (props: Props) => {
 
   const [uploading, setUploading] = useState(false);
 
-  const dzConfig = {
+  const dzConfig: DropzoneOptions = {
     accept: {
       "application/json": [".json"],
     },
     maxFiles: 1,
+    multiple: false,
   };
 
   const { acceptedFiles, fileRejections, getRootProps, getInputProps } =
