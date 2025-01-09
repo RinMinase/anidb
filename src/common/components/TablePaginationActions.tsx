@@ -70,8 +70,8 @@ const TablePaginationActions = (props: TablePaginationActionsProps) => {
     }
   };
 
-  const disableNonNumeric = (e: any) => {
-    const el = e.target as HTMLInputElement;
+  const disableNonNumeric = (event: any) => {
+    const el = event.target as HTMLInputElement;
     const value = el.value;
     const newValue = value.replaceAll(/\D/g, "");
 
@@ -103,7 +103,7 @@ const TablePaginationActions = (props: TablePaginationActionsProps) => {
           },
         }}
         onKeyDown={handleCustomPageChange}
-        onChange={(e) => disableNonNumeric(e)}
+        onChange={disableNonNumeric}
         value={value}
       />
 
