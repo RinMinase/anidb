@@ -43,7 +43,6 @@ const DurationLabel = styled("span")(({ theme }) => ({
   top: 0,
   left: 0,
   transform: `translate(6px, -13px) scale(0.75)`,
-  /* @ts-expect-error Seems to error on typescript as of now (react-hook-form@7.52.1) */
   backgroundColor: theme.palette.background.default,
   paddingLeft: 4,
   paddingRight: 8,
@@ -52,7 +51,6 @@ const DurationLabel = styled("span")(({ theme }) => ({
 const AddFormDuration = (props: Props) => {
   return (
     <DurationContainer>
-      {/* @ts-expect-error Seems to error on typescript as of now (react-hook-form@7.52.1) */}
       <DurationLabel>Duration</DurationLabel>
       <Stack spacing={2} direction="row">
         <ControlledField

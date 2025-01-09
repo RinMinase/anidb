@@ -48,7 +48,6 @@ const Container = styled("div")<Props>(({ quality }) => {
 
 const Quality = (props: Props) => {
   return (
-    /* @ts-expect-error Seems to error on typescript as of now */
     <Container quality={props.quality}>
       {props.quality ? props.quality.split(" ")[0] : ""}
     </Container>
