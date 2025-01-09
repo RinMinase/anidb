@@ -41,6 +41,7 @@ const Page404 = () => {
               margin: 0,
               lineHeight: isMobile ? "130px" : "120px",
               color: "white",
+              paintOrder: "stroke fill",
             }}
           >
             404
@@ -52,6 +53,7 @@ const Page404 = () => {
               marginTop: 0,
               webkitTextStroke: "1px #37474F",
               color: "white",
+              paintOrder: "stroke fill",
             }}
           >
             🚧 We are at a crossroads 🚧
