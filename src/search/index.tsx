@@ -6,7 +6,7 @@ import { Grid2 as Grid } from "@mui/material";
 
 import { GlobalLoaderContext, ModuleContainer } from "@components";
 
-import { Codecs, Data, Genres } from "./types";
+import { Codecs, Data, EntryWatchers, Genres } from "./types";
 import SearchForm from "./components/SearchForm";
 import SearchTable from "./components/SearchTable";
 
@@ -16,6 +16,7 @@ const Search = () => {
   const [tableLoader, setTableLoader] = useState(false);
   const [data, setData] = useState<Data>([]);
   const [genres, setGenres] = useState<Genres>([]);
+  const [watchers, setWatchers] = useState<EntryWatchers>([]);
   const [codecs, setCodecs] = useState<Codecs>({
     audio: [],
     video: [],
@@ -37,11 +38,19 @@ const Search = () => {
     setGenres(data);
   };
 
+  const fetchWatchers = async () => {
+    const {
+      data: { data },
+    } = await axios.get("/entries/watchers");
+
+    setWatchers(data);
+  };
+
   const fetchData = async () => {
     try {
       toggleLoader(true);
 
-      await Promise.all([fetchCodecs(), fetchGenres()]);
+      await Promise.all([fetchCodecs(), fetchGenres(), fetchWatchers()]);
     } catch (err) {
       console.error(err);
       toast.error("Failed");
@@ -66,6 +75,7 @@ const Search = () => {
             <SearchForm
               codecs={codecs}
               genres={genres}
+              watchers={watchers}
               isSearchLoading={tableLoader}
               setTableLoader={setTableLoader}
               setData={setData}

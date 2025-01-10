@@ -132,6 +132,7 @@ export type Form = {
   codec_video?: Array<string>;
   codec_audio?: Array<string>;
   genres?: Array<string>;
+  watcher?: string;
 
   column?: ColumnDropdownType;
   order: OrderDropdownType;
@@ -163,6 +164,7 @@ const defaultValues: Form = {
   codec_video: [],
   codec_audio: [],
   genres: [],
+  watcher: "",
 
   column: "id_quality",
   order: "asc",
@@ -189,6 +191,7 @@ const schema = object().shape({
   codec_video: array(string()),
   codec_audio: array(string()),
   genres: array(string()),
+  watcher: string(),
 
   column: string(),
   order: string().oneOf(OrderDropdownValues),

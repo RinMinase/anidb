@@ -14,7 +14,7 @@ import {
   OptionsKeyedProps,
 } from "@components";
 
-import { Codecs, Data, Genres } from "../types";
+import { Codecs, Data, EntryWatchers, Genres } from "../types";
 
 import {
   ColumnDropDownOptions,
@@ -28,15 +28,22 @@ import {
 type Props = {
   codecs: Codecs;
   genres: Genres;
+  watchers: EntryWatchers;
   isSearchLoading: boolean;
   setTableLoader: Dispatch<StateUpdater<boolean>>;
   setData: Dispatch<StateUpdater<Data>>;
 };
 
+const staticWatcherOptions: OptionsKeyedProps = [
+  { label: "Any", key: -1, value: "any" },
+  { label: "Rin", key: 0, value: 0 },
+];
+
 const SearchForm = (props: Props) => {
   const [audioCodecs, setAudioCodecs] = useState<OptionsKeyedProps>([]);
   const [videoCodecs, setVideoCodecs] = useState<OptionsKeyedProps>([]);
   const [genres, setGenres] = useState<OptionsKeyedProps>([]);
+  const [watchers, setWatchers] = useState<OptionsKeyedProps>([]);
 
   const {
     control,
@@ -53,7 +60,7 @@ const SearchForm = (props: Props) => {
     try {
       props.setTableLoader(true);
 
-      const { codec_video, codec_audio, genres, ...others } = formData;
+      const { codec_video, codec_audio, genres, watcher, ...others } = formData;
 
       const query: any = { ...others };
 
@@ -77,6 +84,7 @@ const SearchForm = (props: Props) => {
               ? codec_audio.join(",")
               : undefined,
           genres: genres && genres.length ? genres.join(",") : undefined,
+          watcher: watcher !== "any" ? watcher : null,
         },
       });
 
@@ -128,12 +136,21 @@ const SearchForm = (props: Props) => {
     const genreOptions: OptionsKeyedProps = props.genres.map((item) => ({
       label: item.genre,
       key: item.id,
-
       value: item.id,
     }));
 
     setGenres(genreOptions);
   }, [props.genres]);
+
+  useEffect(() => {
+    const watcherOptions: OptionsKeyedProps = props.watchers.map((item) => ({
+      label: item.label,
+      key: item.id,
+      value: item.id,
+    }));
+
+    setWatchers([...staticWatcherOptions, ...watcherOptions]);
+  }, [props.watchers]);
 
   return (
     <Box component={Paper}>
@@ -467,6 +484,20 @@ const SearchForm = (props: Props) => {
             control={control}
             error={!!errors.genres}
             helperText={errors.genres?.message}
+            disabled={props.isSearchLoading}
+            fullWidth
+          />
+        </Grid>
+
+        <Grid container size={12} spacing={1}>
+          <ControlledSelect
+            name="watcher"
+            label="Who watched this content"
+            size="small"
+            options={watchers}
+            control={control}
+            error={!!errors.watcher}
+            helperText={errors.watcher?.message}
             disabled={props.isSearchLoading}
             fullWidth
           />

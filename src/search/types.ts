@@ -16,6 +16,11 @@ export type Genres = Array<{
   genre: string;
 }>;
 
+export type EntryWatchers = Array<{
+  id: number;
+  label: string;
+}>;
+
 export type TableHeadings = Array<{
   id: string;
   label: string;
