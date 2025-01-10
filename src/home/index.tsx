@@ -24,6 +24,7 @@ import RatingFilledIcon from "@components/icons/heart-filled.svg?react";
 import RatingEmptyIcon from "@components/icons/heart.svg?react";
 
 import {
+  BadgeMini,
   Button,
   GlobalLoaderContext,
   ModuleContainer,
@@ -295,8 +296,16 @@ const Home = () => {
                   onClick={() => route(`/home/view/${item.id}`)}
                 >
                   <Table.Cell>
-                    <Quality quality={item.quality} />
-                    {item.title}
+                    <Box sx={{ display: "inline-flex", alignItems: "center" }}>
+                      <Quality quality={item.quality} />
+                      <span>{item.title}</span>
+                      {item.watcher ? (
+                        <BadgeMini
+                          label={item.watcher.label}
+                          color={item.watcher.color}
+                        />
+                      ) : null}
+                    </Box>
                   </Table.Cell>
                   <Table.Cell>
                     {item.episodes} / {item.ovas} / {item.specials}

@@ -344,6 +344,20 @@ const HomeView = (props: Props) => {
                     color: contrast(data.quality_color || "#fff"),
                   }}
                 />
+                {data.watcher ? (
+                  <Chip
+                    label={
+                      data.watcher.label === "Together"
+                        ? `Watched ${data.watcher.label}`
+                        : `Watched by ${data.watcher.label}`
+                    }
+                    sx={{
+                      ml: 1,
+                      backgroundColor: data.watcher.color,
+                      color: contrast(data.watcher.color || "#fff"),
+                    }}
+                  />
+                ) : null}
               </Box>
               <Typography variant="h5">{data.title}</Typography>
               {data.variants && isMobile && (

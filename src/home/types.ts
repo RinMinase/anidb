@@ -5,6 +5,12 @@ type GenreData = {
   genre: string;
 };
 
+type WatcherData = {
+  id: number;
+  label: string;
+  color: string;
+};
+
 export type Item = {
   id?: string;
   quality?: Qualities;
@@ -22,6 +28,7 @@ export type Item = {
   rating: number;
   ratingOver5: number;
   genres: Array<GenreData>;
+  watcher: WatcherData;
 };
 
 export type Data = Array<Item>;
@@ -93,6 +100,8 @@ export type FullData = {
   image?: string;
 
   genres?: Array<GenreData>;
+  idWatcher?: number;
+  watcher?: WatcherData;
 };
 
 export type AutofillProps = {
