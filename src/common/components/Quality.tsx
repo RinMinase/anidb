@@ -33,6 +33,7 @@ const Container = styled("div")<Props>(({ quality }) => {
   }
 
   return {
+    minWidth: 30,
     width: 30,
     display: "inline-block",
     marginRight: 12,
