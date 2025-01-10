@@ -1,5 +1,6 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Resolver } from "react-hook-form";
+import { format } from "date-fns";
 import { array, bool, date, lazy, number, object, string } from "yup";
 
 import { emptyStringToNull, FILESIZES } from "@components";
@@ -74,6 +75,10 @@ const rewatchDefaultValues = {
 
 const minDate = "1990-01-01";
 
+const maxDateRaw = new Date();
+maxDateRaw.setDate(maxDateRaw.getDate() + 1);
+const maxDate = format(maxDateRaw, "yyyy-MM-dd");
+
 const schema = object().shape({
   id_quality: number().typeError("Required").required("Required"),
   title: lazy((value) => {
@@ -91,7 +96,7 @@ const schema = object().shape({
 
   date_finished: date()
     .min(minDate, "Invalid date")
-    .max(new Date(), "Date should not be in the future")
+    .max(maxDate, "Date should not be in the future")
     .nullable()
     .default(undefined)
     .typeError("Invalid date"),
