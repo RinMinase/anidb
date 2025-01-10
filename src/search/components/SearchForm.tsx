@@ -84,7 +84,7 @@ const SearchForm = (props: Props) => {
               ? codec_audio.join(",")
               : undefined,
           genres: genres && genres.length ? genres.join(",") : undefined,
-          watcher: watcher !== "any" ? watcher : null,
+          watcher: watcher === "any" || watcher === "" ? null : watcher,
         },
       });
 
