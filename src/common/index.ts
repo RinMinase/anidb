@@ -5,6 +5,7 @@ export type {
   OptionsKeyedProps,
 } from "./components/ControlledSelect";
 
+export { default as BadgeMini } from "./components/BadgeMini";
 export { default as Button } from "./components/Button";
 export { default as ButtonLoading } from "./components/ButtonLoading";
 export { default as ControlledAutocomplete } from "./components/ControlledAutocomplete";
