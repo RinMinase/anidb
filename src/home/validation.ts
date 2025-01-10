@@ -43,6 +43,7 @@ export type Form = {
   duration_secs?: number;
 
   genres?: Array<string>;
+  id_watcher?: string;
 };
 
 export type RewatchForm = {
@@ -64,6 +65,7 @@ const defaultValues = {
   id_codec_audio: "",
   codec_hdr: false,
   genres: [],
+  id_watcher: "",
 };
 
 const rewatchDefaultValues = {
@@ -139,6 +141,11 @@ const schema = object().shape({
     .transform(emptyStringToNull)
     .min(0, "Invalid seconds value")
     .max(59, "Invalid seconds value")
+    .nullable(),
+
+  id_watcher: number()
+    .transform(emptyStringToNull)
+    .min(0, "Invalid seconds value")
     .nullable(),
 });
 

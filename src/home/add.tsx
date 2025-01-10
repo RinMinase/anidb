@@ -90,6 +90,7 @@ const HomeAdd = (props: Props) => {
           // prequelTitle,
           // sequelTitle,
           genres,
+          idWatcher,
         } = partialsData.data.data;
 
         let hrs = 0;
@@ -170,6 +171,7 @@ const HomeAdd = (props: Props) => {
           duration_secs: secs,
 
           genres: genre_ids,
+          id_watcher: idWatcher,
         });
       }
     } catch (err) {

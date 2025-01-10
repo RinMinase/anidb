@@ -98,6 +98,7 @@ const AddForm = (props: Props) => {
   const [videoCodecs, setVideoCodecs] = useState<OptionsKeyedProps>([]);
   const [genres, setGenres] = useState<OptionsKeyedProps>([]);
   const [groups, setGroups] = useState<Array<string>>([]);
+  const [watchers, setWatchers] = useState<OptionsKeyedProps>([]);
 
   const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
 
@@ -185,6 +186,20 @@ const AddForm = (props: Props) => {
     );
   };
 
+  const fetchWatchers = async () => {
+    const {
+      data: { data },
+    } = await axios.get("/entries/watchers");
+
+    setWatchers(
+      data.map((item: { label: string; id: string }) => ({
+        label: item.label,
+        key: `watchers-${item.id}`,
+        value: item.id,
+      })),
+    );
+  };
+
   const fetchData = async () => {
     try {
       toggleLoader(true);
@@ -196,6 +211,7 @@ const AddForm = (props: Props) => {
         fetchQualities(),
         fetchCodecs(),
         fetchGenres(),
+        fetchWatchers(),
       ]);
     } catch (err) {
       console.error(err);
@@ -571,6 +587,19 @@ const AddForm = (props: Props) => {
           error={!!errors.genres}
           helperText={errors.genres?.message}
           disabled={isLoading}
+          fullWidth
+        />
+      </Grid>
+      <Grid size={{ xs: 12, sm: 4 }}>
+        <ControlledSelect
+          name="id_watcher"
+          label="Who watched this?"
+          options={watchers}
+          control={control}
+          error={!!errors.id_watcher}
+          helperText={errors.id_watcher?.message}
+          disabled={isLoading}
+          displayActualEmpty
           fullWidth
         />
       </Grid>
