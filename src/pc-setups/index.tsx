@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "preact/hooks";
-import axios from "axios";
 import { toast } from "sonner";
 import { format } from "date-fns";
+import axios from "axios";
 
 import {
   Box,
@@ -38,10 +38,6 @@ import CpuImageIcon from "@components/icons/images/cpu.png";
 import GpuImageIcon from "@components/icons/images/gpu.png";
 import HddImageIcon from "@components/icons/images/hdd.png";
 import RamImageIcon from "@components/icons/images/ram.png";
-
-type HeaderProps = {
-  showHidden: boolean;
-};
 
 type HighlightsTileProps = {
   imageSrc: string;
@@ -184,7 +180,7 @@ const PcSetup = () => {
             component={Paper}
             sx={{ padding: 0, overflow: "hidden", width: "100%" }}
           >
-            {dataOwners.map((item, index) => (
+            {dataOwners.map((item) => (
               <Box key={`pc-owner-${item.uuid}`}>
                 <Stack
                   direction="row"
