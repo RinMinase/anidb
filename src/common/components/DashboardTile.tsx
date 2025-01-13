@@ -21,6 +21,7 @@ type Props = {
   footers?: string[];
   footerLeft?: string;
   footerRight?: string;
+  footerFontSize?: number;
 };
 
 type DashboardItemProps = {
@@ -93,7 +94,7 @@ const DashboardTile = (props: Props) => {
       </Box>
       {props.CustomDivider ? props.CustomDivider : <Divider />}
       {(props.footerLeft || props.footerRight) && (
-        <DashboardFooter>
+        <DashboardFooter sx={{ fontSize: props.footerFontSize ?? undefined }}>
           <Grid container justifyContent="space-between">
             <Grid>{props.footerLeft}</Grid>
             <Grid sx={{ textAlign: "right" }}>{props.footerRight}</Grid>
@@ -102,13 +103,16 @@ const DashboardTile = (props: Props) => {
         </DashboardFooter>
       )}
       {props.footer && (
-        <DashboardFooter>
+        <DashboardFooter sx={{ fontSize: props.footerFontSize ?? undefined }}>
           <Typography variant="caption">{props.footer}</Typography>
         </DashboardFooter>
       )}
       {props.footers &&
         props.footers.map((item, index) => (
-          <DashboardFooter key={`dash-${index}`}>
+          <DashboardFooter
+            key={`dash-${index}`}
+            sx={{ fontSize: props.footerFontSize ?? undefined }}
+          >
             <Typography variant="caption">{item}</Typography>
           </DashboardFooter>
         ))}
