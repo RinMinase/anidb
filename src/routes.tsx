@@ -47,8 +47,7 @@ const VideoCodec = async () => (await import("./video-codec")).default;
 const Rss = async () => (await import("./rss")).default;
 
 const PcSetup = async () => (await import("./pc-setups")).default;
-const PcOwner = async () => (await import("./pc-owners")).default;
-const PcComponent = async () => (await import("./pc-components")).default;
+const PcSetupAdd = async () => (await import("./pc-setups/add")).default;
 
 const Routes = (props: Props) => (
   <Router onChange={props.onChange}>
@@ -99,8 +98,11 @@ const Routes = (props: Props) => (
     <AsyncRoute path="/rss" getComponent={Rss} />
 
     <AsyncRoute path="/pc-setups" getComponent={PcSetup} />
-    <AsyncRoute path="/pc-owners" getComponent={PcOwner} />
-    <AsyncRoute path="/pc-components" getComponent={PcComponent} />
+    <AsyncRoute path="/pc-setups/:ownerId/add" getComponent={PcSetupAdd} />
+    <AsyncRoute
+      path="/pc-setups/:ownerId/edit/:infoId"
+      getComponent={PcSetupAdd}
+    />
 
     <Route default component={Page404} />
   </Router>
