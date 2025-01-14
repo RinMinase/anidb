@@ -41,3 +41,16 @@ export type PCComponentList = Array<PCComponent>;
 export type PCInfo = PCInfoSummary & {
   components: PCComponentList;
 };
+
+export type PCInfoStats = {
+  totalSetupCost: number;
+  totalSetupCostFormat: string;
+  totalSystemCost: number;
+  totalSystemCostFormat: string;
+  totalPeripheralCost: number;
+  totalPeripheralCostFormat: string;
+  highlightCpu: string;
+  highlightGpu: string;
+  highlightRam: string;
+  highlightStorage: string;
+};

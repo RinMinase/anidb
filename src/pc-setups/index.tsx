@@ -10,6 +10,7 @@ import {
   MenuItem,
   MenuList,
   Paper,
+  Skeleton,
   Stack,
   Typography,
   useTheme,
@@ -32,7 +33,7 @@ import {
   Table,
 } from "@components";
 
-import { PCInfo, PCOwnerList } from "./types";
+import { PCInfo, PCInfoStats, PCOwnerList } from "./types";
 
 import CpuImageIcon from "@components/icons/images/cpu.png";
 import GpuImageIcon from "@components/icons/images/gpu.png";
@@ -42,6 +43,7 @@ import RamImageIcon from "@components/icons/images/ram.png";
 type HighlightsTileProps = {
   imageSrc: string;
   value: string;
+  isLoading: boolean;
 };
 
 const ShowIcon = <Eye size={20} strokeWidth={1.5} />;
@@ -50,10 +52,11 @@ const HideIcon = <EyeOff size={20} strokeWidth={1.5} />;
 const PcSetup = () => {
   const theme = useTheme();
 
-  const { toggleLoader } = useContext(GlobalLoaderContext);
+  const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
 
   const [dataOwners, setDataOwners] = useState<PCOwnerList>([]);
   const [dataSetup, setDataSetup] = useState<PCInfo>();
+  const [stats, setStats] = useState<PCInfoStats>();
   const [showHidden, setShowHidden] = useState(false);
   const [isTableLoading, setTableLoading] = useState(true);
   const [selectedInfo, setSelectedInfo] = useState<string>();
@@ -64,10 +67,11 @@ const PcSetup = () => {
 
     try {
       const {
-        data: { data },
+        data: { data, stats },
       } = await axios.get(`/pc/infos/${uuid}`);
 
       setDataSetup(data);
+      setStats(stats);
       console.log(data);
     } catch (err) {
       console.error(err);
@@ -138,7 +142,7 @@ const PcSetup = () => {
     </>
   );
 
-  const HighlightsTile = (props: HighlightsTileProps) => (
+  const HighlightsTile = (highlightsTileProps: HighlightsTileProps) => (
     <Grid
       size={{ xs: 6 }}
       component={Paper}
@@ -148,7 +152,7 @@ const PcSetup = () => {
       sx={{ p: 1 }}
     >
       <img
-        src={props.imageSrc}
+        src={highlightsTileProps.imageSrc}
         style={{
           width: 48,
           height: 48,
@@ -162,8 +166,13 @@ const PcSetup = () => {
         whiteSpace="nowrap"
         overflow="hidden"
         textOverflow="ellipsis"
+        width="100%"
       >
-        {props.value}
+        {highlightsTileProps.isLoading ? (
+          <Skeleton animation="wave" />
+        ) : (
+          highlightsTileProps.value
+        )}
       </Typography>
     </Grid>
   );
@@ -227,16 +236,19 @@ const PcSetup = () => {
             <Grid size={{ xs: 12, sm: 6, md: 3 }}>
               <DashboardTile
                 heading="Total Setup Cost"
-                value="200,000"
-                largeText
+                value={stats?.totalSetupCostFormat || ""}
+                isLoading={isTableLoading || isLoading}
+                mediumText
               />
             </Grid>
             <Grid size={{ xs: 12, sm: 6, md: 3 }}>
               <DashboardTile
                 heading="Total System Cost"
-                value="100,000"
+                value={stats?.totalSystemCostFormat || ""}
                 footerLeft="Peripheral Cost"
-                footerRight="100,000"
+                footerRight={stats?.totalPeripheralCostFormat || ""}
+                isLoading={isTableLoading || isLoading}
+                isFooterRightLoading={isTableLoading || isLoading}
                 footerFontSize={13}
                 mediumText
               />
@@ -250,16 +262,23 @@ const PcSetup = () => {
               <Grid container spacing={1} width="100%">
                 <HighlightsTile
                   imageSrc={CpuImageIcon}
-                  value={"Ryzen 7 7800X3D"}
+                  isLoading={isTableLoading || isLoading}
+                  value={stats?.highlightCpu || ""}
                 />
-                <HighlightsTile imageSrc={GpuImageIcon} value={"RTX 3060TI"} />
+                <HighlightsTile
+                  imageSrc={GpuImageIcon}
+                  isLoading={isTableLoading || isLoading}
+                  value={stats?.highlightGpu || ""}
+                />
                 <HighlightsTile
                   imageSrc={RamImageIcon}
-                  value={"32GB 6000MHz"}
+                  isLoading={isTableLoading || isLoading}
+                  value={stats?.highlightRam || ""}
                 />
                 <HighlightsTile
                   imageSrc={HddImageIcon}
-                  value={"4TB SSD, 8TB HDD"}
+                  isLoading={isTableLoading || isLoading}
+                  value={stats?.highlightStorage || ""}
                 />
               </Grid>
             </Grid>
