@@ -1,5 +1,5 @@
 import { styled } from "@mui/material";
-import { LoadingButton, LoadingButtonProps } from "@mui/lab";
+import { LoadingButton, ButtonProps as LoadingButtonProps } from "@mui/lab";
 
 type Props = LoadingButtonProps & {
   iconSize?: number;
