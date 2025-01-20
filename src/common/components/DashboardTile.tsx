@@ -25,29 +25,33 @@ type Props = {
   footerFontSize?: number;
   isLoading?: boolean;
   isFooterRightLoading?: boolean;
+  noTopMargin?: boolean;
 };
 
 type DashboardItemProps = {
   hasOnclick?: boolean;
+  noTopMargin?: boolean;
 };
 
 type DashboardIconProps = {
   iconColor?: string;
 };
 
-const DashboardItem = styled(Paper)<DashboardItemProps>(({ hasOnclick }) => ({
-  cursor: hasOnclick ? "pointer" : "",
+const DashboardItem = styled(Paper)<DashboardItemProps>(
+  ({ hasOnclick, noTopMargin }) => ({
+    cursor: hasOnclick ? "pointer" : "",
 
-  marginTop: 24,
-  minHeight: 145,
-  height: "calc(100% - 24px)",
+    marginTop: noTopMargin ? undefined : 24,
+    minHeight: 145,
+    height: "calc(100% - 24px)",
 
-  display: "flex",
-  flexDirection: "column",
+    display: "flex",
+    flexDirection: "column",
 
-  textAlign: "right",
-  position: "relative",
-}));
+    textAlign: "right",
+    position: "relative",
+  }),
+);
 
 const DashboardIcon = styled(Box)<DashboardIconProps>(({ iconColor }) => ({
   display: "flex",
@@ -80,7 +84,11 @@ const DashboardTile = (props: Props) => {
   };
 
   return (
-    <DashboardItem onClick={props.onClick} hasOnclick={!!props.onClick}>
+    <DashboardItem
+      onClick={props.onClick}
+      hasOnclick={!!props.onClick}
+      noTopMargin={props.noTopMargin}
+    >
       <Box sx={{ padding: 2, flexGrow: 1 }}>
         {props.icon && (
           <DashboardIcon
