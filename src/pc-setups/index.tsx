@@ -191,7 +191,17 @@ const PcSetup = () => {
         <Grid container size={{ xs: 12, sm: 5, md: 4, lg: 3 }}>
           <MenuList
             component={Paper}
-            sx={{ padding: 0, overflow: "hidden", width: "100%" }}
+            sx={{
+              padding: 0,
+              overflowY: "auto",
+              width: "100%",
+
+              // Calculation Description:
+              // 48px - navbar
+              // 48px - container padding
+              // 52.5px - page heading
+              height: "calc(100vh - 48px - 48px - 52.5px)",
+            }}
           >
             {dataOwners.map((item) => (
               <Box key={`pc-owner-${item.uuid}`}>
