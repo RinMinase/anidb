@@ -253,6 +253,7 @@ const PcSetup = () => {
                 value={stats?.totalSetupCostFormat || ""}
                 isLoading={isTableLoading || isLoading}
                 mediumText
+                noTopMargin
               />
             </Grid>
             <Grid size={{ xs: 12, sm: 6, md: 3 }}>
@@ -265,14 +266,10 @@ const PcSetup = () => {
                 isFooterRightLoading={isTableLoading || isLoading}
                 footerFontSize={13}
                 mediumText
+                noTopMargin
               />
             </Grid>
-            <Grid
-              size={{ xs: 12, sm: 6 }}
-              display="flex"
-              alignItems="center"
-              sx={{ mt: 3 }}
-            >
+            <Grid size={{ xs: 12, sm: 6 }} display="flex" alignItems="center">
               <Grid container spacing={1} width="100%">
                 <HighlightsTile
                   imageSrc={CpuImageIcon}
@@ -303,11 +300,11 @@ const PcSetup = () => {
            * 48px - navbar
            * 48px - container padding
            * 52.5px - page heading
-           * 193px - page tiles
+           * 169px - page tiles
            */}
           <Table.Container
             component={Paper}
-            sx={{ maxHeight: "calc(100vh - 48px - 48px - 52.5px - 193px)" }}
+            sx={{ maxHeight: "calc(100vh - 48px - 48px - 52.5px - 169px)" }}
           >
             <Table.Element size="small">
               <Table.Head>
