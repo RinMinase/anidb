@@ -121,9 +121,13 @@ const PcSetup = () => {
     setShowHidden((prev) => !prev);
   };
 
-  const handleAddSetupClick = (uuid: string) => {};
+  const handleAddSetupClick = (uuid: string) => {
+    console.log(uuid);
+  };
 
-  const handleDeleteOwnerClick = (uuid: string) => {};
+  const handleDeleteOwnerClick = (uuid: string) => {
+    console.log(uuid);
+  };
 
   const HeaderControls = () => (
     <>
