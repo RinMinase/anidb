@@ -6,7 +6,6 @@ import axios from "axios";
 import {
   Box,
   Grid2 as Grid,
-  ListItemText,
   MenuItem,
   MenuList,
   Paper,
@@ -17,6 +16,8 @@ import {
 } from "@mui/material";
 
 import {
+  Copy as DuplicateIcon,
+  Edit as EditIcon,
   Eye,
   EyeOff,
   Plus as AddOwnerIcon,
@@ -81,17 +82,35 @@ const PcSetup = () => {
     }
   };
 
-  const fetchData = async () => {
+  const fetchData = async (hidden?: boolean) => {
     toggleLoader(true);
 
     try {
       const {
         data: { data },
-      } = (await axios.get("/pc/owners")) as {
+      } = (await axios.get("/pc/owners", {
+        params: { show_hidden: hidden ?? false },
+      })) as {
         data: { data: PCOwnerList };
       };
 
       setDataOwners(data);
+
+      if (selectedInfo) {
+        let selectedInfoPresent = false;
+        data.forEach((item) => {
+          item.infos.forEach((info) => {
+            if (info.uuid === selectedInfo) {
+              selectedInfoPresent = true;
+            }
+          });
+        });
+
+        if (selectedInfoPresent) {
+          fetchDataInfo(selectedInfo);
+          return;
+        }
+      }
 
       if (data.length) {
         let firstId = "";
@@ -118,6 +137,7 @@ const PcSetup = () => {
   };
 
   const handleShowHiddenButtonClick = () => {
+    fetchData(!showHidden);
     setShowHidden((prev) => !prev);
   };
 
@@ -127,6 +147,34 @@ const PcSetup = () => {
 
   const handleDeleteOwnerClick = (uuid: string) => {
     console.log(uuid);
+  };
+
+  const handleHideSetupClick = async (uuid: string) => {
+    try {
+      toggleLoader(true);
+
+      await axios.put(`/pc/infos/${uuid}/hide`);
+      await fetchData();
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed");
+    } finally {
+      toggleLoader(false);
+    }
+  };
+
+  const handleDuplicateSetupClick = async (uuid: string) => {
+    try {
+      toggleLoader(true);
+
+      await axios.post(`/pc/infos/${uuid}/duplicate`);
+      await fetchData();
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed");
+    } finally {
+      toggleLoader(false);
+    }
   };
 
   const HeaderControls = () => (
@@ -238,7 +286,28 @@ const PcSetup = () => {
                     selected={selectedInfo === info.uuid}
                     onClick={() => handleClickInfo(info.uuid)}
                   >
-                    <ListItemText>{info.label}</ListItemText>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                        width: "100%",
+                      }}
+                    >
+                      <Typography
+                        sx={{
+                          overflow: "hidden",
+                          textOverflow: "ellipsis",
+                        }}
+                      >
+                        {info.label}
+                      </Typography>
+                      <IconButton
+                        size="small"
+                        onClick={() => handleHideSetupClick(info.uuid)}
+                        children={info.isHidden ? ShowIcon : HideIcon}
+                      />
+                    </Box>
                   </MenuItem>
                 ))}
               </Box>
@@ -295,16 +364,54 @@ const PcSetup = () => {
             </Grid>
           </Grid>
 
+          <Stack direction="row" spacing={1.5} pb={2} justifyContent="end">
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={() =>
+                selectedInfo ? handleDuplicateSetupClick(selectedInfo) : null
+              }
+            >
+              <DuplicateIcon size={18} />
+              <Typography variant="button" ml={1}>
+                Duplicate
+              </Typography>
+            </Button>
+            <Button
+              variant="contained"
+              color="warning"
+              onClick={() => (selectedInfo ? {} : null)}
+            >
+              <EditIcon size={18} />
+              <Typography variant="button" ml={1}>
+                Edit
+              </Typography>
+            </Button>
+            <Button
+              variant="contained"
+              color="error"
+              onClick={() => (selectedInfo ? {} : null)}
+            >
+              <DeleteIcon size={18} />
+              <Typography variant="button" ml={1}>
+                Delete
+              </Typography>
+            </Button>
+          </Stack>
+
           {/*
            * Calculation Description:
            * 48px - navbar
            * 48px - container padding
            * 52.5px - page heading
            * 169px - page tiles
+           * 52.5px - page buttons
            */}
           <Table.Container
             component={Paper}
-            sx={{ maxHeight: "calc(100vh - 48px - 48px - 52.5px - 169px)" }}
+            sx={{
+              maxHeight: "calc(100vh - 48px - 48px - 52.5px - 169px - 52.5px)",
+            }}
           >
             <Table.Element size="small">
               <Table.Head>
