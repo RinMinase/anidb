@@ -61,6 +61,7 @@ const PcSetup = () => {
   const [showHidden, setShowHidden] = useState(false);
   const [isTableLoading, setTableLoading] = useState(true);
   const [selectedInfo, setSelectedInfo] = useState<string>();
+  const [selectedInfoLabel, setSelectedInfoLabel] = useState<string>();
 
   const fetchDataInfo = async (uuid: string) => {
     setSelectedInfo(uuid);
@@ -73,7 +74,7 @@ const PcSetup = () => {
 
       setDataSetup(data);
       setStats(stats);
-      console.log(data);
+      setSelectedInfoLabel(data.label);
     } catch (err) {
       console.error(err);
       toast.error("Failed");
@@ -163,12 +164,14 @@ const PcSetup = () => {
     }
   };
 
-  const handleDuplicateSetupClick = async (uuid: string) => {
+  const handleDuplicateSetupClick = async () => {
     try {
-      toggleLoader(true);
+      if (selectedInfo) {
+        toggleLoader(true);
 
-      await axios.post(`/pc/infos/${uuid}/duplicate`);
-      await fetchData();
+        await axios.post(`/pc/infos/${selectedInfo}/duplicate`);
+        await fetchData();
+      }
     } catch (err) {
       console.error(err);
       toast.error("Failed");
@@ -176,6 +179,12 @@ const PcSetup = () => {
       toggleLoader(false);
     }
   };
+
+  const handleEditSetupClick = () => {};
+
+  const handleDeleteSetupClick = () => {};
+
+  // const handleDeleteSetupSubmit = () => {};
 
   const HeaderControls = () => (
     <>
@@ -364,39 +373,48 @@ const PcSetup = () => {
             </Grid>
           </Grid>
 
-          <Stack direction="row" spacing={1.5} pb={2} justifyContent="end">
-            <Button
-              variant="contained"
-              color="secondary"
-              onClick={() =>
-                selectedInfo ? handleDuplicateSetupClick(selectedInfo) : null
-              }
-            >
-              <DuplicateIcon size={18} />
-              <Typography variant="button" ml={1}>
-                Duplicate
-              </Typography>
-            </Button>
-            <Button
-              variant="contained"
-              color="warning"
-              onClick={() => (selectedInfo ? {} : null)}
-            >
-              <EditIcon size={18} />
-              <Typography variant="button" ml={1}>
-                Edit
-              </Typography>
-            </Button>
-            <Button
-              variant="contained"
-              color="error"
-              onClick={() => (selectedInfo ? {} : null)}
-            >
-              <DeleteIcon size={18} />
-              <Typography variant="button" ml={1}>
-                Delete
-              </Typography>
-            </Button>
+          <Stack
+            direction="row"
+            pb={2}
+            justifyContent="space-between"
+            alignItems="end"
+          >
+            <Typography variant="h6">{selectedInfoLabel}</Typography>
+
+            <Stack direction="row" spacing={1.5}>
+              <Button
+                variant="contained"
+                color="secondary"
+                onClick={() =>
+                  selectedInfo ? handleDuplicateSetupClick() : null
+                }
+              >
+                <DuplicateIcon size={18} />
+                <Typography variant="button" ml={1}>
+                  Duplicate
+                </Typography>
+              </Button>
+              <Button
+                variant="contained"
+                color="warning"
+                onClick={() => (selectedInfo ? handleEditSetupClick() : null)}
+              >
+                <EditIcon size={18} />
+                <Typography variant="button" ml={1}>
+                  Edit
+                </Typography>
+              </Button>
+              <Button
+                variant="contained"
+                color="error"
+                onClick={() => (selectedInfo ? handleDeleteSetupClick() : null)}
+              >
+                <DeleteIcon size={18} />
+                <Typography variant="button" ml={1}>
+                  Delete
+                </Typography>
+              </Button>
+            </Stack>
           </Stack>
 
           {/*
@@ -410,6 +428,7 @@ const PcSetup = () => {
           <Table.Container
             component={Paper}
             sx={{
+              height: "100%",
               maxHeight: "calc(100vh - 48px - 48px - 52.5px - 169px - 52.5px)",
             }}
           >
