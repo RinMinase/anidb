@@ -6,7 +6,7 @@ import { Eye, EyeOff, Plus as AddOwnerIcon } from "react-feather";
 import axios from "axios";
 
 import {
-  Button,
+  ButtonLoading,
   ControlledField,
   Dialog,
   GlobalLoaderContext,
@@ -39,11 +39,13 @@ const PcSetup = () => {
   const [isTableLoading, setTableLoading] = useState(true);
   const [selectedInfo, setSelectedInfo] = useState<string>();
 
-  const [isAddOwnerDialogOpen, setAdOwnerDialogOpen] = useState(false);
+  const [isAddOwnerDialogOpen, setAddOwnerDialogOpen] = useState(false);
+  const [isAddOwnerLoading, setAddOwnerLoading] = useState(false);
 
   const {
     control: addOwnerControl,
     getValues: addOwnerGetValues,
+    reset: addOwnerReset,
     formState: { errors: addOwnerErrors },
   } = useForm<AddOwnerForm>({
     defaultValues: addOwnerDefaultValues,
@@ -94,10 +96,7 @@ const PcSetup = () => {
           });
         });
 
-        if (selectedInfoPresent) {
-          fetchDataInfo(selectedInfo);
-          return;
-        }
+        if (selectedInfoPresent) return;
       }
 
       if (data.length) {
@@ -124,8 +123,24 @@ const PcSetup = () => {
   };
 
   const handleAddOwnerSubmit = async () => {
-    const values = addOwnerGetValues();
-    console.log(values);
+    try {
+      setAddOwnerLoading(true);
+      setAddOwnerDialogOpen(false);
+
+      const values = addOwnerGetValues();
+      await axios.post("/pc/owners", values);
+
+      addOwnerReset();
+      setAddOwnerLoading(false);
+
+      toast.success("Success");
+      await fetchData();
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed");
+    } finally {
+      toggleLoader(false);
+    }
   };
 
   const HeaderControls = () => (
@@ -134,14 +149,17 @@ const PcSetup = () => {
         children={showHidden ? ShowIcon : HideIcon}
         onClick={handleShowHiddenButtonClick}
       />
-      <Button
+      <ButtonLoading
         variant="contained"
+        loading={isAddOwnerLoading}
         startIcon={<AddOwnerIcon size={20} strokeWidth={1.5} />}
         sx={{ minWidth: 120, marginLeft: 2 }}
-        onClick={() => setAdOwnerDialogOpen(true)}
+        onClick={() => {
+          setAddOwnerDialogOpen(true);
+        }}
       >
         Add Owner
-      </Button>
+      </ButtonLoading>
     </>
   );
 
@@ -191,7 +209,7 @@ const PcSetup = () => {
         content={<AddOwnerDialog />}
         open={isAddOwnerDialogOpen}
         onSubmit={handleAddOwnerSubmit}
-        setOpen={setAdOwnerDialogOpen}
+        setOpen={setAddOwnerDialogOpen}
       />
     </ModuleContainer>
   );

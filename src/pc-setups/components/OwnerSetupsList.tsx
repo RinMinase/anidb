@@ -43,8 +43,22 @@ const OwnerSetupsList = (props: Props) => {
     console.log(uuid);
   };
 
-  const handleDeleteOwnerSubmit = () => {
-    console.log(ownerIdForDelete);
+  const handleDeleteOwnerSubmit = async () => {
+    try {
+      if (ownerIdForDelete) {
+        toggleLoader(true);
+        setDeleteDialogOpen(false);
+        await axios.delete(`/pc/owners/${ownerIdForDelete}`);
+        toast.success("Success");
+
+        await props.fetchData();
+      }
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed");
+    } finally {
+      toggleLoader(false);
+    }
   };
 
   const handleHideClick = async (uuid: string) => {
