@@ -1,5 +1,6 @@
 import { Dispatch, StateUpdater, useContext, useState } from "preact/hooks";
 import { toast } from "sonner";
+import { route } from "preact-router";
 import axios from "axios";
 
 import {
@@ -38,10 +39,6 @@ const OwnerSetupsList = (props: Props) => {
 
   const [isDeleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [ownerIdForDelete, setOwnerIdForDelete] = useState<string>();
-
-  const handleAddSetupClick = (uuid: string) => {
-    console.log(uuid);
-  };
 
   const handleDeleteOwnerSubmit = async () => {
     try {
@@ -125,7 +122,7 @@ const OwnerSetupsList = (props: Props) => {
                 />
                 <IconButton
                   size="small"
-                  onClick={() => handleAddSetupClick(item.uuid)}
+                  onClick={() => route(`/pc-setups/${item.uuid}/add`)}
                   children={<AddSetupIcon size={21} color="#fff" />}
                 />
               </Box>

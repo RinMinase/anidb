@@ -1,6 +1,8 @@
 import { Paper, Stack, Typography } from "@mui/material";
 import { useContext, useState } from "preact/hooks";
 import { toast } from "sonner";
+import { format } from "date-fns";
+import { route } from "preact-router";
 import axios from "axios";
 
 import {
@@ -18,7 +20,6 @@ import {
 } from "@components";
 
 import { PCInfo } from "../types";
-import { format } from "date-fns";
 
 type Props = {
   isTableLoading: boolean;
@@ -48,7 +49,11 @@ const SetupTable = (props: Props) => {
     }
   };
 
-  const handleEditClick = () => {};
+  const handleEditClick = () => {
+    if (props.data) {
+      route(`/pc-setups/${props.data.owner.uuid}/edit/${props.data.uuid}`);
+    }
+  };
 
   const handleDeleteSubmit = async () => {
     try {
