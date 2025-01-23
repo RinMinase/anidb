@@ -1,11 +1,10 @@
-import { styled } from "@mui/material";
-import { LoadingButton, ButtonProps as LoadingButtonProps } from "@mui/lab";
+import { Button, ButtonProps, styled } from "@mui/material";
 
-type Props = LoadingButtonProps & {
+type Props = ButtonProps & {
   iconSize?: number;
 };
 
-const CustomButton = styled(LoadingButton)<Props>(({ iconSize }) => ({
+const CustomButton = styled(Button)<Props>(({ iconSize }) => ({
   "& .MuiButton-iconSizeMedium svg:first-of-type": {
     fontSize: 16,
   },
