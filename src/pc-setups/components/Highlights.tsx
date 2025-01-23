@@ -1,5 +1,3 @@
-import { useContext } from "preact/hooks";
-
 import {
   Grid2 as Grid,
   Paper,
@@ -8,7 +6,7 @@ import {
   useTheme,
 } from "@mui/material";
 
-import { DashboardTile, GlobalLoaderContext } from "@components";
+import { DashboardTile } from "@components";
 
 import CpuImageIcon from "@components/icons/images/cpu.png";
 import GpuImageIcon from "@components/icons/images/gpu.png";
@@ -30,7 +28,6 @@ type HighlightsTileProps = {
 
 const Highlights = (props: Props) => {
   const theme = useTheme();
-  const { isLoading } = useContext(GlobalLoaderContext);
 
   const HighlightsTile = (highlightsTileProps: HighlightsTileProps) => (
     <Grid
@@ -73,7 +70,7 @@ const Highlights = (props: Props) => {
         <DashboardTile
           heading="Total Setup Cost"
           value={props.stats?.totalSetupCostFormat || ""}
-          isLoading={props.isTableLoading || isLoading}
+          isLoading={props.isTableLoading}
           mediumText
           noTopMargin
         />
@@ -84,8 +81,8 @@ const Highlights = (props: Props) => {
           value={props.stats?.totalSystemCostFormat || ""}
           footerLeft="Peripheral Cost"
           footerRight={props.stats?.totalPeripheralCostFormat || ""}
-          isLoading={props.isTableLoading || isLoading}
-          isFooterRightLoading={props.isTableLoading || isLoading}
+          isLoading={props.isTableLoading}
+          isFooterRightLoading={props.isTableLoading}
           footerFontSize={13}
           mediumText
           noTopMargin
@@ -95,22 +92,22 @@ const Highlights = (props: Props) => {
         <Grid container spacing={1} width="100%">
           <HighlightsTile
             imageSrc={CpuImageIcon}
-            isLoading={props.isTableLoading || isLoading}
+            isLoading={props.isTableLoading}
             value={props.stats?.highlightCpu || ""}
           />
           <HighlightsTile
             imageSrc={GpuImageIcon}
-            isLoading={props.isTableLoading || isLoading}
+            isLoading={props.isTableLoading}
             value={props.stats?.highlightGpu || ""}
           />
           <HighlightsTile
             imageSrc={RamImageIcon}
-            isLoading={props.isTableLoading || isLoading}
+            isLoading={props.isTableLoading}
             value={props.stats?.highlightRam || ""}
           />
           <HighlightsTile
             imageSrc={HddImageIcon}
-            isLoading={props.isTableLoading || isLoading}
+            isLoading={props.isTableLoading}
             value={props.stats?.highlightStorage || ""}
           />
         </Grid>
