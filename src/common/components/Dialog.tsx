@@ -1,3 +1,4 @@
+import { JSX } from "preact/jsx-runtime";
 import { Dispatch, StateUpdater } from "preact/hooks";
 import { forwardRef } from "preact/compat";
 
@@ -10,15 +11,27 @@ import {
   Grow,
 } from "@mui/material";
 
+type OneProp<T> = {
+  [P in keyof T]-?: Record<P, T[P]>;
+}[keyof T];
+
+type RequireAtLeastOne<T> = T & OneProp<T>;
+
+type Content = {
+  text?: string;
+  content?: JSX.Element;
+};
+
 type Props = {
-  type?: "error" | "warning" | "info";
+  type?: "primary" | "secondary" | "error" | "warning" | "info";
   open: boolean;
   setOpen: Dispatch<StateUpdater<boolean>>;
   title?: string;
-  text: string;
+  text?: string;
+  content?: JSX.Element;
   onSubmit: (evt?: any) => void;
   hideCancel?: boolean;
-};
+} & RequireAtLeastOne<Content>;
 
 const Transition = forwardRef((props: any, ref) => {
   return <Grow ref={ref} {...props} />;
@@ -32,6 +45,7 @@ const Dialog = (props: Props) => {
       )}
       <DialogContent sx={{ pb: 2, textAlign: "center", maxWidth: 400 }}>
         {props.text}
+        {props.content}
       </DialogContent>
       <DialogActions
         sx={{ justifyContent: "center", gap: 2, pb: 2 }}
