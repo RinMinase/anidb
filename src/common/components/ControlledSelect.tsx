@@ -44,6 +44,7 @@ type Props = {
   fullWidth?: boolean;
   size?: "small" | "medium";
   displayActualEmpty?: boolean;
+  menuMaxHeight?: number;
 };
 
 const ControlledSelect = (props: Props) => {
@@ -63,6 +64,15 @@ const ControlledSelect = (props: Props) => {
             error={props.error}
             disabled={props.disabled}
             displayEmpty={props.displayEmpty}
+            MenuProps={{
+              slotProps: {
+                paper: {
+                  style: {
+                    maxHeight: props.menuMaxHeight ?? undefined,
+                  },
+                },
+              },
+            }}
             {...field}
           >
             {props.displayActualEmpty ? (
