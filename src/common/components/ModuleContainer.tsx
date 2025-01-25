@@ -10,6 +10,7 @@ type Props = {
   largeGutter?: boolean;
   dashboard?: any;
   children: any;
+  loading?: boolean;
 };
 
 type HeaderProps = {
@@ -37,58 +38,62 @@ const ControlButtonsContainer = styled(Box)(({ theme }) => ({
   },
 }));
 
-const ModuleContainer = (props: Props) => (
-  <Container>
-    {props.dashboard}
+const ModuleContainer = (props: Props) => {
+  if (props.loading) return null;
 
-    {props.headerText && (
-      <Header largeGutter={props.largeGutter}>
-        <Box display="flex" flexDirection="column" flexGrow={1}>
-          {!!props.handleBack && props.headerControls ? (
-            <Button
-              variant="contained"
-              color="error"
-              startIcon={<BackIcon size={18} />}
-              sx={{
-                display: { xs: "inline-flex", sm: "none" },
-                width: 120,
-                marginBottom: 2,
-              }}
-              onClick={props.handleBack}
-            >
-              Back
-            </Button>
+  return (
+    <Container>
+      {props.dashboard}
+
+      {props.headerText && (
+        <Header largeGutter={props.largeGutter}>
+          <Box display="flex" flexDirection="column" flexGrow={1}>
+            {!!props.handleBack && props.headerControls ? (
+              <Button
+                variant="contained"
+                color="error"
+                startIcon={<BackIcon size={18} />}
+                sx={{
+                  display: { xs: "inline-flex", sm: "none" },
+                  width: 120,
+                  marginBottom: 2,
+                }}
+                onClick={props.handleBack}
+              >
+                Back
+              </Button>
+            ) : null}
+
+            <Typography variant="h5" alignItems="center">
+              {props.headerText}
+            </Typography>
+          </Box>
+
+          {props.headerControls ? (
+            <ControlButtonsContainer>
+              {props.headerControls}
+            </ControlButtonsContainer>
           ) : null}
 
-          <Typography variant="h5" alignItems="center">
-            {props.headerText}
-          </Typography>
-        </Box>
+          {!props.headerControls && !!props.handleBack ? (
+            <ControlButtonsContainer>
+              <Button
+                variant="contained"
+                color="error"
+                startIcon={<BackIcon size={18} />}
+                sx={{ width: 120 }}
+                onClick={props.handleBack}
+              >
+                Back
+              </Button>
+            </ControlButtonsContainer>
+          ) : null}
+        </Header>
+      )}
 
-        {props.headerControls ? (
-          <ControlButtonsContainer>
-            {props.headerControls}
-          </ControlButtonsContainer>
-        ) : null}
-
-        {!props.headerControls && !!props.handleBack ? (
-          <ControlButtonsContainer>
-            <Button
-              variant="contained"
-              color="error"
-              startIcon={<BackIcon size={18} />}
-              sx={{ width: 120 }}
-              onClick={props.handleBack}
-            >
-              Back
-            </Button>
-          </ControlButtonsContainer>
-        ) : null}
-      </Header>
-    )}
-
-    {props.children}
-  </Container>
-);
+      {props.children}
+    </Container>
+  );
+};
 
 export default ModuleContainer;
