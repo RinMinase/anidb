@@ -12,6 +12,7 @@ type Props = {
   disabled?: boolean;
   fullWidth?: boolean;
   freeSolo?: boolean;
+  size?: "small" | "medium";
   loadingContents?: boolean;
   onChange?: (e?: any) => void;
   extraOnChange?: (e?: any) => void;
@@ -41,6 +42,7 @@ const ControlledAutocomplete = (props: Props) => {
             disabled={props.disabled}
             fullWidth={props.fullWidth}
             loading={props.loadingContents}
+            size={props.size}
             renderInput={(params) => (
               // @ts-expect-error: Unknown error
               <TextField
