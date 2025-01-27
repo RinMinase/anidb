@@ -11,21 +11,13 @@ type Props = {
   dashboard?: any;
   children: any;
   loading?: boolean;
-};
-
-type HeaderProps = {
-  largeGutter?: boolean;
+  stackedHeaderControls?: boolean;
 };
 
 const Container = styled(Box)({
   paddingTop: 24,
   paddingBottom: 24,
 });
-
-const Header = styled(Box)<HeaderProps>(({ largeGutter }) => ({
-  display: "flex",
-  marginBottom: largeGutter ? 32 : 16,
-}));
 
 const ControlButtonsContainer = styled(Box)(({ theme }) => ({
   display: "flex",
@@ -46,7 +38,17 @@ const ModuleContainer = (props: Props) => {
       {props.dashboard}
 
       {props.headerText && (
-        <Header largeGutter={props.largeGutter}>
+        <Box
+          sx={{
+            mb: props.largeGutter ? "32px" : "16px",
+            display: "flex",
+            flexDirection: {
+              xs: props.stackedHeaderControls ? "column" : "row",
+              sm: "row",
+            },
+            gap: 2,
+          }}
+        >
           <Box display="flex" flexDirection="column" flexGrow={1}>
             {!!props.handleBack && props.headerControls ? (
               <Button
@@ -88,7 +90,7 @@ const ModuleContainer = (props: Props) => {
               </Button>
             </ControlButtonsContainer>
           ) : null}
-        </Header>
+        </Box>
       )}
 
       {props.children}
