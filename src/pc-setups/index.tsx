@@ -1,11 +1,25 @@
 import { useContext, useEffect, useState } from "preact/hooks";
 import { toast } from "sonner";
 import { useForm } from "react-hook-form";
-import { Box, Grid2 as Grid, Typography } from "@mui/material";
-import { Eye, EyeOff, Plus as AddOwnerIcon } from "react-feather";
+import {
+  Box,
+  Grid2 as Grid,
+  Stack,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import axios from "axios";
 
 import {
+  Database as ManageComponentsIcon,
+  Eye,
+  EyeOff,
+  Plus as AddOwnerIcon,
+} from "react-feather";
+
+import {
+  Button,
   ButtonLoading,
   ControlledField,
   Dialog,
@@ -30,6 +44,9 @@ const ShowIcon = <Eye size={20} strokeWidth={1.5} />;
 const HideIcon = <EyeOff size={20} strokeWidth={1.5} />;
 
 const PcSetup = () => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
   const { toggleLoader } = useContext(GlobalLoaderContext);
 
   const [dataOwners, setDataOwners] = useState<PCOwnerList>([]);
@@ -144,23 +161,46 @@ const PcSetup = () => {
   };
 
   const HeaderControls = () => (
-    <>
-      <IconButton
-        children={showHidden ? ShowIcon : HideIcon}
-        onClick={handleShowHiddenButtonClick}
-      />
+    <Stack
+      sx={{ flexDirection: { xs: "column", sm: "row" }, gap: 2 }}
+      alignItems="center"
+    >
+      {isMobile ? (
+        <Button
+          variant="contained"
+          color={showHidden ? "info" : "warning"}
+          startIcon={showHidden ? ShowIcon : HideIcon}
+          onClick={handleShowHiddenButtonClick}
+          sx={{ width: "100%" }}
+        >
+          {showHidden ? "Show Hidden" : "Hide Hidden"}
+        </Button>
+      ) : (
+        <IconButton
+          children={showHidden ? ShowIcon : HideIcon}
+          onClick={handleShowHiddenButtonClick}
+        />
+      )}
+      <Button
+        variant="contained"
+        color="secondary"
+        startIcon={<ManageComponentsIcon size={20} strokeWidth={1.5} />}
+        sx={{ width: { xs: "100%", sm: "unset" } }}
+      >
+        Manage Components
+      </Button>
       <ButtonLoading
         variant="contained"
         loading={isAddOwnerLoading}
         startIcon={<AddOwnerIcon size={20} strokeWidth={1.5} />}
-        sx={{ minWidth: 120, marginLeft: 2 }}
+        sx={{ minWidth: 120, width: { xs: "100%", sm: "unset" } }}
         onClick={() => {
           setAddOwnerDialogOpen(true);
         }}
       >
         Add Owner
       </ButtonLoading>
-    </>
+    </Stack>
   );
 
   const AddOwnerDialog = () => (
@@ -181,7 +221,11 @@ const PcSetup = () => {
   }, []);
 
   return (
-    <ModuleContainer headerText="PC Setups" headerControls={<HeaderControls />}>
+    <ModuleContainer
+      headerText="PC Setups"
+      headerControls={<HeaderControls />}
+      stackedHeaderControls
+    >
       <Grid container spacing={2}>
         <Grid container size={{ xs: 12, sm: 5, md: 4, lg: 3 }}>
           <OwnerSetupsList
