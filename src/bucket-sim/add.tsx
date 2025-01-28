@@ -259,7 +259,7 @@ const BucketSimAdd = (props: Props) => {
       }
       headerControls={<HeaderControls />}
     >
-      {!isLoading && !!previewData.length && (
+      {!isLoading && (
         <>
           {!isPreviewLoading && (
             <Grid size={{ xs: 12, sm: 8 }}>
