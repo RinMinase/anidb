@@ -19,11 +19,23 @@ export type PCOwner = {
 
 export type PCOwnerList = Array<PCOwner>;
 
-export type PCComponent = {
+export type PCComponentType = {
   id: number;
   type: string;
   name: string;
+  isPeripheral: boolean;
+};
+
+export type PCComponentTypeList = Array<PCComponentType>;
+
+export type PCComponent = {
+  id: number;
+  idType: number;
+  type: PCComponentType;
+  typeName: string;
+  name: string;
   description: string;
+  descriptiveName: string;
   count: number;
   isHidden: boolean;
   price: number;
