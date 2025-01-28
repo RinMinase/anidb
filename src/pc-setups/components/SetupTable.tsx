@@ -28,7 +28,7 @@ type Props = {
 };
 
 const SetupTable = (props: Props) => {
-  const { toggleLoader } = useContext(GlobalLoaderContext);
+  const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
 
   const [isDeleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [isDeleteLoading, setDeleteLoading] = useState(false);
@@ -94,6 +94,7 @@ const SetupTable = (props: Props) => {
           <Button
             variant="contained"
             color="secondary"
+            disabled={isLoading || isDeleteLoading || props.isTableLoading}
             onClick={() => (props.data ? handleDuplicateClick() : null)}
           >
             <DuplicateIcon size={18} />
@@ -104,6 +105,7 @@ const SetupTable = (props: Props) => {
           <Button
             variant="contained"
             color="warning"
+            disabled={isLoading || isDeleteLoading || props.isTableLoading}
             onClick={() => (props.data ? handleEditClick() : null)}
           >
             <EditIcon size={18} />
@@ -115,6 +117,7 @@ const SetupTable = (props: Props) => {
             variant="contained"
             color="error"
             loading={isDeleteLoading}
+            disabled={isLoading || isDeleteLoading || props.isTableLoading}
             onClick={() => (props.data ? setDeleteDialogOpen(true) : null)}
           >
             <DeleteIcon size={18} />
