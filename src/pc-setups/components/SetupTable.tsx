@@ -172,7 +172,7 @@ const SetupTable = (props: Props) => {
                   hover
                   key={`setup-${props.data!.uuid}-${component.id}`}
                 >
-                  <Table.Cell>{component.type}</Table.Cell>
+                  <Table.Cell>{component.type.name ?? ""}</Table.Cell>
                   <Table.Cell>{component.name}</Table.Cell>
                   <Table.Cell>{component.description}</Table.Cell>
                   <Table.Cell sx={{ textAlign: "right" }}>
