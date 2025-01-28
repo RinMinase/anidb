@@ -367,7 +367,12 @@ const PcSetupAdd = (props: Props) => {
           />
         </Grid>
         <Grid size={{ xs: 12, sm: 6, lg: 3 }}>
-          <Button variant="contained" color="secondary" fullWidth>
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={() => route("/pc-setups/components")}
+            fullWidth
+          >
             Manage Components
           </Button>
         </Grid>

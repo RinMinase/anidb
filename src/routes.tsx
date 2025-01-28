@@ -48,6 +48,7 @@ const Rss = async () => (await import("./rss")).default;
 
 const PcSetup = async () => (await import("./pc-setups")).default;
 const PcSetupAdd = async () => (await import("./pc-setups/add")).default;
+const PcComponent = async () => (await import("./pc-components")).default;
 
 const Routes = (props: Props) => (
   <Router onChange={props.onChange}>
@@ -103,6 +104,7 @@ const Routes = (props: Props) => (
       path="/pc-setups/:ownerId/edit/:infoId"
       getComponent={PcSetupAdd}
     />
+    <AsyncRoute path="/pc-setups/components" getComponent={PcComponent} />
 
     <Route default component={Page404} />
   </Router>

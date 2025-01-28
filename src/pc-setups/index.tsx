@@ -1,6 +1,9 @@
 import { useContext, useEffect, useState } from "preact/hooks";
 import { toast } from "sonner";
 import { useForm } from "react-hook-form";
+import { route } from "preact-router";
+import axios from "axios";
+
 import {
   Box,
   Grid2 as Grid,
@@ -9,7 +12,6 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import axios from "axios";
 
 import {
   Database as ManageComponentsIcon,
@@ -186,6 +188,7 @@ const PcSetup = () => {
         color="secondary"
         startIcon={<ManageComponentsIcon size={20} strokeWidth={1.5} />}
         sx={{ width: { xs: "100%", sm: "unset" } }}
+        onClick={() => route("/pc-setups/components")}
       >
         Manage Components
       </Button>
