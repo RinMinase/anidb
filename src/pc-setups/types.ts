@@ -32,7 +32,6 @@ export type PCComponent = {
   id: number;
   idType: number;
   type: PCComponentType;
-  typeName: string;
   name: string;
   description: string;
   descriptiveName: string;
