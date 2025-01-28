@@ -33,7 +33,7 @@ type Props = {
     | Array<{
         label: string;
         key?: any;
-        value?: number | string;
+        value?: number | string | boolean;
       }>;
   variant?: "outlined" | "standard" | "filled";
   label?: string;
