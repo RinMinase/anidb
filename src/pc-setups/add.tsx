@@ -55,21 +55,16 @@ type InfoAPIComponentBody = Array<{
   is_hidden: boolean;
 }>;
 
-// For development purposes only
-const ENABLE_VISIBILITY_HOOK = false;
-
 const PcSetupAdd = (props: Props) => {
   const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
 
   const [pageTitle, setPageTitle] = useState<string>("");
   const [componentsLoading, setComponentsLoading] = useState(false);
+  const [isConfirmExitDialogOpen, setConfirmExitDialogOpen] = useState(false);
+  const [isSaveLoading, setSaveLoading] = useState(false);
 
   const [components, setComponents] = useState<AutocompleteOptions>([]);
   const [componentTypes, setComponentTypes] = useState<OptionsKeyedProps>([]);
-
-  const [isConfirmExitDialogOpen, setConfirmExitDialogOpen] = useState(false);
-
-  const [isSaveLoading, setSaveLoading] = useState(false);
 
   const {
     control: addComponentControl,
@@ -319,7 +314,7 @@ const PcSetupAdd = (props: Props) => {
   // Calling Search API on page active
   useLayoutEffect(() => {
     const handleVisibilityChange = () => {
-      if (document.visibilityState === "visible" && ENABLE_VISIBILITY_HOOK) {
+      if (document.visibilityState === "visible") {
         handleSearchComponent();
       }
     };
