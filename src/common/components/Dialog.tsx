@@ -48,7 +48,7 @@ const Dialog = (props: Props) => {
         {props.content}
       </DialogContent>
       <DialogActions
-        sx={{ justifyContent: "center", gap: 2, pb: 2 }}
+        sx={{ justifyContent: "center", gap: 2, pb: 2, px: 3 }}
         disableSpacing
       >
         <Button
