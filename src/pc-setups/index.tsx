@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from "preact/hooks";
 import { toast } from "sonner";
 import { useForm } from "react-hook-form";
-import { route } from "preact-router";
 import axios from "axios";
 
 import {
@@ -188,7 +187,7 @@ const PcSetup = () => {
         color="secondary"
         startIcon={<ManageComponentsIcon size={20} strokeWidth={1.5} />}
         sx={{ width: { xs: "100%", sm: "unset" } }}
-        onClick={() => route("/pc-setups/components")}
+        onClick={() => window.open("/pc-setups/components", "_blank")}
       >
         Manage Components
       </Button>

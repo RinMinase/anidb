@@ -175,7 +175,11 @@ const PcSetupAdd = (props: Props) => {
       const formValues = addComponentGetValues();
       const id_type = formValues.id_type ?? undefined;
 
-      const params: any = {};
+      const params: any = {
+        // Temporarily disabled
+        // limit: 20,
+      };
+
       if (id_type) params.id_type = id_type;
 
       const {
@@ -370,7 +374,7 @@ const PcSetupAdd = (props: Props) => {
           <Button
             variant="contained"
             color="secondary"
-            onClick={() => route("/pc-setups/components")}
+            onClick={() => window.open("/pc-setups/components", "_blank")}
             fullWidth
           >
             Manage Components
