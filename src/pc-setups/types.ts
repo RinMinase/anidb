@@ -42,6 +42,7 @@ export type PCComponent = {
   priceEstimate: number;
   priceEstimateFormatted: string;
   purchaseDate: string;
+  purchaseDateFormatted: string;
   purchaseLocation: string;
   purchaseNotes: string;
   isOnhand: boolean;
