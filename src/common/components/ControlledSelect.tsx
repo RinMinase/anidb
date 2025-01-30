@@ -83,7 +83,7 @@ const ControlledSelect = (props: Props) => {
                 if (typeof item === "object") {
                   return (
                     <MenuItem
-                      value={item.value ?? item.label}
+                      value={(item.value as any) ?? item.label}
                       key={item.key ?? item.label}
                     >
                       {item.label}
