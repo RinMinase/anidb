@@ -24,6 +24,7 @@ export { default as Quality } from "./components/Quality";
 export { default as Rating } from "./components/Rating";
 export { default as RewatchIndicator } from "./components/RewatchIndicator";
 export { default as Table } from "./components/Table";
+export { default as TabPanel } from "./components/TabPanel";
 
 export { ColorModeContext } from "./providers/ColorMode";
 
