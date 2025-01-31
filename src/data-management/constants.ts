@@ -131,6 +131,50 @@ export const chartMonthOptions: ChartOptions = {
   },
 };
 
+// By Year Per Month
+export const chartByYearInitialData = {
+  labels: ["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"],
+  datasets: [
+    {
+      data: [],
+      backgroundColor: ["#777", "#fc6", "#9cf", "#9f9", "#f9c"],
+      borderColor: "#81C784",
+    },
+  ],
+};
+
+export const chartByYearOptions: ChartOptions = {
+  // aspectRatio: 1.5,
+  layout: {
+    padding: {
+      top: 20,
+    },
+  },
+  scales: {
+    y: {
+      ticks: {
+        stepSize: 5,
+      },
+      beginAtZero: true,
+    },
+  },
+  plugins: {
+    datalabels: {
+      formatter: (val) => {
+        return val < 0 ? "None" : val < 1 ? "" : val;
+      },
+      color: "#2196F3",
+      font: {
+        weight: "bold",
+        size: 12,
+      },
+      align: "top",
+    },
+    legend: { display: false },
+    tooltip: { enabled: false },
+  },
+};
+
 // By Year
 export const chartYearInitialData = {
   labels: [],

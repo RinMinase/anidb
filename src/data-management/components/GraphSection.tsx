@@ -1,11 +1,25 @@
-import { useEffect } from "preact/hooks";
+import { useEffect, useState } from "preact/hooks";
 import { Chart, registerables } from "chart.js";
 import ChartDataLabels from "chartjs-plugin-datalabels";
-import { Box, Grid2 as Grid, styled, Typography } from "@mui/material";
-
-import { Graph } from "../types";
 
 import {
+  Box,
+  Grid2 as Grid,
+  LinearProgress,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+  styled,
+  Typography,
+} from "@mui/material";
+
+import { getYearsInArray } from "@components/functions";
+
+import { ByYearData, Graph } from "../types";
+
+import {
+  chartByYearInitialData,
+  chartByYearOptions,
   chartMonthInitialData,
   chartMonthOptions,
   chartQualityInitialData,
@@ -17,6 +31,8 @@ import {
   chartYearInitialData,
   chartYearOptions,
 } from "../constants";
+import { toast } from "sonner";
+import axios from "axios";
 
 type Props = {
   graph: Graph;
@@ -25,6 +41,7 @@ type Props = {
 let chartQuality: Chart;
 let chartRatings: Chart;
 let chartMonths: Chart;
+let chartByYear: Chart;
 let chartYears: Chart;
 let chartSeasons: Chart;
 
@@ -42,7 +59,7 @@ const BarChartContainer = styled(Box)({
 
 const LineChartContainer = styled(Box)({
   width: "100%",
-  maxWidth: 600,
+  maxWidth: 500,
   textAlign: "center",
 });
 
@@ -52,7 +69,45 @@ const PieChartContainer = styled(Box)({
   textAlign: "center",
 });
 
+const currYear = new Date().getFullYear();
+const yearsDropdown = getYearsInArray(currYear, currYear - 4, -1);
+
 const GraphSection = (props: Props) => {
+  const [year, setYear] = useState(currYear);
+  const [isYearApiLoading, setYearApiLoading] = useState(false);
+  const [byYearData, setByYearData] = useState<ByYearData>([]);
+
+  const fetchByYear = async (newYear?: number) => {
+    try {
+      setYearApiLoading(true);
+
+      const {
+        data: { data },
+      } = await axios.get("/management/by-year", {
+        params: {
+          year: newYear ?? year,
+        },
+      });
+
+      setByYearData(data);
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed");
+    } finally {
+      setYearApiLoading(false);
+    }
+  };
+
+  const handleChangeYear = async (e: SelectChangeEvent<number>) => {
+    const newYear = (e.target as any).value as number;
+    setYear(newYear);
+    await fetchByYear(newYear);
+  };
+
+  useEffect(() => {
+    fetchByYear();
+  }, []);
+
   useEffect(() => {
     if (document.getElementById("quality")) {
       const canvas = document.getElementById("quality") as HTMLCanvasElement;
@@ -87,6 +142,18 @@ const GraphSection = (props: Props) => {
         plugins: [ChartDataLabels],
         options: chartMonthOptions,
         data: chartMonthInitialData,
+      });
+    }
+
+    if (document.getElementById("byyear")) {
+      const canvas = document.getElementById("byyear") as HTMLCanvasElement;
+      const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
+
+      chartByYear = new Chart(ctx, {
+        type: "line",
+        plugins: [ChartDataLabels],
+        options: chartByYearOptions,
+        data: chartByYearInitialData,
       });
     }
 
@@ -202,6 +269,13 @@ const GraphSection = (props: Props) => {
     }
   }, [props.graph.seasons]);
 
+  useEffect(() => {
+    if (byYearData.length) {
+      chartByYear.data.datasets[0].data = [...byYearData];
+      chartByYear.update();
+    }
+  }, [byYearData]);
+
   return (
     <GraphTopContainer>
       <Grid container spacing={2}>
@@ -219,6 +293,7 @@ const GraphSection = (props: Props) => {
             <canvas id="quality" />
           </PieChartContainer>
         </Grid>
+
         <Grid
           size={{ xs: 12, sm: 12, md: 6 }}
           display="flex"
@@ -233,6 +308,7 @@ const GraphSection = (props: Props) => {
             <canvas id="ratings" />
           </BarChartContainer>
         </Grid>
+
         <Grid
           size={{ xs: 12, sm: 12, md: 6 }}
           display="flex"
@@ -242,12 +318,51 @@ const GraphSection = (props: Props) => {
           gap={2}
         >
           <Typography variant="h6" textAlign="center">
-            Titles Watched per Month
+            Titles Watched per Month of All Years
           </Typography>
           <LineChartContainer>
             <canvas id="month" />
           </LineChartContainer>
         </Grid>
+
+        <Grid
+          size={{ xs: 12, sm: 12, md: 6 }}
+          display="flex"
+          alignItems="center"
+          flexDirection="column"
+          justifyContent="center"
+          gap={1}
+        >
+          <Typography
+            variant="h6"
+            textAlign="center"
+            flexDirection="row"
+            alignItems="center"
+          >
+            <span>Titles Watched per Month of Year :&nbsp;</span>
+            <Select
+              size="small"
+              value={year}
+              onChange={handleChangeYear}
+              sx={{ float: "right" }}
+            >
+              {yearsDropdown.map((item) => (
+                <MenuItem key={`year-dropdown-${item}`} value={item}>
+                  {item}
+                </MenuItem>
+              ))}
+            </Select>
+          </Typography>
+
+          <Box sx={{ width: "60%", height: "4px" }}>
+            {isYearApiLoading ? <LinearProgress /> : null}
+          </Box>
+
+          <LineChartContainer>
+            <canvas id="byyear" />
+          </LineChartContainer>
+        </Grid>
+
         <Grid
           size={{ xs: 12, sm: 12, md: 6 }}
           display="flex"
@@ -263,6 +378,7 @@ const GraphSection = (props: Props) => {
             <canvas id="years" />
           </BarChartContainer>
         </Grid>
+
         <Grid
           size={{ xs: 12, sm: 12, md: 6 }}
           display="flex"

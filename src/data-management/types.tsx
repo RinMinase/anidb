@@ -50,3 +50,5 @@ export type Graph = {
     value: number;
   }>;
 };
+
+export type ByYearData = Array<number>;
