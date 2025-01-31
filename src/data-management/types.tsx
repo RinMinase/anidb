@@ -1,3 +1,15 @@
+// General Types
+type ArrayLengthMutationKeys = "splice" | "push" | "pop" | "shift" | "unshift";
+type FixedLengthArray<T, L extends number, TObj = [T, ...Array<T>]> = Pick<
+  TObj,
+  Exclude<keyof TObj, ArrayLengthMutationKeys>
+> & {
+  readonly length: L;
+  [I: number]: T;
+  [Symbol.iterator]: () => IterableIterator<T>;
+};
+
+// Component Types
 export type Data = {
   entries?: number;
   buckets?: number;
@@ -26,6 +38,7 @@ export type Graph = {
     quality480?: number;
     quality360?: number;
   };
+  ratings: FixedLengthArray<number, 10>;
   months: {
     jan?: number;
     feb?: number;
@@ -40,4 +53,8 @@ export type Graph = {
     nov?: number;
     dec?: number;
   };
+  year: Array<{
+    year: string;
+    value: number;
+  }>;
 };
