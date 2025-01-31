@@ -124,15 +124,32 @@ const GraphSection = (props: Props) => {
     }
 
     if (hasAnyValue) {
-      chartQuality.data.datasets[0].data = [
-        props.graph.quality.quality360 || 0,
-        props.graph.quality.quality480 || 0,
-        props.graph.quality.quality720 || 0,
-        props.graph.quality.quality1080 || 0,
-        props.graph.quality.quality2160 || 0,
+      const { quality360, quality480, quality720, quality1080, quality2160 } =
+        props.graph.quality;
+      const sum =
+        (quality360 || 0) +
+        (quality480 || 0) +
+        (quality720 || 0) +
+        (quality1080 || 0) +
+        (quality2160 || 0);
+
+      const q360 = quality360 ? Math.max((quality360 / sum) * 100, 1) : 0;
+      const q480 = quality480 ? Math.max((quality480 / sum) * 100, 1) : 0;
+      const q720 = quality720 ? Math.max((quality720 / sum) * 100, 1) : 0;
+      const q1080 = quality1080 ? Math.max((quality1080 / sum) * 100, 1) : 0;
+      const q2160 = quality2160 ? Math.max((quality2160 / sum) * 100, 1) : 0;
+
+      chartQuality.data.datasets[0].data = [q360, q480, q720, q1080, q2160];
+      chartQuality.data.datasets[1].data = [
+        quality360 || 0,
+        quality480 || 0,
+        quality720 || 0,
+        quality1080 || 0,
+        quality2160 || 0,
       ];
     } else {
       chartQuality.data.datasets[0].data = [-1, -1, -1, -1, -1];
+      chartQuality.data.datasets[1].data = [-1, -1, -1, -1, -1];
     }
 
     chartQuality.update();

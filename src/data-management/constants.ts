@@ -6,18 +6,28 @@ export const chartQualityInitialData = {
   labels: ["LQ", "HQ", "HD", "FHD", "UHD"],
   datasets: [
     {
+      // Data value in percentage, used for visualizing small slices
       data: [],
       backgroundColor: ["#777", "#fc6", "#9cf", "#9f9", "#f9c"],
+    },
+    {
+      // Actual data value, but hidden for label reference only
+      data: [],
+      hidden: true,
     },
   ],
 };
 
 export const chartQualityOptions: ChartOptions = {
   aspectRatio: 1.5,
+  hover: { mode: null as any },
   plugins: {
     datalabels: {
-      formatter: (val) => {
-        return val < 0 ? "None" : val < 1 ? "" : val;
+      formatter: (val, ctx) => {
+        const data = ctx.chart.data.datasets[1].data as Array<number>;
+        const index = ctx.dataIndex;
+
+        return data[index] < 0 ? "None" : data[index] < 1 ? "" : data[index];
       },
       color: "#000",
     },
@@ -29,9 +39,7 @@ export const chartQualityOptions: ChartOptions = {
         padding: 16,
       },
     },
-    tooltip: {
-      enabled: false,
-    },
+    tooltip: { enabled: false },
   },
 };
 
@@ -74,12 +82,8 @@ export const chartRatingsOptions: ChartOptions = {
       clamp: true,
       color: "#2196F3",
     },
-    legend: {
-      display: false,
-    },
-    tooltip: {
-      enabled: false,
-    },
+    legend: { display: false },
+    tooltip: { enabled: false },
   },
 };
 
@@ -122,12 +126,8 @@ export const chartMonthOptions: ChartOptions = {
       },
       align: "top",
     },
-    legend: {
-      display: false,
-    },
-    tooltip: {
-      enabled: false,
-    },
+    legend: { display: false },
+    tooltip: { enabled: false },
   },
 };
 
@@ -195,8 +195,6 @@ export const chartSeasonsOptions: ChartOptions = {
         padding: 16,
       },
     },
-    tooltip: {
-      enabled: false,
-    },
+    tooltip: { enabled: false },
   },
 };
