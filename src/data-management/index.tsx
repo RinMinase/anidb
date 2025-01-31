@@ -24,6 +24,9 @@ const DataManagement = () => {
   const [graph, setGraph] = useState<Graph>({
     quality: {},
     months: {},
+    seasons: [],
+    years: [],
+    ratings: [],
   });
 
   const reloadPageData = async () => {
