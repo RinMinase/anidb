@@ -53,7 +53,7 @@ export type Graph = {
     nov?: number;
     dec?: number;
   };
-  year: Array<{
+  years: Array<{
     year: string;
     value: number;
   }>;

@@ -140,15 +140,15 @@ const GraphSection = (props: Props) => {
   }, [props.graph.ratings]);
 
   useEffect(() => {
-    if (props.graph.year.length) {
-      props.graph.year.forEach((item) => {
+    if (props.graph.years.length) {
+      props.graph.years.forEach((item) => {
         chartYear.data.labels?.push(item.year);
         chartYear.data.datasets[0].data.push(item.value);
       });
 
       chartYear.update();
     }
-  }, [props.graph.year]);
+  }, [props.graph.years]);
 
   return (
     <GraphTopContainer>
