@@ -12,6 +12,8 @@ import {
   chartQualityOptions,
   chartRatingsInitialData,
   chartRatingsOptions,
+  chartSeasonsInitialData,
+  chartSeasonsOptions,
   chartYearInitialData,
   chartYearOptions,
 } from "../constants";
@@ -22,8 +24,9 @@ type Props = {
 
 let chartQuality: Chart;
 let chartRatings: Chart;
-let chartMonth: Chart;
-let chartYear: Chart;
+let chartMonths: Chart;
+let chartYears: Chart;
+let chartSeasons: Chart;
 
 Chart.register(...registerables, ChartDataLabels);
 
@@ -79,7 +82,7 @@ const GraphSection = (props: Props) => {
       const canvas = document.getElementById("month") as HTMLCanvasElement;
       const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
 
-      chartMonth = new Chart(ctx, {
+      chartMonths = new Chart(ctx, {
         type: "line",
         plugins: [ChartDataLabels],
         options: chartMonthOptions,
@@ -87,15 +90,27 @@ const GraphSection = (props: Props) => {
       });
     }
 
-    if (document.getElementById("year")) {
-      const canvas = document.getElementById("year") as HTMLCanvasElement;
+    if (document.getElementById("years")) {
+      const canvas = document.getElementById("years") as HTMLCanvasElement;
       const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
 
-      chartYear = new Chart(ctx, {
+      chartYears = new Chart(ctx, {
         type: "bar",
         plugins: [ChartDataLabels],
         options: chartYearOptions,
         data: chartYearInitialData,
+      });
+    }
+
+    if (document.getElementById("seasons")) {
+      const canvas = document.getElementById("seasons") as HTMLCanvasElement;
+      const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
+
+      chartSeasons = new Chart(ctx, {
+        type: "pie",
+        plugins: [ChartDataLabels],
+        options: chartSeasonsOptions,
+        data: chartSeasonsInitialData,
       });
     }
   }, []);
@@ -126,10 +141,10 @@ const GraphSection = (props: Props) => {
   useEffect(() => {
     // eslint-disable-next-line
     for (const [key, value] of Object.entries(props.graph.months)) {
-      chartMonth.data.datasets[0].data.push(value);
+      chartMonths.data.datasets[0].data.push(value);
     }
 
-    chartMonth.update();
+    chartMonths.update();
   }, [props.graph.months]);
 
   useEffect(() => {
@@ -142,13 +157,33 @@ const GraphSection = (props: Props) => {
   useEffect(() => {
     if (props.graph.years.length) {
       props.graph.years.forEach((item) => {
-        chartYear.data.labels?.push(item.year);
-        chartYear.data.datasets[0].data.push(item.value);
+        chartYears.data.labels?.push(item.year);
+        chartYears.data.datasets[0].data.push(item.value);
       });
 
-      chartYear.update();
+      chartYears.update();
     }
   }, [props.graph.years]);
+
+  useEffect(() => {
+    if (props.graph.seasons.length) {
+      props.graph.seasons.forEach((item) => {
+        if (item.season === "None") {
+          chartSeasons.data.datasets[0].data[0] = item.value;
+        } else if (item.season === "Winter") {
+          chartSeasons.data.datasets[0].data[1] = item.value;
+        } else if (item.season === "Spring") {
+          chartSeasons.data.datasets[0].data[2] = item.value;
+        } else if (item.season === "Summer") {
+          chartSeasons.data.datasets[0].data[3] = item.value;
+        } else if (item.season === "Fall") {
+          chartSeasons.data.datasets[0].data[4] = item.value;
+        }
+      });
+
+      chartSeasons.update();
+    }
+  }, [props.graph.seasons]);
 
   return (
     <GraphTopContainer>
@@ -208,8 +243,22 @@ const GraphSection = (props: Props) => {
             Titles Watched per Year
           </Typography>
           <BarChartContainer>
-            <canvas id="year" />
+            <canvas id="years" />
           </BarChartContainer>
+        </Grid>
+        <Grid
+          size={{ xs: 12, sm: 12, md: 6 }}
+          display="flex"
+          alignItems="center"
+          flexDirection="column"
+          gap={2}
+        >
+          <Typography variant="h6" textAlign="center">
+            Titles per Season
+          </Typography>
+          <PieChartContainer>
+            <canvas id="seasons" />
+          </PieChartContainer>
         </Grid>
       </Grid>
     </GraphTopContainer>

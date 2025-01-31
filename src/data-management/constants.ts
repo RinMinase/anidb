@@ -159,3 +159,44 @@ export const chartYearOptions: ChartOptions = {
     },
   },
 };
+
+// Seasons
+export const chartSeasonsInitialData = {
+  labels: ["Unclassified", "Winter", "Spring", "Summer", "Fall"],
+  datasets: [
+    {
+      data: [0, 0, 0, 0, 0],
+      backgroundColor: ["#E0E0E0", "#B3E5FC", "#4CAF50", "#FFEE58", "#FF7043"],
+    },
+  ],
+};
+
+export const chartSeasonsOptions: ChartOptions = {
+  aspectRatio: 1.5,
+  hover: { mode: null as any },
+  plugins: {
+    datalabels: {
+      formatter: (val, ctx) => {
+        const data = ctx.chart.data.datasets[0].data as Array<number>;
+        const sum = data.reduce((part, a) => part + a, 0);
+
+        const percentage = ((val / sum) * 100).toFixed(0);
+        const actualValue = val < 0 ? "None" : val < 1 ? "" : val;
+
+        return `${actualValue}\n${percentage}%`;
+      },
+      color: "#000",
+    },
+    legend: {
+      position: "left",
+      reverse: true,
+      labels: {
+        boxWidth: 12,
+        padding: 16,
+      },
+    },
+    tooltip: {
+      enabled: false,
+    },
+  },
+};

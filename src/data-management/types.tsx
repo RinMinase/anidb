@@ -57,4 +57,8 @@ export type Graph = {
     year: string;
     value: number;
   }>;
+  seasons: Array<{
+    season: string;
+    value: number;
+  }>;
 };
