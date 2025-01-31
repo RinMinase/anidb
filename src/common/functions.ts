@@ -97,3 +97,10 @@ export function cardinalToOrdinal(num: number): string {
 
   return `${num}${suffix}`;
 }
+
+export function getYearsInArray(start: number, stop: number, step: number) {
+  return Array.from(
+    { length: (stop - start) / step + 1 },
+    (_, i) => start + i * step,
+  );
+}
