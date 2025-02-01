@@ -318,7 +318,7 @@ const GraphSection = (props: Props) => {
           gap={2}
         >
           <Typography variant="h6" textAlign="center">
-            Titles Watched per Month of All Years
+            Titles Watched and Rewatched per Month of All Time
           </Typography>
           <LineChartContainer>
             <canvas id="month" />
@@ -339,7 +339,7 @@ const GraphSection = (props: Props) => {
             flexDirection="row"
             alignItems="center"
           >
-            <span>Titles Watched per Month of Year :&nbsp;</span>
+            <span>Titles Watched and Rewatched of Year :&nbsp;</span>
             <Select
               size="small"
               value={year}
@@ -372,7 +372,7 @@ const GraphSection = (props: Props) => {
           gap={2}
         >
           <Typography variant="h6" textAlign="center">
-            Titles Watched per Year
+            Titles Watched and Rewatched per Year
           </Typography>
           <BarChartContainer>
             <canvas id="years" />
