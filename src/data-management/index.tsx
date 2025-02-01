@@ -27,6 +27,10 @@ const DataManagement = () => {
     seasons: [],
     years: [],
     ratings: [],
+    genres: {
+      list: [],
+      values: [],
+    },
   });
 
   const reloadPageData = async () => {

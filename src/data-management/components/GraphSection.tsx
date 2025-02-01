@@ -1,5 +1,7 @@
 import { useEffect, useState } from "preact/hooks";
 import { Chart, registerables } from "chart.js";
+import { toast } from "sonner";
+import axios from "axios";
 import ChartDataLabels from "chartjs-plugin-datalabels";
 
 import {
@@ -20,6 +22,8 @@ import { ByYearData, Graph } from "../types";
 import {
   chartByYearInitialData,
   chartByYearOptions,
+  chartGenreInitialData,
+  chartGenreOptions,
   chartMonthInitialData,
   chartMonthOptions,
   chartQualityInitialData,
@@ -31,8 +35,6 @@ import {
   chartYearInitialData,
   chartYearOptions,
 } from "../constants";
-import { toast } from "sonner";
-import axios from "axios";
 
 type Props = {
   graph: Graph;
@@ -44,6 +46,7 @@ let chartMonths: Chart;
 let chartByYear: Chart;
 let chartYears: Chart;
 let chartSeasons: Chart;
+let chartGenres: Chart;
 
 Chart.register(...registerables, ChartDataLabels);
 
@@ -180,6 +183,18 @@ const GraphSection = (props: Props) => {
         data: chartSeasonsInitialData,
       });
     }
+
+    if (document.getElementById("genres")) {
+      const canvas = document.getElementById("genres") as HTMLCanvasElement;
+      const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
+
+      chartGenres = new Chart(ctx, {
+        type: "bar",
+        plugins: [ChartDataLabels],
+        options: chartGenreOptions,
+        data: chartGenreInitialData,
+      });
+    }
   }, []);
 
   useEffect(() => {
@@ -268,6 +283,20 @@ const GraphSection = (props: Props) => {
       chartSeasons.update();
     }
   }, [props.graph.seasons]);
+
+  useEffect(() => {
+    if (props.graph.genres.values.length && props.graph.genres.list) {
+      const { list, values } = props.graph.genres;
+      chartGenres.data.labels = [...list];
+
+      values.forEach((item) => {
+        const index = list.findIndex((i) => item.genre === i);
+        chartGenres.data.datasets[0].data[index] = item.value;
+      });
+
+      chartGenres.update();
+    }
+  }, [props.graph.genres.values]);
 
   useEffect(() => {
     if (byYearData.length) {
@@ -392,6 +421,22 @@ const GraphSection = (props: Props) => {
           <PieChartContainer>
             <canvas id="seasons" />
           </PieChartContainer>
+        </Grid>
+
+        <Grid
+          size={{ xs: 12, sm: 12, md: 6 }}
+          display="flex"
+          alignItems="center"
+          flexDirection="column"
+          justifyContent="center"
+          gap={2}
+        >
+          <Typography variant="h6" textAlign="center">
+            Titles Watched and Rewatched per Genre
+          </Typography>
+          <BarChartContainer>
+            <canvas id="genres" />
+          </BarChartContainer>
         </Grid>
       </Grid>
     </GraphTopContainer>

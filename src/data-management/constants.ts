@@ -242,3 +242,41 @@ export const chartSeasonsOptions: ChartOptions = {
     tooltip: { enabled: false },
   },
 };
+
+// By Genre
+export const chartGenreInitialData = {
+  labels: [],
+  datasets: [{ data: [] }],
+};
+
+export const chartGenreOptions: ChartOptions = {
+  aspectRatio: 1.5,
+  scales: {
+    x: {
+      ticks: {
+        maxRotation: 60,
+        minRotation: 60,
+      },
+    },
+    y: {
+      grace: "20%",
+      ticks: {
+        precision: 0,
+      },
+    },
+  },
+  plugins: {
+    datalabels: {
+      anchor: "end",
+      align: "top",
+      clamp: true,
+      color: "#2196F3",
+    },
+    legend: {
+      display: false,
+    },
+    tooltip: {
+      enabled: false,
+    },
+  },
+};
