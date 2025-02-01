@@ -49,6 +49,13 @@ export type Graph = {
     season: string;
     value: number;
   }>;
+  genres: {
+    list: Array<string>;
+    values: Array<{
+      genre: string;
+      value: number;
+    }>;
+  };
 };
 
 export type ByYearData = Array<number>;
