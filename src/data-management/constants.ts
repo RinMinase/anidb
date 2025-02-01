@@ -206,7 +206,7 @@ export const chartYearOptions: ChartOptions = {
 
 // Seasons
 export const chartSeasonsInitialData = {
-  labels: ["Unclassified", "Winter", "Spring", "Summer", "Fall"],
+  labels: ["Uncategorized", "Winter", "Spring", "Summer", "Fall"],
   datasets: [
     {
       data: [0, 0, 0, 0, 0],
