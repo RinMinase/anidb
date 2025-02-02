@@ -238,6 +238,13 @@ const GraphSection = (props: Props) => {
   }, [props.graph.quality]);
 
   useEffect(() => {
+    if (props.graph.ratings.length) {
+      chartRatings.data.datasets[0].data = [...props.graph.ratings];
+      chartRatings.update();
+    }
+  }, [props.graph.ratings]);
+
+  useEffect(() => {
     // eslint-disable-next-line
     for (const [key, value] of Object.entries(props.graph.months)) {
       chartMonths.data.datasets[0].data.push(value);
@@ -247,14 +254,11 @@ const GraphSection = (props: Props) => {
   }, [props.graph.months]);
 
   useEffect(() => {
-    if (props.graph.ratings.length) {
-      chartRatings.data.datasets[0].data = [...props.graph.ratings];
-      chartRatings.update();
-    }
-  }, [props.graph.ratings]);
-
-  useEffect(() => {
     if (props.graph.years.length) {
+      // Data Reset
+      chartYears.data.labels = [];
+      chartYears.data.datasets[0].data = [];
+
       props.graph.years.forEach((item) => {
         chartYears.data.labels?.push(item.year);
         chartYears.data.datasets[0].data.push(item.value);
