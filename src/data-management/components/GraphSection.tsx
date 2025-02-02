@@ -245,12 +245,10 @@ const GraphSection = (props: Props) => {
   }, [props.graph.ratings]);
 
   useEffect(() => {
-    // eslint-disable-next-line
-    for (const [key, value] of Object.entries(props.graph.months)) {
-      chartMonths.data.datasets[0].data.push(value);
+    if (props.graph.months) {
+      chartMonths.data.datasets[0].data = Object.values(props.graph.months);
+      chartMonths.update();
     }
-
-    chartMonths.update();
   }, [props.graph.months]);
 
   useEffect(() => {
