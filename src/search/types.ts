@@ -20,11 +20,3 @@ export type EntryWatchers = Array<{
   id: number;
   label: string;
 }>;
-
-export type TableHeadings = Array<{
-  id: string;
-  label: string;
-  width?: number;
-  minWidth?: number;
-  align?: "left" | "center" | "right";
-}>;
