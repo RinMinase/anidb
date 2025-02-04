@@ -8,22 +8,15 @@ import AutoSizer from "react-virtualized-auto-sizer";
 import {
   GlobalLoaderContext,
   ModuleContainer,
+  Quality,
   RewatchIndicator,
 } from "@components";
 
 import { Data, Item } from "./types";
 
-const qualityColorsEnum = {
-  "4K 2160p": "#f9c",
-  "FHD 1080p": "#9f9",
-  "HD 720p": "#9cf",
-  "HQ 480p": "#fc6",
-  "LQ 360p": "#666",
-};
-
 const TABLE_HEADER_SIZE = 38;
 const WIDTH = {
-  title: 120,
+  title: 150,
   encoder: 75,
 };
 
@@ -46,7 +39,8 @@ const Entries = () => {
     )[0];
 
     el.textContent = longestTitle.title || "";
-    const titleWidth = el.clientWidth + 1 + PADDING;
+    const QUALITY_COMPONENT = 42;
+    const titleWidth = el.clientWidth + 1 + PADDING + QUALITY_COMPONENT;
     setTitleColumnWidth(titleWidth < WIDTH.title ? WIDTH.title : titleWidth);
 
     // Encoder Calculation
@@ -102,26 +96,13 @@ const Entries = () => {
           style={{
             padding: "4px",
             whiteSpace: "nowrap",
-            fontSize: "12px",
-            color: qualityColorsEnum[data[index].quality ?? "LQ 360p"],
-            textAlign: "center",
-            width: "75px",
-            minWidth: "75px",
-            maxWidth: "75px",
-          }}
-        >
-          {data[index].quality}
-        </td>
-        <td
-          style={{
-            padding: "4px",
-            whiteSpace: "nowrap",
             width: `${titleColumnWidth}px`,
             minWidth: `${titleColumnWidth}px`,
             maxWidth: `${titleColumnWidth}px`,
           }}
         >
-          {data[index].title}
+          <Quality quality={data[index].quality} />
+          <span>{data[index].title}</span>
         </td>
         <td
           style={{
@@ -226,15 +207,6 @@ const Entries = () => {
         <table style={{ position: "absolute", width: "100%" }}>
           <thead>
             <tr>
-              <th
-                style={{
-                  width: "75px",
-                  minWidth: "75px",
-                  maxWidth: "75px",
-                }}
-              >
-                Quality
-              </th>
               <th
                 style={{
                   width: `${titleColumnWidth}px`,
