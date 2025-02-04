@@ -1,18 +1,17 @@
 import { useContext, useEffect, useState } from "preact/hooks";
-import { forwardRef } from "preact/compat";
-import { TableComponents, TableVirtuoso } from "react-virtuoso";
 import { toast } from "sonner";
-import { Paper, Typography } from "@mui/material";
+import { Paper, useTheme } from "@mui/material";
 import axios from "axios";
+import { FixedSizeList as List, ListChildComponentProps } from "react-window";
+import AutoSizer from "react-virtualized-auto-sizer";
 
 import {
   GlobalLoaderContext,
   ModuleContainer,
   RewatchIndicator,
-  Table,
 } from "@components";
 
-import { Data, Item, TableHeadings } from "./types";
+import { Data, Item } from "./types";
 
 const qualityColorsEnum = {
   "4K 2160p": "#f9c",
@@ -22,104 +21,15 @@ const qualityColorsEnum = {
   "LQ 360p": "#666",
 };
 
-const headings: TableHeadings = [
-  { id: "quality", label: "Quality", width: 120 },
-  { id: "title", label: "Title", width: 250 },
-  { id: "episodes", label: "E / O / S", width: 110 },
-  { id: "filesize", label: "Filesize", width: 115 },
-  { id: "date_finished", label: "Date Finished", width: 205 },
-  { id: "release", label: "Release", width: 130 },
-  { id: "encoder", label: "Encoder", width: 200 },
-  { id: "rating", label: "Rating", width: 100, align: "center" },
-];
-
-const VirtuosoTableComponents: TableComponents<Data> = {
-  Scroller: forwardRef<HTMLDivElement>((props, ref) => (
-    <Table.Container component={Paper} {...props} ref={ref} />
-  )),
-  Table: (props) => (
-    // @ts-expect-error Virtuoso-MUI Error
-    <Table.Element
-      {...props}
-      size="small"
-      sx={{ borderCollapse: "separate", tableLayout: "fixed" }}
-    />
-  ),
-  TableHead: forwardRef<HTMLTableSectionElement>((props, ref) => (
-    <Table.Head {...props} ref={ref} />
-  )),
-  // @ts-expect-error Virtuoso-MUI Error
-  TableRow: forwardRef<HTMLTableRowElement>((props, ref) => (
-    <Table.Row {...props} ref={ref} hover />
-  )),
-  TableBody: forwardRef<HTMLTableSectionElement>((props, ref) => (
-    <Table.Body {...props} ref={ref} />
-  )),
-};
-
-function rowContent(_index: number, item: Item) {
-  return (
-    <>
-      <Table.Cell
-        sx={{
-          minWidth: "120px",
-          maxWidth: "120px",
-          fontSize: "12px",
-          color: qualityColorsEnum[item.quality ?? "LQ 360p"],
-        }}
-      >
-        {item.quality}
-      </Table.Cell>
-      <Table.Cell sx={{ minWidth: "250px", maxWidth: "250px" }}>
-        {item.title}
-      </Table.Cell>
-      <Table.Cell sx={{ minWidth: "110px", maxWidth: "110px" }}>
-        {item.episodes} / {item.ovas} / {item.specials}
-      </Table.Cell>
-      <Table.Cell sx={{ minWidth: "115px", maxWidth: "115px" }}>
-        {item.filesize}
-      </Table.Cell>
-      <Table.Cell sx={{ minWidth: "205px", maxWidth: "205px" }}>
-        {item.dateFinished}
-        <RewatchIndicator show={item.rewatched} times={item.rewatchCount} />
-      </Table.Cell>
-      <Table.Cell sx={{ minWidth: "130px", maxWidth: "130px" }}>
-        {item.release}
-      </Table.Cell>
-      <Table.Cell sx={{ minWidth: "200px", maxWidth: "200px" }}>
-        {item.encoder}
-      </Table.Cell>
-
-      <Table.Cell>
-        <Typography
-          variant="overline"
-          textAlign="right"
-          width="100%"
-          display="inline-block"
-          sx={{
-            paddingRight: !item.rating ? "12px" : undefined,
-            fontWeight: item.rating > 7.5 ? "bold" : undefined,
-            fontSize: item.rating > 7.5 ? "13px" : "11px",
-            color: !item.rating
-              ? "#9E9E9E"
-              : item.rating > 7.5
-              ? "#28a745"
-              : item.rating > 6
-              ? "#1e90ff"
-              : "#e57373",
-          }}
-        >
-          {item.rating ? `${item.rating} / 10` : "-"}
-        </Typography>
-      </Table.Cell>
-    </>
-  );
-}
+const TABLE_HEADER_SIZE = 38;
 
 const Entries = () => {
+  const theme = useTheme();
   const { toggleLoader } = useContext(GlobalLoaderContext);
 
   const [data, setData] = useState<Data>([]);
+  const [titleColumnWidth, setTitleColumnWidth] = useState(200);
+  const [encoderColumnWidth, setEncoderColumnWidth] = useState(200);
 
   const fetchData = async () => {
     try {
@@ -127,11 +37,35 @@ const Entries = () => {
 
       const {
         data: { data },
-      } = await axios.get("/entries", {
+      } = (await axios.get("/entries", {
         params: { limit: 9999 },
-      });
+      })) as {
+        data: { data: Data };
+      };
 
       setData(data);
+
+      const dataCopy = structuredClone(data);
+
+      const longestTitle = dataCopy.sort(
+        (a: Item, b: Item) => (b.title?.length || 0) - (a.title?.length || 0),
+      )[0];
+
+      const longestEncoder = dataCopy.sort(
+        (a: Item, b: Item) =>
+          (b.encoder?.length || 0) - (a.encoder?.length || 0),
+      )[0];
+
+      const el = document.getElementById("text_calculation")!;
+      const PADDING = 8 + 8;
+
+      el.textContent = longestTitle.title || "";
+      setTitleColumnWidth(el.clientWidth + 1 + PADDING);
+
+      el.textContent = longestEncoder.encoder || "";
+      setEncoderColumnWidth(el.clientWidth + 1 + PADDING);
+
+      el.textContent = "";
     } catch (err) {
       console.error(err);
       toast.error("Failed");
@@ -140,28 +74,231 @@ const Entries = () => {
     }
   };
 
-  const fixedHeaderContent = () => {
+  function Row({ index, style }: ListChildComponentProps) {
     return (
-      <>
-        <Table.Row>
-          {headings.map((heading) => (
-            <Table.Cell
-              key={heading.id}
-              variant="head"
-              sx={(theme) => ({
-                backgroundColor: "#EEEEEE",
-                width: `${heading.width}px`,
-                textAlign: heading.align ?? "left",
-                ...theme.applyStyles("dark", {
-                  backgroundColor: "#424242",
-                }),
-              })}
-            >
-              {heading.label}
-            </Table.Cell>
-          ))}
-        </Table.Row>
-      </>
+      <tr
+        style={{
+          ...style,
+          top: `${parseFloat(style.top as any) + TABLE_HEADER_SIZE}px`,
+          borderTop: !index ? "2px solid" : "",
+          borderBottom: "1px solid",
+          borderColor: theme.palette.divider,
+          width: "unset",
+        }}
+      >
+        <td
+          style={{
+            padding: "4px",
+            whiteSpace: "nowrap",
+            fontSize: "12px",
+            color: qualityColorsEnum[data[index].quality ?? "LQ 360p"],
+            textAlign: "center",
+            width: "75px",
+            minWidth: "75px",
+            maxWidth: "75px",
+          }}
+        >
+          {data[index].quality}
+        </td>
+        <td
+          style={{
+            padding: "4px",
+            whiteSpace: "nowrap",
+            width: `${titleColumnWidth}px`,
+            minWidth: `${titleColumnWidth}px`,
+            maxWidth: `${titleColumnWidth}px`,
+          }}
+        >
+          {data[index].title}
+        </td>
+        <td
+          style={{
+            padding: "4px",
+            whiteSpace: "nowrap",
+            textAlign: "center",
+            width: "120px",
+            minWidth: "120px",
+            maxWidth: "120px",
+          }}
+        >
+          {data[index].episodes} / {data[index].ovas} / {data[index].specials}
+        </td>
+        <td
+          style={{
+            padding: "4px",
+            whiteSpace: "nowrap",
+            textAlign: "center",
+            width: "100px",
+            minWidth: "100px",
+            maxWidth: "100px",
+          }}
+        >
+          {data[index].filesize}
+        </td>
+        <td
+          style={{
+            padding: "4px",
+            whiteSpace: "nowrap",
+            width: "190px",
+            minWidth: "190px",
+            maxWidth: "190px",
+          }}
+        >
+          {data[index].dateFinished}
+          <RewatchIndicator
+            show={data[index].rewatched}
+            times={data[index].rewatchCount}
+          />
+        </td>
+        <td
+          style={{
+            padding: "4px",
+            whiteSpace: "nowrap",
+            textAlign: "center",
+            width: "110px",
+            minWidth: "110px",
+            maxWidth: "110px",
+          }}
+        >
+          {data[index].release}
+        </td>
+        <td
+          style={{
+            padding: "4px",
+            whiteSpace: "nowrap",
+            width: `${encoderColumnWidth}px`,
+            minWidth: `${encoderColumnWidth}px`,
+            maxWidth: `${encoderColumnWidth}px`,
+          }}
+        >
+          {data[index].encoder}
+        </td>
+
+        <td
+          style={{
+            padding: "4px 8px",
+            whiteSpace: "nowrap",
+            width: "85px",
+            minWidth: "85px",
+            maxWidth: "85px",
+          }}
+        >
+          <p
+            style={{
+              margin: 0,
+              textAlign: "right",
+              width: "100%",
+              display: "inline-block",
+              paddingRight: !data[index].rating ? "12px" : undefined,
+              fontWeight: data[index].rating > 7.5 ? "bold" : undefined,
+              fontSize: data[index].rating > 7.5 ? "13px" : "11px",
+              color: !data[index].rating
+                ? "#9E9E9E"
+                : data[index].rating > 7.5
+                ? "#28a745"
+                : data[index].rating > 6
+                ? "#1e90ff"
+                : "#e57373",
+            }}
+          >
+            {data[index].rating ? `${data[index].rating} / 10` : "-"}
+          </p>
+        </td>
+      </tr>
+    );
+  }
+
+  const Inner = ({ children, ...rest }: any) => {
+    return (
+      <div {...rest}>
+        <table style={{ position: "absolute", width: "100%" }}>
+          <thead>
+            <tr>
+              <th
+                style={{
+                  width: "75px",
+                  minWidth: "75px",
+                  maxWidth: "75px",
+                }}
+              >
+                Quality
+              </th>
+              <th
+                style={{
+                  width: `${titleColumnWidth}px`,
+                  minWidth: `${titleColumnWidth}px`,
+                  maxWidth: `${titleColumnWidth}px`,
+                  textAlign: "left",
+                  padding: "4px",
+                }}
+              >
+                Title
+              </th>
+              <th
+                style={{
+                  width: "120px",
+                  minWidth: "120px",
+                  maxWidth: "120px",
+                }}
+              >
+                E / O / S
+              </th>
+              <th
+                style={{
+                  width: "100px",
+                  minWidth: "100px",
+                  maxWidth: "100px",
+                }}
+              >
+                Filesize
+              </th>
+              <th
+                style={{
+                  width: "190px",
+                  minWidth: "190px",
+                  maxWidth: "190px",
+                  textAlign: "left",
+                  padding: "4px",
+                }}
+              >
+                Date Finished
+              </th>
+              <th
+                style={{
+                  width: "110px",
+                  minWidth: "110px",
+                  maxWidth: "110px",
+                }}
+              >
+                Release Date
+              </th>
+              <th
+                style={{
+                  width: `${encoderColumnWidth}px`,
+                  minWidth: `${encoderColumnWidth}px`,
+                  maxWidth: `${encoderColumnWidth}px`,
+                  textAlign: "left",
+                  padding: "4px",
+                }}
+              >
+                Encoder
+              </th>
+              <th
+                style={{
+                  width: "85px",
+                  minWidth: "85px",
+                  maxWidth: "85px",
+                  textAlign: "right",
+                  padding: "4px 8px",
+                }}
+              >
+                Rating
+              </th>
+            </tr>
+          </thead>
+          <tbody>{children}</tbody>
+        </table>
+      </div>
     );
   };
 
@@ -171,6 +308,18 @@ const Entries = () => {
 
   return (
     <ModuleContainer headerText="All Entry Data">
+      <div
+        id="text_calculation"
+        style={{
+          position: "absolute",
+          visibility: "hidden",
+          height: "auto",
+          width: "auto",
+          whiteSpace: "nowrap",
+          fontSize: "16px",
+        }}
+      />
+
       <Paper
         sx={{
           // 48px - header
@@ -180,14 +329,19 @@ const Entries = () => {
           width: "100%",
         }}
       >
-        <TableVirtuoso
-          data={data}
-          // @ts-expect-error Virtuoso-MUI Error
-          components={VirtuosoTableComponents}
-          fixedHeaderContent={fixedHeaderContent}
-          itemContent={rowContent}
-          increaseViewportBy={1000}
-        />
+        <AutoSizer>
+          {({ height, width }) => (
+            <List
+              innerElementType={Inner}
+              itemCount={data.length}
+              itemSize={35}
+              height={height}
+              width={width}
+            >
+              {Row}
+            </List>
+          )}
+        </AutoSizer>
       </Paper>
     </ModuleContainer>
   );
