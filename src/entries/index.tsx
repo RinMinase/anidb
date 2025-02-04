@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from "preact/hooks";
 import { toast } from "sonner";
 import { Paper, useTheme } from "@mui/material";
-import axios from "axios";
 import { FixedSizeList as List, ListChildComponentProps } from "react-window";
+import axios from "axios";
 import AutoSizer from "react-virtualized-auto-sizer";
 
 import {
@@ -22,14 +22,47 @@ const qualityColorsEnum = {
 };
 
 const TABLE_HEADER_SIZE = 38;
+const WIDTH = {
+  title: 120,
+  encoder: 75,
+};
 
 const Entries = () => {
   const theme = useTheme();
   const { toggleLoader } = useContext(GlobalLoaderContext);
 
   const [data, setData] = useState<Data>([]);
-  const [titleColumnWidth, setTitleColumnWidth] = useState(200);
-  const [encoderColumnWidth, setEncoderColumnWidth] = useState(200);
+  const [titleColumnWidth, setTitleColumnWidth] = useState(WIDTH.title);
+  const [encoderColumnWidth, setEncoderColumnWidth] = useState(WIDTH.encoder);
+
+  const calculateColumnWidths = (data: Data) => {
+    const dataCopy = structuredClone(data);
+    const el = document.getElementById("text_calculation")!;
+    const PADDING = 8 + 8;
+
+    // Title Calculation
+    const longestTitle = dataCopy.sort(
+      (a: Item, b: Item) => (b.title?.length || 0) - (a.title?.length || 0),
+    )[0];
+
+    el.textContent = longestTitle.title || "";
+    const titleWidth = el.clientWidth + 1 + PADDING;
+    setTitleColumnWidth(titleWidth < WIDTH.title ? WIDTH.title : titleWidth);
+
+    // Encoder Calculation
+    const longestEncoder = dataCopy.sort(
+      (a: Item, b: Item) => (b.encoder?.length || 0) - (a.encoder?.length || 0),
+    )[0];
+
+    el.textContent = longestEncoder.encoder || "";
+    const encoderWidth = el.clientWidth + 1 + PADDING;
+    setEncoderColumnWidth(
+      encoderWidth < WIDTH.encoder ? WIDTH.encoder : encoderWidth,
+    );
+
+    // Reset text calcuation element
+    el.textContent = "";
+  };
 
   const fetchData = async () => {
     try {
@@ -44,28 +77,7 @@ const Entries = () => {
       };
 
       setData(data);
-
-      const dataCopy = structuredClone(data);
-
-      const longestTitle = dataCopy.sort(
-        (a: Item, b: Item) => (b.title?.length || 0) - (a.title?.length || 0),
-      )[0];
-
-      const longestEncoder = dataCopy.sort(
-        (a: Item, b: Item) =>
-          (b.encoder?.length || 0) - (a.encoder?.length || 0),
-      )[0];
-
-      const el = document.getElementById("text_calculation")!;
-      const PADDING = 8 + 8;
-
-      el.textContent = longestTitle.title || "";
-      setTitleColumnWidth(el.clientWidth + 1 + PADDING);
-
-      el.textContent = longestEncoder.encoder || "";
-      setEncoderColumnWidth(el.clientWidth + 1 + PADDING);
-
-      el.textContent = "";
+      calculateColumnWidths(data);
     } catch (err) {
       console.error(err);
       toast.error("Failed");
@@ -74,7 +86,7 @@ const Entries = () => {
     }
   };
 
-  function Row({ index, style }: ListChildComponentProps) {
+  const Row = ({ index, style }: ListChildComponentProps) => {
     return (
       <tr
         style={{
@@ -206,7 +218,7 @@ const Entries = () => {
         </td>
       </tr>
     );
-  }
+  };
 
   const Inner = ({ children, ...rest }: any) => {
     return (
