@@ -73,7 +73,7 @@ const PieChartContainer = styled(Box)({
 });
 
 const currYear = new Date().getFullYear();
-const yearsDropdown = getYearsInArray(currYear, currYear - 4, -1);
+const yearsDropdown = getYearsInArray(currYear, currYear - 9, -1);
 
 const GraphSection = (props: Props) => {
   const [year, setYear] = useState(currYear);
