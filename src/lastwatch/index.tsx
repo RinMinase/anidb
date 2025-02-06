@@ -4,6 +4,7 @@ import axios from "axios";
 
 import {
   Box,
+  CircularProgress,
   FormControl,
   Grid2 as Grid,
   InputLabel,
@@ -30,6 +31,7 @@ import {
 } from "@components";
 
 import { Data, Stats, statsDefaultValues } from "./types";
+import { Stack } from "@mui/system";
 
 const LastWatch = () => {
   const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
@@ -37,6 +39,8 @@ const LastWatch = () => {
   const [items, setItems] = useState(20);
   const [data, setData] = useState<Data>([]);
   const [stats, setStats] = useState<Stats>(statsDefaultValues);
+
+  const [isDataLoading, setDataLoading] = useState(false);
 
   const fetchData = async (count?: number) => {
     try {
@@ -51,12 +55,14 @@ const LastWatch = () => {
       toast.error("Failed");
     } finally {
       toggleLoader(false);
+      setDataLoading(false);
     }
   };
 
   const handleChangeItems = async (evt: any) => {
     const value: number = evt.target.value;
     setItems(value);
+    setDataLoading(true);
     await fetchData(value);
   };
 
@@ -108,20 +114,23 @@ const LastWatch = () => {
   );
 
   const HeaderControls = () => (
-    <FormControl sx={{ minWidth: 100 }} size="small">
-      <InputLabel id="last-watch-items">Items</InputLabel>
-      <Select
-        id="last-watch-items"
-        label="Items"
-        value={items}
-        onChange={handleChangeItems}
-      >
-        <MenuItem value={20}>20</MenuItem>
-        <MenuItem value={30}>30</MenuItem>
-        <MenuItem value={50}>50</MenuItem>
-        <MenuItem value={100}>100</MenuItem>
-      </Select>
-    </FormControl>
+    <Stack direction="row" spacing={2}>
+      {isDataLoading ? <CircularProgress /> : null}
+      <FormControl sx={{ minWidth: 100 }} size="small">
+        <InputLabel id="last-watch-items">Items</InputLabel>
+        <Select
+          id="last-watch-items"
+          label="Items"
+          value={items}
+          onChange={handleChangeItems}
+        >
+          <MenuItem value={20}>20</MenuItem>
+          <MenuItem value={30}>30</MenuItem>
+          <MenuItem value={50}>50</MenuItem>
+          <MenuItem value={100}>100</MenuItem>
+        </Select>
+      </FormControl>
+    </Stack>
   );
 
   useEffect(() => {
