@@ -107,7 +107,7 @@ const DashboardTile = (props: Props) => {
             {props.isLoading ? <Skeleton animation="wave" /> : props.value}
           </Typography>
         ) : (
-          <Typography variant="h4">
+          <Typography variant="h4" mt={1}>
             {props.isLoading ? <Skeleton animation="wave" /> : props.value}
           </Typography>
         )}
