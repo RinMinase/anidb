@@ -29,25 +29,14 @@ import {
   Table,
 } from "@components";
 
-import { Data, Stats } from "./types";
+import { Data, Stats, statsDefaultValues } from "./types";
 
 const LastWatch = () => {
   const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
 
   const [items, setItems] = useState(20);
   const [data, setData] = useState<Data>([]);
-  const [stats, setStats] = useState<Stats>({
-    totalEps: 0,
-    totalTitles: 0,
-    daysLastEntry: 0,
-    dateLastEntry: "",
-    daysOldestEntry: 0,
-    dateOldestEntry: "",
-    titlesPerWeek: 0,
-    coursPerWeek: 0,
-    epsPerWeek: 0,
-    epsPerDay: 0,
-  });
+  const [stats, setStats] = useState<Stats>(statsDefaultValues);
 
   const fetchData = async (count?: number) => {
     try {
@@ -78,17 +67,21 @@ const LastWatch = () => {
           <DashboardTile
             icon={<TotalCountIcon size={32} />}
             iconColor="#ff9800"
-            heading="Total Episodes"
-            value={stats.totalEps}
-            footer={`Total Titles: ${stats.totalTitles}`}
+            heading="Watch time last 2 weeks"
+            value={`${stats.hoursWatchedLastTwoWeeks} hour${
+              stats.hoursWatchedLastTwoWeeks > 1 ? "s" : ""
+            }`}
+            footer={`Total Episodes: ${stats.totalEps}`}
           />
         </Grid>
         <Grid size={{ xs: 12, sm: 6, lg: 3 }}>
           <DashboardTile
             icon={<LastCountIcon size={32} />}
             iconColor="#2196f3"
-            heading="Days since last entry"
-            value={stats.daysLastEntry}
+            heading="Time since last entry"
+            value={`${stats.daysLastEntry} day${
+              stats.daysLastEntry > 1 ? "s" : ""
+            }`}
             footer={`Days since oldest entry: ${stats.daysOldestEntry}`}
           />
         </Grid>

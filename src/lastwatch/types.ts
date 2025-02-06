@@ -18,15 +18,35 @@ export type Data = Array<{
 }>;
 
 export type Stats = {
-  dateLastEntry?: string;
-  daysLastEntry?: number;
-  dateOldestEntry?: string;
-  daysOldestEntry?: number;
-  totalEps?: number;
-  totalTitles?: number;
-  totalCours?: number;
-  titlesPerWeek?: number;
-  coursPerWeek?: number;
-  epsPerWeek?: number;
-  epsPerDay?: number;
+  dateLastEntry: string;
+  daysLastEntry: number;
+  dateOldestEntry: string;
+  daysOldestEntry: number;
+  totalEps: number;
+  totalTitles: number;
+  totalCours: number;
+  titlesPerWeek: number;
+  coursPerWeek: number;
+  epsPerWeek: number;
+  epsPerDay: number;
+  hoursWatchedAvgPerWeek: number;
+  hoursWatchedLastWeek: number;
+  hoursWatchedLastTwoWeeks: number;
+};
+
+export const statsDefaultValues: Stats = {
+  totalEps: 0,
+  totalTitles: 0,
+  totalCours: 0,
+  daysLastEntry: 0,
+  dateLastEntry: "",
+  daysOldestEntry: 0,
+  dateOldestEntry: "",
+  titlesPerWeek: 0,
+  coursPerWeek: 0,
+  epsPerWeek: 0,
+  epsPerDay: 0,
+  hoursWatchedAvgPerWeek: 0,
+  hoursWatchedLastWeek: 0,
+  hoursWatchedLastTwoWeeks: 0,
 };
