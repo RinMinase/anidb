@@ -78,6 +78,62 @@ const ManagementSection = (props: Props) => {
     }
   };
 
+  const handleImportPcSetups = async () => {
+    try {
+      setUploading(true);
+
+      const file = acceptedFiles[0];
+      const body = new FormData();
+      body.append("file", file);
+
+      const {
+        data: { data },
+      } = await axios.post("/pc/import", body, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+
+      setUploading(false);
+
+      const description = () => (
+        <>
+          <span>
+            <span>Components: {data.components.acceptedImports}&nbsp;</span>
+            <span>(out of {data.components.totalJsonEntries})</span>
+          </span>
+          <br />
+          <span>
+            <span>Infos: {data.infos.acceptedImports}&nbsp;</span>
+            <span>(out of {data.infos.totalJsonEntries})</span>
+          </span>
+          <br />
+          <span>
+            <span>Owners: {data.owners.acceptedImports}&nbsp;</span>
+            <span>(out of {data.owners.totalJsonEntries})</span>
+          </span>
+          <br />
+          <span>
+            <span>Setups: {data.setups.acceptedImports}&nbsp;</span>
+            <span>(out of {data.setups.totalJsonEntries})</span>
+          </span>
+          <br />
+        </>
+      );
+
+      toast.success("Success", {
+        dismissible: true,
+        duration: Infinity,
+        description,
+      });
+
+      props.reloadPageData();
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed");
+    } finally {
+      toggleLoader(false);
+    }
+  };
+
   return (
     <Grid container>
       <Grid size={{ md: 8 }} textAlign="center">
@@ -120,6 +176,15 @@ const ManagementSection = (props: Props) => {
             onClick={handleImport}
           >
             Import Groups
+          </Button>
+
+          <Button
+            variant="contained"
+            endIcon={<ImportIcon size={20} />}
+            disabled={!acceptedFiles.length || uploading}
+            onClick={handleImportPcSetups}
+          >
+            Import PC Setups
           </Button>
         </ImportContainer>
       </Grid>
