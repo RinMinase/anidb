@@ -14,9 +14,7 @@ import {
   Bookmark as CatalogsIcon,
   Database as DataManagementIcon,
   FileText as LogsIcon,
-  Headphones as AudioCodecIcon,
-  Video as VideoCodecIcon,
-  Users as GroupIcon,
+  Edit3 as AutofillsIcon,
   Box as PCComponentsIcon,
 } from "react-feather";
 
@@ -91,26 +89,9 @@ export const MenuItemManagement = (props: { onClick: () => void }) => (
       <ListItemIcon children={<LogsIcon size={18} strokeWidth={1.5} />} />
       Logs
     </MenuItem>
-    <Divider />
-    <MenuItem
-      component={"a" as any}
-      href="/audio-codecs"
-      onClick={props.onClick}
-    >
-      <ListItemIcon children={<AudioCodecIcon size={18} strokeWidth={1.5} />} />
-      Audio Codecs
-    </MenuItem>
-    <MenuItem
-      component={"a" as any}
-      href="/video-codecs"
-      onClick={props.onClick}
-    >
-      <ListItemIcon children={<VideoCodecIcon size={18} strokeWidth={1.5} />} />
-      Video Codecs
-    </MenuItem>
-    <MenuItem component={"a" as any} href="/groups" onClick={props.onClick}>
-      <ListItemIcon children={<GroupIcon size={18} strokeWidth={1.5} />} />
-      Groups
+    <MenuItem component={"a" as any} href="/autofills" onClick={props.onClick}>
+      <ListItemIcon children={<AutofillsIcon size={18} strokeWidth={1.5} />} />
+      Codecs & Groups
     </MenuItem>
   </>
 );
