@@ -1,7 +1,7 @@
-import { Box } from "@mui/material";
+import { Box, BoxProps } from "@mui/material";
 import { JSX } from "preact/jsx-runtime";
 
-export interface TabPanelProps {
+export interface TabPanelProps extends BoxProps {
   children?: JSX.Element;
   tabIndex: number;
   currentTab: number;
@@ -13,7 +13,7 @@ export const TabPanel = (props: TabPanelProps) => {
   if (currentTab !== tabIndex) return null;
 
   return (
-    <Box role="tabpanel" sx={{ p: 2 }} {...other}>
+    <Box role="tabpanel" p={2} {...other}>
       {children}
     </Box>
   );

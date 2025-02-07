@@ -40,9 +40,7 @@ const BucketSimAdd = async () => (await import("./bucket-sim/add")).default;
 
 const DataManagement = async () => (await import("./data-management")).default;
 const Logs = async () => (await import("./logs")).default;
-const Group = async () => (await import("./group")).default;
-const AudioCodec = async () => (await import("./audio-codec")).default;
-const VideoCodec = async () => (await import("./video-codec")).default;
+const Autofills = async () => (await import("./autofills")).default;
 
 const Rss = async () => (await import("./rss")).default;
 
@@ -92,9 +90,7 @@ const Routes = (props: Props) => (
 
     <AsyncRoute path="/data-management" getComponent={DataManagement} />
     <AsyncRoute path="/logs" getComponent={Logs} />
-    <AsyncRoute path="/groups" getComponent={Group} />
-    <AsyncRoute path="/audio-codecs" getComponent={AudioCodec} />
-    <AsyncRoute path="/video-codecs" getComponent={VideoCodec} />
+    <AsyncRoute path="/autofills" getComponent={Autofills} />
 
     <AsyncRoute path="/rss" getComponent={Rss} />
 

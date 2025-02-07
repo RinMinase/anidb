@@ -1,7 +1,7 @@
 import { useEffect, useState } from "preact/hooks";
 import { useForm } from "react-hook-form";
-import axios, { AxiosError } from "axios";
 import { toast } from "sonner";
+import axios, { AxiosError } from "axios";
 
 import {
   Backdrop,
@@ -27,7 +27,7 @@ import {
   ControlledField,
   Dialog,
   IconButton,
-  ModuleContainer,
+  removeBlankAttributes,
   Table,
 } from "@components";
 
@@ -44,7 +44,7 @@ const CustomDialog = styled(Paper)({
   maxHeight: "80vh",
 });
 
-const Group = () => {
+const VideoCodec = () => {
   const [isAddButtonLoading, setAddButtonLoading] = useState(false);
   const [isEditButtonLoading, setEditButtonLoading] = useState(false);
   const [isTableLoading, setTableLoading] = useState(true);
@@ -53,8 +53,8 @@ const Group = () => {
 
   const [data, setData] = useState<Data>([]);
   const [selectedData, setSelectedData] = useState<Item>({
-    uuid: "",
-    name: "",
+    id: "",
+    codec: "",
   });
 
   const {
@@ -75,14 +75,15 @@ const Group = () => {
   } = useForm<Form>({ resolver, mode: "onChange" });
 
   const fetchData = async () => {
-    setTableLoading(true);
-
     try {
       const {
         data: { data },
-      } = await axios.get("/groups");
+      } = await axios.get("/codecs/video");
 
       setData(() => data);
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed");
     } finally {
       setTableLoading(false);
     }
@@ -91,8 +92,11 @@ const Group = () => {
   const handleEditClick = (item: Item) => {
     setSelectedData(item);
 
-    editSetValue("name", item.name);
-    editTrigger("name");
+    editSetValue("codec", item.codec);
+    editTrigger("codec");
+
+    editSetValue("order", item.order || undefined);
+    editTrigger("order");
 
     setEditDialogOpen(true);
   };
@@ -101,8 +105,8 @@ const Group = () => {
     try {
       setEditButtonLoading(true);
 
-      const uuid = selectedData.uuid;
-      await axios.put(`/groups/${uuid}`, formdata);
+      const id = selectedData.id;
+      await axios.put(`/codecs/video/${id}`, removeBlankAttributes(formdata));
       toast.success("Success");
 
       setEditButtonLoading(false);
@@ -143,7 +147,7 @@ const Group = () => {
       setDeleteDialogOpen(false);
       setTableLoading(true);
 
-      await axios.delete(`/groups/${selectedData.uuid}`);
+      await axios.delete(`/codecs/video/${selectedData.id}`);
       toast.success("Success");
 
       await fetchData();
@@ -154,10 +158,10 @@ const Group = () => {
   };
 
   const handleSubmitForm = async (formdata: Form) => {
-    try {
-      setAddButtonLoading(true);
+    setAddButtonLoading(true);
 
-      await axios.post("/groups", formdata);
+    try {
+      await axios.post("/codecs/video", removeBlankAttributes(formdata));
       toast.success("Success");
 
       resetAddForm();
@@ -193,17 +197,26 @@ const Group = () => {
   }, []);
 
   return (
-    <ModuleContainer headerText="Groups">
+    <>
       <Grid container spacing={2}>
         <Grid size={{ xs: 12, sm: 5, md: 3 }}>
           <Stack spacing={2}>
             <ControlledField
-              name="name"
-              label="Group Name"
+              name="codec"
+              label="Video Codec Name"
               size="small"
               control={control}
-              error={!!errors.name}
-              helperText={errors.name?.message}
+              error={!!errors.codec}
+              helperText={errors.codec?.message}
+              disabled={isAddButtonLoading || isTableLoading}
+            />
+            <ControlledField
+              name="order"
+              label="Order"
+              size="small"
+              control={control}
+              error={!!errors.order}
+              helperText={errors.order?.message}
               disabled={isAddButtonLoading || isTableLoading}
             />
             <ButtonLoading
@@ -212,16 +225,37 @@ const Group = () => {
               onClick={handleSubmit(handleSubmitForm)}
               loading={isAddButtonLoading || isTableLoading}
             >
-              Add Group
+              Add Video Codec
             </ButtonLoading>
           </Stack>
         </Grid>
         <Grid size={{ xs: 12, sm: 7, md: 9 }}>
-          <Table.Container component={Paper}>
+          <Table.Container
+            component={Paper}
+            sx={{
+              maxHeight: {
+                xs: undefined,
+                /*
+                 * Calculation Description:
+                 * 48px - navbar
+                 * 48px - container padding
+                 * 49px - page heading
+                 * 48px - tab heading
+                 * 32px - tab spacing
+                 */
+                md: "calc(100vh - 48px - 48px - 49px - 48px - 32px)",
+              },
+              overflow: {
+                xs: undefined,
+                md: "scroll",
+              },
+            }}
+          >
             <Table.Element size="small" sx={{ minWidth: 650 }}>
               <Table.Head>
                 <Table.Row>
                   <Table.Cell>Name</Table.Cell>
+                  <Table.Cell>Order</Table.Cell>
                   <Table.Cell />
                 </Table.Row>
               </Table.Head>
@@ -229,8 +263,9 @@ const Group = () => {
               <Table.Body>
                 {!isTableLoading ? (
                   data.map((item) => (
-                    <Table.Row hover key={item.uuid}>
-                      <Table.Cell>{item.name}</Table.Cell>
+                    <Table.Row hover key={`codec-${item.id}`}>
+                      <Table.Cell>{item.codec}</Table.Cell>
+                      <Table.Cell>{item.order}</Table.Cell>
                       <Table.Cell sx={{ textAlign: "right" }}>
                         <IconButton
                           size="small"
@@ -258,7 +293,7 @@ const Group = () => {
       <Backdrop open={isEditDialogOpen}>
         <CustomDialog>
           <DialogTitle display="flex" justifyContent="space-between">
-            Edit Group Name
+            Edit Codec Name
             <IconButton
               disabled={isEditButtonLoading}
               onClick={() => setEditDialogOpen(false)}
@@ -268,12 +303,21 @@ const Group = () => {
           <DialogContent>
             <Stack spacing={2} sx={{ mt: 1 }}>
               <ControlledField
-                name="name"
-                label="Group Name"
+                name="codec"
+                label="Codec Name"
                 size="small"
                 control={editControl}
-                error={!!editErrors.name}
-                helperText={editErrors.name?.message}
+                error={!!editErrors.codec}
+                helperText={editErrors.codec?.message}
+                disabled={isEditButtonLoading}
+              />
+              <ControlledField
+                name="order"
+                label="Order"
+                size="small"
+                control={editControl}
+                error={!!editErrors.order}
+                helperText={editErrors.order?.message}
                 disabled={isEditButtonLoading}
               />
 
@@ -297,8 +341,8 @@ const Group = () => {
         open={isDeleteDialogOpen}
         setOpen={setDeleteDialogOpen}
       />
-    </ModuleContainer>
+    </>
   );
 };
 
-export default Group;
+export default VideoCodec;

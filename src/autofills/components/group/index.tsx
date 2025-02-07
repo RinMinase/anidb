@@ -27,8 +27,6 @@ import {
   ControlledField,
   Dialog,
   IconButton,
-  ModuleContainer,
-  removeBlankAttributes,
   Table,
 } from "@components";
 
@@ -45,7 +43,7 @@ const CustomDialog = styled(Paper)({
   maxHeight: "80vh",
 });
 
-const AudioCodec = () => {
+const Group = () => {
   const [isAddButtonLoading, setAddButtonLoading] = useState(false);
   const [isEditButtonLoading, setEditButtonLoading] = useState(false);
   const [isTableLoading, setTableLoading] = useState(true);
@@ -54,8 +52,8 @@ const AudioCodec = () => {
 
   const [data, setData] = useState<Data>([]);
   const [selectedData, setSelectedData] = useState<Item>({
-    id: "",
-    codec: "",
+    uuid: "",
+    name: "",
   });
 
   const {
@@ -81,12 +79,9 @@ const AudioCodec = () => {
     try {
       const {
         data: { data },
-      } = await axios.get("/codecs/audio");
+      } = await axios.get("/groups");
 
       setData(() => data);
-    } catch (err) {
-      console.error(err);
-      toast.error("Failed");
     } finally {
       setTableLoading(false);
     }
@@ -95,11 +90,8 @@ const AudioCodec = () => {
   const handleEditClick = (item: Item) => {
     setSelectedData(item);
 
-    editSetValue("codec", item.codec);
-    editTrigger("codec");
-
-    editSetValue("order", item.order || undefined);
-    editTrigger("order");
+    editSetValue("name", item.name);
+    editTrigger("name");
 
     setEditDialogOpen(true);
   };
@@ -108,8 +100,8 @@ const AudioCodec = () => {
     try {
       setEditButtonLoading(true);
 
-      const id = selectedData.id;
-      await axios.put(`/codecs/audio/${id}`, removeBlankAttributes(formdata));
+      const uuid = selectedData.uuid;
+      await axios.put(`/groups/${uuid}`, formdata);
       toast.success("Success");
 
       setEditButtonLoading(false);
@@ -150,7 +142,7 @@ const AudioCodec = () => {
       setDeleteDialogOpen(false);
       setTableLoading(true);
 
-      await axios.delete(`/codecs/audio/${selectedData.id}`);
+      await axios.delete(`/groups/${selectedData.uuid}`);
       toast.success("Success");
 
       await fetchData();
@@ -164,7 +156,7 @@ const AudioCodec = () => {
     try {
       setAddButtonLoading(true);
 
-      await axios.post("/codecs/audio", removeBlankAttributes(formdata));
+      await axios.post("/groups", formdata);
       toast.success("Success");
 
       resetAddForm();
@@ -200,26 +192,17 @@ const AudioCodec = () => {
   }, []);
 
   return (
-    <ModuleContainer headerText="Audio Codecs">
+    <>
       <Grid container spacing={2}>
         <Grid size={{ xs: 12, sm: 5, md: 3 }}>
           <Stack spacing={2}>
             <ControlledField
-              name="codec"
-              label="Codec Name"
+              name="name"
+              label="Group Name"
               size="small"
               control={control}
-              error={!!errors.codec}
-              helperText={errors.codec?.message}
-              disabled={isAddButtonLoading || isTableLoading}
-            />
-            <ControlledField
-              name="order"
-              label="Order"
-              size="small"
-              control={control}
-              error={!!errors.order}
-              helperText={errors.order?.message}
+              error={!!errors.name}
+              helperText={errors.name?.message}
               disabled={isAddButtonLoading || isTableLoading}
             />
             <ButtonLoading
@@ -228,17 +211,36 @@ const AudioCodec = () => {
               onClick={handleSubmit(handleSubmitForm)}
               loading={isAddButtonLoading || isTableLoading}
             >
-              Add Audio Codec
+              Add Group
             </ButtonLoading>
           </Stack>
         </Grid>
         <Grid size={{ xs: 12, sm: 7, md: 9 }}>
-          <Table.Container component={Paper}>
+          <Table.Container
+            component={Paper}
+            sx={{
+              maxHeight: {
+                xs: undefined,
+                /*
+                 * Calculation Description:
+                 * 48px - navbar
+                 * 48px - container padding
+                 * 49px - page heading
+                 * 48px - tab heading
+                 * 32px - tab spacing
+                 */
+                md: "calc(100vh - 48px - 48px - 49px - 48px - 32px)",
+              },
+              overflow: {
+                xs: undefined,
+                md: "scroll",
+              },
+            }}
+          >
             <Table.Element size="small" sx={{ minWidth: 650 }}>
               <Table.Head>
                 <Table.Row>
                   <Table.Cell>Name</Table.Cell>
-                  <Table.Cell>Order</Table.Cell>
                   <Table.Cell />
                 </Table.Row>
               </Table.Head>
@@ -246,9 +248,8 @@ const AudioCodec = () => {
               <Table.Body>
                 {!isTableLoading ? (
                   data.map((item) => (
-                    <Table.Row hover key={`codec-${item.id}`}>
-                      <Table.Cell>{item.codec}</Table.Cell>
-                      <Table.Cell>{item.order}</Table.Cell>
+                    <Table.Row hover key={item.uuid}>
+                      <Table.Cell>{item.name}</Table.Cell>
                       <Table.Cell sx={{ textAlign: "right" }}>
                         <IconButton
                           size="small"
@@ -276,7 +277,7 @@ const AudioCodec = () => {
       <Backdrop open={isEditDialogOpen}>
         <CustomDialog>
           <DialogTitle display="flex" justifyContent="space-between">
-            Edit Codec Name
+            Edit Group Name
             <IconButton
               disabled={isEditButtonLoading}
               onClick={() => setEditDialogOpen(false)}
@@ -286,21 +287,12 @@ const AudioCodec = () => {
           <DialogContent>
             <Stack spacing={2} sx={{ mt: 1 }}>
               <ControlledField
-                name="codec"
-                label="Codec Name"
+                name="name"
+                label="Group Name"
                 size="small"
                 control={editControl}
-                error={!!editErrors.codec}
-                helperText={editErrors.codec?.message}
-                disabled={isEditButtonLoading}
-              />
-              <ControlledField
-                name="order"
-                label="Order"
-                size="small"
-                control={editControl}
-                error={!!editErrors.order}
-                helperText={editErrors.order?.message}
+                error={!!editErrors.name}
+                helperText={editErrors.name?.message}
                 disabled={isEditButtonLoading}
               />
 
@@ -324,8 +316,8 @@ const AudioCodec = () => {
         open={isDeleteDialogOpen}
         setOpen={setDeleteDialogOpen}
       />
-    </ModuleContainer>
+    </>
   );
 };
 
-export default AudioCodec;
+export default Group;

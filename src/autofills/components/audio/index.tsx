@@ -1,7 +1,7 @@
 import { useEffect, useState } from "preact/hooks";
 import { useForm } from "react-hook-form";
-import { toast } from "sonner";
 import axios, { AxiosError } from "axios";
+import { toast } from "sonner";
 
 import {
   Backdrop,
@@ -27,7 +27,6 @@ import {
   ControlledField,
   Dialog,
   IconButton,
-  ModuleContainer,
   removeBlankAttributes,
   Table,
 } from "@components";
@@ -45,7 +44,7 @@ const CustomDialog = styled(Paper)({
   maxHeight: "80vh",
 });
 
-const VideoCodec = () => {
+const AudioCodec = () => {
   const [isAddButtonLoading, setAddButtonLoading] = useState(false);
   const [isEditButtonLoading, setEditButtonLoading] = useState(false);
   const [isTableLoading, setTableLoading] = useState(true);
@@ -76,10 +75,12 @@ const VideoCodec = () => {
   } = useForm<Form>({ resolver, mode: "onChange" });
 
   const fetchData = async () => {
+    setTableLoading(true);
+
     try {
       const {
         data: { data },
-      } = await axios.get("/codecs/video");
+      } = await axios.get("/codecs/audio");
 
       setData(() => data);
     } catch (err) {
@@ -107,7 +108,7 @@ const VideoCodec = () => {
       setEditButtonLoading(true);
 
       const id = selectedData.id;
-      await axios.put(`/codecs/video/${id}`, removeBlankAttributes(formdata));
+      await axios.put(`/codecs/audio/${id}`, removeBlankAttributes(formdata));
       toast.success("Success");
 
       setEditButtonLoading(false);
@@ -148,7 +149,7 @@ const VideoCodec = () => {
       setDeleteDialogOpen(false);
       setTableLoading(true);
 
-      await axios.delete(`/codecs/video/${selectedData.id}`);
+      await axios.delete(`/codecs/audio/${selectedData.id}`);
       toast.success("Success");
 
       await fetchData();
@@ -159,10 +160,10 @@ const VideoCodec = () => {
   };
 
   const handleSubmitForm = async (formdata: Form) => {
-    setAddButtonLoading(true);
-
     try {
-      await axios.post("/codecs/video", removeBlankAttributes(formdata));
+      setAddButtonLoading(true);
+
+      await axios.post("/codecs/audio", removeBlankAttributes(formdata));
       toast.success("Success");
 
       resetAddForm();
@@ -198,13 +199,13 @@ const VideoCodec = () => {
   }, []);
 
   return (
-    <ModuleContainer headerText="Video Codecs">
+    <>
       <Grid container spacing={2}>
         <Grid size={{ xs: 12, sm: 5, md: 3 }}>
           <Stack spacing={2}>
             <ControlledField
               name="codec"
-              label="Codec Name"
+              label="Audio Codec Name"
               size="small"
               control={control}
               error={!!errors.codec}
@@ -226,12 +227,32 @@ const VideoCodec = () => {
               onClick={handleSubmit(handleSubmitForm)}
               loading={isAddButtonLoading || isTableLoading}
             >
-              Add Video Codec
+              Add Audio Codec
             </ButtonLoading>
           </Stack>
         </Grid>
         <Grid size={{ xs: 12, sm: 7, md: 9 }}>
-          <Table.Container component={Paper}>
+          <Table.Container
+            component={Paper}
+            sx={{
+              maxHeight: {
+                xs: undefined,
+                /*
+                 * Calculation Description:
+                 * 48px - navbar
+                 * 48px - container padding
+                 * 49px - page heading
+                 * 48px - tab heading
+                 * 32px - tab spacing
+                 */
+                md: "calc(100vh - 48px - 48px - 49px - 48px - 32px)",
+              },
+              overflow: {
+                xs: undefined,
+                md: "scroll",
+              },
+            }}
+          >
             <Table.Element size="small" sx={{ minWidth: 650 }}>
               <Table.Head>
                 <Table.Row>
@@ -322,8 +343,8 @@ const VideoCodec = () => {
         open={isDeleteDialogOpen}
         setOpen={setDeleteDialogOpen}
       />
-    </ModuleContainer>
+    </>
   );
 };
 
-export default VideoCodec;
+export default AudioCodec;
