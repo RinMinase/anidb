@@ -29,7 +29,7 @@ const Autofills = () => {
   const [currentTab, setCurrentTab] = useState(0);
 
   return (
-    <ModuleContainer headerText="Autofill Contents">
+    <ModuleContainer headerText="Codecs & Groups">
       <Tabs
         value={currentTab}
         onChange={(e, tab: number) => setCurrentTab(tab)}
