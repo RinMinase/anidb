@@ -45,7 +45,7 @@ export const chartQualityOptions: ChartOptions = {
 
 // Ratings
 export const chartRatingsInitialData = {
-  labels: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+  labels: ["0", "1", "2", "3", "4", "5"],
   datasets: [
     {
       data: [],
@@ -53,15 +53,10 @@ export const chartRatingsInitialData = {
       backgroundColor: [
         grey[500],
         red[800],
-        red[500],
-        red[300],
-        orange[800],
+        red[400],
         orange[500],
-        orange[300],
         indigo[400],
-        indigo[800],
         green[500],
-        green[800],
       ],
     },
   ],
