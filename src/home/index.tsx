@@ -15,13 +15,11 @@ import {
   Paper,
   Rating,
   styled,
-  Tooltip,
   useMediaQuery,
   useTheme,
 } from "@mui/material";
 
-import RatingFilledIcon from "@components/icons/heart-filled.svg?react";
-import RatingEmptyIcon from "@components/icons/heart.svg?react";
+import RatingIcon from "@components/icons/heart-filled.svg?react";
 
 import {
   BadgeMini,
@@ -35,19 +33,23 @@ import {
 
 import { Data, TableHeadings } from "./types";
 
-const StyledRating = styled(Rating)(({ value }) => ({
-  "& .MuiRating-decimal": {
-    marginRight: 2,
+const StyledRating = styled(Rating)(({ theme, value }) => ({
+  display: "flex",
+  "& .MuiRating-icon": {
+    width: 18,
+    marginRight: 1,
   },
   "& .MuiRating-iconFilled": {
-    width: 14,
     fill: value
       ? value > 3.75
         ? "#28a745"
         : value > 3
         ? "#1e90ff"
         : "#e57373"
-      : "",
+      : theme.palette.divider,
+  },
+  "& .MuiRating-iconEmpty svg": {
+    fill: theme.palette.action.disabled,
   },
 }));
 
@@ -63,7 +65,13 @@ const headings: TableHeadings = [
   },
   { id: "release", label: "Release", minWidth: 130 },
   { id: "encoder", label: "Encoder" },
-  { id: "rating", label: "Rating", hideOnMobile: true },
+  {
+    id: "rating",
+    label: "Rating",
+    minWidth: 130,
+    maxWidth: 130,
+    hideOnMobile: true,
+  },
 ];
 
 const searchAPI = (query: string, column: string, order: "asc" | "desc") => {
@@ -247,7 +255,11 @@ const Home = () => {
                 return (
                   <Table.Cell
                     key={heading.id}
-                    sx={{ minWidth: heading.minWidth ?? undefined }}
+                    sx={{
+                      minWidth: heading.minWidth ?? undefined,
+                      width: heading.maxWidth ?? undefined,
+                      maxWidth: heading.maxWidth ?? undefined,
+                    }}
                   >
                     {heading.sortable ? (
                       <Table.SortHeader
@@ -323,17 +335,12 @@ const Home = () => {
 
                   {!isMobile && (
                     <Table.Cell>
-                      <Tooltip title={`${item.rating} / 5`} placement="top">
-                        <Box>
-                          <StyledRating
-                            value={item.rating}
-                            precision={0.25}
-                            icon={<RatingFilledIcon width={14} />}
-                            emptyIcon={<RatingEmptyIcon width={14} />}
-                            readOnly
-                          />
-                        </Box>
-                      </Tooltip>
+                      <StyledRating
+                        value={item.rating}
+                        icon={<RatingIcon width={14} />}
+                        emptyIcon={<RatingIcon width={14} />}
+                        readOnly
+                      />
                     </Table.Cell>
                   )}
                 </Table.Row>

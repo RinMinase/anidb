@@ -136,6 +136,7 @@ export type TableHeadings = Array<{
   id: string;
   label: string;
   minWidth?: number;
+  maxWidth?: number;
   hideOnMobile?: boolean;
   sortable?: boolean;
 }>;
