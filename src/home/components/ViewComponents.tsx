@@ -107,9 +107,9 @@ const ImageBoxRemove = styled(IconButton)(({ theme }) => ({
   },
 }));
 
-const TotalStyledRating = styled(Rating)(({ value }) => ({
-  "& .MuiRating-decimal": {
-    marginRight: 2,
+const TotalStyledRating = styled(Rating)(({ theme, value }) => ({
+  "& .MuiRating-icon": {
+    marginRight: 4,
   },
   "& .MuiRating-iconFilled": {
     width: 28,
@@ -121,16 +121,21 @@ const TotalStyledRating = styled(Rating)(({ value }) => ({
         : "#e57373"
       : "",
   },
+  "& .MuiRating-iconEmpty svg": {
+    fill: theme.palette.action.disabled,
+  },
 }));
 
 const StyledRating = styled(Rating)(({ theme, value }) => ({
-  "& .MuiRating-iconFilled": {
+  "& .MuiRating-icon": {
     width: 18,
     marginRight: 2,
+  },
+  "& .MuiRating-iconFilled": {
     fill: value
-      ? value >= 8
+      ? value > 4
         ? "#28a745 !important"
-        : value >= 6
+        : value >= 3
         ? "#1e90ff !important"
         : "#e57373 !important"
       : "",
@@ -159,9 +164,9 @@ const RatingIconContainer = (props: IconContainerProps) => {
 
   return (
     <span {...other}>
-      {value >= 8 ? (
+      {value > 4 ? (
         <IconRateHigh />
-      ) : value >= 6 ? (
+      ) : value >= 3 ? (
         <IconRateNormal />
       ) : (
         <IconRateLow />
