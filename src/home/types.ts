@@ -26,7 +26,6 @@ export type Item = {
   release?: string;
   remarks?: string | null;
   rating: number;
-  ratingOver5: number;
   genres: Array<GenreData>;
   watcher: WatcherData;
 };

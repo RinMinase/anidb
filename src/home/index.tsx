@@ -323,10 +323,10 @@ const Home = () => {
 
                   {!isMobile && (
                     <Table.Cell>
-                      <Tooltip title={`${item.rating} / 10`} placement="top">
+                      <Tooltip title={`${item.rating} / 5`} placement="top">
                         <Box>
                           <StyledRating
-                            value={item.ratingOver5}
+                            value={item.rating}
                             precision={0.25}
                             icon={<RatingFilledIcon width={14} />}
                             emptyIcon={<RatingEmptyIcon width={14} />}
