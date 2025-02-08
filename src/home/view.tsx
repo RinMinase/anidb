@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from "preact/hooks";
 import { route } from "preact-router";
-import axios from "axios";
-import contrast from "font-color-contrast";
 import { debounce } from "lodash-es";
 import { toast } from "sonner";
+import axios from "axios";
+import contrast from "font-color-contrast";
 
 import {
   Box,
@@ -23,8 +23,9 @@ import {
   Trash as DeleteIcon,
 } from "react-feather";
 
-import TotalRatingFilledIcon from "@components/icons/heart-filled.svg?react";
-import TotalRatingEmptyIcon from "@components/icons/heart.svg?react";
+import TotalRatingIcon from "@components/icons/heart-filled.svg?react";
+
+import { roundHalfDown } from "@components/functions";
 
 import {
   Button,
@@ -34,10 +35,10 @@ import {
   ModuleContainer,
 } from "@components";
 
+import { FullData } from "./types";
 import ViewEntryImage from "./components/ViewEntryImage";
 import ViewRewatchDialog from "./components/ViewRewatchDialog";
 import ViewOffquelDialog from "./components/ViewOffquelDialog";
-import { FullData } from "./types";
 
 import {
   Header,
@@ -55,6 +56,8 @@ type Props = {
     id: string;
   };
 };
+
+type RatingType = "audio" | "enjoyment" | "graphics" | "plot";
 
 const HomeView = (props: Props) => {
   const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
@@ -77,21 +80,14 @@ const HomeView = (props: Props) => {
   });
 
   // Temporary handlers due to MUI6 Rating issue
-  const handleHover = (
-    type: "audio" | "enjoyment" | "graphics" | "plot",
-    value: number | null,
-  ) => {
+  const handleHover = (type: RatingType, value: number | null) => {
     setHoverRatings((prev) => ({
       ...prev,
       [type]: value && value !== -1 ? value : 0,
     }));
   };
 
-  const debouncedOnHover = debounce(
-    (type: "audio" | "enjoyment" | "graphics" | "plot", value: number | null) =>
-      handleHover(type, value),
-    200,
-  );
+  const debouncedOnHover = debounce(handleHover, 200);
 
   const [hoverRatings, setHoverRatings] = useState({
     audio: 0,
@@ -101,8 +97,10 @@ const HomeView = (props: Props) => {
   });
   // Temporary handlers end here
 
-  const handleChangeRating = async (type: string, value: number | null) => {
+  const handleChangeRating = async (type: RatingType, value: number | null) => {
     const { audio, enjoyment, graphics, plot } = ratings;
+
+    // Proceed with API call
     let total = 0;
 
     if (type === "audio") {
@@ -115,26 +113,35 @@ const HomeView = (props: Props) => {
       total = (value || 0) + audio + enjoyment + graphics;
     }
 
-    const average = total / 4;
+    // Handle clearing of data on clicking the same position
+    const clearCurrValue = ratings[type] === value;
+
+    if (clearCurrValue) {
+      total -= value ?? 0;
+    }
+
+    const average = roundHalfDown(total / 4);
 
     setRatings((prev) => ({
       ...prev,
       average,
-      [type]: value,
+      [type]: clearCurrValue ? 0 : value,
     }));
 
     await axios.put(`/entries/ratings/${props.matches?.id}`, {
-      [type]: value,
+      ...ratings,
+      [type]: clearCurrValue ? 0 : value,
     });
   };
+
+  const debouncedChangeRating = debounce(handleChangeRating, 25);
 
   const renderTotalRating = () => (
     <Box textAlign="center">
       <TotalStyledRating
-        value={ratings.average ? ratings.average / 2 : 0}
-        precision={0.25}
-        icon={<TotalRatingFilledIcon width={28} />}
-        emptyIcon={<TotalRatingEmptyIcon width={28} />}
+        value={ratings.average ?? 0}
+        icon={<TotalRatingIcon width={28} />}
+        emptyIcon={<TotalRatingIcon width={28} />}
         readOnly
       />
       <Typography>Rating: {ratings.average}</Typography>
@@ -142,83 +149,79 @@ const HomeView = (props: Props) => {
   );
 
   const renderIndividualRatings = () => (
-    <Stack spacing={1}>
-      <Box textAlign="center">
-        <Typography variant="subtitle2" gutterBottom>
+    <Stack spacing={1} textAlign="center">
+      <Stack direction="row" spacing={2} justifyContent="center">
+        <Typography variant="subtitle2" width="75px">
           Audio
         </Typography>
         <StyledRating
           value={ratings.audio}
           IconContainerComponent={RatingIconContainer}
-          max={10}
+          max={5}
           // onChange={(e: any, value: number | null) => {
           //   handleChangeRating("audio", value);
           // }}
           onChangeActive={(e: any, value: number | null) =>
             debouncedOnHover("audio", value)
           }
-          onClick={() => {
-            handleChangeRating("audio", hoverRatings.audio);
-          }}
+          onClick={() => debouncedChangeRating("audio", hoverRatings.audio)}
         />
-      </Box>
-      <Box textAlign="center">
-        <Typography variant="subtitle2" gutterBottom>
+      </Stack>
+      <Stack direction="row" spacing={2} justifyContent="center">
+        <Typography variant="subtitle2" width="75px">
           Enjoyment
         </Typography>
         <StyledRating
           value={ratings.enjoyment}
           IconContainerComponent={RatingIconContainer}
-          max={10}
+          max={5}
           // onChange={(e: any, value: number | null) => {
           //   handleChangeRating("enjoyment", value);
           // }}
           onChangeActive={(e: any, value: number | null) =>
             debouncedOnHover("enjoyment", value)
           }
-          onClick={() => {
-            handleChangeRating("enjoyment", hoverRatings.enjoyment);
-          }}
+          onClick={() =>
+            debouncedChangeRating("enjoyment", hoverRatings.enjoyment)
+          }
         />
-      </Box>
-      <Box textAlign="center">
-        <Typography variant="subtitle2" gutterBottom>
+      </Stack>
+      <Stack direction="row" spacing={2} justifyContent="center">
+        <Typography variant="subtitle2" width="75px">
           Graphics
         </Typography>
         <StyledRating
           value={ratings.graphics}
           IconContainerComponent={RatingIconContainer}
-          max={10}
+          max={5}
           // onChange={(e: any, value: number | null) => {
           //   handleChangeRating("graphics", value);
           // }}
           onChangeActive={(e: any, value: number | null) =>
             debouncedOnHover("graphics", value)
           }
-          onClick={() => {
-            handleChangeRating("graphics", hoverRatings.graphics);
-          }}
+          onClick={() =>
+            debouncedChangeRating("graphics", hoverRatings.graphics)
+          }
         />
-      </Box>
-      <Box textAlign="center">
-        <Typography variant="subtitle2" gutterBottom>
+      </Stack>
+      <Stack direction="row" spacing={2} justifyContent="center">
+        <Typography variant="subtitle2" width="75px">
           Plot
         </Typography>
         <StyledRating
           value={ratings.plot}
           IconContainerComponent={RatingIconContainer}
-          max={10}
+          max={5}
           // onChange={(e: any, value: number | null) => {
           //   handleChangeRating("plot", value);
           // }}
           onChangeActive={(e: any, value: number | null) =>
             debouncedOnHover("plot", value)
           }
-          onClick={() => {
-            handleChangeRating("plot", hoverRatings.plot);
-          }}
+          onClick={() => debouncedChangeRating("plot", hoverRatings.plot)}
         />
-      </Box>
+      </Stack>
     </Stack>
   );
 
