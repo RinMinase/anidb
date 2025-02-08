@@ -193,20 +193,18 @@ const SearchTable = (props: Props) => {
               width: "100%",
               display: "inline-block",
               paddingRight: !props.data[index].rating ? "12px" : undefined,
-              fontWeight: props.data[index].rating > 7.5 ? "bold" : undefined,
-              fontSize: props.data[index].rating > 7.5 ? "13px" : "11px",
+              fontWeight: props.data[index].rating >= 4 ? "bold" : undefined,
+              fontSize: props.data[index].rating >= 4 ? "13px" : "11px",
               color: !props.data[index].rating
-                ? "#9E9E9E"
-                : props.data[index].rating > 7.5
+                ? "#9e9e9e"
+                : props.data[index].rating > 4
                 ? "#28a745"
-                : props.data[index].rating > 6
+                : props.data[index].rating >= 3
                 ? "#1e90ff"
                 : "#e57373",
             }}
           >
-            {props.data[index].rating
-              ? `${props.data[index].rating} / 10`
-              : "-"}
+            {props.data[index].rating ? `${props.data[index].rating} / 5` : "-"}
           </p>
         </td>
       </tr>
