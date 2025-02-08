@@ -128,8 +128,8 @@ const TotalStyledRating = styled(Rating)(({ theme, value }) => ({
 
 const StyledRating = styled(Rating)(({ theme, value }) => ({
   "& .MuiRating-icon": {
-    width: 18,
-    marginRight: 2,
+    width: 21,
+    marginRight: 4,
   },
   "& .MuiRating-iconFilled": {
     fill: value
@@ -141,7 +141,6 @@ const StyledRating = styled(Rating)(({ theme, value }) => ({
       : "",
   },
   "& .MuiRating-iconEmpty svg": {
-    width: 18,
     fill: theme.palette.action.disabled,
   },
 }));
