@@ -28,6 +28,7 @@ import {
   chartQualityOptions,
   chartRatingsInitialData,
   chartRatingsOptions,
+  chartRatingsPluginTextSplitter,
   chartSeasonsInitialData,
   chartSeasonsOptions,
   chartYearInitialData,
@@ -128,7 +129,7 @@ const GraphSection = (props: Props) => {
 
       chartRatings = new Chart(ctx, {
         type: "bar",
-        plugins: [ChartDataLabels],
+        plugins: [ChartDataLabels, chartRatingsPluginTextSplitter],
         options: chartRatingsOptions,
         data: chartRatingsInitialData,
       });

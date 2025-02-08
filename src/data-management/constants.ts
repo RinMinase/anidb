@@ -1,5 +1,5 @@
 import { grey, red, orange, indigo, green } from "@mui/material/colors";
-import { ChartOptions } from "chart.js";
+import { ChartOptions, Plugin } from "chart.js";
 
 // Quality
 export const chartQualityInitialData = {
@@ -45,7 +45,7 @@ export const chartQualityOptions: ChartOptions = {
 
 // Ratings
 export const chartRatingsInitialData = {
-  labels: ["0", "1", "2", "3", "4", "5"],
+  labels: ["0\nN/A", "1\nTrash", "2\nJunk", "3\nMeh", "4\nWorthy", "5\nWicked"],
   datasets: [
     {
       data: [],
@@ -66,6 +66,12 @@ export const chartRatingsOptions: ChartOptions = {
   aspectRatio: 1.5,
   hover: { mode: null as any },
   scales: {
+    x: {
+      ticks: {
+        maxRotation: 0,
+        minRotation: 0,
+      },
+    },
     y: {
       grace: "20%",
     },
@@ -79,6 +85,17 @@ export const chartRatingsOptions: ChartOptions = {
     },
     legend: { display: false },
     tooltip: { enabled: false },
+  },
+};
+
+export const chartRatingsPluginTextSplitter: Plugin = {
+  id: "ChartRatingsPluginTextSplitter",
+  beforeInit: (chart) => {
+    (chart.data.labels as any[]).forEach((el, id, arr) => {
+      if (/\n/.test(el)) {
+        arr[id] = el.split(/\n/);
+      }
+    });
   },
 };
 
