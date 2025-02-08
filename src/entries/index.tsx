@@ -182,13 +182,13 @@ const Entries = () => {
               width: "100%",
               display: "inline-block",
               paddingRight: !data[index].rating ? "12px" : undefined,
-              fontWeight: data[index].rating > 7.5 ? "bold" : undefined,
-              fontSize: data[index].rating > 7.5 ? "13px" : "11px",
+              fontWeight: data[index].rating >= 4 ? "bold" : undefined,
+              fontSize: data[index].rating >= 4 ? "13px" : "11px",
               color: !data[index].rating
-                ? "#9E9E9E"
-                : data[index].rating > 7.5
+                ? "#9e9e9e"
+                : data[index].rating > 4
                 ? "#28a745"
-                : data[index].rating > 6
+                : data[index].rating >= 3
                 ? "#1e90ff"
                 : "#e57373",
             }}
