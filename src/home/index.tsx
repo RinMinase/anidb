@@ -41,9 +41,9 @@ const StyledRating = styled(Rating)(({ theme, value }) => ({
   },
   "& .MuiRating-iconFilled": {
     fill: value
-      ? value > 3.75
+      ? value > 4
         ? "#28a745"
-        : value > 3
+        : value >= 3
         ? "#1e90ff"
         : "#e57373"
       : theme.palette.divider,
