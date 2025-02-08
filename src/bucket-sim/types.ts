@@ -1,3 +1,5 @@
+import { Stats } from "src/by-name/types";
+
 export type Sims = Array<{
   uuid: string;
   description?: string;
@@ -19,3 +21,5 @@ export type Item = {
   bucketColor?: string;
   progressColor?: "success" | "error" | "warning";
 };
+
+export type ByNameData = Stats;

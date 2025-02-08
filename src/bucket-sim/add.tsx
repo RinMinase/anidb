@@ -51,7 +51,7 @@ import {
 } from "./_components";
 
 import { defaultValues, Form, resolver } from "./validation";
-import { Data, Item } from "./types";
+import { ByNameData, Data, Item } from "./types";
 
 type Props = {
   matches?: {
@@ -66,6 +66,8 @@ const BucketSimAdd = (props: Props) => {
   const [isSaveLoading, setSaveLoading] = useState(false);
   const [previewData, setPreviewData] = useState<Data>([]);
   const [isPreviewLoading, setPreviewLoading] = useState(false);
+
+  const [byNameData, setByNameData] = useState<ByNameData>([]);
 
   const {
     control,
@@ -85,45 +87,56 @@ const BucketSimAdd = (props: Props) => {
     name: "buckets",
   });
 
+  const fetchBucketSim = async () => {
+    if (props.matches?.id) {
+      const {
+        data: {
+          data,
+          stats: { description },
+        },
+      } = await axios.get(`/bucket-sims/${props.matches.id}`);
+
+      const formData = data.slice(1).map((item: Item) => ({
+        from: item.from,
+        to: item.to,
+        size: item.rawTotal ? Math.round(item.rawTotal / FILESIZES.TB) : 0,
+      }));
+
+      const buckets: Data = data.map((item: Item) => {
+        const { percent } = item;
+
+        let bucketColor: string = green[700];
+        let progressColor = "success";
+
+        if (percent > 90) {
+          bucketColor = red[700];
+          progressColor = "error";
+        } else if (percent > 80) {
+          bucketColor = orange[700];
+          progressColor = "warning";
+        }
+
+        return { ...item, bucketColor, progressColor };
+      });
+
+      replace([...formData]);
+      setValue("description", description);
+      setPreviewData(() => buckets);
+    }
+  };
+
+  const fetchByName = async () => {
+    const {
+      data: { data },
+    } = await axios.get(`/entries/by-name`);
+
+    setByNameData(data);
+  };
+
   const fetchData = async () => {
     try {
-      if (props.matches?.id) {
-        toggleLoader(true);
-
-        const {
-          data: {
-            data,
-            stats: { description },
-          },
-        } = await axios.get(`/bucket-sims/${props.matches.id}`);
-
-        const formData = data.slice(1).map((item: Item) => ({
-          from: item.from,
-          to: item.to,
-          size: item.rawTotal ? Math.round(item.rawTotal / FILESIZES.TB) : 0,
-        }));
-
-        const buckets: Data = data.map((item: Item) => {
-          const { percent } = item;
-
-          let bucketColor: string = green[700];
-          let progressColor = "success";
-
-          if (percent > 90) {
-            bucketColor = red[700];
-            progressColor = "error";
-          } else if (percent > 80) {
-            bucketColor = orange[700];
-            progressColor = "warning";
-          }
-
-          return { ...item, bucketColor, progressColor };
-        });
-
-        replace([...formData]);
-        setValue("description", description);
-        setPreviewData(() => buckets);
-      }
+      toggleLoader(true);
+      await Promise.all([fetchBucketSim(), fetchByName()]);
     } catch (err) {
       console.error(err);
       toast.error("Failed");
@@ -352,110 +365,143 @@ const BucketSimAdd = (props: Props) => {
             </Grid>
           </DescriptionContainer>
 
-          <Table.Container component={Paper}>
-            <Table.Element>
-              <Table.Body>
-                {fields.map((field, index) => (
-                  <Table.Row key={field.id}>
-                    <CustomCell>
-                      <CellContainer>
-                        <CellLabel>From:</CellLabel>
-                        <CellField
-                          variant="outlined"
-                          size="small"
-                          disabled={isSaveLoading}
-                          error={
-                            errors.buckets && !!errors.buckets[index]?.from
-                          }
-                          helperText={
-                            errors.buckets &&
-                            errors.buckets[index]?.from?.message
-                          }
-                          onInput={() => trigger(`buckets.${index}.to`)}
-                          {...register(`buckets.${index}.from`)}
-                        />
-                      </CellContainer>
-                    </CustomCell>
-                    <CustomCell>
-                      <CellContainer>
-                        <CellLabel>To:</CellLabel>
-                        <CellField
-                          variant="outlined"
-                          size="small"
-                          disabled={isSaveLoading}
-                          error={errors.buckets && !!errors.buckets[index]?.to}
-                          helperText={
-                            errors.buckets && errors.buckets[index]?.to?.message
-                          }
-                          onInput={() => trigger(`buckets.${index}.from`)}
-                          {...register(`buckets.${index}.to`)}
-                        />
-                      </CellContainer>
-                    </CustomCell>
-                    <CustomCell>
-                      <CellContainer>
-                        <CellLabel>Size:</CellLabel>
-                        <FormControl>
-                          <CellField2
-                            type="number"
+          <Grid container spacing={2}>
+            <Grid size={{ xs: 12, md: 9 }}>
+              <Table.Container component={Paper}>
+                <Table.Element>
+                  <Table.Body>
+                    {fields.map((field, index) => (
+                      <Table.Row key={field.id}>
+                        <CustomCell>
+                          <CellContainer>
+                            <CellLabel>From:</CellLabel>
+                            <CellField
+                              variant="outlined"
+                              size="small"
+                              disabled={isSaveLoading}
+                              error={
+                                errors.buckets && !!errors.buckets[index]?.from
+                              }
+                              helperText={
+                                errors.buckets &&
+                                errors.buckets[index]?.from?.message
+                              }
+                              onInput={() => trigger(`buckets.${index}.to`)}
+                              {...register(`buckets.${index}.from`)}
+                            />
+                          </CellContainer>
+                        </CustomCell>
+                        <CustomCell>
+                          <CellContainer>
+                            <CellLabel>To:</CellLabel>
+                            <CellField
+                              variant="outlined"
+                              size="small"
+                              disabled={isSaveLoading}
+                              error={
+                                errors.buckets && !!errors.buckets[index]?.to
+                              }
+                              helperText={
+                                errors.buckets &&
+                                errors.buckets[index]?.to?.message
+                              }
+                              onInput={() => trigger(`buckets.${index}.from`)}
+                              {...register(`buckets.${index}.to`)}
+                            />
+                          </CellContainer>
+                        </CustomCell>
+                        <CustomCell>
+                          <CellContainer>
+                            <CellLabel>Size:</CellLabel>
+                            <FormControl>
+                              <CellField2
+                                type="number"
+                                size="small"
+                                disabled={isSaveLoading}
+                                endAdornment={
+                                  <InputAdornment position="end">
+                                    TB
+                                  </InputAdornment>
+                                }
+                                error={
+                                  errors.buckets &&
+                                  !!errors.buckets[index]?.size
+                                }
+                                {...register(`buckets.${index}.size`)}
+                              />
+                              <FormHelperText error>
+                                {errors.buckets &&
+                                  errors.buckets[index]?.size?.message}
+                              </FormHelperText>
+                            </FormControl>
+                          </CellContainer>
+                        </CustomCell>
+
+                        {index !== 0 ? (
+                          <CustomCellButton>
+                            <CustomIconButton
+                              size="small"
+                              disabled={isSaveLoading}
+                              onClick={() => swap(index, index - 1)}
+                              children={<UpIcon size={20} />}
+                            />
+                          </CustomCellButton>
+                        ) : (
+                          <CustomCellButton />
+                        )}
+
+                        {index !== fields.length - 1 ? (
+                          <CustomCellButton>
+                            <CustomIconButton
+                              size="small"
+                              disabled={isSaveLoading}
+                              onClick={() => swap(index, index + 1)}
+                              children={<DownIcon size={20} />}
+                            />
+                          </CustomCellButton>
+                        ) : (
+                          <CustomCellButton />
+                        )}
+
+                        <CustomCellButton>
+                          <CustomIconButton
                             size="small"
+                            color="error"
                             disabled={isSaveLoading}
-                            endAdornment={
-                              <InputAdornment position="end">TB</InputAdornment>
-                            }
-                            error={
-                              errors.buckets && !!errors.buckets[index]?.size
-                            }
-                            {...register(`buckets.${index}.size`)}
+                            onClick={() => remove(index)}
+                            children={<RemoveIcon size={20} />}
                           />
-                          <FormHelperText error>
-                            {errors.buckets &&
-                              errors.buckets[index]?.size?.message}
-                          </FormHelperText>
-                        </FormControl>
-                      </CellContainer>
-                    </CustomCell>
+                        </CustomCellButton>
+                      </Table.Row>
+                    ))}
+                  </Table.Body>
+                </Table.Element>
+              </Table.Container>
+            </Grid>
+            <Grid size={{ xs: 12, md: 3 }}>
+              <Table.Container component={Paper}>
+                <Table.Element size="small">
+                  <Table.Head>
+                    <Table.Row>
+                      <Table.Cell />
+                      <Table.Cell align="center">Titles</Table.Cell>
+                      <Table.Cell align="center">Filesize</Table.Cell>
+                    </Table.Row>
+                  </Table.Head>
 
-                    {index !== 0 ? (
-                      <CustomCellButton>
-                        <CustomIconButton
-                          size="small"
-                          disabled={isSaveLoading}
-                          onClick={() => swap(index, index - 1)}
-                          children={<UpIcon size={20} />}
-                        />
-                      </CustomCellButton>
-                    ) : (
-                      <CustomCellButton />
-                    )}
-
-                    {index !== fields.length - 1 ? (
-                      <CustomCellButton>
-                        <CustomIconButton
-                          size="small"
-                          disabled={isSaveLoading}
-                          onClick={() => swap(index, index + 1)}
-                          children={<DownIcon size={20} />}
-                        />
-                      </CustomCellButton>
-                    ) : (
-                      <CustomCellButton />
-                    )}
-
-                    <CustomCellButton>
-                      <CustomIconButton
-                        size="small"
-                        color="error"
-                        disabled={isSaveLoading}
-                        onClick={() => remove(index)}
-                        children={<RemoveIcon size={20} />}
-                      />
-                    </CustomCellButton>
-                  </Table.Row>
-                ))}
-              </Table.Body>
-            </Table.Element>
-          </Table.Container>
+                  <Table.Body>
+                    {byNameData.map((item) => (
+                      <Table.Row hover key={`byname-${item.letter}`}>
+                        <Table.Cell>{item.letter}</Table.Cell>
+                        <Table.Cell align="center">{item.titles}</Table.Cell>
+                        <Table.Cell align="center">{item.filesize}</Table.Cell>
+                      </Table.Row>
+                    ))}
+                  </Table.Body>
+                </Table.Element>
+              </Table.Container>
+            </Grid>
+          </Grid>
         </>
       )}
 
