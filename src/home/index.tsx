@@ -19,7 +19,7 @@ import {
   useTheme,
 } from "@mui/material";
 
-import RatingIcon from "@components/icons/heart-filled.svg?react";
+import RatingIcon from "@components/icons/heart.svg?react";
 
 import {
   BadgeMini,

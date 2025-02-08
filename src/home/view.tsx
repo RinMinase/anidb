@@ -23,7 +23,7 @@ import {
   Trash as DeleteIcon,
 } from "react-feather";
 
-import TotalRatingIcon from "@components/icons/heart-filled.svg?react";
+import TotalRatingIcon from "@components/icons/heart.svg?react";
 
 import { roundHalfDown } from "@components/functions";
 

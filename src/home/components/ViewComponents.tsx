@@ -8,7 +8,7 @@ import {
 
 import { Button, IconButton } from "@components";
 
-import RatingFilledIcon from "@components/icons/star-filled.svg?react";
+import RatingFilledIcon from "@components/icons/star.svg?react";
 import FallIcon from "@components/icons/fall.svg?react";
 import SpringIcon from "@components/icons/spring.svg?react";
 import SummerIcon from "@components/icons/summer.svg?react";
