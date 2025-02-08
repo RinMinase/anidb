@@ -192,8 +192,7 @@ const SearchForm = (props: Props) => {
             <br />- Common terms: 4K, UHD
             <br />- Vertical pixels: 1080, 1080p
             <br />- Range: 1080p to UHD
-            <br />
-            {`- Comparators: >= 1080p`}
+            <br />- Comparators: &gt;= 1080p
           </Typography>
         </Grid>
 
@@ -244,8 +243,7 @@ const SearchForm = (props: Props) => {
           />
           <Typography variant="caption">
             - Common terms or byte value: '3 GB', 3000000000
-            <br />
-            {`- Comparators: '> 3 GB'`}
+            <br />- Comparators: '&gt; 3 GB'
           </Typography>
         </Grid>
 
@@ -263,8 +261,7 @@ const SearchForm = (props: Props) => {
           <Typography variant="caption">
             - Absolute value: 3
             <br />- Range: 10 to 12
-            <br />
-            {`- Comparators > 12`}
+            <br />- Comparators &gt; 12
           </Typography>
         </Grid>
 
@@ -367,8 +364,7 @@ const SearchForm = (props: Props) => {
             <br />- Comma Separated: spring, 2020, fall 2021
             <br />- Range: '2020 to 2021', 'summer 2020 to spring 2021', '2020
             summer to 2022'
-            <br />
-            {`- Comparators: '> spring 2023'`}
+            <br />- Comparators: &gt; spring 2023'
           </Typography>
         </Grid>
 
@@ -384,11 +380,10 @@ const SearchForm = (props: Props) => {
             fullWidth
           />
           <Typography variant="caption">
-            - Max value should be 10
+            - Max value should be 5
             <br />- Absolute value: 3
-            <br />- Range: 5 to 10
-            <br />
-            {`- Comparators < 7`}
+            <br />- Range: 2 to 5
+            <br />- Comparators &lt; 3
           </Typography>
         </Grid>
 
