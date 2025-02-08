@@ -104,3 +104,8 @@ export function getYearsInArray(start: number, stop: number, step: number) {
     (_, i) => start + i * step,
   );
 }
+
+export function roundHalfDown(num: any) {
+  if (typeof num === "number") return -Math.round(-num);
+  return 0;
+}
