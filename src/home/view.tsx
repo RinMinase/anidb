@@ -158,9 +158,6 @@ const HomeView = (props: Props) => {
           value={ratings.audio}
           IconContainerComponent={RatingIconContainer}
           max={5}
-          // onChange={(e: any, value: number | null) => {
-          //   handleChangeRating("audio", value);
-          // }}
           onChangeActive={(e: any, value: number | null) =>
             debouncedOnHover("audio", value)
           }
@@ -175,9 +172,6 @@ const HomeView = (props: Props) => {
           value={ratings.enjoyment}
           IconContainerComponent={RatingIconContainer}
           max={5}
-          // onChange={(e: any, value: number | null) => {
-          //   handleChangeRating("enjoyment", value);
-          // }}
           onChangeActive={(e: any, value: number | null) =>
             debouncedOnHover("enjoyment", value)
           }
@@ -194,9 +188,6 @@ const HomeView = (props: Props) => {
           value={ratings.graphics}
           IconContainerComponent={RatingIconContainer}
           max={5}
-          // onChange={(e: any, value: number | null) => {
-          //   handleChangeRating("graphics", value);
-          // }}
           onChangeActive={(e: any, value: number | null) =>
             debouncedOnHover("graphics", value)
           }
@@ -213,9 +204,6 @@ const HomeView = (props: Props) => {
           value={ratings.plot}
           IconContainerComponent={RatingIconContainer}
           max={5}
-          // onChange={(e: any, value: number | null) => {
-          //   handleChangeRating("plot", value);
-          // }}
           onChangeActive={(e: any, value: number | null) =>
             debouncedOnHover("plot", value)
           }
