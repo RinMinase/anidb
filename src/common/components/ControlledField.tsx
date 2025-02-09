@@ -21,7 +21,7 @@ type Props = {
   maxHeight?: number;
 };
 
-const disableNonNumeric = (e: any) => {
+export const disableNonNumeric = (e: any) => {
   const el = e.target as HTMLInputElement;
   const value = el.value;
 

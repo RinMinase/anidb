@@ -6,24 +6,23 @@ import { green, orange, red } from "@mui/material/colors";
 import { toast } from "sonner";
 
 import {
-  FormControl,
-  FormHelperText,
+  Box,
   Grid2 as Grid,
   InputAdornment,
   LinearProgress,
   Paper,
+  Stack,
   TextField,
+  useTheme,
 } from "@mui/material";
 
 import {
   Plus as AddIcon,
   ArrowLeft as BackIcon,
-  ChevronDown as DownIcon,
   HardDrive as DriveIcon,
   Eye as PreviewIcon,
   Trash2 as RemoveIcon,
   Database as StorageIcon,
-  ChevronUp as UpIcon,
 } from "react-feather";
 
 import {
@@ -32,26 +31,27 @@ import {
   Dialog,
   FILESIZES,
   GlobalLoaderContext,
+  IconButton,
   ModuleContainer,
   Table,
 } from "@components";
 
 import {
-  CellContainer,
-  CellField,
-  CellField2,
-  CellLabel,
   ControlButtons,
   ControlButtonsLoader,
-  CustomCell,
-  CustomCellButton,
-  CustomIconButton,
+  CustomNumericField,
+  CustomTextField,
   Dashboard,
   DescriptionContainer,
 } from "./_components";
 
 import { defaultValues, Form, resolver } from "./validation";
 import { ByNameData, Data, Item } from "./types";
+
+import DragHandleIcon from "@components/icons/drag.svg?react";
+
+import { DragDropContext, Draggable, Droppable } from "@hello-pangea/dnd";
+import { disableNonNumeric } from "@components/components/ControlledField";
 
 type Props = {
   matches?: {
@@ -60,6 +60,8 @@ type Props = {
 };
 
 const BucketSimAdd = (props: Props) => {
+  const theme = useTheme();
+
   const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
 
   const [isDialogOpen, setDialogOpen] = useState(false);
@@ -82,7 +84,7 @@ const BucketSimAdd = (props: Props) => {
     mode: "onChange",
   });
 
-  const { fields, append, remove, swap, replace } = useFieldArray({
+  const { fields, append, move, remove, replace } = useFieldArray({
     control,
     name: "buckets",
   });
@@ -261,6 +263,10 @@ const BucketSimAdd = (props: Props) => {
     </>
   );
 
+  const handleDrag = ({ source, destination }: any) => {
+    if (destination) move(source.index, destination.index);
+  };
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -366,119 +372,166 @@ const BucketSimAdd = (props: Props) => {
           </DescriptionContainer>
 
           <Grid container spacing={2}>
-            <Grid size={{ xs: 12, md: 9 }}>
-              <Table.Container component={Paper}>
-                <Table.Element>
-                  <Table.Body>
-                    {fields.map((field, index) => (
-                      <Table.Row key={field.id}>
-                        <CustomCell>
-                          <CellContainer>
-                            <CellLabel>From:</CellLabel>
-                            <CellField
-                              variant="outlined"
-                              size="small"
-                              disabled={isSaveLoading}
-                              error={
-                                errors.buckets && !!errors.buckets[index]?.from
-                              }
-                              helperText={
-                                errors.buckets &&
-                                errors.buckets[index]?.from?.message
-                              }
-                              onInput={() => trigger(`buckets.${index}.to`)}
-                              {...register(`buckets.${index}.from`)}
-                            />
-                          </CellContainer>
-                        </CustomCell>
-                        <CustomCell>
-                          <CellContainer>
-                            <CellLabel>To:</CellLabel>
-                            <CellField
-                              variant="outlined"
-                              size="small"
-                              disabled={isSaveLoading}
-                              error={
-                                errors.buckets && !!errors.buckets[index]?.to
-                              }
-                              helperText={
-                                errors.buckets &&
-                                errors.buckets[index]?.to?.message
-                              }
-                              onInput={() => trigger(`buckets.${index}.from`)}
-                              {...register(`buckets.${index}.to`)}
-                            />
-                          </CellContainer>
-                        </CustomCell>
-                        <CustomCell>
-                          <CellContainer>
-                            <CellLabel>Size:</CellLabel>
-                            <FormControl>
-                              <CellField2
-                                type="number"
-                                size="small"
-                                disabled={isSaveLoading}
-                                endAdornment={
-                                  <InputAdornment position="end">
-                                    TB
-                                  </InputAdornment>
-                                }
-                                error={
-                                  errors.buckets &&
-                                  !!errors.buckets[index]?.size
-                                }
-                                {...register(`buckets.${index}.size`)}
-                              />
-                              <FormHelperText error>
-                                {errors.buckets &&
-                                  errors.buckets[index]?.size?.message}
-                              </FormHelperText>
-                            </FormControl>
-                          </CellContainer>
-                        </CustomCell>
+            <Grid size={{ xs: 12, md: 8 }}>
+              {/* Drag and Drop content */}
+              <DragDropContext onDragEnd={handleDrag}>
+                <Droppable droppableId="bucket-list-wrapper">
+                  {(provided) => (
+                    <div {...provided.droppableProps} ref={provided.innerRef}>
+                      {fields.map((field, index) => (
+                        <Draggable
+                          key={field.id}
+                          draggableId={field.id}
+                          index={index}
+                        >
+                          {(_provided) => (
+                            <div
+                              ref={_provided.innerRef}
+                              {..._provided.draggableProps}
+                              style={{
+                                ..._provided.draggableProps.style,
+                                marginBottom: "12px",
+                              }}
+                            >
+                              <Paper
+                                sx={{
+                                  display: "flex",
+                                  alignItems: "center",
+                                  py: 1,
+                                }}
+                              >
+                                {/** @ts-expect-error type error */}
+                                <div {..._provided.dragHandleProps}>
+                                  <DragHandleIcon
+                                    style={{
+                                      boxSizing: "content-box",
+                                      width: "18px",
+                                      fill: theme.palette.action.disabled,
+                                      cursor: "grab",
+                                      margin: "0 18px 0 18px",
+                                    }}
+                                  />
+                                </div>
 
-                        {index !== 0 ? (
-                          <CustomCellButton>
-                            <CustomIconButton
-                              size="small"
-                              disabled={isSaveLoading}
-                              onClick={() => swap(index, index - 1)}
-                              children={<UpIcon size={20} />}
-                            />
-                          </CustomCellButton>
-                        ) : (
-                          <CustomCellButton />
-                        )}
+                                {/* Fields */}
+                                <Stack
+                                  direction="row"
+                                  spacing={{ xs: 1, sm: 1.5, md: 2 }}
+                                  flexGrow={1}
+                                  justifyContent="space-between"
+                                >
+                                  <CustomTextField
+                                    variant="outlined"
+                                    label="From"
+                                    size="small"
+                                    disabled={isSaveLoading}
+                                    error={
+                                      errors.buckets &&
+                                      !!errors.buckets[index]?.from
+                                    }
+                                    helperText={
+                                      errors.buckets &&
+                                      errors.buckets[index]?.from?.message
+                                    }
+                                    onInput={() =>
+                                      trigger(`buckets.${index}.to`)
+                                    }
+                                    {...register(`buckets.${index}.from`)}
+                                  />
 
-                        {index !== fields.length - 1 ? (
-                          <CustomCellButton>
-                            <CustomIconButton
-                              size="small"
-                              disabled={isSaveLoading}
-                              onClick={() => swap(index, index + 1)}
-                              children={<DownIcon size={20} />}
-                            />
-                          </CustomCellButton>
-                        ) : (
-                          <CustomCellButton />
-                        )}
+                                  <CustomTextField
+                                    variant="outlined"
+                                    label="To"
+                                    size="small"
+                                    disabled={isSaveLoading}
+                                    error={
+                                      errors.buckets &&
+                                      !!errors.buckets[index]?.to
+                                    }
+                                    helperText={
+                                      errors.buckets &&
+                                      errors.buckets[index]?.to?.message
+                                    }
+                                    onInput={() =>
+                                      trigger(`buckets.${index}.from`)
+                                    }
+                                    {...register(`buckets.${index}.to`)}
+                                  />
 
-                        <CustomCellButton>
-                          <CustomIconButton
-                            size="small"
-                            color="error"
-                            disabled={isSaveLoading}
-                            onClick={() => remove(index)}
-                            children={<RemoveIcon size={20} />}
-                          />
-                        </CustomCellButton>
-                      </Table.Row>
-                    ))}
-                  </Table.Body>
-                </Table.Element>
-              </Table.Container>
+                                  <CustomNumericField
+                                    type="tel"
+                                    inputProps={{
+                                      pattern: "[0-9]*",
+                                      inputMode: "numeric",
+                                      maxLength: 2,
+                                      style: {
+                                        textAlign: "right",
+                                      },
+                                    }}
+                                    size="small"
+                                    disabled={isSaveLoading}
+                                    endAdornment={
+                                      <InputAdornment
+                                        position="end"
+                                        onClick={({
+                                          currentTarget: {
+                                            previousSibling: input,
+                                          },
+                                        }: any) => {
+                                          input.focus();
+                                        }}
+                                      >
+                                        TB
+                                      </InputAdornment>
+                                    }
+                                    error={
+                                      errors.buckets &&
+                                      !!errors.buckets[index]?.size
+                                    }
+                                    helperText={
+                                      errors.buckets &&
+                                      errors.buckets[index]?.size?.message
+                                    }
+                                    {...register(`buckets.${index}.size`)}
+                                    onChange={(e: any) => {
+                                      disableNonNumeric(e);
+                                      register(
+                                        `buckets.${index}.size`,
+                                      ).onChange(e);
+                                    }}
+                                  />
+
+                                  <Box
+                                    display="flex"
+                                    alignItems="center"
+                                    justifyContent="center"
+                                    sx={{
+                                      pr: { xs: 1, sm: 2 },
+                                    }}
+                                    pr={1}
+                                  >
+                                    <IconButton
+                                      size="small"
+                                      color="error"
+                                      iconSize={32}
+                                      disabled={isSaveLoading}
+                                      onClick={() => remove(index)}
+                                      children={<RemoveIcon size={20} />}
+                                    />
+                                  </Box>
+                                </Stack>
+                              </Paper>
+                            </div>
+                          )}
+                        </Draggable>
+                      ))}
+                      {provided.placeholder}
+                    </div>
+                  )}
+                </Droppable>
+              </DragDropContext>
             </Grid>
-            <Grid size={{ xs: 12, md: 3 }}>
+            <Grid size={{ xs: 12, md: 4 }}>
               <Table.Container component={Paper}>
                 <Table.Element size="small">
                   <Table.Head>
