@@ -6,12 +6,9 @@ import { green, orange, red } from "@mui/material/colors";
 import { toast } from "sonner";
 
 import {
-  Box,
   Grid2 as Grid,
-  InputAdornment,
   LinearProgress,
   Paper,
-  Stack,
   TextField,
   useTheme,
 } from "@mui/material";
@@ -21,7 +18,6 @@ import {
   ArrowLeft as BackIcon,
   HardDrive as DriveIcon,
   Eye as PreviewIcon,
-  Trash2 as RemoveIcon,
   Database as StorageIcon,
 } from "react-feather";
 
@@ -31,7 +27,6 @@ import {
   Dialog,
   FILESIZES,
   GlobalLoaderContext,
-  IconButton,
   ModuleContainer,
   Table,
 } from "@components";
@@ -39,19 +34,13 @@ import {
 import {
   ControlButtons,
   ControlButtonsLoader,
-  CustomNumericField,
-  CustomTextField,
   Dashboard,
   DescriptionContainer,
 } from "./_components";
 
 import { defaultValues, Form, resolver } from "./validation";
 import { ByNameData, Data, Item } from "./types";
-
-import DragHandleIcon from "@components/icons/drag.svg?react";
-
-import { DragDropContext, Draggable, Droppable } from "@hello-pangea/dnd";
-import { disableNonNumeric } from "@components/components/ControlledField";
+import BucketListDragArea from "./components/BucketListDragArea";
 
 type Props = {
   matches?: {
@@ -60,8 +49,6 @@ type Props = {
 };
 
 const BucketSimAdd = (props: Props) => {
-  const theme = useTheme();
-
   const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
 
   const [isDialogOpen, setDialogOpen] = useState(false);
@@ -263,10 +250,6 @@ const BucketSimAdd = (props: Props) => {
     </>
   );
 
-  const handleDrag = ({ source, destination }: any) => {
-    if (destination) move(source.index, destination.index);
-  };
-
   useEffect(() => {
     fetchData();
   }, []);
@@ -373,163 +356,15 @@ const BucketSimAdd = (props: Props) => {
 
           <Grid container spacing={2}>
             <Grid size={{ xs: 12, md: 8 }}>
-              {/* Drag and Drop content */}
-              <DragDropContext onDragEnd={handleDrag}>
-                <Droppable droppableId="bucket-list-wrapper">
-                  {(provided) => (
-                    <div {...provided.droppableProps} ref={provided.innerRef}>
-                      {fields.map((field, index) => (
-                        <Draggable
-                          key={field.id}
-                          draggableId={field.id}
-                          index={index}
-                        >
-                          {(_provided) => (
-                            <div
-                              ref={_provided.innerRef}
-                              {..._provided.draggableProps}
-                              style={{
-                                ..._provided.draggableProps.style,
-                                marginBottom: "12px",
-                              }}
-                            >
-                              <Paper
-                                sx={{
-                                  display: "flex",
-                                  alignItems: "center",
-                                  py: 1,
-                                }}
-                              >
-                                {/** @ts-expect-error type error */}
-                                <div {..._provided.dragHandleProps}>
-                                  <DragHandleIcon
-                                    style={{
-                                      boxSizing: "content-box",
-                                      width: "18px",
-                                      fill: theme.palette.action.disabled,
-                                      cursor: "grab",
-                                      margin: "0 18px 0 18px",
-                                    }}
-                                  />
-                                </div>
-
-                                {/* Fields */}
-                                <Stack
-                                  direction="row"
-                                  spacing={{ xs: 1, sm: 1.5, md: 2 }}
-                                  flexGrow={1}
-                                  justifyContent="space-between"
-                                >
-                                  <CustomTextField
-                                    variant="outlined"
-                                    label="From"
-                                    size="small"
-                                    disabled={isSaveLoading}
-                                    error={
-                                      errors.buckets &&
-                                      !!errors.buckets[index]?.from
-                                    }
-                                    helperText={
-                                      errors.buckets &&
-                                      errors.buckets[index]?.from?.message
-                                    }
-                                    onInput={() =>
-                                      trigger(`buckets.${index}.to`)
-                                    }
-                                    {...register(`buckets.${index}.from`)}
-                                  />
-
-                                  <CustomTextField
-                                    variant="outlined"
-                                    label="To"
-                                    size="small"
-                                    disabled={isSaveLoading}
-                                    error={
-                                      errors.buckets &&
-                                      !!errors.buckets[index]?.to
-                                    }
-                                    helperText={
-                                      errors.buckets &&
-                                      errors.buckets[index]?.to?.message
-                                    }
-                                    onInput={() =>
-                                      trigger(`buckets.${index}.from`)
-                                    }
-                                    {...register(`buckets.${index}.to`)}
-                                  />
-
-                                  <CustomNumericField
-                                    type="tel"
-                                    inputProps={{
-                                      pattern: "[0-9]*",
-                                      inputMode: "numeric",
-                                      maxLength: 2,
-                                      style: {
-                                        textAlign: "right",
-                                      },
-                                    }}
-                                    size="small"
-                                    disabled={isSaveLoading}
-                                    endAdornment={
-                                      <InputAdornment
-                                        position="end"
-                                        onClick={({
-                                          currentTarget: {
-                                            previousSibling: input,
-                                          },
-                                        }: any) => {
-                                          input.focus();
-                                        }}
-                                      >
-                                        TB
-                                      </InputAdornment>
-                                    }
-                                    error={
-                                      errors.buckets &&
-                                      !!errors.buckets[index]?.size
-                                    }
-                                    helperText={
-                                      errors.buckets &&
-                                      errors.buckets[index]?.size?.message
-                                    }
-                                    {...register(`buckets.${index}.size`)}
-                                    onChange={(e: any) => {
-                                      disableNonNumeric(e);
-                                      register(
-                                        `buckets.${index}.size`,
-                                      ).onChange(e);
-                                    }}
-                                  />
-
-                                  <Box
-                                    display="flex"
-                                    alignItems="center"
-                                    justifyContent="center"
-                                    sx={{
-                                      pr: { xs: 1, sm: 2 },
-                                    }}
-                                    pr={1}
-                                  >
-                                    <IconButton
-                                      size="small"
-                                      color="error"
-                                      iconSize={32}
-                                      disabled={isSaveLoading}
-                                      onClick={() => remove(index)}
-                                      children={<RemoveIcon size={20} />}
-                                    />
-                                  </Box>
-                                </Stack>
-                              </Paper>
-                            </div>
-                          )}
-                        </Draggable>
-                      ))}
-                      {provided.placeholder}
-                    </div>
-                  )}
-                </Droppable>
-              </DragDropContext>
+              <BucketListDragArea
+                register={register}
+                trigger={trigger}
+                errors={errors}
+                fields={fields}
+                move={move}
+                remove={remove}
+                isSaveLoading={isSaveLoading}
+              />
             </Grid>
             <Grid size={{ xs: 12, md: 4 }}>
               <Table.Container component={Paper}>
