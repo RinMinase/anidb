@@ -37,28 +37,29 @@ type Props = {
 };
 
 const CustomTextField = styled(TextField)(({ theme }) => ({
-  minWidth: 40,
-  width: 220,
+  minWidth: "40px",
+  width: "220px",
 
   [theme.breakpoints.down("md")]: {
-    maxWidth: 200,
+    maxWidth: "200px",
   },
 
   [theme.breakpoints.down("sm")]: {
-    maxWidth: 70,
+    maxWidth: "70px",
   },
 }));
 
 const CustomNumericField = styled(OutlinedInput)(({ theme }) => ({
-  width: 180,
+  height: "40px",
+  width: "180px",
   textAlign: "right",
 
   [theme.breakpoints.down("md")]: {
-    maxWidth: 130,
+    maxWidth: "130px",
   },
 
   [theme.breakpoints.down("sm")]: {
-    maxWidth: 75,
+    maxWidth: "75px",
   },
 
   "& input::-webkit-outer-spin-button": {
