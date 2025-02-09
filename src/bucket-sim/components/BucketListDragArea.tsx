@@ -1,5 +1,14 @@
 import { DragDropContext, Draggable, Droppable } from "@hello-pangea/dnd";
-import { Box, InputAdornment, Paper, Stack, useTheme } from "@mui/material";
+import {
+  Box,
+  InputAdornment,
+  OutlinedInput,
+  Paper,
+  Stack,
+  styled,
+  TextField,
+  useTheme,
+} from "@mui/material";
 import { Trash2 as RemoveIcon } from "react-feather";
 
 import {
@@ -15,7 +24,6 @@ import { disableNonNumeric } from "@components/components/ControlledField";
 import { IconButton } from "@components";
 import DragHandleIcon from "@components/icons/drag.svg?react";
 
-import { CustomNumericField, CustomTextField } from "../_components";
 import { Form } from "../validation";
 
 type Props = {
@@ -27,6 +35,44 @@ type Props = {
   remove: UseFieldArrayRemove;
   isSaveLoading: boolean;
 };
+
+const CustomTextField = styled(TextField)(({ theme }) => ({
+  minWidth: 40,
+  width: 220,
+
+  [theme.breakpoints.down("md")]: {
+    maxWidth: 200,
+  },
+
+  [theme.breakpoints.down("sm")]: {
+    maxWidth: 70,
+  },
+}));
+
+const CustomNumericField = styled(OutlinedInput)(({ theme }) => ({
+  width: 180,
+  textAlign: "right",
+
+  [theme.breakpoints.down("md")]: {
+    maxWidth: 130,
+  },
+
+  [theme.breakpoints.down("sm")]: {
+    maxWidth: 75,
+  },
+
+  "& input::-webkit-outer-spin-button": {
+    display: "none",
+  },
+
+  "& input::-webkit-inner-spin-button": {
+    display: "none",
+  },
+
+  "& input[type=number]": {
+    MozAppearance: "textfield",
+  },
+}));
 
 const BucketListDragArea = (props: Props) => {
   const theme = useTheme();

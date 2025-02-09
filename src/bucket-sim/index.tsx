@@ -34,7 +34,6 @@ import {
   ModuleContainer,
 } from "@components";
 
-import { Dashboard } from "./_components";
 import { Data, Item, Sims } from "./types";
 
 const BucketSim = () => {
@@ -294,7 +293,7 @@ const BucketSim = () => {
         </Grid>
         {!isLoading && (
           <Grid size={{ xs: 12, sm: 8 }}>
-            <Dashboard>
+            <Box mb={4}>
               <Box mb={2} textAlign="center">
                 <ButtonLoading
                   variant="contained"
@@ -357,7 +356,7 @@ const BucketSim = () => {
                   );
                 })}
               </Grid>
-            </Dashboard>
+            </Box>
           </Grid>
         )}
       </Grid>
