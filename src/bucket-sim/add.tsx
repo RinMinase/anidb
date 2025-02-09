@@ -1,16 +1,16 @@
-import axios from "axios";
 import { useContext, useEffect, useState } from "preact/hooks";
 import { route } from "preact-router";
 import { useFieldArray, useForm } from "react-hook-form";
 import { green, orange, red } from "@mui/material/colors";
 import { toast } from "sonner";
+import axios from "axios";
 
 import {
+  Box,
   Grid2 as Grid,
   LinearProgress,
   Paper,
   TextField,
-  useTheme,
 } from "@mui/material";
 
 import {
@@ -22,6 +22,7 @@ import {
 } from "react-feather";
 
 import {
+  Button,
   ButtonLoading,
   DashboardTile,
   Dialog,
@@ -30,13 +31,6 @@ import {
   ModuleContainer,
   Table,
 } from "@components";
-
-import {
-  ControlButtons,
-  ControlButtonsLoader,
-  Dashboard,
-  DescriptionContainer,
-} from "./_components";
 
 import { defaultValues, Form, resolver } from "./validation";
 import { ByNameData, Data, Item } from "./types";
@@ -217,37 +211,18 @@ const BucketSimAdd = (props: Props) => {
   };
 
   const HeaderControls = () => (
-    <>
-      <ControlButtons
-        variant="contained"
-        color="error"
-        startIcon={<BackIcon size={20} />}
-        sx={{ display: { xs: "none", sm: "inline-flex" } }}
-        onClick={() => setDialogOpen(true)}
-      >
-        Back
-      </ControlButtons>
-      {!isLoading && !!previewData.length && (
-        <>
-          <ControlButtons
-            variant="contained"
-            startIcon={<AddIcon size={20} />}
-            onClick={() => {
-              append({ from: "", to: "", size: null });
-            }}
-          >
-            Add
-          </ControlButtons>
-          <ControlButtonsLoader
-            variant="contained"
-            loading={isSaveLoading}
-            onClick={handleSubmit(handleSubmitForm)}
-          >
-            Save
-          </ControlButtonsLoader>
-        </>
-      )}
-    </>
+    <Button
+      variant="contained"
+      color="error"
+      startIcon={<BackIcon size={20} />}
+      sx={{
+        minWidth: 120,
+        marginLeft: 2,
+      }}
+      onClick={() => setDialogOpen(true)}
+    >
+      Back
+    </Button>
   );
 
   useEffect(() => {
@@ -265,7 +240,7 @@ const BucketSimAdd = (props: Props) => {
         <>
           {!isPreviewLoading && (
             <Grid size={{ xs: 12, sm: 8 }}>
-              <Dashboard>
+              <Box sx={{ mb: 4 }}>
                 <Grid container spacing={4}>
                   {previewData &&
                     previewData.map((item, index) => {
@@ -320,13 +295,13 @@ const BucketSimAdd = (props: Props) => {
                       );
                     })}
                 </Grid>
-              </Dashboard>
+              </Box>
             </Grid>
           )}
 
-          <DescriptionContainer>
-            <Grid container spacing={2}>
-              <Grid size={{ xs: 12, sm: 9, md: 10 }}>
+          <Box sx={{ mb: 2 }}>
+            <Grid container spacing={2} justifyContent="space-between">
+              <Grid size={{ xs: 12, sm: 7, md: 9 }}>
                 <TextField
                   fullWidth
                   variant="outlined"
@@ -338,24 +313,64 @@ const BucketSimAdd = (props: Props) => {
                   {...register("description")}
                 />
               </Grid>
-              <Grid size={{ xs: 12, sm: 3, md: 2 }} display="flex">
+              <Grid
+                size={{ xs: 12, sm: 5, md: 3 }}
+                gap={1}
+                display="flex"
+                justifyContent="space-between"
+              >
                 <ButtonLoading
-                  sx={{ maxHeight: 40 }}
                   variant="contained"
                   disabled={isSaveLoading}
                   startIcon={<PreviewIcon size={20} />}
                   onClick={handleSubmit(handlePreviewForm)}
                   loading={isPreviewLoading}
-                  fullWidth
+                  sx={{
+                    maxHeight: 40,
+                    flexGrow: 1,
+                    maxWidth: { xs: "50%", sm: undefined },
+                  }}
                 >
                   Preview
                 </ButtonLoading>
+                <ButtonLoading
+                  color="warning"
+                  variant="contained"
+                  loading={isSaveLoading}
+                  onClick={handleSubmit(handleSubmitForm)}
+                  disabled={
+                    isLoading || isPreviewLoading || !previewData.length
+                  }
+                  sx={{
+                    width: { xs: undefined, sm: "120px" },
+                    flexGrow: { xs: 1, sm: 0 },
+                    maxWidth: { xs: "50%", sm: undefined },
+                  }}
+                >
+                  Save
+                </ButtonLoading>
               </Grid>
             </Grid>
-          </DescriptionContainer>
+          </Box>
 
           <Grid container spacing={2}>
             <Grid size={{ xs: 12, md: 8 }}>
+              <Box
+                display="flex"
+                justifyContent={{ xs: "start", sm: "end" }}
+                pb={2}
+              >
+                <Button
+                  variant="contained"
+                  startIcon={<AddIcon size={20} />}
+                  onClick={() => {
+                    append({ from: "", to: "", size: null });
+                  }}
+                >
+                  Add Additional Bucket
+                </Button>
+              </Box>
+
               <BucketListDragArea
                 register={register}
                 trigger={trigger}
