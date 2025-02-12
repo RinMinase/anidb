@@ -220,14 +220,14 @@ export const chartSeasonsOptions: ChartOptions = {
   hover: { mode: null as any },
   plugins: {
     datalabels: {
-      formatter: (val, ctx) => {
+      formatter: (value, ctx) => {
         const data = ctx.chart.data.datasets[0].data as Array<number>;
         const sum = data.reduce((part, a) => part + a, 0);
+        const percentage = ((value / sum) * 100).toFixed(0);
 
-        const percentage = ((val / sum) * 100).toFixed(0);
-        const actualValue = val < 0 ? "None" : val < 1 ? "" : val;
+        if (value <= 0) return null;
 
-        return `${actualValue}\n${percentage}%`;
+        return `${value}\n${percentage}%`;
       },
       color: "#000",
     },
