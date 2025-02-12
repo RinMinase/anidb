@@ -1,4 +1,4 @@
-import { Paper, Stack, Typography } from "@mui/material";
+import { Paper, Stack, Typography, useTheme } from "@mui/material";
 import { useContext, useState } from "preact/hooks";
 import { toast } from "sonner";
 import { format } from "date-fns";
@@ -28,6 +28,8 @@ type Props = {
 };
 
 const SetupTable = (props: Props) => {
+  const theme = useTheme();
+
   const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
 
   const [isDeleteDialogOpen, setDeleteDialogOpen] = useState(false);
@@ -73,6 +75,9 @@ const SetupTable = (props: Props) => {
     }
   };
 
+  const isActionDisabled =
+    isLoading || isDeleteLoading || props.isTableLoading || !props.data;
+
   return (
     <>
       <Stack
@@ -94,7 +99,7 @@ const SetupTable = (props: Props) => {
           <Button
             variant="contained"
             color="secondary"
-            disabled={isLoading || isDeleteLoading || props.isTableLoading}
+            disabled={isActionDisabled}
             onClick={() => (props.data ? handleDuplicateClick() : null)}
           >
             <DuplicateIcon size={18} />
@@ -105,7 +110,7 @@ const SetupTable = (props: Props) => {
           <Button
             variant="contained"
             color="warning"
-            disabled={isLoading || isDeleteLoading || props.isTableLoading}
+            disabled={isActionDisabled}
             onClick={() => (props.data ? handleEditClick() : null)}
           >
             <EditIcon size={18} />
@@ -117,7 +122,7 @@ const SetupTable = (props: Props) => {
             variant="contained"
             color="error"
             loading={isDeleteLoading}
-            disabled={isLoading || isDeleteLoading || props.isTableLoading}
+            disabled={isActionDisabled}
             onClick={() => (props.data ? setDeleteDialogOpen(true) : null)}
           >
             <DeleteIcon size={18} />
@@ -165,8 +170,7 @@ const SetupTable = (props: Props) => {
           </Table.Head>
 
           <Table.Body>
-            {!props.isTableLoading ? (
-              props.data &&
+            {!props.isTableLoading && props.data ? (
               props.data.components.map((component) => (
                 <Table.Row
                   hover
@@ -195,6 +199,16 @@ const SetupTable = (props: Props) => {
                   <Table.Cell>{component.purchaseNotes}</Table.Cell>
                 </Table.Row>
               ))
+            ) : !props.isTableLoading && !props.data ? (
+              <Table.Row>
+                <Table.Cell
+                  colSpan={42}
+                  height="48px"
+                  sx={{ color: theme.palette.action.disabled }}
+                >
+                  No Data
+                </Table.Cell>
+              </Table.Row>
             ) : (
               <Table.Loader />
             )}

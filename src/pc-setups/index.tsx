@@ -127,6 +127,8 @@ const PcSetup = () => {
         });
 
         if (firstId) fetchDataInfo(firstId);
+      } else {
+        setTableLoading(false);
       }
     } catch (err) {
       console.error(err);
