@@ -1,5 +1,5 @@
 import { Paper, Stack, Typography, useTheme } from "@mui/material";
-import { useContext, useState } from "preact/hooks";
+import { Dispatch, StateUpdater, useState } from "preact/hooks";
 import { toast } from "sonner";
 import { format } from "date-fns";
 import { route } from "preact-router";
@@ -11,17 +11,13 @@ import {
   Trash2 as DeleteIcon,
 } from "react-feather";
 
-import {
-  Button,
-  ButtonLoading,
-  Dialog,
-  GlobalLoaderContext,
-  Table,
-} from "@components";
+import { Button, ButtonLoading, Dialog, Table } from "@components";
 
 import { PCInfo } from "../types";
 
 type Props = {
+  isOwnersLoading: boolean;
+  setOwnersLoading: Dispatch<StateUpdater<boolean>>;
   isTableLoading: boolean;
   fetchData: () => Promise<void>;
   data?: PCInfo;
@@ -30,15 +26,13 @@ type Props = {
 const SetupTable = (props: Props) => {
   const theme = useTheme();
 
-  const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
-
   const [isDeleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [isDeleteLoading, setDeleteLoading] = useState(false);
 
   const handleDuplicateClick = async () => {
     try {
       if (props.data) {
-        toggleLoader(true);
+        props.setOwnersLoading(true);
 
         await axios.post(`/pc/infos/${props.data.uuid}/duplicate`);
         await props.fetchData();
@@ -47,7 +41,7 @@ const SetupTable = (props: Props) => {
       console.error(err);
       toast.error("Failed");
     } finally {
-      toggleLoader(false);
+      props.setOwnersLoading(false);
     }
   };
 
@@ -76,7 +70,10 @@ const SetupTable = (props: Props) => {
   };
 
   const isActionDisabled =
-    isLoading || isDeleteLoading || props.isTableLoading || !props.data;
+    props.isOwnersLoading ||
+    props.isTableLoading ||
+    isDeleteLoading ||
+    !props.data;
 
   return (
     <>

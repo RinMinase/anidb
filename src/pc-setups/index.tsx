@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "preact/hooks";
+import { useEffect, useState } from "preact/hooks";
 import { toast } from "sonner";
 import { useForm } from "react-hook-form";
 import { route } from "preact-router";
@@ -25,7 +25,6 @@ import {
   ButtonLoading,
   ControlledField,
   Dialog,
-  GlobalLoaderContext,
   IconButton,
   ModuleContainer,
 } from "@components";
@@ -47,14 +46,14 @@ const HideIcon = <EyeOff size={20} strokeWidth={1.5} />;
 
 const PcSetup = () => {
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-
-  const { toggleLoader } = useContext(GlobalLoaderContext);
+  const isMobile = useMediaQuery(theme.breakpoints.only("xs"));
+  const isTablet = useMediaQuery(theme.breakpoints.only("sm"));
 
   const [dataOwners, setDataOwners] = useState<PCOwnerList>([]);
   const [dataSetup, setDataSetup] = useState<PCInfo>();
   const [stats, setStats] = useState<PCInfoStats>();
   const [showHidden, setShowHidden] = useState(false);
+  const [isOwnersLoading, setOwnersLoading] = useState(true);
   const [isTableLoading, setTableLoading] = useState(true);
   const [selectedInfo, setSelectedInfo] = useState<string>();
 
@@ -92,7 +91,7 @@ const PcSetup = () => {
   };
 
   const fetchData = async (hidden?: boolean) => {
-    toggleLoader(true);
+    setOwnersLoading(true);
 
     try {
       const {
@@ -126,15 +125,25 @@ const PcSetup = () => {
           }
         });
 
-        if (firstId) fetchDataInfo(firstId);
+        if (firstId) {
+          fetchDataInfo(firstId);
+        } else {
+          setSelectedInfo(undefined);
+          setDataSetup(undefined);
+          setStats(undefined);
+          setTableLoading(false);
+        }
       } else {
+        setSelectedInfo(undefined);
+        setDataSetup(undefined);
+        setStats(undefined);
         setTableLoading(false);
       }
     } catch (err) {
       console.error(err);
       toast.error("Failed");
     } finally {
-      toggleLoader(false);
+      setOwnersLoading(false);
     }
   };
 
@@ -160,7 +169,7 @@ const PcSetup = () => {
       console.error(err);
       toast.error("Failed");
     } finally {
-      toggleLoader(false);
+      setOwnersLoading(false);
     }
   };
 
@@ -192,7 +201,7 @@ const PcSetup = () => {
         sx={{ width: { xs: "100%", sm: "unset" } }}
         onClick={() => route("/pc-setups/components")}
       >
-        Manage Components
+        {isTablet ? "" : "Manage "}Components
       </Button>
       <ButtonLoading
         variant="contained"
@@ -232,8 +241,10 @@ const PcSetup = () => {
       stackedHeaderControls
     >
       <Grid container spacing={2}>
-        <Grid container size={{ xs: 12, sm: 5, md: 4, lg: 3 }}>
+        <Grid container size={{ xs: 12, md: 4, lg: 3 }}>
           <OwnerSetupsList
+            isOwnersLoading={isOwnersLoading}
+            setOwnersLoading={setOwnersLoading}
             selectedInfo={selectedInfo}
             setSelectedInfo={setSelectedInfo}
             data={dataOwners}
@@ -241,10 +252,12 @@ const PcSetup = () => {
             fetchDataInfo={fetchDataInfo}
           />
         </Grid>
-        <Grid size={{ xs: 12, sm: 7, md: 8, lg: 9 }}>
+        <Grid size={{ xs: 12, md: 8, lg: 9 }}>
           <Highlights isTableLoading={isTableLoading} stats={stats} />
 
           <SetupTable
+            isOwnersLoading={isOwnersLoading}
+            setOwnersLoading={setOwnersLoading}
             isTableLoading={isTableLoading}
             fetchData={fetchData}
             data={dataSetup}

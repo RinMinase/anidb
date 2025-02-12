@@ -31,7 +31,7 @@ const Highlights = (props: Props) => {
 
   const HighlightsTile = (highlightsTileProps: HighlightsTileProps) => (
     <Grid
-      size={{ xs: 6 }}
+      size={{ xs: 12, md: 6 }}
       component={Paper}
       display="flex"
       alignItems="center"
@@ -66,7 +66,7 @@ const Highlights = (props: Props) => {
 
   return (
     <Grid container spacing={2} sx={{ mb: 3 }}>
-      <Grid size={{ xs: 12, sm: 6, md: 3 }}>
+      <Grid size={{ xs: 12, md: 6, lg: 3 }}>
         <DashboardTile
           heading="Total Setup Cost"
           value={props.stats?.totalSetupCostFormat || ""}
@@ -75,7 +75,7 @@ const Highlights = (props: Props) => {
           noTopMargin
         />
       </Grid>
-      <Grid size={{ xs: 12, sm: 6, md: 3 }}>
+      <Grid size={{ xs: 12, md: 6, lg: 3 }}>
         <DashboardTile
           heading="Total System Cost"
           value={props.stats?.totalSystemCostFormat || ""}
@@ -88,8 +88,8 @@ const Highlights = (props: Props) => {
           noTopMargin
         />
       </Grid>
-      <Grid size={{ xs: 12, sm: 6 }} display="flex" alignItems="center">
-        <Grid container spacing={1} width="100%">
+      <Grid size={{ xs: 12, lg: 6 }} display="flex" alignItems="center">
+        <Grid container spacing={{ xs: 2, lg: 1 }} width="100%">
           <HighlightsTile
             imageSrc={CpuImageIcon}
             isLoading={props.isTableLoading}
