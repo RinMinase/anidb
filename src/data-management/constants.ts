@@ -112,6 +112,7 @@ export const chartMonthOptions: ChartOptions = {
         stepSize: 5,
       },
       grace: 20,
+      beginAtZero: true,
     },
   },
   plugins: {
