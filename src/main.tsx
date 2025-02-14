@@ -1,8 +1,8 @@
 import { render } from "preact";
 import { useState } from "preact/hooks";
-import { Toaster } from "sonner";
-
+import { toast, Toaster } from "sonner";
 import { Container, CssBaseline } from "@mui/material";
+import axios, { AxiosError } from "axios";
 
 import { Nav, NavCommon } from "@components";
 import ColorMode from "@components/providers/ColorMode";
@@ -15,9 +15,27 @@ import "./service";
 const Layout = () => {
   const [navCommon, setNavCommon] = useState<boolean>(true);
 
+  const checkAuth = async () => {
+    try {
+      await axios.get("/auth/user");
+    } catch (err) {
+      if (err instanceof AxiosError) {
+        if (err.status === 401) {
+          console.error(err);
+          toast.error("Not Authenticated");
+        }
+      }
+    }
+  };
+
   const handleRouteChange = async ({ url }: { url: string }) => {
     const commonURLs = ["/", "/register"];
-    setNavCommon(commonURLs.includes(url));
+    const isCommonRoute = commonURLs.includes(url);
+    setNavCommon(isCommonRoute);
+
+    if (!isCommonRoute) {
+      await checkAuth();
+    }
   };
 
   return (
