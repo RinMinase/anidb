@@ -15,8 +15,6 @@ import {
   Typography,
 } from "@mui/material";
 
-import { getYearsInArray } from "@components/functions";
-
 import { ByYearData, Graph } from "../types";
 
 import {
@@ -73,10 +71,10 @@ const PieChartContainer = styled(Box)({
 });
 
 const currYear = new Date().getFullYear();
-const yearsDropdown = getYearsInArray(currYear, currYear - 9, -1);
 
 const GraphSection = (props: Props) => {
   const [year, setYear] = useState(currYear);
+  const [yearsDropdown, setYearsDropdown] = useState([currYear]);
   const [isYearApiLoading, setYearApiLoading] = useState(false);
   const [byYearData, setByYearData] = useState<ByYearData>([]);
 
@@ -256,12 +254,16 @@ const GraphSection = (props: Props) => {
       // Data Reset
       chartYears.data.labels = [];
       chartYears.data.datasets[0].data = [];
+      const years: number[] = [];
 
       props.graph.years.forEach((item) => {
         chartYears.data.labels?.push(item.year);
         chartYears.data.datasets[0].data.push(item.value);
+        years.push(parseInt(item.year));
       });
 
+      years.reverse();
+      setYearsDropdown([currYear, ...years]);
       chartYears.update();
     }
   }, [props.graph.years]);
