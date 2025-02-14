@@ -1,16 +1,11 @@
-import { useContext, useEffect, useState } from "preact/hooks";
+import { useEffect, useState } from "preact/hooks";
 import { toast } from "sonner";
-import { Paper, useTheme } from "@mui/material";
+import { LinearProgress, Paper, useTheme } from "@mui/material";
 import { FixedSizeList as List, ListChildComponentProps } from "react-window";
 import axios from "axios";
 import AutoSizer from "react-virtualized-auto-sizer";
 
-import {
-  GlobalLoaderContext,
-  ModuleContainer,
-  Quality,
-  RewatchIndicator,
-} from "@components";
+import { ModuleContainer, Quality, RewatchIndicator } from "@components";
 
 import { Data, Item } from "./types";
 
@@ -22,9 +17,9 @@ const WIDTH = {
 
 const Entries = () => {
   const theme = useTheme();
-  const { toggleLoader } = useContext(GlobalLoaderContext);
 
   const [data, setData] = useState<Data>([]);
+  const [isTableLoading, setTableLoading] = useState(true);
   const [titleColumnWidth, setTitleColumnWidth] = useState(WIDTH.title);
   const [encoderColumnWidth, setEncoderColumnWidth] = useState(WIDTH.encoder);
 
@@ -60,7 +55,7 @@ const Entries = () => {
 
   const fetchData = async () => {
     try {
-      toggleLoader(true);
+      setTableLoading(true);
 
       const {
         data: { data },
@@ -76,7 +71,7 @@ const Entries = () => {
       console.error(err);
       toast.error("Failed");
     } finally {
-      toggleLoader(false);
+      setTableLoading(false);
     }
   };
 
@@ -280,7 +275,16 @@ const Entries = () => {
               </th>
             </tr>
           </thead>
-          <tbody>{children}</tbody>
+          <tbody>
+            {isTableLoading ? (
+              <tr>
+                <td colSpan={42}>
+                  <LinearProgress />
+                </td>
+              </tr>
+            ) : null}
+            {children}
+          </tbody>
         </table>
       </div>
     );
