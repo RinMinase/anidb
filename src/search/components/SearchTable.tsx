@@ -16,7 +16,7 @@ const TABLE_HEADER_SIZE = 38;
 const WIDTH = {
   title: 150,
   encoder: 75,
-  genre: 100,
+  genre: 50,
 };
 
 const SearchTable = (props: Props) => {
@@ -63,7 +63,7 @@ const SearchTable = (props: Props) => {
     }, "");
 
     el.textContent = genreText;
-    const genreWidth = el.clientWidth + 1 + genreContainer + PADDING;
+    const genreWidth = el.clientWidth + 1 + genreContainer;
     setGenreColumnWidth(genreWidth < WIDTH.genre ? WIDTH.genre : genreWidth);
 
     // Reset text calcuation element
