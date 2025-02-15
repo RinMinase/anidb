@@ -11,7 +11,7 @@ import { Data, Item } from "./types";
 
 const TABLE_HEADER_SIZE = 38;
 const WIDTH = {
-  title: 150,
+  title: 200,
   encoder: 75,
 };
 
@@ -85,6 +85,8 @@ const Entries = () => {
           borderBottom: "1px solid",
           borderColor: theme.palette.divider,
           width: "unset",
+          minWidth: "100%",
+          display: "flex",
         }}
       >
         <td
@@ -93,7 +95,9 @@ const Entries = () => {
             whiteSpace: "nowrap",
             width: `${titleColumnWidth}px`,
             minWidth: `${titleColumnWidth}px`,
-            maxWidth: `${titleColumnWidth}px`,
+            // maxWidth: `${titleColumnWidth}px`,
+            display: "inline-block",
+            flexGrow: 1,
           }}
         >
           <Quality quality={data[index].quality} />
@@ -201,14 +205,15 @@ const Entries = () => {
       <div {...rest}>
         <table style={{ position: "absolute", width: "100%" }}>
           <thead>
-            <tr>
+            <tr style={{ display: "flex" }}>
               <th
                 style={{
                   width: `${titleColumnWidth}px`,
                   minWidth: `${titleColumnWidth}px`,
-                  maxWidth: `${titleColumnWidth}px`,
                   textAlign: "left",
                   padding: "4px",
+                  display: "inline-block",
+                  flexGrow: 1,
                 }}
               >
                 Title
@@ -218,6 +223,8 @@ const Entries = () => {
                   width: "120px",
                   minWidth: "120px",
                   maxWidth: "120px",
+                  padding: "4px",
+                  display: "inline-block",
                 }}
               >
                 E / O / S
@@ -227,6 +234,8 @@ const Entries = () => {
                   width: "100px",
                   minWidth: "100px",
                   maxWidth: "100px",
+                  padding: "4px",
+                  display: "inline-block",
                 }}
               >
                 Filesize
@@ -238,6 +247,7 @@ const Entries = () => {
                   maxWidth: "190px",
                   textAlign: "left",
                   padding: "4px",
+                  display: "inline-block",
                 }}
               >
                 Date Finished
@@ -247,6 +257,8 @@ const Entries = () => {
                   width: "110px",
                   minWidth: "110px",
                   maxWidth: "110px",
+                  padding: "4px",
+                  display: "inline-block",
                 }}
               >
                 Release Date
@@ -258,6 +270,7 @@ const Entries = () => {
                   maxWidth: `${encoderColumnWidth}px`,
                   textAlign: "left",
                   padding: "4px",
+                  display: "inline-block",
                 }}
               >
                 Encoder
@@ -269,6 +282,7 @@ const Entries = () => {
                   maxWidth: "85px",
                   textAlign: "right",
                   padding: "4px 8px",
+                  display: "inline-block",
                 }}
               >
                 Rating
