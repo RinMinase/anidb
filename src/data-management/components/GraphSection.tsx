@@ -259,11 +259,14 @@ const GraphSection = (props: Props) => {
       props.graph.years.forEach((item) => {
         chartYears.data.labels?.push(item.year);
         chartYears.data.datasets[0].data.push(item.value);
-        years.push(parseInt(item.year));
+
+        if (parseInt(item.year) !== currYear) {
+          years.push(parseInt(item.year));
+        }
       });
 
       years.reverse();
-      setYearsDropdown([currYear, ...years]);
+      setYearsDropdown([currYear, ...years.slice(0, 9)]);
       chartYears.update();
     }
   }, [props.graph.years]);
@@ -378,6 +381,9 @@ const GraphSection = (props: Props) => {
               value={year}
               onChange={handleChangeYear}
               sx={{ float: "right" }}
+              MenuProps={{
+                slotProps: { paper: { style: { maxHeight: 250 } } },
+              }}
             >
               {yearsDropdown.map((item) => (
                 <MenuItem key={`year-dropdown-${item}`} value={item}>
