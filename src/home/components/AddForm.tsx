@@ -34,7 +34,12 @@ import {
 } from "@components";
 
 import { Form } from "../validation";
-import { AnilistTitle, TitleObject, TitleObjects } from "../types";
+import {
+  AnilistTitle,
+  DropdownsApiResponse,
+  TitleObject,
+  TitleObjects,
+} from "../types";
 import AddFormAutocomplete from "./AddFormAutocomplete";
 import AddFormDuration from "./AddFormDuration";
 
@@ -112,51 +117,53 @@ const AddForm = (props: Props) => {
   const [isDialogOpen, setDialogOpen] = useState(false);
   const [savedAutofill, setSavedAutofill] = useState<AutofillAnilistType>({});
 
-  const fetchQualities = async () => {
+  const fetchDropdowns = async () => {
     const {
       data: { data },
-    } = await axios.get("/qualities");
+    } = (await axios.get("/dropdowns")) as DropdownsApiResponse;
 
-    setQualities(
-      data.map((item: { quality: string; id: string }) => ({
-        label: item.quality,
-        key: `quality-${item.id}`,
-        value: item.id,
-      })),
+    const newQualities = data.qualities.map((item) => ({
+      label: item.quality,
+      key: `quality-${item.id}`,
+      value: item.id,
+    }));
+
+    const newAudioCodecs = data.codecs.audio.map(
+      (item: { id: number; codec: string }) => ({
+        label: item.codec,
+        key: `acodec-${item.id}`,
+        value: `${item.id}`,
+      }),
     );
 
-    props.setValue("id_quality", "2");
-  };
+    const newVideoCodecs = data.codecs.video.map(
+      (item: { id: number; codec: string }) => ({
+        label: item.codec,
+        key: `acodec-${item.id}`,
+        value: `${item.id}`,
+      }),
+    );
 
-  const fetchCodecs = async () => {
-    const {
-      data: {
-        data: { audio, video },
-      },
-    } = await axios.get("/codecs");
-
-    const newAudioCodecs = audio.map((item: { id: number; codec: string }) => ({
-      label: item.codec,
-      key: `acodec-${item.id}`,
-      value: `${item.id}`,
+    const newGenres = data.genres.map((item) => ({
+      label: item.genre,
+      key: `genre-${item.id}`,
+      value: item.id,
     }));
 
-    const newVideoCodecs = video.map((item: { id: number; codec: string }) => ({
-      label: item.codec,
-      key: `acodec-${item.id}`,
-      value: `${item.id}`,
+    const newWatchers = data.watchers.map((item) => ({
+      label: item.label,
+      key: `watchers-${item.id}`,
+      value: item.id,
     }));
 
+    setGroups(data.groups);
+    setQualities(newQualities);
     setAudioCodecs(newAudioCodecs);
     setVideoCodecs(newVideoCodecs);
-  };
+    setGenres(newGenres);
+    setWatchers(newWatchers);
 
-  const fetchGroups = async () => {
-    const {
-      data: { data },
-    } = await axios.get("/groups/names");
-
-    setGroups([...data]);
+    props.setValue("id_quality", "2");
   };
 
   const fetchRelations = async () => {
@@ -172,47 +179,12 @@ const AddForm = (props: Props) => {
     setInitACOptions(structuredClone(values));
   };
 
-  const fetchGenres = async () => {
-    const {
-      data: { data },
-    } = await axios.get("/genres");
-
-    setGenres(
-      data.map((item: { genre: string; id: string }) => ({
-        label: item.genre,
-        key: `genre-${item.id}`,
-        value: item.id,
-      })),
-    );
-  };
-
-  const fetchWatchers = async () => {
-    const {
-      data: { data },
-    } = await axios.get("/entries/watchers");
-
-    setWatchers(
-      data.map((item: { label: string; id: string }) => ({
-        label: item.label,
-        key: `watchers-${item.id}`,
-        value: item.id,
-      })),
-    );
-  };
-
   const fetchData = async () => {
     try {
       toggleLoader(true);
       props.setDropdownLoading(true);
 
-      await Promise.all([
-        fetchRelations(),
-        fetchGroups(),
-        fetchQualities(),
-        fetchCodecs(),
-        fetchGenres(),
-        fetchWatchers(),
-      ]);
+      await Promise.all([fetchRelations(), fetchDropdowns()]);
     } catch (err) {
       console.error(err);
       toast.error("Failed");

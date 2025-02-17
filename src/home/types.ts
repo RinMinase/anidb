@@ -140,3 +140,18 @@ export type TableHeadings = Array<{
   hideOnMobile?: boolean;
   sortable?: boolean;
 }>;
+
+export type DropdownsApiResponse = {
+  data: {
+    data: {
+      groups: Array<string>;
+      qualities: Array<{ id: number; quality: string }>;
+      codecs: {
+        audio: Array<{ id: number; codec: string; order: number | null }>;
+        video: Array<{ id: number; codec: string; order: number | null }>;
+      };
+      genres: Array<{ id: number; genre: string }>;
+      watchers: Array<{ id: number; label: string }>;
+    };
+  };
+};
