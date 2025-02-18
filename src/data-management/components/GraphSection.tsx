@@ -197,6 +197,10 @@ const GraphSection = (props: Props) => {
   }, []);
 
   useEffect(() => {
+    fetchByYear();
+  }, [props.graph]);
+
+  useEffect(() => {
     let hasAnyValue = false;
 
     // eslint-disable-next-line
