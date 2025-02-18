@@ -85,7 +85,7 @@ const searchAPIDebounced = DebouncePromise(searchAPI, 500);
 
 const Home = () => {
   const { isLoading } = useContext(GlobalLoaderContext);
-  const { isAdmin } = useContext(AuthenticatedUserContext);
+  const isAdmin = useContext(AuthenticatedUserContext);
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));

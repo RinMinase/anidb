@@ -3,11 +3,7 @@ import { useEffect, useState } from "preact/hooks";
 import axios, { AxiosError } from "axios";
 import DebouncePromise from "awesome-debounce-promise";
 
-export const AuthenticatedUserContext = createContext({
-  isAdmin: false,
-  // eslint-disable-next-line
-  // toggleAdmin: (value: boolean) => {},
-});
+export const AuthenticatedUserContext = createContext<boolean | null>(null);
 
 type Props = {
   currRoute: string;
@@ -18,7 +14,7 @@ const checkAuthApi = () => axios.get("/auth/user");
 const debouncedCheckAuthApi = DebouncePromise(checkAuthApi, 100);
 
 const AuthenticatedUser = (props: Props) => {
-  const [isAdmin, setIsAdmin] = useState(false);
+  const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
 
   const checkAuth = async () => {
     try {
@@ -52,7 +48,7 @@ const AuthenticatedUser = (props: Props) => {
   }, [props.currRoute]);
 
   return (
-    <AuthenticatedUserContext.Provider value={{ isAdmin }}>
+    <AuthenticatedUserContext.Provider value={isAdmin}>
       {props.children}
     </AuthenticatedUserContext.Provider>
   );
