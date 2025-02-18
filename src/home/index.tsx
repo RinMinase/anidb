@@ -22,6 +22,7 @@ import {
 import RatingIcon from "@components/icons/heart.svg?react";
 
 import {
+  AuthenticatedUserContext,
   BadgeMini,
   Button,
   GlobalLoaderContext,
@@ -84,6 +85,7 @@ const searchAPIDebounced = DebouncePromise(searchAPI, 500);
 
 const Home = () => {
   const { isLoading } = useContext(GlobalLoaderContext);
+  const { isAdmin } = useContext(AuthenticatedUserContext);
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
@@ -219,7 +221,12 @@ const Home = () => {
       >
         <Grid container spacing={2}>
           <Grid size={{ xs: 12, md: 2 }}>
-            <Button variant="contained" href="/home/add" fullWidth>
+            <Button
+              variant="contained"
+              href="/home/add"
+              disabled={!isAdmin}
+              fullWidth
+            >
               Add
             </Button>
           </Grid>
