@@ -32,6 +32,8 @@ export {
   Progress as GlobalLoader,
 } from "./providers/GlobalLoader";
 
+export { AuthenticatedUserContext } from "./providers/AuthenticatedUser";
+
 export {
   FILESIZES,
   cardinalToOrdinal,
