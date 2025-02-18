@@ -1,14 +1,20 @@
-import { Router, Route } from "preact-router";
+import { useContext, useEffect } from "preact/hooks";
+import { Router, Route, route } from "preact-router";
+import { toast } from "sonner";
 import AsyncRoute from "preact-async-route";
 
-import Login from "./login";
-
+import { AuthenticatedUserContext } from "@components";
 import Page404 from "@components/pages/Page404";
+
+import Login from "./login";
 
 type Props = {
   onChange: () => void;
 };
 
+/**
+ * Lazy loaded components
+ */
 const Registration = async () => (await import("./registration")).default;
 
 const Home = async () => (await import("./home")).default;
@@ -48,6 +54,25 @@ const PcSetup = async () => (await import("./pc-setups")).default;
 const PcSetupAdd = async () => (await import("./pc-setups/add")).default;
 const PcComponent = async () => (await import("./pc-components")).default;
 
+/**
+ * Route guard
+ */
+const ProtectedAsyncRoute = (props: any) => {
+  const isAdmin = useContext(AuthenticatedUserContext);
+
+  useEffect(() => {
+    if (isAdmin !== null && !isAdmin) {
+      route("/");
+      toast.error("Admin access is required");
+    }
+  }, [isAdmin]);
+
+  return <AsyncRoute {...props} />;
+};
+
+/**
+ * Route component
+ */
 const Routes = (props: Props) => (
   <Router onChange={props.onChange}>
     <Route path="/" component={Login} />
@@ -55,7 +80,7 @@ const Routes = (props: Props) => (
     <AsyncRoute path="/register" getComponent={Registration} />
 
     <AsyncRoute path="/home" getComponent={Home} />
-    <AsyncRoute path="/home/add" getComponent={HomeAdd} />
+    <ProtectedAsyncRoute path="/home/add" getComponent={HomeAdd} />
     <AsyncRoute path="/home/edit/:id" getComponent={HomeAdd} />
     <AsyncRoute path="/home/view/:id" getComponent={HomeView} />
 
