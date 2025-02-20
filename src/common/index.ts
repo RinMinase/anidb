@@ -10,6 +10,7 @@ export { default as Button } from "./components/Button";
 export { default as ButtonLoading } from "./components/ButtonLoading";
 export { default as ControlledAutocomplete } from "./components/ControlledAutocomplete";
 export { default as ControlledField } from "./components/ControlledField";
+export { default as ControlledPasswordField } from "./components/ControlledPasswordField";
 export { default as ControlledDatepicker } from "./components/ControlledDatepicker";
 export { default as ControlledMultiSelect } from "./components/ControlledMultiSelect";
 export { default as ControlledSelect } from "./components/ControlledSelect";
