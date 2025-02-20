@@ -11,6 +11,8 @@ import {
   Paper,
   Stack,
   styled,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
 
 import {
@@ -46,7 +48,10 @@ const CustomDialog = styled(Paper)({
   maxHeight: "80vh",
 });
 
-const AudioCodec = () => {
+const Users = () => {
+  const theme = useTheme();
+  const isLargeTablet = useMediaQuery(theme.breakpoints.between("sm", "lg"));
+
   const [isAddButtonLoading, setAddButtonLoading] = useState(false);
   const [isEditButtonLoading, setEditButtonLoading] = useState(false);
   const [isTableLoading, setTableLoading] = useState(true);
@@ -200,7 +205,7 @@ const AudioCodec = () => {
   return (
     <ModuleContainer headerText="Additional Non-admin Users">
       <Grid container spacing={2}>
-        <Grid size={{ xs: 12, sm: 5, md: 3 }}>
+        <Grid size={{ xs: 12, sm: 4, md: 3 }}>
           <Stack spacing={2}>
             <ControlledField
               name="username"
@@ -222,7 +227,7 @@ const AudioCodec = () => {
             />
             <ControlledPasswordField
               name="password_confirmation"
-              label="Password Confirmation"
+              label={`${isLargeTablet ? "PW" : "Password"} Confirmation`}
               size="small"
               control={control}
               error={!!errors.password_confirmation}
@@ -239,7 +244,7 @@ const AudioCodec = () => {
             </ButtonLoading>
           </Stack>
         </Grid>
-        <Grid size={{ xs: 12, sm: 7, md: 9 }}>
+        <Grid size={{ xs: 12, sm: 8, md: 9 }}>
           <Table.Container
             component={Paper}
             sx={{
@@ -370,4 +375,4 @@ const AudioCodec = () => {
   );
 };
 
-export default AudioCodec;
+export default Users;
