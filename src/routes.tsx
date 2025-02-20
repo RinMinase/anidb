@@ -47,6 +47,7 @@ const BucketSimAdd = async () => (await import("./bucket-sim/add")).default;
 const DataManagement = async () => (await import("./data-management")).default;
 const Logs = async () => (await import("./logs")).default;
 const Autofills = async () => (await import("./autofills")).default;
+const Users = async () => (await import("./users")).default;
 
 const Rss = async () => (await import("./rss")).default;
 
@@ -132,6 +133,7 @@ const Routes = (props: Props) => (
     />
     <ProtectedAsyncRoute path="/logs" getComponent={Logs} />
     <ProtectedAsyncRoute path="/autofills" getComponent={Autofills} />
+    <ProtectedAsyncRoute path="/users" getComponent={Users} />
 
     <ProtectedAsyncRoute path="/rss" getComponent={Rss} />
 
