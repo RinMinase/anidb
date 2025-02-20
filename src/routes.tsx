@@ -81,51 +81,72 @@ const Routes = (props: Props) => (
 
     <AsyncRoute path="/home" getComponent={Home} />
     <ProtectedAsyncRoute path="/home/add" getComponent={HomeAdd} />
-    <AsyncRoute path="/home/edit/:id" getComponent={HomeAdd} />
+    <ProtectedAsyncRoute path="/home/edit/:id" getComponent={HomeAdd} />
     <AsyncRoute path="/home/view/:id" getComponent={HomeView} />
 
-    <AsyncRoute path="/entries" getComponent={Entries} />
-    <AsyncRoute path="/search" getComponent={Search} />
-    <AsyncRoute path="/last-watch" getComponent={LastWatch} />
+    <ProtectedAsyncRoute path="/entries" getComponent={Entries} />
+    <ProtectedAsyncRoute path="/search" getComponent={Search} />
+    <ProtectedAsyncRoute path="/last-watch" getComponent={LastWatch} />
 
-    <AsyncRoute path="/by-name" getComponent={ByName} />
-    <AsyncRoute path="/by-year" getComponent={ByYear} />
-    <AsyncRoute path="/by-genre" getComponent={ByGenre} />
+    <ProtectedAsyncRoute path="/by-name" getComponent={ByName} />
+    <ProtectedAsyncRoute path="/by-year" getComponent={ByYear} />
+    <ProtectedAsyncRoute path="/by-genre" getComponent={ByGenre} />
 
-    <AsyncRoute path="/catalogs" getComponent={Catalog} />
-    <AsyncRoute path="/catalogs/add" getComponent={CatalogAdd} />
-    <AsyncRoute path="/catalogs/edit/:id" getComponent={CatalogAdd} />
-    <AsyncRoute path="/catalogs/add-multi" getComponent={CatalogMulti} />
-    <AsyncRoute path="/catalogs/edit-multi/:id" getComponent={CatalogMulti} />
-    <AsyncRoute path="/catalogs/manage" getComponent={CatalogManage} />
-    <AsyncRoute
+    <ProtectedAsyncRoute path="/catalogs" getComponent={Catalog} />
+    <ProtectedAsyncRoute path="/catalogs/add" getComponent={CatalogAdd} />
+    <ProtectedAsyncRoute path="/catalogs/edit/:id" getComponent={CatalogAdd} />
+    <ProtectedAsyncRoute
+      path="/catalogs/add-multi"
+      getComponent={CatalogMulti}
+    />
+    <ProtectedAsyncRoute
+      path="/catalogs/edit-multi/:id"
+      getComponent={CatalogMulti}
+    />
+    <ProtectedAsyncRoute path="/catalogs/manage" getComponent={CatalogManage} />
+    <ProtectedAsyncRoute
       path="/catalogs/manage-edit/:id"
       getComponent={CatalogManageEdit}
     />
 
-    <AsyncRoute path="/buckets" getComponent={Bucket} />
+    <ProtectedAsyncRoute path="/buckets" getComponent={Bucket} />
 
-    <AsyncRoute path="/marathons" getComponent={Marathon} />
-    <AsyncRoute path="/marathons/add" getComponent={MarathonAdd} />
-    <AsyncRoute path="/marathons/edit/:id" getComponent={MarathonAdd} />
+    <ProtectedAsyncRoute path="/marathons" getComponent={Marathon} />
+    <ProtectedAsyncRoute path="/marathons/add" getComponent={MarathonAdd} />
+    <ProtectedAsyncRoute
+      path="/marathons/edit/:id"
+      getComponent={MarathonAdd}
+    />
 
-    <AsyncRoute path="/bucket-sims" getComponent={BucketSim} />
-    <AsyncRoute path="/bucket-sims/add" getComponent={BucketSimAdd} />
-    <AsyncRoute path="/bucket-sims/edit/:id" getComponent={BucketSimAdd} />
+    <ProtectedAsyncRoute path="/bucket-sims" getComponent={BucketSim} />
+    <ProtectedAsyncRoute path="/bucket-sims/add" getComponent={BucketSimAdd} />
+    <ProtectedAsyncRoute
+      path="/bucket-sims/edit/:id"
+      getComponent={BucketSimAdd}
+    />
 
-    <AsyncRoute path="/data-management" getComponent={DataManagement} />
-    <AsyncRoute path="/logs" getComponent={Logs} />
-    <AsyncRoute path="/autofills" getComponent={Autofills} />
+    <ProtectedAsyncRoute
+      path="/data-management"
+      getComponent={DataManagement}
+    />
+    <ProtectedAsyncRoute path="/logs" getComponent={Logs} />
+    <ProtectedAsyncRoute path="/autofills" getComponent={Autofills} />
 
-    <AsyncRoute path="/rss" getComponent={Rss} />
+    <ProtectedAsyncRoute path="/rss" getComponent={Rss} />
 
-    <AsyncRoute path="/pc-setups" getComponent={PcSetup} />
-    <AsyncRoute path="/pc-setups/:ownerId/add" getComponent={PcSetupAdd} />
-    <AsyncRoute
+    <ProtectedAsyncRoute path="/pc-setups" getComponent={PcSetup} />
+    <ProtectedAsyncRoute
+      path="/pc-setups/:ownerId/add"
+      getComponent={PcSetupAdd}
+    />
+    <ProtectedAsyncRoute
       path="/pc-setups/:ownerId/edit/:infoId"
       getComponent={PcSetupAdd}
     />
-    <AsyncRoute path="/pc-setups/components" getComponent={PcComponent} />
+    <ProtectedAsyncRoute
+      path="/pc-setups/components"
+      getComponent={PcComponent}
+    />
 
     <Route default component={Page404} />
   </Router>
