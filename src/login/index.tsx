@@ -80,11 +80,11 @@ const Login = () => {
 
             <TextField
               variant="outlined"
-              label="Email Address"
-              error={!!errors.email}
-              helperText={errors.email?.message}
+              label="Username"
+              error={!!errors.username}
+              helperText={errors.username?.message}
               disabled={isLoading}
-              {...register("email")}
+              {...register("username")}
             />
             <TextField
               type="password"

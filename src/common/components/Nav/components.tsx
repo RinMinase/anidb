@@ -1,7 +1,6 @@
 import { Divider, ListItemIcon, MenuItem } from "@mui/material";
 
 import {
-  Rss as RssIcon,
   Search as SearchIcon,
   RotateCcw as LastWatchIcon,
   Server as AllEntryDataIcon,
@@ -15,6 +14,8 @@ import {
   Database as DataManagementIcon,
   FileText as LogsIcon,
   Edit3 as AutofillsIcon,
+  Users as UsersIcon,
+  Rss as RssIcon,
   Box as PCComponentsIcon,
 } from "react-feather";
 
@@ -92,6 +93,10 @@ export const MenuItemManagement = (props: { onClick: () => void }) => (
     <MenuItem component={"a" as any} href="/autofills" onClick={props.onClick}>
       <ListItemIcon children={<AutofillsIcon size={18} strokeWidth={1.5} />} />
       Codecs & Groups
+    </MenuItem>
+    <MenuItem component={"a" as any} href="/users" onClick={props.onClick}>
+      <ListItemIcon children={<UsersIcon size={18} strokeWidth={1.5} />} />
+      Users
     </MenuItem>
   </>
 );
