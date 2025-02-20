@@ -1,4 +1,4 @@
-import { Dispatch, StateUpdater, useState } from "preact/hooks";
+import { Dispatch, StateUpdater, useContext, useState } from "preact/hooks";
 import axios from "axios";
 import { CircularProgress, useMediaQuery, useTheme } from "@mui/material";
 import { toast } from "sonner";
@@ -21,6 +21,7 @@ import {
 } from "./ViewComponents";
 
 import { FullData } from "../types";
+import { AuthenticatedUserContext } from "@components";
 
 type Props = {
   id?: string;
@@ -33,6 +34,8 @@ const BlankImage = "data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=";
 const ViewEntryImage = (props: Props) => {
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
+
+  const isAdmin = useContext(AuthenticatedUserContext);
 
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [tempImage, setTempImage] = useState<string>("");
@@ -125,29 +128,30 @@ const ViewEntryImage = (props: Props) => {
         )}
 
         {isDesktop && !imageFile && (
-          <ImageBoxEdit component="label" disabled={!!imageFile}>
+          <ImageBoxEdit component="label" disabled={!!imageFile || !isAdmin}>
             <UploadImageIcon color="#fff" />
             <input
               type="file"
               accept="image/*"
               hidden
+              disabled={!isAdmin}
               onChange={handleChangeFile}
             />
           </ImageBoxEdit>
         )}
 
         {isDesktop && !imageFile && deleteIcon && (
-          <ImageBoxDelete onClick={handleDeleteFile}>
+          <ImageBoxDelete disabled={!isAdmin} onClick={handleDeleteFile}>
             <UploadDeleteIcon color="#fff" />
           </ImageBoxDelete>
         )}
 
         {imageFile && (
           <>
-            <ImageBoxSave onClick={handleUploadFile}>
+            <ImageBoxSave disabled={!isAdmin} onClick={handleUploadFile}>
               <UploadSaveIcon color="#fff" />
             </ImageBoxSave>
-            <ImageBoxRemove onClick={handleRemoveFile}>
+            <ImageBoxRemove disabled={!isAdmin} onClick={handleRemoveFile}>
               <UploadCancelIcon color="#fff" />
             </ImageBoxRemove>
           </>

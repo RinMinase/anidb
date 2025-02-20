@@ -28,6 +28,7 @@ import TotalRatingIcon from "@components/icons/heart.svg?react";
 import { roundHalfDown } from "@components/functions";
 
 import {
+  AuthenticatedUserContext,
   Button,
   ButtonLoading,
   Dialog,
@@ -61,6 +62,7 @@ type RatingType = "audio" | "enjoyment" | "graphics" | "plot";
 
 const HomeView = (props: Props) => {
   const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
+  const isAdmin = useContext(AuthenticatedUserContext);
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
@@ -158,6 +160,7 @@ const HomeView = (props: Props) => {
           value={ratings.audio}
           IconContainerComponent={RatingIconContainer}
           max={5}
+          disabled={!isAdmin}
           onChangeActive={(e: any, value: number | null) =>
             debouncedOnHover("audio", value)
           }
@@ -172,6 +175,7 @@ const HomeView = (props: Props) => {
           value={ratings.enjoyment}
           IconContainerComponent={RatingIconContainer}
           max={5}
+          disabled={!isAdmin}
           onChangeActive={(e: any, value: number | null) =>
             debouncedOnHover("enjoyment", value)
           }
@@ -188,6 +192,7 @@ const HomeView = (props: Props) => {
           value={ratings.graphics}
           IconContainerComponent={RatingIconContainer}
           max={5}
+          disabled={!isAdmin}
           onChangeActive={(e: any, value: number | null) =>
             debouncedOnHover("graphics", value)
           }
@@ -204,6 +209,7 @@ const HomeView = (props: Props) => {
           value={ratings.plot}
           IconContainerComponent={RatingIconContainer}
           max={5}
+          disabled={!isAdmin}
           onChangeActive={(e: any, value: number | null) =>
             debouncedOnHover("plot", value)
           }
@@ -301,6 +307,7 @@ const HomeView = (props: Props) => {
               <Button
                 variant="contained"
                 color="warning"
+                disabled={!isAdmin}
                 startIcon={<EditIcon size={16} />}
                 onClick={() => route(`/home/edit/${props.matches.id}`)}
                 fullWidth
@@ -312,6 +319,7 @@ const HomeView = (props: Props) => {
               <ButtonLoading
                 variant="contained"
                 color="error"
+                disabled={!isAdmin}
                 loading={isDeleteLoading}
                 startIcon={<DeleteIcon size={16} />}
                 onClick={() => setDeleteDialogOpen(true)}
@@ -373,6 +381,7 @@ const HomeView = (props: Props) => {
                 <Button
                   variant="contained"
                   fullWidth
+                  disabled={!isAdmin}
                   onClick={() => setOffquelDialog(true)}
                 >
                   Edit Offquels
@@ -382,6 +391,7 @@ const HomeView = (props: Props) => {
                 <Button
                   variant="contained"
                   fullWidth
+                  disabled={!isAdmin}
                   onClick={() => setRewatchDialog(true)}
                 >
                   Rewatches
