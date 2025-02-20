@@ -29,6 +29,13 @@ if (API_URL) {
         localStorage.clear();
 
         try {
+          const excludedUrls = ["/", "/register"];
+
+          // Skip redirecting on excluded urls
+          if (excludedUrls.includes(window.location.pathname)) {
+            return Promise.reject(err);
+          }
+
           // Check if router is present at scope
           getCurrentUrl();
           route("/");
