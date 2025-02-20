@@ -37,26 +37,58 @@ const Page404 = () => {
           <h1
             style={{
               fontSize: isMobile ? 115 : isTablet ? 140 : 105,
-              webkitTextStroke: "1px #37474F",
               margin: 0,
               lineHeight: isMobile ? "130px" : "120px",
               color: "white",
-              paintOrder: "stroke fill",
+              position: "relative",
             }}
           >
-            404
+            <span
+              style={{
+                webkitTextStroke: "3px #37474F",
+                paintOrder: "stroke fill",
+              }}
+            >
+              404
+            </span>
+            <span
+              style={{
+                position: "absolute",
+                webkitTextStroke: 0,
+                top: 0,
+                left: 0,
+              }}
+            >
+              404
+            </span>
           </h1>
           <h2
             style={{
               fontSize: isMobile ? undefined : isTablet ? 36 : undefined,
               lineHeight: isTablet ? "38px" : undefined,
               marginTop: 0,
-              webkitTextStroke: "1px #37474F",
               color: "white",
-              paintOrder: "stroke fill",
+              position: "relative",
             }}
           >
-            🚧 We are at a crossroads 🚧
+            <span
+              style={{
+                webkitTextStroke: "2px #37474F",
+                paintOrder: "stroke fill",
+              }}
+            >
+              🚧 We are at a crossroads 🚧
+            </span>
+            <span
+              style={{
+                position: "absolute",
+                webkitTextStroke: 0,
+                top: 0,
+                left: 0,
+              }}
+            >
+              🚧 We are at a crossroads 🚧
+            </span>
           </h2>
           <a
             href="/"
