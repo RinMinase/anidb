@@ -76,13 +76,14 @@ const ProtectedAsyncRoute = (props: any) => {
 const Routes = (props: Props) => (
   <Router onChange={props.onChange}>
     <Route path="/" component={Login} />
+    <Route default component={Page404} />
 
     <AsyncRoute path="/register" getComponent={Registration} />
 
     <AsyncRoute path="/home" getComponent={Home} />
+    <AsyncRoute path="/home/view/:id" getComponent={HomeView} />
     <ProtectedAsyncRoute path="/home/add" getComponent={HomeAdd} />
     <ProtectedAsyncRoute path="/home/edit/:id" getComponent={HomeAdd} />
-    <AsyncRoute path="/home/view/:id" getComponent={HomeView} />
 
     <ProtectedAsyncRoute path="/entries" getComponent={Entries} />
     <ProtectedAsyncRoute path="/search" getComponent={Search} />
@@ -147,8 +148,6 @@ const Routes = (props: Props) => (
       path="/pc-setups/components"
       getComponent={PcComponent}
     />
-
-    <Route default component={Page404} />
   </Router>
 );
 
