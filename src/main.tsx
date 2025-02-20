@@ -26,10 +26,9 @@ const Layout = () => {
   return (
     <ColorMode>
       <CssBaseline />
-
-      {navCommon ? <NavCommon /> : <Nav />}
-
       <AuthenticatedUser currRoute={currRoute}>
+        {navCommon ? <NavCommon /> : <Nav />}
+
         <GlobalLoader disableScroll={navCommon} id="main">
           <Container>
             <Routes onChange={handleRouteChange as any} />

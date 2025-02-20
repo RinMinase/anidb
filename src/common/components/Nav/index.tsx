@@ -32,6 +32,7 @@ import {
   ColorModeContext,
   ButtonLoading,
   GlobalLoader,
+  AuthenticatedUserContext,
 } from "@components";
 
 import { MenuItemList, MenuItemManagement, MenuItemOther } from "./components";
@@ -45,6 +46,7 @@ const RightMenuContainer = styled(Box)({
 const Nav = () => {
   const theme = useTheme();
   const colorMode = useContext(ColorModeContext);
+  const isAdmin = useContext(AuthenticatedUserContext);
 
   const [isLogoutLoading, setLogoutLoading] = useState(false);
 
@@ -97,6 +99,7 @@ const Nav = () => {
               {import.meta.env.VITE_CUSTOM_TITLE || "Rin's Anime Database"}
             </Typography>
 
+            {/* Mobile Menu */}
             <Box flexGrow={1} sx={{ display: { xs: "flex", md: "none" } }}>
               <IconButton
                 onClick={(e) => handleOpenList(e, "nav")}
@@ -120,12 +123,18 @@ const Nav = () => {
                   display: { xs: "block", md: "none" },
                 }}
               >
-                <MenuItemList onClick={() => handleCloseList("nav")} />
-                <Divider />
-                <MenuItemManagement onClick={() => handleCloseList("nav")} />
-                <Divider />
-                <MenuItemOther onClick={() => handleCloseList("nav")} />
-                <Divider />
+                {isAdmin ? (
+                  <>
+                    <MenuItemList onClick={() => handleCloseList("nav")} />
+                    <Divider />
+                    <MenuItemManagement
+                      onClick={() => handleCloseList("nav")}
+                    />
+                    <Divider />
+                    <MenuItemOther onClick={() => handleCloseList("nav")} />
+                    <Divider />
+                  </>
+                ) : null}
                 <MenuItem
                   onClick={() => {
                     handleCloseList("nav");
@@ -156,55 +165,59 @@ const Nav = () => {
               {import.meta.env.VITE_CUSTOM_TITLE || "Rin's AniDB"}
             </Typography>
 
-            <Box flexGrow={1} sx={{ display: { xs: "none", md: "flex" } }}>
-              <Button
-                iconSize={18}
-                color="inherit"
-                onClick={(e: any) => handleOpenList(e, "list")}
-                startIcon={<ListIcon size={18} strokeWidth={1.5} />}
-              >
-                Lists
-              </Button>
-              <Menu
-                anchorEl={anchorList}
-                open={!!anchorList}
-                onClose={() => handleCloseList("list")}
-              >
-                <MenuItemList onClick={() => handleCloseList("list")} />
-              </Menu>
+            {/* Desktop Menu */}
+            {isAdmin ? (
+              <Box flexGrow={1} sx={{ display: { xs: "none", md: "flex" } }}>
+                <Button
+                  iconSize={18}
+                  color="inherit"
+                  onClick={(e: any) => handleOpenList(e, "list")}
+                  startIcon={<ListIcon size={18} strokeWidth={1.5} />}
+                >
+                  Lists
+                </Button>
+                <Menu
+                  anchorEl={anchorList}
+                  open={!!anchorList}
+                  onClose={() => handleCloseList("list")}
+                >
+                  <MenuItemList onClick={() => handleCloseList("list")} />
+                </Menu>
+                <Button
+                  iconSize={18}
+                  color="inherit"
+                  onClick={(e: any) => handleOpenList(e, "mgmt")}
+                  startIcon={<ManagementIcon size={18} strokeWidth={1.5} />}
+                >
+                  Management
+                </Button>
+                <Menu
+                  anchorEl={anchorMgmt}
+                  open={!!anchorMgmt}
+                  onClose={() => handleCloseList("mgmt")}
+                >
+                  <MenuItemManagement onClick={() => handleCloseList("mgmt")} />
+                </Menu>
 
-              <Button
-                iconSize={18}
-                color="inherit"
-                onClick={(e: any) => handleOpenList(e, "mgmt")}
-                startIcon={<ManagementIcon size={18} strokeWidth={1.5} />}
-              >
-                Management
-              </Button>
-              <Menu
-                anchorEl={anchorMgmt}
-                open={!!anchorMgmt}
-                onClose={() => handleCloseList("mgmt")}
-              >
-                <MenuItemManagement onClick={() => handleCloseList("mgmt")} />
-              </Menu>
-
-              <Button
-                iconSize={18}
-                color="inherit"
-                onClick={(e: any) => handleOpenList(e, "other")}
-                startIcon={<OtherIcon size={18} strokeWidth={1.5} />}
-              >
-                Other
-              </Button>
-              <Menu
-                anchorEl={anchorOther}
-                open={!!anchorOther}
-                onClose={() => handleCloseList("other")}
-              >
-                <MenuItemOther onClick={() => handleCloseList("other")} />
-              </Menu>
-            </Box>
+                <Button
+                  iconSize={18}
+                  color="inherit"
+                  onClick={(e: any) => handleOpenList(e, "other")}
+                  startIcon={<OtherIcon size={18} strokeWidth={1.5} />}
+                >
+                  Other
+                </Button>
+                <Menu
+                  anchorEl={anchorOther}
+                  open={!!anchorOther}
+                  onClose={() => handleCloseList("other")}
+                >
+                  <MenuItemOther onClick={() => handleCloseList("other")} />
+                </Menu>
+              </Box>
+            ) : (
+              <Box flexGrow={1} sx={{ display: { xs: "none", md: "flex" } }} />
+            )}
 
             <IconButton onClick={colorMode.toggleColorMode} color="inherit">
               {theme.palette.mode === "dark" ? (
