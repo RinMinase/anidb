@@ -25,6 +25,7 @@ import { ErrorResponse } from "@components/types";
 import {
   ButtonLoading,
   ControlledField,
+  ControlledPasswordField,
   Dialog,
   IconButton,
   ModuleContainer,
@@ -210,7 +211,7 @@ const AudioCodec = () => {
               helperText={errors.username?.message}
               disabled={isAddButtonLoading || isTableLoading}
             />
-            <ControlledField
+            <ControlledPasswordField
               name="password"
               label="Password"
               size="small"
@@ -219,7 +220,7 @@ const AudioCodec = () => {
               helperText={errors.password?.message}
               disabled={isAddButtonLoading || isTableLoading}
             />
-            <ControlledField
+            <ControlledPasswordField
               name="password_confirmation"
               label="Password Confirmation"
               size="small"
@@ -326,7 +327,7 @@ const AudioCodec = () => {
                 helperText={editErrors.username?.message}
                 disabled={isEditButtonLoading}
               />
-              <ControlledField
+              <ControlledPasswordField
                 name="password"
                 label="Password"
                 size="small"
@@ -335,7 +336,7 @@ const AudioCodec = () => {
                 helperText={editErrors.password?.message}
                 disabled={isEditButtonLoading}
               />
-              <ControlledField
+              <ControlledPasswordField
                 name="password_confirmation"
                 label="Password Confirmation"
                 size="small"

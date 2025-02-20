@@ -2,16 +2,24 @@ import { useEffect, useState } from "preact/hooks";
 import { route } from "preact-router";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
+import { Eye, EyeOff } from "react-feather";
 import axios, { AxiosError } from "axios";
 
-import { Grid2 as Grid, Stack, TextField, Typography } from "@mui/material";
+import {
+  Grid2 as Grid,
+  InputAdornment,
+  Stack,
+  TextField,
+  Typography,
+} from "@mui/material";
 
-import { ButtonLoading, ErrorResponseType } from "@components";
+import { ButtonLoading, ErrorResponseType, IconButton } from "@components";
 
 import { Form, resolver } from "./validation";
 
 const Login = () => {
   const [isLoading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const {
     register,
@@ -87,12 +95,31 @@ const Login = () => {
               {...register("username")}
             />
             <TextField
-              type="password"
+              type={showPassword ? "text" : "password"}
               variant="outlined"
               label="Password"
               error={!!errors.password}
               helperText={errors.password?.message}
               disabled={isLoading}
+              slotProps={{
+                input: {
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton
+                        onClick={() => setShowPassword((show) => !show)}
+                        onMouseDown={(e) => e.preventDefault()}
+                        onMouseUp={(e) => e.preventDefault()}
+                      >
+                        {showPassword ? (
+                          <EyeOff size={24} />
+                        ) : (
+                          <Eye size={24} />
+                        )}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                },
+              }}
               {...register("password")}
             />
 
