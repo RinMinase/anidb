@@ -45,7 +45,11 @@ const Registration = () => {
           });
         }
 
-        toast.error("Form validation failed");
+        if (data) {
+          toast.error("Form validation failed");
+        } else {
+          toast.error("An unknown error has occurred");
+        }
       } else {
         console.error(err);
         toast.error("Failed");
@@ -62,85 +66,88 @@ const Registration = () => {
       sx={{ height: "calc(100vh - 48px)", alignItems: "center" }}
     >
       <Grid size={{ xs: 12, sm: 6, md: 4 }}>
-        <form onSubmit={handleSubmit(handleSubmitForm)}>
-          <Stack spacing={3} sx={{ paddingTop: 3, textAlign: "center" }}>
-            <Typography variant="h4">Register</Typography>
+        <Stack spacing={3} sx={{ paddingTop: 3, textAlign: "center" }}>
+          <Typography variant="h4">Register</Typography>
 
-            <TextField
-              variant="outlined"
-              label="Username"
-              error={!!errors.username}
-              helperText={errors.username?.message}
-              disabled={isLoading}
-              {...register("username")}
-            />
-            <TextField
-              type={showPassword ? "text" : "password"}
-              variant="outlined"
-              label="Password"
-              error={!!errors.password}
-              helperText={errors.password?.message}
-              disabled={isLoading}
-              slotProps={{
-                input: {
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton
-                        onClick={() => setShowPassword((show) => !show)}
-                        onMouseDown={(e) => e.preventDefault()}
-                        onMouseUp={(e) => e.preventDefault()}
-                      >
-                        {showPassword ? (
-                          <EyeOff size={24} />
-                        ) : (
-                          <Eye size={24} />
-                        )}
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                },
-              }}
-              {...register("password")}
-            />
-            <TextField
-              type={showPasswordConf ? "text" : "password"}
-              variant="outlined"
-              label="Confirm Password"
-              error={!!errors.password_confirmation}
-              helperText={errors.password_confirmation?.message}
-              disabled={isLoading}
-              slotProps={{
-                input: {
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton
-                        onClick={() => setShowPasswordConf((show) => !show)}
-                        onMouseDown={(e) => e.preventDefault()}
-                        onMouseUp={(e) => e.preventDefault()}
-                      >
-                        {showPasswordConf ? (
-                          <EyeOff size={24} />
-                        ) : (
-                          <Eye size={24} />
-                        )}
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                },
-              }}
-              {...register("password_confirmation")}
-            />
+          <TextField
+            variant="outlined"
+            label="Username"
+            error={!!errors.username}
+            helperText={errors.username?.message}
+            disabled={isLoading}
+            {...register("username")}
+          />
+          <TextField
+            type={showPassword ? "text" : "password"}
+            variant="outlined"
+            label="Password"
+            error={!!errors.password}
+            helperText={errors.password?.message}
+            disabled={isLoading}
+            slotProps={{
+              input: {
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      onClick={() => setShowPassword((show) => !show)}
+                      onMouseDown={(e) => e.preventDefault()}
+                      onMouseUp={(e) => e.preventDefault()}
+                    >
+                      {showPassword ? <EyeOff size={24} /> : <Eye size={24} />}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              },
+            }}
+            {...register("password")}
+          />
+          <TextField
+            type={showPasswordConf ? "text" : "password"}
+            variant="outlined"
+            label="Confirm Password"
+            error={!!errors.password_confirmation}
+            helperText={errors.password_confirmation?.message}
+            disabled={isLoading}
+            slotProps={{
+              input: {
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      onClick={() => setShowPasswordConf((show) => !show)}
+                      onMouseDown={(e) => e.preventDefault()}
+                      onMouseUp={(e) => e.preventDefault()}
+                    >
+                      {showPasswordConf ? (
+                        <EyeOff size={24} />
+                      ) : (
+                        <Eye size={24} />
+                      )}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              },
+            }}
+            {...register("password_confirmation")}
+          />
+          <TextField
+            variant="outlined"
+            label="Admin / Root Password"
+            error={!!errors.root_password}
+            helperText={errors.root_password?.message}
+            disabled={isLoading}
+            {...register("root_password")}
+          />
 
-            <ButtonLoading
-              variant="contained"
-              type="submit"
-              disabled={isLoading}
-              loading={isLoading}
-            >
-              Register
-            </ButtonLoading>
-          </Stack>
-        </form>
+          <ButtonLoading
+            variant="contained"
+            type="button"
+            disabled={isLoading}
+            loading={isLoading}
+            onClick={handleSubmit(handleSubmitForm)}
+          >
+            Register
+          </ButtonLoading>
+        </Stack>
       </Grid>
     </Grid>
   );
