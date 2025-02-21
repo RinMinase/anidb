@@ -20,10 +20,10 @@
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
-    "@hello-pangea/dnd": "^17.0.0",
+    "@hello-pangea/dnd": "^18.0.1",
     "@hookform/resolvers": "^3.10.0",
-    "@mui/material": "^6.4.3",
-    "@mui/x-date-pickers": "^7.26.0",
+    "@mui/material": "^6.4.5",
+    "@mui/x-date-pickers": "^7.27.0",
     "awesome-debounce-promise": "^2.1.0",
     "axios": "^1.7.9",
     "chart.js": "^4.4.8",
@@ -42,12 +42,12 @@
     "react-virtualized-auto-sizer": "^1.0.25",
     "react-waypoint": "^10.3.0",
     "react-window": "^1.8.11",
-    "sonner": "^1.7.4",
+    "sonner": "^2.0.1",
     "ua-parser-js": "^2.0.2",
     "yup": "^1.6.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.26.8",
+    "@babel/core": "^7.26.9",
     "@date-io/date-fns": "^3.2.0",
     "@mui/system": "^6.4.3",
     "@preact/preset-vite": "^2.10.1",
