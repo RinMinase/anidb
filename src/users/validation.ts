@@ -18,10 +18,16 @@ const schema = object({
   username: string()
     .min(4, "Should be at least 4 alphanumeric characters")
     .max(32, "Should be at most 32 alphanumeric characters")
+    .matches(/^[a-zA-Z0-9]+$/, {
+      message: "Only accepts alphanumeric characters",
+    })
     .required("Username is required"),
   password: string()
     .min(4, "Should be at least 4 alphanumeric characters")
     .max(32, "Should be at most 32 alphanumeric characters")
+    .matches(/^[a-zA-Z0-9]+$/, {
+      message: "Only accepts alphanumeric characters",
+    })
     .required("Password is required"),
   password_confirmation: string().oneOf(
     [ref("password")],
