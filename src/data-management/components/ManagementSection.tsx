@@ -58,15 +58,35 @@ const ManagementSection = (props: Props) => {
       body.append("file", file);
 
       const {
-        data: { data },
+        data: {
+          data: { buckets, entries, groups, sequences },
+        },
       } = await axios.post("/import", body, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 
       setUploading(false);
 
+      const description = () => (
+        <div>
+          <p style={{ marginTop: 4, marginBottom: 4 }}>
+            {`Buckets: ${buckets.accepted || 0} of ${buckets.total || 0}`}
+          </p>
+          <p style={{ marginTop: 4, marginBottom: 4 }}>
+            {`Entries: ${entries.accepted || 0} of ${entries.total || 0}`}
+          </p>
+          <p style={{ marginTop: 4, marginBottom: 4 }}>
+            {`Groups: ${groups.accepted || 0} of ${groups.total || 0}`}
+          </p>
+          <p style={{ marginTop: 4, marginBottom: 4 }}>
+            {`Sequences: ${sequences.accepted || 0} of ${sequences.total || 0}`}
+          </p>
+        </div>
+      );
+
       toast.success("Success", {
-        description: `Accepted: ${data.acceptedImports}, Total: ${data.totalJsonEntries}`,
+        duration: Infinity,
+        description,
       });
 
       props.reloadPageData();
@@ -167,15 +187,6 @@ const ManagementSection = (props: Props) => {
             onClick={handleImport}
           >
             Import All Data
-          </Button>
-
-          <Button
-            variant="contained"
-            endIcon={<ImportIcon size={20} />}
-            disabled={!acceptedFiles.length || uploading}
-            onClick={handleImport}
-          >
-            Import Groups
           </Button>
 
           <Button
