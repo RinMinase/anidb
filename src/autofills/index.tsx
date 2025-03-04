@@ -19,9 +19,9 @@ const tabPanelSxProps: SxProps = {
      */
     md: "calc(100vh - 48px - 48px - 49px - 48px)",
   },
-  overflow: {
+  overflowY: {
     xs: undefined,
-    md: "scroll",
+    md: "hidden",
   },
 };
 
