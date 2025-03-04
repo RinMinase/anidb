@@ -2,6 +2,7 @@ import { useState } from "preact/hooks";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { Eye, EyeOff } from "react-feather";
+import { route } from "preact-router";
 import axios, { AxiosError } from "axios";
 
 import {
@@ -32,8 +33,16 @@ const Registration = () => {
     setLoading(true);
 
     try {
-      await axios.post("/auth/register", formdata);
+      const {
+        data: { data },
+      } = await axios.post("/auth/register", formdata);
+
       toast.success("Success");
+
+      localStorage.setItem("authToken", data.token);
+      axios.defaults.headers.common["Authorization"] = `Bearer ${data.token}`;
+
+      route("/home");
     } catch (err) {
       if (err instanceof AxiosError && err.status === 401) {
         const { data } = err.response?.data as ErrorResponseType;
