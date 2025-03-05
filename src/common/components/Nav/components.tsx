@@ -15,7 +15,6 @@ import {
   FileText as LogsIcon,
   Edit3 as AutofillsIcon,
   Users as UsersIcon,
-  Rss as RssIcon,
   Box as PCComponentsIcon,
 } from "react-feather";
 
@@ -103,11 +102,6 @@ export const MenuItemManagement = (props: { onClick: () => void }) => (
 
 export const MenuItemOther = (props: { onClick: () => void }) => (
   <>
-    <MenuItem component={"a" as any} href="/rss" onClick={props.onClick}>
-      <ListItemIcon children={<RssIcon size={18} strokeWidth={1.5} />} />
-      RSS
-    </MenuItem>
-    <Divider />
     <MenuItem component={"a" as any} href="/pc-setups" onClick={props.onClick}>
       <ListItemIcon children={<PCSetupsIcon size={18} strokeWidth={1.5} />} />
       PC Setups
