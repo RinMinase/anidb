@@ -76,8 +76,8 @@
     "react-dom": "^19.0.0"
   },
   "engines": {
-    "node": ">=16.0.0",
-    "yarn": "^1.19.1"
+    "node": ">=20.0.0",
+    "yarn": "^1.22.22"
   },
   "gitHooks": {
     "prepare-commit-msg": "devmoji -e"
