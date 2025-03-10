@@ -24,7 +24,6 @@
   "linter": {
     "enabled": true,
     "rules": {
-      // migration from eslint
       "recommended": false,
 
       "complexity": {
