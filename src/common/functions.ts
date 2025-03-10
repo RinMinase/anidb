@@ -58,16 +58,13 @@ export function randomAlphaString(length: number = 12): string {
   return result;
 }
 
-/* eslint-disable @typescript-eslint/no-unused-vars */
 export function removeBlankAttributes<T extends object>(obj: T): T {
   const filteredObj = Object.entries(obj).filter(([_, val]) => val != null);
 
   return Object.fromEntries(filteredObj) as T;
 }
-/* eslint-enable */
 
 function roundToTwo(num: any) {
-  // eslint-disable-next-line prefer-template
   return +`${Math.round(`${num}e+2` as any)}e-2`;
 }
 

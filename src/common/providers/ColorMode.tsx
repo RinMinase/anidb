@@ -3,7 +3,6 @@ import { useEffect, useMemo, useState } from "preact/hooks";
 import { createTheme, ThemeProvider } from "@mui/material";
 import Cookies from "js-cookie";
 
-// eslint-disable-next-line @typescript-eslint/no-empty-function
 export const ColorModeContext = createContext({ toggleColorMode: () => {} });
 
 const preferDark = window?.matchMedia("(prefers-color-scheme: dark)").matches;

@@ -20,7 +20,6 @@ const CustomIconButton = styled(MuiIconButton)<Props>(({ iconSize }) => ({
   },
 }));
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const IconButton = ({ ...props }: Props) => {
   return <CustomIconButton {...props} />;
 };

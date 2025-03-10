@@ -203,7 +203,6 @@ const GraphSection = (props: Props) => {
   useEffect(() => {
     let hasAnyValue = false;
 
-    // eslint-disable-next-line
     for (const [_key, value] of Object.entries(props.graph.quality)) {
       if (value > 0) hasAnyValue = true;
     }
