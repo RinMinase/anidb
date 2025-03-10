@@ -15,6 +15,3 @@ indent_size = 4
 
 [*.yml]
 max_line_length = off
-
-[package.json]
-insert_final_newline = false
