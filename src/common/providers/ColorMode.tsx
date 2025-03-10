@@ -1,7 +1,7 @@
+// commit to change to lf
 import { createContext } from "preact";
 import { useEffect, useMemo, useState } from "preact/hooks";
 import Cookies from "js-cookie";
-
 import { createTheme, ThemeProvider } from "@mui/material";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function

@@ -5,7 +5,7 @@ export type Data = Array<{
   quality?: Qualities;
   title?: string;
   filesize?: string;
-}>
+}>;
 
 export type Buckets = Bucket[];
 

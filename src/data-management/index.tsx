@@ -1,6 +1,6 @@
 import { useContext, useEffect, useLayoutEffect, useState } from "preact/hooks";
-import axios from "axios";
 import { toast } from "sonner";
+import axios from "axios";
 
 import { Box, styled, Typography } from "@mui/material";
 

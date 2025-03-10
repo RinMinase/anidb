@@ -1,5 +1,5 @@
-import axios from "axios";
 import { route, getCurrentUrl } from "preact-router";
+import axios from "axios";
 
 const removeTrailSlashes = (str: string): string => {
   let i = str.length;

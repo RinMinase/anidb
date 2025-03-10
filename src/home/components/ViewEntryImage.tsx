@@ -1,7 +1,7 @@
 import { Dispatch, StateUpdater, useContext, useState } from "preact/hooks";
-import axios from "axios";
 import { CircularProgress, useMediaQuery, useTheme } from "@mui/material";
 import { toast } from "sonner";
+import axios from "axios";
 
 import {
   X as UploadCancelIcon,

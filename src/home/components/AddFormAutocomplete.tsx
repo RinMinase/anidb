@@ -1,8 +1,8 @@
 import { ControlledAutocomplete } from "@components";
-import DebouncePromise from "awesome-debounce-promise";
-import axios from "axios";
 import { useEffect, useState } from "preact/hooks";
 import { Control, UseFormSetValue } from "react-hook-form";
+import axios from "axios";
+import DebouncePromise from "awesome-debounce-promise";
 
 import { TitleObject } from "../types";
 

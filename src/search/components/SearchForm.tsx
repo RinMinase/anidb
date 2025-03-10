@@ -1,8 +1,8 @@
 import { Box, Grid2 as Grid, Paper, Typography } from "@mui/material";
 import { Dispatch, StateUpdater, useEffect, useState } from "preact/hooks";
 import { useForm } from "react-hook-form";
-import axios, { AxiosError } from "axios";
 import { toast } from "sonner";
+import axios, { AxiosError } from "axios";
 
 import { ErrorResponse } from "@components/types";
 

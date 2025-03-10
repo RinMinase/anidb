@@ -1,9 +1,9 @@
-import axios, { AxiosError } from "axios";
 import { useState } from "preact/hooks";
 import { useForm } from "react-hook-form";
 import { format } from "date-fns";
 import { Trash as DeleteIcon, X as CloseIcon } from "react-feather";
 import { toast } from "sonner";
+import axios, { AxiosError } from "axios";
 
 import {
   Backdrop,
