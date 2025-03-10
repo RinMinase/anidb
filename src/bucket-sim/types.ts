@@ -1,5 +1,3 @@
-// commit to change to lf
-
 import { Stats } from "src/by-name/types";
 
 export type Sims = Array<{

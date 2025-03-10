@@ -1,6 +1,6 @@
-// commit to change to lf
-
 import { DragDropContext, Draggable, Droppable } from "@hello-pangea/dnd";
+import { Trash2 as RemoveIcon } from "react-feather";
+
 import {
   Box,
   InputAdornment,
@@ -11,7 +11,6 @@ import {
   TextField,
   useTheme,
 } from "@mui/material";
-import { Trash2 as RemoveIcon } from "react-feather";
 
 import {
   FieldArrayWithId,

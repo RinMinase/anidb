@@ -1,5 +1,3 @@
-// commit to change to lf
-
 import { useContext, useEffect, useState } from "preact/hooks";
 import { HardDrive as DriveIcon, Database as StorageIcon } from "react-feather";
 import { green, orange, red } from "@mui/material/colors";

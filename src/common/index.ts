@@ -1,4 +1,3 @@
-// commit to change to lf
 export type { Qualities } from "./components/Quality";
 
 export type {

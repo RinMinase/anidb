@@ -1,4 +1,3 @@
-// commit to change to lf
 import { styled } from "@mui/material";
 
 export type Qualities =

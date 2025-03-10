@@ -1,4 +1,3 @@
-// commit to change to lf
 import { grey, red, orange, indigo, green } from "@mui/material/colors";
 import { ChartOptions, Plugin } from "chart.js";
 

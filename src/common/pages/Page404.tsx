@@ -1,4 +1,3 @@
-// commit to change to lf
 import { useMediaQuery, useTheme } from "@mui/material";
 
 const Page404 = () => {

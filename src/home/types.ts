@@ -1,4 +1,3 @@
-// commit to change to lf
 import type { Qualities } from "@components";
 
 type GenreData = {

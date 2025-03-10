@@ -1,4 +1,3 @@
-// commit to change to lf
 import { Box, BoxProps } from "@mui/material";
 import { JSX } from "preact/jsx-runtime";
 

@@ -1,4 +1,3 @@
-// commit to change to lf
 import { useEffect, useState } from "preact/hooks";
 import { toast } from "sonner";
 import { useForm } from "react-hook-form";

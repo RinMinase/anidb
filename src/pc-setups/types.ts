@@ -1,4 +1,3 @@
-// commit to change to lf
 export type PCInfoSummary = {
   uuid: string;
   owner: PCOwner;

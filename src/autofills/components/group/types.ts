@@ -7,5 +7,3 @@ export type Item = {
   uuid: string;
   name: string;
 };
-
-// commit to change to lf

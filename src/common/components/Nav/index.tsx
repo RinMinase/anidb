@@ -1,5 +1,3 @@
-// commit to change to lf
-
 import { useContext, useState } from "preact/hooks";
 import { route } from "preact-router";
 import axios from "axios";

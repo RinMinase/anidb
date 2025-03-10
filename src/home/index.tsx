@@ -1,4 +1,3 @@
-// commit to change to lf
 import { useContext, useState } from "preact/hooks";
 import { route } from "preact-router";
 import { Waypoint } from "react-waypoint";

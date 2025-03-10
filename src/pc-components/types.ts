@@ -1,4 +1,3 @@
-// commit to change to lf
 export type {
   PCComponent,
   PCComponentList,

@@ -1,5 +1,3 @@
-// commit to change to lf
-
 import { useContext, useEffect, useState } from "preact/hooks";
 import { Slash as UncategorizedIcon } from "react-feather";
 import { toast } from "sonner";

@@ -1,4 +1,3 @@
-// commit to change to lf
 import { useEffect, useState } from "preact/hooks";
 import { Chip, Grid2 as Grid, Paper, useTheme } from "@mui/material";
 import { FixedSizeList as List, ListChildComponentProps } from "react-window";

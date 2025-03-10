@@ -1,4 +1,3 @@
-// commit to change to lf
 import { render } from "preact";
 import { useState } from "preact/hooks";
 import { Toaster } from "sonner";
