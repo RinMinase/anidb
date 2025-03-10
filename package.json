@@ -14,9 +14,10 @@
   "scripts": {
     "dev": "vite",
     "dev-bun": "bunx --bun vite",
-    "build": "npm run lint & tsc && vite build",
-    "build-bun": "bun run lint & tsc && bunx --bun vite build",
+    "build": "npm run lint-summary & tsc && vite build",
+    "build-bun": "bun run lint-summary & tsc && bunx --bun vite build",
     "lint": "biome check",
+    "lint-summary": "biome check --reporter=summary",
     "lint-write": "biome check --write",
     "biome": "biome",
     "cz": "cz"
