@@ -187,10 +187,10 @@ const Entries = () => {
               color: !data[index].rating
                 ? "#9e9e9e"
                 : data[index].rating > 4
-                ? "#28a745"
-                : data[index].rating >= 3
-                ? "#1e90ff"
-                : "#e57373",
+                  ? "#28a745"
+                  : data[index].rating >= 3
+                    ? "#1e90ff"
+                    : "#e57373",
             }}
           >
             {data[index].rating ? `${data[index].rating} / 10` : "-"}

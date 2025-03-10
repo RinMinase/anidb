@@ -117,8 +117,8 @@ const TotalStyledRating = styled(Rating)(({ theme, value }) => ({
       ? value > 3.75
         ? "#28a745"
         : value > 3
-        ? "#1e90ff"
-        : "#e57373"
+          ? "#1e90ff"
+          : "#e57373"
       : "",
   },
   "& .MuiRating-iconEmpty svg": {
@@ -136,8 +136,8 @@ const StyledRating = styled(Rating)(({ theme, value }) => ({
       ? value > 4
         ? "#28a745 !important"
         : value >= 3
-        ? "#1e90ff !important"
-        : "#e57373 !important"
+          ? "#1e90ff !important"
+          : "#e57373 !important"
       : "",
   },
   "& .MuiRating-iconEmpty svg": {

@@ -204,7 +204,7 @@ const GraphSection = (props: Props) => {
     let hasAnyValue = false;
 
     // eslint-disable-next-line
-    for (const [key, value] of Object.entries(props.graph.quality)) {
+    for (const [_key, value] of Object.entries(props.graph.quality)) {
       if (value > 0) hasAnyValue = true;
     }
 

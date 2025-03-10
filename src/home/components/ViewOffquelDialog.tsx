@@ -1,6 +1,6 @@
 import { useEffect, useState } from "preact/hooks";
+import { X as CloseIcon, Trash as DeleteIcon } from "react-feather";
 import { useForm } from "react-hook-form";
-import { Trash as DeleteIcon, X as CloseIcon } from "react-feather";
 import { toast } from "sonner";
 import axios, { AxiosError } from "axios";
 
@@ -24,9 +24,9 @@ import {
   IconButton,
 } from "@components";
 
-import { OffquelForm, offquelResolver } from "../validation";
 import AddFormAutocomplete from "./AddFormAutocomplete";
 import { TitleObject } from "../types";
+import { OffquelForm, offquelResolver } from "../validation";
 
 type Props = {
   entry: string;
@@ -109,7 +109,7 @@ const ViewOffquelDialog = (props: Props) => {
     setInitACOptions(structuredClone(values));
   };
 
-  const handleDeleteClick = async (e: any, uuid: string) => {
+  const handleDeleteClick = async (_e: any, uuid: string) => {
     setSelected(uuid);
     setDialogOpen(true);
   };

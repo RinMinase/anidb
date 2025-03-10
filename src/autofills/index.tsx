@@ -32,7 +32,7 @@ const Autofills = () => {
     <ModuleContainer headerText="Codecs & Groups">
       <Tabs
         value={currentTab}
-        onChange={(e, tab: number) => setCurrentTab(tab)}
+        onChange={(_e, tab: number) => setCurrentTab(tab)}
       >
         <Tab label="Audio" />
         <Tab label="Video" />

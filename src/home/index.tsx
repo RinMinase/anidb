@@ -45,8 +45,8 @@ const StyledRating = styled(Rating)(({ theme, value }) => ({
       ? value > 4
         ? "#28a745"
         : value >= 3
-        ? "#1e90ff"
-        : "#e57373"
+          ? "#1e90ff"
+          : "#e57373"
       : theme.palette.divider,
   },
   "& .MuiRating-iconEmpty svg": {

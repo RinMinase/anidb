@@ -13,7 +13,7 @@ const PcComponents = () => {
     <ModuleContainer headerText="PC Components">
       <Tabs
         value={currentTab}
-        onChange={(e, tab: number) => setCurrentTab(tab)}
+        onChange={(_e, tab: number) => setCurrentTab(tab)}
       >
         <Tab label="Components List" />
         <Tab label="Component Types" />

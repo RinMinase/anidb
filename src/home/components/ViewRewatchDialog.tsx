@@ -1,7 +1,7 @@
 import { useState } from "preact/hooks";
 import { useForm } from "react-hook-form";
+import { X as CloseIcon, Trash as DeleteIcon } from "react-feather";
 import { format } from "date-fns";
-import { Trash as DeleteIcon, X as CloseIcon } from "react-feather";
 import { toast } from "sonner";
 import axios, { AxiosError } from "axios";
 
@@ -27,8 +27,8 @@ import {
 } from "@components";
 
 import {
-  rewatchDefaultValues,
   RewatchForm,
+  rewatchDefaultValues,
   rewatchResolver,
 } from "../validation";
 
@@ -85,7 +85,7 @@ const ViewRewatchDialog = (props: Props) => {
     mode: "onChange",
   });
 
-  const handleDeleteClick = async (e: any, uuid: string) => {
+  const handleDeleteClick = async (_e: any, uuid: string) => {
     setSelected(uuid);
     setDialogOpen(true);
   };

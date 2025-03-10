@@ -38,18 +38,18 @@ import {
 
 import { FullData } from "./types";
 import ViewEntryImage from "./components/ViewEntryImage";
-import ViewRewatchDialog from "./components/ViewRewatchDialog";
 import ViewOffquelDialog from "./components/ViewOffquelDialog";
+import ViewRewatchDialog from "./components/ViewRewatchDialog";
 
 import {
   Header,
-  TotalStyledRating,
-  StyledRating,
-  IconWinter,
+  IconFall,
   IconSpring,
   IconSummer,
-  IconFall,
+  IconWinter,
   RatingIconContainer,
+  StyledRating,
+  TotalStyledRating,
 } from "./components/ViewComponents";
 
 type Props = {
@@ -161,7 +161,7 @@ const HomeView = (props: Props) => {
           IconContainerComponent={RatingIconContainer}
           max={5}
           disabled={!isAdmin}
-          onChangeActive={(e: any, value: number | null) =>
+          onChangeActive={(_e: any, value: number | null) =>
             debouncedOnHover("audio", value)
           }
           onClick={() => debouncedChangeRating("audio", hoverRatings.audio)}
@@ -176,7 +176,7 @@ const HomeView = (props: Props) => {
           IconContainerComponent={RatingIconContainer}
           max={5}
           disabled={!isAdmin}
-          onChangeActive={(e: any, value: number | null) =>
+          onChangeActive={(_e: any, value: number | null) =>
             debouncedOnHover("enjoyment", value)
           }
           onClick={() =>
@@ -193,7 +193,7 @@ const HomeView = (props: Props) => {
           IconContainerComponent={RatingIconContainer}
           max={5}
           disabled={!isAdmin}
-          onChangeActive={(e: any, value: number | null) =>
+          onChangeActive={(_e: any, value: number | null) =>
             debouncedOnHover("graphics", value)
           }
           onClick={() =>
@@ -210,7 +210,7 @@ const HomeView = (props: Props) => {
           IconContainerComponent={RatingIconContainer}
           max={5}
           disabled={!isAdmin}
-          onChangeActive={(e: any, value: number | null) =>
+          onChangeActive={(_e: any, value: number | null) =>
             debouncedOnHover("plot", value)
           }
           onClick={() => debouncedChangeRating("plot", hoverRatings.plot)}

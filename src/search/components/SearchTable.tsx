@@ -198,10 +198,10 @@ const SearchTable = (props: Props) => {
               color: !props.data[index].rating
                 ? "#9e9e9e"
                 : props.data[index].rating > 4
-                ? "#28a745"
-                : props.data[index].rating >= 3
-                ? "#1e90ff"
-                : "#e57373",
+                  ? "#28a745"
+                  : props.data[index].rating >= 3
+                    ? "#1e90ff"
+                    : "#e57373",
             }}
           >
             {props.data[index].rating ? `${props.data[index].rating} / 5` : "-"}

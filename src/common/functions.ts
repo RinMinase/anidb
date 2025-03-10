@@ -68,7 +68,7 @@ export function removeBlankAttributes<T extends object>(obj: T): T {
 
 function roundToTwo(num: any) {
   // eslint-disable-next-line prefer-template
-  return +(Math.round((num + "e+2") as any) + "e-2");
+  return +`${Math.round(`${num}e+2` as any)}e-2`;
 }
 
 export function parseNumberFilesizeToString(rawFilesize: number): string {

@@ -1,5 +1,5 @@
-import { grey, red, orange, indigo, green } from "@mui/material/colors";
 import { ChartOptions, Plugin } from "chart.js";
+import { green, grey, indigo, orange, red } from "@mui/material/colors";
 
 // Quality
 export const chartQualityInitialData = {
@@ -23,7 +23,7 @@ export const chartQualityOptions: ChartOptions = {
   hover: { mode: null as any },
   plugins: {
     datalabels: {
-      formatter: (val, ctx) => {
+      formatter: (_val, ctx) => {
         const data = ctx.chart.data.datasets[1].data as Array<number>;
         const index = ctx.dataIndex;
 

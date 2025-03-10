@@ -5,6 +5,7 @@ import { Box, LinearProgress, styled } from "@mui/material";
 export const GlobalLoaderContext = createContext({
   isLoading: false,
   // eslint-disable-next-line
+  // biome-ignore lint: Needed for creating preact context
   toggleLoader: (value: boolean) => {},
 });
 

@@ -28,7 +28,7 @@ const ControlledAutocomplete = (props: Props) => {
         return (
           <Autocomplete
             value={value}
-            onChange={(e, data: any) => {
+            onChange={(_e, data: any) => {
               if (props.extraOnChange) props.extraOnChange();
               return onChange(data);
             }}

@@ -49,7 +49,7 @@ const Logs = () => {
     }
   };
 
-  const handleChangePage = (e: any, newPage: number) => {
+  const handleChangePage = (_e: any, newPage: number) => {
     setPagination((prev) => ({ ...prev, page: newPage }));
     fetchData(newPage + 1);
   };

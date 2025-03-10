@@ -16,7 +16,9 @@ const defaultValues = {
 
 const schema = object({
   title: string().required("Title / Description is required"),
-  dateFrom: date().required("Date From is required").min(new Date(1900, 1, 1)),
+  dateFrom: date()
+    .required("Date From is required")
+    .min(new Date(1900, 1, 1)),
   dateTo: date()
     .required("Date To is required")
     .min(ref("dateFrom"), "Date needs to be after 'From'"),

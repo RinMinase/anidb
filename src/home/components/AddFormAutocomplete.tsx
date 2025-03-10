@@ -65,7 +65,7 @@ const AddFormAutocomplete = (props: Props) => {
     setLoading(false);
   };
 
-  const handleChangeInput = (e: any, data: any) => {
+  const handleChangeInput = (_e: any, data: any) => {
     const item = options.find((i) => i.label === data);
     props.setValue(props.actualIdFieldName as any, item?.id || undefined);
   };
