@@ -19,7 +19,7 @@
     "lineWidth": 80
   },
   "organizeImports": {
-    "enabled": true
+    "enabled": false
   },
   "linter": {
     "enabled": true,
@@ -61,6 +61,7 @@
         "noUnsafeFinally": "error",
         "noUnsafeOptionalChaining": "error",
         "noUnusedLabels": "error",
+        "noUnusedImports": "error",
         "noUnusedVariables": "error",
         "useArrayLiterals": "off",
         "useExhaustiveDependencies": "off",
