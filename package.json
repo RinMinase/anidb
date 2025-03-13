@@ -30,7 +30,7 @@
     "@mui/material": "^6.4.7",
     "@mui/x-date-pickers": "^7.27.3",
     "awesome-debounce-promise": "^2.1.0",
-    "axios": "^1.8.2",
+    "axios": "^1.8.3",
     "chart.js": "^4.4.8",
     "chartjs-plugin-datalabels": "^2.2.0",
     "date-fns": "^4.1.0",
@@ -52,7 +52,7 @@
     "yup": "^1.6.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.26.9",
+    "@babel/core": "^7.26.10",
     "@biomejs/biome": "^1.9.4",
     "@date-io/date-fns": "^3.2.1",
     "@mui/system": "^6.4.7",
