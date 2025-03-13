@@ -61,7 +61,7 @@ const ManagementSection = (props: Props) => {
         data: {
           data: { buckets, entries, groups, sequences },
         },
-      } = await axios.post("/import", body, {
+      } = await axios.post("/archaic/import", body, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 
