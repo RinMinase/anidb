@@ -10,12 +10,14 @@ const removeTrailSlashes = (str: string): string => {
 };
 
 let API_URL = import.meta.env.VITE_API_URL || "";
+const API_KEY = import.meta.env.VITE_API_KEY || "";
 
 if (API_URL) {
   API_URL = removeTrailSlashes(API_URL);
 
   axios.defaults.baseURL = `${API_URL}/api`;
   axios.defaults.headers.post["Content-Type"] = "application/json";
+  axios.defaults.headers.common["x-api-key"] = API_KEY;
   axios.defaults.withCredentials = true;
 
   axios.interceptors.response.use(
