@@ -1,9 +1,7 @@
 import { Control, Controller } from "react-hook-form";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
-
-// https://github.com/mui/mui-x/issues/11454#issuecomment-1887996994
-import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFnsV3";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 
 type Props = {
   control: Control<any>;
