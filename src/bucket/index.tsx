@@ -4,13 +4,7 @@ import { green, orange, red } from "@mui/material/colors";
 import { toast } from "sonner";
 import axios from "axios";
 
-import {
-  Box,
-  Grid2 as Grid,
-  LinearProgress,
-  Paper,
-  Typography,
-} from "@mui/material";
+import { Box, Grid, LinearProgress, Paper, Typography } from "@mui/material";
 
 import {
   Button,

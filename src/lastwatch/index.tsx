@@ -6,7 +6,7 @@ import {
   Box,
   CircularProgress,
   FormControl,
-  Grid2 as Grid,
+  Grid,
   InputLabel,
   MenuItem,
   Paper,

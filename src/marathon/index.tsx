@@ -7,7 +7,7 @@ import ChartDataLabels from "chartjs-plugin-datalabels";
 
 import {
   Box,
-  Grid2 as Grid,
+  Grid,
   ListItemText,
   MenuItem,
   MenuList,

@@ -6,7 +6,7 @@ import { route } from "preact-router";
 import axios, { AxiosError } from "axios";
 
 import {
-  Grid2 as Grid,
+  Grid,
   InputAdornment,
   Stack,
   TextField,

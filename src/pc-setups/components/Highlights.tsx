@@ -1,10 +1,4 @@
-import {
-  Grid2 as Grid,
-  Paper,
-  Skeleton,
-  Typography,
-  useTheme,
-} from "@mui/material";
+import { Grid, Paper, Skeleton, Typography, useTheme } from "@mui/material";
 
 import { DashboardTile } from "@components";
 

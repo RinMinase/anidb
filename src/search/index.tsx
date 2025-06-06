@@ -1,6 +1,6 @@
 import { useContext, useEffect, useLayoutEffect, useState } from "preact/hooks";
 import { toast } from "sonner";
-import { Grid2 as Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 import axios from "axios";
 
 import { GlobalLoaderContext, ModuleContainer } from "@components";

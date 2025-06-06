@@ -1,7 +1,7 @@
 import {
   Box,
   Divider,
-  Grid2 as Grid,
+  Grid,
   Paper,
   Skeleton,
   styled,

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "preact/hooks";
-import { Grid2 as Grid, Paper } from "@mui/material";
+import { Grid, Paper } from "@mui/material";
 import { Dialog, IconButton, OptionsKeyedProps, Table } from "@components";
 import { Trash as DeleteIcon, Edit as EditIcon } from "react-feather";
 import { toast } from "sonner";

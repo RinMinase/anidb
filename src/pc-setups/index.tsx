@@ -6,7 +6,7 @@ import axios from "axios";
 
 import {
   Box,
-  Grid2 as Grid,
+  Grid,
   Stack,
   Typography,
   useMediaQuery,

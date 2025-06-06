@@ -8,7 +8,7 @@ import contrast from "font-color-contrast";
 import {
   Box,
   Chip,
-  Grid2 as Grid,
+  Grid,
   Link,
   Stack,
   Typography,

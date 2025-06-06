@@ -1,4 +1,4 @@
-import { Box, Grid2 as Grid, Paper, Typography } from "@mui/material";
+import { Box, Grid, Paper, Typography } from "@mui/material";
 import { Dispatch, StateUpdater, useEffect, useState } from "preact/hooks";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";

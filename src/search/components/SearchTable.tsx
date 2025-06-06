@@ -1,5 +1,5 @@
 import { useEffect, useState } from "preact/hooks";
-import { Chip, Grid2 as Grid, Paper, useTheme } from "@mui/material";
+import { Chip, Grid, Paper, useTheme } from "@mui/material";
 import { FixedSizeList as List, ListChildComponentProps } from "react-window";
 import AutoSizer from "react-virtualized-auto-sizer";
 

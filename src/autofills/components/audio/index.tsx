@@ -7,7 +7,7 @@ import {
   Backdrop,
   DialogContent,
   DialogTitle,
-  Grid2 as Grid,
+  Grid,
   Paper,
   Stack,
   styled,

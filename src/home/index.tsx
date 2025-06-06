@@ -9,7 +9,7 @@ import DebouncePromise from "awesome-debounce-promise";
 import {
   Box,
   CircularProgress,
-  Grid2 as Grid,
+  Grid,
   InputAdornment,
   OutlinedInput,
   Paper,

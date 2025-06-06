@@ -1,5 +1,5 @@
 import { DashboardTile } from "@components";
-import { Grid2 as Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 
 import { Stats } from "../types";
 

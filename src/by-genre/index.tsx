@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "preact/hooks";
 import { toast } from "sonner";
 import axios from "axios";
 
-import { Chip, Grid2 as Grid, Paper, styled } from "@mui/material";
+import { Chip, Grid, Paper, styled } from "@mui/material";
 
 import {
   GlobalLoaderContext,

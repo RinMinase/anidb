@@ -6,7 +6,7 @@ import axios from "axios";
 import {
   Box,
   Chip,
-  Grid2 as Grid,
+  Grid,
   MenuItem,
   MenuList,
   Paper,

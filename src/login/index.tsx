@@ -6,7 +6,7 @@ import { Eye, EyeOff } from "react-feather";
 import axios, { AxiosError } from "axios";
 
 import {
-  Grid2 as Grid,
+  Grid,
   InputAdornment,
   Stack,
   TextField,

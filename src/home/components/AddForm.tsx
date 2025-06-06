@@ -1,6 +1,6 @@
 import { toast } from "sonner";
 import { isEmpty } from "lodash-es";
-import { Grid2 as Grid, InputAdornment } from "@mui/material";
+import { Grid, InputAdornment } from "@mui/material";
 import axios from "axios";
 import DebouncePromise from "awesome-debounce-promise";
 

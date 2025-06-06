@@ -6,7 +6,7 @@ import ChartDataLabels from "chartjs-plugin-datalabels";
 
 import {
   Box,
-  Grid2 as Grid,
+  Grid,
   LinearProgress,
   MenuItem,
   Select,

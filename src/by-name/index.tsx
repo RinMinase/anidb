@@ -8,13 +8,7 @@ import {
   scroller,
 } from "react-scroll";
 
-import {
-  Grid2 as Grid,
-  Paper,
-  styled,
-  useMediaQuery,
-  useTheme,
-} from "@mui/material";
+import { Grid, Paper, styled, useMediaQuery, useTheme } from "@mui/material";
 
 import {
   GlobalLoaderContext,
