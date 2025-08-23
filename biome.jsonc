@@ -1,5 +1,5 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.2.0/schema.json",
   "vcs": {
     "enabled": false,
     "clientKind": "git",
@@ -7,8 +7,7 @@
   },
   "files": {
     "ignoreUnknown": false,
-    "ignore": [],
-    "include": ["src/**"]
+    "includes": ["src/**/*.ts", "src/**/*.tsx"]
   },
   "formatter": {
     "enabled": true,
@@ -18,26 +17,30 @@
     "lineEnding": "lf",
     "lineWidth": 80
   },
-  "organizeImports": {
-    "enabled": false
+
+  "assist": {
+    "actions": {
+      "source": {
+        "organizeImports": "off"
+      }
+    }
   },
+
   "linter": {
     "enabled": true,
     "rules": {
       "recommended": false,
 
       "complexity": {
+        "noArguments": "warn",
         "noExtraBooleanCast": "error",
-
-        "noMultipleSpacesInRegularExpressionLiterals": "error",
         "noUselessCatch": "error",
         "noUselessConstructor": "warn",
         "noUselessRename": "warn",
         "noUselessStringConcat": "warn",
         "noUselessTernary": "error",
         "noUselessTypeConstraint": "error",
-        "noUselessUndefinedInitialization": "error",
-        "noWith": "error"
+        "noUselessUndefinedInitialization": "error"
       },
 
       "correctness": {
@@ -48,7 +51,6 @@
         "noGlobalObjectCalls": "error",
         "noInnerDeclarations": "error",
         "noInvalidConstructorSuper": "error",
-        "noNewSymbol": "error",
         "noNonoctalDecimalEscape": "error",
         "noPrecisionLoss": "error",
         "noSelfAssign": "error",
@@ -62,12 +64,12 @@
         "noUnusedLabels": "error",
         "noUnusedImports": "error",
         "noUnusedVariables": "error",
-        "useArrayLiterals": "off",
         "useExhaustiveDependencies": "off",
         "useHookAtTopLevel": "error",
         "useIsNan": "error",
         "useJsxKeyInIterable": "error",
         "useValidForDirection": "error",
+        "useValidTypeof": "error",
         "useYield": "error"
       },
 
@@ -76,12 +78,11 @@
       },
 
       "style": {
-        "noArguments": "warn",
         "noNamespace": "error",
-        "noVar": "warn",
         "useAsConstAssertion": "error",
         "useCollapsedElseIf": "error",
         "useConsistentBuiltinInstantiation": "error",
+        "useArrayLiterals": "off",
         "useTemplate": "warn"
       },
 
@@ -113,9 +114,10 @@
         "noSparseArray": "error",
         "noUnsafeDeclarationMerging": "error",
         "noUnsafeNegation": "error",
+        "noVar": "warn",
+        "noWith": "error",
         "useGetterReturn": "error",
-        "useNamespaceKeyword": "error",
-        "useValidTypeof": "error"
+        "useNamespaceKeyword": "error"
       }
     }
   },
@@ -124,40 +126,5 @@
       "semicolons": "always"
     },
     "globals": ["global", "browser", "expect"]
-  },
-  "overrides": [
-    {
-      "include": ["*.ts", "*.tsx", "*.mts", "*.cts"],
-      "linter": {
-        "rules": {
-          "correctness": {
-            "noConstAssign": "off",
-            "noGlobalObjectCalls": "off",
-            "noInvalidBuiltinInstantiation": "off",
-            "noInvalidConstructorSuper": "off",
-            "noNewSymbol": "off",
-            "noSetterReturn": "off",
-            "noUndeclaredVariables": "off",
-            "noUnreachable": "off",
-            "noUnreachableSuper": "off"
-          },
-          "style": {
-            "noArguments": "error",
-            "noVar": "error",
-            "useConst": "error"
-          },
-          "suspicious": {
-            "noDuplicateClassMembers": "off",
-            "noDuplicateObjectKeys": "off",
-            "noDuplicateParameters": "off",
-            "noFunctionAssign": "off",
-            "noImportAssign": "off",
-            "noRedeclare": "off",
-            "noUnsafeNegation": "off",
-            "useGetterReturn": "off"
-          }
-        }
-      }
-    }
-  ]
+  }
 }
