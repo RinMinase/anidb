@@ -34,6 +34,7 @@ export const ColumnDropdownValues = [
   "release_year",
   "release_season",
   "remarks",
+  "rewatch_count",
 ] as const;
 
 export type ColumnDropdownType = (typeof ColumnDropdownValues)[number];
@@ -89,6 +90,11 @@ export const ColumnDropDownOptions: OptionsKeyedProps = [
     key: "remarks",
     value: "remarks",
   },
+  {
+    label: "Rewatch Count",
+    key: "total_rewatch_count",
+    value: "total_rewatch_count",
+  },
 ];
 
 export const OrderDropdownValues = ["asc", "desc"] as const;
@@ -132,6 +138,7 @@ export type Form = {
   codec_video?: Array<string>;
   codec_audio?: Array<string>;
   genres?: Array<string>;
+  rewatches?: string;
   watcher?: string;
 
   column?: ColumnDropdownType;
@@ -164,6 +171,7 @@ const defaultValues: Form = {
   codec_video: [],
   codec_audio: [],
   genres: [],
+  rewatches: "",
   watcher: "",
 
   column: "id_quality",
@@ -191,6 +199,7 @@ const schema = object().shape({
   codec_video: array(string()),
   codec_audio: array(string()),
   genres: array(string()),
+  rewatches: string(),
   watcher: string(),
 
   column: string(),

@@ -389,6 +389,24 @@ const SearchForm = (props: Props) => {
 
         <Grid container size={12} spacing={1}>
           <ControlledField
+            name="rewatches"
+            label="Rewatch Count"
+            size="small"
+            control={control}
+            error={!!errors.rewatches}
+            helperText={errors.rewatches?.message}
+            disabled={props.isSearchLoading}
+            fullWidth
+          />
+          <Typography variant="caption">
+            - Absolute value: 3
+            <br />- Range: 10 to 12
+            <br />- Comparators &gt; 12
+          </Typography>
+        </Grid>
+
+        <Grid container size={12} spacing={1}>
+          <ControlledField
             name="remarks"
             label="Remarks"
             size="small"
