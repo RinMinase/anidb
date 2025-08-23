@@ -53,7 +53,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.28.3",
-    "@biomejs/biome": "^1.9.4",
+    "@biomejs/biome": "^2.2.0",
     "@date-io/date-fns": "^3.2.1",
     "@mui/system": "^7.3.1",
     "@preact/preset-vite": "^2.10.2",
