@@ -14,7 +14,13 @@ import {
   OptionsKeyedProps,
 } from "@components";
 
-import { Codecs, Data, EntryWatchers, Genres } from "../types";
+import {
+  Codecs,
+  Data,
+  defaultColumnSetup,
+  EntryWatchers,
+  Genres,
+} from "../types";
 
 import {
   ColumnDropDownOptions,
@@ -38,6 +44,10 @@ const staticWatcherOptions: OptionsKeyedProps = [
   { label: "Any", key: -1, value: "any" },
   { label: "Rin", key: 0, value: 0 },
 ];
+
+const tableHeaders = Object.fromEntries(
+  defaultColumnSetup.map(({ key, name }) => [key, name]),
+) as any;
 
 const SearchForm = (props: Props) => {
   const [audioCodecs, setAudioCodecs] = useState<OptionsKeyedProps>([]);
@@ -88,7 +98,7 @@ const SearchForm = (props: Props) => {
         },
       });
 
-      props.setData(data);
+      props.setData([tableHeaders, ...data]);
     } catch (err) {
       if (err instanceof AxiosError && err.status === 401) {
         const { data } = err.response?.data as ErrorResponse;
@@ -105,9 +115,8 @@ const SearchForm = (props: Props) => {
       } else {
         console.error(err);
         toast.error("Failed");
+        props.setTableLoader(false);
       }
-    } finally {
-      props.setTableLoader(false);
     }
   };
 

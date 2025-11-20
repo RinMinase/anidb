@@ -81,7 +81,12 @@ const Search = () => {
             />
           </Grid>
           <Grid size={{ xs: 12, md: 8, lg: 9 }}>
-            <SearchTable data={data} isTableLoading={tableLoader} />
+            <SearchTable
+              data={data}
+              setData={setData}
+              isTableLoading={tableLoader}
+              setTableLoader={setTableLoader}
+            />
           </Grid>
         </Grid>
       )}
