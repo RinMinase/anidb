@@ -28,7 +28,7 @@
     "@hello-pangea/dnd": "^18.0.1",
     "@hookform/resolvers": "^5.2.2",
     "@mui/material": "^7.3.5",
-    "@mui/x-date-pickers": "^8.17.0",
+    "@mui/x-date-pickers": "^8.19.0",
     "awesome-debounce-promise": "^2.1.0",
     "axios": "^1.13.2",
     "chart.js": "^4.5.1",
@@ -42,7 +42,7 @@
     "preact-router": "^4.1.2",
     "react-dropzone": "^14.3.8",
     "react-feather": "^2.0.10",
-    "react-hook-form": "^7.66.0",
+    "react-hook-form": "^7.66.1",
     "react-scroll": "^1.9.3",
     "react-waypoint": "^10.3.0",
     "react-window": "^2.2.3",
@@ -70,9 +70,9 @@
     "yorkie": "^2.0.0"
   },
   "resolutions": {
-    "@types/react": "^19.1.11",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "@types/react": "^19.2.6",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
   },
   "engines": {
     "node": ">=20.0.0",
