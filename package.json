@@ -65,7 +65,7 @@
     "devmoji": "^2.3.0",
     "typescript": "^5.9.3",
     "vite": "^7.3.0",
-    "vite-plugin-biome": "^1.1.0",
+    "vite-plugin-biome": "1.0.12",
     "vite-plugin-svgr": "^4.5.0",
     "yorkie": "^2.0.0"
   },
