@@ -52,7 +52,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.28.5",
-    "@biomejs/biome": "^2.3.6",
+    "@biomejs/biome": "^2.3.10",
     "@date-io/date-fns": "^3.2.1",
     "@mui/system": "^7.3.6",
     "@preact/preset-vite": "^2.10.2",
@@ -64,15 +64,15 @@
     "cz-emoji-conventional": "^1.2.1",
     "devmoji": "^2.3.0",
     "typescript": "^5.9.3",
-    "vite": "^7.2.4",
-    "vite-plugin-biome": "^1.0.12",
+    "vite": "^7.3.0",
+    "vite-plugin-biome": "^1.1.0",
     "vite-plugin-svgr": "^4.5.0",
     "yorkie": "^2.0.0"
   },
   "resolutions": {
-    "@types/react": "^19.2.6",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0"
+    "@types/react": "^19.2.7",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3"
   },
   "engines": {
     "node": ">=20.0.0",
