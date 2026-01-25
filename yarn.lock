@@ -1160,10 +1160,10 @@
   resolved "https://registry.yarnpkg.com/@types/react-transition-group/-/react-transition-group-4.4.12.tgz#b5d76568485b02a307238270bfe96cb51ee2a044"
   integrity sha512-8TV6R3h2j7a91c+1DXdJi3Syo69zzIZbz7Lg5tORM5LEJG7X/E6a1V3drRyBRZq7/utz7A+c4OgYLiLcYGHG6w==
 
-"@types/react@*", "@types/react@^19.2.7":
-  version "19.2.7"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-19.2.7.tgz#84e62c0f23e8e4e5ac2cadcea1ffeacccae7f62f"
-  integrity sha512-MWtvHrGZLFttgeEj28VXHxpmwYbor/ATPYbBfSFZEIRK0ecCFLl2Qo55z52Hss+UV9CRN7trSeq1zbgx7YDWWg==
+"@types/react@*", "@types/react@^19.2.9":
+  version "19.2.9"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-19.2.9.tgz#84ec7669742bb3e7e2e8d6a5258d95ead7764200"
+  integrity sha512-Lpo8kgb/igvMIPeNV2rsYKTgaORYdO1XGVZ4Qz3akwOj0ySGYMPlQWa8BaLn0G63D1aSaAQ5ldR06wCpChQCjA==
   dependencies:
     csstype "^3.2.2"
 
@@ -1250,10 +1250,10 @@ awesome-only-resolves-last-promise@^1.0.3:
   dependencies:
     awesome-imperative-promise "^1.0.1"
 
-axios@^1.13.2:
-  version "1.13.2"
-  resolved "https://registry.yarnpkg.com/axios/-/axios-1.13.2.tgz#9ada120b7b5ab24509553ec3e40123521117f687"
-  integrity sha512-VPk9ebNqPcy5lRGuSlKx752IlDatOjT9paPlm8A7yOuW2Fbvp4X3JznJtT4f0GzGLLiWE9W8onz51SqLYwzGaA==
+axios@^1.13.3:
+  version "1.13.3"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-1.13.3.tgz#f123e77356630a22b0163920662556944f2be1a1"
+  integrity sha512-ERT8kdX7DZjtUm7IitEyV7InTHAF42iJuMArIiDIV5YtPanJkgw4hw5Dyg9fh0mihdWNn1GKaeIWErfe56UQ1g==
   dependencies:
     follow-redirects "^1.15.6"
     form-data "^4.0.4"
@@ -2304,10 +2304,10 @@ lines-and-columns@^1.1.6:
   resolved "https://registry.yarnpkg.com/lines-and-columns/-/lines-and-columns-1.2.4.tgz#eca284f75d2965079309dc0ad9255abb2ebc1632"
   integrity sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==
 
-lodash-es@^4.17.22:
-  version "4.17.22"
-  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.22.tgz#eb7d123ec2470d69b911abe34f85cb694849b346"
-  integrity sha512-XEawp1t0gxSi9x01glktRZ5HDy0HXqrM0x5pXQM98EaI0NxO6jVM7omDOxsuEo5UIASAnm2bRp1Jt/e0a2XU8Q==
+lodash-es@^4.17.23:
+  version "4.17.23"
+  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.23.tgz#58c4360fd1b5d33afc6c0bbd3d1149349b1138e0"
+  integrity sha512-kVI48u3PZr38HdYz98UmfPnXl2DXrpdctLrFLCd3kOx1xUkOmpFPx7gCWWM5MPkL/fD8zb+Ph0QzjGFs4+hHWg==
 
 lodash.isplainobject@^4.0.6:
   version "4.0.6"
@@ -2615,10 +2615,10 @@ preact-router@^4.1.2:
   resolved "https://registry.yarnpkg.com/preact-router/-/preact-router-4.1.2.tgz#f44b03737b670eeaec958563582eb8c4efaa87a5"
   integrity sha512-uICUaUFYh+XQ+6vZtQn1q+X6rSqwq+zorWOCLWPF5FAsQh3EJ+RsDQ9Ee+fjk545YWQHfUxhrBAaemfxEnMOUg==
 
-preact@^10.28.0:
-  version "10.28.0"
-  resolved "https://registry.yarnpkg.com/preact/-/preact-10.28.0.tgz#a851300df42842797046545e4172a4128d158755"
-  integrity sha512-rytDAoiXr3+t6OIP3WGlDd0ouCUG1iCWzkcY3++Nreuoi17y6T5i/zRhe6uYfoVcxq6YU+sBtJouuRDsq8vvqA==
+preact@^10.28.2:
+  version "10.28.2"
+  resolved "https://registry.yarnpkg.com/preact/-/preact-10.28.2.tgz#4b668383afa4b4a2546bbe4bd1747e02e2360138"
+  integrity sha512-lbteaWGzGHdlIuiJ0l2Jq454m6kcpI1zNje6d8MlGAFlYvP2GO4ibnat7P74Esfz4sPTdM6UxtTwh/d3pwM9JA==
 
 prop-types@^15.0.0, prop-types@^15.6.2, prop-types@^15.7.2, prop-types@^15.8.1:
   version "15.8.1"
@@ -2672,10 +2672,10 @@ react-feather@^2.0.10:
   dependencies:
     prop-types "^15.7.2"
 
-react-hook-form@^7.69.0:
-  version "7.69.0"
-  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.69.0.tgz#40f5e5ba2a436c2eee12b75ab30da5bb743744e7"
-  integrity sha512-yt6ZGME9f4F6WHwevrvpAjh42HMvocuSnSIHUGycBqXIJdhqGSPQzTpGF+1NLREk/58IdPxEMfPcFCjlMhclGw==
+react-hook-form@^7.71.1:
+  version "7.71.1"
+  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.71.1.tgz#6a758958861682cf0eb22131eead684ba3618f66"
+  integrity sha512-9SUJKCGKo8HUSsCO+y0CtqkqI5nNuaDqTxyqPsZPqIwudpj4rCrAz/jZV+jn57bx5gtZKOh3neQu94DXMc+w5w==
 
 react-is@^16.13.1, react-is@^16.7.0:
   version "16.13.1"
@@ -2728,10 +2728,10 @@ react-waypoint@^10.3.0:
     prop-types "^15.0.0"
     react-is "^17.0.1 || ^18.0.0"
 
-react-window@^2.2.3:
-  version "2.2.3"
-  resolved "https://registry.yarnpkg.com/react-window/-/react-window-2.2.3.tgz#f8ffdddbb612ccd3e1314b59fce79af85d3f15e3"
-  integrity sha512-gTRqQYC8ojbiXyd9duYFiSn2TJw0ROXCgYjenOvNKITWzK0m0eCvkUsEUM08xvydkMh7ncp+LE0uS3DeNGZxnQ==
+react-window@^2.2.5:
+  version "2.2.5"
+  resolved "https://registry.yarnpkg.com/react-window/-/react-window-2.2.5.tgz#425a29609980083aafd5a48a1711a2af9319c1d2"
+  integrity sha512-6viWvPSZvVuMIe9hrl4IIZoVfO/npiqOb03m4Z9w+VihmVzBbiudUrtUqDpsWdKvd/Ai31TCR25CBcFFAUm28w==
 
 react@^19.2.3:
   version "19.2.3"
@@ -3061,10 +3061,10 @@ ua-is-frozen@^0.1.2:
   resolved "https://registry.yarnpkg.com/ua-is-frozen/-/ua-is-frozen-0.1.2.tgz#bfbc5f06336e379590e36beca444188c7dc3a7f3"
   integrity sha512-RwKDW2p3iyWn4UbaxpP2+VxwqXh0jpvdxsYpZ5j/MLLiQOfbsV5shpgQiw93+KMYQPcteeMQ289MaAFzs3G9pw==
 
-ua-parser-js@^2.0.7:
-  version "2.0.7"
-  resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-2.0.7.tgz#0f22e3f8430cce9c43463b8603e54b45cbae68d5"
-  integrity sha512-CFdHVHr+6YfbktNZegH3qbYvYgC7nRNEUm2tk7nSFXSODUu4tDBpaFpP1jdXBUOKKwapVlWRfTtS8bCPzsQ47w==
+ua-parser-js@^2.0.8:
+  version "2.0.8"
+  resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-2.0.8.tgz#4f87d94d164c79a104cf089f85aea810ca3dfcce"
+  integrity sha512-BdnBM5waFormdrOFBU+cA90R689V0tWUWlIG2i30UXxElHjuCu5+dOV2Etw3547jcQ/yaLtPm9wrqIuOY2bSJg==
   dependencies:
     detect-europe-js "^0.1.2"
     is-standalone-pwa "^0.1.1"
