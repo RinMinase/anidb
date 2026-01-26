@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "preact/hooks";
-import { route } from "preact-router";
+import { useLocation, useRoute } from "preact-iso";
 import { useFieldArray, useForm } from "react-hook-form";
 import { green, orange, red } from "@mui/material/colors";
 import { toast } from "sonner";
@@ -30,13 +30,10 @@ import { defaultValues, Form, resolver } from "./validation";
 import { ByNameData, Data, Item } from "./types";
 import BucketListDragArea from "./components/BucketListDragArea";
 
-type Props = {
-  matches?: {
-    id: string;
-  };
-};
+const BucketSimAdd = () => {
+  const route = useRoute();
+  const location = useLocation();
 
-const BucketSimAdd = (props: Props) => {
   const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
 
   const [isDialogOpen, setDialogOpen] = useState(false);
@@ -65,13 +62,13 @@ const BucketSimAdd = (props: Props) => {
   });
 
   const fetchBucketSim = async () => {
-    if (props.matches?.id) {
+    if (route.params.id) {
       const {
         data: {
           data,
           stats: { description },
         },
-      } = await axios.get(`/bucket-sims/${props.matches.id}`);
+      } = await axios.get(`/bucket-sims/${route.params.id}`);
 
       const formData = data.slice(1).map((item: Item) => ({
         from: item.from,
@@ -181,8 +178,8 @@ const BucketSimAdd = (props: Props) => {
 
         const data = JSON.stringify(buckets);
 
-        if (props.matches?.id) {
-          await axios.put(`/bucket-sims/${props.matches.id}`, {
+        if (route.params.id) {
+          await axios.put(`/bucket-sims/${route.params.id}`, {
             description: formdata.description,
             buckets: data,
           });
@@ -193,7 +190,7 @@ const BucketSimAdd = (props: Props) => {
           });
         }
 
-        route("/bucket-sims");
+        location.route("/bucket-sims");
         toast.success("Success");
       }
     } catch (err) {
@@ -226,7 +223,7 @@ const BucketSimAdd = (props: Props) => {
   return (
     <ModuleContainer
       headerText={
-        props.matches?.id ? "Edit Bucket Simulation" : "Add Bucket Simulation"
+        route.params.id ? "Edit Bucket Simulation" : "Add Bucket Simulation"
       }
       headerControls={<HeaderControls />}
     >
@@ -406,7 +403,7 @@ const BucketSimAdd = (props: Props) => {
         type="warning"
         title="Are you sure?"
         text="Any changes will not be saved."
-        onSubmit={() => route("/bucket-sims")}
+        onSubmit={() => location.route("/bucket-sims")}
         open={isDialogOpen}
         setOpen={setDialogOpen}
       />

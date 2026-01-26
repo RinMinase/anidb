@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "preact/hooks";
-import { route } from "preact-router";
+import { useLocation } from "preact-iso";
 import { Chart, ChartOptions, registerables } from "chart.js";
 import { toast } from "sonner";
 import axios from "axios";
@@ -41,6 +41,8 @@ let chartElement: Chart;
 Chart.register(...registerables, ChartDataLabels);
 
 const Marathon = () => {
+  const location = useLocation();
+
   const { toggleLoader } = useContext(GlobalLoaderContext);
 
   const [isTableLoading, setTableLoading] = useState(false);
@@ -180,7 +182,7 @@ const Marathon = () => {
 
   const handleEditClick = (e: any, id: number) => {
     e.stopPropagation();
-    route(`/marathons/edit/${id}`);
+    location.route(`/marathons/edit/${id}`);
   };
 
   const handleDeleteClick = (e: any, id: number) => {
@@ -300,7 +302,7 @@ const Marathon = () => {
           <Button
             variant="contained"
             fullWidth
-            onClick={() => route("/marathons/add")}
+            onClick={() => location.route("/marathons/add")}
           >
             Add
           </Button>

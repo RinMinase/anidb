@@ -1,6 +1,6 @@
 import { Dispatch, StateUpdater, useState } from "preact/hooks";
+import { useLocation } from "preact-iso";
 import { toast } from "sonner";
-import { route } from "preact-router";
 import axios from "axios";
 
 import {
@@ -40,6 +40,8 @@ const ShowIcon = <Eye size={20} strokeWidth={1.5} />;
 const HideIcon = <EyeOff size={20} strokeWidth={1.5} />;
 
 const OwnerSetupsList = (props: Props) => {
+  const location = useLocation();
+
   const theme = useTheme();
   const isMobileAndTablet = useMediaQuery(theme.breakpoints.down("md"));
 
@@ -144,7 +146,9 @@ const OwnerSetupsList = (props: Props) => {
                   />
                   <IconButton
                     size="small"
-                    onClick={() => route(`/pc-setups/${item.uuid}/add`)}
+                    onClick={() =>
+                      location.route(`/pc-setups/${item.uuid}/add`)
+                    }
                     children={<AddSetupIcon size={21} color="#fff" />}
                   />
                 </Box>

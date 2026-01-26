@@ -1,8 +1,8 @@
 import { useContext, useEffect, useLayoutEffect, useState } from "preact/hooks";
+import { useLocation } from "preact-iso";
 import { toast } from "sonner";
 import { useFieldArray, useForm } from "react-hook-form";
 import { Grid } from "@mui/material";
-import { route } from "preact-router";
 import axios from "axios";
 
 import { ArrowLeft as BackIcon, Trash2 as RemoveIcon } from "react-feather";
@@ -56,6 +56,8 @@ type InfoAPIComponentBody = Array<{
 }>;
 
 const PcSetupAdd = (props: Props) => {
+  const location = useLocation();
+
   const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
 
   const [pageTitle, setPageTitle] = useState<string>("");
@@ -277,7 +279,7 @@ const PcSetupAdd = (props: Props) => {
         });
       }
 
-      route("/pc-setups");
+      location.route("/pc-setups");
       toast.success("Success");
     } catch (err) {
       console.error(err);
@@ -518,7 +520,7 @@ const PcSetupAdd = (props: Props) => {
         type="warning"
         title="Are you sure?"
         text="Any changes will not be saved."
-        onSubmit={() => route("/pc-setups")}
+        onSubmit={() => location.route("/pc-setups")}
         open={isConfirmExitDialogOpen}
         setOpen={setConfirmExitDialogOpen}
       />

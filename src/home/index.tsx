@@ -1,5 +1,4 @@
 import { useContext, useState } from "preact/hooks";
-import { route } from "preact-router";
 import { Waypoint } from "react-waypoint";
 import { Search as SearchIcon } from "react-feather";
 import { toast } from "sonner";
@@ -33,6 +32,7 @@ import {
 } from "@components";
 
 import { Data, TableHeadings } from "./types";
+import { useLocation } from "preact-iso";
 
 const StyledRating = styled(Rating)(({ theme, value }) => ({
   display: "flex",
@@ -84,6 +84,8 @@ const searchAPI = (query: string, column: string, order: "asc" | "desc") => {
 const searchAPIDebounced = DebouncePromise(searchAPI, 500);
 
 const Home = () => {
+  const location = useLocation();
+
   const { isLoading } = useContext(GlobalLoaderContext);
   const isAdmin = useContext(AuthenticatedUserContext);
 
@@ -312,7 +314,7 @@ const Home = () => {
                   hover
                   sx={{ cursor: "pointer" }}
                   key={item.id}
-                  onClick={() => route(`/home/view/${item.id}`)}
+                  onClick={() => location.route(`/home/view/${item.id}`)}
                 >
                   <Table.Cell>
                     <Box sx={{ display: "inline-flex", alignItems: "center" }}>

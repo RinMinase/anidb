@@ -1,8 +1,8 @@
 import { useState } from "preact/hooks";
+import { useLocation } from "preact-iso";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { Eye, EyeOff } from "react-feather";
-import { route } from "preact-router";
 import axios, { AxiosError } from "axios";
 
 import {
@@ -18,6 +18,8 @@ import { ButtonLoading, ErrorResponseType, IconButton } from "@components";
 import { Form, resolver } from "./validation";
 
 const Registration = () => {
+  const location = useLocation();
+
   const [isLoading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordConf, setShowPasswordConf] = useState(false);
@@ -42,7 +44,7 @@ const Registration = () => {
       localStorage.setItem("authToken", data.token);
       axios.defaults.headers.common["Authorization"] = `Bearer ${data.token}`;
 
-      route("/home");
+      location.route("/home");
     } catch (err) {
       if (err instanceof AxiosError && err.status === 401) {
         const { data } = err.response?.data as ErrorResponseType;

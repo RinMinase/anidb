@@ -1,5 +1,5 @@
-import { route } from "preact-router";
 import { useContext, useEffect, useState } from "preact/hooks";
+import { useLocation, useRoute } from "preact-iso";
 import { useForm } from "react-hook-form";
 import { format } from "date-fns";
 import { Stack } from "@mui/material";
@@ -18,13 +18,10 @@ import {
 
 import { defaultValues, Form, resolver } from "./validation";
 
-type Props = {
-  matches?: {
-    id: string;
-  };
-};
+const MarathonAdd = () => {
+  const route = useRoute();
+  const location = useLocation();
 
-const MarathonAdd = (props: Props) => {
   const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
 
   const [isButtonLoading, setButtonLoading] = useState(false);
@@ -40,12 +37,12 @@ const MarathonAdd = (props: Props) => {
 
   const fetchData = async () => {
     try {
-      if (props.matches?.id) {
+      if (route.params.id) {
         toggleLoader(true);
 
         const {
           data: { data },
-        } = await axios.get(`/sequences/${props.matches.id}`);
+        } = await axios.get(`/sequences/${route.params.id}`);
 
         setValue("title", data.title);
         setValue("dateFrom", new Date(data.dateFrom));
@@ -69,14 +66,14 @@ const MarathonAdd = (props: Props) => {
         date_to: format(formdata.dateTo, "yyyy-MM-dd"),
       };
 
-      if (props.matches?.id) {
-        await axios.put(`/sequences/${props.matches.id}`, body);
+      if (route.params.id) {
+        await axios.put(`/sequences/${route.params.id}`, body);
       } else {
         await axios.post("/sequences", body);
       }
 
       toast.success("Success");
-      route("/marathons");
+      location.route("/marathons");
     } catch (err) {
       if (err instanceof AxiosError && err.status === 401) {
         const { data } = err.response?.data as ErrorResponseType;
@@ -104,7 +101,7 @@ const MarathonAdd = (props: Props) => {
 
   return (
     <ModuleContainer
-      headerText={props.matches?.id ? "Edit marathon" : "Add Marathon"}
+      headerText={route.params.id ? "Edit marathon" : "Add Marathon"}
       handleBack={() => setDialogOpen(true)}
       largeGutter
     >
@@ -149,7 +146,7 @@ const MarathonAdd = (props: Props) => {
         type="warning"
         title="Are you sure?"
         text="Any changes will not be saved."
-        onSubmit={() => route("/marathons")}
+        onSubmit={() => location.route("/marathons")}
         open={isDialogOpen}
         setOpen={setDialogOpen}
       />

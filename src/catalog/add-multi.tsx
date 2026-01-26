@@ -1,4 +1,4 @@
-import { route } from "preact-router";
+import { useLocation, useRoute } from "preact-iso";
 import { useContext, useEffect, useState } from "preact/hooks";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -19,12 +19,6 @@ import {
 import { defaultValues, Form, resolver } from "./validation-multi";
 import { Data, Stats } from "./types";
 
-type Props = {
-  matches?: {
-    id: string;
-  };
-};
-
 const currYear = new Date().getFullYear();
 const years = Array.from({ length: 25 }, (_, i) => ({
   label: `${currYear - i}`,
@@ -32,7 +26,10 @@ const years = Array.from({ length: 25 }, (_, i) => ({
   value: currYear - i,
 }));
 
-const CatalogMulti = (props: Props) => {
+const CatalogMulti = () => {
+  const route = useRoute();
+  const location = useLocation();
+
   const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
 
   const [isSubmitLoading, setSubmitLoading] = useState(false);
@@ -69,11 +66,11 @@ const CatalogMulti = (props: Props) => {
       formBody.append("season", formdata.season);
       formBody.append("year", formdata.year);
 
-      if (props.matches?.id) {
+      if (route.params.id) {
         formBody.append("_method", "PUT");
 
         response = await axios.post(
-          `/partials/multi/${props.matches.id}`,
+          `/partials/multi/${route.params.id}`,
           formBody,
         );
       } else {
@@ -88,7 +85,7 @@ const CatalogMulti = (props: Props) => {
         });
       }
 
-      route("/catalogs");
+      location.route("/catalogs");
     } catch (err) {
       if (err instanceof AxiosError && err.status === 401) {
         const { data } = err.response?.data as ErrorResponseType;
@@ -134,7 +131,7 @@ const CatalogMulti = (props: Props) => {
     try {
       toggleLoader(true);
 
-      const { id } = props.matches!;
+      const { id } = route.params;
       const { data } = await axios.get(`/catalogs/${id}/partials`);
 
       handleEditLoad(data.data, data.stats);
@@ -147,7 +144,7 @@ const CatalogMulti = (props: Props) => {
   };
 
   useEffect(() => {
-    if (props.matches?.id) {
+    if (route.params.id) {
       fetchData();
     }
   }, []);
@@ -156,7 +153,7 @@ const CatalogMulti = (props: Props) => {
     <ModuleContainer
       handleBack={() => setDialogOpen(true)}
       headerText={
-        props.matches?.id ? "Bulk Edit Partial Entry" : "Bulk Add Partial Entry"
+        route.params.id ? "Bulk Edit Partial Entry" : "Bulk Add Partial Entry"
       }
     >
       <Grid container spacing={2} sx={{ mb: 2 }}>
@@ -250,7 +247,7 @@ const CatalogMulti = (props: Props) => {
         type="warning"
         title="Are you sure?"
         text="Any changes will not be saved."
-        onSubmit={() => route("/catalogs")}
+        onSubmit={() => location.route("/catalogs")}
         open={isDialogOpen}
         setOpen={setDialogOpen}
       />

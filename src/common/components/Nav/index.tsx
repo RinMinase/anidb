@@ -1,5 +1,4 @@
 import { useContext, useState } from "preact/hooks";
-import { route } from "preact-router";
 import axios from "axios";
 
 import {
@@ -76,7 +75,8 @@ const Nav = () => {
 
     setLogoutLoading(false);
     localStorage.clear();
-    route("/");
+    window.history.pushState(null, "", "/");
+    window.dispatchEvent(new PopStateEvent("popstate"));
   };
 
   return (

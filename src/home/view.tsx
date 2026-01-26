@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "preact/hooks";
-import { route } from "preact-router";
+import { useLocation, useRoute } from "preact-iso";
 import { debounce } from "lodash-es";
 import { toast } from "sonner";
 import axios from "axios";
@@ -52,15 +52,12 @@ import {
   TotalStyledRating,
 } from "./components/ViewComponents";
 
-type Props = {
-  matches: {
-    id: string;
-  };
-};
-
 type RatingType = "audio" | "enjoyment" | "graphics" | "plot";
 
-const HomeView = (props: Props) => {
+const HomeView = () => {
+  const route = useRoute();
+  const location = useLocation();
+
   const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
   const isAdmin = useContext(AuthenticatedUserContext);
 
@@ -130,7 +127,7 @@ const HomeView = (props: Props) => {
       [type]: clearCurrValue ? 0 : value,
     }));
 
-    await axios.put(`/entries/ratings/${props.matches?.id}`, {
+    await axios.put(`/entries/ratings/${route.params.id}`, {
       ...ratings,
       [type]: clearCurrValue ? 0 : value,
     });
@@ -221,7 +218,7 @@ const HomeView = (props: Props) => {
 
   const handleChangeData = async () => {
     try {
-      const { id } = props.matches;
+      const { id } = route.params;
       const getColor = (id?: number) => {
         if (id === 1) return "#f9c";
         if (id === 2) return "#9f9";
@@ -258,7 +255,7 @@ const HomeView = (props: Props) => {
       toast.error("Failed");
 
       if (err.response?.data?.message?.includes("ID is invalid")) {
-        route("/home");
+        location.route("/home");
       }
     } finally {
       toggleLoader(false);
@@ -270,10 +267,10 @@ const HomeView = (props: Props) => {
       setDeleteDialogOpen(false);
       setDeleteLoading(true);
 
-      await axios.delete(`/entries/${props.matches.id}`);
+      await axios.delete(`/entries/${route.params.id}`);
       toast.success("Success");
 
-      route("/home");
+      location.route("/home");
     } catch (err) {
       console.error(err);
       toast.error("Failed");
@@ -285,7 +282,7 @@ const HomeView = (props: Props) => {
   useEffect(() => {
     toggleLoader(true);
     handleChangeData();
-  }, [props.matches]);
+  }, [route.params]);
 
   return (
     <ModuleContainer>
@@ -297,7 +294,7 @@ const HomeView = (props: Props) => {
                 variant="contained"
                 color="info"
                 startIcon={<BackIcon size={16} />}
-                onClick={() => route("/home")}
+                onClick={() => location.route("/home")}
                 fullWidth
               >
                 Back
@@ -309,7 +306,7 @@ const HomeView = (props: Props) => {
                 color="warning"
                 disabled={!isAdmin}
                 startIcon={<EditIcon size={16} />}
-                onClick={() => route(`/home/edit/${props.matches.id}`)}
+                onClick={() => location.route(`/home/edit/${route.params.id}`)}
                 fullWidth
               >
                 Edit
@@ -375,7 +372,7 @@ const HomeView = (props: Props) => {
               <ViewEntryImage
                 data={data}
                 setData={setData}
-                id={props.matches?.id}
+                id={route.params.id}
               />
               <Box sx={{ display: { xs: "none", sm: "flex" } }}>
                 <Button
@@ -641,7 +638,7 @@ const HomeView = (props: Props) => {
       )}
 
       <ViewRewatchDialog
-        entry={props.matches?.id || ""}
+        entry={route.params.id || ""}
         open={rewatchDialog}
         onChangeData={handleChangeData}
         onClose={() => setRewatchDialog(false)}
@@ -649,7 +646,7 @@ const HomeView = (props: Props) => {
       />
 
       <ViewOffquelDialog
-        entry={props.matches?.id || ""}
+        entry={route.params.id || ""}
         open={offquelDialog}
         onChangeData={handleChangeData}
         onClose={() => setOffquelDialog(false)}

@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "preact/hooks";
+import { useLocation } from "preact-iso";
 import { toast } from "sonner";
 import { Waypoint } from "react-waypoint";
-import { route } from "preact-router";
 import axios from "axios";
 import DebouncePromise from "awesome-debounce-promise";
 
@@ -45,6 +45,8 @@ const searchAPI = (query: string, column: string, order: "asc" | "desc") => {
 const searchAPIDebounced = DebouncePromise(searchAPI, 500);
 
 const CatalogManage = () => {
+  const location = useLocation();
+
   const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
 
   const [isTableLoading, setTableLoading] = useState(false);
@@ -216,7 +218,7 @@ const CatalogManage = () => {
   return (
     <ModuleContainer
       headerText="Manage Catalogs and Partials"
-      handleBack={() => route("/catalogs")}
+      handleBack={() => location.route("/catalogs")}
     >
       <Paper
         sx={{
@@ -285,7 +287,7 @@ const CatalogManage = () => {
                     <IconButton
                       size="small"
                       onClick={() =>
-                        route(`/catalogs/manage-edit/${item.uuid}`)
+                        location.route(`/catalogs/manage-edit/${item.uuid}`)
                       }
                       children={<EditIcon size={20} />}
                     />

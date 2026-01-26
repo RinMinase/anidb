@@ -1,7 +1,6 @@
 import { createContext } from "preact";
 import { useEffect, useState } from "preact/hooks";
 import axios, { AxiosError } from "axios";
-import DebouncePromise from "awesome-debounce-promise";
 
 export const AuthenticatedUserContext = createContext<boolean | null>(null);
 
@@ -11,7 +10,6 @@ type Props = {
 };
 
 const checkAuthApi = () => axios.get("/auth/user");
-const debouncedCheckAuthApi = DebouncePromise(checkAuthApi, 100);
 
 const AuthenticatedUser = (props: Props) => {
   const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
@@ -24,7 +22,7 @@ const AuthenticatedUser = (props: Props) => {
       if (!isCommonRoute) {
         const {
           data: { data },
-        } = await debouncedCheckAuthApi();
+        } = await checkAuthApi();
 
         if (data.isAdmin) {
           setIsAdmin(true);

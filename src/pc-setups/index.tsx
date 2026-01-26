@@ -1,7 +1,7 @@
 import { useEffect, useState } from "preact/hooks";
+import { useLocation } from "preact-iso";
 import { toast } from "sonner";
 import { useForm } from "react-hook-form";
-import { route } from "preact-router";
 import axios from "axios";
 
 import {
@@ -45,6 +45,8 @@ const ShowIcon = <Eye size={20} strokeWidth={1.5} />;
 const HideIcon = <EyeOff size={20} strokeWidth={1.5} />;
 
 const PcSetup = () => {
+  const location = useLocation();
+
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.only("xs"));
   const isTablet = useMediaQuery(theme.breakpoints.only("sm"));
@@ -199,7 +201,7 @@ const PcSetup = () => {
         color="secondary"
         startIcon={<ManageComponentsIcon size={20} strokeWidth={1.5} />}
         sx={{ width: { xs: "100%", sm: "unset" } }}
-        onClick={() => route("/pc-setups/components")}
+        onClick={() => location.route("/pc-setups/components")}
       >
         {isTablet ? "" : "Manage "}Components
       </Button>

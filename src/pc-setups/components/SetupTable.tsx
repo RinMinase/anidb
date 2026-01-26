@@ -1,8 +1,8 @@
-import { Paper, Stack, Typography, useTheme } from "@mui/material";
 import { Dispatch, StateUpdater, useState } from "preact/hooks";
+import { useLocation } from "preact-iso";
+import { Paper, Stack, Typography, useTheme } from "@mui/material";
 import { toast } from "sonner";
 import { format } from "date-fns";
-import { route } from "preact-router";
 import axios from "axios";
 
 import {
@@ -24,6 +24,7 @@ type Props = {
 };
 
 const SetupTable = (props: Props) => {
+  const location = useLocation();
   const theme = useTheme();
 
   const [isDeleteDialogOpen, setDeleteDialogOpen] = useState(false);
@@ -47,7 +48,9 @@ const SetupTable = (props: Props) => {
 
   const handleEditClick = () => {
     if (props.data) {
-      route(`/pc-setups/${props.data.owner.uuid}/edit/${props.data.uuid}`);
+      location.route(
+        `/pc-setups/${props.data.owner.uuid}/edit/${props.data.uuid}`,
+      );
     }
   };
 

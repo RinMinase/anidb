@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "preact/hooks";
-import { route } from "preact-router";
+import { useLocation } from "preact-iso";
 import { green, orange, red } from "@mui/material/colors";
 import { toast } from "sonner";
 import axios from "axios";
@@ -37,6 +37,8 @@ import {
 import { Data, Item, Sims } from "./types";
 
 const BucketSim = () => {
+  const location = useLocation();
+
   const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
 
   const [isOverwriteButtonLoading, setOverwriteButtonLoading] = useState(false);
@@ -120,7 +122,7 @@ const BucketSim = () => {
       await axios.post(`/bucket-sims/save/${selected}`);
       toast.success("Success");
 
-      route(`/buckets`);
+      location.route(`/buckets`);
     } catch (err) {
       console.error(err);
       toast.error("Failed");
@@ -167,7 +169,7 @@ const BucketSim = () => {
 
   const handleEditClick = (e: any, uuid: string) => {
     e.stopPropagation();
-    route(`/bucket-sims/edit/${uuid}`);
+    location.route(`/bucket-sims/edit/${uuid}`);
   };
 
   const handleDeleteClick = (e: any, uuid: string) => {
@@ -229,7 +231,7 @@ const BucketSim = () => {
             <Button
               variant="contained"
               fullWidth
-              onClick={() => route("/bucket-sims/add")}
+              onClick={() => location.route("/bucket-sims/add")}
             >
               Add
             </Button>

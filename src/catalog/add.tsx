@@ -1,4 +1,4 @@
-import { route } from "preact-router";
+import { useLocation, useRoute } from "preact-iso";
 import { useContext, useEffect, useState } from "preact/hooks";
 import { useForm } from "react-hook-form";
 import { Stack } from "@mui/material";
@@ -20,13 +20,13 @@ import { defaultValues, Form, resolver } from "./validation";
 import { Catalogs, Priorities } from "./types";
 
 type Props = {
-  matches?: {
-    id: string;
-  };
   fromManage?: boolean;
 };
 
 const CatalogAdd = (props: Props) => {
+  const route = useRoute();
+  const location = useLocation();
+
   const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
 
   const [isSubmitLoading, setSubmitLoading] = useState(false);
@@ -79,8 +79,8 @@ const CatalogAdd = (props: Props) => {
 
       await Promise.all([fetchPriorities(), fetchCatalogs()]);
 
-      if (props.matches?.id) {
-        const { id } = props.matches;
+      if (route.params.id) {
+        const { id } = route.params;
 
         const partialsData = await axios.get(`/partials/${id}`);
         const { title, idCatalog, idPriority } = partialsData.data.data;
@@ -101,8 +101,8 @@ const CatalogAdd = (props: Props) => {
     try {
       setSubmitLoading(true);
 
-      if (props.matches?.id) {
-        await axios.put(`/partials/${props.matches.id}`, formdata);
+      if (route.params.id) {
+        await axios.put(`/partials/${route.params.id}`, formdata);
       } else {
         await axios.post("/partials", formdata);
       }
@@ -110,9 +110,9 @@ const CatalogAdd = (props: Props) => {
       toast.success("Success");
 
       if (props.fromManage) {
-        route("/catalogs/manage");
+        location.route("/catalogs/manage");
       } else {
-        route("/catalogs");
+        location.route("/catalogs");
       }
     } catch (err) {
       if (err instanceof AxiosError && err.status === 401) {
@@ -137,9 +137,9 @@ const CatalogAdd = (props: Props) => {
 
   const handleBackSubmit = () => {
     if (props.fromManage) {
-      route("/catalogs/manage");
+      location.route("/catalogs/manage");
     } else {
-      route("/catalogs");
+      location.route("/catalogs");
     }
   };
 
@@ -150,9 +150,7 @@ const CatalogAdd = (props: Props) => {
   return (
     <ModuleContainer
       handleBack={() => setDialogOpen(true)}
-      headerText={
-        props.matches?.id ? "Edit Partial Entry" : "Add Partial Entry"
-      }
+      headerText={route.params.id ? "Edit Partial Entry" : "Add Partial Entry"}
     >
       <Stack spacing={3} maxWidth={450}>
         <ControlledField

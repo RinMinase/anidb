@@ -1,5 +1,5 @@
 import { useEffect, useState } from "preact/hooks";
-import { route } from "preact-router";
+import { useLocation } from "preact-iso";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { Eye, EyeOff } from "react-feather";
@@ -18,6 +18,8 @@ import { ButtonLoading, ErrorResponseType, IconButton } from "@components";
 import { Form, resolver } from "./validation";
 
 const Login = () => {
+  const location = useLocation();
+
   const [isLoading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
@@ -31,7 +33,7 @@ const Login = () => {
 
   useEffect(() => {
     if (localStorage.getItem("authToken")) {
-      route("/home");
+      location.route("/home");
     }
   }, []);
 
@@ -47,7 +49,7 @@ const Login = () => {
       axios.defaults.headers.common["Authorization"] = `Bearer ${data.token}`;
 
       toast.dismiss();
-      route("/home");
+      location.route("/home");
     } catch (err) {
       if (err instanceof AxiosError && err.status === 401) {
         const { data, message } = err.response?.data as ErrorResponseType;

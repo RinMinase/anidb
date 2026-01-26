@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "preact/hooks";
-import { route } from "preact-router";
+import { useLocation } from "preact-iso";
 import { Edit as EditIcon, Trash as DeleteIcon } from "react-feather";
 import { toast } from "sonner";
 import axios from "axios";
@@ -25,6 +25,8 @@ import {
 import { Catalogs, Data } from "./types";
 
 const Catalog = () => {
+  const location = useLocation();
+
   const { toggleLoader } = useContext(GlobalLoaderContext);
 
   const [isTableLoading, setTableLoading] = useState(false);
@@ -58,13 +60,13 @@ const Catalog = () => {
   };
 
   const handleEditItemClick = (uuid: string) => {
-    route(`/catalogs/edit/${uuid}`);
+    location.route(`/catalogs/edit/${uuid}`);
   };
 
   const handleEditCatalogClick = (e: any, uuid: string) => {
     e.stopPropagation();
 
-    route(`/catalogs/edit-multi/${uuid}`);
+    location.route(`/catalogs/edit-multi/${uuid}`);
   };
 
   const handleDeleteItemClick = (uuid: string) => {
@@ -155,7 +157,7 @@ const Catalog = () => {
                 <Button
                   variant="contained"
                   fullWidth
-                  onClick={() => route("/catalogs/add")}
+                  onClick={() => location.route("/catalogs/add")}
                 >
                   Add Single
                 </Button>
@@ -164,7 +166,7 @@ const Catalog = () => {
                 <Button
                   variant="contained"
                   fullWidth
-                  onClick={() => route("/catalogs/add-multi")}
+                  onClick={() => location.route("/catalogs/add-multi")}
                 >
                   Add Catalog
                 </Button>
@@ -172,7 +174,7 @@ const Catalog = () => {
               <Button
                 variant="contained"
                 fullWidth
-                onClick={() => route("/catalogs/manage")}
+                onClick={() => location.route("/catalogs/manage")}
               >
                 Manage Catalog Data
               </Button>

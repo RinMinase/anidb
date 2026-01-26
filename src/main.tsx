@@ -1,5 +1,5 @@
 import { render } from "preact";
-import { useState } from "preact/hooks";
+import { useEffect, useState } from "preact/hooks";
 import { Toaster } from "sonner";
 import { Container, CssBaseline } from "@mui/material";
 
@@ -16,12 +16,16 @@ const Layout = () => {
   const [navCommon, setNavCommon] = useState<boolean>(true);
   const [currRoute, setCurrRoute] = useState<string>("");
 
-  const handleRouteChange = async ({ url }: { url: string }) => {
-    const commonURLs = ["/", "/register"];
+  const handleRouteChange = (url: string) => {
+    const commonURLs = ["/", "/register", "/404"];
     const isCommonRoute = commonURLs.includes(url);
     setNavCommon(isCommonRoute);
     setCurrRoute(url);
   };
+
+  useEffect(() => {
+    handleRouteChange(window.location.pathname);
+  }, []);
 
   return (
     <ColorMode>
@@ -31,7 +35,7 @@ const Layout = () => {
 
         <GlobalLoader disableScroll={navCommon} id="main">
           <Container>
-            <Routes onChange={handleRouteChange as any} />
+            <Routes onChange={handleRouteChange} />
             <Toaster position="bottom-right" richColors />
           </Container>
         </GlobalLoader>

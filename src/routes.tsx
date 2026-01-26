@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "preact/hooks";
-import { Router, Route, route } from "preact-router";
 import { toast } from "sonner";
-import AsyncRoute from "preact-async-route";
+
+import { lazy, LocationProvider, Router, Route, useLocation } from "preact-iso";
 
 import { AuthenticatedUserContext } from "@components";
 import Page404 from "@components/pages/Page404";
@@ -9,144 +9,153 @@ import Page404 from "@components/pages/Page404";
 import Login from "./login";
 
 type Props = {
-  onChange: () => void;
+  onChange: (url: string) => void;
 };
 
 /**
  * Lazy loaded components
  */
-const Registration = async () => (await import("./registration")).default;
+const Registration = lazy(() => import("./registration"));
 
-const Home = async () => (await import("./home")).default;
-const HomeAdd = async () => (await import("./home/add")).default;
-const HomeView = async () => (await import("./home/view")).default;
+const Home = lazy(() => import("./home"));
+const HomeAdd = lazy(() => import("./home/add"));
+const HomeView = lazy(() => import("./home/view"));
 
-const Entries = async () => (await import("./entries")).default;
-const Search = async () => (await import("./search")).default;
+const Entries = lazy(() => import("./entries"));
+const Search = lazy(() => import("./search"));
 
-const LastWatch = async () => (await import("./lastwatch")).default;
-const ByName = async () => (await import("./by-name")).default;
-const ByYear = async () => (await import("./by-year")).default;
-const ByGenre = async () => (await import("./by-genre")).default;
+const LastWatch = lazy(() => import("./lastwatch"));
+const ByName = lazy(() => import("./by-name"));
+const ByYear = lazy(() => import("./by-year"));
+const ByGenre = lazy(() => import("./by-genre"));
 
-const Catalog = async () => (await import("./catalog")).default;
-const CatalogAdd = async () => (await import("./catalog/add")).default;
-const CatalogMulti = async () => (await import("./catalog/add-multi")).default;
-const CatalogManage = async () => (await import("./catalog/manage")).default;
-const CatalogManageEdit = async () =>
-  (await import("./catalog/manage-edit")).default;
+const Catalog = lazy(() => import("./catalog"));
+const CatalogAdd = lazy(() => import("./catalog/add"));
+const CatalogMulti = lazy(() => import("./catalog/add-multi"));
+const CatalogManage = lazy(() => import("./catalog/manage"));
+const CatalogManageEdit = lazy(() => import("./catalog/manage-edit"));
 
-const Bucket = async () => (await import("./bucket")).default;
+const Bucket = lazy(() => import("./bucket"));
 
-const Marathon = async () => (await import("./marathon")).default;
-const MarathonAdd = async () => (await import("./marathon/add")).default;
+const Marathon = lazy(() => import("./marathon"));
+const MarathonAdd = lazy(() => import("./marathon/add"));
 
-const BucketSim = async () => (await import("./bucket-sim")).default;
-const BucketSimAdd = async () => (await import("./bucket-sim/add")).default;
+const BucketSim = lazy(() => import("./bucket-sim"));
+const BucketSimAdd = lazy(() => import("./bucket-sim/add"));
 
-const DataManagement = async () => (await import("./data-management")).default;
-const Logs = async () => (await import("./logs")).default;
-const Autofills = async () => (await import("./autofills")).default;
-const Users = async () => (await import("./users")).default;
+const DataManagement = lazy(() => import("./data-management"));
+const Logs = lazy(() => import("./logs"));
+const Autofills = lazy(() => import("./autofills"));
+const Users = lazy(() => import("./users"));
 
-const PcSetup = async () => (await import("./pc-setups")).default;
-const PcSetupAdd = async () => (await import("./pc-setups/add")).default;
-const PcComponent = async () => (await import("./pc-components")).default;
+const PcSetup = lazy(() => import("./pc-setups"));
+const PcSetupAdd = lazy(() => import("./pc-setups/add"));
+const PcComponent = lazy(() => import("./pc-components"));
 
 /**
  * Route guard
  */
-const ProtectedAsyncRoute = (props: any) => {
+const ProtectedRoute = ({ path, component }: any) => {
+  const location = useLocation();
   const isAdmin = useContext(AuthenticatedUserContext);
 
   useEffect(() => {
     if (isAdmin !== null && !isAdmin) {
-      route("/");
+      location.route("/", true);
       toast.error("Admin access is required");
     }
   }, [isAdmin]);
 
-  return <AsyncRoute {...props} />;
+  if (isAdmin === null || isAdmin === false) {
+    return <Route path={path} component={() => <></>} />;
+  }
+
+  return <Route path={path} component={component} />;
+};
+
+/**
+ * 404 Boundary
+ */
+const Page404Boundary = () => {
+  const location = useLocation();
+
+  location.route("/404");
+
+  return null;
 };
 
 /**
  * Route component
  */
 const Routes = (props: Props) => (
-  <Router onChange={props.onChange}>
-    <Route path="/" component={Login} />
-    <Route default component={Page404} />
+  <LocationProvider>
+    <Router
+      // onRouteChange={props.onChange}
+      // onLoadStart={props.onChange}
+      onRouteChange={props.onChange}
+      // onLoadStart={(url) => {
+      //   // props.onChange(url);
+      //   // console.log("Starting to load", url);
+      // }}
+    >
+      <Route path="/" component={Login} />
 
-    <AsyncRoute path="/register" getComponent={Registration} />
+      <Route path="/register" component={Registration} />
 
-    <AsyncRoute path="/home" getComponent={Home} />
-    <AsyncRoute path="/home/view/:id" getComponent={HomeView} />
-    <ProtectedAsyncRoute path="/home/add" getComponent={HomeAdd} />
-    <ProtectedAsyncRoute path="/home/edit/:id" getComponent={HomeAdd} />
+      <Route path="/home" component={Home} />
+      <Route path="/home/view/:id" component={HomeView} />
+      <ProtectedRoute path="/home/add" component={HomeAdd} />
+      <ProtectedRoute path="/home/edit/:id" component={HomeAdd} />
 
-    <ProtectedAsyncRoute path="/entries" getComponent={Entries} />
-    <ProtectedAsyncRoute path="/search" getComponent={Search} />
-    <ProtectedAsyncRoute path="/last-watch" getComponent={LastWatch} />
+      <ProtectedRoute path="/entries" component={Entries} />
+      <ProtectedRoute path="/search" component={Search} />
+      <ProtectedRoute path="/last-watch" component={LastWatch} />
 
-    <ProtectedAsyncRoute path="/by-name" getComponent={ByName} />
-    <ProtectedAsyncRoute path="/by-year" getComponent={ByYear} />
-    <ProtectedAsyncRoute path="/by-genre" getComponent={ByGenre} />
+      <ProtectedRoute path="/by-name" component={ByName} />
+      <ProtectedRoute path="/by-year" component={ByYear} />
+      <ProtectedRoute path="/by-genre" component={ByGenre} />
 
-    <ProtectedAsyncRoute path="/catalogs" getComponent={Catalog} />
-    <ProtectedAsyncRoute path="/catalogs/add" getComponent={CatalogAdd} />
-    <ProtectedAsyncRoute path="/catalogs/edit/:id" getComponent={CatalogAdd} />
-    <ProtectedAsyncRoute
-      path="/catalogs/add-multi"
-      getComponent={CatalogMulti}
-    />
-    <ProtectedAsyncRoute
-      path="/catalogs/edit-multi/:id"
-      getComponent={CatalogMulti}
-    />
-    <ProtectedAsyncRoute path="/catalogs/manage" getComponent={CatalogManage} />
-    <ProtectedAsyncRoute
-      path="/catalogs/manage-edit/:id"
-      getComponent={CatalogManageEdit}
-    />
+      <ProtectedRoute path="/catalogs" component={Catalog} />
+      <ProtectedRoute path="/catalogs/add" component={CatalogAdd} />
+      <ProtectedRoute path="/catalogs/edit/:id" component={CatalogAdd} />
+      <ProtectedRoute path="/catalogs/add-multi" component={CatalogMulti} />
+      <ProtectedRoute
+        path="/catalogs/edit-multi/:id"
+        component={CatalogMulti}
+      />
+      <ProtectedRoute path="/catalogs/manage" component={CatalogManage} />
+      <ProtectedRoute
+        path="/catalogs/manage-edit/:id"
+        component={CatalogManageEdit}
+      />
 
-    <ProtectedAsyncRoute path="/buckets" getComponent={Bucket} />
+      <ProtectedRoute path="/buckets" component={Bucket} />
 
-    <ProtectedAsyncRoute path="/marathons" getComponent={Marathon} />
-    <ProtectedAsyncRoute path="/marathons/add" getComponent={MarathonAdd} />
-    <ProtectedAsyncRoute
-      path="/marathons/edit/:id"
-      getComponent={MarathonAdd}
-    />
+      <ProtectedRoute path="/marathons" component={Marathon} />
+      <ProtectedRoute path="/marathons/add" component={MarathonAdd} />
+      <ProtectedRoute path="/marathons/edit/:id" component={MarathonAdd} />
 
-    <ProtectedAsyncRoute path="/bucket-sims" getComponent={BucketSim} />
-    <ProtectedAsyncRoute path="/bucket-sims/add" getComponent={BucketSimAdd} />
-    <ProtectedAsyncRoute
-      path="/bucket-sims/edit/:id"
-      getComponent={BucketSimAdd}
-    />
+      <ProtectedRoute path="/bucket-sims" component={BucketSim} />
+      <ProtectedRoute path="/bucket-sims/add" component={BucketSimAdd} />
+      <ProtectedRoute path="/bucket-sims/edit/:id" component={BucketSimAdd} />
 
-    <ProtectedAsyncRoute
-      path="/data-management"
-      getComponent={DataManagement}
-    />
-    <ProtectedAsyncRoute path="/logs" getComponent={Logs} />
-    <ProtectedAsyncRoute path="/autofills" getComponent={Autofills} />
-    <ProtectedAsyncRoute path="/users" getComponent={Users} />
+      <ProtectedRoute path="/data-management" component={DataManagement} />
+      <ProtectedRoute path="/logs" component={Logs} />
+      <ProtectedRoute path="/autofills" component={Autofills} />
+      <ProtectedRoute path="/users" component={Users} />
 
-    <ProtectedAsyncRoute path="/pc-setups" getComponent={PcSetup} />
-    <ProtectedAsyncRoute
-      path="/pc-setups/:ownerId/add"
-      getComponent={PcSetupAdd}
-    />
-    <ProtectedAsyncRoute
-      path="/pc-setups/:ownerId/edit/:infoId"
-      getComponent={PcSetupAdd}
-    />
-    <ProtectedAsyncRoute
-      path="/pc-setups/components"
-      getComponent={PcComponent}
-    />
-  </Router>
+      <ProtectedRoute path="/pc-setups" component={PcSetup} />
+      <ProtectedRoute path="/pc-setups/:ownerId/add" component={PcSetupAdd} />
+      <ProtectedRoute
+        path="/pc-setups/:ownerId/edit/:infoId"
+        component={PcSetupAdd}
+      />
+      <ProtectedRoute path="/pc-setups/components" component={PcComponent} />
+
+      <Route path="/404" component={Page404} />
+      <Route default component={Page404Boundary} />
+    </Router>
+  </LocationProvider>
 );
 
 export default Routes;

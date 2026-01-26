@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "preact/hooks";
-import { route } from "preact-router";
+import { useLocation, useRoute } from "preact-iso";
 import { useForm } from "react-hook-form";
 import { format } from "date-fns";
 import { isEmpty } from "lodash-es";
@@ -22,13 +22,10 @@ import AddForm from "./components/AddForm";
 import AutofillHelper from "./components/AutofillHelper";
 import { AutofillProps } from "./types";
 
-type Props = {
-  matches?: {
-    id: string;
-  };
-};
+const HomeAdd = () => {
+  const route = useRoute();
+  const location = useLocation();
 
-const HomeAdd = (props: Props) => {
   const { toggleLoader, isLoading } = useContext(GlobalLoaderContext);
 
   const [isDropdownLoading, setDropdownLoading] = useState(false);
@@ -58,10 +55,10 @@ const HomeAdd = (props: Props) => {
 
   const fetchEntryData = async () => {
     try {
-      if (props.matches?.id) {
+      if (route.params.id) {
         toggleLoader(true);
 
-        const { id } = props.matches;
+        const { id } = route.params;
         const partialsData = await axios.get(`/entries/${id}`);
 
         const {
@@ -183,10 +180,10 @@ const HomeAdd = (props: Props) => {
   };
 
   const handleBackSubmit = () => {
-    if (props.matches?.id) {
-      route(`/home/view/${props.matches.id}`);
+    if (route.params.id) {
+      location.route(`/home/view/${route.params.id}`);
     } else {
-      route("/home");
+      location.route("/home");
     }
   };
 
@@ -212,18 +209,18 @@ const HomeAdd = (props: Props) => {
         duration,
       };
 
-      if (props.matches?.id) {
-        await axios.put(`/entries/${props.matches.id}`, body);
+      if (route.params.id) {
+        await axios.put(`/entries/${route.params.id}`, body);
       } else {
         await axios.post("/entries", body);
       }
 
       toast.success("Success");
 
-      if (props.matches?.id) {
-        route(`/home/view/${props.matches.id}`);
+      if (route.params.id) {
+        location.route(`/home/view/${route.params.id}`);
       } else {
-        route("/home");
+        location.route("/home");
       }
     } catch (err) {
       if (err instanceof AxiosError && err.status === 401) {
@@ -292,20 +289,20 @@ const HomeAdd = (props: Props) => {
   }, [hasEntryId, isDropdownLoading]);
 
   useEffect(() => {
-    if (props.matches?.id) {
+    if (route.params.id) {
       setHasEntryId(true);
     }
   }, []);
 
   return (
     <ModuleContainer
-      headerText={props.matches?.id ? "Edit Entry" : "Add Entry"}
+      headerText={route.params.id ? "Edit Entry" : "Add Entry"}
       handleBack={() => setDialogOpen(true)}
       headerControls={<HeaderControls />}
       largeGutter
     >
       <AddForm
-        entryId={props.matches?.id || ""}
+        entryId={route.params.id || ""}
         control={control}
         getValues={getValues}
         setValue={setValue}

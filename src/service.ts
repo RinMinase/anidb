@@ -1,4 +1,3 @@
-import { route, getCurrentUrl } from "preact-router";
 import axios from "axios";
 
 const removeTrailSlashes = (str: string): string => {
@@ -23,28 +22,23 @@ if (API_URL) {
   axios.interceptors.response.use(
     (res) => res,
     (err) => {
-      if (
+      const isUnauthorized =
         err.response.data &&
         err.response.data.status === 401 &&
-        err.response.data.message == "Unauthorized"
-      ) {
+        err.response.data.message == "Unauthorized";
+
+      if (isUnauthorized) {
         localStorage.clear();
 
-        try {
-          const excludedUrls = ["/", "/register"];
+        const excludedUrls = ["/", "/register"];
 
-          // Skip redirecting on excluded urls
-          if (excludedUrls.includes(window.location.pathname)) {
-            return Promise.reject(err);
-          }
-
-          // Check if router is present at scope
-          getCurrentUrl();
-          route("/");
-        } catch {
-          // If router is not present, use default routing behavior
-          window.location.href = "/";
+        // Skip redirecting on excluded urls
+        if (excludedUrls.includes(window.location.pathname)) {
+          return Promise.reject(err);
         }
+
+        window.history.pushState(null, "", "/");
+        window.dispatchEvent(new PopStateEvent("popstate"));
       }
 
       return Promise.reject(err);
