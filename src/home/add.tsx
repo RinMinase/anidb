@@ -168,7 +168,7 @@ const HomeAdd = () => {
           duration_secs: secs,
 
           genres: genre_ids,
-          id_watcher: idWatcher,
+          id_watcher: idWatcher || "",
         });
       }
     } catch (err) {
