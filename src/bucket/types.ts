@@ -18,9 +18,11 @@ export type Bucket = {
   used?: string;
   percent: number;
   total?: string;
+  rawTotal?: number;
   titles?: number;
   bucketColor?: string;
   progressColor?: "success" | "error" | "warning";
+  purchaseDate: string | null;
 };
 
 export type Stats = {

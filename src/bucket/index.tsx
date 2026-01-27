@@ -163,6 +163,7 @@ const Bucket = () => {
                     iconColor={bucket.bucketColor}
                     heading={`${bucket.from.toUpperCase()} - ${bucket.to.toUpperCase()}`}
                     subHeading={`${bucket.used} / ${bucket.total}`}
+                    subHeadingLower={`Purchased: ${bucket.purchaseDate ?? "No data"}`}
                     value={`${bucket.percent}%`}
                     footerLeft={`Free: ${bucket.free}`}
                     footerRight={`${bucket.titles} Titles`}
