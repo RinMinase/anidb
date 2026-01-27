@@ -16,6 +16,7 @@ type Props = {
   mediumText?: boolean;
   largeText?: boolean;
   subHeading?: string;
+  subHeadingLower?: string;
   value: string | number | null | undefined;
   CustomDivider?: any;
   footer?: string;
@@ -113,7 +114,19 @@ const DashboardTile = (props: Props) => {
         )}
 
         {props.subHeading && (
-          <Typography variant="caption">{props.subHeading}</Typography>
+          <Typography variant="caption" display="block">
+            {props.subHeading}
+          </Typography>
+        )}
+
+        {props.subHeadingLower && (
+          <Typography
+            variant="caption"
+            display="block"
+            style={{ opacity: 0.3 }}
+          >
+            {props.subHeadingLower}
+          </Typography>
         )}
       </Box>
       {props.CustomDivider ? (
