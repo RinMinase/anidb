@@ -343,6 +343,7 @@ const BucketSim = () => {
                         iconColor={item.bucketColor}
                         heading={`${item.from.toUpperCase()} - ${item.to.toUpperCase()}`}
                         subHeading={`${item.used || "0 B"} / ${item.total}`}
+                        subHeadingLower={`Purchased: ${item.purchaseDate ?? "No data"}`}
                         value={`${item.percent}%`}
                         footerLeft={`Free: ${item.free}`}
                         footerRight={`${item.titles} Titles`}
