@@ -45,7 +45,7 @@ export const chartQualityOptions: ChartOptions = {
 
 // Ratings
 export const chartRatingsInitialData = {
-  labels: ["0\nN/A", "1\nTrash", "2\nJunk", "3\nMeh", "4\nWorthy", "5\nWicked"],
+  labels: ["0\nN/A", "1\nTrash", "2\nFlop", "3\nMeh", "4\nWorthy", "5\nWicked"],
   datasets: [
     {
       data: [],
