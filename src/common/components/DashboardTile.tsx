@@ -1,3 +1,5 @@
+import { JSX } from "preact";
+
 import {
   Box,
   Divider,
@@ -13,11 +15,12 @@ type Props = {
   icon?: any;
   iconColor?: string;
   heading: string;
+  smallText?: boolean;
   mediumText?: boolean;
   largeText?: boolean;
   subHeading?: string;
   subHeadingLower?: string;
-  value: string | number | null | undefined;
+  value: JSX.Element | string | number | null | undefined;
   CustomDivider?: any;
   footer?: string;
   footers?: string[];
@@ -105,6 +108,10 @@ const DashboardTile = (props: Props) => {
           </Typography>
         ) : props.mediumText ? (
           <Typography variant="h3" fontSize={42}>
+            {props.isLoading ? <Skeleton animation="wave" /> : props.value}
+          </Typography>
+        ) : props.smallText ? (
+          <Typography variant="h6" fontSize={24}>
             {props.isLoading ? <Skeleton animation="wave" /> : props.value}
           </Typography>
         ) : (
