@@ -91,15 +91,7 @@ const Page404Boundary = () => {
  */
 const Routes = (props: Props) => (
   <LocationProvider>
-    <Router
-      // onRouteChange={props.onChange}
-      // onLoadStart={props.onChange}
-      onRouteChange={props.onChange}
-      // onLoadStart={(url) => {
-      //   // props.onChange(url);
-      //   // console.log("Starting to load", url);
-      // }}
-    >
+    <Router onRouteChange={props.onChange}>
       <Route path="/" component={Login} />
 
       <Route path="/register" component={Registration} />
