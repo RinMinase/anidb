@@ -5,6 +5,7 @@ type Props = {
   control: Control<any>;
   name: string;
   numeric?: boolean;
+  allowPeriod?: boolean;
   variant?: "outlined" | "standard" | "filled";
   size?: "small" | "medium";
   label?: string;
@@ -19,13 +20,35 @@ type Props = {
   outlinedInput?: boolean;
   endAdornment?: any;
   maxHeight?: number;
+  decimalPlaces?: number;
 };
 
-export const disableNonNumeric = (e: any) => {
+export const disableNonNumeric = (
+  e: any,
+  allowPeriod?: boolean,
+  decimalPlaces?: number,
+) => {
   const el = e.target as HTMLInputElement;
-  const value = el.value;
+  let value = el.value;
 
-  el.value = value.replaceAll(/\D/g, "");
+  if (allowPeriod) {
+    value = value.replace(/[^0-9.]/g, "");
+
+    const parts = value.split(".");
+    if (parts.length > 2) {
+      // remove other instance of periods
+      value = `${parts[0]}.${parts.slice(1).join("")}`;
+    }
+
+    if (decimalPlaces !== undefined && value.includes(".")) {
+      const [integer, fraction] = value.split(".");
+      value = `${integer}.${fraction.slice(0, decimalPlaces)}`;
+    }
+  } else {
+    value = value.replace(/\D/g, "");
+  }
+
+  el.value = value;
 };
 
 const ControlledField = (props: Props) => {
@@ -65,7 +88,10 @@ const ControlledField = (props: Props) => {
               value={value}
               sx={{ maxHeight: props.maxHeight }}
               onChange={(e) => {
-                if (props.numeric) disableNonNumeric(e);
+                if (props.numeric) {
+                  disableNonNumeric(e, props.allowPeriod, props.decimalPlaces);
+                }
+
                 onChange(e);
               }}
               slotProps={{
