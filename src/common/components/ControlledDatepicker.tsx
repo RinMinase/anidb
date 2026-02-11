@@ -36,6 +36,9 @@ const ControlledDatepicker = (props: Props) => {
                 size: props.size || "medium",
                 error: props.error,
               },
+              popper: {
+                disablePortal: true,
+              },
             }}
           />
         </LocalizationProvider>
