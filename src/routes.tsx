@@ -52,6 +52,8 @@ const PcSetup = lazy(() => import("./pc-setups"));
 const PcSetupAdd = lazy(() => import("./pc-setups/add"));
 const PcComponent = lazy(() => import("./pc-components"));
 
+const Gas = lazy(() => import("./gas"));
+
 /**
  * Route guard
  */
@@ -151,6 +153,8 @@ const Routes = (props: Props) => (
         component={PcSetupAdd}
       />
       <ProtectedRoute path="/pc-setups/components" component={PcComponent} />
+
+      <ProtectedRoute path="/gas" component={Gas} />
 
       <Route path="/404" component={Page404} />
       <Route default component={Page404Boundary} />
