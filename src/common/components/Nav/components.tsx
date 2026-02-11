@@ -16,6 +16,7 @@ import {
   Edit3 as AutofillsIcon,
   Users as UsersIcon,
   Box as PCComponentsIcon,
+  Truck as GasIcon,
 } from "react-feather";
 
 const PCSetupsIcon = BucketSimIcon;
@@ -115,6 +116,11 @@ export const MenuItemOther = (props: { onClick: () => void }) => (
         children={<PCComponentsIcon size={18} strokeWidth={1.5} />}
       />
       PC Components
+    </MenuItem>
+    <Divider />
+    <MenuItem component={"a" as any} href="/gas" onClick={props.onClick}>
+      <ListItemIcon children={<GasIcon size={18} strokeWidth={1.5} />} />
+      Gas
     </MenuItem>
   </>
 );
