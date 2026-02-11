@@ -1,5 +1,5 @@
 import { useLocation } from "preact-iso";
-import { useContext, useEffect, useState } from "preact/hooks";
+import { useContext, useEffect, useRef, useState } from "preact/hooks";
 import { toast } from "sonner";
 import axios from "axios";
 
@@ -17,11 +17,16 @@ import MaintenanceGuide from "./components/MaintenanceGuide";
 import ChartOdometer from "./components/ChartOdometer";
 import ChartEfficiency from "./components/ChartEfficiency";
 import ChartGasPrices from "./components/ChartGasPrices";
+import AddFuelDialog from "./components/AddFuelDialog";
 
 const Gas = () => {
   const location = useLocation();
 
   const { toggleLoader } = useContext(GlobalLoaderContext);
+
+  const toggleGraphRefresh = useRef(false);
+
+  const [isAddDialogOpen, setAddDialogOpen] = useState(false);
 
   const [statsData, setStatsData] = useState<StatsData>();
   const [maintenanceData, setMaintenanceData] = useState<MaintenanceData>({
@@ -58,19 +63,22 @@ const Gas = () => {
           <Box>
             <Grid container spacing={2}>
               <Button
-                variant="contained"
                 fullWidth
-                onClick={() => location.route("/gas/add-fuel")}
+                variant="contained"
+                onClick={() => {
+                  toggleGraphRefresh.current = false;
+                  setAddDialogOpen(true);
+                }}
               >
                 Add Fuel Data
               </Button>
               <Button
-                variant="contained"
-                color="warning"
                 fullWidth
-                onClick={() => location.route("/gas/add-maintenance")}
+                variant="contained"
+                color="secondary"
+                onClick={() => location.route("/gas/view")}
               >
-                Add Maintenance Data
+                View All Data
               </Button>
 
               <MaintenanceGuide maintenanceData={maintenanceData} />
@@ -127,12 +135,21 @@ const Gas = () => {
           </Grid>
 
           <Grid container spacing={4} mt={6}>
-            <ChartEfficiency />
-            <ChartOdometer />
-            <ChartGasPrices />
+            <ChartEfficiency toggleGraphRefresh={toggleGraphRefresh} />
+            <ChartOdometer toggleGraphRefresh={toggleGraphRefresh} />
+            <ChartGasPrices toggleGraphRefresh={toggleGraphRefresh} />
           </Grid>
         </Grid>
       </Grid>
+
+      <AddFuelDialog
+        open={isAddDialogOpen}
+        onClose={() => setAddDialogOpen(false)}
+        refreshData={() => {
+          fetchData();
+          toggleGraphRefresh.current = true;
+        }}
+      />
     </ModuleContainer>
   );
 };
