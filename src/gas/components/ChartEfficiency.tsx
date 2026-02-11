@@ -1,4 +1,10 @@
+import { Chart, registerables } from "chart.js";
+import { MutableRef, useEffect, useState } from "preact/hooks";
+import { format, parseISO } from "date-fns";
+import { toast } from "sonner";
+import axios from "axios";
 import ChartDataLabels from "chartjs-plugin-datalabels";
+
 import {
   Box,
   FormControl,
@@ -10,49 +16,16 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import { Chart, ChartOptions, registerables } from "chart.js";
-import { useEffect, useState } from "preact/hooks";
-import { toast } from "sonner";
-import axios from "axios";
-import { format, parseISO } from "date-fns";
+
+import {
+  efficiencyChartInitialData,
+  efficiencyChartOptions,
+} from "../constants";
 
 Chart.register(...registerables, ChartDataLabels);
 
-export const chartInitialData = {
-  labels: [],
-  datasets: [{ data: [] }],
-};
-
-const chartOptions: ChartOptions = {
-  layout: {
-    padding: {
-      top: 20,
-    },
-  },
-  scales: {
-    y: {
-      ticks: {
-        stepSize: 5,
-        padding: 10,
-      },
-      grace: 20,
-      beginAtZero: true,
-    },
-  },
-  plugins: {
-    datalabels: {
-      formatter: (val) => {
-        return val < 0 ? "None" : val < 1 ? "" : val;
-      },
-      color: "#000",
-      font: {
-        size: 12,
-      },
-      align: "top",
-    },
-    legend: { display: false },
-    tooltip: { enabled: false },
-  },
+type Props = {
+  toggleGraphRefresh: MutableRef<boolean>;
 };
 
 type TypeDropdown = typeof typeDropdown;
@@ -74,7 +47,7 @@ type GraphMonthlyData = Array<{
 
 let chartEfficiency: Chart;
 
-const ChartEfficiency = () => {
+const ChartEfficiency = (props: Props) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const isTablet = useMediaQuery(theme.breakpoints.down("md"));
@@ -143,6 +116,12 @@ const ChartEfficiency = () => {
   }, [data, dataMonthly, chartEfficiency]);
 
   useEffect(() => {
+    if (props.toggleGraphRefresh.current) {
+      fetchData(type);
+    }
+  }, [props.toggleGraphRefresh.current]);
+
+  useEffect(() => {
     fetchData(type);
   }, [type]);
 
@@ -154,8 +133,8 @@ const ChartEfficiency = () => {
       chartEfficiency = new Chart(ctx, {
         type: "line",
         plugins: [ChartDataLabels],
-        options: chartOptions,
-        data: chartInitialData,
+        options: efficiencyChartOptions,
+        data: efficiencyChartInitialData,
       });
     }
 

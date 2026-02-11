@@ -1,48 +1,17 @@
+import { MutableRef, useEffect, useState } from "preact/hooks";
 import { Box, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
-import axios from "axios";
-import { Chart, ChartOptions, registerables } from "chart.js";
+import { Chart, registerables } from "chart.js";
 import { format, parseISO } from "date-fns";
-import { useEffect, useState } from "preact/hooks";
 import { toast } from "sonner";
+import axios from "axios";
 import ChartDataLabels from "chartjs-plugin-datalabels";
+
+import { gasPricesChartInitialData, gasPricesChartOptions } from "../constants";
 
 Chart.register(...registerables, ChartDataLabels);
 
-export const chartEfficiencyInitialData = {
-  labels: [],
-  datasets: [{ data: [] }],
-};
-
-const chartEfficiencyOptions: ChartOptions = {
-  layout: {
-    padding: {
-      top: 20,
-    },
-  },
-  scales: {
-    y: {
-      ticks: {
-        stepSize: 5,
-        padding: 10,
-      },
-      grace: 5,
-    },
-  },
-  plugins: {
-    datalabels: {
-      formatter: (val) => {
-        return val < 0 ? "None" : val < 1 ? "" : val;
-      },
-      color: "#2196F3",
-      font: {
-        weight: "bold",
-        size: 12,
-      },
-      align: "top",
-    },
-    legend: { display: false },
-    tooltip: { enabled: false },
-  },
+type Props = {
+  toggleGraphRefresh: MutableRef<boolean>;
 };
 
 type GraphData = Array<{
@@ -52,7 +21,7 @@ type GraphData = Array<{
 
 let chartGasPrice: Chart;
 
-const ChartGasPrices = () => {
+const ChartGasPrices = (props: Props) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
@@ -89,6 +58,12 @@ const ChartGasPrices = () => {
   }, [data, chartGasPrice]);
 
   useEffect(() => {
+    if (props.toggleGraphRefresh.current) {
+      fetchData();
+    }
+  }, [props.toggleGraphRefresh.current]);
+
+  useEffect(() => {
     if (document.getElementById("gas-price")) {
       const canvas = document.getElementById("gas-price") as HTMLCanvasElement;
       const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
@@ -96,8 +71,8 @@ const ChartGasPrices = () => {
       chartGasPrice = new Chart(ctx, {
         type: "line",
         plugins: [ChartDataLabels],
-        options: chartEfficiencyOptions,
-        data: chartEfficiencyInitialData,
+        options: gasPricesChartOptions,
+        data: gasPricesChartInitialData,
       });
     }
   }, []);

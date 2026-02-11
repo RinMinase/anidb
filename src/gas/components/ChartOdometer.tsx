@@ -1,5 +1,5 @@
-import { Chart, ChartOptions, registerables } from "chart.js";
-import { useEffect, useState } from "preact/hooks";
+import { Chart, registerables } from "chart.js";
+import { MutableRef, useEffect, useState } from "preact/hooks";
 import { toast } from "sonner";
 import ChartDataLabels from "chartjs-plugin-datalabels";
 import axios from "axios";
@@ -15,50 +15,25 @@ import {
 } from "@mui/material";
 
 import { getYearsInArray } from "@components/functions";
+import { odoChartInitialData, odoChartOptions } from "../constants";
+
+type Props = {
+  toggleGraphRefresh: MutableRef<boolean>;
+};
 
 Chart.register(...registerables, ChartDataLabels);
 
-export const chartInitialData = {
-  labels: ["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"],
-  datasets: [{ data: [] }],
-};
-
-const chartOptions: ChartOptions = {
-  aspectRatio: 1.5,
-  hover: { mode: null as any },
-  scales: {
-    x: {
-      ticks: {
-        maxRotation: 0,
-        minRotation: 0,
-      },
-    },
-    y: {
-      grace: "20%",
-    },
-  },
-  plugins: {
-    datalabels: {
-      anchor: "end",
-      align: "top",
-      clamp: true,
-      color: "#2196F3",
-    },
-    legend: { display: false },
-    tooltip: { enabled: false },
-  },
-};
-
-let chartOdometer: Chart;
 const currentYear = new Date().getFullYear();
 const finalYear = 2023;
 const yearsDropdown = getYearsInArray(currentYear, finalYear, -1);
 
-const ChartOdometer = () => {
+let chartOdometer: Chart;
+
+const ChartOdometer = (props: Props) => {
   const [year, setYear] = useState(currentYear);
   const [data, setData] = useState<Array<number>>([]);
 
-  const fetchOdoData = async (odoYear?: number) => {
+  const fetchData = async (odoYear?: number) => {
     try {
       const {
         data: { data },
@@ -83,7 +58,13 @@ const ChartOdometer = () => {
   }, [data, chartOdometer]);
 
   useEffect(() => {
-    fetchOdoData(year);
+    if (props.toggleGraphRefresh.current) {
+      fetchData(year);
+    }
+  }, [props.toggleGraphRefresh.current]);
+
+  useEffect(() => {
+    fetchData(year);
   }, [year]);
 
   useEffect(() => {
@@ -94,8 +75,8 @@ const ChartOdometer = () => {
       chartOdometer = new Chart(ctx, {
         type: "bar",
         plugins: [ChartDataLabels],
-        options: chartOptions,
-        data: chartInitialData,
+        options: odoChartOptions,
+        data: odoChartInitialData,
       });
     }
 
