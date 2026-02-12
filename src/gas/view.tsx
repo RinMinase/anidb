@@ -4,8 +4,8 @@ import { SxProps, Tab, Tabs } from "@mui/material";
 
 import { Dialog, ModuleContainer, TabPanel } from "@components";
 
-import ViewFuelTab from "./components/ViewFuelTab";
-import ViewMaintenanceTab from "./components/ViewMaintenanceTab";
+import ViewFuelTab from "./fuel";
+import ViewMaintenanceTab from "./maintenance";
 
 const tabPanelSxProps: SxProps = {
   maxHeight: {
