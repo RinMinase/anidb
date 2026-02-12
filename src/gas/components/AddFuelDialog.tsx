@@ -1,10 +1,8 @@
-import {
-  ButtonLoading,
-  ControlledDatepicker,
-  ControlledField,
-  ControlledSlider,
-  IconButton,
-} from "@components";
+import { useState } from "preact/hooks";
+import { useForm } from "react-hook-form";
+import { toast } from "sonner";
+import { X as CloseIcon } from "react-feather";
+import axios, { AxiosError } from "axios";
 
 import {
   DialogContent,
@@ -15,14 +13,17 @@ import {
   styled,
 } from "@mui/material";
 
-import { useState } from "preact/hooks";
+import {
+  ButtonLoading,
+  ControlledDatepicker,
+  ControlledField,
+  ControlledSlider,
+  IconButton,
+} from "@components";
 
-import { X as CloseIcon } from "react-feather";
-import { useForm } from "react-hook-form";
-import { defaultValues, Form, resolver } from "../validation";
-import { toast } from "sonner";
-import axios, { AxiosError } from "axios";
 import { ErrorResponse } from "@components/types";
+import { defaultValues, Form, resolver } from "../validation";
+import { SliderMarks } from "../constants";
 
 const CustomDialog = styled(Paper)({
   position: "fixed",
@@ -33,20 +34,6 @@ const CustomDialog = styled(Paper)({
   maxWidth: 400,
   maxHeight: "80vh",
 });
-
-const SliderMarks = [
-  { value: 0, label: "0" },
-  { value: 1, label: "1" },
-  { value: 2, label: "2" },
-  { value: 3, label: "3" },
-  { value: 4, label: "4" },
-  { value: 5, label: "5" },
-  { value: 6, label: "6" },
-  { value: 6, label: "6" },
-  { value: 7, label: "7" },
-  { value: 8, label: "8" },
-  { value: 9, label: "9" },
-];
 
 type Props = {
   open: boolean;
@@ -132,19 +119,21 @@ const AddFuelDialog = (props: Props) => {
             />
 
             <ControlledSlider
+              bordered
               name="from_bars"
               label="From"
-              control={control}
-              error={!!errors.from_bars}
-              helperText={errors.from_bars?.message}
-              disabled={loading}
               max={9}
               min={0}
               step={1}
+              control={control}
+              error={!!errors.from_bars}
+              helperText={errors.from_bars?.message}
               marks={SliderMarks}
+              disabled={loading}
             />
 
             <ControlledSlider
+              bordered
               name="to_bars"
               label="To"
               max={9}
@@ -153,8 +142,8 @@ const AddFuelDialog = (props: Props) => {
               control={control}
               error={!!errors.to_bars}
               helperText={errors.to_bars?.message}
-              disabled={loading}
               marks={SliderMarks}
+              disabled={loading}
             />
 
             <ControlledField
