@@ -22,16 +22,19 @@ type Props = {
   marks?: boolean | readonly Mark[];
   min: number;
   max: number;
+  bordered?: boolean;
 };
 
-const Container = styled(FormGroup)(({ theme }) => ({
+const Container = styled(FormGroup)(({ bordered, theme }) => ({
   height: "100%",
   justifyContent: "center",
-  // border: "1px solid",
-  // borderColor: theme.palette.action.disabled,
+  border: bordered ? "1px solid" : "",
+  borderColor: theme.palette.action.disabled,
   borderRadius: 4,
-  paddingLeft: 8,
-  paddingRight: 8,
+  paddingTop: bordered ? 4 : 0,
+  paddingBottom: bordered ? 4 : 0,
+  paddingLeft: bordered ? 16 : 8,
+  paddingRight: bordered ? 16 : 8,
 }));
 
 const ControlledSlider = (props: Props) => {
@@ -40,7 +43,7 @@ const ControlledSlider = (props: Props) => {
       name={props.name}
       control={props.control}
       render={({ field: { onChange, value } }) => (
-        <Container>
+        <Container bordered={props.bordered}>
           {props.label && <Typography mb={1}>{props.label}</Typography>}
           <Slider
             aria-label={props.label || "No Label Range"}
