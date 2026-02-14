@@ -30,6 +30,7 @@ type Props = {
   displayEmpty?: boolean;
   fullWidth?: boolean;
   size?: "small" | "medium";
+  popupMaxHeight?: number;
 };
 
 const id = randomAlphaString();
@@ -60,6 +61,13 @@ const ControlledMultiSelect = (props: Props) => {
             error={props.error}
             disabled={props.disabled}
             displayEmpty={props.displayEmpty}
+            MenuProps={{
+              PaperProps: {
+                style: {
+                  maxHeight: props.popupMaxHeight ?? undefined,
+                },
+              },
+            }}
             multiple
             {...field}
           >
