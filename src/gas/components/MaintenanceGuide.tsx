@@ -3,7 +3,7 @@ import { AlertTriangle as NearingIcon, X as LimitIcon } from "react-feather";
 import { toast } from "sonner";
 import axios from "axios";
 
-import { Box, Grid, Paper, Typography } from "@mui/material";
+import { Box, Grid, Paper, Tooltip, Typography } from "@mui/material";
 
 import { Table } from "@components";
 import { Guide, MaintenanceData } from "../types";
@@ -55,13 +55,23 @@ const MaintenanceGuide = (props: Props) => {
                       <span>{item.label}</span>
 
                       {maintenance.km[item.typeCamel] === "limit" ? (
-                        <LimitIcon size={22} strokeWidth={3} color="#d32f2f" />
+                        <Tooltip title="Should be serviced" placement="top">
+                          <LimitIcon
+                            cursor="pointer"
+                            size={22}
+                            strokeWidth={3}
+                            color="#d32f2f"
+                          />
+                        </Tooltip>
                       ) : maintenance.km[item.typeCamel] === "nearing" ? (
-                        <NearingIcon
-                          size={16}
-                          strokeWidth={2}
-                          color="#f57c00"
-                        />
+                        <Tooltip title="Nearby limit" placement="top">
+                          <NearingIcon
+                            cursor="pointer"
+                            size={16}
+                            strokeWidth={2}
+                            color="#f57c00"
+                          />
+                        </Tooltip>
                       ) : null}
                     </Box>
                   </Table.Cell>
