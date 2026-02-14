@@ -117,10 +117,10 @@ const EditDialog = (props: Props) => {
   };
 
   useEffect(() => {
-    if (id) {
+    if (id && open) {
       fetchData();
     }
-  }, [id]);
+  }, [id, open]);
 
   return (
     <Modal
