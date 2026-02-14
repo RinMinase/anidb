@@ -2,7 +2,7 @@ import { useState } from "preact/hooks";
 import { useLocation } from "preact-iso";
 import { SxProps, Tab, Tabs } from "@mui/material";
 
-import { Dialog, ModuleContainer, TabPanel } from "@components";
+import { ModuleContainer, TabPanel } from "@components";
 
 import ViewFuelTab from "./fuel";
 import ViewMaintenanceTab from "./maintenance";
@@ -29,16 +29,11 @@ const GasView = () => {
   const location = useLocation();
 
   const [currentTab, setCurrentTab] = useState(0);
-  const [isDialogOpen, setDialogOpen] = useState(false);
-
-  const handleBackSubmit = () => {
-    location.route("/gas");
-  };
 
   return (
     <ModuleContainer
       headerText="Gas Data"
-      handleBack={() => setDialogOpen(true)}
+      handleBack={() => location.route("/gas")}
     >
       <Tabs
         value={currentTab}
@@ -59,15 +54,6 @@ const GasView = () => {
         tabIndex={1}
         children={<ViewMaintenanceTab />}
         sx={tabPanelSxProps}
-      />
-
-      <Dialog
-        type="warning"
-        title="Are you sure?"
-        text="Any changes will not be saved."
-        onSubmit={handleBackSubmit}
-        open={isDialogOpen}
-        setOpen={setDialogOpen}
       />
     </ModuleContainer>
   );
