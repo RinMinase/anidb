@@ -60,7 +60,7 @@ const ChartEfficiency = (props: Props) => {
     try {
       const {
         data: { data },
-      } = await axios.get("/fourleaf/gas/efficiency", {
+      } = await axios.get("/gas/efficiency", {
         params: {
           type: effType,
         },

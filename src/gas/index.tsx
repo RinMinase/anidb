@@ -40,7 +40,7 @@ const Gas = () => {
 
       const {
         data: { data },
-      } = await axios.get("/fourleaf/gas");
+      } = await axios.get("/gas");
 
       setMaintenanceData(data.maintenance);
       setStatsData(data.stats);

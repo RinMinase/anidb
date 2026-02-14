@@ -41,7 +41,7 @@ const AddForm = (props: Props) => {
     try {
       setLoading(true);
 
-      const { data } = await axios.get("/fourleaf/gas/maintenance/parts");
+      const { data } = await axios.get("/gas/maintenance/parts");
       const list = data.data as PartsList;
 
       const options: OptionsKeyedProps = list.map((item) => ({
@@ -63,7 +63,7 @@ const AddForm = (props: Props) => {
     try {
       setLoading(true);
 
-      await axios.post("/fourleaf/gas/maintenance", {
+      await axios.post("/gas/maintenance", {
         ...formdata,
         date: format(formdata.date, "yyyy-MM-dd"),
         odometer: formdata.odometer || null,

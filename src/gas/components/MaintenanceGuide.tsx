@@ -21,7 +21,7 @@ const MaintenanceGuide = (props: Props) => {
     try {
       const {
         data: { data },
-      } = await axios.get("/fourleaf/gas/guide");
+      } = await axios.get("/gas/guide");
 
       setGuide(data);
     } catch (err) {

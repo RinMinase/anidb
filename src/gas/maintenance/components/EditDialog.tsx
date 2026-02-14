@@ -64,7 +64,7 @@ const EditDialog = (props: Props) => {
 
       const {
         data: { data },
-      } = await axios.get(`/fourleaf/gas/maintenance/${id}`);
+      } = await axios.get(`/gas/maintenance/${id}`);
 
       reset({
         date: new Date(data.date),
@@ -84,7 +84,7 @@ const EditDialog = (props: Props) => {
     try {
       setLoading(true);
 
-      const { data } = await axios.get("/fourleaf/gas/maintenance/parts");
+      const { data } = await axios.get("/gas/maintenance/parts");
       const list = data.data as PartsList;
 
       const options: OptionsKeyedProps = list.map((item) => ({
@@ -106,7 +106,7 @@ const EditDialog = (props: Props) => {
     try {
       setLoading(true);
 
-      await axios.put(`/fourleaf/gas/maintenance/${id}`, {
+      await axios.put(`/gas/maintenance/${id}`, {
         ...formdata,
         date: format(formdata.date, "yyyy-MM-dd"),
         odometer: formdata.odometer || null,

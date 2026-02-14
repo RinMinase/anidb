@@ -31,7 +31,7 @@ const ChartGasPrices = (props: Props) => {
     try {
       const {
         data: { data },
-      } = await axios.get("/fourleaf/gas/prices");
+      } = await axios.get("/gas/prices");
 
       let formatted = Object.entries(data).map(([date, value]) => ({
         date: format(parseISO(date), "MMM d"),

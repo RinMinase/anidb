@@ -24,7 +24,7 @@ const ViewFuelTab = () => {
     try {
       const {
         data: { data },
-      } = await axios.get("/fourleaf/gas/fuel", {
+      } = await axios.get("/gas/fuel", {
         params: { column: "date", order: "desc" },
       });
 
@@ -52,7 +52,7 @@ const ViewFuelTab = () => {
       setDeleteDialogOpen(false);
       setTableLoading(true);
 
-      await axios.delete(`/fourleaf/gas/fuel/${selectedData?.id}`);
+      await axios.delete(`/gas/fuel/${selectedData?.id}`);
       toast.success("Success");
 
       await fetchData();

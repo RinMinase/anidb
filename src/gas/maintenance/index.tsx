@@ -24,7 +24,7 @@ const ViewMaintenanceTab = () => {
     try {
       const {
         data: { data },
-      } = await axios.get("/fourleaf/gas/maintenance");
+      } = await axios.get("/gas/maintenance");
 
       setData(() => data);
     } catch (err) {
@@ -50,7 +50,7 @@ const ViewMaintenanceTab = () => {
       setDeleteDialogOpen(false);
       setTableLoading(true);
 
-      await axios.delete(`/fourleaf/gas/maintenance/${selectedData?.id}`);
+      await axios.delete(`/gas/maintenance/${selectedData?.id}`);
       toast.success("Success");
 
       await fetchData();

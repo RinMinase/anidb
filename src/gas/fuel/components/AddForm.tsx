@@ -39,7 +39,7 @@ const AddForm = (props: Props) => {
     try {
       setLoading(true);
 
-      await axios.post("/fourleaf/gas/fuel", {
+      await axios.post("/gas/fuel", {
         ...formdata,
         date: format(formdata.date, "yyyy-MM-dd"),
         price_per_liter: formdata.price_per_liter || null,

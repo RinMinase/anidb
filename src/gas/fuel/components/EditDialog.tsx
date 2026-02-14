@@ -62,7 +62,7 @@ const EditDialog = (props: Props) => {
 
       const {
         data: { data },
-      } = await axios.get(`/fourleaf/gas/fuel/${id}`);
+      } = await axios.get(`/gas/fuel/${id}`);
 
       reset({
         date: new Date(data.date),
@@ -84,7 +84,7 @@ const EditDialog = (props: Props) => {
     try {
       setLoading(true);
 
-      await axios.put(`/fourleaf/gas/fuel/${id}`, {
+      await axios.put(`/gas/fuel/${id}`, {
         ...formdata,
         date: format(formdata.date, "yyyy-MM-dd"),
         price_per_liter: formdata.price_per_liter || null,

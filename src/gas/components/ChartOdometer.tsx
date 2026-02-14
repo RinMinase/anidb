@@ -37,7 +37,7 @@ const ChartOdometer = (props: Props) => {
     try {
       const {
         data: { data },
-      } = await axios.get("/fourleaf/gas/odo", {
+      } = await axios.get("/gas/odo", {
         params: {
           year: odoYear ?? currentYear,
         },

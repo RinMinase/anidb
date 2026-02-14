@@ -58,7 +58,7 @@ const AddFuelDialog = (props: Props) => {
     try {
       setLoading(true);
 
-      await axios.post("/fourleaf/gas/fuel", formdata);
+      await axios.post("/gas/fuel", formdata);
       refreshData();
       onClose();
 
