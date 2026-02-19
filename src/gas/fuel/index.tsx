@@ -6,11 +6,12 @@ import axios from "axios";
 import { Dialog } from "@components";
 
 import { Data, Item } from "./types";
-import AddForm from "./components/AddForm";
 import ViewTable from "./components/ViewTable";
 import EditDialog from "./components/EditDialog";
+import AddFuelForm from "../components/AddFuelForm";
 
 const ViewFuelTab = () => {
+  const [isAddLoading, setAddLoading] = useState(false);
   const [isTableLoading, setTableLoading] = useState(true);
   const [isEditDialogOpen, setEditDialogOpen] = useState(false);
   const [isDeleteDialogOpen, setDeleteDialogOpen] = useState(false);
@@ -70,7 +71,11 @@ const ViewFuelTab = () => {
     <>
       <Grid container spacing={2}>
         <Grid size={{ xs: 12, sm: 5, md: 3 }}>
-          <AddForm refreshData={fetchData} isRefreshLoading={isTableLoading} />
+          <AddFuelForm
+            loading={isAddLoading || isTableLoading}
+            setLoading={setAddLoading}
+            refreshData={fetchData}
+          />
         </Grid>
         <Grid size={{ xs: 12, sm: 7, md: 9 }}>
           <ViewTable
