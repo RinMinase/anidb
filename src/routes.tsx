@@ -53,6 +53,7 @@ const PcSetupAdd = lazy(() => import("./pc-setups/add"));
 const PcComponent = lazy(() => import("./pc-components"));
 
 const Gas = lazy(() => import("./gas"));
+const GasAdd = lazy(() => import("./gas/add"));
 const GasView = lazy(() => import("./gas/view"));
 
 /**
@@ -148,6 +149,7 @@ const Routes = (props: Props) => (
       <ProtectedRoute path="/pc-setups/components" component={PcComponent} />
 
       <ProtectedRoute path="/gas" component={Gas} />
+      <ProtectedRoute path="/gas/add" component={GasAdd} />
       <ProtectedRoute path="/gas/view" component={GasView} />
 
       <Route path="/404" component={Page404} />
