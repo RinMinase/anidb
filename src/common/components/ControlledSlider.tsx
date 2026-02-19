@@ -7,6 +7,7 @@ import {
   Slider,
   styled,
   Typography,
+  useTheme,
 } from "@mui/material";
 
 type Props = {
@@ -38,6 +39,8 @@ const Container = styled(FormGroup)(({ bordered, theme }) => ({
 }));
 
 const ControlledSlider = (props: Props) => {
+  const theme = useTheme();
+
   return (
     <Controller
       name={props.name}
@@ -59,7 +62,10 @@ const ControlledSlider = (props: Props) => {
             slotProps={{
               markLabel: {
                 style: {
-                  color: "rgba(0, 0, 0, 0.87)",
+                  color:
+                    theme.palette.mode === "dark"
+                      ? "#fff"
+                      : "rgba(0, 0, 0, 0.87)",
                 },
               },
             }}
