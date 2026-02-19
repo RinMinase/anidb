@@ -40,7 +40,6 @@ const CustomDialog = styled(Paper)({
   transform: "translate(-50%, -50%)",
   width: "100%",
   maxWidth: 400,
-  maxHeight: "80vh",
 });
 
 const EditDialog = (props: Props) => {
