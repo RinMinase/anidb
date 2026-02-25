@@ -28,7 +28,7 @@
     "@hello-pangea/dnd": "^18.0.1",
     "@hookform/resolvers": "^5.2.2",
     "@mui/material": "^7.3.8",
-    "@mui/x-date-pickers": "^8.27.0",
+    "@mui/x-date-pickers": "^8.27.2",
     "awesome-debounce-promise": "^2.1.0",
     "axios": "^1.13.5",
     "chart.js": "^4.5.1",
@@ -41,7 +41,7 @@
     "preact-iso": "^2.11.1",
     "react-dropzone": "^14.4.1",
     "react-feather": "^2.0.10",
-    "react-hook-form": "^7.71.1",
+    "react-hook-form": "^7.71.2",
     "react-scroll": "^1.9.3",
     "react-waypoint": "^10.3.0",
     "react-window": "^2.2.7",
@@ -51,7 +51,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.29.0",
-    "@biomejs/biome": "^2.4.2",
+    "@biomejs/biome": "^2.4.4",
     "@date-io/date-fns": "^3.2.1",
     "@mui/system": "^7.3.8",
     "@preact/preset-vite": "^2.10.3",
@@ -70,7 +70,7 @@
   },
   "resolutions": {
     "@types/react": "^19.2.14",
-    "preact-iso/preact-render-to-string": "^6.6.5",
+    "preact-iso/preact-render-to-string": "^6.6.6",
     "react": "^19.2.4",
     "react-dom": "^19.2.4"
   },
