@@ -1,25 +1,9 @@
-import { Box, Paper, Tooltip, useTheme } from "@mui/material";
+import { useState } from "preact/hooks";
 import { Trash as DeleteIcon, Edit as EditIcon } from "react-feather";
+import { Box, Paper, Tooltip, useTheme } from "@mui/material";
 
 import { IconButton, Table } from "@components";
 import { Data, Item } from "../types";
-
-import AcCoolantIcon from "@components/icons/images/maintenance/ac_coolant.png";
-import BatteryIcon from "@components/icons/images/maintenance/battery.png";
-import BrakeFluidIcon from "@components/icons/images/maintenance/brake_fluid.png";
-import BrakeSandingIcon from "@components/icons/images/maintenance/brake_sanding.png";
-import EngineOilIcon from "@components/icons/images/maintenance/engine_oil.png";
-import EngineWashIcon from "@components/icons/images/maintenance/engine_wash.png";
-import LightsChangeIcon from "@components/icons/images/maintenance/lights_change.png";
-import OthersIcon from "@components/icons/images/maintenance/others.png";
-import PowerSteeringFluidIcon from "@components/icons/images/maintenance/power_steering_fluid.png";
-import RadiatorFluidIcon from "@components/icons/images/maintenance/radiator_fluid.png";
-import SparkPlugsIcon from "@components/icons/images/maintenance/spark_plugs.png";
-import TiresChangeIcon from "@components/icons/images/maintenance/tires_change.png";
-import TiresRotationIcon from "@components/icons/images/maintenance/tires_rotation.png";
-import TransmissionIcon from "@components/icons/images/maintenance/transmission.png";
-import WiperChangeIcon from "@components/icons/images/maintenance/wiper_change.png";
-import { useState } from "preact/hooks";
 
 type MntProps = {
   type: string;
@@ -27,10 +11,20 @@ type MntProps = {
   dark: boolean;
 };
 
+const Icons = import.meta.glob("/src/common/icons/images/maintenance/*.png", {
+  eager: true,
+  import: "default",
+});
+
 const MaintenanceIcon = (props: MntProps) => {
   const { type, label, dark } = props;
 
-  const IconBase = ({ src }: { src: string }) => (
+  const path = `/src/common/icons/images/maintenance/${type}.png`;
+  const src = Icons[path] as string;
+
+  if (!src) return null;
+
+  return (
     <Tooltip arrow placement="top" title={label}>
       <img
         src={src}
@@ -42,25 +36,6 @@ const MaintenanceIcon = (props: MntProps) => {
       />
     </Tooltip>
   );
-
-  if (type === "ac_coolant") return <IconBase src={AcCoolantIcon} />;
-  if (type === "battery") return <IconBase src={BatteryIcon} />;
-  if (type === "brake_fluid") return <IconBase src={BrakeFluidIcon} />;
-  if (type === "brake_sanding") return <IconBase src={BrakeSandingIcon} />;
-  if (type === "engine_oil") return <IconBase src={EngineOilIcon} />;
-  if (type === "engine_wash") return <IconBase src={EngineWashIcon} />;
-  if (type === "lights_change") return <IconBase src={LightsChangeIcon} />;
-  if (type === "others") return <IconBase src={OthersIcon} />;
-  if (type === "radiator_fluid") return <IconBase src={RadiatorFluidIcon} />;
-  if (type === "spark_plugs") return <IconBase src={SparkPlugsIcon} />;
-  if (type === "tires_change") return <IconBase src={TiresChangeIcon} />;
-  if (type === "tires_rotation") return <IconBase src={TiresRotationIcon} />;
-  if (type === "transmission") return <IconBase src={TransmissionIcon} />;
-  if (type === "wiper_change") return <IconBase src={WiperChangeIcon} />;
-  if (type === "power_steering_fluid")
-    return <IconBase src={PowerSteeringFluidIcon} />;
-
-  return null;
 };
 
 type Props = {
