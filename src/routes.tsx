@@ -58,6 +58,8 @@ const GasView = lazy(() => import("./gas/view"));
 
 const Electric = lazy(() => import("./electric"));
 
+const Recipes = lazy(() => import("./recipes"));
+
 /**
  * Route guard
  */
@@ -155,6 +157,8 @@ const Routes = (props: Props) => (
       <ProtectedRoute path="/gas/view" component={GasView} />
 
       <ProtectedRoute path="/electric" component={Electric} />
+
+      <ProtectedRoute path="/recipes" component={Recipes} />
 
       <Route path="/404" component={Page404} />
       <Route default component={Page404Boundary} />

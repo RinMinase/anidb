@@ -18,6 +18,7 @@ import {
   Box as PCComponentsIcon,
   Truck as GasIcon,
   Zap as ElectricIcon,
+  Paperclip as RecipeIcon,
 } from "react-feather";
 
 const PCSetupsIcon = BucketSimIcon;
@@ -126,6 +127,10 @@ export const MenuItemOther = (props: { onClick: () => void }) => (
     <MenuItem component={"a" as any} href="/electric" onClick={props.onClick}>
       <ListItemIcon children={<ElectricIcon size={18} strokeWidth={1.5} />} />
       Electric
+    </MenuItem>
+    <MenuItem component={"a" as any} href="/recipes" onClick={props.onClick}>
+      <ListItemIcon children={<RecipeIcon size={18} strokeWidth={1.5} />} />
+      Recipe List
     </MenuItem>
   </>
 );
