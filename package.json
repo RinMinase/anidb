@@ -42,9 +42,11 @@
     "react-dropzone": "^14.4.1",
     "react-feather": "^2.0.10",
     "react-hook-form": "^7.71.2",
+    "react-markdown": "^10.1.0",
     "react-scroll": "^1.9.3",
     "react-waypoint": "^10.3.0",
     "react-window": "^2.2.7",
+    "remark-gfm": "^4.0.1",
     "sonner": "^2.0.7",
     "ua-parser-js": "^2.0.9",
     "yup": "^1.7.1"
