@@ -1,7 +1,9 @@
+import { MutableRef } from "preact/hooks";
 import { Control, Controller } from "react-hook-form";
 import { OutlinedInput, TextField } from "@mui/material";
 
 type Props = {
+  inputRef?: MutableRef<HTMLInputElement | undefined>;
   control: Control<any>;
   name: string;
   numeric?: boolean;
@@ -75,6 +77,7 @@ const ControlledField = (props: Props) => {
           return (
             <TextField
               {...numericProps}
+              inputRef={props.inputRef}
               variant={props.variant ?? "outlined"}
               size={props.size}
               label={props.label}
@@ -106,6 +109,7 @@ const ControlledField = (props: Props) => {
         return (
           <OutlinedInput
             {...numericProps}
+            inputRef={props.inputRef}
             label={props.label}
             size={props.size}
             error={props.error}
