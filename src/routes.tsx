@@ -59,6 +59,9 @@ const GasView = lazy(() => import("./gas/view"));
 const Electric = lazy(() => import("./electric"));
 
 const Recipes = lazy(() => import("./recipes"));
+const RecipesAdd = lazy(() => import("./recipes/add"));
+const RecipesView = lazy(() => import("./recipes/view"));
+const RecipesEditImage = lazy(() => import("./recipes/edit-image"));
 
 /**
  * Route guard
@@ -159,6 +162,13 @@ const Routes = (props: Props) => (
       <ProtectedRoute path="/electric" component={Electric} />
 
       <ProtectedRoute path="/recipes" component={Recipes} />
+      <ProtectedRoute path="/recipes/add" component={RecipesAdd} />
+      <ProtectedRoute path="/recipes/edit/:id" component={RecipesAdd} />
+      <ProtectedRoute
+        path="/recipes/edit-image/:id"
+        component={RecipesEditImage}
+      />
+      <ProtectedRoute path="/recipes/:id" component={RecipesView} />
 
       <Route path="/404" component={Page404} />
       <Route default component={Page404Boundary} />
