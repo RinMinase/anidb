@@ -1,9 +1,11 @@
 import { useRef, useState } from "preact/hooks";
 import { Trash as TrashIcon, X as ClearIcon } from "react-feather";
+import { DragDropContext, Draggable, Droppable } from "@hello-pangea/dnd";
 
 import {
   FieldArrayWithId,
   UseFieldArrayAppend,
+  UseFieldArrayMove,
   UseFieldArrayRemove,
 } from "react-hook-form";
 
@@ -16,9 +18,11 @@ import {
   Stack,
   TextField,
   Typography,
+  useTheme,
 } from "@mui/material";
 
 import { Button, IconButton } from "@components";
+import DragHandleIcon from "@components/icons/drag.svg?react";
 
 import { Form } from "../validation";
 
@@ -31,10 +35,13 @@ type Props = {
   fields: FieldArrayWithId<Form, "ingredients", "id">[];
   append: UseFieldArrayAppend<Form, "ingredients">;
   remove: UseFieldArrayRemove;
+  move: UseFieldArrayMove;
 };
 
 const IngredientsForm = (props: Props) => {
   const { fields, append, remove } = props;
+
+  const theme = useTheme();
 
   const [input, setInput] = useState("");
   const inputRef = useRef<HTMLInputElement>();
@@ -50,6 +57,10 @@ const IngredientsForm = (props: Props) => {
       setInput("");
       if (inputRef.current) inputRef.current.focus();
     }
+  };
+
+  const handleDrag = ({ source, destination }: any) => {
+    if (destination) props.move(source.index, destination.index);
   };
 
   const HelperButton = ({ value, large }: HelperButtonProps) => {
@@ -72,30 +83,70 @@ const IngredientsForm = (props: Props) => {
   return (
     <Box maxWidth={500}>
       <Typography variant="body1">Ingredients</Typography>
-      <Box>
-        <List>
-          {fields.map((field, index) => (
-            <ListItem
-              key={field.id}
-              secondaryAction={
-                <IconButton
-                  edge="end"
-                  onClick={() => remove(index)}
-                  children={<TrashIcon size={20} />}
-                />
-              }
-              sx={(theme) => ({
-                borderBottom: "1px solid",
-                borderColor: theme.palette.divider,
-              })}
-            >
-              <ListItemText primary={field.value} />
-            </ListItem>
-          ))}
-        </List>
-      </Box>
+      <DragDropContext onDragEnd={handleDrag}>
+        <Droppable droppableId="ingredient-list-wrapper">
+          {(provided) => (
+            <List {...provided.droppableProps} ref={provided.innerRef}>
+              {fields.map((field, index) => (
+                <Draggable key={field.id} draggableId={field.id} index={index}>
+                  {(_provided) => (
+                    <div
+                      ref={_provided.innerRef}
+                      {..._provided.draggableProps}
+                      style={{
+                        ..._provided.draggableProps.style,
+                      }}
+                    >
+                      <ListItem
+                        secondaryAction={
+                          <IconButton
+                            edge="end"
+                            onClick={() => remove(index)}
+                            children={<TrashIcon size={20} />}
+                          />
+                        }
+                        sx={(theme) => ({
+                          borderBottom: "1px solid",
+                          borderColor: theme.palette.divider,
+                          m: 0,
+                          py: 0,
+                          pl: 0,
+                        })}
+                      >
+                        {/** @ts-expect-error type error */}
+                        <div
+                          {..._provided.dragHandleProps}
+                          style={{ display: "flex" }}
+                        >
+                          <DragHandleIcon
+                            style={{
+                              boxSizing: "content-box",
+                              width: "14px",
+                              fill: theme.palette.action.disabled,
+                              cursor: "grab",
+                              padding: "12px 16px",
+                            }}
+                          />
+                        </div>
 
-      <Stack direction={{ xs: "column", sm: "row" }} spacing={1}>
+                        <ListItemText
+                          primary={field.value}
+                          sx={{
+                            my: 1.5,
+                          }}
+                        />
+                      </ListItem>
+                    </div>
+                  )}
+                </Draggable>
+              ))}
+              {provided.placeholder}
+            </List>
+          )}
+        </Droppable>
+      </DragDropContext>
+
+      <Stack direction={{ xs: "column", sm: "row" }} spacing={1} sx={{ mt: 1 }}>
         <TextField
           inputRef={inputRef}
           fullWidth

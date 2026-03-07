@@ -2,6 +2,8 @@ import { useLocation, useRoute } from "preact-iso";
 import { useContext, useEffect, useState } from "preact/hooks";
 import { useFieldArray, useForm } from "react-hook-form";
 import { Stack } from "@mui/material";
+import { toast } from "sonner";
+import axios, { AxiosError } from "axios";
 
 import {
   ButtonLoading,
@@ -14,8 +16,6 @@ import {
 
 import { defaultValues, Form, resolver } from "./validation";
 import IngredientsForm from "./components/IngredientsForm";
-import axios, { AxiosError } from "axios";
-import { toast } from "sonner";
 import InstructionsHelperForm from "./components/InstructionsHelperForm";
 
 const RecipeAdd = () => {
@@ -36,7 +36,7 @@ const RecipeAdd = () => {
     formState: { errors },
   } = useForm<Form>({ defaultValues, resolver, mode: "onChange" });
 
-  const { fields, append, remove } = useFieldArray({
+  const { fields, append, remove, move } = useFieldArray({
     control,
     name: "ingredients",
   });
@@ -81,7 +81,12 @@ const RecipeAdd = () => {
       }
 
       toast.success("Success");
-      location.route("/recipes");
+
+      if (route.params.id) {
+        location.route(`/recipes/${route.params.id}`);
+      } else {
+        location.route("/recipes");
+      }
     } catch (err) {
       if (err instanceof AxiosError && err.status === 401) {
         const { data } = err.response?.data as ErrorResponseType;
@@ -133,7 +138,12 @@ const RecipeAdd = () => {
           disabled={isLoading}
         />
 
-        <IngredientsForm fields={fields} append={append} remove={remove} />
+        <IngredientsForm
+          fields={fields}
+          append={append}
+          remove={remove}
+          move={move}
+        />
 
         <InstructionsHelperForm
           isLoading={isLoading}
