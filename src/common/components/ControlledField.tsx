@@ -1,6 +1,6 @@
 import { MutableRef } from "preact/hooks";
 import { Control, Controller } from "react-hook-form";
-import { OutlinedInput, TextField } from "@mui/material";
+import { OutlinedInput, SxProps, TextField, Theme } from "@mui/material";
 
 type Props = {
   inputRef?: MutableRef<HTMLInputElement | undefined>;
@@ -23,6 +23,8 @@ type Props = {
   endAdornment?: any;
   maxHeight?: number;
   decimalPlaces?: number;
+  sx?: SxProps<Theme>;
+  slotProps?: any;
 };
 
 export const disableNonNumeric = (
@@ -89,7 +91,7 @@ const ControlledField = (props: Props) => {
               maxRows={props.maxRows}
               fullWidth={props.fullWidth}
               value={value}
-              sx={{ maxHeight: props.maxHeight }}
+              sx={{ maxHeight: props.maxHeight, ...props.sx }}
               onChange={(e) => {
                 if (props.numeric) {
                   disableNonNumeric(e, props.allowPeriod, props.decimalPlaces);
@@ -101,6 +103,7 @@ const ControlledField = (props: Props) => {
                 input: {
                   endAdornment: props.endAdornment,
                 },
+                ...props.slotProps,
               }}
             />
           );
