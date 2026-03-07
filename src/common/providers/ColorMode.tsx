@@ -39,6 +39,12 @@ const ColorMode = (props: any) => {
 
   useEffect(() => {
     Cookies.set("color-mode", mode, { expires: 30, sameSite: "Lax" });
+
+    if (mode === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
   }, [mode]);
 
   return (
