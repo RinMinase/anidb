@@ -28,6 +28,8 @@ import {
 import { Button, GlobalLoaderContext, ModuleContainer } from "@components";
 import { Item } from "./types";
 
+import "./markdown-formatter.css";
+
 const ViewRecipe = () => {
   const route = useRoute();
   const location = useLocation();
@@ -192,7 +194,7 @@ const ViewRecipe = () => {
           })}
         </List>
       </Box>
-      <Box>
+      <Box className="markdown-body">
         {data.instructions ? (
           <Markdown remarkPlugins={[remarkGfm]}>{data.instructions}</Markdown>
         ) : null}

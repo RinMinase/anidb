@@ -1,0 +1,125 @@
+html {
+  .markdown-body {
+    tr {
+      background-color: #f9fafb;
+      border-top: 1px solid #21262d;
+    }
+
+    tr:nth-child(2n) {
+      background-color: #e5e7eb;
+    }
+
+    td,
+    th {
+      border: 1px solid #d0d7de;
+    }
+  }
+
+}
+
+html.dark {
+  .markdown-body {
+    tr {
+      background-color: #0d1117;
+      border-top: 1px solid #21262d;
+    }
+
+    tr:nth-child(2n) {
+      background-color: #161b22;
+    }
+
+    td,
+    th {
+      border: 1px solid #30363d;
+    }
+  }
+}
+
+.markdown-body {
+  table {
+    border-spacing: 0;
+    border-collapse: collapse;
+    display: block;
+    margin-top: 0;
+    margin-bottom: 16px;
+    width: max-content;
+    max-width: 100%;
+    overflow: auto;
+  }
+
+  th {
+    font-weight: 600;
+  }
+
+  td,
+  th {
+    padding: 6px 13px;
+  }
+
+  table img {
+    background-color: transparent;
+  }
+
+  /* Strikethrough */
+  del code {
+    text-decoration: inherit;
+  }
+
+  /* Style the footnotes section. */
+  .footnotes {
+    font-size: smaller;
+    color: #8b949e;
+    border-top: 1px solid #30363d;
+  }
+
+  /* Hide the section label for visual users. */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    word-wrap: normal;
+    border: 0;
+  }
+
+  /* Place `[` and `]` around footnote references. */
+  [data-footnote-ref]::before {
+    content: '[';
+  }
+
+  [data-footnote-ref]::after {
+    content: ']';
+  }
+
+  /* Checklists */
+  .task-list-item {
+    list-style-type: none;
+  }
+
+  /* Code Block */
+  .highlight pre,
+  pre {
+    padding: 1rem;
+    overflow: auto;
+    font-size: 85%;
+    line-height: 1.45;
+    color: #f0f6fc;
+    background-color: #151b23;
+    border-radius: 6px;
+  }
+
+  /* Code Inline */
+  code,
+  tt {
+    padding: .2em .4em;
+    margin: 0;
+    font-size: 85%;
+    white-space: break-spaces;
+    background-color: #656c7633;
+    border-radius: 6px;
+    font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+    font-feature-settings: normal;
+  }
+}

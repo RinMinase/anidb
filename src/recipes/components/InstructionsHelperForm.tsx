@@ -53,6 +53,18 @@ const InstructionsHelperForm = (props: Props) => {
         error={!!errors.instructions}
         helperText={errors.instructions?.message}
         disabled={isLoading}
+        sx={{
+          "& .MuiInputBase-root": {
+            alignItems: "baseline",
+          },
+          "& textarea": {
+            whiteSpace: "pre",
+            overflowX: "auto !important",
+            fontFamily: "monospace",
+            fontSize: "0.9rem",
+            paddingBottom: "20px",
+          },
+        }}
       />
 
       <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1, mt: 2 }}>
