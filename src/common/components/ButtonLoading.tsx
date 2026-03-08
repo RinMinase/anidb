@@ -20,8 +20,15 @@ const CustomButton = styled(Button)<Props>(({ iconSize }) => ({
   },
 }));
 
-const ButtonLoading = ({ ...props }: Props) => {
-  return <CustomButton {...props} />;
+const ButtonLoading = ({ loading, endIcon, startIcon, ...props }: Props) => {
+  return (
+    <CustomButton
+      {...props}
+      loading={loading}
+      startIcon={loading ? null : startIcon}
+      endIcon={loading ? null : endIcon}
+    />
+  );
 };
 
 export default ButtonLoading;
