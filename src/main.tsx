@@ -7,6 +7,7 @@ import { Nav, NavCommon } from "@components";
 import AuthenticatedUser from "@components/providers/AuthenticatedUser";
 import ColorMode from "@components/providers/ColorMode";
 import GlobalLoader from "@components/providers/GlobalLoader";
+import { PUBLIC_URLS } from "@components/constants";
 
 import Routes from "./routes";
 
@@ -17,8 +18,7 @@ const Layout = () => {
   const [currRoute, setCurrRoute] = useState<string>("");
 
   const handleRouteChange = (url: string) => {
-    const commonURLs = ["/", "/register", "/404"];
-    const isCommonRoute = commonURLs.includes(url);
+    const isCommonRoute = PUBLIC_URLS.includes(url);
     setNavCommon(isCommonRoute);
     setCurrRoute(url);
   };

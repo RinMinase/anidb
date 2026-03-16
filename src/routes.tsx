@@ -16,6 +16,8 @@ type Props = {
  * Lazy loaded components
  */
 const Registration = lazy(() => import("./registration"));
+const ForgetPassword = lazy(() => import("./auth/forget-password"));
+const ResetPassword = lazy(() => import("./auth/reset-password"));
 
 const Home = lazy(() => import("./home"));
 const HomeAdd = lazy(() => import("./home/add"));
@@ -104,6 +106,8 @@ const Routes = (props: Props) => (
       <Route path="/" component={Login} />
 
       <Route path="/register" component={Registration} />
+      <Route path="/forget-password" component={ForgetPassword} />
+      <Route path="/reset-password" component={ResetPassword} />
 
       <Route path="/home" component={Home} />
       <Route path="/home/view/:id" component={HomeView} />

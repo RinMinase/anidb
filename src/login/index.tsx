@@ -6,6 +6,7 @@ import { Eye, EyeOff } from "react-feather";
 import axios, { AxiosError } from "axios";
 
 import {
+  Box,
   Grid,
   InputAdornment,
   Stack,
@@ -124,6 +125,27 @@ const Login = () => {
               }}
               {...register("password")}
             />
+
+            <Box sx={{ width: "100%" }}>
+              <Typography
+                component="button"
+                type="button"
+                sx={(theme) => ({
+                  color: theme.palette.text.primary,
+                  border: 0,
+                  backgroundColor: "transparent",
+                  display: "inline-block",
+                  cursor: "pointer",
+                  "&:hover": {
+                    textDecoration: "underline",
+                    textUnderlineOffset: "4px",
+                  },
+                })}
+                onClick={() => location.route("/forget-password")}
+              >
+                Reset Password
+              </Typography>
+            </Box>
 
             <ButtonLoading
               variant="contained"
