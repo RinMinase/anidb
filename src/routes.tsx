@@ -6,7 +6,7 @@ import { lazy, LocationProvider, Router, Route, useLocation } from "preact-iso";
 import { AuthenticatedUserContext } from "@components";
 import Page404 from "@components/pages/Page404";
 
-import Login from "./login";
+import Login from "./auth/login";
 
 type Props = {
   onChange: (url: string) => void;
@@ -15,7 +15,7 @@ type Props = {
 /**
  * Lazy loaded components
  */
-const Registration = lazy(() => import("./registration"));
+const Registration = lazy(() => import("./auth/registration"));
 const ForgetPassword = lazy(() => import("./auth/forget-password"));
 const ResetPassword = lazy(() => import("./auth/reset-password"));
 
