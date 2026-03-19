@@ -20,14 +20,13 @@ import {
   Code as DeveloperIcon,
 } from "react-feather";
 
-import { AuthenticatedUserContext, Button, IconButton } from "@components";
+import { Button, IconButton } from "@components";
 
 import { ColorModeContext } from "../providers/ColorMode";
 
 const NavCommon = () => {
   const theme = useTheme();
   const colorMode = useContext(ColorModeContext);
-  const isAuth = useContext(AuthenticatedUserContext);
 
   const [anchorNav, setAnchorNav] = useState<null | HTMLElement>(null);
 
@@ -119,17 +118,15 @@ const NavCommon = () => {
             )}
           </IconButton>
 
-          {isAuth ? (
-            <Box sx={{ marginLeft: 1, display: { xs: "none", md: "flex" } }}>
-              <Button
-                color="inherit"
-                startIcon={<DeveloperIcon size={20} />}
-                href="https://rin.anidb.moe"
-              >
-                Developer
-              </Button>
-            </Box>
-          ) : null}
+          <Box sx={{ marginLeft: 1, display: { xs: "none", md: "flex" } }}>
+            <Button
+              color="inherit"
+              startIcon={<DeveloperIcon size={20} />}
+              href="https://rin.anidb.moe"
+            >
+              Developer
+            </Button>
+          </Box>
         </Toolbar>
       </Container>
     </AppBar>
