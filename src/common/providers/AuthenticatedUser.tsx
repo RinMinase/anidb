@@ -2,6 +2,8 @@ import { createContext } from "preact";
 import { useEffect, useState } from "preact/hooks";
 import axios, { AxiosError } from "axios";
 
+import { PUBLIC_URLS } from "@components/constants";
+
 export const AuthenticatedUserContext = createContext<boolean | null>(null);
 
 type Props = {
@@ -16,8 +18,7 @@ const AuthenticatedUser = (props: Props) => {
 
   const checkAuth = async () => {
     try {
-      const commonURLs = ["/", "/register"];
-      const isCommonRoute = commonURLs.includes(window.location.pathname);
+      const isCommonRoute = PUBLIC_URLS.includes(window.location.pathname);
 
       if (!isCommonRoute) {
         const {

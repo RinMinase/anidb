@@ -1,5 +1,7 @@
 import axios from "axios";
 
+import { PUBLIC_URLS } from "@components/constants";
+
 const removeTrailSlashes = (str: string): string => {
   let i = str.length;
 
@@ -30,10 +32,8 @@ if (API_URL) {
       if (isUnauthorized) {
         localStorage.clear();
 
-        const excludedUrls = ["/", "/register"];
-
         // Skip redirecting on excluded urls
-        if (excludedUrls.includes(window.location.pathname)) {
+        if (PUBLIC_URLS.includes(window.location.pathname)) {
           return Promise.reject(err);
         }
 
