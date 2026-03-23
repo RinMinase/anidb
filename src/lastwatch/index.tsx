@@ -141,7 +141,7 @@ const LastWatch = () => {
     toggleLoader(true);
   }, []);
 
-  if (isLoading) return null;
+  if (isLoading || !data.length) return null;
 
   return (
     <ModuleContainer
