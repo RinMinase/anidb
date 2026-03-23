@@ -7,9 +7,12 @@ import { ModuleContainer, Table } from "@components";
 
 import { Data, Pagination, paginationDefaults } from "./types";
 
-const AddChip = () => <Chip label="Add" size="small" color="success" />;
+const AddChip = () => <Chip label="Add" size="small" color="info" />;
 const EditChip = () => <Chip label="Edit" size="small" color="warning" />;
 const DeleteChip = () => <Chip label="Delete" size="small" color="error" />;
+const DefaultChip = ({ label }: { label: string }) => (
+  <Chip label={label} size="small" color="secondary" />
+);
 
 const Logs = () => {
   const [isTableLoading, setTableLoading] = useState(true);
@@ -88,6 +91,9 @@ const Logs = () => {
                     {item.action === "add" && <AddChip />}
                     {item.action === "edit" && <EditChip />}
                     {item.action === "delete" && <DeleteChip />}
+                    {!["add", "edit", "delete"].includes(item.action) && (
+                      <DefaultChip label={item.action} />
+                    )}
                   </Table.Cell>
                   <Table.Cell>{item.tableChanged}</Table.Cell>
                   <Table.Cell>{item.idChanged}</Table.Cell>
