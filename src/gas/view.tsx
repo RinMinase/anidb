@@ -1,4 +1,4 @@
-import { useState } from "preact/hooks";
+import { useRef, useState } from "preact/hooks";
 import { useLocation } from "preact-iso";
 import { format } from "date-fns";
 import { toast } from "sonner";
@@ -38,19 +38,74 @@ const tabPanelSxProps: SxProps = {
 const GasView = () => {
   const location = useLocation();
 
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
   const [currentTab, setCurrentTab] = useState(0);
 
   const [importLoading, setImportLoading] = useState(false);
   const [exportLoading, setExportLoading] = useState(false);
 
-  const handleImport = async () => {
+  const handleImportClick = async () => {
+    setImportLoading(true);
+    fileInputRef.current?.click();
+  };
+
+  const handleImport = async (event: any) => {
+    const file = event.target.files[0] as File;
+
+    if (!file) {
+      setImportLoading(false);
+      return;
+    }
+
+    if (file.type !== "application/json") {
+      setImportLoading(false);
+      toast.error("Please select a valid JSON file.");
+      return;
+    }
+
+    const form = new FormData();
+    form.append("file", file);
+
     try {
-      setImportLoading(true);
+      const {
+        data: { data },
+      } = await axios.post("/gas/import", form, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+
+      const description = () => (
+        <>
+          <span>
+            <span>Fuel Entries: {data.gas.acceptedImports}&nbsp;</span>
+            <span>(out of {data.gas.totalJsonEntries})</span>
+          </span>
+          <br />
+          <span>
+            <span>Maintenance: {data.maintenance.acceptedImports}&nbsp;</span>
+            <span>(out of {data.maintenance.totalJsonEntries})</span>
+          </span>
+          <br />
+          <span>
+            <span>Parts of All Maintenance Records:&nbsp;</span>
+            <span>{data.maintenanceParts.acceptedImports}&nbsp;</span>
+            <span>(out of {data.maintenanceParts.totalJsonEntries})</span>
+          </span>
+          <br />
+        </>
+      );
+
+      toast.success("Success", {
+        dismissible: true,
+        duration: Infinity,
+        description,
+      });
     } catch (err) {
       console.error(err);
       toast.error("Failed");
     } finally {
       setImportLoading(false);
+      event.target.value = "";
     }
   };
 
@@ -83,6 +138,15 @@ const GasView = () => {
 
   const HeaderControls = () => (
     <>
+      <input
+        type="file"
+        ref={fileInputRef}
+        onChange={handleImport}
+        onCancel={() => setImportLoading(false)}
+        accept=".json,application/json"
+        style={{ display: "none" }}
+      />
+
       <ButtonLoading
         variant="contained"
         color="secondary"
@@ -93,7 +157,7 @@ const GasView = () => {
           width: 130,
           marginLeft: 2,
         }}
-        onClick={handleImport}
+        onClick={handleImportClick}
       >
         Import
       </ButtonLoading>
