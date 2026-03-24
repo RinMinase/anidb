@@ -13,9 +13,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "dev-bun": "bunx --bun vite",
     "build": "npm run lint-summary & tsgo && vite build",
-    "build-bun": "bun run lint-summary & tsgo && bunx --bun vite build",
     "lint": "biome check",
     "lint-summary": "biome check --reporter=summary",
     "lint-write": "biome check --write",
