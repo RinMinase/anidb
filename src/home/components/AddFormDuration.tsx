@@ -1,4 +1,4 @@
-import { Control, FieldErrors } from "react-hook-form";
+import { Control, FieldErrors, FieldValues } from "react-hook-form";
 
 import {
   FormGroup,
@@ -12,8 +12,8 @@ import { ControlledField } from "@components";
 
 import { Form } from "../validation";
 
-type Props = {
-  control: Control<any>;
+type Props<T extends FieldValues> = {
+  control: Control<T>;
   errors: FieldErrors<Form>;
   disabled: boolean;
 };
@@ -48,13 +48,13 @@ const DurationLabel = styled("span")(({ theme }) => ({
   paddingRight: 8,
 }));
 
-const AddFormDuration = (props: Props) => {
+const AddFormDuration = <T extends FieldValues>(props: Props<T>) => {
   return (
     <DurationContainer>
       <DurationLabel>Duration</DurationLabel>
       <Stack spacing={2} direction="row">
         <ControlledField
-          name="duration_hrs"
+          name={"duration_hrs" as any}
           size="small"
           control={props.control}
           error={!!props.errors.duration_hrs}
@@ -66,7 +66,7 @@ const AddFormDuration = (props: Props) => {
           numeric
         />
         <ControlledField
-          name="duration_mins"
+          name={"duration_mins" as any}
           size="small"
           control={props.control}
           error={!!props.errors.duration_mins}
@@ -78,7 +78,7 @@ const AddFormDuration = (props: Props) => {
           numeric
         />
         <ControlledField
-          name="duration_secs"
+          name={"duration_secs" as any}
           size="small"
           control={props.control}
           error={!!props.errors.duration_secs}

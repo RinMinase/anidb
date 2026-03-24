@@ -1,4 +1,4 @@
-import { Control, Controller } from "react-hook-form";
+import { Control, Controller, FieldValues, Path } from "react-hook-form";
 import type { Mark } from "node_modules/@mui/material/esm/Slider/useSlider.types";
 
 import {
@@ -10,9 +10,9 @@ import {
   useTheme,
 } from "@mui/material";
 
-type Props = {
-  control: Control<any>;
-  name: string;
+type Props<T extends FieldValues> = {
+  control: Control<T>;
+  name: Path<T>;
   label?: string;
   helperText?: string;
   error?: boolean;
@@ -38,7 +38,7 @@ const Container = styled(FormGroup)(({ bordered, theme }) => ({
   paddingRight: bordered ? 16 : 8,
 }));
 
-const ControlledSlider = (props: Props) => {
+const ControlledSlider = <T extends FieldValues>(props: Props<T>) => {
   const theme = useTheme();
 
   return (

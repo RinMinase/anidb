@@ -1,4 +1,4 @@
-import { Control, Controller } from "react-hook-form";
+import { Control, Controller, FieldValues, Path } from "react-hook-form";
 
 import {
   Box,
@@ -14,9 +14,9 @@ import {
 
 import { randomAlphaString } from "@components";
 
-type Props = {
-  control: Control<any>;
-  name: string;
+type Props<T extends FieldValues> = {
+  control: Control<T>;
+  name: Path<T>;
   options?: Array<{
     label: string;
     key?: any;
@@ -35,7 +35,7 @@ type Props = {
 
 const id = randomAlphaString();
 
-const ControlledMultiSelect = (props: Props) => {
+const ControlledMultiSelect = <T extends FieldValues>(props: Props<T>) => {
   return (
     <Controller
       name={props.name}

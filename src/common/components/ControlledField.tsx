@@ -1,11 +1,11 @@
 import { MutableRef } from "preact/hooks";
-import { Control, Controller } from "react-hook-form";
+import { Control, Controller, FieldValues, Path } from "react-hook-form";
 import { OutlinedInput, SxProps, TextField, Theme } from "@mui/material";
 
-type Props = {
+type Props<T extends FieldValues> = {
   inputRef?: MutableRef<HTMLInputElement | undefined>;
-  control: Control<any>;
-  name: string;
+  control: Control<T>;
+  name: Path<T>;
   numeric?: boolean;
   allowPeriod?: boolean;
   variant?: "outlined" | "standard" | "filled";
@@ -55,12 +55,12 @@ export const disableNonNumeric = (
   el.value = value;
 };
 
-const ControlledField = (props: Props) => {
+const ControlledField = <T extends FieldValues>(props: Props<T>) => {
   return (
     <Controller
       name={props.name}
       control={props.control}
-      defaultValue=""
+      defaultValue={"" as any}
       render={({ field: { onChange, value } }) => {
         let numericProps = {};
 

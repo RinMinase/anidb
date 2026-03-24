@@ -1,4 +1,4 @@
-import { Control, Controller } from "react-hook-form";
+import { Control, Controller, FieldValues, Path } from "react-hook-form";
 
 import {
   FormControlLabel,
@@ -8,9 +8,9 @@ import {
   Switch,
 } from "@mui/material";
 
-type Props = {
-  control: Control<any>;
-  name: string;
+type Props<T extends FieldValues> = {
+  control: Control<T>;
+  name: Path<T>;
   label?: string;
   helperText?: string;
   error?: boolean;
@@ -25,7 +25,7 @@ const Container = styled(FormGroup)(({ theme }) => ({
   borderRadius: 4,
 }));
 
-const ControlledSwitch = (props: Props) => {
+const ControlledSwitch = <T extends FieldValues>(props: Props<T>) => {
   return (
     <Controller
       name={props.name}

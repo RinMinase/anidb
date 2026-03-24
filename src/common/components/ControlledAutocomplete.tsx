@@ -1,10 +1,10 @@
-import { Control, Controller } from "react-hook-form";
+import { Control, Controller, FieldValues, Path } from "react-hook-form";
 import { Autocomplete, TextField } from "@mui/material";
 
-type Props = {
-  control: Control<any>;
-  options: Array<string> | Array<{ id: string; label: string }>;
-  name: string;
+type Props<T extends FieldValues, O> = {
+  control: Control<T>;
+  name: Path<T>;
+  options: O[];
   label?: string;
   helperText?: string;
   error?: boolean;
@@ -18,12 +18,14 @@ type Props = {
   extraOnInputChange?: (e?: any, data?: string) => void;
 };
 
-const ControlledAutocomplete = (props: Props) => {
+const ControlledAutocomplete = <T extends FieldValues, O>(
+  props: Props<T, O>,
+) => {
   return (
     <Controller
       name={props.name}
       control={props.control}
-      defaultValue={null}
+      defaultValue={null as any}
       render={({ field: { onChange, value } }) => {
         return (
           <Autocomplete

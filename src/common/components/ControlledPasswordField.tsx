@@ -1,13 +1,13 @@
-import { Control, Controller } from "react-hook-form";
+import { Control, Controller, FieldValues, Path } from "react-hook-form";
 import { useState } from "preact/hooks";
 import { Eye, EyeOff } from "react-feather";
 import { InputAdornment, OutlinedInput, TextField } from "@mui/material";
 
 import IconButton from "./IconButton";
 
-type Props = {
-  control: Control<any>;
-  name: string;
+type Props<T extends FieldValues> = {
+  control: Control<T>;
+  name: Path<T>;
   variant?: "outlined" | "standard" | "filled";
   size?: "small" | "medium";
   label?: string;
@@ -20,14 +20,14 @@ type Props = {
   maxHeight?: number;
 };
 
-const ControlledPasswordField = (props: Props) => {
+const ControlledPasswordField = <T extends FieldValues>(props: Props<T>) => {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
     <Controller
       name={props.name}
       control={props.control}
-      defaultValue=""
+      defaultValue={"" as any}
       render={({ field: { onChange, value } }) => {
         if (!props.outlinedInput) {
           return (

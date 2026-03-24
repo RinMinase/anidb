@@ -1,11 +1,11 @@
-import { Control, Controller } from "react-hook-form";
+import { Control, Controller, FieldValues, Path } from "react-hook-form";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 
-type Props = {
-  control: Control<any>;
-  name: string;
+type Props<T extends FieldValues> = {
+  control: Control<T>;
+  name: Path<T>;
   label?: string;
   helperText?: string;
   error?: boolean;
@@ -15,7 +15,7 @@ type Props = {
   fullWidth?: boolean;
 };
 
-const ControlledDatepicker = (props: Props) => {
+const ControlledDatepicker = <T extends FieldValues>(props: Props<T>) => {
   return (
     <Controller
       name={props.name}

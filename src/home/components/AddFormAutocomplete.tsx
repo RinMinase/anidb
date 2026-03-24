@@ -1,18 +1,18 @@
 import { ControlledAutocomplete } from "@components";
 import { useEffect, useState } from "preact/hooks";
-import { Control, UseFormSetValue } from "react-hook-form";
+import { Control, FieldValues, Path, UseFormSetValue } from "react-hook-form";
 import axios from "axios";
 import DebouncePromise from "awesome-debounce-promise";
 
 import { TitleObject } from "../types";
 
-type Props = {
+type Props<T extends FieldValues> = {
   entryId?: string;
-  name: string;
+  name: Path<T>;
   actualIdFieldName: string;
   label: string;
-  control: Control<any>;
-  setValue: UseFormSetValue<any>;
+  control: Control<T>;
+  setValue: UseFormSetValue<T>;
   error: boolean;
   helperText?: string;
   disabled: boolean;
@@ -41,7 +41,7 @@ const searchAPI = (
 
 const searchAPIDebounced = DebouncePromise(searchAPI, 250);
 
-const AddFormAutocomplete = (props: Props) => {
+const AddFormAutocomplete = <T extends FieldValues>(props: Props<T>) => {
   const [options, setOptions] = useState<AutocompleteOptions>([]);
   const [loading, setLoading] = useState(false);
 
@@ -67,7 +67,10 @@ const AddFormAutocomplete = (props: Props) => {
 
   const handleChangeInput = (_e: any, data: any) => {
     const item = options.find((i) => i.label === data);
-    props.setValue(props.actualIdFieldName as any, item?.id || undefined);
+    props.setValue(
+      props.actualIdFieldName as any,
+      (item?.id || undefined) as any,
+    );
   };
 
   useEffect(() => {

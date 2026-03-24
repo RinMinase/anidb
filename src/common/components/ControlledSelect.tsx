@@ -1,5 +1,5 @@
 import { useMemo } from "preact/hooks";
-import { Control, Controller } from "react-hook-form";
+import { Control, Controller, FieldValues, Path } from "react-hook-form";
 
 import {
   FormControl,
@@ -25,9 +25,9 @@ export type OptionsKeyedProps = Array<{
   value?: number | string;
 }>;
 
-type Props = {
-  control: Control<any>;
-  name: string;
+type Props<T extends FieldValues> = {
+  control: Control<T>;
+  name: Path<T>;
   options?:
     | string[]
     | Array<{
@@ -47,7 +47,7 @@ type Props = {
   menuMaxHeight?: number;
 };
 
-const ControlledSelect = (props: Props) => {
+const ControlledSelect = <T extends FieldValues>(props: Props<T>) => {
   const id = useMemo(randomAlphaString, []);
 
   return (
