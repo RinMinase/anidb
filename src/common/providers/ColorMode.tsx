@@ -1,12 +1,12 @@
 import { createContext } from "preact";
 import { useEffect, useMemo, useState } from "preact/hooks";
 import { createTheme, ThemeProvider } from "@mui/material";
-import Cookies from "js-cookie";
+import { get as getCookie, set as setCookie } from "es-cookie";
 
 export const ColorModeContext = createContext({ toggleColorMode: () => {} });
 
 const preferDark = window?.matchMedia("(prefers-color-scheme: dark)").matches;
-const savedMode = Cookies.get("color-mode") as "light" | "dark" | undefined;
+const savedMode = getCookie("color-mode") as "light" | "dark" | undefined;
 const defaultMode = savedMode ?? (preferDark ? "dark" : "light");
 
 const ColorMode = (props: any) => {
@@ -38,7 +38,7 @@ const ColorMode = (props: any) => {
   );
 
   useEffect(() => {
-    Cookies.set("color-mode", mode, { expires: 30, sameSite: "Lax" });
+    setCookie("color-mode", mode, { expires: 30, sameSite: "lax" });
 
     if (mode === "dark") {
       document.documentElement.classList.add("dark");
