@@ -954,6 +954,54 @@
   resolved "https://registry.yarnpkg.com/@types/use-sync-external-store/-/use-sync-external-store-0.0.6.tgz#60be8d21baab8c305132eb9cb912ed497852aadc"
   integrity sha512-zFDAD+tlpf2r4asuHEj0XH6pY6i0g5NeAHPn+15wk3BV6JA69eERFXC1gyGThDkVa1zCyKr5jox1+2LbV/AMLg==
 
+"@typescript/native-preview-darwin-arm64@7.0.0-dev.20260324.1":
+  version "7.0.0-dev.20260324.1"
+  resolved "https://registry.yarnpkg.com/@typescript/native-preview-darwin-arm64/-/native-preview-darwin-arm64-7.0.0-dev.20260324.1.tgz#2d5e665ef3b94a1c59e39f5004cac1555602f515"
+  integrity sha512-Yg4zANP69mquBH4VwgfaSGj98Bc1o1mKFX4kk6WFEGvUX7BKvakiMXmKRKc79zY8HtpSKXiqTYcbOtumoRKfTA==
+
+"@typescript/native-preview-darwin-x64@7.0.0-dev.20260324.1":
+  version "7.0.0-dev.20260324.1"
+  resolved "https://registry.yarnpkg.com/@typescript/native-preview-darwin-x64/-/native-preview-darwin-x64-7.0.0-dev.20260324.1.tgz#ef0c111b1df7dda1b93d56b87e4cc6a86daaf2ae"
+  integrity sha512-hlMIJQjlbwNTH3iS8IivAxeu7I4OLm645kErSynAR4i8O6lZiSeaZndUqIDYx/+er4bb01X0Fnxa8BTW2Emv2A==
+
+"@typescript/native-preview-linux-arm64@7.0.0-dev.20260324.1":
+  version "7.0.0-dev.20260324.1"
+  resolved "https://registry.yarnpkg.com/@typescript/native-preview-linux-arm64/-/native-preview-linux-arm64-7.0.0-dev.20260324.1.tgz#5b998dacc70c21e97728f589f08bb9c458227b7e"
+  integrity sha512-1oCTzfOOujaa0DhFj7epM3xqhoI4l+d2f584zeQjPCvk8FJBj4kwfOMZV139bEe+G5IoGsvhJzzRYzfu2diZkA==
+
+"@typescript/native-preview-linux-arm@7.0.0-dev.20260324.1":
+  version "7.0.0-dev.20260324.1"
+  resolved "https://registry.yarnpkg.com/@typescript/native-preview-linux-arm/-/native-preview-linux-arm-7.0.0-dev.20260324.1.tgz#5a58a219f0040881999c4083df1e3f9eca45b9be"
+  integrity sha512-uWcNrDuCdJb3TCAWI7TvrEzgluDiWmnNFeyE48mlgiVpcf7XVD9PwD0AIxvlO27NyF+NkQ3guHFssmjkhi0E9w==
+
+"@typescript/native-preview-linux-x64@7.0.0-dev.20260324.1":
+  version "7.0.0-dev.20260324.1"
+  resolved "https://registry.yarnpkg.com/@typescript/native-preview-linux-x64/-/native-preview-linux-x64-7.0.0-dev.20260324.1.tgz#97e381598754cac2939c27595379a5ed08fc50ba"
+  integrity sha512-MzGh802vVwm9pCuFD6n7MrfaHn44ewayqZ5MSnSMmOZZzaOGwmGCCNDJUvsSsDSwIrYt8bU6LbUxx7TvlpJ8dQ==
+
+"@typescript/native-preview-win32-arm64@7.0.0-dev.20260324.1":
+  version "7.0.0-dev.20260324.1"
+  resolved "https://registry.yarnpkg.com/@typescript/native-preview-win32-arm64/-/native-preview-win32-arm64-7.0.0-dev.20260324.1.tgz#aae5387fb4a2f2dc1b406dfdb81f0b426dacba42"
+  integrity sha512-CyxCw3Rj+nqI2cVP4CmdEAn+8UkGJM1vWmNQ2q3z5ZF3V+JdnlmhALEzk4bu0ddu5pyHwM1fOHLsD7xcGUcKtQ==
+
+"@typescript/native-preview-win32-x64@7.0.0-dev.20260324.1":
+  version "7.0.0-dev.20260324.1"
+  resolved "https://registry.yarnpkg.com/@typescript/native-preview-win32-x64/-/native-preview-win32-x64-7.0.0-dev.20260324.1.tgz#90c95176b63941d28cb61442431d6eeb1a1a453e"
+  integrity sha512-6J8V5cHOrh7Cjl6lv8+zsDY5NkbMYBwXroKlFUzThZ7vpJlEaa51DPQyCyILIXodv5XODd5arRcbaY+cC6Et8Q==
+
+"@typescript/native-preview@^7.0.0-dev.20260324.1":
+  version "7.0.0-dev.20260324.1"
+  resolved "https://registry.yarnpkg.com/@typescript/native-preview/-/native-preview-7.0.0-dev.20260324.1.tgz#aa47ec8c87bfcab54373bb6ca099a3077d1afc8c"
+  integrity sha512-AzuC/jEAucVCay7ckwexa8Ao4NfDUeVYBTIxGG9fc1qh2q1JphdUW50PLRyNJXCDcnLtghSIDBi+wfFgVBtcMQ==
+  optionalDependencies:
+    "@typescript/native-preview-darwin-arm64" "7.0.0-dev.20260324.1"
+    "@typescript/native-preview-darwin-x64" "7.0.0-dev.20260324.1"
+    "@typescript/native-preview-linux-arm" "7.0.0-dev.20260324.1"
+    "@typescript/native-preview-linux-arm64" "7.0.0-dev.20260324.1"
+    "@typescript/native-preview-linux-x64" "7.0.0-dev.20260324.1"
+    "@typescript/native-preview-win32-arm64" "7.0.0-dev.20260324.1"
+    "@typescript/native-preview-win32-x64" "7.0.0-dev.20260324.1"
+
 "@ungap/structured-clone@^1.0.0":
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/@ungap/structured-clone/-/structured-clone-1.3.0.tgz#d06bbb384ebcf6c505fde1c3d0ed4ddffe0aaff8"
@@ -3587,11 +3635,6 @@ type-fest@^2.19.0:
   version "2.19.0"
   resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-2.19.0.tgz#88068015bb33036a598b952e55e9311a60fd3a9b"
   integrity sha512-RAH822pAdBgcNMAfWnCBU3CFZcfZ/i1eZjwFU/dsLKumyuuP3niueg2UAukXYF0E2AAoc82ZSSf9J0WQBinzHA==
-
-typescript@^5.9.3:
-  version "5.9.3"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.9.3.tgz#5b4f59e15310ab17a216f5d6cf53ee476ede670f"
-  integrity sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==
 
 ua-is-frozen@^0.1.2:
   version "0.1.2"

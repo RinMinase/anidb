@@ -24,14 +24,15 @@
 
     /* Added options */
     "forceConsistentCasingInFileNames": true,
-    "baseUrl": "./",
 
     "paths": {
+      "*": ["./*"],
+      "@src": ["./src/"],
+      "@components": ["./src/common/index"],
+      "@components/*": ["./src/common/*"],
+
       "react": ["./node_modules/preact/compat/"],
       "react-dom": ["./node_modules/preact/compat/"],
-      "@src": ["src/"],
-      "@components": ["src/common/index.ts"],
-      "@components/*": ["src/common/*"]
     },
 
     "typeRoots": [
