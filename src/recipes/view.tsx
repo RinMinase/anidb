@@ -10,6 +10,7 @@ import {
   ArrowLeft as BackIcon,
   Edit as EditIcon,
   Image as ImageIcon,
+  Trash as DeleteIcon,
 } from "react-feather";
 
 import {
@@ -25,7 +26,12 @@ import {
   useTheme,
 } from "@mui/material";
 
-import { Button, GlobalLoaderContext, ModuleContainer } from "@components";
+import {
+  Button,
+  Dialog,
+  GlobalLoaderContext,
+  ModuleContainer,
+} from "@components";
 import { Item } from "./types";
 
 import "./markdown-formatter.css";
@@ -40,6 +46,7 @@ const ViewRecipe = () => {
 
   const [data, setData] = useState<Item>();
   const [ingedientsChecks, setIngredientsChecks] = useState<boolean[]>([]);
+  const [isDeleteDialogOpen, setDeleteDialogOpen] = useState(false);
 
   const fetchData = async () => {
     toggleLoader(true);
@@ -68,6 +75,16 @@ const ViewRecipe = () => {
     const values = [...ingedientsChecks];
     values[index] = !values[index];
     setIngredientsChecks(values);
+  };
+
+  const handleDeleteSubmit = async () => {
+    try {
+      await axios.delete(`/recipes/${route.params.id}`);
+      location.route("/recipes");
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed");
+    }
   };
 
   useEffect(() => {
@@ -113,10 +130,20 @@ const ViewRecipe = () => {
           variant="contained"
           color="secondary"
           startIcon={<EditIcon size={18} />}
-          sx={{ position: "absolute", top: 8, right: 8 }}
+          sx={{ position: "absolute", top: 8, right: { xs: 8, sm: 128 } }}
           onClick={() => location.route(`/recipes/edit/${route.params.id}`)}
         >
           Edit
+        </Button>
+
+        <Button
+          variant="contained"
+          color="error"
+          startIcon={<DeleteIcon size={18} />}
+          sx={{ position: "absolute", top: { xs: 56, sm: 8 }, right: 8 }}
+          onClick={() => setDeleteDialogOpen(true)}
+        >
+          Delete
         </Button>
 
         {isDesktop ? (
@@ -124,7 +151,7 @@ const ViewRecipe = () => {
             variant="contained"
             color="secondary"
             startIcon={<ImageIcon size={18} />}
-            sx={{ position: "absolute", top: 52, right: 8 }}
+            sx={{ position: "absolute", top: 56, right: 8 }}
             onClick={() =>
               location.route(`/recipes/edit-image/${route.params.id}`)
             }
@@ -199,6 +226,14 @@ const ViewRecipe = () => {
           <Markdown remarkPlugins={[remarkGfm]}>{data.instructions}</Markdown>
         ) : null}
       </Box>
+
+      <Dialog
+        title="Are you sure?"
+        text="This content would be deleted."
+        onSubmit={handleDeleteSubmit}
+        open={isDeleteDialogOpen}
+        setOpen={setDeleteDialogOpen}
+      />
     </ModuleContainer>
   );
 };
