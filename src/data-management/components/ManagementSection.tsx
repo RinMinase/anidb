@@ -41,6 +41,7 @@ const ManagementSection = (props: Props) => {
   const dzConfig: DropzoneOptions = {
     accept: {
       "application/json": [".json"],
+      "text/plain": [".json"],
     },
     maxFiles: 1,
     multiple: false,

@@ -13,9 +13,16 @@ type Props = {
 };
 
 const pathValidator = (file: FileWithPath): any => {
-  const depth = file.path?.match(/\//g)?.length || 2;
+  const depth = file.path?.match(/\//g)?.length ?? 0;
 
-  return depth > 2 ? true : null;
+  if (depth > 2) {
+    return {
+      code: "depth-too-high",
+      message: `Folder depth ${depth} is too deep. Max allowed is 2.`,
+    };
+  }
+
+  return null;
 };
 
 const DropzoneContainer = styled(Box)({
@@ -138,6 +145,7 @@ const AutofillHelper = (props: Props) => {
 
   const dzConfig: DropzoneOptions = {
     accept: {
+      "video/x-matroska": [".mkv"],
       "video/mkv": [".mkv"],
     },
     multiple: true,
