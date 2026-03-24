@@ -61,7 +61,6 @@
     "devmoji": "^2.3.0",
     "preact-render-to-string": "^6.6.6",
     "vite": "^8.0.2",
-    "vite-plugin-biome": "1.0.12",
     "vite-plugin-svgr": "^4.5.0",
     "yorkie": "^2.0.0"
   },
