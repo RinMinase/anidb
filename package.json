@@ -39,7 +39,7 @@
     "preact-iso": "^2.11.1",
     "react-dropzone": "^14.4.1",
     "react-feather": "^2.0.10",
-    "react-hook-form": "7.71.0",
+    "react-hook-form": "^7.72.0",
     "react-markdown": "^10.1.0",
     "react-scroll": "^1.9.3",
     "react-waypoint": "^10.3.0",
