@@ -1,5 +1,5 @@
 import { toast } from "sonner";
-import { isEmpty } from "lodash-es";
+import { isEmptyObject } from "es-toolkit";
 import { Grid, InputAdornment } from "@mui/material";
 import axios from "axios";
 import DebouncePromise from "awesome-debounce-promise";
@@ -239,7 +239,7 @@ const AddForm = (props: Props) => {
       const title = props.getValues("title");
       const obj = titleObjects.find((item) => item.title === title);
 
-      if (!isEmpty(obj)) {
+      if (obj && !isEmptyObject(obj)) {
         const {
           data: { data },
         } = await axios.get(`anilist/title/${obj.id}`);

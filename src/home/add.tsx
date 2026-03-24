@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "preact/hooks";
 import { useLocation, useRoute } from "preact-iso";
 import { useForm } from "react-hook-form";
 import { format } from "date-fns";
-import { isEmpty } from "lodash-es";
+import { isEmptyObject } from "es-toolkit";
 import { ArrowLeft as BackIcon } from "react-feather";
 import { toast } from "sonner";
 import axios, { AxiosError } from "axios";
@@ -270,7 +270,7 @@ const HomeAdd = () => {
   );
 
   useEffect(() => {
-    if (!isEmpty(autofillValues)) {
+    if (autofillValues && !isEmptyObject(autofillValues)) {
       setValue("episodes", autofillValues.episodes);
       setValue("encoder_video", autofillValues.encoderVideo);
       setValue("encoder_audio", autofillValues.encoderAudio);

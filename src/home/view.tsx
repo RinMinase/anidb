@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "preact/hooks";
 import { useLocation, useRoute } from "preact-iso";
-import { debounce } from "lodash-es";
+import { debounce } from "es-toolkit";
 import { toast } from "sonner";
 import axios from "axios";
 import contrast from "font-color-contrast";
