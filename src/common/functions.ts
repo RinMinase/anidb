@@ -1,3 +1,5 @@
+import { colord } from "colord";
+
 const KB = 1024;
 const MB = 1024 * KB;
 const GB = 1024 * MB;
@@ -106,3 +108,7 @@ export function roundHalfDown(num: any) {
   if (typeof num === "number") return -Math.round(-num);
   return 0;
 }
+
+export const contrast = (bgColor: string): string => {
+  return colord(bgColor).isDark() ? "#ffffff" : "#000000";
+};
