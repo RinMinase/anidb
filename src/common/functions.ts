@@ -118,6 +118,6 @@ export const contrast = (bgColor: string): string => {
   const b = parseInt(fullHex.substring(4, 6), 16);
 
   // https://en.wikipedia.org/wiki/YIQ#From_RGB_to_YIQ
-  const yiq = (r * 299 + g * 587 + b * 114) / 1000;
+  const yiq = r * 0.299 + g * 0.587 + b * 0.114;
   return yiq >= 128 ? "#000000" : "#ffffff";
 };
