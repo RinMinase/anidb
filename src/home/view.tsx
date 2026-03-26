@@ -3,7 +3,6 @@ import { useLocation, useRoute } from "preact-iso";
 import { debounce } from "es-toolkit";
 import { toast } from "sonner";
 import axios from "axios";
-import contrast from "font-color-contrast";
 
 import {
   Box,
@@ -25,7 +24,7 @@ import {
 
 import TotalRatingIcon from "@components/icons/heart.svg?react";
 
-import { roundHalfDown } from "@components/functions";
+import { contrast, roundHalfDown } from "@components/functions";
 
 import {
   AuthenticatedUserContext,
