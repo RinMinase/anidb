@@ -1,5 +1,3 @@
-import { colord } from "colord";
-
 const KB = 1024;
 const MB = 1024 * KB;
 const GB = 1024 * MB;
@@ -110,5 +108,16 @@ export function roundHalfDown(num: any) {
 }
 
 export const contrast = (bgColor: string): string => {
-  return colord(bgColor).isDark() ? "#ffffff" : "#000000";
+  const hex = bgColor.replace("#", "");
+
+  // Expand #fff hex to #ffffff
+  const fullHex = hex.length === 3 ? hex.replace(/./g, (c) => c + c) : hex;
+
+  const r = parseInt(fullHex.substring(0, 2), 16);
+  const g = parseInt(fullHex.substring(2, 4), 16);
+  const b = parseInt(fullHex.substring(4, 6), 16);
+
+  // https://en.wikipedia.org/wiki/YIQ#From_RGB_to_YIQ
+  const yiq = (r * 299 + g * 587 + b * 114) / 1000;
+  return yiq >= 128 ? "#000000" : "#ffffff";
 };
