@@ -21,12 +21,14 @@
     "cz": "cz"
   },
   "dependencies": {
+    "@dagrejs/dagre": "^3.0.0",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
     "@hello-pangea/dnd": "^18.0.1",
     "@hookform/resolvers": "^5.2.2",
     "@mui/material": "^7.3.9",
     "@mui/x-date-pickers": "^8.27.2",
+    "@xyflow/react": "^12.10.1",
     "awesome-debounce-promise": "^2.1.0",
     "axios": "^1.13.6",
     "chart.js": "^4.5.1",
