@@ -87,7 +87,7 @@ const Nav = () => {
             <Typography
               variant="h6"
               component={"a" as any}
-              href="/"
+              href="/home"
               sx={{
                 mr: 2,
                 display: { xs: "none", md: "flex" },

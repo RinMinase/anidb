@@ -34,7 +34,7 @@ const Login = () => {
 
   useEffect(() => {
     if (localStorage.getItem("authToken")) {
-      location.route("/home");
+      location.route("/home", true);
     }
   }, []);
 
