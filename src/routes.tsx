@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "preact/hooks";
 import { toast } from "sonner";
 
-import { lazy, LocationProvider, Router, Route, useLocation } from "preact-iso";
+import { lazy, Router, Route, useLocation } from "preact-iso";
 
 import { AuthenticatedUserContext } from "@components";
 import Page404 from "@components/pages/Page404";
@@ -102,84 +102,79 @@ const Page404Boundary = () => {
  * Route component
  */
 const Routes = (props: Props) => (
-  <LocationProvider>
-    <Router onRouteChange={props.onChange}>
-      <Route path="/" component={Login} />
+  <Router onRouteChange={props.onChange}>
+    <Route path="/" component={Login} />
 
-      <Route path="/register" component={Registration} />
-      <Route path="/forget-password" component={ForgetPassword} />
-      <Route path="/reset-password" component={ResetPassword} />
+    <Route path="/register" component={Registration} />
+    <Route path="/forget-password" component={ForgetPassword} />
+    <Route path="/reset-password" component={ResetPassword} />
 
-      <Route path="/home" component={Home} />
-      <Route path="/home/view/:id" component={HomeView} />
-      <Route path="/home/map/:id" component={HomeMap} />
-      <ProtectedRoute path="/home/add" component={HomeAdd} />
-      <ProtectedRoute path="/home/edit/:id" component={HomeAdd} />
+    <Route path="/home" component={Home} />
+    <Route path="/home/view/:id" component={HomeView} />
+    <Route path="/home/map/:id" component={HomeMap} />
+    <ProtectedRoute path="/home/add" component={HomeAdd} />
+    <ProtectedRoute path="/home/edit/:id" component={HomeAdd} />
 
-      <ProtectedRoute path="/entries" component={Entries} />
-      <ProtectedRoute path="/search" component={Search} />
-      <ProtectedRoute path="/last-watch" component={LastWatch} />
+    <ProtectedRoute path="/entries" component={Entries} />
+    <ProtectedRoute path="/search" component={Search} />
+    <ProtectedRoute path="/last-watch" component={LastWatch} />
 
-      <ProtectedRoute path="/by-name" component={ByName} />
-      <ProtectedRoute path="/by-year" component={ByYear} />
-      <ProtectedRoute path="/by-genre" component={ByGenre} />
+    <ProtectedRoute path="/by-name" component={ByName} />
+    <ProtectedRoute path="/by-year" component={ByYear} />
+    <ProtectedRoute path="/by-genre" component={ByGenre} />
 
-      <ProtectedRoute path="/catalogs" component={Catalog} />
-      <ProtectedRoute path="/catalogs/add" component={CatalogAdd} />
-      <ProtectedRoute path="/catalogs/edit/:id" component={CatalogAdd} />
-      <ProtectedRoute path="/catalogs/add-multi" component={CatalogMulti} />
-      <ProtectedRoute
-        path="/catalogs/edit-multi/:id"
-        component={CatalogMulti}
-      />
-      <ProtectedRoute path="/catalogs/manage" component={CatalogManage} />
-      <ProtectedRoute
-        path="/catalogs/manage-edit/:id"
-        component={CatalogManageEdit}
-      />
+    <ProtectedRoute path="/catalogs" component={Catalog} />
+    <ProtectedRoute path="/catalogs/add" component={CatalogAdd} />
+    <ProtectedRoute path="/catalogs/edit/:id" component={CatalogAdd} />
+    <ProtectedRoute path="/catalogs/add-multi" component={CatalogMulti} />
+    <ProtectedRoute path="/catalogs/edit-multi/:id" component={CatalogMulti} />
+    <ProtectedRoute path="/catalogs/manage" component={CatalogManage} />
+    <ProtectedRoute
+      path="/catalogs/manage-edit/:id"
+      component={CatalogManageEdit}
+    />
 
-      <ProtectedRoute path="/buckets" component={Bucket} />
+    <ProtectedRoute path="/buckets" component={Bucket} />
 
-      <ProtectedRoute path="/marathons" component={Marathon} />
-      <ProtectedRoute path="/marathons/add" component={MarathonAdd} />
-      <ProtectedRoute path="/marathons/edit/:id" component={MarathonAdd} />
+    <ProtectedRoute path="/marathons" component={Marathon} />
+    <ProtectedRoute path="/marathons/add" component={MarathonAdd} />
+    <ProtectedRoute path="/marathons/edit/:id" component={MarathonAdd} />
 
-      <ProtectedRoute path="/bucket-sims" component={BucketSim} />
-      <ProtectedRoute path="/bucket-sims/add" component={BucketSimAdd} />
-      <ProtectedRoute path="/bucket-sims/edit/:id" component={BucketSimAdd} />
+    <ProtectedRoute path="/bucket-sims" component={BucketSim} />
+    <ProtectedRoute path="/bucket-sims/add" component={BucketSimAdd} />
+    <ProtectedRoute path="/bucket-sims/edit/:id" component={BucketSimAdd} />
 
-      <ProtectedRoute path="/data-management" component={DataManagement} />
-      <ProtectedRoute path="/logs" component={Logs} />
-      <ProtectedRoute path="/autofills" component={Autofills} />
-      <ProtectedRoute path="/users" component={Users} />
+    <ProtectedRoute path="/data-management" component={DataManagement} />
+    <ProtectedRoute path="/logs" component={Logs} />
+    <ProtectedRoute path="/autofills" component={Autofills} />
+    <ProtectedRoute path="/users" component={Users} />
 
-      <ProtectedRoute path="/pc-setups" component={PcSetup} />
-      <ProtectedRoute path="/pc-setups/:ownerId/add" component={PcSetupAdd} />
-      <ProtectedRoute
-        path="/pc-setups/:ownerId/edit/:infoId"
-        component={PcSetupAdd}
-      />
-      <ProtectedRoute path="/pc-setups/components" component={PcComponent} />
+    <ProtectedRoute path="/pc-setups" component={PcSetup} />
+    <ProtectedRoute path="/pc-setups/:ownerId/add" component={PcSetupAdd} />
+    <ProtectedRoute
+      path="/pc-setups/:ownerId/edit/:infoId"
+      component={PcSetupAdd}
+    />
+    <ProtectedRoute path="/pc-setups/components" component={PcComponent} />
 
-      <ProtectedRoute path="/gas" component={Gas} />
-      <ProtectedRoute path="/gas/add" component={GasAdd} />
-      <ProtectedRoute path="/gas/view" component={GasView} />
+    <ProtectedRoute path="/gas" component={Gas} />
+    <ProtectedRoute path="/gas/add" component={GasAdd} />
+    <ProtectedRoute path="/gas/view" component={GasView} />
 
-      <ProtectedRoute path="/electric" component={Electric} />
+    <ProtectedRoute path="/electric" component={Electric} />
 
-      <ProtectedRoute path="/recipes" component={Recipes} />
-      <ProtectedRoute path="/recipes/add" component={RecipesAdd} />
-      <ProtectedRoute path="/recipes/edit/:id" component={RecipesAdd} />
-      <ProtectedRoute
-        path="/recipes/edit-image/:id"
-        component={RecipesEditImage}
-      />
-      <ProtectedRoute path="/recipes/:id" component={RecipesView} />
+    <ProtectedRoute path="/recipes" component={Recipes} />
+    <ProtectedRoute path="/recipes/add" component={RecipesAdd} />
+    <ProtectedRoute path="/recipes/edit/:id" component={RecipesAdd} />
+    <ProtectedRoute
+      path="/recipes/edit-image/:id"
+      component={RecipesEditImage}
+    />
+    <ProtectedRoute path="/recipes/:id" component={RecipesView} />
 
-      <Route path="/404" component={Page404} />
-      <Route default component={Page404Boundary} />
-    </Router>
-  </LocationProvider>
+    <Route path="/404" component={Page404} />
+    <Route default component={Page404Boundary} />
+  </Router>
 );
 
 export default Routes;

@@ -1,5 +1,6 @@
 import { render } from "preact";
 import { useEffect, useState } from "preact/hooks";
+import { LocationProvider } from "preact-iso";
 import { Toaster } from "sonner";
 import { Container, CssBaseline } from "@mui/material";
 
@@ -28,19 +29,21 @@ const Layout = () => {
   }, []);
 
   return (
-    <ColorMode>
-      <CssBaseline />
-      <AuthenticatedUser currRoute={currRoute}>
-        {navCommon ? <NavCommon /> : <Nav />}
+    <LocationProvider>
+      <ColorMode>
+        <CssBaseline />
+        <AuthenticatedUser currRoute={currRoute}>
+          {navCommon ? <NavCommon /> : <Nav />}
 
-        <GlobalLoader disableScroll={navCommon} id="main">
-          <Container>
-            <Routes onChange={handleRouteChange} />
-            <Toaster position="bottom-right" richColors />
-          </Container>
-        </GlobalLoader>
-      </AuthenticatedUser>
-    </ColorMode>
+          <GlobalLoader disableScroll={navCommon} id="main">
+            <Container>
+              <Routes onChange={handleRouteChange} />
+              <Toaster position="bottom-right" richColors />
+            </Container>
+          </GlobalLoader>
+        </AuthenticatedUser>
+      </ColorMode>
+    </LocationProvider>
   );
 };
 
