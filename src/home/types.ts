@@ -155,3 +155,16 @@ export type DropdownsApiResponse = {
     };
   };
 };
+
+export type MapData = {
+  entries: Array<{
+    linkId: string;
+    title: string;
+    entryId: string;
+  }>;
+  links: Array<{
+    from: string;
+    to: string;
+    relation: string;
+  }>;
+};

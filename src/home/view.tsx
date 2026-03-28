@@ -492,6 +492,15 @@ const HomeView = () => {
                   data.sequel?.id ||
                   data.offquels?.length ? (
                     <Stack spacing={1}>
+                      <Button
+                        variant="contained"
+                        sx={{ maxWidth: 150 }}
+                        onClick={() =>
+                          location.route(`/home/map/${route.params.id}`)
+                        }
+                      >
+                        Title Map
+                      </Button>
                       {data.prequel?.id && (
                         <Typography variant="body1">
                           <Typography component={"span" as any}>

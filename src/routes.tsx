@@ -22,6 +22,7 @@ const ResetPassword = lazy(() => import("./auth/reset-password"));
 const Home = lazy(() => import("./home"));
 const HomeAdd = lazy(() => import("./home/add"));
 const HomeView = lazy(() => import("./home/view"));
+const HomeMap = lazy(() => import("./home/map"));
 
 const Entries = lazy(() => import("./entries"));
 const Search = lazy(() => import("./search"));
@@ -111,6 +112,7 @@ const Routes = (props: Props) => (
 
       <Route path="/home" component={Home} />
       <Route path="/home/view/:id" component={HomeView} />
+      <Route path="/home/map/:id" component={HomeMap} />
       <ProtectedRoute path="/home/add" component={HomeAdd} />
       <ProtectedRoute path="/home/edit/:id" component={HomeAdd} />
 
