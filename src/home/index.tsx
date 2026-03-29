@@ -4,7 +4,6 @@ import { Waypoint } from "react-waypoint";
 import { Search as SearchIcon } from "react-feather";
 import { toast } from "sonner";
 import axios from "axios";
-import DebouncePromise from "awesome-debounce-promise";
 
 import {
   Box,
@@ -25,6 +24,7 @@ import {
   AuthenticatedUserContext,
   BadgeMini,
   Button,
+  debouncePromise,
   GlobalLoaderContext,
   ModuleContainer,
   Quality,
@@ -81,7 +81,7 @@ const searchAPI = (query: string, column: string, order: "asc" | "desc") => {
   });
 };
 
-const searchAPIDebounced = DebouncePromise(searchAPI, 500);
+const searchAPIDebounced = debouncePromise(searchAPI, 750);
 
 const Home = () => {
   const location = useLocation();

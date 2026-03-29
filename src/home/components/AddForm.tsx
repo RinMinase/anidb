@@ -2,7 +2,6 @@ import { toast } from "sonner";
 import { isEmptyObject } from "es-toolkit";
 import { Grid, InputAdornment } from "@mui/material";
 import axios from "axios";
-import DebouncePromise from "awesome-debounce-promise";
 
 import {
   Dispatch,
@@ -27,19 +26,21 @@ import {
   ControlledMultiSelect,
   ControlledSelect,
   ControlledSwitch,
+  debouncePromise,
   Dialog,
   GlobalLoaderContext,
   OptionsKeyedProps,
   parseNumberFilesizeToString,
 } from "@components";
 
-import { Form } from "../validation";
 import {
   AnilistTitle,
   DropdownsApiResponse,
   TitleObject,
   TitleObjects,
 } from "../types";
+
+import { Form } from "../validation";
 import AddFormAutocomplete from "./AddFormAutocomplete";
 import AddFormDuration from "./AddFormDuration";
 
@@ -93,7 +94,7 @@ const titleSearchAPI = (title?: string) =>
     },
   });
 
-const titleSearchAPIDebounced = DebouncePromise(titleSearchAPI, 350);
+const titleSearchAPIDebounced = debouncePromise(titleSearchAPI, 500);
 
 const AddForm = (props: Props) => {
   const { control, errors } = props;

@@ -3,7 +3,6 @@ import { useLocation } from "preact-iso";
 import { toast } from "sonner";
 import { Waypoint } from "react-waypoint";
 import axios from "axios";
-import DebouncePromise from "awesome-debounce-promise";
 
 import {
   Search as SearchIcon,
@@ -20,6 +19,7 @@ import {
 } from "@mui/material";
 
 import {
+  debouncePromise,
   Dialog,
   GlobalLoaderContext,
   IconButton,
@@ -42,7 +42,7 @@ const searchAPI = (query: string, column: string, order: "asc" | "desc") => {
   });
 };
 
-const searchAPIDebounced = DebouncePromise(searchAPI, 500);
+const searchAPIDebounced = debouncePromise(searchAPI, 750);
 
 const CatalogManage = () => {
   const location = useLocation();

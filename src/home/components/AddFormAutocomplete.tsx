@@ -1,8 +1,7 @@
-import { ControlledAutocomplete } from "@components";
+import { ControlledAutocomplete, debouncePromise } from "@components";
 import { useEffect, useState } from "preact/hooks";
 import { Control, FieldValues, Path, UseFormSetValue } from "react-hook-form";
 import axios from "axios";
-import DebouncePromise from "awesome-debounce-promise";
 
 import { TitleObject } from "../types";
 
@@ -39,7 +38,7 @@ const searchAPI = (
   });
 };
 
-const searchAPIDebounced = DebouncePromise(searchAPI, 250);
+const searchAPIDebounced = debouncePromise(searchAPI, 500);
 
 const AddFormAutocomplete = <T extends FieldValues>(props: Props<T>) => {
   const [options, setOptions] = useState<AutocompleteOptions>([]);
