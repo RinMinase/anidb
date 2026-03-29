@@ -14,7 +14,7 @@ import {
   Typography,
 } from "@mui/material";
 
-import { getYearsInArray } from "@components/functions";
+import { getYearsInArray } from "@components";
 import { odoChartInitialData, odoChartOptions } from "../constants";
 
 type Props = {

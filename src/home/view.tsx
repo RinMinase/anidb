@@ -24,15 +24,15 @@ import {
 
 import TotalRatingIcon from "@components/icons/heart.svg?react";
 
-import { contrast, roundHalfDown } from "@components/functions";
-
 import {
   AuthenticatedUserContext,
   Button,
   ButtonLoading,
+  contrast,
   Dialog,
   GlobalLoaderContext,
   ModuleContainer,
+  roundHalfDown,
 } from "@components";
 
 import { FullData } from "./types";

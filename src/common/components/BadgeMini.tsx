@@ -1,5 +1,5 @@
 import { styled } from "@mui/material";
-import { contrast } from "../functions";
+import { contrast } from "@components";
 
 type Props = {
   label: string;

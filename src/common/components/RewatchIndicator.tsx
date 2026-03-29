@@ -1,6 +1,6 @@
 import { Typography } from "@mui/material";
 
-import { cardinalToOrdinal } from "../functions";
+import { cardinalToOrdinal } from "@components";
 
 type Props = {
   show?: boolean;
