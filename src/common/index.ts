@@ -38,12 +38,15 @@ export { AuthenticatedUserContext } from "./providers/AuthenticatedUser";
 
 export {
   FILESIZES,
-  cardinalToOrdinal,
   emptyStringToNull,
-  parseNumberFilesizeToString,
+  waitForElement,
   queryParamsArrayToString,
   randomAlphaString,
   removeBlankAttributes,
+  parseNumberFilesizeToString,
+  cardinalToOrdinal,
+  getYearsInArray,
+  roundHalfDown,
   contrast,
   debouncePromise,
 } from "./functions";
