@@ -22,8 +22,6 @@
   },
   "dependencies": {
     "@dagrejs/dagre": "^3.0.0",
-    "@emotion/react": "^11.14.0",
-    "@emotion/styled": "^11.14.1",
     "@hello-pangea/dnd": "^18.0.1",
     "@hookform/resolvers": "^5.2.2",
     "@mui/material": "^7.3.9",
@@ -53,6 +51,8 @@
   "devDependencies": {
     "@biomejs/biome": "^2.4.9",
     "@date-io/date-fns": "^3.2.1",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
     "@mui/system": "^7.3.9",
     "@preact/preset-vite": "^2.10.5",
     "@types/react-scroll": "^1.8.10",
