@@ -1,3 +1,5 @@
+import { debounce } from "es-toolkit";
+
 const KB = 1024;
 const MB = 1024 * KB;
 const GB = 1024 * MB;
@@ -120,4 +122,33 @@ export const contrast = (bgColor: string): string => {
   // https://en.wikipedia.org/wiki/YIQ#From_RGB_to_YIQ
   const yiq = r * 0.299 + g * 0.587 + b * 0.114;
   return yiq >= 128 ? "#000000" : "#ffffff";
+};
+
+export const debouncePromise = <T extends (...args: any[]) => Promise<any>>(
+  func: T,
+  wait: number,
+) => {
+  let resolveCurrent: ((value: any) => void) | null = null;
+  let rejectCurrent: ((reason: any) => void) | null = null;
+
+  const triggerFunc = debounce(async (args: Parameters<T>) => {
+    const resolve = resolveCurrent;
+    const reject = rejectCurrent;
+
+    try {
+      const result = await func(...args);
+      resolve?.(result);
+    } catch (error) {
+      reject?.(error);
+    }
+  }, wait);
+
+  return (...args: Parameters<T>): Promise<Awaited<ReturnType<T>>> => {
+    return new Promise((resolve, reject) => {
+      resolveCurrent = resolve;
+      rejectCurrent = reject;
+
+      triggerFunc(args);
+    });
+  };
 };
