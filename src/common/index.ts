@@ -44,6 +44,7 @@ export {
   queryParamsArrayToString,
   randomAlphaString,
   removeBlankAttributes,
+  contrast,
   debouncePromise,
 } from "./functions";
 
