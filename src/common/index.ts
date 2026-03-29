@@ -39,7 +39,6 @@ export { AuthenticatedUserContext } from "./providers/AuthenticatedUser";
 export {
   FILESIZES,
   emptyStringToNull,
-  waitForElement,
   queryParamsArrayToString,
   randomAlphaString,
   removeBlankAttributes,
