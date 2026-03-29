@@ -2,7 +2,7 @@ import { createContext } from "preact";
 import { useEffect, useState } from "preact/hooks";
 import axios, { AxiosError } from "axios";
 
-import { PUBLIC_URLS } from "@components/constants";
+import { PUBLIC_URLS } from "@components";
 
 export const AuthenticatedUserContext = createContext<boolean | null>(null);
 

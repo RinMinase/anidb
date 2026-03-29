@@ -4,11 +4,10 @@ import { LocationProvider } from "preact-iso";
 import { Toaster } from "sonner";
 import { Container, CssBaseline } from "@mui/material";
 
-import { Nav, NavCommon } from "@components";
+import { Nav, NavCommon, PUBLIC_URLS } from "@components";
 import AuthenticatedUser from "@components/providers/AuthenticatedUser";
 import ColorMode from "@components/providers/ColorMode";
 import GlobalLoader from "@components/providers/GlobalLoader";
-import { PUBLIC_URLS } from "@components/constants";
 
 import Routes from "./routes";
 

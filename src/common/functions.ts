@@ -1,5 +1,13 @@
 import { debounce } from "es-toolkit";
 
+export const PUBLIC_URLS = [
+  "/",
+  "/register",
+  "/404",
+  "/forget-password",
+  "/reset-password",
+];
+
 const KB = 1024;
 const MB = 1024 * KB;
 const GB = 1024 * MB;

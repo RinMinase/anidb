@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { PUBLIC_URLS } from "@components/constants";
+import { PUBLIC_URLS } from "@components";
 
 const removeTrailSlashes = (str: string): string => {
   let i = str.length;

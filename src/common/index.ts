@@ -37,6 +37,7 @@ export {
 export { AuthenticatedUserContext } from "./providers/AuthenticatedUser";
 
 export {
+  PUBLIC_URLS,
   FILESIZES,
   emptyStringToNull,
   queryParamsArrayToString,
