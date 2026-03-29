@@ -1,4 +1,5 @@
 import { useContext, useState } from "preact/hooks";
+import { useLocation } from "preact-iso";
 import { Waypoint } from "react-waypoint";
 import { Search as SearchIcon } from "react-feather";
 import { toast } from "sonner";
@@ -32,7 +33,6 @@ import {
 } from "@components";
 
 import { Data, TableHeadings } from "./types";
-import { useLocation } from "preact-iso";
 
 const StyledRating = styled(Rating)(({ theme, value }) => ({
   display: "flex",
@@ -312,8 +312,8 @@ const Home = () => {
               data.map((item) => (
                 <Table.Row
                   hover
-                  sx={{ cursor: "pointer" }}
                   key={item.id}
+                  sx={{ cursor: "pointer" }}
                   onClick={() => location.route(`/home/view/${item.id}`)}
                 >
                   <Table.Cell>

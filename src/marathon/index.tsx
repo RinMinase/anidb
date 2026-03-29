@@ -354,7 +354,12 @@ const Marathon = () => {
               <Table.Body>
                 {!isTableLoading ? (
                   data.map((item) => (
-                    <Table.Row hover key={item.id}>
+                    <Table.Row
+                      hover
+                      key={item.id}
+                      sx={{ cursor: "pointer" }}
+                      onClick={() => location.route(`/home/view/${item.id}`)}
+                    >
                       <Table.Cell>
                         <Quality quality={item.quality} />
                         {item.title}

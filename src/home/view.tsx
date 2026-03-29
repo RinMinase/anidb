@@ -293,7 +293,7 @@ const HomeView = () => {
                 variant="contained"
                 color="info"
                 startIcon={<BackIcon size={16} />}
-                onClick={() => location.route("/home")}
+                onClick={() => window.history.back()}
                 fullWidth
               >
                 Back

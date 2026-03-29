@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "preact/hooks";
+import { useLocation } from "preact-iso";
 import { Slash as UncategorizedIcon } from "react-feather";
 import { toast } from "sonner";
 import axios from "axios";
@@ -69,6 +70,8 @@ const IconUncategorized = ({ small }: CustomIconProps) => (
 );
 
 const ByYear = () => {
+  const location = useLocation();
+
   const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
 
   const [initLoad, setInitLoad] = useState(true);
@@ -189,7 +192,12 @@ const ByYear = () => {
 
               <Table.Body>
                 {values.map((item) => (
-                  <Table.Row hover key={item.uuid}>
+                  <Table.Row
+                    hover
+                    key={item.uuid}
+                    sx={{ cursor: "pointer" }}
+                    onClick={() => location.route(`/home/view/${item.uuid}`)}
+                  >
                     <Table.Cell>
                       <Quality quality={item.quality} />
                       {item.title}

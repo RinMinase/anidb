@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "preact/hooks";
+import { useLocation } from "preact-iso";
 import { HardDrive as DriveIcon, Database as StorageIcon } from "react-feather";
 import { green, orange, red } from "@mui/material/colors";
 import { toast } from "sonner";
@@ -19,6 +20,8 @@ import {
 import { Bucket as SingleBucket, Buckets, Data, Stats } from "./types";
 
 const Bucket = () => {
+  const location = useLocation();
+
   const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
 
   const [isTableLoading, setTableLoading] = useState(false);
@@ -210,7 +213,12 @@ const Bucket = () => {
           <Table.Body>
             {!isTableLoading ? (
               data.map((item) => (
-                <Table.Row hover key={item.id}>
+                <Table.Row
+                  hover
+                  key={item.id}
+                  sx={{ cursor: "pointer" }}
+                  onClick={() => location.route(`/home/view/${item.id}`)}
+                >
                   <Table.Cell>
                     <Quality quality={item.quality} />
                     {item.title}

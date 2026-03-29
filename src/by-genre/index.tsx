@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "preact/hooks";
+import { useLocation } from "preact-iso";
 import { toast } from "sonner";
 import axios from "axios";
 
@@ -29,6 +30,8 @@ const CustomTableRow = styled(Table.Row)<TableRowProps>(
 );
 
 const ByGenre = () => {
+  const location = useLocation();
+
   const { toggleLoader } = useContext(GlobalLoaderContext);
 
   const [isTableLoading, setTableLoader] = useState(false);
@@ -132,7 +135,12 @@ const ByGenre = () => {
               <Table.Body>
                 {!isTableLoading ? (
                   data.map((item) => (
-                    <Table.Row hover key={item.id}>
+                    <Table.Row
+                      hover
+                      key={item.id}
+                      sx={{ cursor: "pointer" }}
+                      onClick={() => location.route(`/home/view/${item.id}`)}
+                    >
                       <Table.Cell>
                         <Quality quality={item.quality} />
                         {item.title}

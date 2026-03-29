@@ -1,4 +1,5 @@
 import { useContext, useEffect, useLayoutEffect, useState } from "preact/hooks";
+import { useLocation } from "preact-iso";
 import { toast } from "sonner";
 import axios from "axios";
 
@@ -11,6 +12,7 @@ import {
   MenuItem,
   Paper,
   Select,
+  Stack,
 } from "@mui/material";
 
 import {
@@ -31,9 +33,10 @@ import {
 } from "@components";
 
 import { Data, Stats, statsDefaultValues } from "./types";
-import { Stack } from "@mui/system";
 
 const LastWatch = () => {
+  const location = useLocation();
+
   const { isLoading, toggleLoader } = useContext(GlobalLoaderContext);
 
   const [items, setItems] = useState(20);
@@ -163,7 +166,12 @@ const LastWatch = () => {
 
           <Table.Body>
             {data.map((item) => (
-              <Table.Row hover key={item.id}>
+              <Table.Row
+                hover
+                key={item.id}
+                sx={{ cursor: "pointer" }}
+                onClick={() => location.route(`/home/view/${item.id}`)}
+              >
                 <Table.Cell>
                   <Quality quality={item.quality} />
                   {item.title}
