@@ -52,7 +52,6 @@
     "@date-io/date-fns": "3.2.1",
     "@emotion/react": "11.14.0",
     "@emotion/styled": "11.14.1",
-    "@mui/system": "7.3.10",
     "@preact/preset-vite": "2.10.5",
     "@types/react-scroll": "1.8.10",
     "@typescript/native-preview": "7.0.0-dev.20260410.1",

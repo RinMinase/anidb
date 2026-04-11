@@ -517,7 +517,7 @@
     csstype "^3.2.3"
     prop-types "^15.8.1"
 
-"@mui/system@7.3.10", "@mui/system@^7.3.10":
+"@mui/system@^7.3.10":
   version "7.3.10"
   resolved "https://registry.yarnpkg.com/@mui/system/-/system-7.3.10.tgz#b8e668537605413be168a865d4e980c7d6747320"
   integrity sha512-/sfPpdpJaQn7BSF+avjIdHSYmxHp0UOBYNxSG9QGKfMOD6sLANCpRPCnanq1Pe0lFf0NHkO2iUk0TNzdWC1USQ==
