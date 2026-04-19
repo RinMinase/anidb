@@ -54,7 +54,7 @@
     "@emotion/styled": "11.14.1",
     "@preact/preset-vite": "2.10.5",
     "@types/react-scroll": "1.8.10",
-    "@typescript/native-preview": "7.0.0-dev.20260410.1",
+    "@typescript/native-preview": "7.0.0-dev.20260419.1",
     "commitizen": "4.3.1",
     "cz-emoji-conventional": "1.2.1",
     "devmoji": "2.3.0",
