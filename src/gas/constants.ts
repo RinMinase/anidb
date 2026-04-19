@@ -26,7 +26,7 @@ export const efficiencyChartOptions: ChartOptions = {
       formatter: (val) => {
         return val < 0 ? "None" : val < 1 ? "" : val;
       },
-      color: "#000",
+      color: "#2196F3",
       font: {
         size: 12,
       },
