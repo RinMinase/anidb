@@ -59,8 +59,6 @@ const Gas = lazy(() => import("./gas"));
 const GasAdd = lazy(() => import("./gas/add"));
 const GasView = lazy(() => import("./gas/view"));
 
-const Electric = lazy(() => import("./electric"));
-
 const Recipes = lazy(() => import("./recipes"));
 const RecipesAdd = lazy(() => import("./recipes/add"));
 const RecipesView = lazy(() => import("./recipes/view"));
@@ -160,8 +158,6 @@ const Routes = (props: Props) => (
     <ProtectedRoute path="/gas" component={Gas} />
     <ProtectedRoute path="/gas/add" component={GasAdd} />
     <ProtectedRoute path="/gas/view" component={GasView} />
-
-    <ProtectedRoute path="/electric" component={Electric} />
 
     <ProtectedRoute path="/recipes" component={Recipes} />
     <ProtectedRoute path="/recipes/add" component={RecipesAdd} />
